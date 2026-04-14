@@ -84,7 +84,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,2
 .sd2{font-size:.73rem;font-weight:700;color:var(--r);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
 .sl2 li{font-size:.8rem;color:var(--tl);padding:.2rem 0 .2rem 1.1rem;position:relative}
 .sl2 li::before{content:'✓';color:var(--r);font-weight:700;position:absolute;left:0}
-.pn{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;align-items:start}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;align-items:start}
 .pc{border:1.5px solid var(--b);border-radius:var(--rad);padding:1.8rem;position:relative;transition:box-shadow .2s}
 .pc:hover{box-shadow:0 4px 24px rgba(200,75,107,.1)}
 .pc.pop{border-color:var(--r);box-shadow:0 8px 40px rgba(200,75,107,.15)}
@@ -96,7 +96,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,2
 .pd{font-size:.76rem;color:var(--tl);margin:.2rem 0 1.25rem}
 .pf li{font-size:.8rem;color:var(--t);padding:.3rem 0 .3rem 1.1rem;position:relative}
 .pf li::before{content:'✓';color:var(--r);font-weight:700;position:absolute;left:0}
-.pn2{font-size:.73rem;color:var(--tl);margin-top:.65rem;font-style:italic}
+.pn2{font-size:.74rem;color:var(--tl);margin-top:.65rem;font-style:italic}
 .faq-item{border-bottom:1px solid var(--b)}
 .faq-item:first-child{border-top:1px solid var(--b)}
 .fq{width:100%;text-align:left;background:none;border:none;padding:1.1rem 0;font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:700;color:var(--c);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
@@ -136,9 +136,29 @@ footer{background:#1e293b;color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
 .fb{border-top:1px solid rgba(255,255,255,.1);padding-top:1.4rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
 .fb span,.fb a{font-size:.76rem;color:rgba(255,255,255,.45)}.fb a:hover{color:var(--r)}
 .tc{text-align:center}.rose{color:var(--r)}
+/* === INTRO SPLASH === */
+#intro{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+#intro.out{animation:introOut .65s ease forwards}
+@keyframes introOut{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-20px)}}
+.intro-brand{display:flex;align-items:center;gap:.85rem;margin-bottom:1.1rem}
+.intro-logo{width:56px;height:56px;object-fit:contain;filter:brightness(0) invert(1);opacity:0;transform:scale(.75);animation:iLogo .55s cubic-bezier(.34,1.56,.64,1) .15s forwards}
+.intro-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:.22em;color:#fff;opacity:0;animation:iFade .5s ease .5s forwards}
+.intro-tagline{font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.4);opacity:0;animation:iFade .5s ease .85s forwards}
+.intro-line{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,#C84B6B,#e87a9a);animation:iLine 2.1s cubic-bezier(.4,0,.2,1) .2s forwards;width:0}
+@keyframes iLogo{to{opacity:1;transform:scale(1)}}
+@keyframes iFade{to{opacity:1}}
+@keyframes iLine{to{width:100%}}
 </style>
 </head>
 <body>
+<div id="intro" role="presentation" aria-hidden="true">
+  <div class="intro-brand">
+    <img class="intro-logo" src="https://gild-tech.com/assets/logo-hero-B13CSCY8.png" alt="">
+    <span class="intro-name">GILD TECH</span>
+  </div>
+  <span class="intro-tagline">Automatisation commerciale</span>
+  <div class="intro-line"></div>
+</div>
 <header><div class="con"><div class="nav">
 <a href="/" class="logo"><img src="https://gild-tech.com/assets/logo-hero-B13CSCY8.png" alt="GILD TECH">GILD TECH</a>
 <nav class="nl"><a href="#audience">Exemples</a><a href="#methode">Méthode</a><a href="#offres">Offres</a><a href="#faq">FAQ</a></nav>
@@ -255,12 +275,23 @@ footer{background:#1e293b;color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
 <div class="fb"><span>© 2026 GILD TECH. Tous droits réservés.</span><div style="display:flex;gap:1.25rem"><a href="/mentions-legales.html">Mentions légales</a><a href="/confidentialite.html">Confidentialité</a><a href="/cgv.html">CGV</a></div></div>
 </div></footer>
 <script>
+// Intro splash — only once per session
+(function(){
+  const el=document.getElementById('intro');
+  if(!el)return;
+  if(sessionStorage.getItem('gt_seen')){el.remove();return;}
+  sessionStorage.setItem('gt_seen','1');
+  document.body.style.overflow='hidden';
+  setTimeout(function(){
+    el.classList.add('out');
+    document.body.style.overflow='';
+    setTimeout(function(){el.remove();},680);
+  },2600);
+})();
 function toggleFaq(btn){const i=btn.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(e=>e.classList.remove('open'));if(!o)i.classList.add('open');}
-const obs=new IntersectionObserver(e=>e.forEach(x:=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='none';}}),{threshold:.1});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='none';}}),{threshold:.1});
 document.querySelectorAll('.card,.step,.pc,.ic').forEach(el=>{el.style.cssText='opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease';obs.observe(el);});
-window.addEventListener('scroll',()=>{co
-+t c=Object.keys({audience:0,methode:0,offres:0,faq:0}).find(id=>{co
-+nst s=document.getElementById(id);return s&&window.scrollY>=s.offsetTop-100})||'';document.querySelectorAll('.nl a').forEach(a=>a.style.color=a.href.includes(c)?'var(--r)":'');});
+window.addEventListener('scroll',()=>{const c=Object.keys({audience:0,methode:0,offres:0,faq:0}).find(id=>{const s=document.getElementById(id);return s&&window.scrollY>=s.offsetTop-100})||'';document.querySelectorAll('.nl a').forEach(a=>a.style.color=a.href.includes(c)?'var(--r)':'');});
 </script>
 </body>
 </html>
