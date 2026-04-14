@@ -14,13 +14,13 @@
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GILD TECH | Automatisation IA pour PME</title>
-    <meta name="description" content="Automatisez vos tâches chronophages grâce à l'IA et aux workflows intelligents. GILD TECH aide les PME à gagner du temps et de l'efficacité." />
+    <meta name="description" content="Automatisez vos tÃ¢ches chronophages grÃ¢ce Ã  l'IA et aux workflows intelligents. GILD TECH aide les PME Ã  gagner du temps et de l'efficacitÃ©." />
     <meta name="author" content="GILD TECH" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.gild-tech.com/" />
 
     <meta property="og:title" content="GILD TECH | Automatisation IA pour PME" />
-    <meta property="og:description" content="Automatisez vos tâches chronophages grâce à l'IA et aux workflows intelligents." />
+    <meta property="og:description" content="Automatisez vos tÃ¢ches chronophages grÃ¢ce Ã  l'IA et aux workflows intelligents." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.gild-tech.com/" />
     <meta property="og:image" content="https://www.gild-tech.com/og-image.png" />
@@ -200,6 +200,67 @@
 		}
 	}
 </style>
+<style id="gt-intro-css">
+:root {
+  --rose:    #C84B6B;
+  --rose-l:  #d96d88;
+  --rose-g:  rgba(200,75,107,0.25);
+  --charcoal:#2d3748;
+  --bg:      #0b0b14;
+  --bg2:     #12121f;
+  --white:   #f0ecf0;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+/* html/body rules removed - handled by overlay div */
+.cursor { position:fixed; width:10px; height:10px; border-radius:50%; background:var(--rose); pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform .1s; mix-blend-mode:screen; }
+.cursor-ring { position:fixed; width:32px; height:32px; border-radius:50%; border:1px solid var(--rose-l); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform .08s, width .2s, height .2s; opacity:.6; }
+.bg-cone { position:fixed; inset:0; overflow:hidden; pointer-events:none; }
+.bg-cone::before { content:''; position:absolute; top:50%; left:50%; width:200vmax; height:200vmax; background:conic-gradient(from 0deg,transparent 0%,rgba(200,75,107,.04) 8%,transparent 16%,rgba(120,40,80,.03) 24%,transparent 32%,rgba(200,75,107,.03) 40%,transparent 48%,rgba(80,20,60,.02) 56%,transparent 64%,rgba(200,75,107,.04) 72%,transparent 80%,rgba(120,40,80,.02) 92%,transparent 100%); transform:translate(-50%,-50%) rotate(0deg); animation:bg-rotate 40s linear infinite; }
+@keyframes bg-rotate { to { transform:translate(-50%,-50%) rotate(360deg); } }
+.particles { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+.p { position:absolute; border-radius:50%; background:var(--rose); animation:p-rise linear infinite; opacity:0; }
+@keyframes p-rise { 0%{transform:translateY(0) scale(0);opacity:0} 10%{opacity:.6;transform:translateY(-5px) scale(1)} 90%{opacity:.1} 100%{transform:translateY(-380px) scale(.1);opacity:0} }
+.stage { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; }
+.rings { position:relative; display:flex; align-items:center; justify-content:center; }
+.ring { position:absolute; border-radius:50%; border:1.5px solid var(--rose); top:50%; left:50%; transform:translate(-50%,-50%) scale(.8); opacity:0; animation:ring-expand var(--dur,3s) var(--del,0s) ease-out infinite; }
+@keyframes ring-expand { 0%{transform:translate(-50%,-50%) scale(.8);opacity:.7;border-width:2px} 100%{transform:translate(-50%,-50%) scale(2.4);opacity:0;border-width:.5px} }
+.orb-wrap { position:absolute; top:50%; left:50%; width:0; height:0; }
+.orb { position:absolute; width:var(--os,8px); height:var(--os,8px); border-radius:50%; background:var(--oc,var(--rose)); box-shadow:0 0 12px 4px var(--oc,var(--rose)); top:50%; left:50%; transform:translate(-50%,-50%); animation:orbit var(--od,8s) linear infinite,orb-pulse 2.5s ease-in-out infinite var(--op,0s); }
+@keyframes orbit { from{transform:translate(-50%,-50%) rotate(0deg) translateX(var(--or,180px)) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg) translateX(var(--or,180px)) rotate(-360deg)} }
+@keyframes orb-pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+.logo-wrap { position:relative; width:230px; height:230px; display:flex; align-items:center; justify-content:center; opacity:0; animation:logo-reveal 1.2s 0.6s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes logo-reveal { 0%{opacity:0;transform:scale(.3) translateY(20px);filter:blur(12px)} 70%{transform:scale(1.06) translateY(0);filter:blur(0)} 100%{opacity:1;transform:scale(1) translateY(0)} }
+.logo-glass { width:210px; height:210px; border-radius:50%; background:radial-gradient(circle at 38% 38%,rgba(255,255,255,.10) 0%,rgba(255,255,255,.04) 60%,transparent 100%); border:1px solid rgba(200,75,107,.25); display:flex; align-items:center; justify-content:center; overflow:hidden; animation:glow-breathe 3s ease-in-out infinite 1.8s,float 6s ease-in-out infinite 1.8s; }
+.logo-img { width:180px; height:180px; object-fit:contain; mix-blend-mode:screen; }
+@keyframes glow-breathe { 0%,100%{filter:drop-shadow(0 0 18px rgba(200,75,107,.45)) drop-shadow(0 0 55px rgba(200,75,107,.2))} 50%{filter:drop-shadow(0 0 38px rgba(200,75,107,.85)) drop-shadow(0 0 90px rgba(200,75,107,.4)) drop-shadow(0 0 160px rgba(180,60,100,.25))} }
+@keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg)} 33%{transform:translateY(-12px) rotate(.3deg)} 66%{transform:translateY(-5px) rotate(-.25deg)} }
+.logo-wrap::after { content:''; position:absolute; top:0; bottom:0; width:50px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent); border-radius:50%; animation:shine-sweep 4s ease-in-out infinite 2.5s; pointer-events:none; }
+@keyframes shine-sweep { 0%{left:-80px} 100%{left:280px} }
+.brand-text { margin-top:28px; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:text-reveal .9s 1.8s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes text-reveal { 0%{opacity:0;transform:translateY(16px);filter:blur(6px)} 100%{opacity:1;transform:translateY(0);filter:blur(0)} }
+.brand-name { font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(28px,4vw,46px); letter-spacing:0.32em; text-transform:uppercase; color:#e8e4e8; text-shadow:0 0 40px rgba(200,75,107,.15); padding-right:.32em; }
+.brand-sub { font-family:'Montserrat',sans-serif; font-weight:400; font-size:clamp(8px,1.05vw,13px); letter-spacing:0.55em; text-transform:uppercase; color:var(--rose); text-shadow:0 0 18px rgba(200,75,107,.5); padding-right:.55em; line-height:2.2; }
+.divider { width:0; height:1px; background:linear-gradient(90deg,transparent,var(--rose),transparent); margin:22px auto 0; opacity:0; animation:divider-grow .8s 2.5s ease forwards; }
+@keyframes divider-grow { to{width:260px;opacity:.5} }
+.cta-wrap { margin-top:42px; opacity:0; animation:cta-reveal .8s 3.4s cubic-bezier(.22,1,.36,1) forwards; position:relative; }
+@keyframes cta-reveal { 0%{opacity:0;transform:translateY(12px) scale(.95)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+.cta-btn { font-family:'Montserrat',sans-serif; font-weight:600; font-size:11px; letter-spacing:.45em; text-transform:uppercase; color:var(--rose); border:1px solid rgba(200,75,107,.5); background:rgba(200,75,107,.06); padding:14px 40px 14px 46px; border-radius:2px; cursor:none; position:relative; overflow:hidden; transition:background .3s,border-color .3s,box-shadow .3s,color .3s; }
+.cta-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(200,75,107,.12),transparent); transform:translateX(-100%); transition:transform .45s; }
+.cta-btn:hover { background:rgba(200,75,107,.15); border-color:rgba(200,75,107,.9); box-shadow:0 0 28px rgba(200,75,107,.3),0 0 60px rgba(200,75,107,.1); color:#fff; }
+.cta-btn:hover::before { transform:translateX(100%); }
+.cta-btn:active { transform:scale(.97); }
+.counter { font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.25em; color:rgba(200,75,107,.45); margin-top:14px; text-align:center; opacity:0; animation:cta-reveal .5s 4s ease forwards; }
+.skip-link { position:fixed; top:22px; right:28px; font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:.35em; color:rgba(200,75,107,.35); text-decoration:none; text-transform:uppercase; cursor:none; opacity:0; animation:cta-reveal .5s 4.5s ease forwards; transition:color .3s; border-bottom:1px solid rgba(200,75,107,.15); padding-bottom:2px; }
+.skip-link:hover { color:rgba(200,75,107,.7); border-bottom-color:rgba(200,75,107,.4); }
+.progress-ring { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:120px; height:120px; pointer-events:none; }
+.progress-ring circle { fill:none; stroke:var(--rose); stroke-width:1.2; stroke-linecap:round; stroke-dasharray:339.3; stroke-dashoffset:339.3; transform:rotate(-90deg); transform-origin:50% 50%; opacity:.5; transition:stroke-dashoffset .95s linear; }
+@media (pointer:coarse) { html,body{cursor:auto} .cursor,.cursor-ring{display:none} .cta-btn{cursor:pointer} .skip-link{cursor:pointer} }
+.exit-overlay { position:fixed; inset:0; background:var(--bg); opacity:0; pointer-events:none; z-index:1000; transition:opacity .8s ease; }
+.exit-overlay.active { opacity:1; pointer-events:all; }
+.pop { position:fixed; pointer-events:none; z-index:9990; }
+.pop-dot { position:absolute; border-radius:50%; width:6px; height:6px; background:var(--rose); transform:translate(-50%,-50%); animation:pop-out .6s ease forwards; }
+@keyframes pop-out { 0%{transform:translate(calc(-50% + 0px),calc(-50% + 0px)) scale(1);opacity:1} 100%{transform:translate(calc(-50% + var(--ex)),calc(-50% + var(--ey))) scale(0);opacity:0} }
+</style>
 </head>
 
   <body>
@@ -275,5 +336,86 @@
 		});
 	}
 </script>
+
+<!-- GILD-TECH INTRO ANIMATION -->
+<style id="intro-styles">
+:root {
+  --rose:#C84B6B;--rose-l:#d96d88;--rose-g:rgba(200,75,107,0.25);--charcoal:#2d3748;--bg:#0b0b14;--bg2:#12121f;--white:#f0ecf0;
+}
+#gildtech-intro-overlay { position:fixed; inset:0; z-index:99999; overflow:hidden; background:var(--bg); cursor:none; width:100%; height:100%; }
+#gildtech-intro-overlay .cursor { position:fixed; width:10px; height:10px; border-radius:50%; background:var(--rose); pointer-events:none; z-index:100001; transform:translate(-50%,-50%); transition:transform .1s; mix-blend-mode:screen; }
+#gildtech-intro-overlay .cursor-ring { position:fixed; width:32px; height:32px; border-radius:50%; border:1px solid var(--rose-l); pointer-events:none; z-index:100000; transform:translate(-50%,-50%); transition:transform .08s, width .2s, height .2s; opacity:.6; }
+</style>
+
+<div id="gildtech-intro-overlay">
+
+<div class="bg-cone"></div>
+<div class="particles" id="particles"></div>
+<div class="exit-overlay" id="exitOverlay"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stage">
+  <div class="rings" style="width:260px;height:260px;">
+    <div class="ring" style="--dur:3.0s;--del:0.0s;width:260px;height:260px;"></div>
+    <div class="ring" style="--dur:3.0s;--del:0.9s;width:260px;height:260px;"></div>
+    <div class="ring" style="--dur:3.0s;--del:1.8s;width:260px;height:260px;"></div>
+    <div class="ring" style="--dur:3.0s;--del:2.7s;width:260px;height:260px;"></div>
+    <div class="orb-wrap">
+      <div class="orb" style="--os:7px;--oc:var(--rose);--od:9s;--or:148px;--op:0s;"></div>
+      <div class="orb" style="--os:5px;--oc:#e891b0;--od:13s;--or:162px;--op:.6s;"></div>
+      <div class="orb" style="--os:9px;--oc:var(--rose);--od:7s;--or:135px;--op:1.2s;"></div>
+      <div class="orb" style="--os:4px;--oc:#f0aac4;--od:17s;--or:175px;--op:1.8s;"></div>
+      <div class="orb" style="--os:6px;--oc:var(--rose);--od:11s;--or:155px;--op:2.4s;"></div>
+    </div>
+    <div class="logo-wrap" id="logoWrap">
+      <div class="logo-glass">
+        <img class="logo-img" id="logoImg" src="https://gild-tech.com/assets/logo-hero-B13CSCY8.png" alt="GILD TECH logo">
+      </div>
+    </div>
+  </div>
+  <div class="brand-text">
+    <div class="brand-name">GILD TECH</div>
+    <div class="brand-sub">AUTOMATION&nbsp;&nbsp;DIGITAL&nbsp;&nbsp;SYSTEMS</div>
+  </div>
+  <div class="divider"></div>
+  <div class="cta-wrap" id="ctaWrap">
+    <svg class="progress-ring" id="progressRing" aria-hidden="true"><circle cx="60" cy="60" r="54" id="progressCircle"/></svg>
+    <button class="cta-btn" id="ctaBtn" onclick="enterSite()">ENTRER</button>
+  </div>
+  <div class="counter" id="counter">AUTO-REDIRECTION DANS <span id="countdown">8</span>S</div>
+  <a class="skip-link" id="skipLink" href="#" onclick="enterSite();return false;">PASSER &#x2192;</a>
+</div>
+
+</div>
+
+<script>
+(function() {
+  // Only show intro once per session
+  if (sessionStorage.getItem('gt_intro_done')) {
+    document.getElementById('gildtech-intro-overlay').style.display = 'none';
+    return;
+  }
+  
+  // Intro JS - modified enterSite to hide overlay instead of redirect
+  
+const NANO_BANANA_URL='https://tempfile.aiquickdraw.com/na2/751b6d8c2cb9bb5be5ead568f49197ba1686051.jpeg';
+const logoImg=document.getElementById('logoImg');
+if(NANO_BANANA_URL){const t=new Image();t.onload=()=>{logoImg.src=NANO_BANANA_URL;logoImg.style.mixBlendMode='normal';logoImg.style.width='210px';logoImg.style.height='210px';logoImg.style.borderRadius='50%';};t.src=NANO_BANANA_URL;}
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},60);});
+const ptcl=document.getElementById('particles');
+for(let i=0;i<28;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*3+1;p.style.cssText='left:'+Math.random()*100+'%;bottom:'+Math.random()*20+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+(6+Math.random()*8)+'s;animation-delay:'+Math.random()*8+'s;';ptcl.appendChild(p);}
+document.addEventListener('click',e=>{const pop=document.createElement('div');pop.className='pop';pop.style.left=e.clientX+'px';pop.style.top=e.clientY+'px';for(let i=0;i<12;i++){const d=document.createElement('div');d.className='pop-dot';const a=(i/12)*Math.PI*2,dist=40+Math.random()*50;d.style.setProperty('--ex',Math.cos(a)*dist+'px');d.style.setProperty('--ey',Math.sin(a)*dist+'px');d.style.background=i%3===0?'#e891b0':'var(--rose)';pop.appendChild(d);}document.getElementById('gildtech-intro-overlay').appendChild(pop);setTimeout(()=>pop.remove(),700);});
+document.addEventListener('mousemove',e=>{const cx=window.innerWidth/2,cy=window.innerHeight/2,dx=(e.clientX-cx)/cx,dy=(e.clientY-cy)/cy;document.querySelector('#gildtech-intro-overlay .stage').style.transform='translate('+dx*8+'px,'+dy*6+'px)';});
+const circle=document.getElementById('progressCircle');let count=8,timer=null;
+function startCountdown(){const cdEl=document.getElementById('countdown');if(circle){circle.style.transition='stroke-dashoffset 8s linear';circle.style.strokeDashoffset='0';}timer=setInterval(()=>{count--;if(cdEl)cdEl.textContent=count;if(count<=0){clearInterval(timer);enterSite();}},1000);}
+setTimeout(startCountdown,3800);
+function enterSite(){clearInterval(timer);document.getElementById('exitOverlay').classList.add('active');cursor.style.transform='translate(-50%,-50%) scale(30)';cursor.style.opacity='0';cursor.style.transition='transform .8s ease,opacity .8s';setTimeout(()=>{sessionStorage.setItem('gt_intro_done','1'); var ov=document.getElementById('gildtech-intro-overlay'); ov.style.transition='opacity .4s'; ov.style.opacity='0'; setTimeout(function(){ov.style.display='none';document.body.style.cursor='';},450);},850);}
+document.getElementById('ctaBtn').addEventListener('mouseenter',()=>{ring.style.width='80px';ring.style.height='80px';ring.style.borderColor='var(--rose)';});
+document.getElementById('ctaBtn').addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='';});
+
+})();
+</script>
+<!-- END INTRO -->
 </body>
 </html>
