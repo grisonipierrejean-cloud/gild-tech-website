@@ -1,25 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page introuvable | GILD TECH</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root { --rose:#C84B6B; }
-    body { font-family:'Montserrat',sans-serif; background:#f8f2f5; display:flex; align-items:center; justify-content:center; min-height:100vh; text-align:center; padding:2rem; }
-    h1 { font-size:5rem; font-weight:800; color:var(--rose); line-height:1; margin-bottom:0.5rem; }
-    p { color:#6b7280; margin-bottom:2rem; }
-    a { display:inline-block; background:var(--rose); color:#fff; padding:0.75rem 2rem; border-radius:10px; font-weight:700; text-decoration:none; }
-    a:hover { background:#a83858; }
-  </style>
+  <meta charset="utf-8">
+  <title>GILD TECH | Automatisation IA pour PME</title>
+  <script>
+    // GitHub Pages SPA — redirect to index.html with path encoded
+    var seg = 1;
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + seg).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(seg).join('/').replace(/&/g,'~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g,'~and~') : '') +
+      l.hash
+    );
+  </script>
 </head>
-<body>
-  <div>
-    <h1>404</h1>
-    <p>Cette page n'existe pas ou a été déplacée.</p>
-    <a href="/">← Retour à l'accueil</a>
-  </div>
-</body>
+<body></body>
 </html>
