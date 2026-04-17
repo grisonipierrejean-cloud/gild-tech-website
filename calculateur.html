@@ -215,6 +215,51 @@
       font-size: 0.72rem; color: var(--g400); margin-top: 0.5rem;
     }
 
+    /* Divider between sliders and contact form */
+    .form-divider {
+      height: 1px; background: var(--g200);
+      margin: 1.5rem 0;
+    }
+
+    .form-contact {
+      background: white; border: 1px solid var(--g200);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .form-contact-label {
+      display: block; font-size: 0.95rem; font-weight: 700;
+      color: var(--g900); margin-bottom: 0.3rem; letter-spacing: -0.01em;
+    }
+    .form-contact-sub {
+      font-size: 0.8rem; color: var(--g500);
+      margin-bottom: 1rem; line-height: 1.5;
+    }
+    .form-contact input {
+      width: 100%; padding: 0.8rem 1rem; margin-bottom: 0.6rem;
+      background: white; border: 1px solid var(--g200);
+      border-radius: 8px; color: var(--g900);
+      font-family: var(--font); font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .form-contact input::placeholder { color: var(--g400); }
+    .form-contact input:focus {
+      outline: none; border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(233,30,140,0.1);
+    }
+    .form-contact input.invalid {
+      border-color: var(--red);
+      background: rgba(229,57,53,0.03);
+    }
+    .form-contact-consent {
+      font-size: 0.7rem; color: var(--g400);
+      margin-top: 0.5rem; line-height: 1.5;
+    }
+    .form-contact-consent a { color: var(--pink); text-decoration: none; }
+
+    .btn-primary:disabled {
+      background: var(--g300); cursor: not-allowed; opacity: 0.6;
+      transform: none !important; box-shadow: none !important;
+    }
+
     /* BUTTONS */
     .btn-row { display: flex; gap: 0.8rem; margin-top: 2rem; }
     .btn {
@@ -611,11 +656,21 @@
           </div>
         </div>
 
+        <div class="form-divider"></div>
+
+        <div class="form-contact">
+          <label class="form-contact-label">📬 Où recevez-vous votre diagnostic ?</label>
+          <p class="form-contact-sub">On vous envoie le détail complet + 3 leviers d'optimisation pour votre métier.</p>
+          <input type="text" id="f-name" placeholder="Prénom" autocomplete="given-name">
+          <input type="email" id="f-email" placeholder="Email professionnel" autocomplete="email">
+          <p class="form-contact-consent">En soumettant, vous acceptez de recevoir votre diagnostic par email. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+        </div>
+
       </div>
 
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goStep(1)">&larr; Retour</button>
-        <button class="btn btn-primary" onclick="computeAndShowTeaser()">Voir mon diagnostic &rarr;</button>
+        <button class="btn btn-primary" id="btn-compute" onclick="computeAndShowTeaser()">Voir mon diagnostic &rarr;</button>
       </div>
     </div>
 
@@ -649,16 +704,6 @@
           </div>
         </div>
 
-        <div class="calc-loading-form">
-          <h4>Recevez votre diagnostic complet</h4>
-          <p>On vous envoie le détail + 3 leviers d'optimisation concrets pour votre métier.</p>
-          <input type="text" id="f-name" placeholder="Prénom" autocomplete="given-name">
-          <input type="email" id="f-email" placeholder="Email professionnel" autocomplete="email">
-          <button class="calc-loading-btn" id="btn-submit-email" onclick="submitEmailAndShowResult()" disabled>
-            <span id="btn-email-text">Patientez…</span>
-          </button>
-          <p class="calc-loading-consent">En soumettant, vous acceptez de recevoir votre diagnostic par email. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
-        </div>
       </div>
     </div>
 
@@ -807,21 +852,33 @@
     }
 
     // ==========================================
-    // EMAIL VALIDATION + SUBMIT HANDLING
+    // EMAIL + NAME VALIDATION (inline in step 2 form)
     // ==========================================
-    function validateEmailForm() {
+    function validateContactForm() {
       const name = document.getElementById('f-name').value.trim();
       const email = document.getElementById('f-email').value.trim();
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       const nameOk = name.length >= 2;
-      const btn = document.getElementById('btn-submit-email');
-      // Button is enabled if: form valid AND animation done
-      btn.disabled = !(nameOk && emailOk && state.animationDone);
+      const btn = document.getElementById('btn-compute');
+      btn.disabled = !(nameOk && emailOk);
       return { nameOk, emailOk, name, email };
     }
 
-    document.getElementById('f-name').addEventListener('input', validateEmailForm);
-    document.getElementById('f-email').addEventListener('input', validateEmailForm);
+    // Initial button state
+    document.getElementById('btn-compute').disabled = true;
+
+    ['f-name', 'f-email'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        el.classList.remove('invalid');
+        validateContactForm();
+      });
+      el.addEventListener('blur', () => {
+        const v = validateContactForm();
+        if (id === 'f-name' && el.value.trim().length > 0 && !v.nameOk) el.classList.add('invalid');
+        if (id === 'f-email' && el.value.trim().length > 0 && !v.emailOk) el.classList.add('invalid');
+      });
+    });
 
     // COMPUTE LOSSES
     function computeLosses() {
@@ -865,62 +922,18 @@
     function fmt(n) { return n.toLocaleString('fr-FR'); }
 
     // ==========================================
-    // COMPUTE + ANIMATE (fused with email capture)
+    // COMPUTE + ANIMATE + SHOW RESULT
     // ==========================================
     function computeAndShowTeaser() {
-      // Reset animation state
-      state.animationDone = false;
-      document.getElementById('btn-email-text').textContent = 'Patientez…';
-      document.getElementById('btn-submit-email').disabled = true;
-
-      // Show calculating panel
-      goStep('calc');
-
-      // Reset phases
-      ['phase-1','phase-2','phase-3','phase-4'].forEach(id => {
-        document.getElementById(id).classList.remove('active', 'done');
-      });
-      document.getElementById('progress-fill').style.width = '0%';
-
-      // Phase timings (total ~4s — user has time to fill form)
-      const phases = [
-        { id: 'phase-1', start: 200  },
-        { id: 'phase-2', start: 1200 },
-        { id: 'phase-3', start: 2200 },
-        { id: 'phase-4', start: 3200 }
-      ];
-
-      phases.forEach((p, i) => {
-        setTimeout(() => {
-          if (i > 0) document.getElementById(phases[i-1].id).classList.replace('active', 'done');
-          document.getElementById(p.id).classList.add('active');
-          document.getElementById('progress-fill').style.width = ((i + 1) / phases.length) * 100 + '%';
-        }, p.start);
-      });
-
-      // End animation
-      setTimeout(() => {
-        document.getElementById('phase-4').classList.replace('active', 'done');
-        state.animationDone = true;
-        document.getElementById('btn-email-text').textContent = 'Voir mon diagnostic complet →';
-        validateEmailForm(); // re-evaluate button state
-      }, 4000);
-    }
-
-    // ==========================================
-    // SUBMIT EMAIL + SHOW RESULT
-    // ==========================================
-    function submitEmailAndShowResult() {
-      const { nameOk, emailOk, name, email } = validateEmailForm();
-
-      if (!nameOk) { document.getElementById('f-name').focus(); return; }
-      if (!emailOk) { document.getElementById('f-email').focus(); return; }
-      if (!state.animationDone) return;
+      // Validate name/email first
+      const { nameOk, emailOk, name, email } = validateContactForm();
+      if (!nameOk) { document.getElementById('f-name').classList.add('invalid'); document.getElementById('f-name').focus(); return; }
+      if (!emailOk) { document.getElementById('f-email').classList.add('invalid'); document.getElementById('f-email').focus(); return; }
 
       state.name = name;
       state.email = email;
 
-      // Capture lead
+      // Capture lead NOW (user gave consent)
       const payload = {
         name, email,
         niche: state.niche,
@@ -933,10 +946,9 @@
         source: 'gild-tech.com/calculateur'
       };
 
-      // TODO: replace with real n8n webhook URL
       console.log('LEAD CAPTURED:', payload);
 
-      // If webhook URL is set, send
+      // If webhook URL is set, send (PJ to configure)
       const WEBHOOK_URL = ''; // e.g. 'https://n8n.gild-tech.com/webhook/calculateur-lead';
       if (WEBHOOK_URL) {
         fetch(WEBHOOK_URL, {
@@ -953,7 +965,38 @@
         localStorage.setItem('gildtech_leads', JSON.stringify(existing));
       } catch (e) {}
 
-      showFullResult();
+      // Now show the calculating animation, then the result
+      goStep('calc');
+
+      // Reset phases
+      ['phase-1','phase-2','phase-3','phase-4'].forEach(id => {
+        document.getElementById(id).classList.remove('active', 'done');
+      });
+      document.getElementById('progress-fill').style.width = '0%';
+
+      const phases = [
+        { id: 'phase-1', start: 200  },
+        { id: 'phase-2', start: 1100 },
+        { id: 'phase-3', start: 2000 },
+        { id: 'phase-4', start: 2900 }
+      ];
+
+      phases.forEach((p, i) => {
+        setTimeout(() => {
+          if (i > 0) document.getElementById(phases[i-1].id).classList.replace('active', 'done');
+          document.getElementById(p.id).classList.add('active');
+          document.getElementById('progress-fill').style.width = ((i + 1) / phases.length) * 100 + '%';
+        }, p.start);
+      });
+
+      // End animation + show result
+      setTimeout(() => {
+        document.getElementById('phase-4').classList.replace('active', 'done');
+      }, 3700);
+
+      setTimeout(() => {
+        showFullResult();
+      }, 4100);
     }
 
     function showFullResult() {
