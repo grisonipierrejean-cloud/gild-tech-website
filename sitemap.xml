@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://gild-tech.com/</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/"/>
   </url>
+
   <url>
-    <loc>https://gild-tech.com/offres.html</loc>
+    <loc>https://gild-tech.com/calculateur.html</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://gild-tech.com/rdv.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://gild-tech.com/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://gild-tech.com/mentions-legales.html</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
   </url>
+
+  <url>
+    <loc>https://gild-tech.com/cgv.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <url>
     <loc>https://gild-tech.com/confidentialite.html</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
   </url>
+
+  <url>
+    <loc>https://gild-tech.com/cookies.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

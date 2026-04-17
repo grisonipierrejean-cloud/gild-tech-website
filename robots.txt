@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /serve.mjs
+Disallow: /generate-visuals.mjs
 
 Sitemap: https://gild-tech.com/sitemap.xml
