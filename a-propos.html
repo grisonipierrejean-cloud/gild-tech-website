@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre histoire · À propos | Gild-Tech</title>
+  <meta name="description" content="3 ans de closing, 200 deals, une obsession : construire les systèmes invisibles qui transforment les leads en clients. Voici l'histoire de Gild-Tech.">
+
+  <link rel="canonical" href="https://gild-tech.com/a-propos.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Gild-Tech">
+  <meta property="og:title" content="Notre histoire · Gild-Tech">
+  <meta property="og:description" content="3 ans de closing, 200 deals, une obsession. Voici comment et pourquoi est né Gild-Tech.">
+  <meta property="og:url" content="https://gild-tech.com/a-propos.html">
+  <meta property="og:image" content="https://gild-tech.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#E91E8C">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #E91E8C;
+      --pink-light: #f54da5;
+      --pink-soft: #fce4f1;
+      --pink-bg: #fef6fa;
+      --g900: #111;
+      --g700: #333;
+      --g600: #555;
+      --g500: #777;
+      --g400: #999;
+      --g300: #ccc;
+      --g200: #e8e8e8;
+      --g100: #f5f5f5;
+      --font: 'Inter', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: white; color: var(--g900);
+      font-family: var(--font); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g200);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
+      border: 1.5px solid rgba(233,30,140,0.25);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      font-size: 0.75rem; font-weight: 800; color: var(--g900);
+    }
+    .nav-mark span { color: var(--pink); }
+    .nav-mark::after {
+      content: ''; position: absolute; inset: -1.5px; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink));
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      animation: spinMark 4s linear infinite;
+    }
+    @keyframes spinMark { to { rotate: 360deg; } }
+    .nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--g900); }
+    .nav-logo span { color: var(--pink); }
+    .nav-back { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-back:hover { color: var(--pink); }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 2rem 4rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-grad {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 900px; height: 500px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 820px; margin: 0 auto; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.9rem 0.3rem 0.45rem;
+      background: var(--pink-bg); border: 1px solid rgba(233,30,140,0.12);
+      border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: var(--pink);
+      margin-bottom: 1.8rem;
+    }
+    .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900;
+      line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 1.5rem;
+    }
+    .hero h1 .hl { color: var(--pink); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--g500);
+      max-width: 640px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* STORY CONTAINER */
+    .story {
+      max-width: 740px; margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .chapter {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .chapter-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--pink-bg); color: var(--pink);
+      font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em;
+      border: 1px solid rgba(233,30,140,0.15);
+      margin-bottom: 1.2rem;
+    }
+
+    .chapter h2 {
+      font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+      font-weight: 900; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 1.2rem;
+    }
+
+    .chapter h2 .hl { color: var(--pink); }
+
+    .chapter p {
+      font-size: 1.05rem; color: var(--g700);
+      line-height: 1.85; margin-bottom: 1.1rem;
+    }
+
+    .chapter p strong { color: var(--g900); font-weight: 700; }
+    .chapter p em { color: var(--pink); font-style: italic; font-weight: 500; }
+
+    .pullquote {
+      margin: 2rem 0;
+      padding: 1.8rem 2rem;
+      background: linear-gradient(135deg, var(--pink-bg) 0%, white 100%);
+      border-left: 4px solid var(--pink);
+      border-radius: 0 12px 12px 0;
+      font-family: var(--font);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--g900);
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    /* NUMBERS STRIP */
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2.5rem 0;
+      padding: 2rem;
+      background: var(--g100);
+      border: 1px solid var(--g200);
+      border-radius: 16px;
+    }
+    .number-cell { text-align: center; }
+    .number-val {
+      font-size: 2rem; font-weight: 900;
+      letter-spacing: -0.03em; color: var(--pink); line-height: 1;
+    }
+    .number-label {
+      font-size: 0.78rem; color: var(--g500);
+      margin-top: 0.4rem;
+    }
+
+    /* MISSION / VALUES */
+    .values-wrap {
+      background: var(--g100);
+      max-width: 100%; padding: 5rem 2rem;
+    }
+    .values-inner { max-width: 1100px; margin: 0 auto; }
+
+    .values-header { text-align: center; margin-bottom: 3rem; }
+    .values-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 0.8rem;
+    }
+    .values-header h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 900; letter-spacing: -0.03em;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: white; border: 1px solid var(--g200); border-radius: 14px;
+      padding: 2rem 1.8rem;
+    }
+    .value-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--pink-bg); color: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem; font-size: 1.4rem;
+    }
+    .value-card h3 {
+      font-size: 1.05rem; font-weight: 800; margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+    .value-card p {
+      font-size: 0.9rem; color: var(--g600);
+      line-height: 1.65;
+    }
+
+    /* VERTICALES */
+    .verticals-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .verticals-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .vertical-card {
+      background: white; border: 1px solid var(--g200); border-radius: 14px;
+      padding: 2rem; position: relative;
+      transition: all 0.3s;
+    }
+    .vertical-card:hover {
+      border-color: var(--pink); transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .vertical-card-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: var(--pink-bg); color: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 1.2rem;
+    }
+    .vertical-card h3 {
+      font-size: 1.1rem; font-weight: 800; margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .vertical-card-owner {
+      font-size: 0.82rem; color: var(--pink); font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .vertical-card p {
+      font-size: 0.9rem; color: var(--g600); line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .vertical-card ul {
+      list-style: none;
+    }
+    .vertical-card li {
+      font-size: 0.82rem; color: var(--g500);
+      padding: 0.3rem 0 0.3rem 1.3rem;
+      position: relative;
+    }
+    .vertical-card li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--pink); font-weight: 700;
+    }
+
+    /* CTA FINAL */
+    .cta-wrap { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .cta-box {
+      background: var(--pink); border-radius: 22px; padding: 4rem 2.5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: -40%; right: -15%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+    }
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900;
+      letter-spacing: -0.03em; color: white; margin-bottom: 0.8rem; position: relative;
+    }
+    .cta-box p {
+      font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 500px;
+      margin: 0 auto 2rem; line-height: 1.7; position: relative;
+    }
+    .cta-box .btn-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: white; color: var(--pink);
+      padding: 0.95rem 2rem; border-radius: 12px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; position: relative;
+      transition: all 0.25s;
+    }
+    .cta-box .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--g200); padding: 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-brand { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
+    .footer-brand span { color: var(--pink); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { color: var(--g400); text-decoration: none; font-size: 0.78rem; font-weight: 500; }
+    .footer-links a:hover { color: var(--g700); }
+    .footer-copy { font-size: 0.7rem; color: var(--g400); text-align: center; margin-top: 1.5rem; }
+
+    @media (max-width: 800px) {
+      .values-grid, .verticals-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+      .numbers { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .story { padding: 2rem 1.5rem 3rem; }
+      .values-wrap, .verticals-wrap { padding: 3.5rem 1.5rem; }
+      .cta-box { padding: 3rem 1.5rem; }
+      .pullquote { font-size: 1rem; padding: 1.2rem 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-mark">G<span>T</span></div>
+        <div class="nav-logo">GILD <span>TECH</span></div>
+      </a>
+      <a href="index.html" class="nav-back">&larr; Retour au site</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+      <div class="hero-pill">
+        <div class="pill-dot"></div>
+        Notre histoire
+      </div>
+      <h1>3 ans à closer. 200 deals.<br>Et <span class="hl">une obsession</span>.</h1>
+      <p class="hero-sub">
+        J'ai passé 3 ans au téléphone à vendre pour des agences immobilières et des PME B2B.
+        Voici ce que j'ai vu, et pourquoi j'ai tout arrêté pour créer Gild-Tech.
+      </p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="story">
+
+    <!-- CHAPITRE 1 -->
+    <div class="chapter">
+      <div class="chapter-num">01</div>
+      <h2>Le téléphone m'a appris une chose.</h2>
+      <p>
+        3 ans de closing. Des journées à 80 appels. Des soirées à relancer des prospects qui m'avaient demandé un devis <strong>une semaine plus tôt</strong>.
+      </p>
+      <p>
+        J'ai closé <strong>plus de 200 deals</strong>. Pas parce que j'étais le meilleur closer du monde. Parce que j'étais le plus rapide à rappeler.
+      </p>
+      <p>
+        Et chaque fois que je perdais une vente, ce n'était jamais à cause du prix. C'était à cause d'un détail bête : <em>le prospect avait déjà signé ailleurs.</em>
+      </p>
+    </div>
+
+    <!-- CHAPITRE 2 -->
+    <div class="chapter">
+      <div class="chapter-num">02</div>
+      <h2>Et puis j'ai commencé à compter.</h2>
+      <p>
+        Un jour, j'ai fait un calcul froid.
+      </p>
+      <p>
+        Sur 100 leads que je recevais par mois, <strong>35 n'étaient jamais rappelés à temps</strong>. Pas par manque de motivation. Par manque de système.
+      </p>
+      <p>
+        Les commerciaux étaient déjà en RDV quand les leads tombaient. Ils revenaient le soir. Rappelaient 2 jours plus tard. Le prospect avait déjà signé chez le concurrent qui avait répondu en 10 minutes.
+      </p>
+
+      <div class="pullquote">
+        « On dépensait 40 000€ par an en publicité pour attirer des leads. Et on en perdait la moitié dans le couloir, entre le formulaire rempli et le premier rappel. »
+      </div>
+
+      <p>
+        Les meilleurs closers du monde ne pouvaient rien faire si <strong>le prospect avait attendu 3 jours</strong> avant qu'on le rappelle.
+      </p>
+    </div>
+
+    <!-- CHAPITRE 3 -->
+    <div class="chapter">
+      <div class="chapter-num">03</div>
+      <h2>Le problème n'était pas humain. Il était <span class="hl">systémique</span>.</h2>
+      <p>
+        J'ai compris qu'on cherchait la solution au mauvais endroit.
+      </p>
+      <p>
+        On recrutait des commerciaux pour <strong>compenser un problème d'infrastructure</strong>. On dépensait en coaching, en formation, en <em>« motivation d'équipe »</em>, alors qu'il manquait juste une chose fondamentale :
+      </p>
+      <p>
+        <strong>Un système qui ne dort jamais.</strong>
+      </p>
+      <p>
+        Un système qui rappelle à 22h quand personne n'est au bureau. Qui relance à J+3, J+7, J+14 sans demander qui a été appelé. Qui connecte le site, le téléphone, l'email et le CRM en un seul flux.
+      </p>
+    </div>
+
+    <!-- CHAPITRE 4 -->
+    <div class="chapter">
+      <div class="chapter-num">04</div>
+      <h2>J'ai arrêté de closer. J'ai construit.</h2>
+      <p>
+        Fin 2025, j'ai pris une décision qui a choqué mon entourage : j'ai arrêté de vendre pour les autres.
+      </p>
+      <p>
+        J'ai fondé <strong>Girlden LTD</strong> au Royaume-Uni, avec une marque simple : <strong>Gild-Tech — Automation Digital Systems</strong>.
+      </p>
+      <p>
+        Notre promesse tient en une phrase : <em>construire les systèmes invisibles qui transforment les leads en clients pendant que tout le monde dort.</em>
+      </p>
+      <p>
+        Pas d'IA magique pour faire du buzz. Pas de chatbot gadget. Juste des <strong>workflows robustes, testés, qui tournent 24/7</strong> dans les PME qui en ont besoin.
+      </p>
+
+      <div class="numbers">
+        <div class="number-cell">
+          <div class="number-val">200+</div>
+          <div class="number-label">deals closés en direct</div>
+        </div>
+        <div class="number-cell">
+          <div class="number-val">3 ans</div>
+          <div class="number-label">de closing terrain</div>
+        </div>
+        <div class="number-cell">
+          <div class="number-val">12</div>
+          <div class="number-label">PME accompagnées</div>
+        </div>
+        <div class="number-cell">
+          <div class="number-val">3</div>
+          <div class="number-label">verticales actives</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPITRE 5 -->
+    <div class="chapter">
+      <div class="chapter-num">05</div>
+      <h2>Aujourd'hui.</h2>
+      <p>
+        On accompagne des dirigeants qui ne veulent plus perdre leurs leads.
+      </p>
+      <p>
+        Des agences immobilières qui signent 3 mandats de plus par mois simplement parce qu'on a branché un rappel téléphonique automatique sous 5 minutes.
+      </p>
+      <p>
+        Des restaurants qui fidélisent 40% de leurs clients en plus grâce à des relances intelligentes post-visite.
+      </p>
+      <p>
+        Des cabinets IDEL qui ne perdent plus un patient en tournée parce qu'ils ont un assistant virtuel qui répond à leur place.
+      </p>
+      <p>
+        <strong>Gild-Tech, c'est ça.</strong> Une agence d'automatisation commerciale qui parle la langue des dirigeants — parce qu'on a été à leur place, le téléphone vissé à l'oreille.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- VALEURS -->
+  <div class="values-wrap">
+    <div class="values-inner">
+      <div class="values-header">
+        <div class="values-tag">Ce qui nous anime</div>
+        <h2>3 principes. Zéro compromis.</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Vitesse obsessionnelle</h3>
+          <p>
+            Un lead non rappelé dans l'heure, c'est un client perdu. Tous nos systèmes sont conçus autour de cette règle intangible : moins de 5 minutes, ou c'est déjà trop tard.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3>Résultats mesurables</h3>
+          <p>
+            Pas de blabla, pas de slides. On installe, on mesure, on ajuste. Si vous ne pouvez pas voir l'impact dans votre pipeline sous 30 jours, on ne vous a pas rendu service.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔧</div>
+          <h3>Systèmes robustes</h3>
+          <p>
+            On construit pour durer, pas pour impressionner. Nos workflows tournent dans des PME depuis des mois sans intervention. La vraie magie, c'est la fiabilité.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERTICALES -->
+  <div class="verticals-wrap">
+    <div class="values-header">
+      <div class="values-tag">3 verticales, 3 expertises</div>
+      <h2>On ne fait pas tout. On fait bien ce qu'on fait.</h2>
+    </div>
+    <div class="verticals-grid">
+      <div class="vertical-card">
+        <div class="vertical-card-icon">🏠</div>
+        <h3>Immobilier</h3>
+        <div class="vertical-card-owner">Lead : Pierre-Jean</div>
+        <p>
+          Agences indépendantes en province. Ne plus perdre un mandat parce qu'un vendeur a attendu 3 heures avant d'être rappelé.
+        </p>
+        <ul>
+          <li>Rappel estimation &lt; 5 min</li>
+          <li>Traitement piges automatique</li>
+          <li>Relances acquéreurs J+3 / J+7 / J+14</li>
+        </ul>
+      </div>
+      <div class="vertical-card">
+        <div class="vertical-card-icon">🍽️</div>
+        <h3>Restaurant &amp; Hôtel</h3>
+        <div class="vertical-card-owner">Lead : Hervé</div>
+        <p>
+          Restaurants gastronomiques, hôtels 4-5★, campings premium. Fluidifier l'expérience client et maximiser le revenu post-visite.
+        </p>
+        <ul>
+          <li>Gestion avis automatisée</li>
+          <li>Fidélisation post-visite</li>
+          <li>Événementiel et réservations</li>
+        </ul>
+      </div>
+      <div class="vertical-card">
+        <div class="vertical-card-icon">💊</div>
+        <h3>Cabinets IDEL</h3>
+        <div class="vertical-card-owner">Lead : Cécile</div>
+        <p>
+          Cabinets d'infirmiers libéraux en Bretagne et région 56. Ne plus perdre un patient en tournée grâce à l'assistant virtuel.
+        </p>
+        <ul>
+          <li>Standard virtuel 24/7</li>
+          <li>Gestion remplacements</li>
+          <li>Relance patients fin de protocole</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-wrap">
+    <div class="cta-box">
+      <h2>Votre histoire vient de croiser la nôtre.</h2>
+      <p>Réservez un audit gratuit de 30 minutes. On regarde ensemble votre process commercial et on identifie précisément où sont vos fuites de leads.</p>
+      <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn-white">
+        Réserver mon audit gratuit →
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">GILD <span>TECH</span></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="calculateur.html">Calculateur</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
+        <li><a href="https://www.linkedin.com/company/gild-tech/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://wa.me/33699080539" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
