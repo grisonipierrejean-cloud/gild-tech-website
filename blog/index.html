@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Gild-Tech · Automatisation commerciale, workflows n8n, prospection B2B</title>
+<meta name="description" content="Guides, études de cas et tactiques concrètes pour automatiser votre machine commerciale. Rédigés par des praticiens, pas par des théoriciens.">
+
+<link rel="canonical" href="https://gild-tech.com/blog/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="keywords" content="blog automatisation commerciale, guides n8n, prospection B2B, workflow CRM, tutoriels IA commerciale">
+<meta name="author" content="Gild-Tech (Girlden LTD)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gild-Tech">
+<meta property="og:title" content="Blog Gild-Tech · Automatisation commerciale et workflows B2B">
+<meta property="og:description" content="Tactiques concrètes pour automatiser votre commerce : rappel 5 min, relances IA, prospection n8n.">
+<meta property="og:url" content="https://gild-tech.com/blog/">
+<meta property="og:image" content="https://gild-tech.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog Gild-Tech",
+  "description": "Guides, études de cas et tactiques pour automatiser votre commerce.",
+  "url": "https://gild-tech.com/blog/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gild-Tech",
+    "logo": { "@type": "ImageObject", "url": "https://gild-tech.com/favicon.svg" }
+  },
+  "inLanguage": "fr-FR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://gild-tech.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gild-tech.com/blog/"}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --pink: #E91E8C; --pink-light: #f54da5; --pink-bg: #fef6fa;
+    --g900: #111; --g700: #333; --g600: #555; --g500: #777; --g400: #999; --g200: #e8e8e8; --g100: #f5f5f5;
+    --font: 'Inter', -apple-system, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: white; color: var(--g900); font-family: var(--font); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--g200);
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-mark {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
+    border: 1.5px solid rgba(233,30,140,0.25);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; font-size: 0.75rem; font-weight: 800; color: var(--g900);
+  }
+  .nav-mark span { color: var(--pink); }
+  .nav-mark::after {
+    content: ''; position: absolute; inset: -1.5px; border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink));
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude; -webkit-mask-composite: xor;
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin { to { rotate: 360deg; } }
+  .nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--g900); }
+  .nav-logo span { color: var(--pink); }
+  .nav-back { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+  .nav-back:hover { color: var(--pink); }
+
+  .hero {
+    padding: 8rem 2rem 4rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 800px; height: 400px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; margin: 0 auto; position: relative; }
+  .breadcrumb {
+    font-size: 0.78rem; color: var(--g500); margin-bottom: 1rem;
+  }
+  .breadcrumb a { color: var(--pink); text-decoration: none; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 900;
+    letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 1rem;
+  }
+  .hero h1 .hl { color: var(--pink); }
+  .hero p {
+    font-size: 1.1rem; color: var(--g500); max-width: 620px;
+    margin: 0 auto; line-height: 1.7;
+  }
+
+  .articles { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+  .articles-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .article-card {
+    background: white; border: 1px solid var(--g200); border-radius: 14px;
+    overflow: hidden; transition: all 0.3s; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+  }
+  .article-card:hover {
+    transform: translateY(-4px); border-color: rgba(233,30,140,0.2);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+  .article-thumb {
+    height: 180px;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .article-thumb::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(233,30,140,0.25), transparent 60%);
+  }
+  .article-thumb-icon {
+    position: relative; font-size: 3rem; opacity: 0.9;
+  }
+  .article-card.pillar-1 .article-thumb::before {
+    background: radial-gradient(ellipse at 70% 30%, rgba(233,30,140,0.4), transparent 60%);
+  }
+  .article-card.pillar-2 .article-thumb {
+    background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%);
+  }
+  .article-card.pillar-2 .article-thumb::before {
+    background: radial-gradient(ellipse at 30% 70%, rgba(100,40,200,0.3), transparent 60%);
+  }
+  .article-card.pillar-3 .article-thumb {
+    background: linear-gradient(135deg, #14080a 0%, #2a0a1a 100%);
+  }
+  .article-card.pillar-3 .article-thumb::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(233,30,140,0.35), transparent 65%);
+  }
+
+  .article-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .article-tag {
+    display: inline-block; padding: 0.2rem 0.6rem;
+    background: var(--pink-bg); color: var(--pink);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 100px;
+    margin-bottom: 0.8rem; width: fit-content;
+  }
+  .article-card h2 {
+    font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1.25; margin-bottom: 0.6rem;
+  }
+  .article-card p {
+    font-size: 0.88rem; color: var(--g500); line-height: 1.6;
+    margin-bottom: 1rem; flex: 1;
+  }
+  .article-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; color: var(--g400);
+    padding-top: 0.8rem; border-top: 1px solid var(--g200);
+  }
+  .article-meta-read { color: var(--pink); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--g200); padding: 2rem; }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
+  .footer-brand span { color: var(--pink); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { color: var(--g400); text-decoration: none; font-size: 0.78rem; font-weight: 500; }
+  .footer-links a:hover { color: var(--g700); }
+  .footer-copy { font-size: 0.7rem; color: var(--g400); text-align: center; margin-top: 1.5rem; }
+
+  @media (max-width: 900px) {
+    .articles-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .articles { padding: 1.5rem 1.5rem 4rem; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">
+      <div class="nav-mark">G<span>T</span></div>
+      <div class="nav-logo">GILD <span>TECH</span></div>
+    </a>
+    <a href="../index.html" class="nav-back">&larr; Retour au site</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="../index.html">Accueil</a> › Blog
+    </nav>
+    <h1>Tactiques concrètes pour <span class="hl">automatiser votre commerce</span></h1>
+    <p>
+      Guides pratiques, études de cas et workflows prêts à l'emploi.
+      Rédigés par des praticiens qui ont passé 3 ans au téléphone. Pas par des théoriciens.
+    </p>
+  </div>
+</div>
+
+<main class="articles">
+  <div class="articles-grid">
+
+    <a href="automatisation-commerciale-pme.html" class="article-card pillar-1">
+      <div class="article-thumb">
+        <div class="article-thumb-icon">🤖</div>
+      </div>
+      <div class="article-body">
+        <span class="article-tag">Guide complet</span>
+        <h2>Automatisation commerciale pour PME : le guide complet 2026</h2>
+        <p>Pourquoi 83% des PME perdent des clients sans le savoir, et comment automatiser votre suivi en 2 semaines sans embaucher. Guide pratique chiffré.</p>
+        <div class="article-meta">
+          <span>17 avr. 2026</span>
+          <span class="article-meta-read">12 min de lecture →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="workflows-n8n-agence-immobiliere.html" class="article-card pillar-2">
+      <div class="article-thumb">
+        <div class="article-thumb-icon">🏠</div>
+      </div>
+      <div class="article-body">
+        <span class="article-tag">Workflow n8n</span>
+        <h2>7 workflows n8n indispensables pour une agence immobilière</h2>
+        <p>Les workflows exacts qu'on installe chez nos clients immo : rappel estimation, traitement pige, relance acquéreur. Templates JSON fournis.</p>
+        <div class="article-meta">
+          <span>17 avr. 2026</span>
+          <span class="article-meta-read">10 min de lecture →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="automatiser-prospection-b2b.html" class="article-card pillar-3">
+      <div class="article-thumb">
+        <div class="article-thumb-icon">🎯</div>
+      </div>
+      <div class="article-body">
+        <span class="article-tag">Prospection B2B</span>
+        <h2>Comment automatiser la prospection B2B sans tuer le contact humain</h2>
+        <p>La ligne fine entre prospection automatisée qui convertit et spam qui casse votre réputation. Méthode éprouvée, exemples concrets.</p>
+        <div class="article-meta">
+          <span>17 avr. 2026</span>
+          <span class="article-meta-read">11 min de lecture →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">GILD <span>TECH</span></div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="../calculateur.html">Calculateur</a></li>
+      <li><a href="../a-propos.html">À propos</a></li>
+      <li><a href="../mentions-legales.html">Mentions légales</a></li>
+      <li><a href="https://www.linkedin.com/company/gildtech-agency/" target="_blank">LinkedIn</a></li>
+    </ul>
+  </div>
+  <p class="footer-copy">&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés</p>
+</footer>
+
+</body>
+</html>
