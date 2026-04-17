@@ -770,9 +770,79 @@
     </div>
   </footer>
 
+  <script src="config.js"></script>
   <script>
     // STATE
     const state = { niche: null, leads: 30, conv: 15, panier: 6000, delai: 24, name: '', email: '', animationDone: false };
+
+    // ==========================================
+    // LEAD SUBMISSION (n8n primary + Formspree fallback)
+    // ==========================================
+    async function sendLead(payload, cfg) {
+      const timeout = cfg.WEBHOOK_TIMEOUT || 5000;
+
+      const fetchWithTimeout = (url, opts) => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeout);
+        return fetch(url, { ...opts, signal: controller.signal }).finally(() => clearTimeout(timer));
+      };
+
+      // 1. Try n8n webhook (primary)
+      if (cfg.WEBHOOK_LEADS) {
+        try {
+          const res = await fetchWithTimeout(cfg.WEBHOOK_LEADS, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (res.ok) { if (cfg.DEBUG) console.log('[n8n] Lead sent successfully'); return true; }
+          if (cfg.DEBUG) console.warn('[n8n] Non-OK response:', res.status);
+        } catch (err) {
+          if (cfg.DEBUG) console.warn('[n8n] Error:', err.message);
+        }
+      }
+
+      // 2. Fallback: Formspree
+      if (cfg.FORMSPREE_FALLBACK) {
+        try {
+          const res = await fetchWithTimeout(cfg.FORMSPREE_FALLBACK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (res.ok) { if (cfg.DEBUG) console.log('[formspree] Lead sent via fallback'); return true; }
+        } catch (err) {
+          if (cfg.DEBUG) console.warn('[formspree] Error:', err.message);
+        }
+      }
+
+      // 3. Last resort: localStorage (backup never lost)
+      try {
+        const pending = JSON.parse(localStorage.getItem('gildtech_pending_leads') || '[]');
+        pending.push(payload);
+        localStorage.setItem('gildtech_pending_leads', JSON.stringify(pending));
+        if (cfg.DEBUG) console.warn('[offline] Lead stored locally for retry later');
+      } catch (e) {}
+      return false;
+    }
+
+    // Retry pending leads on page load (if webhook was down)
+    window.addEventListener('load', () => {
+      const cfg = window.GILDTECH_CONFIG || {};
+      if (!cfg.WEBHOOK_LEADS && !cfg.FORMSPREE_FALLBACK) return;
+      try {
+        const pending = JSON.parse(localStorage.getItem('gildtech_pending_leads') || '[]');
+        if (pending.length === 0) return;
+        if (cfg.DEBUG) console.log(`[retry] Found ${pending.length} pending leads to retry`);
+        pending.forEach(async (p, i) => {
+          const ok = await sendLead(p, cfg);
+          if (ok) {
+            const remaining = JSON.parse(localStorage.getItem('gildtech_pending_leads') || '[]');
+            localStorage.setItem('gildtech_pending_leads', JSON.stringify(remaining.filter(x => x.timestamp !== p.timestamp)));
+          }
+        });
+      } catch (e) {}
+    });
 
     // ==========================================
     // NICHE SELECTION — Fix the click bug
@@ -946,17 +1016,12 @@
         source: 'gild-tech.com/calculateur'
       };
 
-      console.log('LEAD CAPTURED:', payload);
+      // Config globale (depuis config.js)
+      const cfg = (typeof window !== 'undefined' && window.GILDTECH_CONFIG) || {};
+      if (cfg.DEBUG) console.log('LEAD CAPTURED:', payload);
 
-      // If webhook URL is set, send (PJ to configure)
-      const WEBHOOK_URL = ''; // e.g. 'https://n8n.gild-tech.com/webhook/calculateur-lead';
-      if (WEBHOOK_URL) {
-        fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(err => console.error('Webhook error:', err));
-      }
+      // Envoi asynchrone vers n8n avec fallback Formspree
+      sendLead(payload, cfg);
 
       // Save locally as backup
       try {
