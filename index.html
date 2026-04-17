@@ -1,186 +1,1330 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-  <script>
-    // GitHub Pages SPA routing fix
-    (function(l){
-      if(l.search[1]=='/'){
-        var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');
-        window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gild-Tech | Automatisation Commerciale pour PME</title>
+  <meta name="description" content="Vos prospects n'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. Audit gratuit 30 min.">
+
+  <!-- SEO & Canonique -->
+  <link rel="canonical" href="https://gild-tech.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Gild-Tech (Girlden LTD)">
+  <meta name="keywords" content="automatisation commerciale, CRM PME, prospection automatisée, relance automatique, IA commerciale, agence automatisation, rappel prospect, workflow CRM, Gild-Tech, Girlden">
+  <meta name="geo.region" content="FR">
+  <meta name="language" content="French">
+
+  <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gild-Tech">
+  <meta property="og:title" content="Gild-Tech | Automatisation Commerciale pour PME">
+  <meta property="og:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. 30 min d'audit gratuit.">
+  <meta property="og:url" content="https://gild-tech.com/">
+  <meta property="og:image" content="https://gild-tech.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gild-Tech — Automatisation Commerciale IA">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gild-Tech | Automatisation Commerciale pour PME">
+  <meta name="twitter:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. 30 min d'audit gratuit.">
+  <meta name="twitter:image" content="https://gild-tech.com/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#E91E8C">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://gild-tech.com/">
+  <link rel="alternate" hreflang="en" href="https://gild-tech.com/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://gild-tech.com/">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://gild-tech.com/#organization",
+        "name": "Gild-Tech",
+        "legalName": "Girlden LTD",
+        "url": "https://gild-tech.com/",
+        "logo": "https://gild-tech.com/favicon.svg",
+        "description": "Gild-Tech automatise la prospection, les relances et le suivi client des PME.",
+        "email": "contact@gild-tech.com",
+        "areaServed": ["FR", "BE", "CA-QC"],
+        "knowsAbout": ["Automatisation commerciale", "CRM", "Prospection B2B", "IA commerciale"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://gild-tech.com/#website",
+        "url": "https://gild-tech.com/",
+        "name": "Gild-Tech",
+        "publisher": { "@id": "https://gild-tech.com/#organization" },
+        "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "Service",
+        "name": "Starter",
+        "provider": { "@id": "https://gild-tech.com/#organization" },
+        "description": "Récupérez les leads qui vous glissent entre les doigts.",
+        "offers": { "@type": "Offer", "price": "990", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Pro",
+        "provider": { "@id": "https://gild-tech.com/#organization" },
+        "description": "Arrêtez de gérer la prospection à la main.",
+        "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Scale",
+        "provider": { "@id": "https://gild-tech.com/#organization" },
+        "description": "Un commercial virtuel qui prospecte 24/7.",
+        "offers": { "@type": "Offer", "price": "4990", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Consulting 90 jours",
+        "provider": { "@id": "https://gild-tech.com/#organization" },
+        "description": "Votre process commercial passé au crible. 90 jours pour tout transformer.",
+        "offers": { "@type": "Offer", "price": "14900", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Combien de temps pour être opérationnel ?", "acceptedAnswer": { "@type": "Answer", "text": "Entre 1 semaine (Starter) et 4 semaines (Scale). Consulting : 90 jours." } },
+          { "@type": "Question", "name": "Faut-il un CRM existant ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. On configure un CRM si besoin, ou on se branche sur le vôtre." } },
+          { "@type": "Question", "name": "Paiement en plusieurs fois ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, paiement en 1 ou 3 fois sans frais sur demande. Tous les prix sont HT." } },
+          { "@type": "Question", "name": "Pro vs Scale ?", "acceptedAnswer": { "@type": "Answer", "text": "Pro structure votre machine commerciale. Scale prospecte activement." } }
+        ]
       }
-    }(window.location))
+    ]
+  }
   </script>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GILD TECH | Automatisation IA pour PME</title>
-    <meta name="description" content="Automatisez vos tÃÂ¢ches chronophages grÃÂ¢ce ÃÂ  l'IA et aux workflows intelligents. GILD TECH aide les PME ÃÂ  gagner du temps et de l'efficacitÃÂ©." />
-    <meta name="author" content="GILD TECH" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.gild-tech.com/" />
 
-    <meta property="og:title" content="GILD TECH | Automatisation IA pour PME" />
-    <meta property="og:description" content="Automatisez vos tÃÂ¢ches chronophages grÃÂ¢ce ÃÂ  l'IA et aux workflows intelligents." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.gild-tech.com/" />
-    <meta property="og:image" content="https://www.gild-tech.com/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://www.gild-tech.com/og-image.png" />
+    :root {
+      --pink: #E91E8C;
+      --pink-light: #f54da5;
+      --pink-soft: #fce4f1;
+      --pink-bg: #fef6fa;
+      --dark: #0f0f0f;
+      --g900: #111;
+      --g700: #333;
+      --g600: #555;
+      --g500: #777;
+      --g400: #999;
+      --g300: #ccc;
+      --g200: #e8e8e8;
+      --g100: #f5f5f5;
+      --white: #fff;
+      --font: 'Inter', -apple-system, sans-serif;
+      --max-w: 1100px;
+      --r: 14px;
+    }
 
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"GILD TECH","description":"Agence d automatisation commerciale IA pour PME","url":"https://www.gild-tech.com","email":"contact@gild-tech.com","areaServed":"France","serviceType":["Automatisation commerciale","Integration IA","Prospection automatisee"]}</script>
-    <script type="module" crossorigin src="/assets/index-BGi3a4nF.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CA-jwwm1.css">
-  
+    html { scroll-behavior: smooth; }
 
-<style id="gt-intro-css">
-:root {
-  --rose:    #C84B6B;
-  --rose-l:  #d96d88;
-  --rose-g:  rgba(200,75,107,0.25);
-  --charcoal:#2d3748;
-  --bg:      #0b0b14;
-  --bg2:     #12121f;
-  --white:   #f0ecf0;
-}
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-/* html/body rules removed - handled by overlay div */
-.cursor { position:fixed; width:10px; height:10px; border-radius:50%; background:var(--rose); pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform .1s; mix-blend-mode:screen; }
-.cursor-ring { position:fixed; width:32px; height:32px; border-radius:50%; border:1px solid var(--rose-l); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform .08s, width .2s, height .2s; opacity:.6; }
-.bg-cone { position:fixed; inset:0; overflow:hidden; pointer-events:none; }
-.bg-cone::before { content:''; position:absolute; top:50%; left:50%; width:200vmax; height:200vmax; background:conic-gradient(from 0deg,transparent 0%,rgba(200,75,107,.04) 8%,transparent 16%,rgba(120,40,80,.03) 24%,transparent 32%,rgba(200,75,107,.03) 40%,transparent 48%,rgba(80,20,60,.02) 56%,transparent 64%,rgba(200,75,107,.04) 72%,transparent 80%,rgba(120,40,80,.02) 92%,transparent 100%); transform:translate(-50%,-50%) rotate(0deg); animation:bg-rotate 40s linear infinite; }
-@keyframes bg-rotate { to { transform:translate(-50%,-50%) rotate(360deg); } }
-.particles { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
-.p { position:absolute; border-radius:50%; background:var(--rose); animation:p-rise linear infinite; opacity:0; }
-@keyframes p-rise { 0%{transform:translateY(0) scale(0);opacity:0} 10%{opacity:.6;transform:translateY(-5px) scale(1)} 90%{opacity:.1} 100%{transform:translateY(-380px) scale(.1);opacity:0} }
-.stage { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; }
-.rings { position:relative; display:flex; align-items:center; justify-content:center; }
-.ring { position:absolute; border-radius:50%; border:1.5px solid var(--rose); top:50%; left:50%; transform:translate(-50%,-50%) scale(.8); opacity:0; animation:ring-expand var(--dur,3s) var(--del,0s) ease-out infinite; }
-@keyframes ring-expand { 0%{transform:translate(-50%,-50%) scale(.8);opacity:.7;border-width:2px} 100%{transform:translate(-50%,-50%) scale(2.4);opacity:0;border-width:.5px} }
-.orb-wrap { position:absolute; top:50%; left:50%; width:0; height:0; }
-.orb { position:absolute; width:var(--os,8px); height:var(--os,8px); border-radius:50%; background:var(--oc,var(--rose)); box-shadow:0 0 12px 4px var(--oc,var(--rose)); top:50%; left:50%; transform:translate(-50%,-50%); animation:orbit var(--od,8s) linear infinite,orb-pulse 2.5s ease-in-out infinite var(--op,0s); }
-@keyframes orbit { from{transform:translate(-50%,-50%) rotate(0deg) translateX(var(--or,180px)) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg) translateX(var(--or,180px)) rotate(-360deg)} }
-@keyframes orb-pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
-.logo-wrap { position:relative; width:230px; height:230px; display:flex; align-items:center; justify-content:center; opacity:0; animation:logo-reveal 1.2s 0.6s cubic-bezier(.22,1,.36,1) forwards; }
-@keyframes logo-reveal { 0%{opacity:0;transform:scale(.3) translateY(20px);filter:blur(12px)} 70%{transform:scale(1.06) translateY(0);filter:blur(0)} 100%{opacity:1;transform:scale(1) translateY(0)} }
-.logo-glass { width:210px; height:210px; border-radius:50%; background:radial-gradient(circle at 38% 38%,rgba(255,255,255,.10) 0%,rgba(255,255,255,.04) 60%,transparent 100%); border:1px solid rgba(200,75,107,.25); display:flex; align-items:center; justify-content:center; overflow:hidden; animation:glow-breathe 3s ease-in-out infinite 1.8s,float 6s ease-in-out infinite 1.8s; }
-.logo-img { width:180px; height:180px; object-fit:contain; mix-blend-mode:screen; }
-@keyframes glow-breathe { 0%,100%{filter:drop-shadow(0 0 18px rgba(200,75,107,.45)) drop-shadow(0 0 55px rgba(200,75,107,.2))} 50%{filter:drop-shadow(0 0 38px rgba(200,75,107,.85)) drop-shadow(0 0 90px rgba(200,75,107,.4)) drop-shadow(0 0 160px rgba(180,60,100,.25))} }
-@keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg)} 33%{transform:translateY(-12px) rotate(.3deg)} 66%{transform:translateY(-5px) rotate(-.25deg)} }
-.logo-wrap::after { content:''; position:absolute; top:0; bottom:0; width:50px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent); border-radius:50%; animation:shine-sweep 4s ease-in-out infinite 2.5s; pointer-events:none; }
-@keyframes shine-sweep { 0%{left:-80px} 100%{left:280px} }
-.brand-text { margin-top:28px; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:text-reveal .9s 1.8s cubic-bezier(.22,1,.36,1) forwards; }
-@keyframes text-reveal { 0%{opacity:0;transform:translateY(16px);filter:blur(6px)} 100%{opacity:1;transform:translateY(0);filter:blur(0)} }
-.brand-name { font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(28px,4vw,46px); letter-spacing:0.32em; text-transform:uppercase; color:#e8e4e8; text-shadow:0 0 40px rgba(200,75,107,.15); padding-right:.32em; }
-.brand-sub { font-family:'Montserrat',sans-serif; font-weight:400; font-size:clamp(8px,1.05vw,13px); letter-spacing:0.55em; text-transform:uppercase; color:var(--rose); text-shadow:0 0 18px rgba(200,75,107,.5); padding-right:.55em; line-height:2.2; }
-.divider { width:0; height:1px; background:linear-gradient(90deg,transparent,var(--rose),transparent); margin:22px auto 0; opacity:0; animation:divider-grow .8s 2.5s ease forwards; }
-@keyframes divider-grow { to{width:260px;opacity:.5} }
-.cta-wrap { margin-top:42px; opacity:0; animation:cta-reveal .8s 3.4s cubic-bezier(.22,1,.36,1) forwards; position:relative; }
-@keyframes cta-reveal { 0%{opacity:0;transform:translateY(12px) scale(.95)} 100%{opacity:1;transform:translateY(0) scale(1)} }
-.cta-btn { font-family:'Montserrat',sans-serif; font-weight:600; font-size:11px; letter-spacing:.45em; text-transform:uppercase; color:var(--rose); border:1px solid rgba(200,75,107,.5); background:rgba(200,75,107,.06); padding:14px 40px 14px 46px; border-radius:2px; cursor:none; position:relative; overflow:hidden; transition:background .3s,border-color .3s,box-shadow .3s,color .3s; }
-.cta-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(200,75,107,.12),transparent); transform:translateX(-100%); transition:transform .45s; }
-.cta-btn:hover { background:rgba(200,75,107,.15); border-color:rgba(200,75,107,.9); box-shadow:0 0 28px rgba(200,75,107,.3),0 0 60px rgba(200,75,107,.1); color:#fff; }
-.cta-btn:hover::before { transform:translateX(100%); }
-.cta-btn:active { transform:scale(.97); }
-.counter { font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.25em; color:rgba(200,75,107,.45); margin-top:14px; text-align:center; opacity:0; animation:cta-reveal .5s 4s ease forwards; }
-.skip-link { position:fixed; top:22px; right:28px; font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:.35em; color:rgba(200,75,107,.35); text-decoration:none; text-transform:uppercase; cursor:none; opacity:0; animation:cta-reveal .5s 4.5s ease forwards; transition:color .3s; border-bottom:1px solid rgba(200,75,107,.15); padding-bottom:2px; }
-.skip-link:hover { color:rgba(200,75,107,.7); border-bottom-color:rgba(200,75,107,.4); }
-.progress-ring { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:120px; height:120px; pointer-events:none; }
-.progress-ring circle { fill:none; stroke:var(--rose); stroke-width:1.2; stroke-linecap:round; stroke-dasharray:339.3; stroke-dashoffset:339.3; transform:rotate(-90deg); transform-origin:50% 50%; opacity:.5; transition:stroke-dashoffset .95s linear; }
-@media (pointer:coarse) { html,body{cursor:auto} .cursor,.cursor-ring{display:none} .cta-btn{cursor:pointer} .skip-link{cursor:pointer} }
-.exit-overlay { position:fixed; inset:0; background:var(--bg); opacity:0; pointer-events:none; z-index:1000; transition:opacity .8s ease; }
-.exit-overlay.active { opacity:1; pointer-events:all; }
-.pop { position:fixed; pointer-events:none; z-index:9990; }
-.pop-dot { position:absolute; border-radius:50%; width:6px; height:6px; background:var(--rose); transform:translate(-50%,-50%); animation:pop-out .6s ease forwards; }
-@keyframes pop-out { 0%{transform:translate(calc(-50% + 0px),calc(-50% + 0px)) scale(1);opacity:1} 100%{transform:translate(calc(-50% + var(--ex)),calc(-50% + var(--ey))) scale(0);opacity:0} }
-</style>
+    body {
+      background: var(--white);
+      color: var(--g900);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g200);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; }
+
+    .nav-mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
+      border: 1.5px solid rgba(233,30,140,0.25);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;
+      color: var(--g900);
+    }
+
+    .nav-mark span { color: var(--pink); }
+
+    .nav-mark::after {
+      content: ''; position: absolute; inset: -1.5px; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink));
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      animation: spinMark 4s linear infinite;
+    }
+
+    @keyframes spinMark { to { rotate: 360deg; } }
+
+    .nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
+    .nav-logo span { color: var(--pink); font-weight: 700; }
+
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.7rem; border-radius: 8px;
+      border: 1px solid var(--g200); background: white;
+      cursor: pointer; font-family: var(--font); font-size: 0.72rem;
+      font-weight: 600; color: var(--g600);
+      transition: all 0.2s; margin-right: 0.5rem;
+    }
+
+    .lang-toggle:hover { border-color: var(--pink); color: var(--pink); }
+
+    .lang-toggle svg { width: 16px; height: 12px; border-radius: 2px; }
+
+    .lang-sep { color: var(--g300); margin: 0 0.2rem; }
+
+    .lang-active { color: var(--pink); font-weight: 700; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--g900); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font); font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; border-radius: 10px; border: none; cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-pink { background: var(--pink); color: white; padding: 0.6rem 1.4rem; }
+    .btn-pink:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(233,30,140,0.25); }
+
+    .btn-nav {
+      background: white; color: var(--pink); padding: 0.55rem 1.3rem;
+      border: 1.5px solid var(--pink);
+    }
+    .btn-nav:hover { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(233,30,140,0.25); transform: translateY(-1px); }
+
+    .btn-lg { padding: 0.85rem 2rem; font-size: 0.95rem; border-radius: 12px; }
+    .btn-ghost { background: transparent; color: var(--g700); padding: 0.6rem 1.4rem; border: 1px solid var(--g200); }
+    .btn-ghost:hover { border-color: var(--g400); background: var(--g100); }
+    .btn-white { background: white; color: var(--pink); padding: 0.85rem 2rem; border-radius: 12px; font-weight: 700; font-size: 0.95rem; text-decoration: none; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+
+    .btn svg { width: 16px; height: 16px; transition: transform 0.2s; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .arrow { display: inline-block; transition: transform 0.2s; }
+
+    /* HERO */
+    .hero {
+      padding: 9rem 2rem 5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-grad {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 800px; height: 450px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 720px; margin: 0 auto; }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.85rem 0.3rem 0.45rem;
+      background: var(--pink-bg); border: 1px solid rgba(233,30,140,0.12);
+      border-radius: 100px; font-size: 0.75rem; font-weight: 600; color: var(--pink);
+      margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .pill-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--pink);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 900;
+      line-height: 1.1; letter-spacing: -0.035em; margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .hero h1 .hl { color: var(--pink); }
+
+    .hero-desc {
+      font-size: 1.1rem; color: var(--g500); max-width: 520px;
+      margin: 0 auto 2.2rem; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    .hero-note {
+      font-size: 0.75rem; color: var(--g400); margin-top: 1rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    @keyframes fadeUp { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
+
+    /* STATS BAR */
+    .stats-bar {
+      padding: 3.5rem 2rem; border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200);
+    }
+
+    .stats-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; justify-content: center; gap: 4rem;
+    }
+
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; letter-spacing: -0.03em; color: var(--g900); }
+    .stat-num span { color: var(--pink); }
+    .stat-label { font-size: 0.78rem; color: var(--g500); margin-top: 0.2rem; }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 2rem; max-width: var(--max-w); margin: 0 auto; }
+    .section-full { max-width: 100%; padding: 5.5rem 2rem; }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .tag::before { content: ''; width: 18px; height: 2px; background: var(--pink); border-radius: 1px; }
+
+    .heading {
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.8rem;
+    }
+
+    .subdesc { font-size: 0.98rem; color: var(--g500); max-width: 500px; line-height: 1.7; margin-bottom: 3rem; }
+
+    /* PROBLEME */
+    .prob-bg { background: var(--g100); }
+
+    .prob-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+
+    .prob-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 1.8rem; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .prob-card:hover { border-color: rgba(233,30,140,0.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+    .prob-icon {
+      width: 42px; height: 42px; border-radius: 10px; background: var(--pink-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+
+    .prob-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .prob-card p { font-size: 0.85rem; color: var(--g500); line-height: 1.65; }
+
+    /* SOLUTION */
+    .sol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+
+    .sol-text p { font-size: 1rem; color: var(--g600); line-height: 1.8; margin-bottom: 1.2rem; }
+    .sol-text strong { color: var(--g900); font-weight: 700; }
+    .sol-text em { color: var(--pink); font-style: normal; font-weight: 600; }
+
+    .sol-box {
+      background: var(--g100); border: 1px solid var(--g200); border-radius: 18px;
+      padding: 2rem; position: relative; overflow: hidden;
+    }
+
+    .sol-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--pink), var(--pink-light));
+    }
+
+    .sol-row {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--g200);
+    }
+
+    .sol-row:last-child { border-bottom: none; }
+
+    .sol-row-icon {
+      width: 36px; height: 36px; border-radius: 8px; background: white;
+      border: 1px solid var(--g200); display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+
+    .sol-row-label { font-size: 0.78rem; color: var(--g500); }
+    .sol-row-val { font-size: 1rem; font-weight: 800; color: var(--pink); letter-spacing: -0.02em; }
+
+    /* STEPS */
+    .steps-bg { background: var(--g100); }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+
+    .step-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 1.8rem; text-align: center;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .step-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--pink);
+      color: white; font-weight: 800; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .step-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step-card p { font-size: 0.85rem; color: var(--g500); line-height: 1.65; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .p-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 2.2rem 1.8rem; position: relative;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .p-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .p-card.ft { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink); }
+    .p-card.ft:hover { box-shadow: 0 0 0 1px var(--pink), 0 14px 40px rgba(233,30,140,0.1); }
+
+    .p-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--pink); color: white; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 0.22rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .p-name { font-size: 0.8rem; font-weight: 600; color: var(--g500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem; margin-top: 0.3rem; }
+    .p-promise { font-size: 1rem; font-weight: 700; color: var(--g900); line-height: 1.3; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .p-for { font-size: 0.78rem; color: var(--g500); margin-bottom: 1rem; line-height: 1.55; }
+    .p-for strong { color: var(--g700); font-weight: 600; }
+    .p-gain {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--pink-bg); color: var(--pink);
+      padding: 0.3rem 0.7rem; border-radius: 6px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.01em;
+      margin-bottom: 1.2rem; border: 1px solid rgba(233,30,140,0.1);
+    }
+    .p-gain::before { content: '→'; font-weight: 700; }
+    .p-price { font-size: 2.3rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.15rem; }
+    .p-note { font-size: 0.73rem; color: var(--g400); margin-bottom: 1.5rem; }
+
+    .p-div { height: 1px; background: var(--g200); margin-bottom: 1.3rem; }
+
+    .p-features { list-style: none; margin-bottom: 1.8rem; }
+
+    .p-features li {
+      font-size: 0.84rem; color: var(--g600); padding: 0.35rem 0; padding-left: 1.4rem;
+      position: relative; line-height: 1.5;
+    }
+
+    .p-features li::before {
+      content: '✓'; position: absolute; left: 0; top: 0.35rem;
+      color: var(--pink); font-weight: 700; font-size: 0.8rem;
+    }
+
+    .p-cta {
+      display: block; width: 100%; text-align: center; padding: 0.75rem;
+      border-radius: 10px; font-family: var(--font); font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; border: 1px solid var(--g200); background: white; color: var(--g700);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+    }
+
+    .p-cta:hover { border-color: var(--g400); background: var(--g100); }
+    .p-card.ft .p-cta { background: var(--pink); color: white; border-color: var(--pink); }
+    .p-card.ft .p-cta:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(233,30,140,0.25); }
+
+    /* Maintenance band */
+    .maint-band {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--pink-bg) 0%, #fff 60%);
+      border: 1px solid rgba(233,30,140,0.15);
+      border-radius: var(--r);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .maint-band::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+      width: 4px; background: var(--pink);
+    }
+
+    .maint-tag {
+      display: inline-block;
+      background: var(--pink); color: white;
+      padding: 0.3rem 0.8rem; border-radius: 6px;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .maint-title {
+      font-size: 1.15rem; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--g900);
+      margin-bottom: 0.3rem;
+    }
+
+    .maint-desc {
+      font-size: 0.88rem; color: var(--g600); line-height: 1.55; max-width: 480px;
+    }
+
+    .maint-feats {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem;
+    }
+
+    .maint-feat {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.28rem 0.7rem; background: white;
+      border: 1px solid var(--g200); border-radius: 100px;
+      font-size: 0.72rem; color: var(--g700); font-weight: 500;
+    }
+
+    .maint-feat::before { content: '✓'; color: var(--pink); font-weight: 700; }
+
+    .maint-price {
+      text-align: right;
+    }
+
+    .maint-price-num {
+      font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em;
+      color: var(--g900); line-height: 1;
+    }
+
+    .maint-price-num span { color: var(--pink); font-size: 1rem; font-weight: 600; }
+
+    .maint-price-note {
+      font-size: 0.72rem; color: var(--g500); margin-top: 0.3rem;
+    }
+
+    .maint-cta {
+      display: inline-block; margin-top: 0.7rem;
+      padding: 0.55rem 1.1rem; background: var(--pink); color: white;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.25s;
+    }
+
+    .maint-cta:hover { background: var(--pink-light); box-shadow: 0 4px 15px rgba(233,30,140,0.25); transform: translateY(-1px); }
+
+    @media (max-width: 900px) {
+      .maint-band { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem; }
+      .maint-price { text-align: left; }
+    }
+
+    /* Parcours indicator */
+    .parcours {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+      font-size: 0.8rem; color: var(--g500);
+    }
+
+    .parcours-step {
+      padding: 0.35rem 0.8rem; background: white;
+      border: 1px solid var(--g200); border-radius: 100px;
+      font-weight: 600; color: var(--g700); font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+
+    .parcours-step.highlight { background: var(--pink-bg); border-color: rgba(233,30,140,0.2); color: var(--pink); }
+
+    .parcours-arrow { color: var(--g300); font-size: 0.8rem; }
+
+    /* ========== CALCULATOR TEASER SECTION ========== */
+    .calc-teaser {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: white;
+      max-width: 100%;
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-teaser::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 900px; height: 500px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .calc-teaser-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem;
+      align-items: center; position: relative;
+    }
+
+    .calc-teaser-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 1rem;
+    }
+    .calc-teaser-tag::before { content: ''; width: 18px; height: 2px; background: var(--pink); border-radius: 1px; }
+
+    .calc-teaser h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem;
+      color: white;
+    }
+    .calc-teaser h2 .hl { color: var(--pink); }
+
+    .calc-teaser p.calc-teaser-desc {
+      font-size: 1rem; color: rgba(255,255,255,0.7);
+      line-height: 1.7; margin-bottom: 2rem; max-width: 480px;
+    }
+
+    .calc-teaser-features { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.2rem; }
+
+    .calc-teaser-feat {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.9rem; color: rgba(255,255,255,0.85);
+    }
+    .calc-teaser-feat::before {
+      content: '✓'; width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(233,30,140,0.15); color: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+    }
+
+    .calc-teaser-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--pink); color: white;
+      padding: 0.95rem 2rem; border-radius: 10px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .calc-teaser-cta:hover {
+      background: var(--pink-light); transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(233,30,140,0.35);
+    }
+
+    /* Right side: interactive preview card */
+    .calc-teaser-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 2rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .calc-teaser-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--pink), var(--pink-light));
+      border-radius: 20px 20px 0 0;
+    }
+
+    .calc-teaser-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--pink);
+      margin-bottom: 0.6rem;
+    }
+
+    .calc-teaser-amount {
+      font-size: clamp(2.8rem, 6vw, 3.8rem); font-weight: 900;
+      letter-spacing: -0.04em; line-height: 1;
+      color: white; margin-bottom: 0.4rem;
+    }
+
+    .calc-teaser-amount span { color: var(--pink); }
+
+    .calc-teaser-period {
+      font-size: 0.9rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.8rem;
+    }
+
+    .calc-teaser-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-teaser-stat {
+      padding: 1rem; background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 10px;
+    }
+
+    .calc-teaser-stat-label {
+      font-size: 0.7rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 0.3rem;
+    }
+
+    .calc-teaser-stat-value {
+      font-size: 1.2rem; font-weight: 800; color: white;
+      letter-spacing: -0.02em;
+    }
+
+    .calc-teaser-stat-value.red { color: #f54a5a; }
+
+    .calc-teaser-disclaimer {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4);
+      text-align: center; font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .calc-teaser-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .pay-note {
+      text-align: center; font-size: 0.72rem; color: var(--g400);
+      margin-top: 1.2rem; letter-spacing: 0.02em;
+    }
+
+    .pay-note span { color: var(--pink); font-weight: 600; }
+
+    /* CTA FINAL */
+    .cta-wrap { padding: 5rem 2rem; max-width: var(--max-w); margin: 0 auto; }
+
+    .cta-box {
+      background: var(--pink); border-radius: 22px; padding: 4.5rem 2.5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: ''; position: absolute; top: -40%; right: -15%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900;
+      letter-spacing: -0.03em; color: white; margin-bottom: 0.8rem; position: relative;
+    }
+
+    .cta-box p {
+      font-size: 1rem; color: rgba(255,255,255,0.8); max-width: 440px;
+      margin: 0 auto 2rem; line-height: 1.7; position: relative;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--g200); padding: 2rem 2rem; }
+
+    .footer-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .footer-brand { font-weight: 800; font-size: 0.9rem; }
+    .footer-brand span { color: var(--pink); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: var(--g400); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--g700); }
+    .footer-copy { font-size: 0.68rem; color: var(--g400); text-align: center; margin-top: 1.5rem; max-width: var(--max-w); margin-left: auto; margin-right: auto; }
+
+    /* REVEAL */
+    .rv { opacity: 0; transform: translateY(25px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .rv.vis { opacity: 1; transform: translateY(0); }
+    .rv-d1 { transition-delay: 0.08s; }
+    .rv-d2 { transition-delay: 0.16s; }
+    .rv-d3 { transition-delay: 0.24s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .prob-grid, .steps-grid, .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .sol-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { padding: 7.5rem 1.5rem 3.5rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-actions { flex-direction: column; }
+      section, .section-full { padding: 4rem 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; }
+      .stats-inner { flex-direction: column; gap: 1.2rem; }
+      .cta-box { padding: 3rem 1.5rem; }
+    }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+    .nav-hamburger span { width: 20px; height: 2px; background: var(--g700); }
+
+    /* INTRO OVERLAY */
+    .intro {
+      position: fixed; inset: 0; z-index: 999;
+      background: #0b0b14;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      overflow: hidden;
+    }
+
+    .intro.exit { opacity: 0; transform: scale(1.04); pointer-events: none; }
+
+    .intro-cone {
+      position: absolute; inset: 0;
+      background: conic-gradient(from 0deg, transparent, rgba(233,30,140,0.03), transparent, rgba(100,30,180,0.02), transparent);
+      animation: spinCone 25s linear infinite;
+    }
+
+    @keyframes spinCone { to { transform: rotate(360deg); } }
+
+    .intro-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(233,30,140,0.06);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+
+    .intro-ring-1 { width: 250px; height: 250px; }
+    .intro-ring-2 { width: 400px; height: 400px; animation-delay: 0.5s; }
+    .intro-ring-3 { width: 550px; height: 550px; animation-delay: 1s; }
+
+    @keyframes ringPulse {
+      0%,100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.02); }
+    }
+
+    .intro-logo-wrap {
+      position: relative;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.1), transparent 70%);
+      border: 1px solid rgba(233,30,140,0.12);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.7);
+      animation: introIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+      box-shadow: 0 0 60px rgba(233,30,140,0.1);
+    }
+
+    .intro-logo-wrap::after {
+      content: ''; position: absolute; inset: -2px; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), transparent 25%, transparent 75%, var(--pink));
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      animation: spinCone 5s linear infinite;
+    }
+
+    @keyframes introIn { to { opacity: 1; transform: scale(1); } }
+
+    .intro-logo-letters {
+      font-family: var(--font); font-weight: 700; font-size: 1.4rem;
+      letter-spacing: 0.08em; color: #f0ecf0;
+    }
+
+    .intro-logo-letters span { color: var(--pink); }
+
+    .intro-glow {
+      position: absolute; width: 180px; height: 180px; border-radius: 50%;
+      background: var(--pink); opacity: 0.06; filter: blur(70px);
+      animation: breatheGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes breatheGlow {
+      0%,100% { transform: scale(1); opacity: 0.06; }
+      50% { transform: scale(1.3); opacity: 0.12; }
+    }
+
+    .intro-name {
+      margin-top: 2rem; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: #666680; opacity: 0; animation: introFade 0.6s ease 0.7s forwards;
+    }
+
+    .intro-sub {
+      margin-top: 0.5rem; font-size: 0.62rem; letter-spacing: 0.18em;
+      color: rgba(233,30,140,0.5); opacity: 0; animation: introFade 0.6s ease 0.9s forwards;
+    }
+
+    .intro-line {
+      width: 35px; height: 1px; margin-top: 1.2rem;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      opacity: 0; animation: introFade 0.6s ease 1.1s forwards;
+    }
+
+    .intro-skip {
+      position: absolute; bottom: 3rem; font-size: 0.68rem;
+      color: #444460; letter-spacing: 0.1em; cursor: pointer;
+      transition: color 0.2s; opacity: 0; animation: introFade 0.6s ease 1.3s forwards;
+    }
+
+    .intro-skip:hover { color: var(--pink); }
+
+    @keyframes introFade { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+
+    .intro-particle {
+      position: absolute; width: 2px; height: 2px; background: var(--pink);
+      border-radius: 50%; opacity: 0;
+    }
+
+    nav { opacity: 0; transform: translateY(-15px); transition: opacity 0.5s, transform 0.5s; }
+    nav.show { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
+<body>
 
-  <body>
-    <div id="root"></div>
-  
-
-
-
-<!-- GILD-TECH INTRO ANIMATION -->
-<style id="intro-styles">
-:root {
-  --rose:#C84B6B;--rose-l:#d96d88;--rose-g:rgba(200,75,107,0.25);--charcoal:#2d3748;--bg:#0b0b14;--bg2:#12121f;--white:#f0ecf0;
-}
-#gildtech-intro-overlay { position:fixed; inset:0; z-index:99999; overflow:hidden; background:var(--bg); cursor:none; width:100%; height:100%; }
-#gildtech-intro-overlay .cursor { position:fixed; width:10px; height:10px; border-radius:50%; background:var(--rose); pointer-events:none; z-index:100001; transform:translate(-50%,-50%); transition:transform .1s; mix-blend-mode:screen; }
-#gildtech-intro-overlay .cursor-ring { position:fixed; width:32px; height:32px; border-radius:50%; border:1px solid var(--rose-l); pointer-events:none; z-index:100000; transform:translate(-50%,-50%); transition:transform .08s, width .2s, height .2s; opacity:.6; }
-</style>
-
-<div id="gildtech-intro-overlay">
-
-<div class="bg-cone"></div>
-<div class="particles" id="particles"></div>
-<div class="exit-overlay" id="exitOverlay"></div>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stage">
-  <div class="rings" style="width:260px;height:260px;">
-    <div class="ring" style="--dur:3.0s;--del:0.0s;width:260px;height:260px;"></div>
-    <div class="ring" style="--dur:3.0s;--del:0.9s;width:260px;height:260px;"></div>
-    <div class="ring" style="--dur:3.0s;--del:1.8s;width:260px;height:260px;"></div>
-    <div class="ring" style="--dur:3.0s;--del:2.7s;width:260px;height:260px;"></div>
-    <div class="orb-wrap">
-      <div class="orb" style="--os:7px;--oc:var(--rose);--od:9s;--or:148px;--op:0s;"></div>
-      <div class="orb" style="--os:5px;--oc:#e891b0;--od:13s;--or:162px;--op:.6s;"></div>
-      <div class="orb" style="--os:9px;--oc:var(--rose);--od:7s;--or:135px;--op:1.2s;"></div>
-      <div class="orb" style="--os:4px;--oc:#f0aac4;--od:17s;--or:175px;--op:1.8s;"></div>
-      <div class="orb" style="--os:6px;--oc:var(--rose);--od:11s;--or:155px;--op:2.4s;"></div>
+  <!-- INTRO -->
+  <div class="intro" id="intro">
+    <div class="intro-cone"></div>
+    <div class="intro-ring intro-ring-1"></div>
+    <div class="intro-ring intro-ring-2"></div>
+    <div class="intro-ring intro-ring-3"></div>
+    <div class="intro-glow"></div>
+    <div class="intro-logo-wrap">
+      <div class="intro-logo-letters">G<span>T</span></div>
     </div>
-    <div class="logo-wrap" id="logoWrap">
-      <div class="logo-glass">
-        <img class="logo-img" id="logoImg" src="https://gild-tech.com/assets/logo-hero-B13CSCY8.png" alt="GILD TECH logo">
+    <div class="intro-name">GILD TECH</div>
+    <div class="intro-sub">Automation Digital Systems</div>
+    <div class="intro-line"></div>
+    <div class="intro-skip" onclick="enterSite()">PASSER &rarr;</div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-mark">G<span>T</span></div>
+        <div class="nav-logo">GILD <span>TECH</span></div>
+      </div>
+      <div class="nav-hamburger" onclick="document.getElementById('nl').style.display=document.getElementById('nl').style.display==='flex'?'none':'flex'">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="nl">
+        <li><a href="#probleme" data-fr="Pourquoi" data-en="Why">Pourquoi</a></li>
+        <li><a href="#calc-teaser" data-fr="Calculateur" data-en="Calculator">Calculateur</a></li>
+        <li><a href="#solution" data-fr="Comment" data-en="How">Comment</a></li>
+        <li><a href="#offres" data-fr="Offres" data-en="Pricing">Offres</a></li>
+        <li>
+          <button class="lang-toggle" onclick="toggleLang()" aria-label="Change language">
+            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
+            <span id="lang-fr" class="lang-active">FR</span>
+            <span class="lang-sep">|</span>
+            <span id="lang-en">EN</span>
+            <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:10px">
+              <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#s)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </g>
+            </svg>
+          </button>
+        </li>
+        <li><a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-nav" data-fr="Audit gratuit" data-en="Free audit">Audit gratuit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+      <div class="hero-pill">
+        <div class="pill-dot"></div>
+        Automatisation Commerciale IA
+      </div>
+      <h1 data-fr-html="Vos prospects n&apos;attendent pas. <span class=&quot;hl&quot;>Votre concurrent non plus.</span>" data-en-html="Your prospects won&apos;t wait. <span class=&quot;hl&quot;>Neither will your competitor.</span>">Vos prospects n'attendent pas. <span class="hl">Votre concurrent non plus.</span></h1>
+      <p class="hero-desc" data-fr="Un prospect non rappelé dans l'heure, c'est un client perdu. Gild-Tech automatise votre prospection, vos relances et votre suivi. Pour que plus aucun lead ne tombe dans l'oubli." data-en="A prospect not called back within the hour is a lost customer. Gild-Tech automates your prospecting, follow-ups and tracking. So no lead ever falls through the cracks.">Un prospect non rappelé dans l'heure, c'est un client perdu. Gild-Tech automatise votre prospection, vos relances et votre suivi. Pour que plus aucun lead ne tombe dans l'oubli.</p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-pink btn-lg" data-fr="Réserver un audit gratuit &rarr;" data-en="Book a free audit &rarr;">
+          Réserver un audit gratuit &rarr;
+        </a>
+        <a href="calculateur.html" class="btn btn-ghost btn-lg" data-fr="Calculer mes pertes" data-en="Calculate my losses">Calculer mes pertes</a>
+      </div>
+      <p class="hero-note" data-fr="Audit gratuit 30 min · on vous montre où vous perdez du chiffre" data-en="30 min free audit · we show you where you&apos;re losing revenue">Audit gratuit 30 min · on vous montre où vous perdez du chiffre</p>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat rv">
+        <div class="stat-num">&lt;5<span> min</span></div>
+        <div class="stat-label" data-fr="temps de rappel prospect" data-en="prospect callback time">temps de rappel prospect</div>
+      </div>
+      <div class="stat rv rv-d1">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label" data-fr="votre business ne dort plus" data-en="your business never sleeps">votre business ne dort plus</div>
+      </div>
+      <div class="stat rv rv-d2">
+        <div class="stat-num">0<span> lead</span></div>
+        <div class="stat-label" data-fr="ne tombe plus dans l'oubli" data-en="falls through the cracks">ne tombe plus dans l'oubli</div>
       </div>
     </div>
   </div>
-  <div class="brand-text">
-    <div class="brand-name">GILD TECH</div>
-    <div class="brand-sub">AUTOMATION&nbsp;&nbsp;DIGITAL&nbsp;&nbsp;SYSTEMS</div>
+
+  <!-- PROBLEME -->
+  <div class="section-full prob-bg" id="probleme">
+    <div class="section-inner">
+      <div class="tag rv" data-fr="Le constat" data-en="The reality">Le constat</div>
+      <h2 class="heading rv" data-fr="Chaque jour, des clients vous échappent" data-en="Every day, customers slip through">Chaque jour, des clients vous échappent</h2>
+      <p class="subdesc rv" data-fr="Ce n'est pas un problème de compétences. C'est un problème de vitesse, de suivi, de système. Et ça vous coûte des dizaines de milliers d'euros par an." data-en="It's not a skill problem. It's a speed, follow-up and system problem. And it costs you tens of thousands of euros per year.">Ce n'est pas un problème de compétences. C'est un problème de vitesse, de suivi, de système. Et ça vous coûte des dizaines de milliers d'euros par an.</p>
+      <div class="prob-grid">
+        <div class="prob-card rv rv-d1">
+          <div class="prob-icon">📞</div>
+          <h3 data-fr="Trop lent, perdu" data-en="Too slow, gone">Trop lent, perdu</h3>
+          <p data-fr="Un prospect remplit votre formulaire à 14h. Vous le rappelez le lendemain. Il a déjà signé chez votre concurrent qui a répondu en 10 minutes." data-en="A prospect fills out your form at 2pm. You call back the next day. They already signed with your competitor who answered in 10 minutes.">Un prospect remplit votre formulaire à 14h. Vous le rappelez le lendemain. Il a déjà signé chez votre concurrent qui a répondu en 10 minutes.</p>
+        </div>
+        <div class="prob-card rv rv-d2">
+          <div class="prob-icon">⏰</div>
+          <h3 data-fr="Pas le temps de relancer" data-en="No time to follow up">Pas le temps de relancer</h3>
+          <p data-fr="Vous courez entre l'opérationnel et les clients existants. La prospection et les relances ? « On fera ça demain. » Demain ne vient jamais." data-en="You juggle operations and existing clients. Prospecting and follow-ups? 'We'll do it tomorrow.' Tomorrow never comes.">Vous courez entre l'opérationnel et les clients existants. La prospection et les relances ? « On fera ça demain. » Demain ne vient jamais.</p>
+        </div>
+        <div class="prob-card rv rv-d3">
+          <div class="prob-icon">🔄</div>
+          <h3 data-fr="Les prospects disparaissent" data-en="Prospects disappear">Les prospects disparaissent</h3>
+          <p data-fr="Sans relance structurée à J+3, J+7, J+14, même les prospects chauds refroidissent. Ils ne vous oublient pas. Ils trouvent quelqu'un qui les suit." data-en="Without structured follow-ups at D+3, D+7, D+14, even hot prospects cool off. They don't forget you. They find someone who follows up.">Sans relance structurée à J+3, J+7, J+14, même les prospects chauds refroidissent. Ils ne vous oublient pas. Ils trouvent quelqu'un qui les suit.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="divider"></div>
-  <div class="cta-wrap" id="ctaWrap">
-    <svg class="progress-ring" id="progressRing" aria-hidden="true"><circle cx="60" cy="60" r="54" id="progressCircle"/></svg>
-    <button class="cta-btn" id="ctaBtn" onclick="enterSite()">ENTRER</button>
+
+  <!-- CALCULATEUR TEASER -->
+  <div class="calc-teaser" id="calc-teaser">
+    <div class="calc-teaser-inner">
+      <div>
+        <div class="calc-teaser-tag" data-fr="Outil gratuit · 2 minutes" data-en="Free tool · 2 minutes">Outil gratuit · 2 minutes</div>
+        <h2 data-fr-html="Combien perdez-vous <span class=&quot;hl&quot;>chaque mois</span> à cause d'un suivi commercial défaillant ?" data-en-html="How much do you lose <span class=&quot;hl&quot;>every month</span> because of weak sales follow-up?">Combien perdez-vous <span class="hl">chaque mois</span> à cause d'un suivi commercial défaillant ?</h2>
+        <p class="calc-teaser-desc" data-fr="Répondez à 4 questions simples. On calcule votre manque à gagner réel sur l'année et on vous envoie un plan d'action personnalisé pour votre métier." data-en="Answer 4 simple questions. We calculate your actual annual revenue loss and send you a custom action plan for your business.">Répondez à 4 questions simples. On calcule votre manque à gagner réel sur l'année et on vous envoie un plan d'action personnalisé pour votre métier.</p>
+
+        <div class="calc-teaser-features">
+          <div class="calc-teaser-feat" data-fr="Calcul adapté à votre secteur (immo, resto, IDEL, services)" data-en="Tailored to your industry (real estate, F&amp;B, healthcare, services)">Calcul adapté à votre secteur (immo, resto, IDEL, services)</div>
+          <div class="calc-teaser-feat" data-fr="Breakdown détaillé : leads perdus, temps gaspillé, potentiel récupérable" data-en="Detailed breakdown: lost leads, wasted time, recoverable revenue">Breakdown détaillé : leads perdus, temps gaspillé, potentiel récupérable</div>
+          <div class="calc-teaser-feat" data-fr="Plan d'action concret envoyé par email" data-en="Concrete action plan sent by email">Plan d'action concret envoyé par email</div>
+        </div>
+
+        <a href="calculateur.html" class="calc-teaser-cta" data-fr="Calculer mes pertes →" data-en="Calculate my losses →">Calculer mes pertes →</a>
+      </div>
+
+      <div class="calc-teaser-card">
+        <div class="calc-teaser-label" data-fr="Exemple — Agence immobilière" data-en="Example — Real estate agency">Exemple — Agence immobilière</div>
+        <div class="calc-teaser-amount">276 <span>K€</span></div>
+        <div class="calc-teaser-period" data-fr="perdus par an en moyenne" data-en="lost per year on average">perdus par an en moyenne</div>
+
+        <div class="calc-teaser-stats">
+          <div class="calc-teaser-stat">
+            <div class="calc-teaser-stat-label" data-fr="Leads perdus" data-en="Lost leads">Leads perdus</div>
+            <div class="calc-teaser-stat-value red">55 890€</div>
+          </div>
+          <div class="calc-teaser-stat">
+            <div class="calc-teaser-stat-label" data-fr="Relances manquées" data-en="Missed follow-ups">Relances manquées</div>
+            <div class="calc-teaser-stat-value red">220 320€</div>
+          </div>
+          <div class="calc-teaser-stat">
+            <div class="calc-teaser-stat-label" data-fr="Potentiel récupérable" data-en="Recoverable">Potentiel récupérable</div>
+            <div class="calc-teaser-stat-value" style="color:#4ade80">165 726€</div>
+          </div>
+          <div class="calc-teaser-stat">
+            <div class="calc-teaser-stat-label" data-fr="Temps perdu / mois" data-en="Time wasted / month">Temps perdu / mois</div>
+            <div class="calc-teaser-stat-value">9 h</div>
+          </div>
+        </div>
+
+        <div class="calc-teaser-disclaimer" data-fr="Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h" data-en="Based on 30 leads/month, 15% conv, 6 000€ avg deal, 24h callback">Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h</div>
+      </div>
+    </div>
   </div>
-  <div class="counter" id="counter">AUTO-REDIRECTION DANS <span id="countdown">8</span>S</div>
-  <a class="skip-link" id="skipLink" href="#" onclick="enterSite();return false;">PASSER &#x2192;</a>
-</div>
 
-</div>
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="sol-grid">
+      <div class="sol-text">
+        <div class="tag rv" data-fr="La solution" data-en="The solution">La solution</div>
+        <h2 class="heading rv" data-fr="Un système qui bosse pendant que vous dormez" data-en="A system that works while you sleep">Un système qui bosse pendant que vous dormez</h2>
+        <p class="rv" data-fr-html="Gild-Tech installe des <strong>workflows d&apos;automatisation</strong> dans votre entreprise. Un prospect vous contacte ? Il est rappelé en <em>moins de 5 minutes</em>. Un client hésite ? Il reçoit la bonne relance au bon moment." data-en-html="Gild-Tech installs <strong>automation workflows</strong> in your business. A prospect reaches out? They&apos;re called back in <em>under 5 minutes</em>. A customer hesitates? They get the right follow-up at the right moment.">Gild-Tech installe des <strong>workflows d'automatisation</strong> dans votre entreprise. Un prospect vous contacte ? Il est rappelé en <em>moins de 5 minutes</em>. Un client hésite ? Il reçoit la bonne relance au bon moment.</p>
+        <p class="rv" data-fr-html="<strong>Zéro embauche. Zéro formation. Zéro effort quotidien.</strong> Le système tourne, vous récupérez du temps et des clients." data-en-html="<strong>Zero hiring. Zero training. Zero daily effort.</strong> The system runs, you recover time and customers."><strong>Zéro embauche. Zéro formation. Zéro effort quotidien.</strong> Le système tourne, vous récupérez du temps et des clients.</p>
+      </div>
+      <div class="sol-box rv">
+        <div class="sol-row">
+          <div class="sol-row-icon">⚡</div>
+          <div>
+            <div class="sol-row-label" data-fr="Rappel prospect" data-en="Prospect callback">Rappel prospect</div>
+            <div class="sol-row-val">&lt; 5 minutes</div>
+          </div>
+        </div>
+        <div class="sol-row">
+          <div class="sol-row-icon">📈</div>
+          <div>
+            <div class="sol-row-label" data-fr="Leads traités" data-en="Leads handled">Leads traités</div>
+            <div class="sol-row-val">100%</div>
+          </div>
+        </div>
+        <div class="sol-row">
+          <div class="sol-row-icon">🔁</div>
+          <div>
+            <div class="sol-row-label" data-fr="Relances automatiques" data-en="Auto follow-ups">Relances automatiques</div>
+            <div class="sol-row-val">J+3, J+7, J+14</div>
+          </div>
+        </div>
+        <div class="sol-row">
+          <div class="sol-row-icon">📊</div>
+          <div>
+            <div class="sol-row-label" data-fr="Pipeline" data-en="Pipeline">Pipeline</div>
+            <div class="sol-row-val" data-fr="Suivi temps réel" data-en="Real-time tracking">Suivi temps réel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-(function() {
-  // Only show intro once per session
-  if (sessionStorage.getItem('gt_intro_done')) {
-    document.getElementById('gildtech-intro-overlay').style.display = 'none';
-    return;
-  }
-  
-  // Intro JS - modified enterSite to hide overlay instead of redirect
-  
-const NANO_BANANA_URL='https://tempfile.aiquickdraw.com/na2/751b6d8c2cb9bb5be5ead568f49197ba1686051.jpeg';
-const logoImg=document.getElementById('logoImg');
-if(NANO_BANANA_URL){const t=new Image();t.onload=()=>{logoImg.src=NANO_BANANA_URL;logoImg.style.mixBlendMode='normal';logoImg.style.width='210px';logoImg.style.height='210px';logoImg.style.borderRadius='50%';};t.src=NANO_BANANA_URL;}
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},60);});
-const ptcl=document.getElementById('particles');
-for(let i=0;i<28;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*3+1;p.style.cssText='left:'+Math.random()*100+'%;bottom:'+Math.random()*20+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+(6+Math.random()*8)+'s;animation-delay:'+Math.random()*8+'s;';ptcl.appendChild(p);}
-document.addEventListener('click',e=>{const pop=document.createElement('div');pop.className='pop';pop.style.left=e.clientX+'px';pop.style.top=e.clientY+'px';for(let i=0;i<12;i++){const d=document.createElement('div');d.className='pop-dot';const a=(i/12)*Math.PI*2,dist=40+Math.random()*50;d.style.setProperty('--ex',Math.cos(a)*dist+'px');d.style.setProperty('--ey',Math.sin(a)*dist+'px');d.style.background=i%3===0?'#e891b0':'var(--rose)';pop.appendChild(d);}document.getElementById('gildtech-intro-overlay').appendChild(pop);setTimeout(()=>pop.remove(),700);});
-document.addEventListener('mousemove',e=>{const cx=window.innerWidth/2,cy=window.innerHeight/2,dx=(e.clientX-cx)/cx,dy=(e.clientY-cy)/cy;document.querySelector('#gildtech-intro-overlay .stage').style.transform='translate('+dx*8+'px,'+dy*6+'px)';});
-const circle=document.getElementById('progressCircle');let count=8,timer=null;
-function startCountdown(){const cdEl=document.getElementById('countdown');if(circle){circle.style.transition='stroke-dashoffset 8s linear';circle.style.strokeDashoffset='0';}timer=setInterval(()=>{count--;if(cdEl)cdEl.textContent=count;if(count<=0){clearInterval(timer);enterSite();}},1000);}
-setTimeout(startCountdown,3800);
-function enterSite(){clearInterval(timer);document.getElementById('exitOverlay').classList.add('active');cursor.style.transform='translate(-50%,-50%) scale(30)';cursor.style.opacity='0';cursor.style.transition='transform .8s ease,opacity .8s';setTimeout(()=>{sessionStorage.setItem('gt_intro_done','1'); var ov=document.getElementById('gildtech-intro-overlay'); ov.style.transition='opacity .4s'; ov.style.opacity='0'; setTimeout(function(){ov.style.display='none';document.body.style.cursor='';},450);},850);}
-document.getElementById('ctaBtn').addEventListener('mouseenter',()=>{ring.style.width='80px';ring.style.height='80px';ring.style.borderColor='var(--rose)';});
-document.getElementById('ctaBtn').addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='';});
+  <!-- STEPS -->
+  <div class="section-full steps-bg" id="steps">
+    <div class="section-inner">
+      <div class="tag rv" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</div>
+      <h2 class="heading rv" data-fr="Opérationnel en 2 semaines" data-en="Operational in 2 weeks">Opérationnel en 2 semaines</h2>
+      <p class="subdesc rv" data-fr="Vous continuez votre activité. Nous, on branche le système." data-en="You keep running your business. We wire up the system.">Vous continuez votre activité. Nous, on branche le système.</p>
+      <div class="steps-grid">
+        <div class="step-card rv rv-d1">
+          <div class="step-num">1</div>
+          <h3 data-fr="On trouve vos fuites" data-en="We find the leaks">On trouve vos fuites</h3>
+          <p data-fr="En 30 minutes, on cartographie votre process commercial : d'où viennent vos leads, comment ils sont traités, où ils sont perdus." data-en="In 30 minutes, we map your sales process: where your leads come from, how they're handled, where they get lost.">En 30 minutes, on cartographie votre process commercial : d'où viennent vos leads, comment ils sont traités, où ils sont perdus.</p>
+        </div>
+        <div class="step-card rv rv-d2">
+          <div class="step-num">2</div>
+          <h3 data-fr="On branche le système" data-en="We wire it up">On branche le système</h3>
+          <p data-fr="On connecte vos outils (site, téléphone, CRM, email). Chaque lead est capté, chaque relance est programmée, rien ne passe entre les mailles." data-en="We connect your tools (website, phone, CRM, email). Every lead captured, every follow-up scheduled, nothing falls through.">On connecte vos outils (site, téléphone, CRM, email). Chaque lead est capté, chaque relance est programmée, rien ne passe entre les mailles.</p>
+        </div>
+        <div class="step-card rv rv-d3">
+          <div class="step-num">3</div>
+          <h3 data-fr="Ça tourne tout seul" data-en="It runs on its own">Ça tourne tout seul</h3>
+          <p data-fr="Vos prospects sont rappelés en 5 minutes. Les relances partent automatiquement. Vous signez plus sans travailler plus." data-en="Your prospects are called back in 5 minutes. Follow-ups go out automatically. You close more without working more.">Vos prospects sont rappelés en 5 minutes. Les relances partent automatiquement. Vous signez plus sans travailler plus.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-})();
-</script>
-<!-- END INTRO -->
+  <!-- PRICING -->
+  <section id="offres">
+    <div class="tag rv" data-fr="Nos offres" data-en="Pricing">Nos offres</div>
+    <h2 class="heading rv" data-fr="Choisissez votre niveau. On s'occupe du reste." data-en="Choose your level. We handle the rest.">Choisissez votre niveau. On s'occupe du reste.</h2>
+    <p class="subdesc rv" data-fr="Du premier workflow à la transformation complète. Installation, formation et support inclus dans chaque offre." data-en="From first workflow to full transformation. Setup, training and support included in every offer.">Du premier workflow à la transformation complète. Installation, formation et support inclus dans chaque offre.</p>
+    <div class="pricing-grid">
+
+      <div class="p-card rv rv-d1">
+        <div class="p-name">Starter</div>
+        <div class="p-promise" data-fr="Récupérez les leads qui vous glissent entre les doigts." data-en="Recover the leads slipping through your fingers.">Récupérez les leads qui vous glissent entre les doigts.</div>
+        <div class="p-for" data-fr-html="Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps." data-en-html="For SMEs receiving <strong>10 to 30 inquiries per week</strong> who can't call them all back in time.">Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps.</div>
+        <div class="p-gain" data-fr="Gain visé : 3 à 5 clients récupérés / mois" data-en="Target: 3 to 5 customers recovered / month">Gain visé : 3 à 5 clients récupérés / mois</div>
+        <div class="p-price">990€</div>
+        <div class="p-div"></div>
+        <ul class="p-features">
+          <li data-fr="Diagnostic de votre tunnel de conversion" data-en="Conversion funnel diagnosis">Diagnostic de votre tunnel de conversion</li>
+          <li data-fr="1 automatisation clé (rappel ou relance)" data-en="1 key automation (callback or follow-up)">1 automatisation clé (rappel ou relance)</li>
+          <li data-fr="CRM configuré à votre métier" data-en="CRM tailored to your business">CRM configuré à votre métier</li>
+          <li data-fr="Formation équipe (1h)" data-en="Team training (1h)">Formation équipe (1h)</li>
+          <li data-fr="Support 30 jours" data-en="30 days of support">Support 30 jours</li>
+        </ul>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Commencer" data-en="Get started">Commencer</a>
+      </div>
+
+      <div class="p-card ft rv rv-d2">
+        <div class="p-badge" data-fr="Recommandé" data-en="Recommended">Recommandé</div>
+        <div class="p-name">Pro</div>
+        <div class="p-promise" data-fr="Arrêtez de gérer la prospection à la main." data-en="Stop managing prospecting manually.">Arrêtez de gérer la prospection à la main.</div>
+        <div class="p-for" data-fr-html="Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé." data-en-html="For business owners losing <strong>10 to 15 h per week</strong> manually following up and tracking who's been called.">Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé.</div>
+        <div class="p-gain" data-fr="Gain visé : 10 h / semaine + pipeline qui se remplit seul" data-en="Target: 10 h / week back + self-filling pipeline">Gain visé : 10 h / semaine + pipeline qui se remplit seul</div>
+        <div class="p-price">2 490€</div>
+        <div class="p-div"></div>
+        <ul class="p-features">
+          <li data-fr="Tout le Starter" data-en="Everything in Starter">Tout le Starter</li>
+          <li data-fr="Rappel prospect &lt; 5 min, 24/7" data-en="Prospect callback &lt; 5 min, 24/7">Rappel prospect &lt; 5 min, 24/7</li>
+          <li data-fr="Séquence de relance J+3 / J+7 / J+14" data-en="Follow-up sequence D+3 / D+7 / D+14">Séquence de relance J+3 / J+7 / J+14</li>
+          <li data-fr="Téléphonie et email connectés au CRM" data-en="Phone and email connected to CRM">Téléphonie et email connectés au CRM</li>
+          <li data-fr="Pipeline centralisé en temps réel" data-en="Centralized real-time pipeline">Pipeline centralisé en temps réel</li>
+          <li data-fr="Support 60 jours" data-en="60 days of support">Support 60 jours</li>
+        </ul>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Commencer" data-en="Get started">Commencer</a>
+      </div>
+
+      <div class="p-card rv rv-d3">
+        <div class="p-name">Scale</div>
+        <div class="p-promise" data-fr="Un commercial virtuel qui prospecte 24/7 à votre place." data-en="A virtual salesperson prospecting 24/7 for you.">Un commercial virtuel qui prospecte 24/7 à votre place.</div>
+        <div class="p-for" data-fr-html="Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong>" data-en-html="For businesses tired of word-of-mouth. We go <strong>hunt your future customers</strong> on LinkedIn, email and SMS with personalized messages. <strong>Alternative to a 4 000€ / month salesperson.</strong>">Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong></div>
+        <div class="p-gain" data-fr="Gain visé : +30 à 50 rendez-vous qualifiés / mois" data-en="Target: +30 to 50 qualified meetings / month">Gain visé : +30 à 50 rendez-vous qualifiés / mois</div>
+        <div class="p-price">4 990€</div>
+        <div class="p-div"></div>
+        <ul class="p-features">
+          <li data-fr="Tout le Pro" data-en="Everything in Pro">Tout le Pro</li>
+          <li data-fr="Prospection automatisée sur email, LinkedIn et SMS" data-en="Automated prospecting on email, LinkedIn and SMS">Prospection automatisée sur email, LinkedIn et SMS</li>
+          <li data-fr="Liste de prospects qualifiés fournie et mise à jour" data-en="Qualified prospect list provided and updated">Liste de prospects qualifiés fournie et mise à jour</li>
+          <li data-fr="Relances intelligentes personnalisées par IA" data-en="Smart AI-personalized follow-ups">Relances intelligentes personnalisées par IA</li>
+          <li data-fr="Tableau de bord : suivez vos RDV en temps réel" data-en="Dashboard: track your meetings in real time">Tableau de bord : suivez vos RDV en temps réel</li>
+          <li data-fr="Support 90 jours" data-en="90 days of support">Support 90 jours</li>
+        </ul>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Commencer" data-en="Get started">Commencer</a>
+      </div>
+
+      <div class="p-card rv rv-d3">
+        <div class="p-name">Consulting</div>
+        <div class="p-promise" data-fr="Votre process commercial passé au crible. 90 jours pour tout transformer." data-en="Your sales process under the microscope. 90 days to transform everything.">Votre process commercial passé au crible. 90 jours pour tout transformer.</div>
+        <div class="p-for" data-fr-html="Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation." data-en-html="For business owners wanting a <strong>complete diagnosis</strong>, custom strategy and an operator driving the transformation.">Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation.</div>
+        <div class="p-gain" data-fr="Gain visé : +30% de CA ou -20 h / semaine en 90 jours" data-en="Target: +30% revenue or -20 h / week in 90 days">Gain visé : +30% de CA ou -20 h / semaine en 90 jours</div>
+        <div class="p-price">14 900€</div>
+        <div class="p-div"></div>
+        <ul class="p-features">
+          <li data-fr="Audit complet de votre process (J+0)" data-en="Full process audit (D+0)">Audit complet de votre process (J+0)</li>
+          <li data-fr="Plan de transformation sur mesure" data-en="Custom transformation plan">Plan de transformation sur mesure</li>
+          <li data-fr="Opérateur dédié pendant 90 jours" data-en="Dedicated operator for 90 days">Opérateur dédié pendant 90 jours</li>
+          <li data-fr="Point hebdomadaire de pilotage" data-en="Weekly steering meeting">Point hebdomadaire de pilotage</li>
+          <li data-fr="Mise en place + optimisation continue" data-en="Implementation + continuous optimization">Mise en place + optimisation continue</li>
+          <li data-fr="Transfert de compétence à votre équipe" data-en="Skill transfer to your team">Transfert de compétence à votre équipe</li>
+        </ul>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Commencer" data-en="Get started">Commencer</a>
+      </div>
+
+    </div>
+
+    <!-- MAINTENANCE BAND -->
+    <div class="maint-band rv">
+      <div>
+        <div class="maint-tag" data-fr="Après votre support" data-en="After your support">Après votre support</div>
+        <div class="maint-title" data-fr="Maintenance mensuelle" data-en="Monthly maintenance">Maintenance mensuelle</div>
+        <div class="maint-desc" data-fr="Vos outils évoluent, les APIs changent, votre business bouge. On garde votre système en pleine forme et on l'optimise tous les mois. Sans engagement." data-en="Your tools evolve, APIs change, your business shifts. We keep your system in top shape and optimize it every month. No commitment.">Vos outils évoluent, les APIs changent, votre business bouge. On garde votre système en pleine forme et on l'optimise tous les mois. Sans engagement.</div>
+        <div class="maint-feats">
+          <span class="maint-feat" data-fr="Monitoring 24/7" data-en="24/7 monitoring">Monitoring 24/7</span>
+          <span class="maint-feat" data-fr="Optimisation mensuelle" data-en="Monthly optimization">Optimisation mensuelle</span>
+          <span class="maint-feat" data-fr="Corrections incluses" data-en="Fixes included">Corrections incluses</span>
+          <span class="maint-feat" data-fr="Support prioritaire" data-en="Priority support">Support prioritaire</span>
+        </div>
+      </div>
+      <div></div>
+      <div class="maint-price">
+        <div class="maint-price-num">290<span>€ / mois</span></div>
+        <div class="maint-price-note" data-fr="sans engagement · résiliable à tout moment" data-en="no commitment · cancel anytime">sans engagement · résiliable à tout moment</div>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="maint-cta" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a>
+      </div>
+    </div>
+
+    <!-- PARCOURS -->
+    <div class="parcours rv">
+      <span class="parcours-step" data-fr="Starter" data-en="Starter">Starter</span>
+      <span class="parcours-arrow">→</span>
+      <span class="parcours-step" data-fr="Pro" data-en="Pro">Pro</span>
+      <span class="parcours-arrow">→</span>
+      <span class="parcours-step" data-fr="Scale" data-en="Scale">Scale</span>
+      <span class="parcours-arrow">→</span>
+      <span class="parcours-step" data-fr="Consulting" data-en="Consulting">Consulting</span>
+      <span class="parcours-arrow">+</span>
+      <span class="parcours-step highlight" data-fr="Maintenance 290€/mois" data-en="Maintenance 290€/mo">Maintenance 290€/mois</span>
+    </div>
+
+    <!-- PAYMENT NOTE -->
+    <p class="pay-note rv" data-fr-html="Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT" data-en-html="Pay in 1 or <span>3 installments</span> on request · All prices exclude VAT">Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT</p>
+  </section>
+
+  <!-- CTA FINAL -->
+  <div class="cta-wrap">
+    <div class="cta-box rv">
+      <h2 data-fr="Combien de clients allez-vous encore perdre ce mois-ci ?" data-en="How many customers will you lose this month?">Combien de clients allez-vous encore perdre ce mois-ci ?</h2>
+      <p data-fr="30 minutes pour identifier où partent vos leads. Gratuit, sans engagement, en visio." data-en="30 minutes to find where your leads go. Free, no commitment, online.">30 minutes pour identifier où partent vos leads. Gratuit, sans engagement, en visio.</p>
+      <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-white" data-fr="Réserver mon audit gratuit &rarr;" data-en="Book my free audit &rarr;">
+        Réserver mon audit gratuit &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">GILD <span>TECH</span></div>
+      <ul class="footer-links">
+        <li><a href="mentions-legales.html" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a></li>
+        <li><a href="cgv.html" data-fr="CGV" data-en="Terms of sale">CGV</a></li>
+        <li><a href="confidentialite.html" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></li>
+        <li><a href="cookies.html" data-fr="Cookies" data-en="Cookies">Cookies</a></li>
+        <li><a href="mailto:contact@gild-tech.com" data-fr="Contact" data-en="Contact">Contact</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy" data-fr="&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés" data-en="&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; All rights reserved">&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés</p>
+  </footer>
+
+  <script>
+    // INTRO
+    document.body.style.overflow = 'hidden';
+
+    // Particles
+    const intro = document.getElementById('intro');
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.className = 'intro-particle';
+      const d = 5 + Math.random() * 10;
+      const delay = Math.random() * 6;
+      p.style.cssText = `left:${Math.random()*100}%;bottom:-5px;width:${1+Math.random()*1.5}px;height:${1+Math.random()*1.5}px;animation:pRise ${d}s ${delay}s linear infinite;`;
+      intro.appendChild(p);
+    }
+
+    const pStyle = document.createElement('style');
+    pStyle.textContent = `@keyframes pRise{0%{transform:translateY(0);opacity:0}8%{opacity:0.5}92%{opacity:0.2}100%{transform:translateY(-100vh) translateX(${Math.random()>0.5?'':'-'}${15+Math.random()*30}px);opacity:0}}`;
+    document.head.appendChild(pStyle);
+
+    function enterSite() {
+      intro.classList.add('exit');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.querySelector('nav').classList.add('show');
+      }, 700);
+    }
+
+    // Auto-enter after 5s
+    setTimeout(() => { if (!intro.classList.contains('exit')) enterSite(); }, 5000);
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+    // LANGUAGE TOGGLE
+    let currentLang = 'fr';
+    function toggleLang() {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      applyLang();
+      document.getElementById('lang-fr').classList.toggle('lang-active', currentLang === 'fr');
+      document.getElementById('lang-en').classList.toggle('lang-active', currentLang === 'en');
+      document.documentElement.lang = currentLang;
+    }
+
+    function applyLang() {
+      // Plain text translations
+      document.querySelectorAll('[data-fr]').forEach(el => {
+        const val = el.getAttribute('data-' + currentLang);
+        if (val !== null) el.textContent = val;
+      });
+      // HTML translations (for elements with <strong>, <em>, <span>, etc.)
+      document.querySelectorAll('[data-fr-html]').forEach(el => {
+        const val = el.getAttribute('data-' + currentLang + '-html');
+        if (val !== null) el.innerHTML = val;
+      });
+    }
+  </script>
+
 </body>
 </html>

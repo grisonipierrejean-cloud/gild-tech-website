@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fef6fa"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E91E8C"/>
+      <stop offset="100%" stop-color="#f54da5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E91E8C" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#E91E8C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="600" cy="315" rx="500" ry="300" fill="url(#glow)"/>
+
+  <!-- Logo top-left -->
+  <g transform="translate(60, 55)">
+    <circle cx="20" cy="20" r="20" fill="none" stroke="#E91E8C" stroke-width="2" stroke-dasharray="40 80"/>
+    <text x="20" y="20" text-anchor="middle" dominant-baseline="central"
+          font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#111">G<tspan fill="#E91E8C">T</tspan></text>
+    <text x="55" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#111">GILD <tspan fill="#E91E8C">TECH</tspan></text>
+    <text x="55" y="30" font-family="Inter, sans-serif" font-size="9" font-weight="500" letter-spacing="2" fill="#888">AUTOMATION DIGITAL SYSTEMS</text>
+  </g>
+
+  <!-- Pill badge -->
+  <g transform="translate(80, 180)">
+    <rect x="0" y="0" width="340" height="40" rx="20" fill="#fef6fa" stroke="#E91E8C" stroke-opacity="0.2"/>
+    <circle cx="22" cy="20" r="5" fill="#E91E8C"/>
+    <text x="40" y="20" dominant-baseline="central" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#E91E8C">AUTOMATISATION COMMERCIALE IA</text>
+  </g>
+
+  <!-- Main headline -->
+  <text x="80" y="300" font-family="Inter, sans-serif" font-size="62" font-weight="900" fill="#111" letter-spacing="-2">Vos prospects n'attendent pas.</text>
+  <text x="80" y="380" font-family="Inter, sans-serif" font-size="62" font-weight="900" fill="url(#pink)" letter-spacing="-2">Votre concurrent non plus.</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="450" font-family="Inter, sans-serif" font-size="22" font-weight="400" fill="#555">Automatisez votre prospection, vos relances et votre suivi.</text>
+  <text x="80" y="480" font-family="Inter, sans-serif" font-size="22" font-weight="400" fill="#555">Plus aucun client ne tombe dans l'oubli.</text>
+
+  <!-- CTA pill at bottom -->
+  <g transform="translate(80, 540)">
+    <rect x="0" y="0" width="240" height="46" rx="10" fill="#E91E8C"/>
+    <text x="120" y="23" text-anchor="middle" dominant-baseline="central" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="white">Audit gratuit 30 min →</text>
+    <text x="260" y="30" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#777">gild-tech.com</text>
+  </g>
+</svg>
