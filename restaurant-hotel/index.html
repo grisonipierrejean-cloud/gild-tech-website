@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatisation pour restaurants et hôtels premium · Toutes les villes | Gild-Tech</title>
+<meta name="description" content="Gild-Tech accompagne les restaurants gastronomiques et hôtels 4-5 étoiles dans 50 villes de France. Gestion avis, fidélisation, upsell événementiel. Trouvez votre ville.">
+<link rel="canonical" href="https://gild-tech.com/restaurant-hotel/"><meta name="robots" content="index, follow">
+<meta property="og:type" content="website"><meta property="og:title" content="Automatisation hôtellerie-restauration premium | Gild-Tech">
+<meta property="og:url" content="https://gild-tech.com/restaurant-hotel/"><meta property="og:image" content="https://gild-tech.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#E91E8C">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--pink:#E91E8C;--pink-light:#f54da5;--pink-bg:#fef6fa;--g900:#111;--g700:#333;--g500:#777;--g400:#999;--g200:#e8e8e8;--g100:#f5f5f5;--font:'Inter',-apple-system,sans-serif}
+body{background:white;color:var(--g900);font-family:var(--font);line-height:1.7;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--g200)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-mark{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(233,30,140,0.12),transparent 70%);border:1.5px solid rgba(233,30,140,0.25);display:flex;align-items:center;justify-content:center;position:relative;font-size:0.75rem;font-weight:800;color:var(--g900)}
+.nav-mark span{color:var(--pink)}
+.nav-mark::after{content:'';position:absolute;inset:-1.5px;border-radius:50%;background:conic-gradient(from 0deg,var(--pink),transparent 30%,transparent 70%,var(--pink));mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask-composite:xor;animation:spin 4s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+.nav-logo{font-weight:700;font-size:0.82rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--g900)}
+.nav-logo span{color:var(--pink)}
+.nav-cta{background:var(--pink);color:white;padding:0.55rem 1.3rem;border-radius:8px;text-decoration:none;font-size:0.82rem;font-weight:700}
+.hero{padding:8rem 2rem 3rem;text-align:center;max-width:780px;margin:0 auto}
+.hero-pill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.9rem 0.3rem 0.45rem;background:var(--pink-bg);border:1px solid rgba(233,30,140,0.12);border-radius:100px;font-size:0.72rem;font-weight:600;color:var(--pink);margin-bottom:1.5rem}
+.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{font-size:clamp(2rem,4.5vw,3rem);font-weight:900;letter-spacing:-0.035em;line-height:1.1;margin-bottom:1.2rem}
+h1 .hl{color:var(--pink)}
+.hero-sub{font-size:1.1rem;color:var(--g500);line-height:1.7}
+.cities{max-width:1100px;margin:0 auto;padding:2rem 2rem 5rem}
+.cities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem}
+.city-link{display:block;padding:1rem 1.2rem;background:white;border:1px solid var(--g200);border-radius:10px;text-decoration:none;color:var(--g700);font-weight:600;font-size:0.9rem;transition:all 0.2s}
+.city-link:hover{border-color:var(--pink);color:var(--pink);transform:translateY(-2px);box-shadow:0 4px 15px rgba(233,30,140,0.1)}
+.city-link small{display:block;color:var(--g400);font-size:0.72rem;font-weight:500;margin-top:0.2rem}
+.region-section{margin-top:3rem}
+.region-title{font-size:0.8rem;font-weight:700;color:var(--pink);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+footer{border-top:1px solid var(--g200);padding:2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-weight:700;font-size:0.82rem;letter-spacing:0.22em;text-transform:uppercase}
+.footer-brand span{color:var(--pink)}
+.footer-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
+.footer-links a{color:var(--g400);font-size:0.78rem;text-decoration:none}
+@media (max-width:900px){.cities-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:500px){.cities-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column;text-align:center}}
+</style>
+</head><body>
+<nav><div class="nav-inner"><a href="../index.html" class="nav-brand"><div class="nav-mark">G<span>T</span></div><div class="nav-logo">GILD <span>TECH</span></div></a><a href="https://calendly.com/ops-gild-tech/30min" class="nav-cta" target="_blank">Audit gratuit</a></div></nav>
+<section class="hero">
+<span class="hero-pill"><span class="pill-dot"></span>Verticale Restaurant & Hôtel</span>
+<h1>Automatisation pour <span class="hl">restaurants et hôtels premium</span></h1>
+<p class="hero-sub">Gild-Tech accompagne 50 villes de restaurants gastronomiques et hôtels 4-5 étoiles en France. Gestion avis, fidélisation, upsell événementiel. Trouvez votre ville.</p>
+</section>
+<div class="cities"><div class="region-section"><div class="region-title">Auvergne-Rhône-Alpes</div><div class="cities-grid">
+  <a href="annecy.html" class="city-link">Annecy <small>74 · hôtels 4-5 étoiles lacustres</small></a>
+  <a href="chamonix.html" class="city-link">Chamonix <small>74 · hôtels alpins</small></a>
+  <a href="courchevel.html" class="city-link">Courchevel <small>73 · palaces de montagne</small></a>
+  <a href="lyon.html" class="city-link">Lyon <small>69 · gastronomie</small></a>
+  <a href="megeve.html" class="city-link">Megève <small>74 · chalets 5 étoiles</small></a>
+  <a href="val-d-isere.html" class="city-link">Val d'Isère <small>73 · hôtels de ski luxe</small></a>
+  <a href="evian.html" class="city-link">Évian <small>74 · palaces thermaux</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Bourgogne-Franche-Comté</div><div class="cities-grid">
+  <a href="beaune.html" class="city-link">Beaune <small>21 · hôtels de charme viticoles</small></a>
+  <a href="dijon.html" class="city-link">Dijon <small>21 · gastronomie bourguignonne</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Bretagne</div><div class="cities-grid">
+  <a href="belle-ile.html" class="city-link">Belle-Île <small>56 · hôtels insulaires</small></a>
+  <a href="dinard.html" class="city-link">Dinard <small>35 · hôtels Belle Époque</small></a>
+  <a href="quiberon.html" class="city-link">Quiberon <small>56 · thalasso et hôtels</small></a>
+  <a href="rennes.html" class="city-link">Rennes <small>35 · restaurants bretons</small></a>
+  <a href="saint-malo.html" class="city-link">Saint-Malo <small>35 · hôtels front de mer</small></a>
+  <a href="vannes.html" class="city-link">Vannes <small>56 · hôtels du golfe</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Centre-Val de Loire</div><div class="cities-grid">
+  <a href="amboise.html" class="city-link">Amboise <small>37 · châteaux-hôtels</small></a>
+  <a href="tours.html" class="city-link">Tours <small>37 · restaurants de Loire</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Corse</div><div class="cities-grid">
+  <a href="corse-ajaccio.html" class="city-link">Ajaccio <small>2A · hôtels du bord de mer</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Grand Est</div><div class="cities-grid">
+  <a href="colmar.html" class="city-link">Colmar <small>68 · gastronomie alsacienne</small></a>
+  <a href="reims.html" class="city-link">Reims <small>51 · restaurants et champagnes</small></a>
+  <a href="strasbourg.html" class="city-link">Strasbourg <small>67 · restaurants alsaciens étoilés</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Hauts-de-France</div><div class="cities-grid">
+  <a href="chantilly.html" class="city-link">Chantilly <small>60 · hôtels équestres</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Monaco</div><div class="cities-grid">
+  <a href="monaco.html" class="city-link">Monaco <small>MC · palaces 5 étoiles</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Normandie</div><div class="cities-grid">
+  <a href="bayeux.html" class="city-link">Bayeux <small>14 · hôtels historiques</small></a>
+  <a href="deauville.html" class="city-link">Deauville <small>14 · hôtels haut de gamme</small></a>
+  <a href="giverny.html" class="city-link">Giverny <small>27 · maisons d'hôtes de charme</small></a>
+  <a href="honfleur.html" class="city-link">Honfleur <small>14 · hôtels de charme</small></a>
+  <a href="etretat.html" class="city-link">Étretat <small>76 · hôtels vue mer</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Nouvelle-Aquitaine</div><div class="cities-grid">
+  <a href="arcachon.html" class="city-link">Arcachon <small>33 · hôtels côtiers</small></a>
+  <a href="biarritz.html" class="city-link">Biarritz <small>64 · palaces et thalasso</small></a>
+  <a href="bordeaux.html" class="city-link">Bordeaux <small>33 · restaurants étoilés et vignobles</small></a>
+  <a href="la-rochelle.html" class="city-link">La Rochelle <small>17 · hôtels historiques</small></a>
+  <a href="saint-emilion.html" class="city-link">Saint-Émilion <small>33 · châteaux-hôtels</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Occitanie</div><div class="cities-grid">
+  <a href="carcassonne.html" class="city-link">Carcassonne <small>11 · hôtels historiques</small></a>
+  <a href="collioure.html" class="city-link">Collioure <small>66 · hôtels côtiers</small></a>
+  <a href="montpellier.html" class="city-link">Montpellier <small>34 · restaurants étoilés</small></a>
+  <a href="perpignan.html" class="city-link">Perpignan <small>66 · restaurants catalans</small></a>
+  <a href="toulouse.html" class="city-link">Toulouse <small>31 · gastronomie du sud-ouest</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Pays de la Loire</div><div class="cities-grid">
+  <a href="angers.html" class="city-link">Angers <small>49 · gastronomie ligérienne</small></a>
+  <a href="la-baule.html" class="city-link">La Baule <small>44 · hôtels 4-5 étoiles</small></a>
+  <a href="nantes.html" class="city-link">Nantes <small>44 · restaurants nantais</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Provence-Alpes-Côte d'Azur</div><div class="cities-grid">
+  <a href="aix-en-provence.html" class="city-link">Aix-en-Provence <small>13 · hôtels de charme</small></a>
+  <a href="avignon.html" class="city-link">Avignon <small>84 · festival et restaurants</small></a>
+  <a href="cannes.html" class="city-link">Cannes <small>06 · hôtellerie de luxe</small></a>
+  <a href="gordes.html" class="city-link">Gordes <small>84 · hôtels 5 étoiles ruraux</small></a>
+  <a href="nice.html" class="city-link">Nice <small>06 · palaces et gastronomie</small></a>
+  <a href="saint-paul-de-vence.html" class="city-link">Saint-Paul-de-Vence <small>06 · hôtels et restaurants iconiques</small></a>
+  <a href="saint-tropez.html" class="city-link">Saint-Tropez <small>83 · hôtels 5 étoiles</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Île-de-France</div><div class="cities-grid">
+  <a href="paris.html" class="city-link">Paris <small>75 · gastronomie étoilée</small></a>
+  <a href="versailles.html" class="city-link">Versailles <small>78 · hôtels de luxe</small></a>
+</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-brand">GILD <span>TECH</span></div><ul class="footer-links"><li><a href="../index.html">Accueil</a></li><li><a href="../blog/">Blog</a></li><li><a href="../calculateur.html">Calculateur</a></li></ul></div></footer>
+</body></html>
