@@ -218,6 +218,13 @@
       transition: all 0.2s;
       text-decoration: none;
     }
+
+    /* Hamburger base — hidden on desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; gap: 4px; cursor: pointer; padding: 6px;
+    }
+    .nav-hamburger span { width: 22px; height: 2px; background: var(--g700); border-radius: 1px; transition: all 0.25s; }
     .nav-social-linkedin:hover { color: #0A66C2; border-color: #0A66C2; background: rgba(10,102,194,0.08); transform: translateY(-1px); }
     .nav-social-whatsapp:hover { color: #25D366; border-color: #25D366; background: rgba(37,211,102,0.08); transform: translateY(-1px); }
 
@@ -1057,11 +1064,14 @@
       .stat-num { font-size: 1.6rem; }
     }
 
-    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; }
-    .nav-hamburger span { width: 22px; height: 2px; background: var(--g700); border-radius: 1px; transition: all 0.25s; }
-
     /* Mobile menu opened state */
     @media (max-width: 640px) {
+      .nav-hamburger {
+        display: flex !important;
+        flex-direction: column; gap: 4px; cursor: pointer; padding: 6px;
+        z-index: 101;
+      }
+      .nav-hamburger span { width: 22px; height: 2px; background: var(--g700); border-radius: 1px; transition: all 0.25s; }
       .nav-links.open {
         display: flex !important; position: fixed;
         top: 60px; left: 0; right: 0;
