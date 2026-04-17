@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>Gild-Tech · Blog</title>
+  <link>https://gild-tech.com/blog/</link>
+  <description>Tactiques concrètes pour automatiser votre commerce. Guides, études de cas et workflows prêts à l'emploi par une ex-closer devenu builder.</description>
+  <language>fr-FR</language>
+  <copyright>© 2026 Gild-Tech (Girlden LTD)</copyright>
+  <lastBuildDate>Fri, 17 Apr 2026 18:00:00 +0200</lastBuildDate>
+  <atom:link href="https://gild-tech.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+  <image>
+    <url>https://gild-tech.com/favicon.svg</url>
+    <title>Gild-Tech</title>
+    <link>https://gild-tech.com/</link>
+  </image>
+
+  <item>
+    <title>Commercial ou automatisation : le vrai ROI comparé (2026)</title>
+    <link>https://gild-tech.com/blog/commercial-vs-automatisation-roi.html</link>
+    <guid>https://gild-tech.com/blog/commercial-vs-automatisation-roi.html</guid>
+    <pubDate>Fri, 17 Apr 2026 17:00:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>Analyse chiffrée sur 3 ans : faut-il embaucher un commercial ou investir dans l'automatisation ? Le comparatif qui donne la réponse.</description>
+    <category>Analyse</category>
+  </item>
+
+  <item>
+    <title>n8n vs Zapier vs Make : comparatif 2026 pour PME</title>
+    <link>https://gild-tech.com/blog/n8n-vs-zapier-vs-make.html</link>
+    <guid>https://gild-tech.com/blog/n8n-vs-zapier-vs-make.html</guid>
+    <pubDate>Fri, 17 Apr 2026 16:30:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>Le comparatif définitif des 3 outils d'automation no-code en 2026. Prix, fonctionnalités, self-host, IA.</description>
+    <category>Comparatif</category>
+  </item>
+
+  <item>
+    <title>Comment choisir son CRM pour une agence immobilière en 2026</title>
+    <link>https://gild-tech.com/blog/choisir-crm-agence-immobiliere.html</link>
+    <guid>https://gild-tech.com/blog/choisir-crm-agence-immobiliere.html</guid>
+    <pubDate>Fri, 17 Apr 2026 15:30:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>Hektor, Apimo, Gercop, HubSpot, Pipedrive ou Notion ? Guide comparatif détaillé des 6 meilleurs CRM.</description>
+    <category>Guide</category>
+  </item>
+
+  <item>
+    <title>Automatiser la prospection B2B sans tuer le contact humain</title>
+    <link>https://gild-tech.com/blog/automatiser-prospection-b2b.html</link>
+    <guid>https://gild-tech.com/blog/automatiser-prospection-b2b.html</guid>
+    <pubDate>Fri, 17 Apr 2026 14:00:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>La ligne fine entre prospection automatisée qui convertit et spam qui casse votre réputation. Méthode éprouvée, exemples réels.</description>
+    <category>Prospection B2B</category>
+  </item>
+
+  <item>
+    <title>7 workflows n8n indispensables pour une agence immobilière</title>
+    <link>https://gild-tech.com/blog/workflows-n8n-agence-immobiliere.html</link>
+    <guid>https://gild-tech.com/blog/workflows-n8n-agence-immobiliere.html</guid>
+    <pubDate>Fri, 17 Apr 2026 12:00:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>Les 7 workflows n8n exacts installés chez nos clients immo : rappel estimation, traitement pige, relance acquéreurs.</description>
+    <category>Workflow</category>
+  </item>
+
+  <item>
+    <title>Automatisation commerciale pour PME : le guide complet 2026</title>
+    <link>https://gild-tech.com/blog/automatisation-commerciale-pme.html</link>
+    <guid>https://gild-tech.com/blog/automatisation-commerciale-pme.html</guid>
+    <pubDate>Fri, 17 Apr 2026 10:00:00 +0200</pubDate>
+    <dc:creator>Pierre-Jean Deàk Grisoni</dc:creator>
+    <description>Pourquoi 83% des PME perdent des clients sans le savoir, et comment automatiser votre suivi en 2 semaines sans embaucher.</description>
+    <category>Guide</category>
+  </item>
+
+</channel>
+</rss>
