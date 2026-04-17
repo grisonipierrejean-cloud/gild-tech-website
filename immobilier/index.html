@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatisation pour agences immobilières · Toutes les villes | Gild-Tech</title>
+<meta name="description" content="Gild-Tech accompagne les agences immobilières indépendantes dans 50 villes de France. Rappel automatique &lt; 5 min, traitement piges, relances acquéreurs. Trouvez votre ville.">
+<link rel="canonical" href="https://gild-tech.com/immobilier/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Automatisation pour agences immobilières | Gild-Tech">
+<meta property="og:description" content="Nos services d'automatisation pour agences immobilières indépendantes dans toute la France.">
+<meta property="og:url" content="https://gild-tech.com/immobilier/">
+<meta property="og:image" content="https://gild-tech.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --pink: #E91E8C; --pink-light: #f54da5; --pink-bg: #fef6fa; --g900: #111; --g700: #333; --g600: #555; --g500: #777; --g400: #999; --g200: #e8e8e8; --g100: #f5f5f5; --font: 'Inter', -apple-system, sans-serif; }
+body { background: white; color: var(--g900); font-family: var(--font); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.nav-mark { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%); border: 1.5px solid rgba(233,30,140,0.25); display: flex; align-items: center; justify-content: center; position: relative; font-size: 0.75rem; font-weight: 800; color: var(--g900); }
+.nav-mark span { color: var(--pink); }
+.nav-mark::after { content: ''; position: absolute; inset: -1.5px; border-radius: 50%; background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink)); mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); mask-composite: exclude; -webkit-mask-composite: xor; animation: spin 4s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+.nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--g900); }
+.nav-logo span { color: var(--pink); }
+.nav-cta { background: var(--pink); color: white; padding: 0.55rem 1.3rem; border-radius: 8px; text-decoration: none; font-size: 0.82rem; font-weight: 700; }
+.nav-cta:hover { background: var(--pink-light); }
+.hero { padding: 8rem 2rem 3rem; text-align: center; max-width: 780px; margin: 0 auto; }
+.hero-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.9rem 0.3rem 0.45rem; background: var(--pink-bg); border: 1px solid rgba(233,30,140,0.12); border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: var(--pink); margin-bottom: 1.5rem; }
+.pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 1.2rem; }
+h1 .hl { color: var(--pink); }
+.hero-sub { font-size: 1.1rem; color: var(--g500); line-height: 1.7; }
+.cities { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+.cities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+.city-link { display: block; padding: 1rem 1.2rem; background: white; border: 1px solid var(--g200); border-radius: 10px; text-decoration: none; color: var(--g700); font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+.city-link:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(233,30,140,0.1); }
+.city-link small { display: block; color: var(--g400); font-size: 0.72rem; font-weight: 500; margin-top: 0.2rem; }
+.region-section { margin-top: 3rem; }
+.region-title { font-size: 0.8rem; font-weight: 700; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+footer { border-top: 1px solid var(--g200); padding: 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
+.footer-brand span { color: var(--pink); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { color: var(--g400); font-size: 0.78rem; text-decoration: none; }
+@media (max-width: 900px) { .cities-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .cities-grid { grid-template-columns: 1fr; } .footer-inner { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">
+      <div class="nav-mark">G<span>T</span></div>
+      <div class="nav-logo">GILD <span>TECH</span></div>
+    </a>
+    <a href="https://calendly.com/ops-gild-tech/30min" class="nav-cta" target="_blank">Audit gratuit</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="hero-pill"><span class="pill-dot"></span>Verticale immobilier</span>
+  <h1>Automatisation commerciale pour <span class="hl">agences immobilières</span></h1>
+  <p class="hero-sub">Gild-Tech accompagne les agences immobilières indépendantes dans 50+ villes de France. Trouvez votre ville ci-dessous pour découvrir notre offre locale.</p>
+</section>
+
+<div class="cities">
+<div class="region-section"><div class="region-title">Auvergne-Rhône-Alpes</div><div class="cities-grid">
+  <a href="annecy.html" class="city-link">Annecy <small>74 · ~290 agences</small></a>
+  <a href="chambery.html" class="city-link">Chambéry <small>73 · ~145 agences</small></a>
+  <a href="clermont-ferrand.html" class="city-link">Clermont-Ferrand <small>63 · ~180 agences</small></a>
+  <a href="grenoble.html" class="city-link">Grenoble <small>38 · ~260 agences</small></a>
+  <a href="lyon.html" class="city-link">Lyon <small>69 · ~850 agences</small></a>
+  <a href="saint-etienne.html" class="city-link">Saint-Étienne <small>42 · ~195 agences</small></a>
+  <a href="valence.html" class="city-link">Valence <small>26 · ~110 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Bourgogne-Franche-Comté</div><div class="cities-grid">
+  <a href="besancon.html" class="city-link">Besançon <small>25 · ~135 agences</small></a>
+  <a href="dijon.html" class="city-link">Dijon <small>21 · ~230 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Bretagne</div><div class="cities-grid">
+  <a href="brest.html" class="city-link">Brest <small>29 · ~160 agences</small></a>
+  <a href="lorient.html" class="city-link">Lorient <small>56 · ~115 agences</small></a>
+  <a href="quimper.html" class="city-link">Quimper <small>29 · ~105 agences</small></a>
+  <a href="rennes.html" class="city-link">Rennes <small>35 · ~380 agences</small></a>
+  <a href="saint-malo.html" class="city-link">Saint-Malo <small>35 · ~130 agences</small></a>
+  <a href="vannes.html" class="city-link">Vannes <small>56 · ~145 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Centre-Val de Loire</div><div class="cities-grid">
+  <a href="orleans.html" class="city-link">Orléans <small>45 · ~170 agences</small></a>
+  <a href="tours.html" class="city-link">Tours <small>37 · ~210 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Corse</div><div class="cities-grid">
+  <a href="ajaccio.html" class="city-link">Ajaccio <small>2A · ~115 agences</small></a>
+  <a href="bastia.html" class="city-link">Bastia <small>2B · ~85 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Grand Est</div><div class="cities-grid">
+  <a href="colmar.html" class="city-link">Colmar <small>68 · ~110 agences</small></a>
+  <a href="metz.html" class="city-link">Metz <small>57 · ~160 agences</small></a>
+  <a href="mulhouse.html" class="city-link">Mulhouse <small>68 · ~130 agences</small></a>
+  <a href="nancy.html" class="city-link">Nancy <small>54 · ~165 agences</small></a>
+  <a href="reims.html" class="city-link">Reims <small>51 · ~210 agences</small></a>
+  <a href="strasbourg.html" class="city-link">Strasbourg <small>67 · ~480 agences</small></a>
+  <a href="troyes.html" class="city-link">Troyes <small>10 · ~95 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Hauts-de-France</div><div class="cities-grid">
+  <a href="amiens.html" class="city-link">Amiens <small>80 · ~175 agences</small></a>
+  <a href="calais.html" class="city-link">Calais <small>62 · ~95 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Normandie</div><div class="cities-grid">
+  <a href="caen.html" class="city-link">Caen <small>14 · ~180 agences</small></a>
+  <a href="le-havre.html" class="city-link">Le Havre <small>76 · ~180 agences</small></a>
+  <a href="rouen.html" class="city-link">Rouen <small>76 · ~205 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Nouvelle-Aquitaine</div><div class="cities-grid">
+  <a href="bayonne.html" class="city-link">Bayonne <small>64 · ~125 agences</small></a>
+  <a href="biarritz.html" class="city-link">Biarritz <small>64 · ~180 agences</small></a>
+  <a href="bordeaux.html" class="city-link">Bordeaux <small>33 · ~650 agences</small></a>
+  <a href="la-rochelle.html" class="city-link">La Rochelle <small>17 · ~195 agences</small></a>
+  <a href="limoges.html" class="city-link">Limoges <small>87 · ~145 agences</small></a>
+  <a href="pau.html" class="city-link">Pau <small>64 · ~155 agences</small></a>
+  <a href="poitiers.html" class="city-link">Poitiers <small>86 · ~125 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Occitanie</div><div class="cities-grid">
+  <a href="beziers.html" class="city-link">Béziers <small>34 · ~140 agences</small></a>
+  <a href="montpellier.html" class="city-link">Montpellier <small>34 · ~520 agences</small></a>
+  <a href="nimes.html" class="city-link">Nîmes <small>30 · ~220 agences</small></a>
+  <a href="perpignan.html" class="city-link">Perpignan <small>66 · ~185 agences</small></a>
+  <a href="toulouse.html" class="city-link">Toulouse <small>31 · ~720 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Pays de la Loire</div><div class="cities-grid">
+  <a href="angers.html" class="city-link">Angers <small>49 · ~245 agences</small></a>
+  <a href="nantes.html" class="city-link">Nantes <small>44 · ~580 agences</small></a>
+</div></div>
+<div class="region-section"><div class="region-title">Provence-Alpes-Côte d'Azur</div><div class="cities-grid">
+  <a href="avignon.html" class="city-link">Avignon <small>84 · ~215 agences</small></a>
+  <a href="cannes.html" class="city-link">Cannes <small>06 · ~320 agences</small></a>
+  <a href="marseille.html" class="city-link">Marseille <small>13 · ~1 200 agences</small></a>
+  <a href="nice.html" class="city-link">Nice <small>06 · ~680 agences</small></a>
+  <a href="toulon.html" class="city-link">Toulon <small>83 · ~310 agences</small></a>
+</div></div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">GILD <span>TECH</span></div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="../blog/">Blog</a></li>
+      <li><a href="../calculateur.html">Calculateur</a></li>
+      <li><a href="../mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
