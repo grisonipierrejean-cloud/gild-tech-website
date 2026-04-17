@@ -204,6 +204,203 @@
 
     .lang-active { color: var(--pink); font-weight: 700; }
 
+    .nav-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      color: var(--g600); border: 1px solid var(--g200);
+      transition: all 0.2s;
+    }
+    .nav-social:hover { color: var(--pink); border-color: var(--pink); background: var(--pink-bg); }
+
+    /* ========== TRUST BAR (Tech Stack) ========== */
+    .trust-bar {
+      max-width: 100%; padding: 3.5rem 2rem;
+      border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200);
+      background: var(--g100);
+    }
+    .trust-inner { max-width: var(--max-w); margin: 0 auto; text-align: center; }
+    .trust-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--g500); margin-bottom: 2rem;
+    }
+    .trust-logos {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 2.5rem 4rem;
+    }
+    .trust-logo {
+      font-family: var(--font); font-weight: 700; letter-spacing: -0.02em;
+      font-size: 1.15rem; color: var(--g500); opacity: 0.75;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.25s;
+    }
+    .trust-logo:hover { opacity: 1; color: var(--g900); }
+
+    .trust-logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: currentColor;
+    }
+
+    @media (max-width: 640px) {
+      .trust-logos { gap: 1.5rem 2rem; }
+      .trust-logo { font-size: 0.95rem; }
+    }
+
+    /* ========== SERVICES SECTION ========== */
+    .services-bg { background: var(--g100); max-width: 100%; padding: 6rem 2rem; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 1.8rem 1.4rem; transition: all 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px); border-color: rgba(233,30,140,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .service-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--pink-bg); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 0.82rem; color: var(--g500); line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+    }
+
+    /* ========== TEMOIGNAGES SECTION ========== */
+    .temoignages-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+      margin-top: 3rem;
+    }
+    .temoignage-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 1.8rem; position: relative;
+    }
+    .temoignage-card::before {
+      content: '"'; position: absolute; top: 0.2rem; left: 1rem;
+      font-size: 4rem; font-weight: 900; color: var(--pink-bg); line-height: 1;
+      font-family: serif;
+    }
+    .temoignage-stat {
+      font-size: 1.8rem; font-weight: 900; color: var(--pink);
+      letter-spacing: -0.03em; margin-bottom: 0.3rem;
+    }
+    .temoignage-text {
+      font-size: 0.88rem; color: var(--g700); line-height: 1.6;
+      margin-bottom: 1rem; font-style: italic;
+    }
+    .temoignage-author {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding-top: 1rem; border-top: 1px solid var(--g200);
+    }
+    .temoignage-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: white; font-weight: 800; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .temoignage-meta { line-height: 1.3; }
+    .temoignage-meta-name { font-size: 0.85rem; font-weight: 700; }
+    .temoignage-meta-role { font-size: 0.72rem; color: var(--g500); }
+
+    @media (max-width: 900px) {
+      .temoignages-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+    }
+
+    .temoignage-note {
+      text-align: center; font-size: 0.78rem; color: var(--g500);
+      margin-top: 2rem; font-style: italic;
+    }
+
+    /* ========== ABOUT SECTION ========== */
+    .about-bg { max-width: 100%; padding: 6rem 2rem; }
+    .about-wrap {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem; color: var(--g600); line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .about-text strong { color: var(--g900); font-weight: 700; }
+    .about-text em { color: var(--pink); font-style: normal; font-weight: 600; }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .about-stat {
+      background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 1.4rem; text-align: center;
+    }
+    .about-stat-num {
+      font-size: 2rem; font-weight: 900; letter-spacing: -0.03em;
+      color: var(--pink); line-height: 1;
+    }
+    .about-stat-label {
+      font-size: 0.75rem; color: var(--g500); margin-top: 0.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ========== CONTACT SECTION ========== */
+    .contact-bg { background: var(--g100); max-width: 100%; padding: 6rem 2rem; }
+    .contact-wrap {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+      margin-top: 3rem;
+    }
+    .contact-card {
+      background: white; border: 1px solid var(--g200); border-radius: var(--r);
+      padding: 2rem 1.5rem; text-align: center; text-decoration: none;
+      color: var(--g900); transition: all 0.3s;
+      display: block;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px); border-color: var(--pink);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .contact-card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--pink-bg); margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pink);
+    }
+    .contact-card-icon svg { width: 22px; height: 22px; }
+    .contact-card h3 {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem;
+    }
+    .contact-card p {
+      font-size: 0.82rem; color: var(--g500); margin-bottom: 0.6rem;
+    }
+    .contact-card-val {
+      font-size: 0.85rem; font-weight: 600; color: var(--pink);
+    }
+
+    @media (max-width: 700px) {
+      .contact-wrap { grid-template-columns: 1fr; max-width: 400px; }
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--g900); }
@@ -755,25 +952,86 @@
     .rv-d3 { transition-delay: 0.24s; }
 
     /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    }
+
     @media (max-width: 900px) {
-      .prob-grid, .steps-grid, .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .prob-grid, .steps-grid { grid-template-columns: 1fr; max-width: 450px; margin-left: auto; margin-right: auto; }
       .sol-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .calc-teaser-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .maint-band { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem; text-align: center; }
+      .maint-price { text-align: center; }
+      .maint-feats { justify-content: center; }
     }
 
     @media (max-width: 640px) {
+      .nav-inner { padding: 0 1rem; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .hero { padding: 7.5rem 1.5rem 3.5rem; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero-actions { flex-direction: column; }
-      section, .section-full { padding: 4rem 1.5rem; }
-      .footer-inner { flex-direction: column; gap: 1rem; }
-      .stats-inner { flex-direction: column; gap: 1.2rem; }
-      .cta-box { padding: 3rem 1.5rem; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      .hero h1 { font-size: 2rem; line-height: 1.15; }
+      .hero-desc { font-size: 1rem; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      section, .section-full { padding: 4rem 1.25rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .stats-inner { flex-direction: column; gap: 1.5rem; }
+      .cta-box { padding: 3rem 1.5rem; border-radius: 16px; }
+      .cta-box h2 { font-size: 1.8rem; }
+      .parcours { font-size: 0.72rem; gap: 0.3rem; }
+      .parcours-step { padding: 0.25rem 0.6rem; font-size: 0.68rem; }
+      .p-card { padding: 2rem 1.5rem; }
+      .p-promise { font-size: 0.95rem; }
+      .p-for { font-size: 0.82rem; }
+      .heading { font-size: 1.6rem !important; line-height: 1.2; }
+      .section-inner, section { max-width: 100%; }
+      .temoignages-grid { gap: 1rem; }
+      .trust-logos { gap: 1.2rem 1.8rem; }
+      .trust-logo { font-size: 0.9rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .about-stat { padding: 1rem; }
+      .about-stat-num { font-size: 1.5rem; }
     }
 
-    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
-    .nav-hamburger span { width: 20px; height: 2px; background: var(--g700); }
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.75rem; }
+      .heading { font-size: 1.4rem !important; }
+      .p-price { font-size: 2rem; }
+      .stat-num { font-size: 1.6rem; }
+    }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { width: 22px; height: 2px; background: var(--g700); border-radius: 1px; transition: all 0.25s; }
+
+    /* Mobile menu opened state */
+    @media (max-width: 640px) {
+      .nav-links.open {
+        display: flex !important; position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column; align-items: stretch;
+        padding: 1.5rem; gap: 0.2rem;
+        border-bottom: 1px solid var(--g200);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        z-index: 99;
+      }
+      .nav-links.open li {
+        list-style: none;
+      }
+      .nav-links.open li a {
+        display: block; padding: 0.8rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+      .nav-links.open li a:hover { background: var(--g100); }
+      .nav-links.open .lang-toggle { width: fit-content; margin: 0.5rem auto 0; }
+      .nav-links.open .nav-social { width: fit-content; margin: 0.3rem auto 0; }
+      .nav-links.open .btn-nav { text-align: center; margin-top: 0.5rem; }
+    }
 
     /* INTRO OVERLAY */
     .intro {
@@ -910,14 +1168,16 @@
         <div class="nav-mark">G<span>T</span></div>
         <div class="nav-logo">GILD <span>TECH</span></div>
       </div>
-      <div class="nav-hamburger" onclick="document.getElementById('nl').style.display=document.getElementById('nl').style.display==='flex'?'none':'flex'">
+      <div class="nav-hamburger" onclick="document.getElementById('nl').classList.toggle('open')">
         <span></span><span></span><span></span>
       </div>
       <ul class="nav-links" id="nl">
-        <li><a href="#probleme" data-fr="Pourquoi" data-en="Why">Pourquoi</a></li>
-        <li><a href="#calc-teaser" data-fr="Calculateur" data-en="Calculator">Calculateur</a></li>
-        <li><a href="#solution" data-fr="Comment" data-en="How">Comment</a></li>
+        <li><a href="#services" data-fr="Services" data-en="Services">Services</a></li>
         <li><a href="#offres" data-fr="Offres" data-en="Pricing">Offres</a></li>
+        <li><a href="#temoignages" data-fr="Témoignages" data-en="Reviews">Témoignages</a></li>
+        <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+        <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+        <li><a href="https://www.linkedin.com/company/gild-tech/" target="_blank" rel="noopener" aria-label="LinkedIn" class="nav-social"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></li>
         <li>
           <button class="lang-toggle" onclick="toggleLang()" aria-label="Change language">
             <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
@@ -959,6 +1219,22 @@
         <a href="calculateur.html" class="btn btn-ghost btn-lg" data-fr="Calculer mes pertes" data-en="Calculate my losses">Calculer mes pertes</a>
       </div>
       <p class="hero-note" data-fr="Audit gratuit 30 min · on vous montre où vous perdez du chiffre" data-en="30 min free audit · we show you where you&apos;re losing revenue">Audit gratuit 30 min · on vous montre où vous perdez du chiffre</p>
+    </div>
+  </div>
+
+  <!-- TRUST BAR (Technologies / Partenaires) -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-label" data-fr="La stack qui fait tourner vos systèmes" data-en="The stack powering your systems">La stack qui fait tourner vos systèmes</div>
+      <div class="trust-logos">
+        <div class="trust-logo"><span class="trust-logo-dot"></span>n8n</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>OpenAI</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Twilio</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Stripe</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Notion</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>HubSpot</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Aircall</div>
+      </div>
     </div>
   </div>
 
@@ -1048,6 +1324,57 @@
         </div>
 
         <div class="calc-teaser-disclaimer" data-fr="Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h" data-en="Based on 30 leads/month, 15% conv, 6 000€ avg deal, 24h callback">Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section-full services-bg" id="services">
+    <div class="section-inner">
+      <div class="tag rv" data-fr="Services" data-en="Services">Services</div>
+      <h2 class="heading rv" data-fr="Tout ce dont vous avez besoin pour automatiser votre commerce" data-en="Everything you need to automate your sales">Tout ce dont vous avez besoin pour automatiser votre commerce</h2>
+      <p class="subdesc rv" data-fr="On installe, on connecte, on forme. Vous récoltez les résultats." data-en="We install, connect and train. You reap the results.">On installe, on connecte, on forme. Vous récoltez les résultats.</p>
+      <div class="services-grid">
+        <div class="service-card rv rv-d1">
+          <div class="service-card-icon">🔍</div>
+          <h3 data-fr="Audit commercial" data-en="Sales audit">Audit commercial</h3>
+          <p data-fr="Diagnostic complet de votre tunnel : d'où viennent vos leads, où ils se perdent, combien ça vous coûte." data-en="Full funnel diagnosis: where your leads come from, where you lose them, what it costs.">Diagnostic complet de votre tunnel : d'où viennent vos leads, où ils se perdent, combien ça vous coûte.</p>
+        </div>
+        <div class="service-card rv rv-d1">
+          <div class="service-card-icon">⚙️</div>
+          <h3 data-fr="Setup CRM + workflows" data-en="CRM + workflows setup">Setup CRM + workflows</h3>
+          <p data-fr="On configure votre CRM à votre image et on branche les automatisations clés sur vos outils existants." data-en="We set up your CRM your way and wire automations to your existing tools.">On configure votre CRM à votre image et on branche les automatisations clés sur vos outils existants.</p>
+        </div>
+        <div class="service-card rv rv-d2">
+          <div class="service-card-icon">📞</div>
+          <h3 data-fr="Rappel automatisé &lt; 5 min" data-en="Auto callback &lt; 5 min">Rappel automatisé &lt; 5 min</h3>
+          <p data-fr="Chaque prospect reçoit un appel téléphonique ou un SMS dans les 5 minutes qui suivent sa prise de contact." data-en="Every prospect gets a call or SMS within 5 minutes of reaching out.">Chaque prospect reçoit un appel téléphonique ou un SMS dans les 5 minutes qui suivent sa prise de contact.</p>
+        </div>
+        <div class="service-card rv rv-d2">
+          <div class="service-card-icon">🔁</div>
+          <h3 data-fr="Relances multi-étapes" data-en="Multi-step follow-ups">Relances multi-étapes</h3>
+          <p data-fr="Séquences automatiques à J+3, J+7, J+14 par email, SMS ou LinkedIn. Personnalisées à votre ton." data-en="Auto sequences at D+3, D+7, D+14 by email, SMS or LinkedIn. Tailored to your voice.">Séquences automatiques à J+3, J+7, J+14 par email, SMS ou LinkedIn. Personnalisées à votre ton.</p>
+        </div>
+        <div class="service-card rv rv-d3">
+          <div class="service-card-icon">🎯</div>
+          <h3 data-fr="Prospection multi-canal" data-en="Multi-channel prospecting">Prospection multi-canal</h3>
+          <p data-fr="On va chercher vos futurs clients sur LinkedIn, par email et par SMS avec des messages personnalisés." data-en="We hunt your future customers on LinkedIn, email and SMS with personalized messages.">On va chercher vos futurs clients sur LinkedIn, par email et par SMS avec des messages personnalisés.</p>
+        </div>
+        <div class="service-card rv rv-d3">
+          <div class="service-card-icon">🤖</div>
+          <h3 data-fr="Assistants IA" data-en="AI assistants">Assistants IA</h3>
+          <p data-fr="Chatbots, qualification automatique, scoring, nurturing intelligent. L'IA au service de votre pipe." data-en="Chatbots, auto-qualification, scoring, smart nurturing. AI serving your pipeline.">Chatbots, qualification automatique, scoring, nurturing intelligent. L'IA au service de votre pipe.</p>
+        </div>
+        <div class="service-card rv rv-d3">
+          <div class="service-card-icon">📊</div>
+          <h3 data-fr="Reporting temps réel" data-en="Real-time reporting">Reporting temps réel</h3>
+          <p data-fr="Dashboard live de votre pipeline. Vous voyez vos RDV arriver, vos taux de conversion, vos fuites." data-en="Live pipeline dashboard. See your meetings arriving, conversion rates and leaks.">Dashboard live de votre pipeline. Vous voyez vos RDV arriver, vos taux de conversion, vos fuites.</p>
+        </div>
+        <div class="service-card rv rv-d3">
+          <div class="service-card-icon">🛡️</div>
+          <h3 data-fr="Support et maintenance" data-en="Support and maintenance">Support et maintenance</h3>
+          <p data-fr="Vos outils évoluent, les APIs changent. On garde votre système en pleine forme chaque mois." data-en="Your tools evolve, APIs change. We keep your system humming every month.">Vos outils évoluent, les APIs changent. On garde votre système en pleine forme chaque mois.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1238,6 +1565,115 @@
     <!-- PAYMENT NOTE -->
     <p class="pay-note rv" data-fr-html="Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT" data-en-html="Pay in 1 or <span>3 installments</span> on request · All prices exclude VAT">Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT</p>
   </section>
+
+  <!-- TEMOIGNAGES -->
+  <section id="temoignages">
+    <div class="tag rv" data-fr="Ce que les dirigeants découvrent" data-en="What leaders discover">Ce que les dirigeants découvrent</div>
+    <h2 class="heading rv" data-fr="Les premiers chiffres parlent d'eux-mêmes" data-en="The numbers speak for themselves">Les premiers chiffres parlent d'eux-mêmes</h2>
+    <p class="subdesc rv" data-fr="Voici ce que révèle l'audit de 12 PME accompagnées ces dernières semaines." data-en="Here is what the audit of 12 SMEs revealed over the past weeks.">Voici ce que révèle l'audit de 12 PME accompagnées ces dernières semaines.</p>
+    <div class="temoignages-grid">
+      <div class="temoignage-card rv rv-d1">
+        <div class="temoignage-stat">240 000€</div>
+        <div class="temoignage-text" data-fr="« Je pensais bien gérer mon suivi. L'audit Gild-Tech a révélé que je perdais un quart de mon CA potentiel. On a automatisé en 2 semaines. »" data-en="« I thought I was managing follow-ups well. The Gild-Tech audit revealed I was losing a quarter of my potential revenue. We automated in 2 weeks. »">« Je pensais bien gérer mon suivi. L'audit Gild-Tech a révélé que je perdais un quart de mon CA potentiel. On a automatisé en 2 semaines. »</div>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar">JM</div>
+          <div class="temoignage-meta">
+            <div class="temoignage-meta-name">J. M.</div>
+            <div class="temoignage-meta-role" data-fr="Agence immobilière · Rennes" data-en="Real estate agency · Rennes">Agence immobilière · Rennes</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card rv rv-d2">
+        <div class="temoignage-stat">15 h / sem</div>
+        <div class="temoignage-text" data-fr="« Le temps que je perdais à relancer manuellement, je l'ai récupéré pour faire des RDV clients. Ça a changé ma vie de chef d'entreprise. »" data-en="« The time I wasted on manual follow-ups, I now spend on client meetings. It changed my life as a business owner. »">« Le temps que je perdais à relancer manuellement, je l'ai récupéré pour faire des RDV clients. Ça a changé ma vie de chef d'entreprise. »</div>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar">ST</div>
+          <div class="temoignage-meta">
+            <div class="temoignage-meta-name">S. T.</div>
+            <div class="temoignage-meta-role" data-fr="Cabinet IDEL · Morbihan" data-en="Nursing practice · Brittany">Cabinet IDEL · Morbihan</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card rv rv-d3">
+        <div class="temoignage-stat">+38%</div>
+        <div class="temoignage-text" data-fr="« En 30 jours : +38% de RDV qualifiés sans embaucher un commercial de plus. Le système tourne tout seul, jour et nuit. »" data-en="« In 30 days: +38% qualified meetings without hiring another salesperson. The system runs itself, day and night. »">« En 30 jours : +38% de RDV qualifiés sans embaucher un commercial de plus. Le système tourne tout seul, jour et nuit. »</div>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar">HD</div>
+          <div class="temoignage-meta">
+            <div class="temoignage-meta-name">H. D.</div>
+            <div class="temoignage-meta-role" data-fr="Restaurant gastronomique · Bordeaux" data-en="Fine dining restaurant · Bordeaux">Restaurant gastronomique · Bordeaux</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="temoignage-note rv" data-fr="Témoignages anonymisés à la demande des clients — projets en cours d'accompagnement." data-en="Testimonials anonymized at clients' request — ongoing engagements.">Témoignages anonymisés à la demande des clients — projets en cours d'accompagnement.</p>
+  </section>
+
+  <!-- A PROPOS -->
+  <div class="section-full about-bg" id="about">
+    <div class="about-wrap">
+      <div class="about-text">
+        <div class="tag rv" data-fr="À propos" data-en="About">À propos</div>
+        <h2 class="heading rv" data-fr="Closer devenu builder." data-en="Closer turned builder.">Closer devenu builder.</h2>
+        <p class="rv" data-fr-html="Pendant <strong>3 ans</strong>, j'ai closé pour des agences immobilières et des entreprises B2B. <strong>+200 deals</strong>. Des dizaines d'entreprises accompagnées." data-en-html="For <strong>3 years</strong>, I closed deals for real estate agencies and B2B companies. <strong>200+ deals</strong>. Dozens of businesses guided.">Pendant <strong>3 ans</strong>, j'ai closé pour des agences immobilières et des entreprises B2B. <strong>+200 deals</strong>. Des dizaines d'entreprises accompagnées.</p>
+        <p class="rv" data-fr-html="Le constat : les meilleurs closers ne peuvent rien si le prospect <strong>a attendu 3 jours</strong> avant d'être rappelé. <em>C'est là que tout se joue.</em>" data-en-html="The truth: the best closers can do nothing if the prospect <strong>waited 3 days</strong> before being called back. <em>That's where everything is decided.</em>">Le constat : les meilleurs closers ne peuvent rien si le prospect <strong>a attendu 3 jours</strong> avant d'être rappelé. <em>C'est là que tout se joue.</em></p>
+        <p class="rv" data-fr-html="<strong>Gild-Tech</strong> (Girlden LTD), c'est la suite logique. On construit les systèmes qui rendent les closers, les commerciaux et les dirigeants <strong>2 à 3 fois plus efficaces</strong>." data-en-html="<strong>Gild-Tech</strong> (Girlden LTD) is the logical next step. We build the systems that make closers, salespeople and business owners <strong>2 to 3x more effective</strong>."><strong>Gild-Tech</strong> (Girlden LTD), c'est la suite logique. On construit les systèmes qui rendent les closers, les commerciaux et les dirigeants <strong>2 à 3 fois plus efficaces</strong>.</p>
+      </div>
+      <div class="about-stats rv">
+        <div class="about-stat">
+          <div class="about-stat-num">200+</div>
+          <div class="about-stat-label" data-fr="deals closés" data-en="deals closed">deals closés</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">3 ans</div>
+          <div class="about-stat-label" data-fr="de closing terrain" data-en="of field closing">de closing terrain</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">12</div>
+          <div class="about-stat-label" data-fr="PME accompagnées" data-en="SMEs guided">PME accompagnées</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">3</div>
+          <div class="about-stat-label" data-fr="verticales (immo, resto, IDEL)" data-en="verticals">verticales</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-full contact-bg" id="contact">
+    <div class="section-inner">
+      <div class="tag rv" data-fr="Contact" data-en="Contact">Contact</div>
+      <h2 class="heading rv" data-fr="Parlons de votre projet" data-en="Let's discuss your project">Parlons de votre projet</h2>
+      <p class="subdesc rv" data-fr="Trois façons de nous joindre. La plus efficace : un audit gratuit de 30 minutes en visio." data-en="Three ways to reach us. The best: a 30-minute free audit over video.">Trois façons de nous joindre. La plus efficace : un audit gratuit de 30 minutes en visio.</p>
+      <div class="contact-wrap">
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="contact-card rv rv-d1">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 data-fr="Audit gratuit 30 min" data-en="Free 30 min audit">Audit gratuit 30 min</h3>
+          <p data-fr="On analyse votre process en visio" data-en="We audit your process on a video call">On analyse votre process en visio</p>
+          <div class="contact-card-val">calendly.com/ops-gild-tech/30min</div>
+        </a>
+        <a href="mailto:contact@gild-tech.com" class="contact-card rv rv-d2">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 data-fr="Email" data-en="Email">Email</h3>
+          <p data-fr="Pour toute demande" data-en="For any request">Pour toute demande</p>
+          <div class="contact-card-val">contact@gild-tech.com</div>
+        </a>
+        <a href="https://www.linkedin.com/company/gild-tech/" target="_blank" rel="noopener" class="contact-card rv rv-d3">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </div>
+          <h3>LinkedIn</h3>
+          <p data-fr="Suivez notre actu" data-en="Follow our updates">Suivez notre actu</p>
+          <div class="contact-card-val">linkedin.com/company/gild-tech</div>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- CTA FINAL -->
   <div class="cta-wrap">
