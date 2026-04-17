@@ -269,6 +269,106 @@
     .consent a { color: var(--pink); text-decoration: none; }
     .consent a:hover { text-decoration: underline; }
 
+    /* STEP CALCULATING : ANIMATION */
+    .calc-loading {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      border-radius: 20px; padding: 3rem 2rem; text-align: center;
+      color: white; position: relative; overflow: hidden;
+      min-height: 380px;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+
+    .calc-loading::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 20%, rgba(233,30,140,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .calc-loading-logo {
+      width: 80px; height: 80px; border-radius: 50%; margin-bottom: 1.5rem;
+      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.2), transparent 70%);
+      border: 1px solid rgba(233,30,140,0.3);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      font-size: 1.2rem; font-weight: 800; letter-spacing: 0.05em;
+      box-shadow: 0 0 50px rgba(233,30,140,0.2);
+    }
+    .calc-loading-logo span { color: var(--pink); }
+    .calc-loading-logo::after {
+      content: ''; position: absolute; inset: -2px; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink));
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      animation: spinLogo 2s linear infinite;
+    }
+    @keyframes spinLogo { to { rotate: 360deg; } }
+
+    .calc-loading-title {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 0.5rem; position: relative; z-index: 1;
+    }
+    .calc-loading-subtitle {
+      font-size: 0.88rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 2rem; position: relative; z-index: 1;
+    }
+
+    .calc-progress-wrap {
+      width: 100%; max-width: 400px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    .calc-progress-bar {
+      width: 100%; height: 4px; background: rgba(255,255,255,0.08);
+      border-radius: 2px; overflow: hidden; margin-bottom: 1.8rem;
+    }
+    .calc-progress-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--pink-light));
+      border-radius: 2px; transition: width 0.4s ease;
+      box-shadow: 0 0 12px rgba(233,30,140,0.5);
+    }
+
+    .calc-phases {
+      display: flex; flex-direction: column; gap: 0.7rem;
+      text-align: left;
+    }
+
+    .calc-phase {
+      display: flex; align-items: center; gap: 0.8rem;
+      opacity: 0.3; transition: opacity 0.3s, transform 0.3s;
+      font-size: 0.88rem; color: rgba(255,255,255,0.85);
+    }
+    .calc-phase.active { opacity: 1; transform: translateX(2px); }
+    .calc-phase.done { opacity: 0.7; }
+
+    .calc-phase-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .calc-phase.active .calc-phase-dot {
+      background: var(--pink); border-color: var(--pink);
+      box-shadow: 0 0 0 4px rgba(233,30,140,0.15), 0 0 20px rgba(233,30,140,0.4);
+    }
+    .calc-phase.active .calc-phase-dot::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%; background: white;
+      animation: pulseDot 1s ease infinite;
+    }
+    .calc-phase.done .calc-phase-dot {
+      background: rgba(233,30,140,0.2); border-color: var(--pink);
+    }
+    .calc-phase.done .calc-phase-dot::before {
+      content: '✓'; color: var(--pink); font-weight: 700;
+    }
+    @keyframes pulseDot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
     /* STEP 4 : FULL RESULT */
     .result-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;
@@ -458,6 +558,38 @@
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goStep(1)">&larr; Retour</button>
         <button class="btn btn-primary" onclick="computeAndShowTeaser()">Voir mon diagnostic &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP CALCULATING: ANIMATION -->
+    <div class="step-panel" id="panel-calc">
+      <div class="calc-loading">
+        <div class="calc-loading-logo">G<span>T</span></div>
+        <div class="calc-loading-title">Calcul de votre diagnostic…</div>
+        <div class="calc-loading-subtitle">Ne quittez pas cette page, on y est presque.</div>
+
+        <div class="calc-progress-wrap">
+          <div class="calc-progress-bar"><div class="calc-progress-fill" id="progress-fill"></div></div>
+
+          <div class="calc-phases">
+            <div class="calc-phase" id="phase-1">
+              <div class="calc-phase-dot"></div>
+              <span>Analyse de votre process commercial</span>
+            </div>
+            <div class="calc-phase" id="phase-2">
+              <div class="calc-phase-dot"></div>
+              <span>Comparaison aux données de votre secteur</span>
+            </div>
+            <div class="calc-phase" id="phase-3">
+              <div class="calc-phase-dot"></div>
+              <span>Calcul de votre manque à gagner annuel</span>
+            </div>
+            <div class="calc-phase" id="phase-4">
+              <div class="calc-phase-dot"></div>
+              <span>Génération de votre plan d'action</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -653,14 +785,52 @@
 
     function fmt(n) { return n.toLocaleString('fr-FR'); }
 
-    // STEP 3: Show teaser
+    // STEP 3: Show teaser (with animation first)
     function computeAndShowTeaser() {
-      const r = computeLosses();
-      // Show first 2 digits, blur the rest
-      const full = String(r.totalLossYear);
-      const visible = full.substring(0, Math.max(1, full.length - 3));
-      document.getElementById('teaser-amount').textContent = fmt(parseInt(visible) || 0);
-      goStep(3);
+      // Show calculating animation
+      document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-calc').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Reset phases
+      ['phase-1','phase-2','phase-3','phase-4'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('active', 'done');
+      });
+      document.getElementById('progress-fill').style.width = '0%';
+
+      // Phase timings (total ~3.5s)
+      const phases = [
+        { id: 'phase-1', start: 0,    duration: 900 },
+        { id: 'phase-2', start: 900,  duration: 900 },
+        { id: 'phase-3', start: 1800, duration: 800 },
+        { id: 'phase-4', start: 2600, duration: 700 }
+      ];
+
+      phases.forEach((p, i) => {
+        setTimeout(() => {
+          // Mark previous as done
+          if (i > 0) document.getElementById(phases[i-1].id).classList.replace('active', 'done');
+          // Activate current
+          document.getElementById(p.id).classList.add('active');
+          // Update progress
+          const progress = ((i + 1) / phases.length) * 100;
+          document.getElementById('progress-fill').style.width = progress + '%';
+        }, p.start);
+      });
+
+      // Finish: mark last as done, compute result, show teaser
+      setTimeout(() => {
+        document.getElementById('phase-4').classList.replace('active', 'done');
+      }, 3300);
+
+      setTimeout(() => {
+        const r = computeLosses();
+        const full = String(r.totalLossYear);
+        const visible = full.substring(0, Math.max(1, full.length - 3));
+        document.getElementById('teaser-amount').textContent = fmt(parseInt(visible) || 0);
+        goStep(3);
+      }, 3700);
     }
 
     // SUBMIT EMAIL
