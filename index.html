@@ -1225,8 +1225,9 @@
       autoplay muted playsinline
       preload="auto"
       aria-label="Gild-Tech intro"></video>
+    <div class="intro-sound-prompt" id="introSoundPrompt" onclick="toggleIntroMute()">🔊 ACTIVER LE SON</div>
     <div class="intro-controls">
-      <button class="intro-unmute" onclick="toggleIntroMute()" aria-label="Son">🔊</button>
+      <button class="intro-unmute" onclick="toggleIntroMute()" aria-label="Son">🔇</button>
       <button class="intro-skip" onclick="enterSite()">PASSER &rarr;</button>
     </div>
   </div>
@@ -1255,6 +1256,21 @@
     }
     .intro-unmute { padding: 10px 14px; font-size: 1rem; }
     .intro-unmute:hover, .intro-skip:hover { background: #E91E8C; }
+    .intro-sound-prompt {
+      position: absolute; top: 32px; left: 50%; transform: translateX(-50%);
+      background: rgba(233,30,140,0.95); color: white;
+      padding: 14px 28px; border-radius: 100px;
+      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em;
+      cursor: pointer; z-index: 10001;
+      box-shadow: 0 10px 30px rgba(233,30,140,0.4);
+      animation: soundPulse 1.5s ease-in-out infinite;
+      transition: opacity 0.3s;
+    }
+    .intro-sound-prompt.hidden { opacity: 0; pointer-events: none; }
+    @keyframes soundPulse {
+      0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 30px rgba(233,30,140,0.4); }
+      50% { transform: translateX(-50%) scale(1.05); box-shadow: 0 10px 45px rgba(233,30,140,0.7); }
+    }
   </style>
 
   <!-- NAV -->
@@ -1867,9 +1883,13 @@
     function toggleIntroMute() {
       const v = document.getElementById('introPlayer');
       const btn = document.querySelector('.intro-unmute');
+      const prompt = document.getElementById('introSoundPrompt');
       if (!v) return;
       v.muted = !v.muted;
       if (btn) btn.textContent = v.muted ? '🔇' : '🔊';
+      if (prompt) prompt.classList.toggle('hidden', !v.muted);
+      // ensure it keeps playing after unmute
+      if (!v.muted) v.play().catch(()=>{});
     }
 
     // Auto-exit when video truly ends (only if played at least 18s)
