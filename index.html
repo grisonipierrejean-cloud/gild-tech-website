@@ -1300,6 +1300,63 @@
     </div>
   </div>
 
+  <!-- INTRO VIDEO -->
+  <section class="intro-video-section" id="intro-video">
+    <div class="intro-video-wrap">
+      <div class="intro-video-tag rv" data-fr="En 20 secondes" data-en="In 20 seconds">En 20 secondes</div>
+      <h2 class="intro-video-title rv" data-fr-html="Ce que vous perdez. <span class=&quot;hl&quot;>Ce qu'on répare.</span>" data-en-html="What you lose. <span class=&quot;hl&quot;>What we fix.</span>">Ce que vous perdez. <span class="hl">Ce qu'on répare.</span></h2>
+      <div class="intro-video-frame rv">
+        <video
+          src="assets/intro.mp4"
+          autoplay muted loop playsinline
+          preload="metadata"
+          controls
+          aria-label="Gild-Tech intro video"></video>
+      </div>
+    </div>
+  </section>
+  <style>
+    .intro-video-section {
+      padding: 5rem 2rem 4rem;
+      background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+    }
+    .intro-video-wrap {
+      max-width: 1100px; margin: 0 auto; text-align: center;
+    }
+    .intro-video-tag {
+      display: inline-block;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.25em;
+      color: var(--pink); text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border: 1px solid var(--pink);
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+    .intro-video-title {
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+    .intro-video-title .hl { color: var(--pink); }
+    .intro-video-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(233, 30, 140, 0.18), 0 8px 24px rgba(0,0,0,0.08);
+      aspect-ratio: 16 / 9;
+      background: #0a0a0f;
+    }
+    .intro-video-frame video {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover;
+    }
+    @media (max-width: 700px) {
+      .intro-video-section { padding: 3rem 1rem 2.5rem; }
+      .intro-video-frame { border-radius: 14px; }
+    }
+  </style>
+
   <!-- TRUST BAR (Scrolling marquee) -->
   <div class="trust-bar">
     <div class="trust-label" data-fr="La stack qui fait tourner vos systèmes" data-en="The stack powering your systems">La stack qui fait tourner vos systèmes</div>
