@@ -1872,11 +1872,13 @@
       if (btn) btn.textContent = v.muted ? '🔇' : '🔊';
     }
 
-    // Auto-exit when video ends
+    // Auto-exit when video truly ends (only if played at least 18s)
     const _introVid = document.getElementById('introPlayer');
     if (_introVid) {
-      _introVid.addEventListener('ended', enterSite);
-      // Fallback : auto-exit after 22s if video fails
+      _introVid.addEventListener('ended', () => {
+        if (_introVid.currentTime >= 18) enterSite();
+      });
+      // Fallback : auto-exit after 22s regardless
       setTimeout(() => { if (!intro.classList.contains('fade-out')) enterSite(); }, 22000);
     } else {
       setTimeout(() => { if (!intro.classList.contains('fade-out')) enterSite(); }, 5000);
