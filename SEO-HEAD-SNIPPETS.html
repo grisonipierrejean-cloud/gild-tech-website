@@ -1,0 +1,206 @@
+<!--
+═══════════════════════════════════════════════════════════════
+  SEO SNIPPETS — Gild-Tech
+  Fichier de référence : copier les blocs dans le <head> des pages
+═══════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ════════════════════════════════════════════ -->
+<!-- BLOC 1 : À coller dans <head> de index.html -->
+<!-- Après la ligne <meta name="description"...> -->
+<!-- ════════════════════════════════════════════ -->
+
+<!-- SEO & Canonique -->
+<link rel="canonical" href="https://gild-tech.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Gild-Tech (Girlden LTD)">
+<meta name="keywords" content="automatisation commerciale, CRM PME, prospection automatisée, relance automatique, IA commerciale, agence automatisation, rappel prospect, workflow CRM, Gild-Tech, Girlden">
+<meta name="geo.region" content="FR">
+<meta name="language" content="French">
+
+<!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gild-Tech">
+<meta property="og:title" content="Gild-Tech | Automatisation Commerciale pour PME">
+<meta property="og:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. 30 min d'audit gratuit.">
+<meta property="og:url" content="https://gild-tech.com/">
+<meta property="og:image" content="https://gild-tech.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gild-Tech — Automatisation Commerciale IA">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gild-Tech | Automatisation Commerciale pour PME">
+<meta name="twitter:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. 30 min d'audit gratuit.">
+<meta name="twitter:image" content="https://gild-tech.com/og-image.png">
+<meta name="twitter:image:alt" content="Gild-Tech — Automatisation Commerciale IA">
+
+<!-- Favicon et icônes -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#E91E8C">
+
+<!-- Hreflang (FR/EN) -->
+<link rel="alternate" hreflang="fr" href="https://gild-tech.com/">
+<link rel="alternate" hreflang="en" href="https://gild-tech.com/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://gild-tech.com/">
+
+
+<!-- ════════════════════════════════════════════ -->
+<!-- BLOC 2 : Schema.org JSON-LD                 -->
+<!-- À coller juste avant </head> de index.html  -->
+<!-- ════════════════════════════════════════════ -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://gild-tech.com/#organization",
+      "name": "Gild-Tech",
+      "legalName": "Girlden LTD",
+      "url": "https://gild-tech.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gild-tech.com/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Gild-Tech automatise la prospection, les relances et le suivi client des PME. Chaque prospect rappelé en moins de 5 minutes, chaque relance automatisée.",
+      "email": "contact@gild-tech.com",
+      "areaServed": ["FR", "BE", "CA-QC"],
+      "knowsAbout": ["Automatisation commerciale", "CRM", "Prospection B2B", "IA commerciale", "Workflow automation"],
+      "sameAs": [
+        "https://www.linkedin.com/company/gild-tech"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gild-tech.com/#website",
+      "url": "https://gild-tech.com/",
+      "name": "Gild-Tech",
+      "publisher": { "@id": "https://gild-tech.com/#organization" },
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://gild-tech.com/#service-starter",
+      "serviceType": "Automatisation commerciale",
+      "provider": { "@id": "https://gild-tech.com/#organization" },
+      "name": "Starter",
+      "description": "Récupérez les leads qui vous glissent entre les doigts. Pour les PME qui reçoivent 10 à 30 demandes par semaine.",
+      "offers": {
+        "@type": "Offer",
+        "price": "990",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://gild-tech.com/#service-pro",
+      "serviceType": "Automatisation commerciale",
+      "provider": { "@id": "https://gild-tech.com/#organization" },
+      "name": "Pro",
+      "description": "Arrêtez de gérer la prospection à la main. Système complet : capter, rappeler, relancer, suivre.",
+      "offers": {
+        "@type": "Offer",
+        "price": "2490",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://gild-tech.com/#service-scale",
+      "serviceType": "Prospection automatisée",
+      "provider": { "@id": "https://gild-tech.com/#organization" },
+      "name": "Scale",
+      "description": "Un commercial virtuel qui prospecte 24/7. Email, LinkedIn, SMS. Alternative à un commercial à 4 000€/mois.",
+      "offers": {
+        "@type": "Offer",
+        "price": "4990",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://gild-tech.com/#service-consulting",
+      "serviceType": "Consulting automatisation",
+      "provider": { "@id": "https://gild-tech.com/#organization" },
+      "name": "Consulting 90 jours",
+      "description": "Votre process commercial passé au crible. 90 jours pour tout transformer avec un opérateur dédié.",
+      "offers": {
+        "@type": "Offer",
+        "price": "14900",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien de temps pour être opérationnel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entre 1 semaine (Starter) et 4 semaines (Scale). L'offre Consulting 90 jours est un accompagnement long."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il un CRM existant ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. On configure un CRM pour vous si vous n'en avez pas, ou on se branche sur le vôtre si vous en avez déjà un."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le paiement est-il possible en plusieurs fois ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, paiement en 1 ou 3 fois sans frais sur demande. Tous les prix sont hors taxes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre Pro et Scale ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pro structure votre machine commerciale (capter et relancer ce qui arrive). Scale va chercher activement des prospects (prospection multi-canal)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+<!-- ════════════════════════════════════════════ -->
+<!-- BLOC 3 : À coller dans <head> des pages      -->
+<!-- LÉGALES (mentions-legales / cgv / conf / cookies) -->
+<!-- Remplacer {PAGE} par le nom de la page       -->
+<!-- ════════════════════════════════════════════ -->
+
+<!-- Exemple pour mentions-legales.html -->
+<link rel="canonical" href="https://gild-tech.com/mentions-legales.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gild-Tech">
+<meta property="og:title" content="Mentions légales | Gild-Tech">
+<meta property="og:url" content="https://gild-tech.com/mentions-legales.html">
+<meta property="og:image" content="https://gild-tech.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">

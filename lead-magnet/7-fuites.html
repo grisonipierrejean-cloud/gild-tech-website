@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les 7 fuites de leads en PME — Gild-Tech</title>
+<style>
+  @page { size: A4; margin: 0; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, Arial, sans-serif;
+    color: #111; line-height: 1.65;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm; min-height: 297mm;
+    padding: 20mm 18mm; page-break-after: always; position: relative;
+    background: white;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: white; min-height: 297mm; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 25mm 20mm;
+  }
+  .cover-glow {
+    position: absolute; top: 30%; right: -20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(233,30,140,0.35) 0%, transparent 65%);
+  }
+  .cover-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 14pt; letter-spacing: 0.15em;
+  }
+  .cover-logo-dot { width: 12px; height: 12px; border-radius: 50%; background: #E91E8C; }
+  .cover-logo .pink { color: #E91E8C; }
+
+  .cover-title { font-size: 42pt; font-weight: 900; letter-spacing: -1.5pt; line-height: 1.05; margin-bottom: 15pt; }
+  .cover-title .pink { color: #E91E8C; }
+  .cover-sub { font-size: 14pt; color: rgba(255,255,255,0.7); max-width: 140mm; line-height: 1.5; }
+
+  .cover-badge { display: inline-block; padding: 4pt 12pt; background: rgba(233,30,140,0.15); border: 1px solid rgba(233,30,140,0.4); color: #E91E8C; border-radius: 20px; font-size: 9pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20pt; }
+
+  .cover-footer { font-size: 9pt; color: rgba(255,255,255,0.5); }
+  .cover-footer strong { color: #E91E8C; }
+
+  /* Content pages */
+  h1 {
+    font-size: 26pt; font-weight: 900; letter-spacing: -1pt; line-height: 1.1;
+    margin-bottom: 12pt; color: #111;
+  }
+  h2 {
+    font-size: 15pt; font-weight: 800; letter-spacing: -0.3pt; line-height: 1.2;
+    margin: 15pt 0 6pt; color: #111;
+  }
+  h2 .pink { color: #E91E8C; }
+  .fuite-num {
+    display: inline-block; background: #E91E8C; color: white;
+    font-weight: 900; font-size: 18pt;
+    width: 38pt; height: 38pt; border-radius: 50%;
+    text-align: center; line-height: 38pt;
+    margin-bottom: 8pt;
+  }
+  p { font-size: 11pt; line-height: 1.65; margin-bottom: 8pt; color: #333; }
+  .pink { color: #E91E8C; }
+  strong { color: #111; font-weight: 700; }
+
+  .quote {
+    background: #fef6fa; border-left: 3pt solid #E91E8C;
+    padding: 10pt 14pt; margin: 12pt 0;
+    font-size: 10.5pt; font-style: italic;
+    border-radius: 0 8pt 8pt 0;
+  }
+
+  .stats {
+    background: #111; color: white;
+    border-radius: 10pt; padding: 14pt; margin: 10pt 0;
+    display: flex; gap: 20pt; align-items: center;
+  }
+  .stat-num { font-size: 26pt; font-weight: 900; color: #E91E8C; letter-spacing: -1pt; line-height: 1; }
+  .stat-txt { font-size: 10pt; line-height: 1.5; color: rgba(255,255,255,0.85); flex: 1; }
+
+  .fix-box {
+    background: #f5f5f5; border: 1px solid #e8e8e8;
+    border-radius: 8pt; padding: 12pt; margin: 10pt 0;
+  }
+  .fix-label { font-size: 8pt; font-weight: 700; color: #E91E8C; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4pt; }
+  .fix-box p { font-size: 10pt; margin-bottom: 0; }
+
+  .header-mini {
+    position: absolute; top: 10mm; left: 18mm; right: 18mm;
+    display: flex; justify-content: space-between;
+    font-size: 8pt; color: #999; letter-spacing: 0.05em;
+    padding-bottom: 4mm; border-bottom: 1px solid #e8e8e8;
+  }
+  .header-mini .pink { color: #E91E8C; font-weight: 700; }
+  .footer-mini {
+    position: absolute; bottom: 10mm; left: 18mm; right: 18mm;
+    font-size: 8pt; color: #999; text-align: center;
+    padding-top: 4mm; border-top: 1px solid #e8e8e8;
+  }
+
+  /* CTA page */
+  .cta-page {
+    background: linear-gradient(160deg, #E91E8C 0%, #c4177a 100%);
+    color: white; min-height: 297mm;
+    padding: 30mm 22mm; position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cta-page h1 { color: white; font-size: 32pt; margin-bottom: 14pt; }
+  .cta-page p { color: rgba(255,255,255,0.9); font-size: 12pt; }
+  .cta-box-box {
+    background: white; color: #111;
+    border-radius: 12pt; padding: 20pt;
+    margin-top: 20pt;
+  }
+  .cta-box-box h3 { font-size: 14pt; font-weight: 800; margin-bottom: 6pt; }
+  .cta-box-box p { color: #555; font-size: 10pt; margin-bottom: 10pt; }
+  .cta-btn {
+    display: inline-block; background: #E91E8C; color: white;
+    padding: 10pt 18pt; border-radius: 6pt;
+    font-weight: 700; font-size: 11pt; text-decoration: none;
+  }
+  .cta-contact {
+    margin-top: 18pt; font-size: 10pt; color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+  }
+  .cta-contact strong { color: white; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<section class="page cover">
+  <div class="cover-glow"></div>
+  <div>
+    <div class="cover-logo">GILD <span class="pink">TECH</span><span class="cover-logo-dot"></span></div>
+    <div style="margin-top:80pt;">
+      <div class="cover-badge">📊 Guide 2026 · Gratuit</div>
+      <h1 class="cover-title">Les <span class="pink">7 fuites</span> de leads<br>qui coûtent 40 000€/an<br>à votre PME.</h1>
+      <p class="cover-sub">
+        Un diagnostic sans détour des erreurs systémiques que 83% des dirigeants ne voient pas.
+        Concret, chiffré, actionnable.
+      </p>
+    </div>
+  </div>
+  <div class="cover-footer">
+    Par <strong>Pierre-Jean Deàk Grisoni</strong><br>
+    Ex-closer · Fondateur de Gild-Tech (Girlden LTD)<br>
+    gild-tech.com · contact@gild-tech.com
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 02</span>
+  </div>
+  <h1 style="margin-top:10mm">Avant de commencer.</h1>
+  <p>
+    Je m'appelle Pierre-Jean. Pendant 3 ans, j'ai été closer pour des agences immobilières et des entreprises B2B. J'ai signé plus de 200 deals.
+  </p>
+  <p>
+    Et à chaque fois que je perdais une vente, ce n'était jamais à cause du prix, du produit, ou de mes compétences. C'était à cause d'un détail bête : <strong>le prospect avait déjà signé ailleurs parce qu'on l'avait rappelé trop tard.</strong>
+  </p>
+  <p>
+    J'ai commencé à compter. Puis à patterns. J'ai identifié <strong>7 fuites systémiques</strong> qui touchent 8 PME sur 10.
+  </p>
+  <p>
+    Ce document, c'est la synthèse brute. Pas de blabla. Chaque fuite a sa <strong>symptomatologie</strong>, son <strong>coût moyen</strong>, et sa <strong>solution en 1 phrase</strong>.
+  </p>
+  <div class="quote">
+    « Le marketing remplit le seau. Tant que le seau a des trous, peu importe la taille du robinet. Commencez par colmater. »
+  </div>
+  <p style="margin-top:20pt;">
+    Prenez 10 minutes. Lisez. Comptez combien de fuites vous avez. Agissez.
+  </p>
+  <div class="footer-mini">© 2026 Gild-Tech · Girlden LTD · Tous droits réservés</div>
+</section>
+
+<!-- FUITE 1 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 03</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">1</div>
+    <h2>Le rappel à <span class="pink">J+1</span> ou pire.</h2>
+    <p>
+      Votre prospect remplit un formulaire à 14h. Votre commercial est en RDV.
+      Il le rappelle le lendemain à 11h. <strong>Trop tard.</strong>
+    </p>
+    <p>
+      Le prospect a ouvert 3 onglets en même temps que le vôtre. Il a comparé.
+      Il a pris RDV avec le concurrent qui a répondu en 12 minutes.
+    </p>
+    <div class="stats">
+      <div class="stat-num">-78%</div>
+      <div class="stat-txt">de conversion si vous rappelez après 1h. Chaque heure qui passe divise vos chances par deux.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Connectez votre formulaire à un webhook qui déclenche un appel téléphonique automatique en moins de 5 minutes. Coût : 1 après-midi d'installation, 50€/mois d'outillage.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 2 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 04</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">2</div>
+    <h2>Pas de relance <span class="pink">automatisée</span>.</h2>
+    <p>
+      Votre commercial a envoyé une proposition il y a 10 jours. Silence radio. Il est débordé. La relance "quand il y pensera" ne viendra jamais.
+    </p>
+    <p>
+      <strong>60% des deals B2B se gagnent entre la 4e et la 8e interaction.</strong> Si vous n'avez pas de séquence automatique, vous jouez la moitié d'un match.
+    </p>
+    <div class="stats">
+      <div class="stat-num">+41%</div>
+      <div class="stat-txt">de taux de closing pour les entreprises avec une séquence automatique J+3 / J+7 / J+14.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Une séquence email/SMS automatique à J+3, J+7, J+14 avec contenu personnalisé selon la phase. Pas de CRM sophistiqué requis : n8n + Gmail suffisent.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 3 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 05</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">3</div>
+    <h2>Le CRM <span class="pink">Google Sheet</span>.</h2>
+    <p>
+      Vous trackez vos leads dans un fichier partagé. Chacun fait à sa sauce. Les statuts sont flous. Les dates ne sont jamais à jour.
+    </p>
+    <p>
+      Résultat : <strong>vous découvrez les deals qui pourrissent le vendredi soir</strong>, quand votre équipe fait le point hebdo. 48h trop tard.
+    </p>
+    <div class="stats">
+      <div class="stat-num">25h</div>
+      <div class="stat-txt">perdues par semaine en moyenne dans une PME de 5 commerciaux sans CRM centralisé.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Un vrai CRM (HubSpot gratuit, Pipedrive, Notion) connecté au téléphone et à l'email. Toutes les interactions loggées automatiquement, sans saisie manuelle.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 4 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 06</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">4</div>
+    <h2>L'<span class="pink">absence de qualification</span>.</h2>
+    <p>
+      Vos commerciaux passent 40% de leur temps sur des leads qui ne signeront jamais. Ils rappellent tout le monde, qualifient après coup, et brûlent leur énergie.
+    </p>
+    <div class="quote">
+      « J'ai calculé pour un client : 60% de ses RDV étaient des prospects non qualifiés. En filtrant en amont, il a doublé son taux de closing sans travailler plus. »
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Un système de scoring automatique (taille entreprise, secteur, budget) qui classe les leads A/B/C. Les A sont rappelés en 5 min, les B entrent en nurturing, les C sont archivés.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 5 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 07</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">5</div>
+    <h2>Aucun <span class="pink">nurturing</span> des leads froids.</h2>
+    <p>
+      Un prospect a demandé un devis il y a 4 mois. Il n'était pas prêt. Aujourd'hui il l'est peut-être. Mais vous ne l'avez jamais recontacté.
+    </p>
+    <p>
+      <strong>15% des leads "morts" signent dans les 12 mois si vous les gardez chauds.</strong> La plupart des PME laissent cet argent sur la table.
+    </p>
+    <div class="stats">
+      <div class="stat-num">+15%</div>
+      <div class="stat-txt">de clients récupérés en ajoutant une séquence de réveil automatique à J+90, J+180, J+365.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Une newsletter mensuelle très ciblée + 3 emails de "réveil" intelligents envoyés à T+90, +180, +365. Contenu utile, pas commercial.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 6 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 08</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">6</div>
+    <h2>La <span class="pink">dépendance totale</span> au bouche-à-oreille.</h2>
+    <p>
+      Vos leads viennent par des recommandations. C'est confortable. C'est aussi <strong>fragile</strong> : un gros client mécontent, un changement de marché, et votre pipeline se vide en 60 jours.
+    </p>
+    <p>
+      <strong>Aucune PME ne devrait tirer plus de 50% de son CA d'une source unique.</strong>
+    </p>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Diversifier avec une prospection multi-canal automatisée : cold email + LinkedIn + SMS. Ça ne remplace pas le bouche-à-oreille, ça le sécurise.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- FUITE 7 -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 09</span>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="fuite-num">7</div>
+    <h2>Aucun <span class="pink">reporting temps réel</span>.</h2>
+    <p>
+      Vous ne savez pas combien de leads sont arrivés cette semaine. Vous ne savez pas quel canal convertit le mieux. Vous pilotez à l'intuition.
+    </p>
+    <p>
+      <strong>Ce qui ne se mesure pas ne s'améliore pas.</strong> Et ce qui ne s'améliore pas régresse, parce que vos concurrents, eux, mesurent.
+    </p>
+    <div class="stats">
+      <div class="stat-num">x 2,3</div>
+      <div class="stat-txt">le taux de conversion moyen en 6 mois pour les entreprises qui mettent en place un dashboard live.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">✅ La solution</div>
+      <p>Un dashboard qui affiche en live : leads entrants, taux de rappel &lt; 5 min, taux de conversion par canal, valeur du pipeline. Outils : Google Data Studio, Metabase, Notion.</p>
+    </div>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- RECAP -->
+<section class="page">
+  <div class="header-mini">
+    <span>GILD<span class="pink"> TECH</span> · Les 7 fuites de leads</span>
+    <span>p. 10</span>
+  </div>
+  <h1 style="margin-top:12mm">Votre checklist de diagnostic.</h1>
+  <p>Cochez les fuites qui vous concernent aujourd'hui.</p>
+
+  <div style="margin-top: 12pt;">
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">1. Je rappelle parfois mes prospects à J+1 ou plus tard.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">2. Je n'ai pas de séquence de relance automatique J+3/J+7/J+14.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">3. Mon CRM est un Google Sheet ou similaire.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">4. Je n'ai pas de système de qualification automatique.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">5. Mes leads "froids" ne reçoivent jamais de relance.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">6. Plus de 50% de mon CA vient du bouche-à-oreille.</span>
+    </div>
+    <div style="padding: 10pt 0; border-bottom: 1px solid #e8e8e8;">
+      <span style="font-size: 16pt; color: #E91E8C; margin-right: 10pt;">☐</span>
+      <span style="font-weight: 700;">7. Je n'ai pas de dashboard live de mon pipeline.</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 20pt; padding: 14pt; background: #fef6fa; border-radius: 8pt;">
+    <p style="font-size: 10pt; margin-bottom: 4pt;"><strong>0-1 case cochée :</strong> vous êtes dans le top 5% des PME. Continuez.</p>
+    <p style="font-size: 10pt; margin-bottom: 4pt;"><strong>2-3 cases :</strong> vous perdez probablement 50 000 à 150 000€ par an. Gérable rapidement.</p>
+    <p style="font-size: 10pt; margin-bottom: 0;"><strong>4+ cases :</strong> vous laissez fuir l'équivalent d'un salarié senior chaque année. Urgent.</p>
+  </div>
+  <div class="footer-mini">© 2026 Gild-Tech · gild-tech.com</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="page cta-page">
+  <div>
+    <div style="display:inline-block; padding: 4pt 12pt; background: rgba(255,255,255,0.15); border-radius: 20px; font-size: 9pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20pt;">Prochaine étape</div>
+    <h1>On identifie vos fuites ensemble.</h1>
+    <p>
+      30 minutes en visio. Gratuit. Sans engagement. On cartographie votre process commercial, on identifie précisément où partent vos leads, et on vous dit par quoi commencer.
+    </p>
+
+    <div class="cta-box-box">
+      <h3>📅 Réservez votre audit gratuit</h3>
+      <p>Créneaux disponibles cette semaine et la semaine prochaine.</p>
+      <a class="cta-btn" href="https://calendly.com/ops-gild-tech/30min">Réserver mon audit gratuit →</a>
+    </div>
+
+    <div class="cta-contact">
+      <strong>Pierre-Jean Deàk Grisoni</strong><br>
+      Fondateur de Gild-Tech (Girlden LTD)<br><br>
+      📞 +33 6 99 08 05 39<br>
+      ✉️ contact@gild-tech.com<br>
+      🌐 gild-tech.com<br>
+      💼 linkedin.com/company/gild-tech
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
