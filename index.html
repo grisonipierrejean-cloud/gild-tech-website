@@ -1216,21 +1216,46 @@
 </head>
 <body>
 
-  <!-- INTRO -->
-  <div class="intro" id="intro">
-    <div class="intro-cone"></div>
-    <div class="intro-ring intro-ring-1"></div>
-    <div class="intro-ring intro-ring-2"></div>
-    <div class="intro-ring intro-ring-3"></div>
-    <div class="intro-glow"></div>
-    <div class="intro-logo-wrap">
-      <div class="intro-logo-letters">G<span>T</span></div>
+  <!-- INTRO VIDEO OVERLAY -->
+  <div class="intro-video" id="intro">
+    <video
+      id="introPlayer"
+      src="assets/intro.mp4"
+      poster="assets/intro-poster.jpg"
+      autoplay muted playsinline
+      preload="auto"
+      aria-label="Gild-Tech intro"></video>
+    <div class="intro-controls">
+      <button class="intro-unmute" onclick="toggleIntroMute()" aria-label="Son">🔊</button>
+      <button class="intro-skip" onclick="enterSite()">PASSER &rarr;</button>
     </div>
-    <div class="intro-name">GILD TECH</div>
-    <div class="intro-sub">Automation Digital Systems</div>
-    <div class="intro-line"></div>
-    <div class="intro-skip" onclick="enterSite()">PASSER &rarr;</div>
   </div>
+  <style>
+    .intro-video {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.7s ease;
+    }
+    .intro-video video {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .intro-video.fade-out { opacity: 0; pointer-events: none; }
+    .intro-controls {
+      position: absolute; bottom: 32px; right: 32px;
+      display: flex; gap: 10px; z-index: 10000;
+    }
+    .intro-unmute, .intro-skip {
+      background: rgba(233,30,140,0.9); color: white; border: none;
+      padding: 10px 18px; border-radius: 100px; cursor: pointer;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+    .intro-unmute { padding: 10px 14px; font-size: 1rem; }
+    .intro-unmute:hover, .intro-skip:hover { background: #E91E8C; }
+  </style>
 
   <!-- NAV -->
   <nav>
@@ -1299,64 +1324,6 @@
       <p class="hero-note" data-fr="Audit gratuit 30 min · on vous montre où vous perdez du chiffre" data-en="30 min free audit · we show you where you&apos;re losing revenue">Audit gratuit 30 min · on vous montre où vous perdez du chiffre</p>
     </div>
   </div>
-
-  <!-- INTRO VIDEO -->
-  <section class="intro-video-section" id="intro-video">
-    <div class="intro-video-wrap">
-      <div class="intro-video-tag" data-fr="En 20 secondes" data-en="In 20 seconds">En 20 secondes</div>
-      <h2 class="intro-video-title" data-fr-html="Ce que vous perdez. <span class=&quot;hl&quot;>Ce qu'on répare.</span>" data-en-html="What you lose. <span class=&quot;hl&quot;>What we fix.</span>">Ce que vous perdez. <span class="hl">Ce qu'on répare.</span></h2>
-      <div class="intro-video-frame">
-        <video
-          src="assets/intro.mp4"
-          poster="assets/intro-poster.jpg"
-          autoplay muted loop playsinline
-          preload="auto"
-          controls
-          aria-label="Gild-Tech intro video"></video>
-      </div>
-    </div>
-  </section>
-  <style>
-    .intro-video-section {
-      padding: 5rem 2rem 4rem;
-      background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
-    }
-    .intro-video-wrap {
-      max-width: 1100px; margin: 0 auto; text-align: center;
-    }
-    .intro-video-tag {
-      display: inline-block;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.25em;
-      color: var(--pink); text-transform: uppercase;
-      padding: 0.4rem 1.1rem;
-      border: 1px solid var(--pink);
-      border-radius: 100px;
-      margin-bottom: 1.2rem;
-    }
-    .intro-video-title {
-      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
-      font-weight: 800; letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 2.5rem;
-    }
-    .intro-video-title .hl { color: var(--pink); }
-    .intro-video-frame {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 30px 70px rgba(233, 30, 140, 0.18), 0 8px 24px rgba(0,0,0,0.08);
-      aspect-ratio: 16 / 9;
-      background: #0a0a0f;
-    }
-    .intro-video-frame video {
-      width: 100%; height: 100%; display: block;
-      object-fit: cover;
-    }
-    @media (max-width: 700px) {
-      .intro-video-section { padding: 3rem 1rem 2.5rem; }
-      .intro-video-frame { border-radius: 14px; }
-    }
-  </style>
 
   <!-- TRUST BAR (Scrolling marquee) -->
   <div class="trust-bar">
@@ -1887,16 +1854,33 @@
     document.head.appendChild(pStyle);
 
     function enterSite() {
-      intro.classList.add('exit');
+      intro.classList.add('fade-out');
       document.body.style.overflow = '';
+      const v = document.getElementById('introPlayer');
+      if (v) v.pause();
       setTimeout(() => {
         intro.style.display = 'none';
         document.querySelector('nav').classList.add('show');
       }, 700);
     }
 
-    // Auto-enter after 5s
-    setTimeout(() => { if (!intro.classList.contains('exit')) enterSite(); }, 5000);
+    function toggleIntroMute() {
+      const v = document.getElementById('introPlayer');
+      const btn = document.querySelector('.intro-unmute');
+      if (!v) return;
+      v.muted = !v.muted;
+      if (btn) btn.textContent = v.muted ? '🔇' : '🔊';
+    }
+
+    // Auto-exit when video ends
+    const _introVid = document.getElementById('introPlayer');
+    if (_introVid) {
+      _introVid.addEventListener('ended', enterSite);
+      // Fallback : auto-exit after 22s if video fails
+      setTimeout(() => { if (!intro.classList.contains('fade-out')) enterSite(); }, 22000);
+    } else {
+      setTimeout(() => { if (!intro.classList.contains('fade-out')) enterSite(); }, 5000);
+    }
 
     // SCROLL REVEAL
     const obs = new IntersectionObserver(entries => {
