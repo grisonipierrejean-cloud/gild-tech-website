@@ -1216,39 +1216,6 @@
 </head>
 <body>
 
-  <!-- INTRO v6 — MP4 overlay, iPhone-safe -->
-  <div class="intro intro-vid" id="intro">
-    <video
-      class="intro-vid-player"
-      src="assets/intro.mp4"
-      poster="assets/intro-poster.jpg"
-      autoplay muted playsinline webkit-playsinline loop
-      preload="auto"
-      disableRemotePlayback
-      x-webkit-airplay="deny"></video>
-    <button class="intro-skip" onclick="enterSite()">PASSER &rarr;</button>
-  </div>
-  <style>
-    .intro-vid {
-      position: fixed; inset: 0; z-index: 9999;
-      background: #000;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .intro-vid-player {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      background: #000;
-    }
-    .intro-vid .intro-skip {
-      position: absolute; bottom: 28px; right: 28px;
-      background: rgba(233,30,140,0.9); color: white;
-      padding: 10px 18px; border-radius: 100px;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
-      cursor: pointer; border: none;
-      z-index: 10000;
-    }
-    .intro-vid.exit { opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
-  </style>
 
   <!-- NAV -->
   <nav>
@@ -1846,23 +1813,10 @@
     pStyle.textContent = `@keyframes pRise{0%{transform:translateY(0);opacity:0}8%{opacity:0.5}92%{opacity:0.2}100%{transform:translateY(-100vh) translateX(${Math.random()>0.5?'':'-'}${15+Math.random()*30}px);opacity:0}}`;
     document.head.appendChild(pStyle);
 
-    function enterSite() {
-      intro.classList.add('exit');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        intro.style.display = 'none';
-        document.querySelector('nav').classList.add('show');
-      }, 700);
-    }
-
-    // Auto-enter when video ends (or 22s fallback)
-    const _v = document.querySelector('.intro-vid-player');
-    if (_v) {
-      _v.addEventListener('ended', enterSite);
-      setTimeout(() => { if (!intro.classList.contains('exit')) enterSite(); }, 22000);
-    } else {
-      setTimeout(() => { if (!intro.classList.contains('exit')) enterSite(); }, 5500);
-    }
+    // No intro overlay - direct to site
+    document.body.style.overflow = '';
+    document.querySelector('nav').classList.add('show');
+    function enterSite() {} // stub for backward compat
 
     // SCROLL REVEAL
     const obs = new IntersectionObserver(entries => {
