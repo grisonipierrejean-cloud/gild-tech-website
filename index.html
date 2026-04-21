@@ -73,28 +73,40 @@
         "name": "Starter",
         "provider": { "@id": "https://gild-tech.com/#organization" },
         "description": "Récupérez les leads qui vous glissent entre les doigts.",
-        "offers": { "@type": "Offer", "price": "990", "priceCurrency": "EUR" }
+        "offers": [
+          { "@type": "Offer", "price": "990", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
+          { "@type": "Offer", "price": "990", "priceCurrency": "GBP", "areaServed": "GB" }
+        ]
       },
       {
         "@type": "Service",
         "name": "Pro",
         "provider": { "@id": "https://gild-tech.com/#organization" },
         "description": "Arrêtez de gérer la prospection à la main.",
-        "offers": { "@type": "Offer", "price": "2490", "priceCurrency": "EUR" }
+        "offers": [
+          { "@type": "Offer", "price": "2490", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
+          { "@type": "Offer", "price": "2490", "priceCurrency": "GBP", "areaServed": "GB" }
+        ]
       },
       {
         "@type": "Service",
         "name": "Scale",
         "provider": { "@id": "https://gild-tech.com/#organization" },
         "description": "Un commercial virtuel qui prospecte 24/7.",
-        "offers": { "@type": "Offer", "price": "4990", "priceCurrency": "EUR" }
+        "offers": [
+          { "@type": "Offer", "price": "4990", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
+          { "@type": "Offer", "price": "4990", "priceCurrency": "GBP", "areaServed": "GB" }
+        ]
       },
       {
         "@type": "Service",
         "name": "Consulting 90 jours",
         "provider": { "@id": "https://gild-tech.com/#organization" },
         "description": "Votre process commercial passé au crible. 90 jours pour tout transformer.",
-        "offers": { "@type": "Offer", "price": "14900", "priceCurrency": "EUR" }
+        "offers": [
+          { "@type": "Offer", "price": "14900", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
+          { "@type": "Offer", "price": "14900", "priceCurrency": "GBP", "areaServed": "GB" }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -735,6 +747,8 @@
       color: var(--pink); margin-top: 0.4rem;
       letter-spacing: 0.02em;
     }
+    .p-payment-note:empty { display: none; }
+    .p-pay-link:empty { display: none; }
     .p-pay-link {
       display: block; text-align: center;
       margin-top: 0.6rem;
@@ -1284,7 +1298,7 @@
     <div class="hero-content">
       <div class="hero-pill">
         <div class="pill-dot"></div>
-        Automatisation Commerciale IA
+        <span data-fr="Automatisation Commerciale IA" data-en="AI Sales Automation">Automatisation Commerciale IA</span>
       </div>
       <h1 data-fr-html="Vos prospects n&apos;attendent pas. <span class=&quot;hl&quot;>Votre concurrent non plus.</span>" data-en-html="Your prospects won&apos;t wait. <span class=&quot;hl&quot;>Neither will your competitor.</span>">Vos prospects n'attendent pas. <span class="hl">Votre concurrent non plus.</span></h1>
       <p class="hero-desc" data-fr="Un prospect non rappelé dans l'heure, c'est un client perdu. Gild-Tech automatise votre prospection, vos relances et votre suivi. Pour que plus aucun lead ne tombe dans l'oubli." data-en="A prospect not called back within the hour is a lost customer. Gild-Tech automates your prospecting, follow-ups and tracking. So no lead ever falls through the cracks.">Un prospect non rappelé dans l'heure, c'est un client perdu. Gild-Tech automatise votre prospection, vos relances et votre suivi. Pour que plus aucun lead ne tombe dans l'oubli.</p>
@@ -1439,21 +1453,21 @@
 
       <div class="calc-teaser-card">
         <div class="calc-teaser-label" data-fr="Exemple — Agence immobilière" data-en="Example — Real estate agency">Exemple — Agence immobilière</div>
-        <div class="calc-teaser-amount">276 <span>K€</span></div>
+        <div class="calc-teaser-amount" data-fr-html="276 <span>K€</span>" data-en-html="£276 <span>K</span>">276 <span>K€</span></div>
         <div class="calc-teaser-period" data-fr="perdus par an en moyenne" data-en="lost per year on average">perdus par an en moyenne</div>
 
         <div class="calc-teaser-stats">
           <div class="calc-teaser-stat">
             <div class="calc-teaser-stat-label" data-fr="Leads perdus" data-en="Lost leads">Leads perdus</div>
-            <div class="calc-teaser-stat-value red">55 890€</div>
+            <div class="calc-teaser-stat-value red" data-fr="55 890€" data-en="£55,890">55 890€</div>
           </div>
           <div class="calc-teaser-stat">
             <div class="calc-teaser-stat-label" data-fr="Relances manquées" data-en="Missed follow-ups">Relances manquées</div>
-            <div class="calc-teaser-stat-value red">220 320€</div>
+            <div class="calc-teaser-stat-value red" data-fr="220 320€" data-en="£220,320">220 320€</div>
           </div>
           <div class="calc-teaser-stat">
             <div class="calc-teaser-stat-label" data-fr="Potentiel récupérable" data-en="Recoverable">Potentiel récupérable</div>
-            <div class="calc-teaser-stat-value" style="color:#4ade80">165 726€</div>
+            <div class="calc-teaser-stat-value" style="color:#4ade80" data-fr="165 726€" data-en="£165,726">165 726€</div>
           </div>
           <div class="calc-teaser-stat">
             <div class="calc-teaser-stat-label" data-fr="Temps perdu / mois" data-en="Time wasted / month">Temps perdu / mois</div>
@@ -1461,7 +1475,7 @@
           </div>
         </div>
 
-        <div class="calc-teaser-disclaimer" data-fr="Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h" data-en="Based on 30 leads/month, 15% conv, 6 000€ avg deal, 24h callback">Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h</div>
+        <div class="calc-teaser-disclaimer" data-fr="Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h" data-en="Based on 30 leads/month, 15% conv, £6,000 avg deal, 24h callback">Basé sur 30 leads/mois, 15% conversion, panier 6 000€, délai rappel 24h</div>
       </div>
     </div>
   </div>
@@ -1597,8 +1611,8 @@
         <div class="p-promise" data-fr="Récupérez les leads qui vous glissent entre les doigts." data-en="Recover the leads slipping through your fingers.">Récupérez les leads qui vous glissent entre les doigts.</div>
         <div class="p-for" data-fr-html="Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps." data-en-html="For SMEs receiving <strong>10 to 30 inquiries per week</strong> who can't call them all back in time.">Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps.</div>
         <div class="p-gain" data-fr="Gain visé : 3 à 5 clients récupérés / mois" data-en="Target: 3 to 5 customers recovered / month">Gain visé : 3 à 5 clients récupérés / mois</div>
-        <div class="p-price">990€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× sans frais · Klarna" data-en="💳 Pay in 3× no fees · Klarna">💳 Paiement en 3× sans frais · Klarna</div>
+        <div class="p-price" data-fr="990€" data-en="£990">990€</div>
+        <div class="p-payment-note" data-fr="💳 Paiement en 3× sans frais · Klarna" data-en="">💳 Paiement en 3× sans frais · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr="Diagnostic de votre tunnel de conversion" data-en="Conversion funnel diagnosis">Diagnostic de votre tunnel de conversion</li>
@@ -1608,7 +1622,7 @@
           <li data-fr="Support 30 jours" data-en="30 days of support">Support 30 jours</li>
         </ul>
         <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/eVq9ATeZc16JgmD2nA2sM01" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="💳 Pay now">💳 Payer directement</a>
+        <a href="https://buy.stripe.com/eVq9ATeZc16JgmD2nA2sM01" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
       </div>
 
       <div class="p-card ft rv rv-d2">
@@ -1617,8 +1631,8 @@
         <div class="p-promise" data-fr="Arrêtez de gérer la prospection à la main." data-en="Stop managing prospecting manually.">Arrêtez de gérer la prospection à la main.</div>
         <div class="p-for" data-fr-html="Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé." data-en-html="For business owners losing <strong>10 to 15 h per week</strong> manually following up and tracking who's been called.">Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé.</div>
         <div class="p-gain" data-fr="Gain visé : 10 h / semaine + pipeline qui se remplit seul" data-en="Target: 10 h / week back + self-filling pipeline">Gain visé : 10 h / semaine + pipeline qui se remplit seul</div>
-        <div class="p-price">2 490€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 830€ · Klarna" data-en="💳 Pay in 3× of €830 · Klarna">💳 Paiement en 3× de 830€ · Klarna</div>
+        <div class="p-price" data-fr="2 490€" data-en="£2,490">2 490€</div>
+        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 830€ · Klarna" data-en="">💳 Paiement en 3× de 830€ · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr="Tout le Starter" data-en="Everything in Starter">Tout le Starter</li>
@@ -1629,7 +1643,7 @@
           <li data-fr="Support 60 jours" data-en="60 days of support">Support 60 jours</li>
         </ul>
         <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/14AeVdeZc2aN7Q75zM2sM02" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="💳 Pay now">💳 Payer directement</a>
+        <a href="https://buy.stripe.com/14AeVdeZc2aN7Q75zM2sM02" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
       </div>
 
       <div class="p-card rv rv-d3">
@@ -1637,8 +1651,8 @@
         <div class="p-promise" data-fr="Un commercial virtuel qui prospecte 24/7 à votre place." data-en="A virtual salesperson prospecting 24/7 for you.">Un commercial virtuel qui prospecte 24/7 à votre place.</div>
         <div class="p-for" data-fr-html="Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong>" data-en-html="For businesses tired of word-of-mouth. We go <strong>hunt your future customers</strong> on LinkedIn, email and SMS with personalized messages. <strong>Alternative to a 4 000€ / month salesperson.</strong>">Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong></div>
         <div class="p-gain" data-fr="Gain visé : +30 à 50 rendez-vous qualifiés / mois" data-en="Target: +30 to 50 qualified meetings / month">Gain visé : +30 à 50 rendez-vous qualifiés / mois</div>
-        <div class="p-price">4 990€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 1 663€ · Klarna" data-en="💳 Pay in 3× of €1,663 · Klarna">💳 Paiement en 3× de 1 663€ · Klarna</div>
+        <div class="p-price" data-fr="4 990€" data-en="£4,990">4 990€</div>
+        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 1 663€ · Klarna" data-en="">💳 Paiement en 3× de 1 663€ · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr="Tout le Pro" data-en="Everything in Pro">Tout le Pro</li>
@@ -1649,7 +1663,7 @@
           <li data-fr="Support 90 jours" data-en="90 days of support">Support 90 jours</li>
         </ul>
         <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/28E9AT4ky16J8Ub5zM2sM03" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="💳 Pay now">💳 Payer directement</a>
+        <a href="https://buy.stripe.com/28E9AT4ky16J8Ub5zM2sM03" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
       </div>
 
       <div class="p-card rv rv-d3">
@@ -1657,7 +1671,7 @@
         <div class="p-promise" data-fr="Votre process commercial passé au crible. 90 jours pour tout transformer." data-en="Your sales process under the microscope. 90 days to transform everything.">Votre process commercial passé au crible. 90 jours pour tout transformer.</div>
         <div class="p-for" data-fr-html="Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation." data-en-html="For business owners wanting a <strong>complete diagnosis</strong>, custom strategy and an operator driving the transformation.">Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation.</div>
         <div class="p-gain" data-fr="Gain visé : +30% de CA ou -20 h / semaine en 90 jours" data-en="Target: +30% revenue or -20 h / week in 90 days">Gain visé : +30% de CA ou -20 h / semaine en 90 jours</div>
-        <div class="p-price">14 900€</div>
+        <div class="p-price" data-fr="14 900€" data-en="£14,900">14 900€</div>
         <div class="p-payment-note" data-fr="💳 Paiement échelonné sur devis" data-en="💳 Staged payment on quote">💳 Paiement échelonné sur devis</div>
         <div class="p-div"></div>
         <ul class="p-features">
@@ -1688,9 +1702,9 @@
       </div>
       <div></div>
       <div class="maint-price">
-        <div class="maint-price-num">290<span>€ / mois</span></div>
+        <div class="maint-price-num" data-fr-html="290<span>€ / mois</span>" data-en-html="£290<span> / mo</span>">290<span>€ / mois</span></div>
         <div class="maint-price-note" data-fr="sans engagement · résiliable à tout moment" data-en="no commitment · cancel anytime">sans engagement · résiliable à tout moment</div>
-        <a href="https://buy.stripe.com/fZucN5eZc7v72vNaU62sM05" target="_blank" class="maint-cta" data-fr="Souscrire · 290€/mois" data-en="Subscribe · €290/mo">Souscrire · 290€/mois</a>
+        <a href="https://buy.stripe.com/fZucN5eZc7v72vNaU62sM05" target="_blank" class="maint-cta" data-fr="Souscrire · 290€/mois" data-en="Subscribe · £290/mo">Souscrire · 290€/mois</a>
       </div>
     </div>
 
@@ -1704,7 +1718,7 @@
       <span class="parcours-arrow">→</span>
       <span class="parcours-step" data-fr="Consulting" data-en="Consulting">Consulting</span>
       <span class="parcours-arrow">+</span>
-      <span class="parcours-step highlight" data-fr="Maintenance 290€/mois" data-en="Maintenance 290€/mo">Maintenance 290€/mois</span>
+      <span class="parcours-step highlight" data-fr="Maintenance 290€/mois" data-en="Maintenance £290/mo">Maintenance 290€/mois</span>
     </div>
 
     <!-- PAYMENT NOTE -->
@@ -1823,28 +1837,74 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
-    // LANGUAGE TOGGLE
-    let currentLang = 'fr';
+    // LANGUAGE TOGGLE (persisted across pages via URL ?lang= + localStorage)
+    function getInitialLang() {
+      const urlLang = new URLSearchParams(location.search).get('lang');
+      if (urlLang === 'en' || urlLang === 'fr') return urlLang;
+      try {
+        const stored = localStorage.getItem('gt_lang');
+        if (stored === 'en' || stored === 'fr') return stored;
+      } catch (e) {}
+      return 'fr';
+    }
+
+    let currentLang = getInitialLang();
+
     function toggleLang() {
       currentLang = currentLang === 'fr' ? 'en' : 'fr';
       applyLang();
-      document.getElementById('lang-fr').classList.toggle('lang-active', currentLang === 'fr');
-      document.getElementById('lang-en').classList.toggle('lang-active', currentLang === 'en');
+      persistLang();
+      updateInternalLinks();
+      syncLangUI();
+    }
+
+    function persistLang() {
+      try { localStorage.setItem('gt_lang', currentLang); } catch (e) {}
+      const url = new URL(location.href);
+      if (currentLang === 'en') url.searchParams.set('lang', 'en');
+      else url.searchParams.delete('lang');
+      history.replaceState({}, '', url);
+    }
+
+    function updateInternalLinks() {
+      const isEn = currentLang === 'en';
+      document.querySelectorAll('a[href]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+        try {
+          const u = new URL(href, location.origin);
+          if (u.origin !== location.origin) return;
+          if (isEn) u.searchParams.set('lang', 'en');
+          else u.searchParams.delete('lang');
+          a.setAttribute('href', u.pathname + u.search + u.hash);
+        } catch (e) {}
+      });
+    }
+
+    function syncLangUI() {
+      const frEl = document.getElementById('lang-fr');
+      const enEl = document.getElementById('lang-en');
+      if (frEl) frEl.classList.toggle('lang-active', currentLang === 'fr');
+      if (enEl) enEl.classList.toggle('lang-active', currentLang === 'en');
       document.documentElement.lang = currentLang;
     }
 
     function applyLang() {
-      // Plain text translations
       document.querySelectorAll('[data-fr]').forEach(el => {
         const val = el.getAttribute('data-' + currentLang);
         if (val !== null) el.textContent = val;
       });
-      // HTML translations (for elements with <strong>, <em>, <span>, etc.)
       document.querySelectorAll('[data-fr-html]').forEach(el => {
         const val = el.getAttribute('data-' + currentLang + '-html');
         if (val !== null) el.innerHTML = val;
       });
     }
+
+    // Apply on load
+    applyLang();
+    persistLang();
+    updateInternalLinks();
+    syncLangUI();
   </script>
 
 </body>
