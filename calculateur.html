@@ -76,6 +76,19 @@
     .nav-back { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
     .nav-back:hover { color: var(--pink); }
 
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-toggle {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.35rem 0.7rem; border-radius: 8px;
+      border: 1px solid var(--g200); background: white;
+      cursor: pointer; font-family: var(--font); font-size: 0.72rem;
+      font-weight: 600; color: var(--g600); transition: all 0.2s;
+    }
+    .lang-toggle:hover { border-color: var(--pink); color: var(--pink); }
+    .lang-sep { color: var(--g300); margin: 0 0.15rem; }
+    .lang-active { color: var(--pink); font-weight: 700; }
+    @media (max-width: 480px) { .nav-back { display: none; } }
+
     /* HERO */
     .hero {
       padding: 7rem 2rem 3rem; text-align: center;
@@ -548,7 +561,14 @@
         <div class="nav-mark">G<span>T</span></div>
         <div class="nav-logo">GILD <span>TECH</span></div>
       </a>
-      <a href="index.html" class="nav-back">&larr; Retour au site</a>
+      <div class="nav-right">
+        <a href="index.html" class="nav-back" data-fr="← Retour au site" data-en="← Back to site">← Retour au site</a>
+        <button class="lang-toggle" onclick="toggleLang()" aria-label="Change language">
+          <span id="lang-fr" class="lang-active">FR</span>
+          <span class="lang-sep">|</span>
+          <span id="lang-en">EN</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -558,76 +578,76 @@
     <div class="hero-content">
       <div class="hero-pill">
         <div class="pill-dot"></div>
-        Outil gratuit · 2 minutes
+        <span data-fr="Outil gratuit · 2 minutes" data-en="Free tool · 2 minutes">Outil gratuit · 2 minutes</span>
       </div>
-      <h1>Combien perdez-vous chaque mois à cause d'un <span class="hl">mauvais suivi commercial</span> ?</h1>
-      <p class="hero-desc">Répondez à 4 questions. On calcule votre manque à gagner réel et on vous envoie un plan d'action personnalisé.</p>
+      <h1 data-fr-html="Combien perdez-vous chaque mois à cause d'un <span class=&quot;hl&quot;>mauvais suivi commercial</span> ?" data-en-html="How much are you losing each month to <span class=&quot;hl&quot;>poor sales follow-up</span>?">Combien perdez-vous chaque mois à cause d'un <span class="hl">mauvais suivi commercial</span> ?</h1>
+      <p class="hero-desc" data-fr="Répondez à 4 questions. On calcule votre manque à gagner réel et on vous envoie un plan d'action personnalisé." data-en="Answer 4 questions. We calculate your real lost revenue and send you a custom action plan.">Répondez à 4 questions. On calcule votre manque à gagner réel et on vous envoie un plan d'action personnalisé.</p>
     </div>
   </div>
 
   <!-- STEPS -->
   <div class="steps-dots">
-    <div class="step-dot active" id="dot-1"><div class="step-dot-num">1</div>Métier</div>
+    <div class="step-dot active" id="dot-1"><div class="step-dot-num">1</div><span data-fr="Métier" data-en="Industry">Métier</span></div>
     <div class="step-dot-line" id="line-1"></div>
-    <div class="step-dot" id="dot-2"><div class="step-dot-num">2</div>Chiffres</div>
+    <div class="step-dot" id="dot-2"><div class="step-dot-num">2</div><span data-fr="Chiffres" data-en="Numbers">Chiffres</span></div>
     <div class="step-dot-line" id="line-2"></div>
-    <div class="step-dot" id="dot-3"><div class="step-dot-num">3</div>Résultat</div>
+    <div class="step-dot" id="dot-3"><div class="step-dot-num">3</div><span data-fr="Résultat" data-en="Result">Résultat</span></div>
   </div>
 
   <div class="container">
 
     <!-- STEP 1: NICHE -->
     <div class="step-panel active" id="panel-1">
-      <h2 class="step-title">Quelle est votre activité ?</h2>
-      <p class="step-subtitle">On adapte le calcul à votre métier.</p>
+      <h2 class="step-title" data-fr="Quelle est votre activité ?" data-en="What's your industry?">Quelle est votre activité ?</h2>
+      <p class="step-subtitle" data-fr="On adapte le calcul à votre métier." data-en="We tailor the calculation to your business.">On adapte le calcul à votre métier.</p>
 
       <div class="niche-grid">
         <div class="niche-card" data-niche="services-pro" data-panier="2500" data-leads="40" data-conv="20">
           <div class="niche-icon">💼</div>
-          <h3>Services professionnels</h3>
-          <p>Consulting, agence, SaaS, avocat, expert-comptable</p>
+          <h3 data-fr="Services professionnels" data-en="Professional services">Services professionnels</h3>
+          <p data-fr="Consulting, agence, SaaS, avocat, expert-comptable" data-en="Consulting, agency, SaaS, lawyer, accountant">Consulting, agence, SaaS, avocat, expert-comptable</p>
         </div>
         <div class="niche-card" data-niche="immobilier" data-panier="6000" data-leads="30" data-conv="15">
           <div class="niche-icon">🏠</div>
-          <h3>Immobilier</h3>
-          <p>Agences de transaction, gestion, promoteur</p>
+          <h3 data-fr="Immobilier" data-en="Real estate">Immobilier</h3>
+          <p data-fr="Agences de transaction, gestion, promoteur" data-en="Sales agencies, lettings, developers">Agences de transaction, gestion, promoteur</p>
         </div>
         <div class="niche-card" data-niche="sante" data-panier="80" data-leads="50" data-conv="40">
           <div class="niche-icon">⚕️</div>
-          <h3>Santé & Paramédical</h3>
-          <p>Médecin, IDEL, kiné, ostéo, dentiste, psy</p>
+          <h3 data-fr="Santé & Paramédical" data-en="Health & Paramedical">Santé & Paramédical</h3>
+          <p data-fr="Médecin, IDEL, kiné, ostéo, dentiste, psy" data-en="GP, nurse, physio, osteo, dentist, therapist">Médecin, IDEL, kiné, ostéo, dentiste, psy</p>
         </div>
         <div class="niche-card" data-niche="hospitality" data-panier="120" data-leads="200" data-conv="35">
           <div class="niche-icon">🍽️</div>
-          <h3>Hôtellerie & Restauration</h3>
-          <p>Restaurant, hôtel, camping, traiteur, bar</p>
+          <h3 data-fr="Hôtellerie & Restauration" data-en="Hospitality & Restaurants">Hôtellerie & Restauration</h3>
+          <p data-fr="Restaurant, hôtel, camping, traiteur, bar" data-en="Restaurant, hotel, camping, catering, bar">Restaurant, hôtel, camping, traiteur, bar</p>
         </div>
         <div class="niche-card" data-niche="commerce" data-panier="250" data-leads="150" data-conv="25">
           <div class="niche-icon">🛍️</div>
-          <h3>Commerce & Artisanat</h3>
-          <p>Boutique, e-commerce, artisan, prestation</p>
+          <h3 data-fr="Commerce & Artisanat" data-en="Retail & Trades">Commerce & Artisanat</h3>
+          <p data-fr="Boutique, e-commerce, artisan, prestation" data-en="Shop, e-commerce, tradesperson, service">Boutique, e-commerce, artisan, prestation</p>
         </div>
         <div class="niche-card" data-niche="autre" data-panier="1500" data-leads="50" data-conv="20">
           <div class="niche-icon">🏢</div>
-          <h3>Autre activité</h3>
-          <p>Industrie, éducation, association, autre</p>
+          <h3 data-fr="Autre activité" data-en="Other">Autre activité</h3>
+          <p data-fr="Industrie, éducation, association, autre" data-en="Industry, education, nonprofit, other">Industrie, éducation, association, autre</p>
         </div>
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-primary" id="go-step-2" disabled>Continuer &rarr;</button>
+        <button class="btn btn-primary" id="go-step-2" data-fr="Continuer →" data-en="Continue →" disabled>Continuer →</button>
       </div>
     </div>
 
     <!-- STEP 2: FORM -->
     <div class="step-panel" id="panel-2">
-      <h2 class="step-title">Vos chiffres actuels</h2>
-      <p class="step-subtitle">Estimation approximative, c'est OK.</p>
+      <h2 class="step-title" data-fr="Vos chiffres actuels" data-en="Your current numbers">Vos chiffres actuels</h2>
+      <p class="step-subtitle" data-fr="Estimation approximative, c'est OK." data-en="Rough estimates are fine.">Estimation approximative, c'est OK.</p>
 
       <div class="form-wrap">
 
         <div class="form-group">
-          <label>Combien de prospects vous contactent chaque mois ?
+          <label data-fr-html="Combien de prospects vous contactent chaque mois ?<small>Formulaires, appels, emails, messages.</small>" data-en-html="How many prospects contact you each month?<small>Forms, calls, emails, messages.</small>">Combien de prospects vous contactent chaque mois ?
             <small>Formulaires, appels, emails, messages.</small>
           </label>
           <div class="slider-wrap">
@@ -638,7 +658,7 @@
         </div>
 
         <div class="form-group">
-          <label>Combien finissent par devenir clients ? <small>Taux de conversion moyen en %.</small></label>
+          <label data-fr-html="Combien finissent par devenir clients ? <small>Taux de conversion moyen en %.</small>" data-en-html="How many become customers? <small>Average conversion rate in %.</small>">Combien finissent par devenir clients ? <small>Taux de conversion moyen en %.</small></label>
           <div class="slider-wrap">
             <div class="slider-value"><span id="v-conv">15</span>%</div>
             <input type="range" id="conv" min="1" max="80" value="15" step="1">
@@ -647,40 +667,40 @@
         </div>
 
         <div class="form-group">
-          <label>Quelle est la valeur moyenne d'un client ? <small>Panier moyen en € (HT).</small></label>
+          <label data-fr-html="Quelle est la valeur moyenne d'un client ? <small>Panier moyen en € (HT).</small>" data-en-html="What's the average customer value? <small>Average deal size in £ (excl. VAT).</small>">Quelle est la valeur moyenne d'un client ? <small>Panier moyen en € (HT).</small></label>
           <div class="slider-wrap">
-            <div class="slider-value"><span id="v-panier">6000</span> €</div>
+            <div class="slider-value" id="v-panier-wrap">6 000 €</div>
             <input type="range" id="panier" min="50" max="20000" value="6000" step="50">
-            <div class="slider-range"><span>50 €</span><span>20 000 €+</span></div>
+            <div class="slider-range"><span data-fr="50 €" data-en="£50">50 €</span><span data-fr="20 000 €+" data-en="£20,000+">20 000 €+</span></div>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Combien de temps mettez-vous à rappeler un prospect ?
+          <label data-fr-html="Combien de temps mettez-vous à rappeler un prospect ?<small>Temps moyen de réponse en heures.</small>" data-en-html="How long to call back a prospect?<small>Average response time in hours.</small>">Combien de temps mettez-vous à rappeler un prospect ?
             <small>Temps moyen de réponse en heures.</small>
           </label>
           <div class="slider-wrap">
             <div class="slider-value"><span id="v-delai">24</span>h</div>
             <input type="range" id="delai" min="0" max="72" value="24" step="1">
-            <div class="slider-range"><span>Immédiat</span><span>72h+</span></div>
+            <div class="slider-range"><span data-fr="Immédiat" data-en="Instant">Immédiat</span><span>72h+</span></div>
           </div>
         </div>
 
         <div class="form-divider"></div>
 
         <div class="form-contact">
-          <label class="form-contact-label">📬 Où recevez-vous votre diagnostic ?</label>
-          <p class="form-contact-sub">On vous envoie le détail complet + 3 leviers d'optimisation pour votre métier.</p>
-          <input type="text" id="f-name" placeholder="Prénom" autocomplete="given-name">
-          <input type="email" id="f-email" placeholder="Email professionnel" autocomplete="email">
-          <p class="form-contact-consent">En soumettant, vous acceptez de recevoir votre diagnostic par email. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+          <label class="form-contact-label" data-fr="📬 Où recevez-vous votre diagnostic ?" data-en="📬 Where should we send your diagnosis?">📬 Où recevez-vous votre diagnostic ?</label>
+          <p class="form-contact-sub" data-fr="On vous envoie le détail complet + 3 leviers d'optimisation pour votre métier." data-en="We'll send the full breakdown + 3 optimization levers for your industry.">On vous envoie le détail complet + 3 leviers d'optimisation pour votre métier.</p>
+          <input type="text" id="f-name" data-fr-placeholder="Prénom" data-en-placeholder="First name" placeholder="Prénom" autocomplete="given-name">
+          <input type="email" id="f-email" data-fr-placeholder="Email professionnel" data-en-placeholder="Work email" placeholder="Email professionnel" autocomplete="email">
+          <p class="form-contact-consent" data-fr-html="En soumettant, vous acceptez de recevoir votre diagnostic par email. <a href=&quot;confidentialite.html&quot;>Politique de confidentialité</a>." data-en-html="By submitting, you agree to receive your diagnosis by email. <a href=&quot;confidentialite.html&quot;>Privacy policy</a>.">En soumettant, vous acceptez de recevoir votre diagnostic par email. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
         </div>
 
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-secondary" onclick="goStep(1)">&larr; Retour</button>
-        <button class="btn btn-primary" id="btn-compute" onclick="computeAndShowTeaser()">Voir mon diagnostic &rarr;</button>
+        <button class="btn btn-secondary" onclick="goStep(1)" data-fr="← Retour" data-en="← Back">← Retour</button>
+        <button class="btn btn-primary" id="btn-compute" onclick="computeAndShowTeaser()" data-fr="Voir mon diagnostic →" data-en="See my diagnosis →">Voir mon diagnostic →</button>
       </div>
     </div>
 
@@ -688,8 +708,8 @@
     <div class="step-panel" id="panel-calc">
       <div class="calc-loading">
         <div class="calc-loading-logo">G<span>T</span></div>
-        <div class="calc-loading-title">Calcul de votre diagnostic…</div>
-        <div class="calc-loading-subtitle">On analyse vos chiffres pendant que vous laissez votre email.</div>
+        <div class="calc-loading-title" data-fr="Calcul de votre diagnostic…" data-en="Computing your diagnosis…">Calcul de votre diagnostic…</div>
+        <div class="calc-loading-subtitle" data-fr="On analyse vos chiffres pendant que vous laissez votre email." data-en="Analyzing your numbers while you share your email.">On analyse vos chiffres pendant que vous laissez votre email.</div>
 
         <div class="calc-progress-wrap">
           <div class="calc-progress-bar"><div class="calc-progress-fill" id="progress-fill"></div></div>
@@ -697,19 +717,19 @@
           <div class="calc-phases">
             <div class="calc-phase" id="phase-1">
               <div class="calc-phase-dot"></div>
-              <span>Analyse de votre process commercial</span>
+              <span data-fr="Analyse de votre process commercial" data-en="Analyzing your sales process">Analyse de votre process commercial</span>
             </div>
             <div class="calc-phase" id="phase-2">
               <div class="calc-phase-dot"></div>
-              <span>Comparaison aux données de votre secteur</span>
+              <span data-fr="Comparaison aux données de votre secteur" data-en="Benchmarking against your industry">Comparaison aux données de votre secteur</span>
             </div>
             <div class="calc-phase" id="phase-3">
               <div class="calc-phase-dot"></div>
-              <span>Calcul de votre manque à gagner annuel</span>
+              <span data-fr="Calcul de votre manque à gagner annuel" data-en="Calculating your annual lost revenue">Calcul de votre manque à gagner annuel</span>
             </div>
             <div class="calc-phase" id="phase-4">
               <div class="calc-phase-dot"></div>
-              <span>Génération de votre plan d'action</span>
+              <span data-fr="Génération de votre plan d'action" data-en="Generating your action plan">Génération de votre plan d'action</span>
             </div>
           </div>
         </div>
@@ -720,48 +740,48 @@
 
     <!-- STEP 4: FULL RESULT -->
     <div class="step-panel" id="panel-4">
-      <h2 class="step-title">Voici ce que vous perdez réellement</h2>
-      <p class="step-subtitle">Détail complet basé sur vos chiffres.</p>
+      <h2 class="step-title" data-fr="Voici ce que vous perdez réellement" data-en="Here's what you're really losing">Voici ce que vous perdez réellement</h2>
+      <p class="step-subtitle" data-fr="Détail complet basé sur vos chiffres." data-en="Full breakdown based on your numbers.">Détail complet basé sur vos chiffres.</p>
 
       <div class="result-main">
-        <div class="result-main-label">Manque à gagner annuel</div>
-        <div class="result-main-num"><span id="r-total">0</span> €</div>
-        <div class="result-main-period">soit <span id="r-monthly">0</span> € par mois</div>
+        <div class="result-main-label" data-fr="Manque à gagner annuel" data-en="Annual lost revenue">Manque à gagner annuel</div>
+        <div class="result-main-num" id="r-total-wrap">0 €</div>
+        <div class="result-main-period" data-fr-html="soit <span id=&quot;r-monthly&quot;>0 €</span> par mois" data-en-html="that's <span id=&quot;r-monthly&quot;>£0</span> per month">soit <span id="r-monthly">0 €</span> par mois</div>
       </div>
 
       <div class="result-grid">
         <div class="result-card">
-          <div class="result-card-label">Leads perdus par lenteur</div>
-          <div class="result-card-value red"><span id="r-lost-speed">0</span> €</div>
-          <div class="result-card-sub">Vos prospects partent chez un concurrent plus rapide.</div>
+          <div class="result-card-label" data-fr="Leads perdus par lenteur" data-en="Leads lost to delays">Leads perdus par lenteur</div>
+          <div class="result-card-value red" id="r-lost-speed-wrap">0 €</div>
+          <div class="result-card-sub" data-fr="Vos prospects partent chez un concurrent plus rapide." data-en="Your prospects go to a faster competitor.">Vos prospects partent chez un concurrent plus rapide.</div>
         </div>
         <div class="result-card">
-          <div class="result-card-label">Opportunités non suivies</div>
-          <div class="result-card-value red"><span id="r-lost-followup">0</span> €</div>
-          <div class="result-card-sub">Sans relance automatique, 60% des deals se perdent.</div>
+          <div class="result-card-label" data-fr="Opportunités non suivies" data-en="Untracked opportunities">Opportunités non suivies</div>
+          <div class="result-card-value red" id="r-lost-followup-wrap">0 €</div>
+          <div class="result-card-sub" data-fr="Sans relance automatique, 60% des deals se perdent." data-en="Without auto follow-up, 60% of deals are lost.">Sans relance automatique, 60% des deals se perdent.</div>
         </div>
         <div class="result-card">
-          <div class="result-card-label">Potentiel récupérable</div>
-          <div class="result-card-value green"><span id="r-recoverable">0</span> €</div>
-          <div class="result-card-sub">Réaliste avec un bon système en 90 jours.</div>
+          <div class="result-card-label" data-fr="Potentiel récupérable" data-en="Recoverable">Potentiel récupérable</div>
+          <div class="result-card-value green" id="r-recoverable-wrap">0 €</div>
+          <div class="result-card-sub" data-fr="Réaliste avec un bon système en 90 jours." data-en="Realistic with a proper system in 90 days.">Réaliste avec un bon système en 90 jours.</div>
         </div>
         <div class="result-card">
-          <div class="result-card-label">Temps perdu / mois</div>
+          <div class="result-card-label" data-fr="Temps perdu / mois" data-en="Time wasted / month">Temps perdu / mois</div>
           <div class="result-card-value"><span id="r-hours">0</span> h</div>
-          <div class="result-card-sub">En relances manuelles et suivi non structuré.</div>
+          <div class="result-card-sub" data-fr="En relances manuelles et suivi non structuré." data-en="In manual follow-ups and unstructured tracking.">En relances manuelles et suivi non structuré.</div>
         </div>
       </div>
 
       <div class="cta-block">
-        <h3>Prêt à récupérer tout ça ?</h3>
-        <p>30 minutes pour identifier précisément où sont vos fuites. On vous montre exactement comment les colmater.</p>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn-white">
-          Réserver mon audit gratuit &rarr;
+        <h3 data-fr="Prêt à récupérer tout ça ?" data-en="Ready to recover all that?">Prêt à récupérer tout ça ?</h3>
+        <p data-fr="30 minutes pour identifier précisément où sont vos fuites. On vous montre exactement comment les colmater." data-en="30 minutes to pinpoint your leaks. We show you exactly how to plug them.">30 minutes pour identifier précisément où sont vos fuites. On vous montre exactement comment les colmater.</p>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn-white" data-fr="Réserver mon audit gratuit →" data-en="Book my free audit →">
+          Réserver mon audit gratuit →
         </a>
       </div>
 
       <div class="btn-row" style="margin-top: 1.5rem;">
-        <button class="btn btn-secondary" onclick="restart()">&larr; Refaire le calcul</button>
+        <button class="btn btn-secondary" onclick="restart()" data-fr="← Refaire le calcul" data-en="← Start over">← Refaire le calcul</button>
       </div>
     </div>
 
@@ -772,9 +792,9 @@
     <div class="footer-inner">
       <div class="footer-brand">GILD <span>TECH</span></div>
       <ul class="footer-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="mentions-legales.html">Mentions légales</a></li>
-        <li><a href="confidentialite.html">Confidentialité</a></li>
+        <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+        <li><a href="mentions-legales.html" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a></li>
+        <li><a href="confidentialite.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
         <li><a href="mailto:contact@gild-tech.com">Contact</a></li>
       </ul>
     </div>
@@ -782,6 +802,87 @@
 
   <script src="config.js"></script>
   <script>
+    // ==========================================
+    // LANGUAGE (shared pattern with index.html)
+    // ==========================================
+    function getInitialLang() {
+      const urlLang = new URLSearchParams(location.search).get('lang');
+      if (urlLang === 'en' || urlLang === 'fr') return urlLang;
+      try {
+        const stored = localStorage.getItem('gt_lang');
+        if (stored === 'en' || stored === 'fr') return stored;
+      } catch (e) {}
+      return 'fr';
+    }
+    let currentLang = getInitialLang();
+
+    function formatMoney(n) {
+      const rounded = Math.round(n);
+      if (currentLang === 'en') return '£' + rounded.toLocaleString('en-GB');
+      return rounded.toLocaleString('fr-FR') + ' €';
+    }
+    function fmt(n) {
+      return Math.round(n).toLocaleString(currentLang === 'en' ? 'en-GB' : 'fr-FR');
+    }
+
+    function applyLang() {
+      document.querySelectorAll('[data-fr]').forEach(el => {
+        const val = el.getAttribute('data-' + currentLang);
+        if (val !== null) el.textContent = val;
+      });
+      document.querySelectorAll('[data-fr-html]').forEach(el => {
+        const val = el.getAttribute('data-' + currentLang + '-html');
+        if (val !== null) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-fr-placeholder]').forEach(el => {
+        const val = el.getAttribute('data-' + currentLang + '-placeholder');
+        if (val !== null) el.setAttribute('placeholder', val);
+      });
+      // Re-render dynamic values (currency / slider)
+      const vp = document.getElementById('v-panier-wrap');
+      if (vp) vp.textContent = formatMoney(state.panier);
+      if (window.__lastResult) renderResult(window.__lastResult);
+    }
+
+    function persistLang() {
+      try { localStorage.setItem('gt_lang', currentLang); } catch (e) {}
+      const url = new URL(location.href);
+      if (currentLang === 'en') url.searchParams.set('lang', 'en');
+      else url.searchParams.delete('lang');
+      history.replaceState({}, '', url);
+    }
+
+    function updateInternalLinks() {
+      const isEn = currentLang === 'en';
+      document.querySelectorAll('a[href]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+        try {
+          const u = new URL(href, location.origin);
+          if (u.origin !== location.origin) return;
+          if (isEn) u.searchParams.set('lang', 'en');
+          else u.searchParams.delete('lang');
+          a.setAttribute('href', u.pathname + u.search + u.hash);
+        } catch (e) {}
+      });
+    }
+
+    function syncLangUI() {
+      const frEl = document.getElementById('lang-fr');
+      const enEl = document.getElementById('lang-en');
+      if (frEl) frEl.classList.toggle('lang-active', currentLang === 'fr');
+      if (enEl) enEl.classList.toggle('lang-active', currentLang === 'en');
+      document.documentElement.lang = currentLang;
+    }
+
+    function toggleLang() {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      applyLang();
+      persistLang();
+      updateInternalLinks();
+      syncLangUI();
+    }
+
     // STATE
     const state = { niche: null, leads: 30, conv: 15, panier: 6000, delai: 24, name: '', email: '', animationDone: false };
 
@@ -889,7 +990,7 @@
       document.getElementById('panier').value = state.panier;
       document.getElementById('v-leads').textContent = state.leads;
       document.getElementById('v-conv').textContent = state.conv;
-      document.getElementById('v-panier').textContent = state.panier.toLocaleString('fr-FR');
+      document.getElementById('v-panier-wrap').textContent = formatMoney(state.panier);
       goStep(2);
     }
 
@@ -901,10 +1002,13 @@
     // ==========================================
     ['leads', 'conv', 'panier', 'delai'].forEach(id => {
       const el = document.getElementById(id);
-      const val = document.getElementById('v-' + id);
       el.addEventListener('input', () => {
         state[id] = parseInt(el.value);
-        val.textContent = id === 'panier' ? parseInt(el.value).toLocaleString('fr-FR') : el.value;
+        if (id === 'panier') {
+          document.getElementById('v-panier-wrap').textContent = formatMoney(state.panier);
+        } else {
+          document.getElementById('v-' + id).textContent = el.value;
+        }
       });
     });
 
@@ -999,8 +1103,6 @@
       };
     }
 
-    function fmt(n) { return n.toLocaleString('fr-FR'); }
-
     // ==========================================
     // COMPUTE + ANIMATE + SHOW RESULT
     // ==========================================
@@ -1074,14 +1176,21 @@
       }, 4100);
     }
 
+    function renderResult(r) {
+      document.getElementById('r-total-wrap').textContent = formatMoney(r.totalLossYear);
+      document.getElementById('r-lost-speed-wrap').textContent = formatMoney(r.lostSpeedYear);
+      document.getElementById('r-lost-followup-wrap').textContent = formatMoney(r.lostFollowupYear);
+      document.getElementById('r-recoverable-wrap').textContent = formatMoney(r.recoverableYear);
+      document.getElementById('r-hours').textContent = r.hoursLost;
+      // r-monthly is recreated on lang switch via data-*-html — grab it fresh
+      const rMonthly = document.getElementById('r-monthly');
+      if (rMonthly) rMonthly.textContent = formatMoney(r.totalLossMonth);
+    }
+
     function showFullResult() {
       const r = computeLosses();
-      document.getElementById('r-total').textContent = fmt(r.totalLossYear);
-      document.getElementById('r-monthly').textContent = fmt(r.totalLossMonth);
-      document.getElementById('r-lost-speed').textContent = fmt(r.lostSpeedYear);
-      document.getElementById('r-lost-followup').textContent = fmt(r.lostFollowupYear);
-      document.getElementById('r-recoverable').textContent = fmt(r.recoverableYear);
-      document.getElementById('r-hours').textContent = r.hoursLost;
+      window.__lastResult = r;
+      renderResult(r);
 
       // Switch panel
       document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
@@ -1091,10 +1200,17 @@
 
     function restart() {
       state.niche = null;
+      window.__lastResult = null;
       document.querySelectorAll('.niche-card').forEach(c => c.classList.remove('selected'));
       document.getElementById('go-step-2').disabled = true;
       goStep(1);
     }
+
+    // Apply language on load
+    applyLang();
+    persistLang();
+    updateInternalLinks();
+    syncLangUI();
   </script>
 
 </body>
