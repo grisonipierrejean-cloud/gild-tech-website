@@ -1815,28 +1815,7 @@
   </footer>
 
   <script>
-    // INTRO
-    document.body.style.overflow = 'hidden';
-
-    // Particles
-    const intro = document.getElementById('intro');
-    for (let i = 0; i < 25; i++) {
-      const p = document.createElement('div');
-      p.className = 'intro-particle';
-      const d = 5 + Math.random() * 10;
-      const delay = Math.random() * 6;
-      p.style.cssText = `left:${Math.random()*100}%;bottom:-5px;width:${1+Math.random()*1.5}px;height:${1+Math.random()*1.5}px;animation:pRise ${d}s ${delay}s linear infinite;`;
-      intro.appendChild(p);
-    }
-
-    const pStyle = document.createElement('style');
-    pStyle.textContent = `@keyframes pRise{0%{transform:translateY(0);opacity:0}8%{opacity:0.5}92%{opacity:0.2}100%{transform:translateY(-100vh) translateX(${Math.random()>0.5?'':'-'}${15+Math.random()*30}px);opacity:0}}`;
-    document.head.appendChild(pStyle);
-
-    // No intro overlay - direct to site
-    document.body.style.overflow = '';
     document.querySelector('nav').classList.add('show');
-    function enterSite() {} // stub for backward compat
 
     // SCROLL REVEAL
     const obs = new IntersectionObserver(entries => {
