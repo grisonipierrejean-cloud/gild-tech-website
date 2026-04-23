@@ -82,7 +82,7 @@
         "@type": "Service",
         "name": "Pro",
         "provider": { "@id": "https://gild-tech.com/#organization" },
-        "description": "Arrêtez de gérer la prospection à la main.",
+        "description": "Arrêtez de faire du secrétariat commercial.",
         "offers": [
           { "@type": "Offer", "price": "2490", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
           { "@type": "Offer", "price": "2490", "priceCurrency": "GBP", "areaServed": "GB" }
@@ -92,7 +92,7 @@
         "@type": "Service",
         "name": "Scale",
         "provider": { "@id": "https://gild-tech.com/#organization" },
-        "description": "Un commercial virtuel qui prospecte 24/7.",
+        "description": "Un commercial virtuel qui prospecte les vendeurs à votre place — 24/7, sans embauche.",
         "offers": [
           { "@type": "Offer", "price": "4990", "priceCurrency": "EUR", "areaServed": ["FR", "BE", "CA-QC"] },
           { "@type": "Offer", "price": "4990", "priceCurrency": "GBP", "areaServed": "GB" }
@@ -113,8 +113,8 @@
         "mainEntity": [
           { "@type": "Question", "name": "Combien de temps pour être opérationnel ?", "acceptedAnswer": { "@type": "Answer", "text": "Entre 1 semaine (Starter) et 4 semaines (Scale). Consulting : 90 jours." } },
           { "@type": "Question", "name": "Faut-il un CRM existant ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. On configure un CRM si besoin, ou on se branche sur le vôtre." } },
-          { "@type": "Question", "name": "Paiement en plusieurs fois ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, paiement en 1 ou 3 fois sans frais sur demande. Tous les prix sont HT." } },
-          { "@type": "Question", "name": "Pro vs Scale ?", "acceptedAnswer": { "@type": "Answer", "text": "Pro structure votre machine commerciale. Scale prospecte activement." } }
+          { "@type": "Question", "name": "Facilités de paiement ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, des facilités de paiement sont possibles sur demande. Tous les prix sont HT." } },
+          { "@type": "Question", "name": "Pro vs Scale ?", "acceptedAnswer": { "@type": "Answer", "text": "Pro = vous perdez du temps et des leads à la main. Scale = vous plafonnez et voulez grossir sans embaucher." } }
         ]
       }
     ]
@@ -1603,76 +1603,69 @@
   <section id="offres">
     <div class="tag rv" data-fr="Nos offres" data-en="Pricing">Nos offres</div>
     <h2 class="heading rv" data-fr="Choisissez votre niveau. On s'occupe du reste." data-en="Choose your level. We handle the rest.">Choisissez votre niveau. On s'occupe du reste.</h2>
-    <p class="subdesc rv" data-fr="Du premier workflow à la transformation complète. Installation, formation et support inclus dans chaque offre." data-en="From first workflow to full transformation. Setup, training and support included in every offer.">Du premier workflow à la transformation complète. Installation, formation et support inclus dans chaque offre.</p>
+    <p class="subdesc rv" data-fr="De votre premier lead récupéré jusqu'à l'agence qui tourne sans vous. Installation, formation et support inclus dans chaque offre." data-en="From your first recovered lead to a business that runs without you. Setup, training and support included in every offer.">De votre premier lead récupéré jusqu'à l'agence qui tourne sans vous. Installation, formation et support inclus dans chaque offre.</p>
     <div class="pricing-grid">
 
       <div class="p-card rv rv-d1">
         <div class="p-name">Starter</div>
         <div class="p-promise" data-fr="Récupérez les leads qui vous glissent entre les doigts." data-en="Recover the leads slipping through your fingers.">Récupérez les leads qui vous glissent entre les doigts.</div>
         <div class="p-for" data-fr-html="Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps." data-en-html="For SMEs receiving <strong>10 to 30 inquiries per week</strong> who can't call them all back in time.">Pour les PME qui reçoivent <strong>10 à 30 demandes par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps.</div>
-        <div class="p-gain" data-fr="Gain visé : 3 à 5 clients récupérés / mois" data-en="Target: 3 to 5 customers recovered / month">Gain visé : 3 à 5 clients récupérés / mois</div>
+        <div class="p-gain" data-fr="3 à 5 mandats/mois · amorti sur 1 mandat récupéré" data-en="3 to 5 listings/month · paid back on 1 recovered">3 à 5 mandats/mois · amorti sur 1 mandat récupéré</div>
         <div class="p-price" data-fr="990€" data-en="£990">990€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× sans frais · Klarna" data-en="">💳 Paiement en 3× sans frais · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
-          <li data-fr="Diagnostic de votre tunnel de conversion" data-en="Conversion funnel diagnosis">Diagnostic de votre tunnel de conversion</li>
-          <li data-fr="1 automatisation clé (rappel ou relance)" data-en="1 key automation (callback or follow-up)">1 automatisation clé (rappel ou relance)</li>
-          <li data-fr="CRM configuré à votre métier" data-en="CRM tailored to your business">CRM configuré à votre métier</li>
-          <li data-fr="Formation équipe (1h)" data-en="Team training (1h)">Formation équipe (1h)</li>
-          <li data-fr="Support 30 jours" data-en="30 days of support">Support 30 jours</li>
+          <li data-fr="Diagnostic de vos fuites commerciales" data-en="Commercial leak diagnosis">Diagnostic de vos fuites commerciales</li>
+          <li data-fr="Rappel auto SMS/email en &lt; 5 min" data-en="Auto SMS/email callback in &lt; 5 min">Rappel auto SMS/email en &lt; 5 min</li>
+          <li data-fr="Séquence de relance J+3 + J+7" data-en="Follow-up sequence D+3 + D+7">Séquence de relance J+3 + J+7</li>
+          <li data-fr="Tableau de suivi en temps réel" data-en="Real-time tracking dashboard">Tableau de suivi en temps réel</li>
+          <li data-fr="Formation équipe (1h) + Support 30 jours" data-en="Team training (1h) + 30-day support">Formation équipe (1h) + Support 30 jours</li>
         </ul>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/eVq9ATeZc16JgmD2nA2sM01" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
       </div>
 
       <div class="p-card ft rv rv-d2">
         <div class="p-badge" data-fr="Recommandé" data-en="Recommended">Recommandé</div>
         <div class="p-name">Pro</div>
-        <div class="p-promise" data-fr="Arrêtez de gérer la prospection à la main." data-en="Stop managing prospecting manually.">Arrêtez de gérer la prospection à la main.</div>
-        <div class="p-for" data-fr-html="Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé." data-en-html="For business owners losing <strong>10 to 15 h per week</strong> manually following up and tracking who's been called.">Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été appelé.</div>
-        <div class="p-gain" data-fr="Gain visé : 10 h / semaine + pipeline qui se remplit seul" data-en="Target: 10 h / week back + self-filling pipeline">Gain visé : 10 h / semaine + pipeline qui se remplit seul</div>
+        <div class="p-promise" data-fr="Arrêtez de faire du secrétariat commercial." data-en="Stop doing sales admin work.">Arrêtez de faire du secrétariat commercial.</div>
+        <div class="p-for" data-fr-html="Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été rappelé." data-en-html="For business owners losing <strong>10 to 15 h per week</strong> manually following up and tracking who's been called.">Pour les dirigeants qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et à chercher qui a été rappelé.</div>
+        <div class="p-gain" data-fr="+10 h/sem · amorti en 1 mandat grâce aux relances" data-en="+10 h/week back · paid back on 1 listing">+10 h/sem · amorti en 1 mandat grâce aux relances</div>
         <div class="p-price" data-fr="2 490€" data-en="£2,490">2 490€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 830€ · Klarna" data-en="">💳 Paiement en 3× de 830€ · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
-          <li data-fr="Tout le Starter" data-en="Everything in Starter">Tout le Starter</li>
-          <li data-fr="Rappel prospect &lt; 5 min, 24/7" data-en="Prospect callback &lt; 5 min, 24/7">Rappel prospect &lt; 5 min, 24/7</li>
-          <li data-fr="Séquence de relance J+3 / J+7 / J+14" data-en="Follow-up sequence D+3 / D+7 / D+14">Séquence de relance J+3 / J+7 / J+14</li>
-          <li data-fr="Téléphonie et email connectés au CRM" data-en="Phone and email connected to CRM">Téléphonie et email connectés au CRM</li>
-          <li data-fr="Pipeline centralisé en temps réel" data-en="Centralized real-time pipeline">Pipeline centralisé en temps réel</li>
-          <li data-fr="Support 60 jours" data-en="60 days of support">Support 60 jours</li>
+          <li data-fr="Rappel auto &lt; 5 min + relances J+3 / J+7" data-en="Auto callback &lt; 5 min + follow-ups D+3 / D+7">Rappel auto &lt; 5 min + relances J+3 / J+7</li>
+          <li data-fr="Sources centralisées (portails + site + téléphone)" data-en="Sources centralized (portals + site + phone)">Sources centralisées (portails + site + téléphone)</li>
+          <li data-fr="Relances étendues J+3 / J+7 / J+14 multi-canal" data-en="Extended follow-ups D+3 / D+7 / D+14 multi-channel">Relances étendues J+3 / J+7 / J+14 multi-canal</li>
+          <li data-fr="Téléphonie connectée au CRM" data-en="Phone connected to CRM">Téléphonie connectée au CRM</li>
+          <li data-fr="Pipeline temps réel + bilan hebdo auto" data-en="Real-time pipeline + weekly auto report">Pipeline temps réel + bilan hebdo auto</li>
+          <li data-fr="Formation 3h + Support 60 jours" data-en="3h training + 60-day support">Formation 3h + Support 60 jours</li>
         </ul>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/14AeVdeZc2aN7Q75zM2sM02" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
       </div>
 
       <div class="p-card rv rv-d3">
         <div class="p-name">Scale</div>
-        <div class="p-promise" data-fr="Un commercial virtuel qui prospecte 24/7 à votre place." data-en="A virtual salesperson prospecting 24/7 for you.">Un commercial virtuel qui prospecte 24/7 à votre place.</div>
-        <div class="p-for" data-fr-html="Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong>" data-en-html="For businesses tired of word-of-mouth. We go <strong>hunt your future customers</strong> on LinkedIn, email and SMS with personalized messages. <strong>Alternative to a 4 000€ / month salesperson.</strong>">Pour les entreprises qui en ont assez du bouche-à-oreille. On va <strong>chercher vos futurs clients</strong> sur LinkedIn, par email et par SMS, avec des messages personnalisés. <strong>Alternative à un commercial à 4 000€ / mois.</strong></div>
-        <div class="p-gain" data-fr="Gain visé : +30 à 50 rendez-vous qualifiés / mois" data-en="Target: +30 to 50 qualified meetings / month">Gain visé : +30 à 50 rendez-vous qualifiés / mois</div>
+        <div class="p-promise" data-fr="Un commercial virtuel qui prospecte les vendeurs à votre place — 24/7, sans embauche." data-en="A virtual salesperson prospecting sellers for you — 24/7, without hiring.">Un commercial virtuel qui prospecte les vendeurs à votre place — 24/7, sans embauche.</div>
+        <div class="p-for" data-fr-html="Pour les agences qui veulent <strong>doubler leurs mandats sans embaucher</strong> un commercial à 4 000 €/mois, ni dépendre à 100 % des portails." data-en-html="For agencies wanting to <strong>double their listings without hiring</strong> a 4 000€/month salesperson, or depending 100% on property portals.">Pour les agences qui veulent <strong>doubler leurs mandats sans embaucher</strong> un commercial à 4 000 €/mois, ni dépendre à 100 % des portails.</div>
+        <div class="p-gain" data-fr="+30 à 50 RDV vendeurs/mois · 7× moins cher qu'un commercial" data-en="+30 to 50 seller meetings/month · 7× cheaper than hiring">+30 à 50 RDV vendeurs/mois · 7× moins cher qu'un commercial</div>
         <div class="p-price" data-fr="4 990€" data-en="£4,990">4 990€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement en 3× de 1 663€ · Klarna" data-en="">💳 Paiement en 3× de 1 663€ · Klarna</div>
         <div class="p-div"></div>
         <ul class="p-features">
-          <li data-fr="Tout le Pro" data-en="Everything in Pro">Tout le Pro</li>
-          <li data-fr="Prospection automatisée sur email, LinkedIn et SMS" data-en="Automated prospecting on email, LinkedIn and SMS">Prospection automatisée sur email, LinkedIn et SMS</li>
-          <li data-fr="Liste de prospects qualifiés fournie et mise à jour" data-en="Qualified prospect list provided and updated">Liste de prospects qualifiés fournie et mise à jour</li>
-          <li data-fr="Relances intelligentes personnalisées par IA" data-en="Smart AI-personalized follow-ups">Relances intelligentes personnalisées par IA</li>
-          <li data-fr="Tableau de bord : suivez vos RDV en temps réel" data-en="Dashboard: track your meetings in real time">Tableau de bord : suivez vos RDV en temps réel</li>
+          <li data-fr="Tout Pro inclus (rappel, suivi, relances, reporting)" data-en="All of Pro included (callback, tracking, follow-ups, reporting)">Tout Pro inclus (rappel, suivi, relances, reporting)</li>
+          <li data-fr="Pige PAP automatisée quotidienne (Leboncoin, PAP, Bien'ici)" data-en="Daily automated private-seller monitoring (Leboncoin, PAP, Bien'ici)">Pige PAP automatisée quotidienne (Leboncoin, PAP, Bien'ici)</li>
+          <li data-fr="Détection mandats expirés + relance auto" data-en="Expired listings detection + auto follow-up">Détection mandats expirés + relance auto</li>
+          <li data-fr="Réveil de base dormante (email + SMS 12 mois)" data-en="Dormant database reactivation (email + SMS 12 months)">Réveil de base dormante (email + SMS 12 mois)</li>
+          <li data-fr="Dashboard outbound temps réel" data-en="Real-time outbound dashboard">Dashboard outbound temps réel</li>
           <li data-fr="Support 90 jours" data-en="90 days of support">Support 90 jours</li>
         </ul>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="Réserver un audit →" data-en="Book an audit →">Réserver un audit →</a>
-        <a href="https://buy.stripe.com/28E9AT4ky16J8Ub5zM2sM03" target="_blank" class="p-pay-link" data-fr="💳 Payer directement" data-en="">💳 Payer directement</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
       </div>
 
       <div class="p-card rv rv-d3">
         <div class="p-name">Consulting</div>
         <div class="p-promise" data-fr="Votre process commercial passé au crible. 90 jours pour tout transformer." data-en="Your sales process under the microscope. 90 days to transform everything.">Votre process commercial passé au crible. 90 jours pour tout transformer.</div>
         <div class="p-for" data-fr-html="Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation." data-en-html="For business owners wanting a <strong>complete diagnosis</strong>, custom strategy and an operator driving the transformation.">Pour les dirigeants qui veulent un <strong>diagnostic complet</strong>, une stratégie sur mesure et un opérateur qui pilote la transformation.</div>
-        <div class="p-gain" data-fr="Gain visé : +30% de CA ou -20 h / semaine en 90 jours" data-en="Target: +30% revenue or -20 h / week in 90 days">Gain visé : +30% de CA ou -20 h / semaine en 90 jours</div>
+        <div class="p-gain" data-fr="+30 % de CA en 90 jours · ROI ×6 sur agence 300 k€" data-en="+30% revenue in 90 days · ROI ×6 on 300k€ agency">+30 % de CA en 90 jours · ROI ×6 sur agence 300 k€</div>
         <div class="p-price" data-fr="14 900€" data-en="£14,900">14 900€</div>
-        <div class="p-payment-note" data-fr="💳 Paiement échelonné sur devis" data-en="💳 Staged payment on quote">💳 Paiement échelonné sur devis</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr="Audit complet de votre process (J+0)" data-en="Full process audit (D+0)">Audit complet de votre process (J+0)</li>
@@ -1682,7 +1675,7 @@
           <li data-fr="Mise en place + optimisation continue" data-en="Implementation + continuous optimization">Mise en place + optimisation continue</li>
           <li data-fr="Transfert de compétence à votre équipe" data-en="Skill transfer to your team">Transfert de compétence à votre équipe</li>
         </ul>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="En discuter" data-en="Let's talk">En discuter</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="p-cta" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
       </div>
 
     </div>
@@ -1722,7 +1715,7 @@
     </div>
 
     <!-- PAYMENT NOTE -->
-    <p class="pay-note rv" data-fr-html="Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT" data-en-html="Pay in 1 or <span>3 installments</span> on request · All prices exclude VAT">Paiement en 1 ou <span>3 fois</span> sur demande · Tous les prix sont HT</p>
+    <p class="pay-note rv" data-fr-html="<span>Facilités de paiement</span> sur demande · Tous les prix sont HT" data-en-html="<span>Flexible payment</span> terms on request · All prices exclude VAT"><span>Facilités de paiement</span> sur demande · Tous les prix sont HT</p>
   </section>
 
   <!-- A PROPOS -->
