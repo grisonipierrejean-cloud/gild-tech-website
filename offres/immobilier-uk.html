@@ -30,8 +30,10 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 .page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
 
 /* HEADER */
-.header { border-bottom: 2px solid var(--pink); padding-bottom: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
-.brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; }
+.header { border-bottom: 2px solid var(--pink); padding-bottom: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.brand-block { display: flex; align-items: center; gap: 0.7rem; }
+.logo { width: 44px; height: 44px; flex-shrink: 0; }
+.brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1; }
 .brand .gild { color: var(--g900); }
 .brand .tech { color: var(--pink); }
 .vertical { font-size: 0.85rem; font-weight: 600; color: var(--g600); text-transform: uppercase; letter-spacing: 0.1em; padding: 0.4rem 0.8rem; background: var(--pink-bg); border: 1px solid var(--pink-soft); border-radius: 6px; }
@@ -94,15 +96,51 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--g200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--g500); flex-wrap: wrap; gap: 0.5rem; }
 
 /* PRINT */
+@page { size: A4; margin: 10mm; }
 @media print {
-  .page { padding: 1.5rem; max-width: 100%; }
-  body { font-size: 10pt; }
-  .offres-grid { gap: 0.6rem; }
-  .offre-card { padding: 1rem 0.8rem; }
+  html, body { background: var(--white); }
+  .page { padding: 0.5rem 0; max-width: 100%; }
+  body { font-size: 9pt; line-height: 1.4; }
+  .header { margin-bottom: 0.7rem; padding-bottom: 0.5rem; }
+  .brand { font-size: 1.15rem; }
+  .logo { width: 32px; height: 32px; }
+  .brand-block { gap: 0.5rem; }
+  .vertical { font-size: 0.7rem; padding: 0.25rem 0.6rem; }
+  .intro { margin-bottom: 0.7rem; }
+  .intro h1 { font-size: 1.35rem; margin-bottom: 0.3rem; }
+  .intro .subtitle { font-size: 0.8rem; }
+  .pain-section { padding: 0.6rem 0.9rem; margin-bottom: 0.7rem; }
+  .pain-title { font-size: 0.65rem; margin-bottom: 0.3rem; }
+  .pain-item { font-size: 0.72rem; }
+  .parcours { padding: 0.5rem; margin-bottom: 0.7rem; }
+  .parcours-title { font-size: 0.65rem; margin-bottom: 0.3rem; }
+  .parcours-steps { font-size: 0.82rem; }
+  .offres-grid { gap: 0.4rem; margin-bottom: 0.7rem; grid-template-columns: repeat(3, 1fr) !important; }
+  .additional { grid-template-columns: repeat(2, 1fr) !important; }
+  .pain-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .offre-card { padding: 0.9rem 0.8rem; page-break-inside: avoid; break-inside: avoid; }
   .offre-card.recommended { box-shadow: none; }
-  .cta-btn { background: var(--pink) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .offre-card.recommended::before { font-size: 0.6rem; padding: 0.2rem 0.6rem; top: -0.55rem; }
+  .offre-name { font-size: 1rem; }
+  .offre-tagline { font-size: 0.72rem; margin-bottom: 0.6rem; }
+  .offre-price { font-size: 1.6rem; }
+  .offre-delai { font-size: 0.72rem; margin-bottom: 0.6rem; }
+  .offre-features li { font-size: 0.72rem; padding: 0.25rem 0 0.25rem 1.1rem; }
+  .roi-box { padding: 1rem 1.2rem; margin-bottom: 1rem; page-break-inside: avoid; break-inside: avoid; }
+  .roi-label { font-size: 0.65rem; margin-bottom: 0.3rem; }
+  .roi-value { font-size: 1.4rem; }
+  .roi-sub { font-size: 0.7rem; margin-top: 0.3rem; }
+  .section-subtitle { font-size: 0.85rem; margin: 0.7rem 0 0.35rem; }
+  .additional { gap: 0.4rem; margin-bottom: 0.5rem; }
+  .additional-item { padding: 0.5rem 0.7rem; page-break-inside: avoid; break-inside: avoid; }
+  .additional-item .name { font-size: 0.78rem; }
+  .additional-item .price { font-size: 0.7rem; }
+  .cta { padding-top: 0.5rem; margin-top: 0.3rem; page-break-inside: avoid; break-inside: avoid; }
+  .cta-title { font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .cta-desc { font-size: 0.75rem; margin-bottom: 0.4rem; }
+  .cta-btn { background: var(--pink) !important; color: var(--white) !important; padding: 0.4rem 1rem; font-size: 0.78rem; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .footer { margin-top: 0.4rem; padding-top: 0.3rem; font-size: 0.62rem; page-break-inside: avoid; break-inside: avoid; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .roi-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 @media (max-width: 768px) {
@@ -117,13 +155,25 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 <div class="page">
 
 <div class="header">
-  <div class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+  <div class="brand-block">
+    <svg class="logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="logoPink" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E91E8C"/>
+          <stop offset="100%" stop-color="#f54da5"/>
+        </linearGradient>
+      </defs>
+      <circle cx="200" cy="200" r="180" fill="none" stroke="url(#logoPink)" stroke-width="8" stroke-dasharray="280 280" stroke-linecap="round" transform="rotate(-90 200 200)"/>
+      <text x="200" y="258" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-weight="900" font-size="180" letter-spacing="-6" fill="#111">G<tspan fill="url(#logoPink)">T</tspan></text>
+    </svg>
+    <div class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+  </div>
   <div class="vertical">🏠 Real Estate — UK</div>
 </div>
 
 <div class="intro">
   <h1>Sales <span class="accent">automation</span> for independent UK estate agencies</h1>
-  <p class="subtitle">No more lost leads. No more forgotten prospects. Systems that call back in under 5 minutes, follow up automatically, and prospect 24/7.</p>
+  <p class="subtitle">Built for UK estate agents — Rightmove, Zoopla, OnTheMarket, Reapit, Alto, Jupix, Street.co.uk. We call your leads back in under 5 minutes, follow up automatically, and prospect 24/7 so your negotiators focus on viewings.</p>
 </div>
 
 <div class="pain-section">
@@ -144,43 +194,43 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 
   <div class="offre-card">
     <div class="offre-name">STARTER</div>
-    <div class="offre-tagline">First workflow installed</div>
+    <div class="offre-tagline">Recover the leads slipping through your fingers</div>
     <div class="offre-price">£990<span class="price-suffix"> excl. VAT</span></div>
     <div class="offre-delai">Delivered in 1 week</div>
     <ul class="offre-features">
-      <li>1 automation workflow</li>
-      <li>Full setup</li>
+      <li>Conversion audit — where you're losing instructions today</li>
+      <li>1 key automation: callback or follow-up sequence</li>
+      <li>CRM configured for your agency</li>
       <li>Team training 1h</li>
       <li>30 days of support</li>
-      <li>One-off payment</li>
     </ul>
   </div>
 
   <div class="offre-card recommended">
     <div class="offre-name">PRO</div>
-    <div class="offre-tagline">Complete agency pack</div>
+    <div class="offre-tagline">Stop managing prospecting manually</div>
     <div class="offre-price">£2,490<span class="price-suffix"> excl. VAT</span></div>
     <div class="offre-delai">Delivered in 2-3 weeks</div>
     <ul class="offre-features">
-      <li>3-5 connected workflows</li>
-      <li>CRM + auto follow-up</li>
-      <li>Lead callback &lt;5 min</li>
-      <li>Team training 3h</li>
-      <li>90 days of support</li>
+      <li>Auto callback under 5 min, 24/7</li>
+      <li>Follow-up sequences Day 3 / Day 7 / Day 14</li>
+      <li>Rightmove + Zoopla leads → CRM (Reapit / Alto / Jupix)</li>
+      <li>Centralised real-time pipeline</li>
+      <li>Team training 3h · 60 days of support</li>
     </ul>
   </div>
 
   <div class="offre-card">
     <div class="offre-name">SCALE</div>
-    <div class="offre-tagline">Multi-agent agency</div>
+    <div class="offre-tagline">A virtual sales rep prospecting 24/7 for you</div>
     <div class="offre-price">£4,990<span class="price-suffix"> excl. VAT</span></div>
     <div class="offre-delai">Delivered in 3-4 weeks</div>
     <ul class="offre-features">
-      <li>10+ integrated workflows</li>
-      <li>Multi-channel (email/SMS/LinkedIn)</li>
-      <li>Real-time reporting</li>
-      <li>Team training 6h</li>
-      <li>6 months of support</li>
+      <li>Multi-channel prospecting: email + SMS + WhatsApp</li>
+      <li>Continuously updated qualified prospect list</li>
+      <li>AI-driven follow-ups based on prospect behaviour</li>
+      <li>Real-time appointment tracking dashboard</li>
+      <li>Team training 6h · 90 days of support</li>
     </ul>
   </div>
 
@@ -188,19 +238,19 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 
 <div class="roi-box">
   <div class="roi-label">Typical ROI — UK independent agency</div>
-  <div class="roi-value">3 to 5 recovered deals / month<br><span class="accent">= £15,000 to £30,000 extra GCI</span></div>
-  <div class="roi-sub">Based on avg commission of £5,000 per transaction. Figures observed with French clients; UK equivalent conservative.</div>
+  <div class="roi-value">3 to 5 recovered instructions / month<br><span class="accent">= £15,000 to £25,000 extra commission</span></div>
+  <div class="roi-sub">Benchmark: £4,000–5,000 avg commission per transaction (UK independent). Pays for itself on the 1st recovered instruction — every month after is pure profit.</div>
 </div>
 
 <div class="section-subtitle">Full transformation</div>
 <div class="additional">
   <div class="additional-item">
-    <div class="name">AUTOPILOT — £14,900 excl. VAT</div>
-    <div class="price">Fully automated sales pipeline • 60-90 days • Bank transfer only</div>
+    <div class="name">CONSULTING — £14,900 excl. VAT</div>
+    <div class="price">Full process audit + bespoke system + dedicated operator 90 days + team training • Bank transfer only</div>
   </div>
   <div class="additional-item">
     <div class="name">DEPOSIT — £500 excl. VAT</div>
-    <div class="price">To kick off a Pro / Scale / Autopilot engagement</div>
+    <div class="price">To kick off a Pro / Scale / Consulting engagement</div>
   </div>
 </div>
 
@@ -219,8 +269,8 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 </div>
 
 <div class="footer">
-  <span>© 2026 Gild-Tech · Girlden LTD (United Kingdom)</span>
-  <span>pj@gild-tech.com · gild-tech.com</span>
+  <span>© 2026 GILD-TECH · Girlden LTD · Registered in England &amp; Wales</span>
+  <span>hello@gild-tech.com · gild-tech.com</span>
 </div>
 
 </div>
