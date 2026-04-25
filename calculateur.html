@@ -1152,10 +1152,10 @@
       document.getElementById('progress-fill').style.width = '0%';
 
       const phases = [
-        { id: 'phase-1', start: 200  },
-        { id: 'phase-2', start: 1100 },
-        { id: 'phase-3', start: 2000 },
-        { id: 'phase-4', start: 2900 }
+        { id: 'phase-1', start: 100  },
+        { id: 'phase-2', start: 500  },
+        { id: 'phase-3', start: 950  },
+        { id: 'phase-4', start: 1350 }
       ];
 
       phases.forEach((p, i) => {
@@ -1169,11 +1169,11 @@
       // End animation + show result
       setTimeout(() => {
         document.getElementById('phase-4').classList.replace('active', 'done');
-      }, 3700);
+      }, 1600);
 
       setTimeout(() => {
         showFullResult();
-      }, 4100);
+      }, 1750);
     }
 
     function renderResult(r) {
