@@ -547,6 +547,43 @@
 
     @keyframes fadeUp { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
 
+    /* BANDEAU URGENCE TOP */
+    .urgency-bar {
+      background: var(--g900); color: var(--white); padding: 0.6rem 1rem;
+      font-size: 0.85rem; font-weight: 600; text-align: center;
+      position: sticky; top: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .urgency-bar a { color: var(--white); text-decoration: none; }
+    .urgency-bar .urgency-cta {
+      color: var(--pink-light); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+    }
+    .urgency-bar .urgency-dot {
+      width: 8px; height: 8px; background: var(--pink-light); border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    @media (max-width: 600px) {
+      .urgency-bar { font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+    }
+
+    /* STICKY CTA BOTTOM */
+    .sticky-cta {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      background: var(--pink); color: var(--white); padding: 0.95rem 1.4rem;
+      border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; box-shadow: 0 10px 30px rgba(233, 30, 140, 0.4);
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sticky-cta:hover {
+      transform: translateY(-3px); box-shadow: 0 14px 40px rgba(233, 30, 140, 0.55);
+    }
+    .sticky-cta .icon { font-size: 1.1rem; }
+    @media (max-width: 600px) {
+      .sticky-cta { bottom: 1rem; right: 1rem; left: 1rem; justify-content: center; padding: 0.9rem 1.2rem; font-size: 0.9rem; }
+    }
+
     /* STATS BAR */
     .stats-bar {
       padding: 3.5rem 2rem; border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200);
@@ -1243,6 +1280,12 @@
 </head>
 <body>
 
+  <!-- BANDEAU URGENCE TOP -->
+  <div class="urgency-bar">
+    <span class="urgency-dot"></span>
+    <span data-fr="2 places ouvertes ce trimestre · Accompagnement fondateur 90 jours" data-en="2 spots open this quarter · 90-day founder-led support">2 places ouvertes ce trimestre · Accompagnement fondateur 90 jours</span>
+    <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="urgency-cta" data-fr="Réserver mon audit →" data-en="Book my audit →">Réserver mon audit →</a>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -1303,10 +1346,10 @@
       <h1 data-fr-html="Vos mandats n&apos;attendent pas. <span class=&quot;hl&quot;>Votre concurrent non plus.</span>" data-en-html="Your instructions won&apos;t wait. <span class=&quot;hl&quot;>Neither will your competitor.</span>">Vos mandats n'attendent pas. <span class="hl">Votre concurrent non plus.</span></h1>
       <p class="hero-desc" data-fr="Pendant que vos agents sont en visite, 3 proprios viennent de publier leur annonce dans votre zone. Gild-Tech les appelle avant que vos concurrents aient pris leur café. Vos agents arrivent préparés. Vous raflez les mandats." data-en="While your agents are on viewings, 3 vendors have just listed in your patch. Gild-Tech calls them before your rivals have had their first coffee. Your agents walk in prepared. You win the instructions.">Pendant que vos agents sont en visite, 3 proprios viennent de publier leur annonce dans votre zone. Gild-Tech les appelle avant que vos concurrents aient pris leur café. Vos agents arrivent préparés. Vous raflez les mandats.</p>
       <div class="hero-actions">
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-pink btn-lg" data-fr="Réserver un audit gratuit &rarr;" data-en="Book a free audit &rarr;">
-          Réserver un audit gratuit &rarr;
+        <a href="calculateur.html" class="btn btn-pink btn-lg" data-fr="Calculer ce que je perds chaque mois &rarr;" data-en="Calculate what I'm losing every month &rarr;">
+          Calculer ce que je perds chaque mois &rarr;
         </a>
-        <a href="calculateur.html" class="btn btn-ghost btn-lg" data-fr="Calculer mes pertes" data-en="Calculate my losses">Calculer mes pertes</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-ghost btn-lg" data-fr="Audit fondateur 30 min" data-en="30-min founder audit">Audit fondateur 30 min</a>
       </div>
       <p class="hero-note" data-fr="Audit gratuit 30 min · on vous montre combien de mandats vous avez perdus ce mois-ci" data-en="30 min free audit · we show you how many instructions you lost this month">Audit gratuit 30 min · on vous montre combien de mandats vous avez perdus ce mois-ci</p>
     </div>
@@ -2005,6 +2048,9 @@
     updateInternalLinks();
     syncLangUI();
   </script>
+
+  <!-- STICKY CTA BOTTOM -->
+  <a href="calculateur.html" class="sticky-cta" data-fr-html="<span class=&quot;icon&quot;>💰</span> Calculer mes pertes" data-en-html="<span class=&quot;icon&quot;>💰</span> Calculate my losses"><span class="icon">💰</span> Calculer mes pertes</a>
 
 </body>
 </html>
