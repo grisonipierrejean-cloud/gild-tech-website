@@ -5,9 +5,9 @@
 
 window.GILDTECH_CONFIG = {
   // URL du webhook n8n qui reçoit les leads du calculateur.
-  // Format: https://<votre-instance-n8n>/webhook/<uuid>
-  // Laissez vide pour désactiver l'envoi vers n8n.
-  WEBHOOK_LEADS: '',
+  // Workflow : "GILD-TECH — Calculateur Leads" (peejay.app.n8n.cloud)
+  // Branche : Webhook → Format Data → [Google Sheets + Gmail + Respond OK]
+  WEBHOOK_LEADS: 'https://peejay.app.n8n.cloud/webhook/calculateur-leads',
 
   // Fallback Formspree (en cas d'indispo n8n).
   // Créer un formulaire gratuit sur https://formspree.io et coller l'endpoint.
