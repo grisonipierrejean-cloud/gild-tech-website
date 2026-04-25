@@ -390,7 +390,7 @@
     .about-text em { color: var(--pink); font-style: normal; font-weight: 600; }
 
     .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
     }
     .about-stat {
       background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r);
@@ -1086,7 +1086,7 @@
       .temoignages-grid { gap: 1rem; }
       .trust-logos { gap: 1.2rem 1.8rem; }
       .trust-logo { font-size: 0.9rem; }
-      .about-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .about-stats { grid-template-columns: 1fr; gap: 0.8rem; }
       .about-stat { padding: 1rem; }
       .about-stat-num { font-size: 1.5rem; }
     }
@@ -1723,30 +1723,25 @@
     <div class="about-wrap">
       <div class="about-text">
         <div class="tag rv" data-fr="Notre histoire" data-en="Our story">Notre histoire</div>
-        <h2 class="heading rv" data-fr-html="15 ans dans les casinos.<br>3 ans au téléphone.<br>Même constat." data-en-html="15 years on the casino floor.<br>3 years on the phones.<br>Same pattern.">15 ans dans les casinos.<br>3 ans au téléphone.<br>Même constat.</h2>
-        <p class="rv" data-fr-html="Croupier, puis directeur des jeux. J'ai vu passer des milliers de joueurs. Et j'ai compris une chose simple :" data-en-html="Croupier, then Gaming Manager. I saw thousands of players come and go. And I understood one simple thing:">Croupier, puis directeur des jeux. J'ai vu passer des milliers de joueurs. Et j'ai compris une chose simple :</p>
-        <p class="rv" data-fr-html="<em>« L'argent ne se perd pas à la table. Il se perd après. »</em>" data-en-html="<em>« The money isn't lost at the table. It's lost afterwards. »</em>"><em>« L'argent ne se perd pas à la table. Il se perd après. »</em></p>
-        <p class="rv" data-fr-html="Des joueurs qui viennent une fois, et qu'on ne revoit jamais. Pas parce qu'ils ne veulent pas revenir. Mais parce que <strong>personne ne les relance au bon moment</strong>." data-en-html="Players who come once and are never seen again. Not because they don't want to return. But because <strong>nobody reaches out at the right time</strong>.">Des joueurs qui viennent une fois, et qu'on ne revoit jamais. Pas parce qu'ils ne veulent pas revenir. Mais parce que <strong>personne ne les relance au bon moment</strong>.</p>
-        <p class="rv" data-fr-html="Quelques années plus tard, je passe de l'autre côté. Téléphone. Prospection. Closing. Et là, je vois exactement la même chose, dans un autre décor : des agences immobilières qui investissent pour générer des leads… et qui en perdent une partie <strong>simplement faute de suivi</strong>." data-en-html="A few years later, I switched sides. Phone. Prospecting. Closing. Same story, different setting: estate agencies pouring money into lead generation… and watching half of it walk out the door <strong>for want of a proper follow-up</strong>.">Quelques années plus tard, je passe de l'autre côté. Téléphone. Prospection. Closing. Et là, je vois exactement la même chose, dans un autre décor : des agences immobilières qui investissent pour générer des leads… et qui en perdent une partie <strong>simplement faute de suivi</strong>.</p>
-        <p class="rv" data-fr-html="C'est là qu'est né <strong>Gild-Tech</strong>. Pas pour faire de la tech. Pas pour ajouter des outils. Mais pour corriger ce qui se passe <em>entre le moment où un proprio publie son annonce et le moment où il signe un mandat</em>." data-en-html="That's where <strong>Gild-Tech</strong> was born. Not to build tech. Not to add tools. But to fix what happens <em>between the moment a vendor lists their property and the moment they sign an instruction</em>.">C'est là qu'est né <strong>Gild-Tech</strong>. Pas pour faire de la tech. Pas pour ajouter des outils. Mais pour corriger ce qui se passe <em>entre le moment où un proprio publie son annonce et le moment où il signe un mandat</em>.</p>
-        <a href="a-propos.html" class="btn btn-pink btn-lg rv" style="margin-top:1.5rem" data-fr="Lire notre histoire complète →" data-en="Read our full story →">Lire notre histoire complète →</a>
+        <h2 class="heading rv" data-fr-html="J'ai vu l'immo de près.<br>De trop près." data-en-html="I've seen this trade up close.<br>Too close.">J'ai vu l'immo de près.<br>De trop près.</h2>
+        <p class="rv" data-fr-html="Mon beau-père a été policier, puis agent immo au Sénégal dans les années 2010. Chez lui, j'ai vu l'envers du décor : les appels ratés parce qu'il était en visite, les relances oubliées par fatigue, les mandats qui partaient chez les concurrents. Pas parce qu'ils étaient meilleurs. Parce qu'ils étaient plus rapides." data-en-html="My father-in-law was a police officer before becoming an estate agent in Senegal in the 2010s. In his shop I saw the raw side of the trade: missed calls because he was at a viewing, follow-ups forgotten at the end of a long day, instructions walking to the agency next door. Not because they were better. Because they were faster.">Mon beau-père a été policier, puis agent immo au Sénégal dans les années 2010. Chez lui, j'ai vu l'envers du décor : les appels ratés parce qu'il était en visite, les relances oubliées par fatigue, les mandats qui partaient chez les concurrents. Pas parce qu'ils étaient meilleurs. Parce qu'ils étaient plus rapides.</p>
+        <p class="rv" data-fr-html="<em>« Le problème n'est pas humain. Il est systémique. »</em>" data-en-html="<em>« The problem isn't human. It's systemic. »</em>"><em>« Le problème n'est pas humain. Il est systémique. »</em></p>
+        <p class="rv" data-fr-html="En 2024, j'ai vendu de l'immo moi-même pendant 6 mois à Koh Samui. 100% vente. Proprios expats, marché touristique saturé, concurrents plus gros. <strong>Autre latitude, mêmes fuites.</strong>" data-en-html="In 2024, I sold property myself for six months in Koh Samui. Sales only. Expat vendors, a tourist market drowning in competition, bigger rivals. <strong>Different latitude, same leaks.</strong>">En 2024, j'ai vendu de l'immo moi-même pendant 6 mois à Koh Samui. 100% vente. Proprios expats, marché touristique saturé, concurrents plus gros. <strong>Autre latitude, mêmes fuites.</strong></p>
+        <p class="rv" data-fr-html="15 ans de closing B2C plus tard, 200+ deals à mon actif, j'ai construit <strong>Gild-Tech</strong>. Pas pour faire de la tech. Pas pour ajouter un outil. Pour qu'aucun patron d'agence ne réponde plus par un haussement d'épaules à la question : <em>« combien de mandats vous avez perdu le mois dernier ? »</em>" data-en-html="Fifteen years of B2C closing later, 200+ deals behind me, I built <strong>Gild-Tech</strong>. Not to ship tech. Not to bolt on another tool. So that no agency principal ever again shrugs when asked: <em>&quot;how many instructions did you lose last month?&quot;</em>">15 ans de closing B2C plus tard, 200+ deals à mon actif, j'ai construit <strong>Gild-Tech</strong>. Pas pour faire de la tech. Pas pour ajouter un outil. Pour qu'aucun patron d'agence ne réponde plus par un haussement d'épaules à la question : <em>« combien de mandats vous avez perdu le mois dernier ? »</em></p>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-pink btn-lg rv" style="margin-top:1.5rem" data-fr="Parler 30 min, gratuit →" data-en="Talk for 30 min, free →">Parler 30 min, gratuit →</a>
       </div>
       <div class="about-stats rv">
         <div class="about-stat">
           <div class="about-stat-num">15 ans</div>
-          <div class="about-stat-label" data-fr="de terrain commercial" data-en="on the sales floor">de terrain commercial</div>
+          <div class="about-stat-label" data-fr="de closing B2C" data-en="of B2C closing">de closing B2C</div>
         </div>
         <div class="about-stat">
           <div class="about-stat-num">200+</div>
-          <div class="about-stat-label" data-fr="deals closés" data-en="instructions won">deals closés</div>
+          <div class="about-stat-label" data-fr="deals closés" data-en="deals closed">deals closés</div>
         </div>
         <div class="about-stat">
-          <div class="about-stat-num">12</div>
-          <div class="about-stat-label" data-fr="agences accompagnées" data-en="agencies guided">agences accompagnées</div>
-        </div>
-        <div class="about-stat">
-          <div class="about-stat-num">3</div>
-          <div class="about-stat-label" data-fr="verticales" data-en="verticals">verticales</div>
+          <div class="about-stat-num">6 mois</div>
+          <div class="about-stat-label" data-fr="d'immo terrain (Koh Samui)" data-en="selling property (Koh Samui)">d'immo terrain (Koh Samui)</div>
         </div>
       </div>
     </div>
