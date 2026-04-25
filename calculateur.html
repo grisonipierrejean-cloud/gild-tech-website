@@ -778,6 +778,7 @@
         <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn-white" data-fr="Réserver mon audit gratuit →" data-en="Book my free audit →">
           Réserver mon audit gratuit →
         </a>
+        <a href="#" id="cta-mailto" style="display: inline-block; margin-top: 1rem; color: rgba(255,255,255,0.85); text-decoration: underline; font-size: 0.9rem; font-weight: 500;" data-fr="Ou envoyer mon diagnostic par email →" data-en="Or send my diagnosis by email →">Ou envoyer mon diagnostic par email →</a>
       </div>
 
       <div class="btn-row" style="margin-top: 1.5rem;">
@@ -885,6 +886,57 @@
 
     // STATE
     const state = { niche: null, leads: 30, conv: 15, panier: 6000, delai: 24, name: '', email: '', animationDone: false };
+
+    // ==========================================
+    // MAILTO FALLBACK — capture lead even with no webhook
+    // ==========================================
+    function buildMailtoLink(payload) {
+      const cfg = (typeof window !== 'undefined' && window.GILDTECH_CONFIG) || {};
+      const dest = cfg.CONTACT_EMAIL || 'pierrejean@gild-tech.com';
+      const r = payload.result || {};
+      const fmt = (n) => new Intl.NumberFormat('fr-FR').format(n) + ' €';
+      const nicheLabels = {
+        'immobilier': 'Immobilier',
+        'services-pro': 'Services pro',
+        'sante': 'Santé / Paramédical',
+        'hospitality': 'Hôtellerie / Restauration',
+        'commerce': 'Commerce / Artisanat',
+        'autre': 'Autre activité'
+      };
+      const subject = `Diagnostic Gild-Tech — ${payload.name} (${nicheLabels[payload.niche] || payload.niche})`;
+      const body = [
+        `Bonjour Pierre-Jean,`,
+        ``,
+        `Je viens de calculer mes pertes commerciales sur gild-tech.com.`,
+        `Voici mes chiffres :`,
+        ``,
+        `--- IDENTITÉ ---`,
+        `Nom : ${payload.name}`,
+        `Email : ${payload.email}`,
+        `Secteur : ${nicheLabels[payload.niche] || payload.niche}`,
+        ``,
+        `--- ACTIVITÉ ACTUELLE ---`,
+        `Prospects entrants / mois : ${payload.leads}`,
+        `Taux de conversion : ${payload.conv}%`,
+        `Panier moyen : ${fmt(payload.panier)}`,
+        `Délai de rappel moyen : ${payload.delai}h`,
+        ``,
+        `--- DIAGNOSTIC ---`,
+        `Manque à gagner annuel : ${fmt(r.totalLossYear || 0)}`,
+        `Soit par mois : ${fmt(r.totalLossMonth || 0)}`,
+        `Pertes par lenteur : ${fmt(r.lostSpeedYear || 0)}`,
+        `Pertes par non-suivi : ${fmt(r.lostFollowupYear || 0)}`,
+        `Potentiel récupérable : ${fmt(r.recoverableYear || 0)}`,
+        `Heures perdues / mois : ${r.hoursLost || 0}h`,
+        ``,
+        `Je souhaite réserver un audit gratuit de 30 min pour discuter de comment récupérer ces fuites.`,
+        ``,
+        `Source : ${payload.source}`,
+        `Horodatage : ${payload.timestamp}`
+      ].join('\n');
+
+      return `mailto:${dest}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
     // ==========================================
     // LEAD SUBMISSION (n8n primary + Formspree fallback)
@@ -1191,6 +1243,24 @@
       const r = computeLosses();
       window.__lastResult = r;
       renderResult(r);
+
+      // Wire up mailto fallback button with full payload
+      const mailtoBtn = document.getElementById('cta-mailto');
+      if (mailtoBtn) {
+        const payload = {
+          name: state.name,
+          email: state.email,
+          niche: state.niche,
+          leads: state.leads,
+          conv: state.conv,
+          panier: state.panier,
+          delai: state.delai,
+          result: r,
+          timestamp: new Date().toISOString(),
+          source: 'gild-tech.com/calculateur'
+        };
+        mailtoBtn.href = buildMailtoLink(payload);
+      }
 
       // Switch panel
       document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
