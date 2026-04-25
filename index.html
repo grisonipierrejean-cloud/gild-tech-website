@@ -1328,10 +1328,6 @@
         <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
         <li>
           <button class="lang-toggle" onclick="toggleLang()" aria-label="Change language">
-            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
-            <span id="lang-fr" class="lang-active">FR</span>
-            <span class="lang-sep">|</span>
-            <span id="lang-en">EN</span>
             <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:10px">
               <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
               <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
@@ -1343,6 +1339,10 @@
                 <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
               </g>
             </svg>
+            <span id="lang-en">EN</span>
+            <span class="lang-sep">|</span>
+            <span id="lang-fr" class="lang-active">FR</span>
+            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
           </button>
         </li>
         <li><a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-nav" data-fr="Audit gratuit" data-en="Free audit">Audit gratuit</a></li>
@@ -2046,11 +2046,20 @@
       });
     }
 
-    // Apply on load
-    applyLang();
-    persistLang();
-    updateInternalLinks();
-    syncLangUI();
+    // Apply on load (deferred to ensure all DOM elements are parsed, including sticky CTA)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        applyLang();
+        persistLang();
+        updateInternalLinks();
+        syncLangUI();
+      });
+    } else {
+      applyLang();
+      persistLang();
+      updateInternalLinks();
+      syncLangUI();
+    }
   </script>
 
   <!-- STICKY CTA BOTTOM -->
