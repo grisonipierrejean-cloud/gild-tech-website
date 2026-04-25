@@ -159,11 +159,17 @@
 
     /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 100;
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--g200);
+    }
+    body { padding-top: 40px; }
+    @media (max-width: 600px) {
+      .urgency-bar { height: 36px; }
+      nav { top: 36px; }
+      body { padding-top: 36px; }
     }
 
     .nav-inner {
@@ -551,8 +557,9 @@
     .urgency-bar {
       background: var(--g900); color: var(--white); padding: 0.6rem 1rem;
       font-size: 0.85rem; font-weight: 600; text-align: center;
-      position: sticky; top: 0; z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap;
+      height: 40px;
     }
     .urgency-bar a { color: var(--white); text-decoration: none; }
     .urgency-bar .urgency-cta {
