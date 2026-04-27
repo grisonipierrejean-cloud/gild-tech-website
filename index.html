@@ -2035,6 +2035,48 @@
       document.documentElement.lang = currentLang;
     }
 
+    const META = {
+      fr: {
+        title: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
+        description: 'Vos prospects n\'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. Audit gratuit 30 min.',
+        keywords: 'automatisation agence immobilière, CRM immobilier, prospection mandats, relance automatique immobilier, IA immobilier, rappel proprio, workflow agence immo, Gild-Tech, Girlden',
+        ogTitle: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
+        ogDesc: 'Vos prospects n\'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. 30 min d\'audit gratuit.',
+        ogLocale: 'fr_FR',
+        ogImgAlt: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
+        twTitle: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
+        twDesc: 'Vos prospects n\'attendent pas. Votre concurrent non plus. 30 min d\'audit gratuit.',
+        language: 'French'
+      },
+      en: {
+        title: 'GILD-TECH | Sales Automation for UK Estate Agents',
+        description: 'Stop losing instructions to slow follow-up. GILD-TECH automates prospecting, follow-ups and closing for independent UK estate agents. Free 30-min audit.',
+        keywords: 'sales automation estate agents UK, CRM real estate UK, lead follow-up automation, AI estate agency, property lead callback, workflow estate agent, Gild-Tech, Girlden',
+        ogTitle: 'GILD-TECH | Sales Automation for UK Estate Agents',
+        ogDesc: 'Stop losing instructions to slow follow-up. GILD-TECH automates prospecting, follow-ups and closing for UK estate agents. Free 30-min audit.',
+        ogLocale: 'en_GB',
+        ogImgAlt: 'GILD-TECH | Sales Automation for UK Estate Agents',
+        twTitle: 'GILD-TECH | Sales Automation for UK Estate Agents',
+        twDesc: 'Stop losing instructions to slow follow-up. Free 30-min audit for independent UK estate agents.',
+        language: 'English'
+      }
+    };
+
+    function updateMetaTags() {
+      const m = META[currentLang] || META.fr;
+      document.title = m.title;
+      const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
+      setMeta('meta[name="description"]', m.description);
+      setMeta('meta[name="keywords"]', m.keywords);
+      setMeta('meta[name="language"]', m.language);
+      setMeta('meta[property="og:title"]', m.ogTitle);
+      setMeta('meta[property="og:description"]', m.ogDesc);
+      setMeta('meta[property="og:locale"]', m.ogLocale);
+      setMeta('meta[property="og:image:alt"]', m.ogImgAlt);
+      setMeta('meta[name="twitter:title"]', m.twTitle);
+      setMeta('meta[name="twitter:description"]', m.twDesc);
+    }
+
     function applyLang() {
       document.querySelectorAll('[data-fr]').forEach(el => {
         const val = el.getAttribute('data-' + currentLang);
@@ -2044,6 +2086,7 @@
         const val = el.getAttribute('data-' + currentLang + '-html');
         if (val !== null) el.innerHTML = val;
       });
+      updateMetaTags();
     }
 
     // Apply on load (deferred to ensure all DOM elements are parsed, including sticky CTA)
