@@ -627,34 +627,28 @@ const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Satur
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 dateEl.textContent = `${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 
-// Animation de comptage des KPIs au load
+// KPI count-up animation (preserves original suffix)
 document.querySelectorAll('.kpi .num').forEach(el => {
-  const target = parseFloat(el.textContent);
-  if (isNaN(target)) return;
+  const original = el.textContent.trim();
+  const match = original.match(/^(-?\d+(?:[.,]\d+)?)(.*)$/);
+  if (!match) return;
+  const target = parseFloat(match[1].replace(',', '.'));
+  const suffix = match[2] || '';
+  const isInt = Number.isInteger(target);
   let current = 0;
-  const isFloat = !Number.isInteger(target);
-  const step = target / 30;
-  const tick = () => {
-    current += step;
-    if (current < target) {
-      el.textContent = isFloat ? current.toFixed(0) : Math.round(current);
-      requestAnimationFrame(tick);
-    } else {
-      el.textContent = el.textContent.replace(/\d.*/, '') + (isFloat ? target.toFixed(0) : target);
-      // Restore original suffix
-      el.textContent = el.dataset.original || el.textContent;
-    }
+  const start = performance.now();
+  const duration = 800;
+  const step = (now) => {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    current = target * eased;
+    el.textContent = (isInt ? Math.round(current) : current.toFixed(1)) + suffix;
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = original;
   };
-  el.dataset.original = el.textContent;
-  el.textContent = '0';
-  tick();
+  el.textContent = '0' + suffix;
+  requestAnimationFrame(step);
 });
-
-// Restore original after animation
-setTimeout(() => {
-  const originals = ['47', '3 min', '12', '3'];
-  document.querySelectorAll('.kpi .num').forEach((el, i) => { el.textContent = originals[i]; });
-}, 700);
 
 // Live feed simulation : nouveau message toutes les 25s
 const feed = document.getElementById('feed');
