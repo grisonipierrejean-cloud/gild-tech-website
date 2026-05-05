@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah — Réceptionniste virtuelle 24/7 pour agences immobilières · GILD-TECH</title>
+<meta name="description" content="Sarah qualifie vos prospects et booke vos rendez-vous 24h/24 sur WhatsApp. Plus aucun lead perdu, même dimanche soir 22h45. Inclus dans nos offres Pro et Scale.">
+<link rel="canonical" href="https://gild-tech.com/sarah">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sarah — Réceptionniste virtuelle 24/7 · GILD-TECH">
+<meta property="og:description" content="Plus jamais un lead perdu — même dimanche 22h45. Sarah qualifie et booke vos RDV automatiquement.">
+<meta property="og:url" content="https://gild-tech.com/sarah">
+<meta property="og:image" content="https://gild-tech.com/og-image.png">
+<link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah">
+<link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-uk">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --pink: #E91E8C;
+  --pink-light: #f54da5;
+  --pink-soft: #fce4f1;
+  --pink-bg: #fef6fa;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --dark: #0f0f0f;
+  --g900: #111;
+  --g700: #333;
+  --g600: #555;
+  --g500: #777;
+  --g300: #ccc;
+  --g200: #e8e8e8;
+  --g100: #f5f5f5;
+  --white: #fff;
+  --font: 'Inter', -apple-system, sans-serif;
+  --max-w: 1200px;
+  --r: 14px;
+}
+body { background: var(--white); color: var(--g900); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; }
+.brand .gild { color: var(--g900); }
+.brand .tech { color: var(--pink); }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--g900); }
+.btn-nav { background: var(--pink); color: var(--white) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
+.btn-nav:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(233,30,140,0.25); transform: translateY(-1px); }
+.lang-toggle { font-size: 0.78rem; color: var(--g500); }
+.lang-toggle a { color: var(--g500); text-decoration: none; padding: 0 0.3rem; }
+.lang-toggle a.active { color: var(--pink); font-weight: 700; }
+
+.page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
+
+/* HERO */
+.hero { padding: 4rem 0 5rem; }
+.hero .badge-new { display: inline-block; background: var(--pink-bg); color: var(--pink); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1.5rem; border: 1px solid var(--pink-soft); }
+.hero h1 { font-size: 3.4rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.2rem; max-width: 920px; }
+.hero h1 .accent { color: var(--pink); }
+.hero .subtitle { font-size: 1.15rem; color: var(--g600); max-width: 720px; line-height: 1.55; margin-bottom: 2rem; }
+.hero .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn-primary { display: inline-block; background: var(--pink); color: var(--white); padding: 0.85rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+.btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(233,30,140,0.25); }
+.btn-secondary { display: inline-block; background: var(--white); color: var(--g900); padding: 0.85rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 1.5px solid var(--g200); transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--pink); color: var(--pink); }
+
+.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; padding: 1.6rem; background: var(--g100); border-radius: var(--r); }
+.stat-item { text-align: center; }
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--pink); letter-spacing: -0.02em; }
+.stat-label { font-size: 0.82rem; color: var(--g600); margin-top: 0.3rem; }
+
+/* SECTION */
+section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
+.section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; line-height: 1.15; }
+.section-title .accent { color: var(--pink); }
+.section-subtitle { font-size: 1.05rem; color: var(--g600); max-width: 720px; line-height: 1.55; margin-bottom: 2.5rem; }
+
+/* PROBLEM */
+.problem-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: stretch; }
+.problem-list { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.5rem; list-style: none; }
+.problem-list li { padding: 0.9rem 0; border-bottom: 1px solid var(--g100); display: flex; gap: 0.8rem; font-size: 0.95rem; line-height: 1.5; color: var(--g700); }
+.problem-list li:last-child { border-bottom: none; }
+.problem-list li::before { content: "✕"; color: var(--red); font-weight: 800; flex-shrink: 0; }
+.problem-stat { background: var(--pink-bg); border: 1px solid var(--pink-soft); border-radius: var(--r); padding: 2rem; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.problem-stat .num { font-size: 3.6rem; font-weight: 900; color: var(--pink); letter-spacing: -0.04em; line-height: 1; }
+.problem-stat .desc { font-size: 0.95rem; color: var(--g700); margin-top: 0.8rem; line-height: 1.5; }
+.problem-stat .source { font-size: 0.72rem; color: var(--g500); margin-top: 1rem; font-style: italic; }
+
+/* SOLUTION STEPS */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.step { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--pink); color: var(--white); border-radius: 50%; font-weight: 800; margin-bottom: 0.9rem; }
+.step h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.3; }
+.step p { font-size: 0.9rem; color: var(--g600); line-height: 1.55; }
+.step .time { display: inline-block; margin-top: 0.9rem; font-size: 0.72rem; color: var(--pink); font-weight: 700; background: var(--pink-bg); padding: 0.25rem 0.7rem; border-radius: 12px; letter-spacing: 0.05em; }
+
+/* DEMO */
+.demo-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
+.demo-text h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+.demo-text ul { list-style: none; }
+.demo-text li { padding: 0.6rem 0; padding-left: 1.5rem; position: relative; color: var(--g700); font-size: 0.95rem; line-height: 1.55; }
+.demo-text li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; }
+.phone { background: var(--g900); border-radius: 28px; padding: 12px; max-width: 320px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+.phone-screen { background: #efeae2; border-radius: 18px; padding: 18px 14px; min-height: 460px; display: flex; flex-direction: column; gap: 6px; }
+.msg { padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; max-width: 88%; box-shadow: 0 1px 1px rgba(0,0,0,0.05); }
+.msg.in { background: var(--white); align-self: flex-start; border-radius: 12px 12px 12px 2px; }
+.msg.out { background: #d9fdd3; align-self: flex-end; border-radius: 12px 12px 2px 12px; }
+.msg-time { font-size: 9px; color: var(--g500); text-align: right; margin-top: 1px; }
+
+/* ROI */
+.roi-card { background: linear-gradient(135deg, var(--pink) 0%, #c41679 100%); color: var(--white); padding: 3rem; border-radius: var(--r); text-align: center; }
+.roi-card h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 1.6rem; letter-spacing: -0.01em; }
+.roi-calc { font-size: 1rem; line-height: 1.9; margin-bottom: 2rem; opacity: 0.95; }
+.roi-calc strong { font-weight: 700; font-size: 1.15rem; }
+.roi-verdict { font-size: 1.5rem; font-weight: 800; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.3); }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 920px; margin: 0 auto; }
+.price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
+.price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(233,30,140,0.10); }
+.price-card.featured::before { content: "★ RECOMMANDÉ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
+.price-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+.price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
+.price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+.price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
+.price-card .delai { font-size: 0.78rem; color: var(--pink); font-weight: 600; margin-bottom: 1.2rem; }
+.price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); }
+.price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.88rem; color: var(--g700); line-height: 1.5; }
+.price-card li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; }
+.price-card li strong { color: var(--g900); font-weight: 600; }
+
+/* FAQ */
+.faq-item { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.4rem 1.7rem; margin-bottom: 0.7rem; max-width: 820px; margin-left: auto; margin-right: auto; }
+.faq-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--g900); display: flex; align-items: flex-start; gap: 0.5rem; }
+.faq-item h4::before { content: "Q."; color: var(--pink); font-weight: 800; flex-shrink: 0; }
+.faq-item p { color: var(--g600); font-size: 0.92rem; line-height: 1.6; padding-left: 1.7rem; }
+
+/* CTA FINAL */
+.cta-final { background: var(--g100); border-radius: var(--r); padding: 3rem 2rem; text-align: center; margin: 4rem 0; }
+.cta-final h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+.cta-final p { font-size: 1rem; color: var(--g600); max-width: 600px; margin: 0 auto 1.6rem; line-height: 1.55; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
+.footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-brand { font-weight: 800; font-size: 0.9rem; }
+.footer-brand .gild { color: var(--g900); }
+.footer-brand .tech { color: var(--pink); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--pink); }
+.footer-mention { font-size: 0.72rem; color: var(--g500); }
+
+@media (max-width: 880px) {
+  .hero h1 { font-size: 2.2rem; }
+  .stat-bar { grid-template-columns: 1fr; }
+  .problem-grid, .demo-grid { grid-template-columns: 1fr; }
+  .steps, .pricing-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
+    <ul class="nav-links">
+      <li><a href="/offres/immobilier">Offres Immo</a></li>
+      <li><a href="/calculateur">Calculateur</a></li>
+      <li><a href="/a-propos">À propos</a></li>
+      <li class="lang-toggle"><a href="/sarah" class="active">FR</a> · <a href="/sarah-uk">EN</a></li>
+      <li><a href="https://calendly.com/grisoni-pierrejean/30min" class="btn-nav">Audit gratuit</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="badge-new">🤖 NOUVEAU · Inclus dans Pro et Scale</span>
+    <h1>Plus jamais un lead perdu —<br>même <span class="accent">dimanche 22h45</span>.</h1>
+    <p class="subtitle">Sarah qualifie vos prospects et booke vos rendez-vous 24h/24 sur WhatsApp. Vous vous réveillez le matin avec un agenda déjà rempli — sans avoir embauché personne.</p>
+    <div class="ctas">
+      <a href="https://calendly.com/grisoni-pierrejean/30min" class="btn-primary">Réserver un audit gratuit (30 min)</a>
+      <a href="#how" class="btn-secondary">Voir comment ça marche</a>
+    </div>
+    <div class="stat-bar">
+      <div class="stat-item"><div class="stat-num">5 sec</div><div class="stat-label">Délai de réponse au prospect</div></div>
+      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Disponibilité — week-end inclus</div></div>
+      <div class="stat-item"><div class="stat-num">+30%</div><div class="stat-label">Conversion lead → RDV en moyenne</div></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="block" id="problem">
+    <h2 class="section-title">Le problème — et ce qu'il vous coûte <span class="accent">vraiment</span>.</h2>
+    <p class="section-subtitle">67% des prospects qui contactent une agence ne sont jamais rappelés. Pas par incompétence — par manque de temps.</p>
+    <div class="problem-grid">
+      <ul class="problem-list">
+        <li>Le formulaire SeLoger arrive à 22h. Vous le voyez à 9h le lendemain. Le prospect a déjà appelé 3 confrères.</li>
+        <li>Marie remplit votre formulaire dimanche soir. Lundi matin, vous lui envoyez un mail. Mardi, elle ne répond plus.</li>
+        <li>Embaucher un commercial junior pour rappeler ? 4 000 € / mois × 12 = 48 000 € / an. Pas tenable.</li>
+        <li>Un chatbot générique sur votre site ? Les prospects veulent du WhatsApp, pas un widget de chat.</li>
+        <li>Hektor, Apimo, Logic Immo CRM ? Ils centralisent les leads. Ils ne les rappellent pas en 5 min.</li>
+      </ul>
+      <div class="problem-stat">
+        <div class="num">67 000 €</div>
+        <div class="desc">de perte mensuelle moyenne pour une agence à 200 demandes/mois (commission moyenne 10K€, conversion 5%)</div>
+        <div class="source">Source : FNAIM 2024 + benchmark GILD-TECH</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="block" id="how">
+    <h2 class="section-title">Sarah, votre nouvelle <span class="accent">réceptionniste</span> — qui ne dort jamais.</h2>
+    <p class="section-subtitle">3 étapes. Aucune intervention humaine entre la demande du prospect et le RDV pris dans votre agenda.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Le prospect contacte votre agence</h3>
+        <p>Formulaire site, SeLoger, LeBonCoin, Bien'ici… ou même un appel manqué. Sarah détecte tout.</p>
+        <span class="time">⏱ Instantané</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Sarah accuse réception et qualifie</h3>
+        <p>Message WhatsApp envoyé en moins de 5 secondes. Sarah pose 1 question : « Votre projet d'achat, c'est plutôt 3 mois, 6 mois, ou plus tard ? »</p>
+        <span class="time">⏱ 5 secondes</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>RDV pris dans votre agenda</h3>
+        <p>Sarah envoie votre lien Calendly. Le prospect choisit son créneau parmi vos vraies dispos. Vous êtes notifié sur Slack et par email.</p>
+        <span class="time">⏱ Sous 2 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="block" id="demo">
+    <h2 class="section-title">Une vraie conversation Sarah ↔ <span class="accent">prospect</span>.</h2>
+    <p class="section-subtitle">Pas un chatbot bête. Sarah pose la bonne question, comprend les réponses naturelles, et passe la main à un humain quand elle doute.</p>
+    <div class="demo-grid">
+      <div class="demo-text">
+        <ul>
+          <li>Le prospect répond comme à un humain ("ouais d'ici 3 mois", "1", "demain matin")</li>
+          <li>Si Sarah doute, elle escalade à votre équipe sur Slack en 1 clic</li>
+          <li>Conversation logguée dans votre Google Sheet — vous gardez la traçabilité</li>
+          <li>Wording 100% ajustable — vous pouvez modifier les messages à tout moment</li>
+          <li>Le prospect reçoit une réponse pro qu'aucun humain n'aurait pu envoyer aussi vite</li>
+          <li>Compatible avec votre numéro WhatsApp Business existant</li>
+        </ul>
+      </div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="msg in">Bonjour Marie, merci pour votre demande chez Agence Dupont Immobilier. Notre équipe revient vers vous très rapidement.<div class="msg-time">22:45</div></div>
+          <div class="msg out">Oui je suis intéressée<div class="msg-time">22:46</div></div>
+          <div class="msg in">Super Marie ! Avant de bloquer un rendez-vous, une question rapide : votre projet d'achat, c'est plutôt dans les 3 mois, les 6 mois, ou plus tard ? Répondez 1, 2 ou 3.<div class="msg-time">22:46</div></div>
+          <div class="msg out">1<div class="msg-time">22:47</div></div>
+          <div class="msg in">Parfait Marie ! Vous pouvez choisir un créneau directement ici (toutes les disponibilités en temps réel) : calendly.com/agence-dupont/visite<div class="msg-time">22:47</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="block" id="roi">
+    <h2 class="section-title">ROI — Sarah s'amortit en <span class="accent">1 mandat</span> récupéré.</h2>
+    <p class="section-subtitle">Le calcul simple à faire pendant l'audit. Aucune projection optimiste — données FNAIM 2024 + commission immobilière standard.</p>
+    <div class="roi-card">
+      <h3>Pour une agence à 200 demandes/mois</h3>
+      <div class="roi-calc">
+        <strong>200 leads/mois</strong> × 67% non rappelés = <strong>134 leads morts</strong><br>
+        × 5% conversion potentielle = <strong>6,7 mandats perdus/mois</strong><br>
+        × 8 000 € de commission moyenne = <strong>53 600 € / mois</strong> de manque à gagner
+      </div>
+      <div class="roi-verdict">Pro à 2 490 € HT ? Amortie en 4 jours.</div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="block" id="pricing">
+    <h2 class="section-title">Sarah est incluse dans <span class="accent">Pro et Scale</span>.</h2>
+    <p class="section-subtitle">Pas un add-on à 99 € / mois. Inclus dans le forfait, sans surcoût caché.</p>
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <h3>Pro</h3>
+        <div class="for">Pour les agences indépendantes 1-5 agents</div>
+        <div class="price">2 490 € HT <small>one-shot</small></div>
+        <div class="delai">→ Installation 4h chrono · actif sous 1 semaine</div>
+        <ul>
+          <li><strong>Sarah</strong> — Réceptionniste virtuelle 24/7 (ce produit)</li>
+          <li>Rappel automatique sub-5 min (WhatsApp + email + Slack)</li>
+          <li>Relances auto J+3 / J+7 / J+14 si pas de réponse</li>
+          <li>Tableau de bord temps réel</li>
+          <li>Bilan hebdo automatique lundi 8h</li>
+          <li>Maintenance optionnelle 290 € / mois</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Scale</h3>
+        <div class="for">Pour les agences 5+ agents avec prospection active</div>
+        <div class="price">4 990 € HT <small>one-shot</small></div>
+        <div class="delai">→ Installation 6h chrono · actif sous 2 semaines</div>
+        <ul>
+          <li>Tout ce qui est dans <strong>Pro</strong></li>
+          <li>Pige PAP automatique (LeBonCoin + PAP)</li>
+          <li>Détection mandats expirés</li>
+          <li>Réveil fichier dormant (12 mois)</li>
+          <li>Fiche visite 1h avant chaque RDV</li>
+          <li>Maintenance optionnelle 390 € / mois</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <h2 class="section-title">Les 5 questions que <span class="accent">tous les dirigeants</span> nous posent.</h2>
+    <p class="section-subtitle">Si la vôtre n'y est pas, posez-la directement pendant l'audit gratuit.</p>
+    <div>
+      <div class="faq-item">
+        <h4>Mes prospects vont-ils se sentir robotisés ?</h4>
+        <p>Sarah pose 1 question pertinente puis envoie un lien Calendly. C'est plus rapide qu'un humain et plus pratique pour le prospect. Le wording est ajustable, le ton est humain. 60% des prospects qualifiés cliquent sur le lien Calendly — vs 5% sur un rappel téléphonique classique.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Et si Sarah comprend mal une réponse ?</h4>
+        <p>Sarah escalade automatiquement à votre équipe sur Slack si elle est en doute. Vous avez la conversation complète sous les yeux pour reprendre la main en 1 clic. Sur 100 leads, en moyenne 5 sont escaladés (situations émotionnelles, questions hors-script).</p>
+      </div>
+      <div class="faq-item">
+        <h4>RGPD et conformité ?</h4>
+        <p>Sarah envoie via votre numéro WhatsApp Business avec votre branding. Le contrat de sous-traitance GILD-TECH est signé au kick-off. Vous restez DPO. Données stockées dans votre Google Workspace, pas chez nous.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Ça marche avec mon CRM (Hektor / Apimo) ?</h4>
+        <p>Sarah ne remplace pas votre CRM — elle est en amont. Elle prend les leads dès leur arrivée, qualifie, booke le RDV. Quand le prospect signe un mandat, vous le poussez dans votre CRM comme avant. Sarah s'occupe de la phase pré-mandat où les CRM immo sont mauvais.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Combien de temps avant que Sarah soit en prod chez moi ?</h4>
+        <p>1 semaine maximum. Le déploiement technique côté GILD-TECH prend 4h chrono. Les jours restants sont pour : configurer votre Calendly, tester avec votre équipe, valider les wordings. Le 1er lead réel est traité par Sarah au plus tard le vendredi suivant la signature.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <h2>Discutons de votre cas en 30 minutes.</h2>
+    <p>Audit gratuit. Sans engagement. On calcule ensemble combien votre agence perd chaque mois sur les leads non rappelés — et combien Sarah pourrait vous récupérer.</p>
+    <a href="https://calendly.com/grisoni-pierrejean/30min" class="btn-primary">Réserver mon audit gratuit</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+    <ul class="footer-links">
+      <li><a href="/offres/immobilier">Offres</a></li>
+      <li><a href="/sarah">Sarah</a></li>
+      <li><a href="/calculateur">Calculateur</a></li>
+      <li><a href="/a-propos">À propos</a></li>
+      <li><a href="/mentions-legales">Mentions légales</a></li>
+      <li><a href="/confidentialite">Confidentialité</a></li>
+    </ul>
+    <div class="footer-mention">© 2026 Girlden LTD · contact@gild-tech.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
