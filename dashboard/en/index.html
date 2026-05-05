@@ -75,6 +75,32 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 .brief-cta { background: white; color: var(--pink); border: none; padding: 9px 16px; border-radius: 99px; font-weight: 600; font-size: 13px; cursor: pointer; align-self: center; flex-shrink: 0; transition: transform .15s; }
 .brief-cta:hover { transform: scale(1.04); }
 
+/* MODAL */
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; backdrop-filter: blur(4px); }
+.modal-bg.show { display: flex; animation: fadeIn .18s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal { background: white; border-radius: 16px; max-width: 640px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 24px 60px rgba(0,0,0,.3); animation: slideUp .25s; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-h { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--g200); position: sticky; top: 0; background: white; z-index: 1; }
+.modal-h h3 { font-size: 17px; font-weight: 800; }
+.modal-h .day { font-size: 12px; color: var(--g500); margin-top: 2px; }
+.modal-close { width: 34px; height: 34px; background: var(--g100); border: none; border-radius: 50%; cursor: pointer; display: grid; place-items: center; font-size: 18px; color: var(--g700); transition: background .15s; }
+.modal-close:hover { background: var(--g200); }
+.modal-body { padding: 22px 24px 28px; }
+.modal-section { margin-bottom: 22px; }
+.modal-section:last-child { margin-bottom: 0; }
+.modal-section h4 { font-size: 13px; font-weight: 700; color: var(--pink); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; }
+.modal-section p, .modal-section li { font-size: 14px; line-height: 1.6; color: var(--g700); }
+.modal-section ul { padding-left: 18px; }
+.modal-section li { margin-bottom: 6px; }
+.modal-section li strong { color: var(--g900); }
+.modal-section .reco-box { background: var(--pink-bg); border-left: 3px solid var(--pink); padding: 12px 14px; border-radius: 8px; }
+.modal-section .reco-box strong { color: var(--pink); }
+.modal-section .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.modal-section .stat-mini { background: var(--g50); padding: 10px 12px; border-radius: 8px; }
+.modal-section .stat-mini .v { font-size: 20px; font-weight: 800; color: var(--pink); }
+.modal-section .stat-mini .l { font-size: 11px; color: var(--g500); }
+
 /* KPI ROW */
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
 .kpi { background: white; padding: 18px 20px; border-radius: var(--r); border: 1px solid var(--g200); }
@@ -218,7 +244,7 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
       <h2>Start by calling Mary Bertrand — re-engaged on Rightmove last night at 11pm. Heat window 24h, ×4 conversion on this profile.</h2>
       <p>Then: Jeremy Costello (3-bed Shoreditch, £380k) and the Lemaire family (4th viewing — signature imminent).</p>
     </div>
-    <button class="brief-cta">See full brief →</button>
+    <button class="brief-cta" onclick="document.getElementById('briefModal').classList.add('show')">See full brief →</button>
   </div>
 
   <!-- KPIS -->
@@ -529,6 +555,70 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 
 </main>
 
+<!-- BRIEF MODAL -->
+<div class="modal-bg" id="briefModal" onclick="if(event.target===this) this.classList.remove('show')">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="briefModalTitle">
+    <div class="modal-h">
+      <div>
+        <h3 id="briefModalTitle">☀️ Today's brief — James Chambers</h3>
+        <div class="day" id="briefModalDate">Today · 7:00am</div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('briefModal').classList.remove('show')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-section">
+        <h4>⚡ Priority recommendation</h4>
+        <div class="reco-box">
+          <strong>Start with Mary Bertrand.</strong> She re-engaged on Rightmove last night at 11pm — same listing as 2 months ago. 24-hour heat window. On this profile, your conversion rate is ×4 if you call her within 4 hours.
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h4>🏠 Today's viewings</h4>
+        <ul>
+          <li><strong>10:00am</strong> — Jeremy Costello · 3-bed Shoreditch · £380k · 14 Bony Road · 2nd viewing</li>
+          <li><strong>11:30am</strong> — Lea Martin · Studio Camden · £230k · 1st viewing</li>
+          <li><strong>2:30pm</strong> — Lemaire Family · House Hampstead · £680k · <strong style="color:var(--green);">Instruction signing</strong></li>
+          <li><strong>4:00pm</strong> — Anthony Roux · 2-bed King's Cross · £320k · 1st viewing</li>
+          <li><strong>5:30pm</strong> — Bernard Family · House Hampstead · £820k · 3rd viewing</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h4>📞 Top 5 priority callbacks</h4>
+        <ul>
+          <li><strong>1. Mary Bertrand</strong> — Re-engaged on Rightmove last night 11pm · 4-bed £450k <em>(very hot, 24h window)</em></li>
+          <li><strong>2. Peter Lacombe</strong> — Sarah qualified 18 min ago, 3-month timeline · 3-bed £340k</li>
+          <li><strong>3. Camille Renault</strong> — Cancelled last night, replied positive this morning 8:32am · House £580k</li>
+          <li><strong>4. Tremblay Family</strong> — Expired instruction detected Monday via FSBO sweep · House £715k</li>
+          <li><strong>5. Luke Henry</strong> — Last follow-up before break-up D+14 tomorrow · 2-bed £275k</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h4>📊 Pipeline this week</h4>
+        <div class="stats-row">
+          <div class="stat-mini"><div class="v">68</div><div class="l">Active leads</div></div>
+          <div class="stat-mini"><div class="v">12</div><div class="l">Viewings booked</div></div>
+          <div class="stat-mini"><div class="v">3</div><div class="l">Instructions signing</div></div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h4>💡 Sarah's field tip</h4>
+        <p>You have a <strong>signature window at 2:30pm with the Lemaire family</strong> (House Hampstead). It's your best opportunity of the day — prep the sole agency agreement, block 1h after for the 3 supporting documents. If they hesitate, your argument: 6 buyers waiting on this area this week.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>📅 Tomorrow</h4>
+        <p>3 viewings scheduled (Costello return for offer, Renault reschedule, Tremblay 1st viewing). Luke Henry will be removed from the file at midnight if no reply.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
 // Date d'aujourd'hui en français
 const dateEl = document.getElementById('todayDate');
@@ -597,6 +687,11 @@ setInterval(() => {
   // Garder max 8
   while (feed.children.length > 8) feed.removeChild(feed.lastChild);
 }, 25000);
+
+// Esc to close modal
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('briefModal').classList.remove('show');
+});
 </script>
 
 </body>
