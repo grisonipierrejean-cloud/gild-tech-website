@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agency dashboard — Sarah Demo · GILD-TECH</title>
+<meta name="description" content="Real-time agency dashboard — today's viewings, priority callbacks, pipeline, Sarah alerts. GILD-TECH demo.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --pink: #E91E8C;
+  --pink-light: #f54da5;
+  --pink-soft: #fce4f1;
+  --pink-bg: #fef6fa;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --green-soft: #dcfce7;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --orange: #ea580c;
+  --orange-bg: #fff7ed;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --dark: #0f0f0f;
+  --g900: #111;
+  --g800: #1e1e1e;
+  --g700: #333;
+  --g600: #555;
+  --g500: #777;
+  --g400: #999;
+  --g300: #ccc;
+  --g200: #e8e8e8;
+  --g150: #ededed;
+  --g100: #f5f5f5;
+  --g50: #fafafa;
+  --white: #fff;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --max-w: 1320px;
+  --r: 12px;
+  --r-lg: 16px;
+}
+html, body { height: 100%; }
+body { background: var(--g50); color: var(--g900); font-family: var(--font); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+/* TOP BAR */
+.topbar { background: var(--white); border-bottom: 1px solid var(--g200); padding: 14px 0; position: sticky; top: 0; z-index: 50; }
+.topbar-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.topbar-brand { display: flex; align-items: center; gap: 14px; }
+.topbar-logo { width: 32px; height: 32px; background: var(--pink); color: white; border-radius: 8px; display: grid; place-items: center; font-weight: 800; font-size: 15px; letter-spacing: -.5px; }
+.topbar-info h1 { font-size: 16px; font-weight: 700; }
+.topbar-info .sub { font-size: 12px; color: var(--g500); }
+.topbar-status { display: flex; align-items: center; gap: 14px; }
+.live-pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; background: var(--green-bg); color: var(--green); font-weight: 600; font-size: 12px; border-radius: 99px; border: 1px solid var(--green-soft); }
+.live-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 1.6s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(1.4); } }
+.topbar-agent { display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 8px; border: 1px solid var(--g200); border-radius: 99px; }
+.avatar { width: 28px; height: 28px; background: linear-gradient(135deg, var(--pink), var(--pink-light)); color: white; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 12px; }
+.topbar-agent span { font-size: 13px; font-weight: 500; }
+
+/* MAIN */
+.main { max-width: var(--max-w); margin: 0 auto; padding: 28px 24px 60px; }
+
+/* HERO BRIEF AI */
+.brief-banner { background: linear-gradient(135deg, var(--pink) 0%, #c91e7c 100%); color: white; padding: 22px 26px; border-radius: var(--r-lg); margin-bottom: 24px; display: flex; gap: 18px; align-items: flex-start; box-shadow: 0 8px 24px rgba(233, 30, 140, .14); }
+.brief-icon { width: 46px; height: 46px; background: rgba(255,255,255,.18); border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; font-size: 22px; }
+.brief-content { flex: 1; }
+.brief-content .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: .85; font-weight: 600; }
+.brief-content h2 { font-size: 18px; font-weight: 700; margin-top: 4px; line-height: 1.4; }
+.brief-content p { font-size: 14px; opacity: .9; margin-top: 6px; }
+.brief-cta { background: white; color: var(--pink); border: none; padding: 9px 16px; border-radius: 99px; font-weight: 600; font-size: 13px; cursor: pointer; align-self: center; flex-shrink: 0; transition: transform .15s; }
+.brief-cta:hover { transform: scale(1.04); }
+
+/* KPI ROW */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi { background: white; padding: 18px 20px; border-radius: var(--r); border: 1px solid var(--g200); }
+.kpi .label { font-size: 12px; color: var(--g500); font-weight: 500; }
+.kpi .num { font-size: 32px; font-weight: 800; color: var(--g900); margin-top: 6px; letter-spacing: -1px; }
+.kpi .delta { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; margin-top: 6px; }
+.kpi .delta.up { color: var(--green); }
+.kpi .delta.down { color: var(--red); }
+.kpi .delta.flat { color: var(--g500); }
+
+/* GRID 2 cols */
+.grid-2 { display: grid; grid-template-columns: 1fr 380px; gap: 20px; align-items: start; }
+.card { background: white; border: 1px solid var(--g200); border-radius: var(--r); padding: 20px; }
+.card-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.card-h h3 { font-size: 15px; font-weight: 700; }
+.card-h .sub { font-size: 12px; color: var(--g500); }
+.tag { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+.tag-green { background: var(--green-bg); color: var(--green); }
+.tag-red { background: var(--red-bg); color: var(--red); }
+.tag-blue { background: var(--blue-bg); color: var(--blue); }
+.tag-pink { background: var(--pink-bg); color: var(--pink); }
+.tag-orange { background: var(--orange-bg); color: var(--orange); }
+.tag-grey { background: var(--g100); color: var(--g600); }
+
+/* VISITES */
+.visite { padding: 14px 0; border-bottom: 1px solid var(--g150); display: grid; grid-template-columns: 70px 1fr auto; gap: 14px; align-items: center; }
+.visite:last-child { border-bottom: none; padding-bottom: 0; }
+.visite:first-child { padding-top: 0; }
+.visite .time { font-size: 18px; font-weight: 800; color: var(--pink); letter-spacing: -.5px; }
+.visite .info .name { font-size: 14px; font-weight: 600; }
+.visite .info .meta { font-size: 12px; color: var(--g500); margin-top: 2px; }
+.visite .actions { display: flex; gap: 6px; }
+.btn-icon { width: 32px; height: 32px; background: var(--g100); border: none; border-radius: 8px; cursor: pointer; display: grid; place-items: center; transition: background .15s; }
+.btn-icon:hover { background: var(--pink-bg); }
+.btn-icon svg { width: 16px; height: 16px; stroke: var(--g700); }
+
+/* CALLBACKS */
+.callback { padding: 14px 0; border-bottom: 1px solid var(--g150); }
+.callback:last-child { border-bottom: none; padding-bottom: 0; }
+.callback:first-child { padding-top: 0; }
+.callback-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.callback-name { display: flex; align-items: center; gap: 10px; }
+.callback-rank { width: 22px; height: 22px; background: var(--pink-bg); color: var(--pink); border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+.callback-name .nm { font-size: 14px; font-weight: 600; }
+.callback-tel { font-size: 12px; color: var(--blue); text-decoration: none; font-weight: 500; }
+.callback-tel:hover { text-decoration: underline; }
+.callback-reason { font-size: 12px; color: var(--g600); margin-top: 6px; padding-left: 32px; line-height: 1.5; }
+.callback-tags { display: flex; gap: 5px; margin-top: 6px; padding-left: 32px; flex-wrap: wrap; }
+
+/* PIPELINE */
+.pipeline-stage { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--g150); }
+.pipeline-stage:last-child { border-bottom: none; }
+.pipeline-stage .name { flex: 1; font-size: 13px; font-weight: 500; }
+.pipeline-stage .count { font-size: 22px; font-weight: 800; min-width: 30px; text-align: right; letter-spacing: -.5px; }
+.pipeline-stage .bar { flex: 0 0 100px; background: var(--g100); border-radius: 99px; height: 6px; overflow: hidden; }
+.pipeline-stage .bar-fill { height: 100%; background: var(--pink); border-radius: 99px; }
+
+/* SOURCES */
+.source-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.source-row:last-child { margin-bottom: 0; }
+.source-name { flex: 1; font-size: 13px; font-weight: 500; }
+.source-bar { flex: 0 0 140px; background: var(--g100); border-radius: 99px; height: 8px; overflow: hidden; }
+.source-bar-fill { height: 100%; border-radius: 99px; }
+.source-num { font-size: 13px; font-weight: 700; min-width: 32px; text-align: right; }
+
+/* ACTIVITY */
+.feed { display: flex; flex-direction: column; gap: 12px; max-height: 360px; overflow-y: auto; }
+.feed-item { display: flex; gap: 12px; padding: 8px 0; }
+.feed-item:not(:last-child) { border-bottom: 1px solid var(--g150); padding-bottom: 12px; }
+.feed-icon { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 14px; }
+.feed-icon.lead { background: var(--green-bg); }
+.feed-icon.message { background: var(--blue-bg); }
+.feed-icon.rdv { background: var(--pink-bg); }
+.feed-icon.signed { background: var(--orange-bg); }
+.feed-content { flex: 1; }
+.feed-content .text { font-size: 13px; line-height: 1.4; }
+.feed-content .text strong { font-weight: 600; }
+.feed-content .text .tag { margin-left: 6px; }
+.feed-content .time { font-size: 11px; color: var(--g500); margin-top: 2px; }
+
+/* SECTION HEADERS */
+.section-title { font-size: 20px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 14px; margin-top: 28px; }
+
+/* RESPONSIVE */
+@media (max-width: 920px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .topbar-info .sub { display: none; }
+  .topbar-agent span { display: none; }
+  .brief-banner { flex-direction: column; align-items: flex-start; }
+  .brief-cta { align-self: stretch; text-align: center; }
+}
+@media (max-width: 540px) {
+  .main { padding: 18px 14px 60px; }
+  .kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi { padding: 14px 16px; }
+  .kpi .num { font-size: 26px; }
+  .visite { grid-template-columns: 56px 1fr; }
+  .visite .actions { display: none; }
+  .source-bar { flex: 0 0 80px; }
+  .topbar-inner { padding: 0 14px; }
+}
+
+/* DEMO BAR */
+.demo-bar { background: linear-gradient(90deg, #fef6fa, #fff, #fef6fa); border-bottom: 1px solid var(--pink-soft); padding: 9px 0; font-size: 12px; color: var(--pink); text-align: center; font-weight: 600; }
+.demo-bar a { color: var(--pink); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  📊 Demo — London Bridge Estates · sample data · <a href="https://gild-tech.com/sarah-uk">Discover Sarah</a>
+</div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <div class="topbar-logo">G</div>
+      <div class="topbar-info">
+        <h1>London Bridge Estates</h1>
+        <div class="sub" id="todayDate">Today</div>
+      </div>
+    </div>
+    <div class="topbar-status">
+      <div class="live-pill"><span class="live-dot"></span><span>Sarah active 24/7</span></div>
+      <div class="topbar-agent">
+        <div class="avatar">JC</div>
+        <span>James Chambers</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- BRIEF AI -->
+  <div class="brief-banner">
+    <div class="brief-icon">⚡</div>
+    <div class="brief-content">
+      <div class="label">Sarah's recommendation</div>
+      <h2>Start by calling Mary Bertrand — re-engaged on Rightmove last night at 11pm. Heat window 24h, ×4 conversion on this profile.</h2>
+      <p>Then: Jeremy Costello (3-bed Shoreditch, £380k) and the Lemaire family (4th viewing — signature imminent).</p>
+    </div>
+    <button class="brief-cta">See full brief →</button>
+  </div>
+
+  <!-- KPIS -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Leads this week</div>
+      <div class="num">47</div>
+      <div class="delta up">↑ +18% vs last week</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Avg callback time</div>
+      <div class="num">3 min</div>
+      <div class="delta up">↓ -42 min vs last week</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Viewings booked</div>
+      <div class="num">12</div>
+      <div class="delta up">↑ +5 vs last week</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Instructions signing</div>
+      <div class="num">3</div>
+      <div class="delta flat">= last week</div>
+    </div>
+  </div>
+
+  <!-- COL 1: TODAY -->
+  <div class="grid-2">
+    <div>
+
+      <!-- TODAY'S VIEWINGS -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-h">
+          <h3>📅 Today's viewings</h3>
+          <span class="sub">5 viewings scheduled</span>
+        </div>
+        <div class="visite">
+          <div class="time">10:00</div>
+          <div class="info">
+            <div class="name">Jeremy Costello — 3-bed Shoreditch</div>
+            <div class="meta">Budget £380k · 14 Bony Road, EC2 · 2nd viewing</div>
+          </div>
+          <div class="actions">
+            <button class="btn-icon" title="Appeler"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            <button class="btn-icon" title="Itinéraire"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="visite">
+          <div class="time">11:30</div>
+          <div class="info">
+            <div class="name">Lea Martin — Studio Camden</div>
+            <div class="meta">Budget £230k · 22 Saint-Antoine St · 1st viewing</div>
+          </div>
+          <div class="actions">
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="visite">
+          <div class="time">14:30</div>
+          <div class="info">
+            <div class="name">Lemaire Family — House Hampstead</div>
+            <div class="meta">Budget £680k · 8 Roule Lane · <strong style="color:var(--green);">Instruction signing</strong></div>
+          </div>
+          <div class="actions">
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="visite">
+          <div class="time">16:00</div>
+          <div class="info">
+            <div class="name">Anthony Roux — 2-bed King's Cross</div>
+            <div class="meta">Budget £320k · 15 Charlemagne Sq · 1st viewing</div>
+          </div>
+          <div class="actions">
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          </div>
+        </div>
+        <div class="visite">
+          <div class="time">17:30</div>
+          <div class="info">
+            <div class="name">Bernard Family — House Hampstead</div>
+            <div class="meta">Budget £820k · 4 Republic Ave · 3rd viewing</div>
+          </div>
+          <div class="actions">
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 5 CALLBACKS -->
+      <div class="card">
+        <div class="card-h">
+          <h3>📞 Top 5 priority callbacks</h3>
+          <span class="sub">Sorted by AI score</span>
+        </div>
+        <div class="callback">
+          <div class="callback-h">
+            <div class="callback-name">
+              <div class="callback-rank">1</div>
+              <div class="nm">Mary Bertrand</div>
+            </div>
+            <a class="callback-tel" href="tel:+33612345678">+33 6 12 34 56 78</a>
+          </div>
+          <div class="callback-reason">Re-engagée hier 23h sur SeLoger sur la même annonce qu'il y a 2 mois. Fenêtre 24h, conversion ×4 sur ce profil.</div>
+          <div class="callback-tags">
+            <span class="tag tag-red">🔥 Very hot</span>
+            <span class="tag tag-pink">SeLoger</span>
+            <span class="tag tag-grey">T4 · 350k</span>
+          </div>
+        </div>
+        <div class="callback">
+          <div class="callback-h">
+            <div class="callback-name">
+              <div class="callback-rank">2</div>
+              <div class="nm">Peter Lacombe</div>
+            </div>
+            <a class="callback-tel" href="tel:+33623456789">+33 6 23 45 67 89</a>
+          </div>
+          <div class="callback-reason">Sarah qualified 18 min ago — 3-month timeline confirmed, £340k budget, Old City area. Calendly slot already proposed.</div>
+          <div class="callback-tags">
+            <span class="tag tag-orange">⚡ Qualified 18 min</span>
+            <span class="tag tag-pink">Website</span>
+            <span class="tag tag-grey">3-bed · £340k</span>
+          </div>
+        </div>
+        <div class="callback">
+          <div class="callback-h">
+            <div class="callback-name">
+              <div class="callback-rank">3</div>
+              <div class="nm">Camille Renault</div>
+            </div>
+            <a class="callback-tel" href="tel:+33634567890">+33 6 34 56 78 90</a>
+          </div>
+          <div class="callback-reason">Viewing cancelled D-1 last night. Sarah followed up via WhatsApp this morning — positive reply 8:32am, asking for slot this week.</div>
+          <div class="callback-tags">
+            <span class="tag tag-blue">↩️ Reschedule</span>
+            <span class="tag tag-pink">SeLoger</span>
+            <span class="tag tag-grey">House · £580k</span>
+          </div>
+        </div>
+        <div class="callback">
+          <div class="callback-h">
+            <div class="callback-name">
+              <div class="callback-rank">4</div>
+              <div class="nm">Tremblay Family</div>
+            </div>
+            <a class="callback-tel" href="tel:+33645678901">+33 6 45 67 89 01</a>
+          </div>
+          <div class="callback-reason">Lead PAP — propriétaire dont le mandat a expiré chez un confrère. Sarah a détecté la disparition d'annonce lundi.</div>
+          <div class="callback-tags">
+            <span class="tag tag-green">💎 Expired instruction</span>
+            <span class="tag tag-pink">FSBO Sweep</span>
+            <span class="tag tag-grey">House · £715k</span>
+          </div>
+        </div>
+        <div class="callback">
+          <div class="callback-h">
+            <div class="callback-name">
+              <div class="callback-rank">5</div>
+              <div class="nm">Luke Henry</div>
+            </div>
+            <a class="callback-tel" href="tel:+33656789012">+33 6 56 78 90 12</a>
+          </div>
+          <div class="callback-reason">3ᵉ relance auto J+7 — n'a pas répondu. Dernier essai avant break-up J+14 demain.</div>
+          <div class="callback-tags">
+            <span class="tag tag-grey">Follow-up D+7</span>
+            <span class="tag tag-pink">Bien'ici</span>
+            <span class="tag tag-grey">2-bed · £275k</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div>
+
+      <!-- PIPELINE -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-h">
+          <h3>🌊 Buyer pipeline</h3>
+          <span class="sub">68 active leads</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="name">New</div>
+          <div class="bar"><div class="bar-fill" style="width: 100%; background: var(--pink);"></div></div>
+          <div class="count">12</div>
+        </div>
+        <div class="pipeline-stage">
+          <div class="name">Qualified</div>
+          <div class="bar"><div class="bar-fill" style="width: 75%; background: var(--pink-light);"></div></div>
+          <div class="count">9</div>
+        </div>
+        <div class="pipeline-stage">
+          <div class="name">Viewing booked</div>
+          <div class="bar"><div class="bar-fill" style="width: 50%; background: var(--blue);"></div></div>
+          <div class="count">6</div>
+        </div>
+        <div class="pipeline-stage">
+          <div class="name">Viewing done</div>
+          <div class="bar"><div class="bar-fill" style="width: 33%; background: var(--orange);"></div></div>
+          <div class="count">4</div>
+        </div>
+        <div class="pipeline-stage">
+          <div class="name">Offer pending</div>
+          <div class="bar"><div class="bar-fill" style="width: 25%; background: var(--green);"></div></div>
+          <div class="count">3</div>
+        </div>
+      </div>
+
+      <!-- SOURCES -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-h">
+          <h3>📊 Sources this week</h3>
+        </div>
+        <div class="source-row">
+          <div class="source-name">SeLoger</div>
+          <div class="source-bar"><div class="source-bar-fill" style="width: 89%; background: var(--pink);"></div></div>
+          <div class="source-num">17</div>
+        </div>
+        <div class="source-row">
+          <div class="source-name">Website agence</div>
+          <div class="source-bar"><div class="source-bar-fill" style="width: 63%; background: var(--blue);"></div></div>
+          <div class="source-num">12</div>
+        </div>
+        <div class="source-row">
+          <div class="source-name">Bien'ici</div>
+          <div class="source-bar"><div class="source-bar-fill" style="width: 42%; background: var(--orange);"></div></div>
+          <div class="source-num">8</div>
+        </div>
+        <div class="source-row">
+          <div class="source-name">FSBO Sweep/LBC</div>
+          <div class="source-bar"><div class="source-bar-fill" style="width: 32%; background: var(--green);"></div></div>
+          <div class="source-num">6</div>
+        </div>
+        <div class="source-row">
+          <div class="source-name">Referral</div>
+          <div class="source-bar"><div class="source-bar-fill" style="width: 21%; background: #a855f7;"></div></div>
+          <div class="source-num">4</div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY FEED -->
+      <div class="card">
+        <div class="card-h">
+          <h3>⚡ Sarah activity</h3>
+          <span class="sub">Live</span>
+        </div>
+        <div class="feed" id="feed">
+          <div class="feed-item">
+            <div class="feed-icon message">💬</div>
+            <div class="feed-content">
+              <div class="text">Sarah a qualifié <strong>Peter Lacombe</strong> — projet 3 mois <span class="tag tag-green">Qualifié</span></div>
+              <div class="time">18 min ago · WhatsApp</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon rdv">📅</div>
+            <div class="feed-content">
+              <div class="text">Viewing booked by <strong>Camille Renault</strong> — Thursday 2pm <span class="tag tag-pink">Booked</span></div>
+              <div class="time">42 min ago · Calendly</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon lead">📥</div>
+            <div class="feed-content">
+              <div class="text">New lead <strong>Anthony Roux</strong> — 2-bed King's Cross £320k</div>
+              <div class="time">1h15 ago · SeLoger</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon message">💬</div>
+            <div class="feed-content">
+              <div class="text">Relance auto J+3 envoyée à <strong>Luke Henry</strong></div>
+              <div class="time">2h ago · WhatsApp + Email</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon signed">✍️</div>
+            <div class="feed-content">
+              <div class="text">Instruction <strong>Bernard Family</strong> — signature appt confirmed for 5:30pm</div>
+              <div class="time">3h ago · Sarah Voice</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon lead">💎</div>
+            <div class="feed-content">
+              <div class="text">FSBO Sweep : <strong>1 potentially expired instruction</strong> detected in Hampstead area</div>
+              <div class="time">this morning 6am · Auto sweep</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon message">💬</div>
+            <div class="feed-content">
+              <div class="text">Sarah escalated <strong>Lemaire Family</strong> to James (offer pending)</div>
+              <div class="time">yesterday 11:47pm · Slack</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Date d'aujourd'hui en français
+const dateEl = document.getElementById('todayDate');
+const today = new Date();
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+dateEl.textContent = `${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+
+// Animation de comptage des KPIs au load
+document.querySelectorAll('.kpi .num').forEach(el => {
+  const target = parseFloat(el.textContent);
+  if (isNaN(target)) return;
+  let current = 0;
+  const isFloat = !Number.isInteger(target);
+  const step = target / 30;
+  const tick = () => {
+    current += step;
+    if (current < target) {
+      el.textContent = isFloat ? current.toFixed(0) : Math.round(current);
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = el.textContent.replace(/\d.*/, '') + (isFloat ? target.toFixed(0) : target);
+      // Restore original suffix
+      el.textContent = el.dataset.original || el.textContent;
+    }
+  };
+  el.dataset.original = el.textContent;
+  el.textContent = '0';
+  tick();
+});
+
+// Restore original after animation
+setTimeout(() => {
+  const originals = ['47', '3 min', '12', '3'];
+  document.querySelectorAll('.kpi .num').forEach((el, i) => { el.textContent = originals[i]; });
+}, 700);
+
+// Live feed simulation : nouveau message toutes les 25s
+const feed = document.getElementById('feed');
+const fakeFeedEvents = [
+  { icon: 'message', cls: 'message', text: 'Sarah a qualifié <strong>Julien Vidal</strong> — projet 6 mois', meta: 'à l\'instant · WhatsApp' },
+  { icon: '📞', cls: 'message', text: 'Sarah Voice a pris un message de <strong>Madame Dupont</strong> — souhaite estimation', meta: 'à l\'instant · Vapi' },
+  { icon: '📥', cls: 'lead', text: 'Nouveau lead <strong>Hugo Martinez</strong> — Studio Bellecour 145k', meta: 'à l\'instant · Bien\'ici' },
+  { icon: '📅', cls: 'rdv', text: 'RDV pris par <strong>Émilie Garnier</strong> — vendredi 11h', meta: 'à l\'instant · Calendly' }
+];
+let evIdx = 0;
+setInterval(() => {
+  const ev = fakeFeedEvents[evIdx % fakeFeedEvents.length];
+  evIdx++;
+  const item = document.createElement('div');
+  item.className = 'feed-item';
+  item.style.opacity = '0';
+  item.style.transform = 'translateY(-12px)';
+  item.style.transition = 'all .5s ease';
+  item.innerHTML = `
+    <div class="feed-icon ${ev.cls}">${ev.icon.length === 1 || ev.icon.length === 2 ? ev.icon : '💬'}</div>
+    <div class="feed-content">
+      <div class="text">${ev.text}</div>
+      <div class="time">${ev.meta}</div>
+    </div>`;
+  feed.insertBefore(item, feed.firstChild);
+  requestAnimationFrame(() => {
+    item.style.opacity = '1';
+    item.style.transform = 'translateY(0)';
+  });
+  // Garder max 8
+  while (feed.children.length > 8) feed.removeChild(feed.lastChild);
+}, 25000);
+</script>
+
+</body>
+</html>
