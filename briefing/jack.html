@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jack — Audit Briefing · GILD-TECH</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#E91E8C">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --pink:#E91E8C; --pink-bg:#fef6fa; --green:#16a34a; --red:#dc2626; --orange:#ea580c; --g900:#111; --g700:#333; --g600:#555; --g500:#777; --g300:#ccc; --g200:#e8e8e8; --g100:#f5f5f5; --g50:#fafafa; --white:#fff; }
+body { background: var(--g50); color: var(--g900); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; padding: 0 0 60px; }
+.topbar { background: white; border-bottom: 1px solid var(--g200); padding: 14px 0; position: sticky; top: 0; z-index: 50; }
+.topbar-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 17px; }
+.brand-logo { width: 32px; height: 32px; background: var(--pink); color: white; border-radius: 8px; display: grid; place-items: center; font-weight: 800; font-size: 14px; }
+.brand .pink { color: var(--pink); }
+.tag-private { background: var(--pink-bg); color: var(--pink); padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+main { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; line-height: 1.2; }
+h2 { font-size: 22px; font-weight: 800; letter-spacing: -.5px; margin: 36px 0 12px; padding-top: 12px; border-top: 1px solid var(--g200); }
+h2:first-of-type { border-top: none; padding-top: 0; }
+h3 { font-size: 17px; font-weight: 700; margin: 22px 0 8px; color: var(--g900); }
+h4 { font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--pink); }
+p, li { font-size: 15px; color: var(--g700); margin-bottom: 10px; }
+ul, ol { padding-left: 22px; margin-bottom: 14px; }
+li { margin-bottom: 4px; }
+strong { color: var(--g900); font-weight: 700; }
+a { color: var(--pink); }
+code { background: var(--g100); padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px; color: var(--g900); }
+pre { background: var(--g100); padding: 14px 18px; border-radius: 10px; font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.5; overflow-x: auto; margin: 12px 0 18px; color: var(--g900); }
+blockquote { border-left: 3px solid var(--pink); padding: 10px 16px; background: var(--pink-bg); border-radius: 0 8px 8px 0; margin: 14px 0; font-style: italic; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--g200); vertical-align: top; }
+th { background: var(--pink-bg); color: var(--pink); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; }
+.intro-banner { background: linear-gradient(135deg, var(--pink), #c91e7c); color: white; padding: 22px 26px; border-radius: 14px; margin: 24px 0 32px; }
+.intro-banner h1 { color: white; margin: 0 0 6px; }
+.intro-banner p { color: rgba(255,255,255,.92); margin: 0; }
+.toc { background: white; border: 1px solid var(--g200); border-radius: 12px; padding: 18px 22px; margin: 0 0 28px; }
+.toc h3 { margin: 0 0 8px; }
+.toc ol { margin: 0; padding-left: 22px; }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.warning { background: #fff7ed; border-left: 3px solid var(--orange); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0 18px; }
+.warning strong { color: var(--orange); }
+.success { background: #f0fdf4; border-left: 3px solid var(--green); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0 18px; }
+.success strong { color: var(--green); }
+.print-btn { background: var(--pink); color: white; padding: 8px 16px; border-radius: 99px; text-decoration: none; font-size: 13px; font-weight: 600; }
+@media print { .topbar, .print-btn { display: none; } body { background: white; padding: 0; } main { max-width: 100%; padding: 0 20px; } pre, blockquote, table { break-inside: avoid; } }
+@media (max-width: 600px) { h1 { font-size: 24px; } h2 { font-size: 18px; } main { padding: 20px 16px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-logo">G</div>
+      <span><span class="pink">GILD</span>-TECH</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="tag-private">🔒 Internal · Jack only</span>
+      <a href="javascript:window.print()" class="print-btn">Print</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<div class="intro-banner">
+  <h1>Jack — UK Audit Briefing</h1>
+  <p>Read this 30 minutes before your audit call. Everything is set up on the GILD-TECH side — your job is to follow the script.</p>
+</div>
+
+<div class="toc">
+  <h3>📋 Table of contents</h3>
+  <ol>
+    <li><a href="#setup">Setup — 5 min before the call</a></li>
+    <li><a href="#scripts">Scripts to read in order</a></li>
+    <li><a href="#pitch">UK 30-second opening pitch</a></li>
+    <li><a href="#stats">UK stats to know cold</a></li>
+    <li><a href="#demo">Live demo flow (10 min)</a></li>
+    <li><a href="#close">Closing — UK pricing £</a></li>
+    <li><a href="#blocked">⚠️ Known blockers + plan B</a></li>
+    <li><a href="#postaudit">Post-audit (within the hour)</a></li>
+    <li><a href="#mental">Mental prep — before the call</a></li>
+  </ol>
+</div>
+
+<h2 id="setup">🎯 Setup — 5 min before the call</h2>
+
+<h3>Tabs to pre-open in Chrome (private mode)</h3>
+
+<ol>
+  <li>✅ <strong>Demo dashboard</strong> : <a href="https://gild-tech.com/dashboard/en/" target="_blank">gild-tech.com/dashboard/en/</a> — main shared screen, the wow effect</li>
+  <li>✅ <strong>Sarah UK page</strong> : <a href="https://gild-tech.com/sarah-uk" target="_blank">gild-tech.com/sarah-uk</a> — in case the client wants to revisit features</li>
+  <li>✅ <strong>Vapi Sarah Voice</strong> : <a href="https://dashboard.vapi.ai/assistants/189921d8-0da5-40b0-b5ee-c769d5351428" target="_blank">Vapi assistant</a></li>
+  <li>✅ <strong>WhatsApp Business on your phone</strong> : ready to text <code>+33 6 99 08 05 39</code></li>
+  <li>✅ <strong>Calculator</strong> : <a href="https://gild-tech.com/calculateur?lang=en" target="_blank">gild-tech.com/calculateur (EN)</a></li>
+</ol>
+
+<h3>Numbers ready</h3>
+
+<ul>
+  <li><strong>Sarah WhatsApp demo number</strong> : <code>+33 6 99 08 05 39</code></li>
+  <li><strong>Sarah Voice demo</strong> : Vapi browser <em>"Talk"</em> button</li>
+  <li><strong>Calendly Jack</strong> : your personal Calendly link (use yours, not PJ's)</li>
+</ul>
+
+<h2 id="scripts">📖 Scripts to read in order</h2>
+
+<ol>
+  <li><strong>Cold call recap</strong> (if you called yourself) — see <code>01-script-cold-call-en.md</code></li>
+  <li><strong>Main audit script</strong> (the call core) — see <code>02-script-audit-en.md</code></li>
+  <li><strong>ROI calculator</strong> (during the audit) — see <code>03-calculateur-roi.md</code></li>
+  <li><strong>Live demo script</strong> (phase 4 of the audit) — see <code>04-demo-script-en.md</code></li>
+  <li><strong>Post-audit email templates</strong> — see <code>05-template-proposition.md</code> (adapt UK terminology + £)</li>
+</ol>
+
+<h2 id="pitch">🎤 UK pitch — 30-second opening</h2>
+
+<blockquote>
+"Hi [First name], thanks for being on the call. The reason I'm here today: we've found that <strong>67% of property enquiries from Rightmove, Zoopla or your website are never followed up</strong> — that's NAR 2023 data. Not because UK estate agencies are bad, but because the form arrives at 10pm Sunday and the applicant has called 3 competitors before you see it Monday morning.<br><br>
+What I'm going to do in the next 30 minutes: I'll ask you 10 questions about how your sales process works today, calculate with you exactly how much that's costing you each month, and show you live what we install at independent UK estate agencies to fix it. At the end, you tell me if it makes sense for your agency. If not, I leave you alone."
+</blockquote>
+
+<h2 id="stats">💰 UK stats to know COLD</h2>
+
+<table>
+  <thead>
+    <tr><th>Stat</th><th>Source</th><th>When to use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>67%</strong> of enquiries never followed up</td><td>NAR 2023</td><td>Opening pitch</td></tr>
+    <tr><td><strong>First caller wins 78% of cases</strong></td><td>NAR 2023</td><td>When client says "we're fast enough"</td></tr>
+    <tr><td>Junior negotiator cost <strong>£3,000-3,500/month</strong></td><td>UK industry</td><td>When client says "expensive"</td></tr>
+    <tr><td>Average sole agency fee <strong>£8K-12K</strong> on £400-600k property</td><td>UK benchmark</td><td>ROI calculation</td></tr>
+    <tr><td>Loss formula <strong>enquiries × 0.67 × 5% × £8,000</strong></td><td>GILD-TECH</td><td>During ROI calc</td></tr>
+  </tbody>
+</table>
+
+<h3>Sample numbers to memorise</h3>
+
+<pre>50 enquiries/month × 67% × 5% × £8,000 fee = £13,400 lost / month
+→ Pro at £2,290 = ROI in 6 days
+
+200 enquiries/month × 67% × 5% × £10,000 = £67,000 lost / month
+→ Scale at £4,590 = ROI in 2 days</pre>
+
+<h2 id="demo">🎬 Live demo — recommended flow (10 min)</h2>
+
+<h3>Step 1 — Dashboard (3 min) — share screen</h3>
+
+<ol>
+  <li>Open <code>gild-tech.com/dashboard/en/</code></li>
+  <li>Scroll: show the pink brief banner</li>
+  <li>Click <em>"See full brief"</em> → modal opens</li>
+  <li>Scroll inside the modal: viewings, applicants, pipeline, Sarah's tip</li>
+  <li>Close modal</li>
+  <li>Point to KPIs: 47 enquiries this week, 3 min avg response, 12 viewings, 3 instructions to sign</li>
+  <li>Click on <strong>Mary Bertrand</strong> in Top 5 → detail file</li>
+  <li>Show 💬 WhatsApp and 📍 Maps buttons — everything is clickable</li>
+</ol>
+
+<blockquote>"This dashboard is ALIVE. At your agency, this will be your enquiries, your viewings, your numbers."</blockquote>
+
+<h3>Step 2 — Sarah WhatsApp live (3 min)</h3>
+
+<ol>
+  <li>Ask the client to grab their phone</li>
+  <li><em>"Send any message to <strong>+33 6 99 08 05 39</strong> — anything like 'Hi I'm looking for a 3-bed in Shoreditch'"</em></li>
+  <li>Wait 5 sec</li>
+  <li>Sarah replies in EN (auto-detect via the <code>+44</code> of the client's UK number)</li>
+  <li>The client reads their screen → <strong>wow moment</strong></li>
+</ol>
+
+<div class="warning">
+<strong>⚠️ IMPORTANT</strong> — if Sarah doesn't reply within 10 sec, say:<br>
+<em>"Looks like our auto-responder is having a moment — let me show you a screen recording of how this works"</em><br>
+Then skip to the Sarah Voice phase. (See <a href="#blocked">Blockers</a> for context.)
+</div>
+
+<h3>Step 3 — Sarah Voice (2 min)</h3>
+
+<ol>
+  <li>Open the Vapi dashboard</li>
+  <li>Click the green <strong>Talk</strong> button</li>
+  <li>Allow the microphone</li>
+  <li>You speak: <em>"Hi I'm looking for a 3-bed in Shoreditch, budget £380k"</em></li>
+  <li>Sarah Voice replies in <strong>French with Charlotte voice</strong></li>
+</ol>
+
+<blockquote>Mention: <em>"That's the FR version with Charlotte voice — UK deploys with Aria, identical flow."</em></blockquote>
+
+<h3>Step 4 — Synthesis (2 min)</h3>
+
+<blockquote>
+"So concretely, what you install: Sarah qualifies 100% of your enquiries in 5 sec, 24/7 — morning brief at 7am — real-time dashboard — auto follow-ups D+3/D+7/D+14 — weekly report Monday 8am.<br><br>
+Plus on Scale: Sarah Voice + automated FSBO sweep + expired instruction detection + dormant database wake-up + viewing prep sheet 1h before each appointment."
+</blockquote>
+
+<h2 id="close">💼 Closing — UK pricing</h2>
+
+<table>
+  <thead>
+    <tr><th>Offer</th><th>Price</th><th>For</th><th>Includes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Pro</strong></td><td><strong>£2,290 net</strong></td><td>1-5 negotiators</td><td>Sarah WA + Brief + Auto follow-ups + Dashboard + Weekly report</td></tr>
+    <tr><td><strong>Scale</strong></td><td><strong>£4,590 net</strong></td><td>5+ negotiators with active prospecting</td><td>All Pro + Sarah Voice + FSBO sweep + Expired instructions + Dormant DB + Viewing prep</td></tr>
+  </tbody>
+</table>
+
+<p>Optional maintenance: <strong>£270/month</strong> (Pro) or <strong>£360/month</strong> (Scale)</p>
+
+<p>Activation: <strong>1 week max</strong> after signature.</p>
+
+<h2 id="blocked">🚧 Known blockers + plan B</h2>
+
+<h3>1. Sarah WhatsApp — possibly KO this morning</h3>
+
+<ul>
+  <li>The workflow is deployed on n8n cloud, fully active.</li>
+  <li>But the <strong>WaSender credential token</strong> failed authentication on the live test last night (500 error).</li>
+  <li><strong>PJ should verify the token before 9am</strong> (n8n.cloud → Credentials → "WaSender GILD-TECH" → Edit → confirm Bearer token).</li>
+</ul>
+
+<div class="warning">
+<strong>Plan B if Sarah WhatsApp doesn't work</strong>:
+<ul>
+  <li>Skip phase 2 of the demo (live WhatsApp)</li>
+  <li>Compensate with: (a) deeper dashboard demo + modals, (b) longer Sarah Voice demo</li>
+  <li>Say: <em>"WhatsApp module is in active deployment — let me show you the voice version which is the same logic"</em></li>
+</ul>
+</div>
+
+<h3>2. Sarah Voice EN — not yet cloned</h3>
+
+<ul>
+  <li>Current Sarah Voice = <code>Sarah Démo Immo FR</code> (id <code>189921d8-...</code>), French.</li>
+  <li>For your audit: demo the FR version, explaining UK deploys in EN with Aria voice.</li>
+  <li>The client will get it — same tech, just a language toggle.</li>
+</ul>
+
+<h3>3. Calculator EN — labels not 100% aligned</h3>
+
+<ul>
+  <li><a href="https://gild-tech.com/calculateur?lang=en" target="_blank">gild-tech.com/calculateur</a> EN toggle shows translated labels.</li>
+  <li>The result block with Pro/Scale ROI is FR-only (PJ didn't have time to translate).</li>
+  <li>If client asks: <em>"the UK calculator with £ pricing is rolling out next week"</em>.</li>
+</ul>
+
+<h2 id="postaudit">✅ Post-audit — within the hour</h2>
+
+<ol>
+  <li><strong>Recap email</strong> (template <code>05-template-proposition.md</code> Template A — adapt for UK terminology + £ prices)</li>
+  <li><strong>Update CRM</strong>: <code>audit_date</code>, <code>score</code>, <code>pain_points</code>, <code>offer_proposed</code></li>
+  <li><strong>Calendly</strong>: block 1 closing call slot at D+1 or D+2</li>
+  <li><strong>Notion</strong>: prospect page with full audit notes</li>
+</ol>
+
+<h2 id="mental">💪 Mental prep — before the call</h2>
+
+<ul>
+  <li><strong>You know the UK estate agency market</strong> better than most prospects.</li>
+  <li><strong>You're not selling</strong> — you're calculating a loss with them.</li>
+  <li><strong>Silence is your friend</strong> — after each number, wait 3 sec.</li>
+  <li><strong>If the client says "no" firmly</strong> → you let go, don't push. <em>"Fair enough, I'll let you go."</em></li>
+</ul>
+
+<div class="success">
+<strong>GO Jack.</strong> It's an excellent setup. <strong>Closing 1 deal this week = mission accomplished.</strong><br>
+— PJ
+</div>
+
+<h2>🔗 Quick links</h2>
+
+<ul>
+  <li>Sarah UK page : <a href="https://gild-tech.com/sarah-uk" target="_blank">gild-tech.com/sarah-uk</a></li>
+  <li>Dashboard demo : <a href="https://gild-tech.com/dashboard/en/" target="_blank">gild-tech.com/dashboard/en/</a></li>
+  <li>Calculator : <a href="https://gild-tech.com/calculateur?lang=en" target="_blank">gild-tech.com/calculateur</a></li>
+  <li>Vapi Sarah Voice : <a href="https://dashboard.vapi.ai/assistants/189921d8-0da5-40b0-b5ee-c769d5351428" target="_blank">Vapi assistant</a></li>
+  <li>WhatsApp demo number : <code>+33 6 99 08 05 39</code></li>
+</ul>
+
+</main>
+
+</body>
+</html>
