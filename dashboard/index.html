@@ -126,7 +126,8 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 .tag-grey { background: var(--g100); color: var(--g600); }
 
 /* VISITES */
-.visite { padding: 14px 0; border-bottom: 1px solid var(--g150); display: grid; grid-template-columns: 70px 1fr auto; gap: 14px; align-items: center; }
+.visite { padding: 14px 0; border-bottom: 1px solid var(--g150); display: grid; grid-template-columns: 70px 1fr auto; gap: 14px; align-items: center; cursor: pointer; transition: background .15s; border-radius: 8px; padding-left: 8px; padding-right: 8px; margin-left: -8px; margin-right: -8px; }
+.visite:hover { background: var(--pink-bg); }
 .visite:last-child { border-bottom: none; padding-bottom: 0; }
 .visite:first-child { padding-top: 0; }
 .visite .time { font-size: 18px; font-weight: 800; color: var(--pink); letter-spacing: -.5px; }
@@ -142,7 +143,8 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 .btn-icon svg { width: 16px; height: 16px; stroke: var(--g700); }
 
 /* CALLBACKS */
-.callback { padding: 14px 0; border-bottom: 1px solid var(--g150); }
+.callback { padding: 14px 8px; border-bottom: 1px solid var(--g150); cursor: pointer; transition: background .15s; border-radius: 8px; margin-left: -8px; margin-right: -8px; }
+.callback:hover { background: var(--pink-bg); }
 .callback:last-child { border-bottom: none; padding-bottom: 0; }
 .callback:first-child { padding-top: 0; }
 .callback-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -279,148 +281,148 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
   <div class="grid-2">
     <div>
 
-      <!-- VISITES DU JOUR -->
+      <!-- VISITES POSITIONNÉES DU JOUR -->
       <div class="card" style="margin-bottom: 20px;">
         <div class="card-h">
-          <h3>📅 Visites du jour</h3>
-          <span class="sub">5 visites planifiées</span>
+          <h3>📅 Visites positionnées du jour</h3>
+          <span class="sub">5 visites · cliquez pour le détail</span>
         </div>
-        <div class="visite">
+        <div class="visite" data-pid="p1">
           <div class="time">10:00</div>
           <div class="info">
             <div class="name">Jérôme Coste — T3 Croix-Rousse</div>
-            <div class="meta">Budget 280k · 14 rue Bony, Lyon 4 · 2ᵉ visite</div>
+            <div class="meta">Budget 280 000 € · 14 rue Bony, Lyon 4 · 2ᵉ visite</div>
           </div>
-          <div class="actions">
+          <div class="actions" onclick="event.stopPropagation()">
             <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33612345678" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-            <button class="btn-icon" title="Itinéraire"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+            <a class="btn-icon" title="Itinéraire Google Maps" href="https://www.google.com/maps/search/?api=1&query=14%20rue%20Bony%20Lyon%204" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
           </div>
         </div>
-        <div class="visite">
+        <div class="visite" data-pid="p2">
           <div class="time">11:30</div>
           <div class="info">
             <div class="name">Léa Martin — Studio Bellecour</div>
-            <div class="meta">Budget 130k · 22 quai Saint-Antoine · 1ʳᵉ visite</div>
+            <div class="meta">Budget 130 000 € · 22 quai Saint-Antoine, Lyon · 1ʳᵉ visite</div>
           </div>
-          <div class="actions">
-            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33612345678" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          <div class="actions" onclick="event.stopPropagation()">
+            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33623456789" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a class="btn-icon" title="Itinéraire Google Maps" href="https://www.google.com/maps/search/?api=1&query=22%20quai%20Saint-Antoine%20Lyon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
           </div>
         </div>
-        <div class="visite">
+        <div class="visite" data-pid="p3">
           <div class="time">14:30</div>
           <div class="info">
             <div class="name">Sophie Lemaire — Maison Caluire</div>
-            <div class="meta">Budget 580k · 8 chemin du Roule · <strong style="color:var(--green);">Signature mandat</strong></div>
+            <div class="meta">Budget 580 000 € · 8 chemin du Roule, Caluire · <strong style="color:var(--green);">Signature mandat</strong></div>
           </div>
-          <div class="actions">
-            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33612345678" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          <div class="actions" onclick="event.stopPropagation()">
+            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33634567890" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a class="btn-icon" title="Itinéraire Google Maps" href="https://www.google.com/maps/search/?api=1&query=8%20chemin%20du%20Roule%20Caluire" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
           </div>
         </div>
-        <div class="visite">
+        <div class="visite" data-pid="p4">
           <div class="time">16:00</div>
           <div class="info">
             <div class="name">Antoine Roux — T2 Confluence</div>
-            <div class="meta">Budget 220k · 15 cours Charlemagne · 1ʳᵉ visite</div>
+            <div class="meta">Budget 220 000 € · 15 cours Charlemagne, Lyon · 1ʳᵉ visite</div>
           </div>
-          <div class="actions">
-            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33612345678" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          <div class="actions" onclick="event.stopPropagation()">
+            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33645678901" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a class="btn-icon" title="Itinéraire Google Maps" href="https://www.google.com/maps/search/?api=1&query=15%20cours%20Charlemagne%20Lyon" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
           </div>
         </div>
-        <div class="visite">
+        <div class="visite" data-pid="p5">
           <div class="time">17:30</div>
           <div class="info">
             <div class="name">Famille Bernard — Maison Tassin</div>
-            <div class="meta">Budget 720k · 4 avenue de la République · 3ᵉ visite</div>
+            <div class="meta">Budget 720 000 € · 4 avenue de la République, Tassin-la-Demi-Lune · 3ᵉ visite</div>
           </div>
-          <div class="actions">
-            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33612345678" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-            <button class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+          <div class="actions" onclick="event.stopPropagation()">
+            <a class="btn-icon btn-wa" title="Envoyer un message WhatsApp" href="https://wa.me/33656789012" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a class="btn-icon" title="Itinéraire Google Maps" href="https://www.google.com/maps/search/?api=1&query=4%20avenue%20de%20la%20R%C3%A9publique%20Tassin-la-Demi-Lune" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
           </div>
         </div>
       </div>
 
-      <!-- TOP 5 CALLBACKS -->
+      <!-- TOP 5 CONTACTS PRIORITAIRES -->
       <div class="card">
         <div class="card-h">
-          <h3>📞 Top 5 leads à rappeler</h3>
-          <span class="sub">Trié par score IA</span>
+          <h3>📞 Top 5 contacts entrants prioritaires</h3>
+          <span class="sub">Triés par score IA · cliquez pour le détail</span>
         </div>
-        <div class="callback">
+        <div class="callback" data-pid="c1">
           <div class="callback-h">
             <div class="callback-name">
               <div class="callback-rank">1</div>
               <div class="nm">Marie Bertrand</div>
             </div>
-            <a class="callback-tel" href="https://wa.me/33612345678" target="_blank" rel="noopener">+33 6 12 34 56 78</a>
+            <a class="callback-tel" href="https://wa.me/33712345678" target="_blank" rel="noopener" onclick="event.stopPropagation()">+33 7 12 34 56 78</a>
           </div>
-          <div class="callback-reason">Re-engagée hier 23h sur SeLoger sur la même annonce qu'il y a 2 mois. Fenêtre 24h, conversion ×4 sur ce profil.</div>
+          <div class="callback-reason">Reconnectée hier à 23h sur SeLoger, sur la même annonce qu'il y a deux mois. Fenêtre de chaleur 24h, conversion ×4 sur ce profil.</div>
           <div class="callback-tags">
             <span class="tag tag-red">🔥 Très chaud</span>
             <span class="tag tag-pink">SeLoger</span>
-            <span class="tag tag-grey">T4 · 350k</span>
+            <span class="tag tag-grey">T4 · 350 000 €</span>
           </div>
         </div>
-        <div class="callback">
+        <div class="callback" data-pid="c2">
           <div class="callback-h">
             <div class="callback-name">
               <div class="callback-rank">2</div>
               <div class="nm">Pierre Lacombe</div>
             </div>
-            <a class="callback-tel" href="https://wa.me/33623456789" target="_blank" rel="noopener">+33 6 23 45 67 89</a>
+            <a class="callback-tel" href="https://wa.me/33723456789" target="_blank" rel="noopener" onclick="event.stopPropagation()">+33 7 23 45 67 89</a>
           </div>
-          <div class="callback-reason">Sarah a qualifié il y a 18 min — projet 3 mois confirmé, budget 240k, secteur Vieux Lyon. RDV proposé déjà ouvert sur Calendly.</div>
+          <div class="callback-reason">Sarah a qualifié il y a 18 min — projet 3 mois confirmé, budget 240 000 €, secteur Vieux Lyon. Créneau déjà ouvert sur Calendly.</div>
           <div class="callback-tags">
             <span class="tag tag-orange">⚡ Qualifié 18 min</span>
-            <span class="tag tag-pink">Site web</span>
-            <span class="tag tag-grey">T3 · 240k</span>
+            <span class="tag tag-pink">Site de l'agence</span>
+            <span class="tag tag-grey">T3 · 240 000 €</span>
           </div>
         </div>
-        <div class="callback">
+        <div class="callback" data-pid="c3">
           <div class="callback-h">
             <div class="callback-name">
               <div class="callback-rank">3</div>
               <div class="nm">Camille Renault</div>
             </div>
-            <a class="callback-tel" href="https://wa.me/33634567890" target="_blank" rel="noopener">+33 6 34 56 78 90</a>
+            <a class="callback-tel" href="https://wa.me/33734567890" target="_blank" rel="noopener" onclick="event.stopPropagation()">+33 7 34 56 78 90</a>
           </div>
-          <div class="callback-reason">Visite annulée à J-1 hier soir. Sarah a relancé en WhatsApp ce matin — réponse positive 8h32, demande créneau cette semaine.</div>
+          <div class="callback-reason">Visite annulée à J-1 hier soir. Sarah a relancé en WhatsApp ce matin — réponse positive à 8h32, demande un créneau cette semaine.</div>
           <div class="callback-tags">
-            <span class="tag tag-blue">↩️ Reschedule</span>
+            <span class="tag tag-blue">↩️ À repositionner</span>
             <span class="tag tag-pink">SeLoger</span>
-            <span class="tag tag-grey">Maison · 480k</span>
+            <span class="tag tag-grey">Maison · 480 000 €</span>
           </div>
         </div>
-        <div class="callback">
+        <div class="callback" data-pid="c4">
           <div class="callback-h">
             <div class="callback-name">
               <div class="callback-rank">4</div>
               <div class="nm">Famille Tremblay</div>
             </div>
-            <a class="callback-tel" href="https://wa.me/33645678901" target="_blank" rel="noopener">+33 6 45 67 89 01</a>
+            <a class="callback-tel" href="https://wa.me/33745678901" target="_blank" rel="noopener" onclick="event.stopPropagation()">+33 7 45 67 89 01</a>
           </div>
-          <div class="callback-reason">Lead PAP — propriétaire dont le mandat a expiré chez un confrère. Sarah a détecté la disparition d'annonce lundi.</div>
+          <div class="callback-reason">Vendeur PAP — mandat expiré chez un confrère. Sarah a détecté la disparition de l'annonce lundi via la pige automatique.</div>
           <div class="callback-tags">
             <span class="tag tag-green">💎 Mandat expiré</span>
             <span class="tag tag-pink">Pige PAP</span>
-            <span class="tag tag-grey">Maison · 615k</span>
+            <span class="tag tag-grey">Maison · 615 000 €</span>
           </div>
         </div>
-        <div class="callback">
+        <div class="callback" data-pid="c5">
           <div class="callback-h">
             <div class="callback-name">
               <div class="callback-rank">5</div>
               <div class="nm">Lucas Henry</div>
             </div>
-            <a class="callback-tel" href="https://wa.me/33656789012" target="_blank" rel="noopener">+33 6 56 78 90 12</a>
+            <a class="callback-tel" href="https://wa.me/33756789012" target="_blank" rel="noopener" onclick="event.stopPropagation()">+33 7 56 78 90 12</a>
           </div>
-          <div class="callback-reason">3ᵉ relance auto J+7 — n'a pas répondu. Dernier essai avant break-up J+14 demain.</div>
+          <div class="callback-reason">3ᵉ relance automatique J+7 — pas de réponse. Dernier essai avant clôture du dossier demain.</div>
           <div class="callback-tags">
             <span class="tag tag-grey">Relance J+7</span>
             <span class="tag tag-pink">Bien'ici</span>
-            <span class="tag tag-grey">T2 · 175k</span>
+            <span class="tag tag-grey">T2 · 175 000 €</span>
           </div>
         </div>
       </div>
@@ -559,6 +561,22 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 
 </main>
 
+<!-- PROSPECT DETAIL MODAL -->
+<div class="modal-bg" id="prospectModal" onclick="if(event.target===this) this.classList.remove('show')">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="prospectModalTitle" style="max-width: 560px;">
+    <div class="modal-h">
+      <div style="flex:1;min-width:0;">
+        <h3 id="prospectModalTitle">Prospect</h3>
+        <div class="day" id="prospectModalSubtitle">—</div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('prospectModal').classList.remove('show')" aria-label="Fermer">×</button>
+    </div>
+    <div class="modal-body" id="prospectModalBody">
+      <!-- contenu rempli par JS -->
+    </div>
+  </div>
+</div>
+
 <!-- BRIEF MODAL -->
 <div class="modal-bg" id="briefModal" onclick="if(event.target===this) this.classList.remove('show')">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="briefModalTitle">
@@ -590,7 +608,7 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
       </div>
 
       <div class="modal-section">
-        <h4>📞 Top 5 leads à rappeler en priorité</h4>
+        <h4>📞 Top 5 contacts entrants prioritaires</h4>
         <ul>
           <li><strong>1. Marie Bertrand</strong> — Re-engagée hier 23h sur SeLoger · T4 350k <em>(très chaud, fenêtre 24h)</em></li>
           <li><strong>2. Pierre Lacombe</strong> — Sarah a qualifié il y a 18 min, projet acquisition 3 mois · T3 240k</li>
@@ -686,9 +704,70 @@ setInterval(() => {
   while (feed.children.length > 8) feed.removeChild(feed.lastChild);
 }, 25000);
 
-// Esc pour fermer la modal
+// === PROSPECT DETAIL MODAL ===
+const PROSPECTS = {
+  // Visites positionnées
+  p1: { name: 'Jérôme Coste', subtitle: '2ᵉ visite · aujourd\'hui 10h00', tel: '+33612345678', maps: '14 rue Bony, Lyon 4', bien: 'T3 · Croix-Rousse', budget: '280 000 €', source: 'SeLoger', received: 'il y a 12 jours', score: '78/100', sarah: 'Sarah a qualifié il y a 12 jours, projet 3-6 mois, 2 enfants, recherche extérieur. 1ʳᵉ visite faite samedi dernier sur un autre bien (refus pour le bruit).', tags: [{c:'tag-blue',t:'2ᵉ visite'},{c:'tag-pink',t:'SeLoger'},{c:'tag-grey',t:'Acquéreur'}] },
+  p2: { name: 'Léa Martin', subtitle: '1ʳᵉ visite · aujourd\'hui 11h30', tel: '+33623456789', maps: '22 quai Saint-Antoine, Lyon', bien: 'Studio · Bellecour', budget: '130 000 €', source: 'Site de l\'agence', received: 'il y a 4 jours', score: '62/100', sarah: 'Sarah a qualifié il y a 4 jours, primo-accédante, financement en cours d\'étude (RDV banque jeudi). Demande visite rapide pour valider quartier avant de finaliser le prêt.', tags: [{c:'tag-orange',t:'1ʳᵉ visite'},{c:'tag-pink',t:'Site agence'},{c:'tag-grey',t:'Acquéreur'}] },
+  p3: { name: 'Sophie Lemaire', subtitle: 'Signature mandat · aujourd\'hui 14h30', tel: '+33634567890', maps: '8 chemin du Roule, Caluire', bien: 'Maison T5 · Caluire', budget: '580 000 €', source: 'Recommandation', received: 'il y a 21 jours', score: '94/100', sarah: '4ᵉ visite — Sophie est venue à Caluire 3 fois dont 1 fois avec ses parents. Offre verbale faite hier à 575 000 € acceptée. Aujourd\'hui : signature mandat de vente + compromis prévu sous 10 jours.', tags: [{c:'tag-green',t:'✍️ Signature mandat'},{c:'tag-pink',t:'Recommandation'},{c:'tag-grey',t:'Vendeur'}] },
+  p4: { name: 'Antoine Roux', subtitle: '1ʳᵉ visite · aujourd\'hui 16h00', tel: '+33645678901', maps: '15 cours Charlemagne, Lyon', bien: 'T2 · Confluence', budget: '220 000 €', source: 'Bien\'ici', received: 'il y a 2 jours', score: '71/100', sarah: 'Sarah a qualifié il y a 2 jours, jeune cadre, télétravail 3 jours/semaine, recherche T2 lumineux proche transports. Bien Confluence parfait sur le papier — à confirmer en visite.', tags: [{c:'tag-orange',t:'1ʳᵉ visite'},{c:'tag-pink',t:'Bien\'ici'},{c:'tag-grey',t:'Acquéreur'}] },
+  p5: { name: 'Famille Bernard', subtitle: '3ᵉ visite · aujourd\'hui 17h30', tel: '+33656789012', maps: '4 avenue de la République, Tassin-la-Demi-Lune', bien: 'Maison T6 · Tassin', budget: '720 000 €', source: 'SeLoger', received: 'il y a 38 jours', score: '88/100', sarah: 'Famille Bernard a déjà visité 2 fois (avec et sans enfants). Cette 3ᵉ visite vise à valider le potentiel d\'extension du jardin et à présenter l\'architecte. Décision sous 7 jours.', tags: [{c:'tag-blue',t:'3ᵉ visite'},{c:'tag-pink',t:'SeLoger'},{c:'tag-grey',t:'Acquéreur'}] },
+  // Callbacks
+  c1: { name: 'Marie Bertrand', subtitle: 'Contact entrant · à reprendre en priorité', tel: '+33712345678', maps: 'Lyon 2', bien: 'T4 famille · Lyon centre', budget: '350 000 €', source: 'SeLoger', received: 'reconnectée hier 23h', score: '92/100', sarah: 'Premier contact il y a 2 mois sur la même annonce, pas allée jusqu\'à la visite à l\'époque (timing pas bon). Reconnectée hier 23h sur la même annonce — signal très fort, fenêtre de chaleur 24h. Sarah a envoyé un message à 6h ce matin, pas encore de réponse.', tags: [{c:'tag-red',t:'🔥 Très chaud'},{c:'tag-pink',t:'SeLoger'},{c:'tag-grey',t:'Acquéreur'}] },
+  c2: { name: 'Pierre Lacombe', subtitle: 'Contact entrant · qualifié il y a 18 min', tel: '+33723456789', maps: 'Lyon 5', bien: 'T3 · Vieux Lyon', budget: '240 000 €', source: 'Site de l\'agence', received: 'il y a 18 min', score: '81/100', sarah: 'Sarah a qualifié il y a 18 min : projet 3 mois confirmé, secteur Vieux Lyon prioritaire, T3 avec balcon. Créneau Calendly proposé pour cette semaine — pas encore confirmé.', tags: [{c:'tag-orange',t:'⚡ Qualifié 18 min'},{c:'tag-pink',t:'Site agence'},{c:'tag-grey',t:'Acquéreur'}] },
+  c3: { name: 'Camille Renault', subtitle: 'Visite annulée hier soir · à repositionner', tel: '+33734567890', maps: 'Croix-Rousse', bien: 'Maison · Croix-Rousse', budget: '480 000 €', source: 'SeLoger', received: 'visite annulée à J-1 hier 20h', score: '76/100', sarah: 'A annulé sa visite à J-1 hier 20h (raison : déplacement pro imprévu). Sarah a relancé en WhatsApp ce matin 7h — réponse positive 8h32, demande un nouveau créneau cette semaine.', tags: [{c:'tag-blue',t:'↩️ À repositionner'},{c:'tag-pink',t:'SeLoger'},{c:'tag-grey',t:'Acquéreur'}] },
+  c4: { name: 'Famille Tremblay', subtitle: 'Vendeur · mandat expiré confrère', tel: '+33745678901', maps: 'Tassin-la-Demi-Lune', bien: 'Maison T5 · Tassin', budget: '615 000 €', source: 'Pige PAP', received: 'mandat expiré détecté lundi', score: '85/100', sarah: 'Sarah a détecté lundi via la pige automatique que l\'annonce du confrère a disparu après 95 jours d\'exposition. Score d\'expiration : FORT. Pas encore contacté — opportunité de prise de mandat.', tags: [{c:'tag-green',t:'💎 Mandat expiré'},{c:'tag-pink',t:'Pige PAP'},{c:'tag-grey',t:'Vendeur'}] },
+  c5: { name: 'Lucas Henry', subtitle: 'Contact froid · J+14 demain', tel: '+33756789012', maps: 'Lyon 7', bien: 'T2 · Lyon 7', budget: '175 000 €', source: 'Bien\'ici', received: 'il y a 17 jours', score: '34/100', sarah: 'Premier contact il y a 17 jours. 3 relances automatiques envoyées (J+3, J+7), pas de réponse. Dernière relance break-up J+14 prévue demain — si pas de retour, dossier clôturé automatiquement.', tags: [{c:'tag-grey',t:'Relance J+7'},{c:'tag-pink',t:'Bien\'ici'},{c:'tag-grey',t:'Acquéreur'}] }
+};
+
+function openProspect(pid) {
+  const p = PROSPECTS[pid];
+  if (!p) return;
+  document.getElementById('prospectModalTitle').textContent = p.name;
+  document.getElementById('prospectModalSubtitle').textContent = p.subtitle;
+  const tagsHtml = (p.tags || []).map(t => `<span class="tag ${t.c}">${t.t}</span>`).join(' ');
+  const waNum = p.tel.replace(/[^0-9]/g, '');
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.maps)}`;
+  document.getElementById('prospectModalBody').innerHTML = `
+    <div class="modal-section">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">${tagsHtml}</div>
+    </div>
+    <div class="modal-section">
+      <h4>📋 Fiche prospect</h4>
+      <ul style="list-style:none;padding-left:0;">
+        <li style="padding:6px 0;"><strong>Bien recherché :</strong> ${p.bien}</li>
+        <li style="padding:6px 0;"><strong>Budget :</strong> ${p.budget}</li>
+        <li style="padding:6px 0;"><strong>Adresse :</strong> ${p.maps} · <a href="${mapsUrl}" target="_blank" rel="noopener" style="color:var(--pink);text-decoration:none;font-weight:600;">📍 Itinéraire →</a></li>
+        <li style="padding:6px 0;"><strong>Origine :</strong> ${p.source}</li>
+        <li style="padding:6px 0;"><strong>Reçu :</strong> ${p.received}</li>
+        <li style="padding:6px 0;"><strong>Score IA :</strong> ${p.score}</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h4>💬 Contexte Sarah</h4>
+      <p>${p.sarah}</p>
+    </div>
+    <div class="modal-section" style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="https://wa.me/${waNum}" target="_blank" rel="noopener" style="flex:1;min-width:140px;background:#25D366;color:white;padding:11px 16px;border-radius:99px;text-decoration:none;font-weight:600;font-size:14px;text-align:center;">💬 Écrire WhatsApp</a>
+      <a href="${mapsUrl}" target="_blank" rel="noopener" style="flex:1;min-width:140px;background:var(--g100);color:var(--g900);padding:11px 16px;border-radius:99px;text-decoration:none;font-weight:600;font-size:14px;text-align:center;">📍 Voir sur Maps</a>
+    </div>
+  `;
+  document.getElementById('prospectModal').classList.add('show');
+}
+
+// Bind clicks on visite + callback rows
+document.querySelectorAll('[data-pid]').forEach(el => {
+  el.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return; // ignore clicks on inner links/buttons
+    openProspect(el.getAttribute('data-pid'));
+  });
+});
+
+// Esc pour fermer toutes les modals
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('briefModal').classList.remove('show');
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-bg.show').forEach(m => m.classList.remove('show'));
+  }
 });
 </script>
 
