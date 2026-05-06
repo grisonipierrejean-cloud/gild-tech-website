@@ -1069,25 +1069,30 @@
     function computeLosses() {
       const { leads, conv, panier, delai } = state;
 
-      // 67 % des contacts entrants ne sont jamais repris (FNAIM 2024)
+      // Step 1: 67% of enquiries never followed up (NAR 2023 / FNAIM 2024)
       const lostLeadsMonth = Math.round(leads * 0.67);
 
-      // Sur ces contacts perdus, on récupèrerait conv% en mandats si on les reprenait à temps
+      // Step 2: of those lost, conv% would have converted to instruction
       const lostMandatesMonth = lostLeadsMonth * (conv / 100);
 
-      // Manque à gagner mensuel = mandats perdus × commission moyenne
+      // Step 3: opportunity loss = lost instructions × average fee
       const totalLossMonth = lostMandatesMonth * panier;
       const totalLossYear = totalLossMonth * 12;
 
-      // ROI : combien de jours pour rentabiliser Pro / Scale
-      // Loss / day = totalLossMonth / 30
-      const lossPerDay = totalLossMonth > 0 ? totalLossMonth / 30 : 0;
-      const roiPro = lossPerDay > 0 ? Math.max(1, Math.round(2490 / lossPerDay)) : 999;
-      const roiScale = lossPerDay > 0 ? Math.max(1, Math.round(4990 / lossPerDay)) : 999;
+      // Step 4: realistic recovery rate with Sarah ~35%
+      // (not 100% — applicants who've gone fully cold can't all be saved)
+      const RECOVERY_RATE = 0.35;
+      const recoveredMonth = totalLossMonth * RECOVERY_RATE;
+
+      // Step 5: ROI in days based on REALISTIC recovery, not full opportunity
+      const recoveredPerDay = recoveredMonth > 0 ? recoveredMonth / 30 : 0;
+      const roiPro = recoveredPerDay > 0 ? Math.max(1, Math.round(2490 / recoveredPerDay)) : 999;
+      const roiScale = recoveredPerDay > 0 ? Math.max(1, Math.round(4990 / recoveredPerDay)) : 999;
 
       return {
         totalLossYear: Math.round(totalLossYear),
         totalLossMonth: Math.round(totalLossMonth),
+        recoveredMonth: Math.round(recoveredMonth),
         lostLeadsMonth,
         lostMandatesMonth: lostMandatesMonth.toFixed(1).replace(/\.0$/, ''),
         roiPro,
