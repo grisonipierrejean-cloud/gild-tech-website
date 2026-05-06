@@ -8,7 +8,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
 
 createServer(async (req, res) => {
-  const file = req.url === '/' ? '/index.html' : req.url;
+  const pathOnly = req.url.split('?')[0];
+  const file = pathOnly === '/' || pathOnly.endsWith('/') ? pathOnly + 'index.html' : pathOnly;
   try {
     const data = await readFile(join(__dirname, file));
     res.writeHead(200, { 'Content-Type': MIME[extname(file)] || 'text/html' });
