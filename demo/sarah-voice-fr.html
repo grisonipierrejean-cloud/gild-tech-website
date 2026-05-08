@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarah Voice FR — Démo en direct · GILD-TECH</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root {
+    --pink: #E91E8C;
+    --bg: #0a0a0c;
+    --panel: #15151a;
+    --line: #2a2a32;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --green: #10b981;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, #1a0815 0%, var(--bg) 50%);
+    color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .card {
+    width: 100%; max-width: 560px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 2.4rem 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .brand {
+    font-size: .8rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--pink); margin-bottom: .4rem;
+  }
+  h1 { margin: 0 0 .4rem; font-size: 1.65rem; line-height: 1.2; }
+  .sub { color: var(--muted); font-size: .95rem; margin-bottom: 1.6rem; line-height: 1.5; }
+  .agency {
+    background: rgba(233,30,140,.08);
+    border: 1px solid rgba(233,30,140,.25);
+    border-radius: 12px;
+    padding: 1rem 1.2rem; margin-bottom: 1.4rem;
+  }
+  .agency-label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .agency-name { font-size: 1.15rem; font-weight: 700; margin-top: .2rem; }
+  .agency-tagline { font-size: .85rem; color: var(--muted); margin-top: .3rem; }
+  .config { display: none; margin-bottom: 1.2rem; }
+  .config label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .35rem; }
+  .config input {
+    width: 100%; padding: .7rem .9rem;
+    background: #0d0d11; border: 1px solid var(--line);
+    border-radius: 8px; color: var(--text); font-family: ui-monospace,monospace;
+    font-size: .85rem;
+  }
+  .btn {
+    width: 100%; padding: 1rem 1.2rem;
+    border: none; border-radius: 12px;
+    background: var(--pink); color: white;
+    font-size: 1.05rem; font-weight: 700;
+    cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; justify-content: center; gap: .6rem;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(233,30,140,.3); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn.danger { background: var(--red); }
+  .status {
+    margin-top: 1.2rem; padding: .9rem 1.1rem;
+    background: #0d0d11; border: 1px solid var(--line); border-radius: 10px;
+    font-size: .9rem; color: var(--muted); min-height: 1.4em;
+    display: flex; align-items: center; gap: .55rem;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7280; flex-shrink: 0; }
+  .dot.live { background: var(--green); animation: pulse 1.4s infinite; }
+  .dot.error { background: var(--red); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .transcript {
+    margin-top: 1.2rem; padding: .9rem 1.1rem;
+    background: #0d0d11; border: 1px solid var(--line); border-radius: 10px;
+    max-height: 220px; overflow-y: auto;
+    font-size: .85rem; line-height: 1.5;
+    display: none;
+  }
+  .transcript.live { display: block; }
+  .msg { margin-bottom: .6rem; }
+  .msg.assistant { color: #fbcfe8; }
+  .msg.user { color: var(--text); }
+  .msg .who { font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+  .footer {
+    margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+    font-size: .75rem; color: var(--muted); text-align: center;
+  }
+  .footer a { color: var(--pink); text-decoration: none; }
+  .config-toggle {
+    background: none; border: none; color: var(--muted);
+    font-size: .75rem; cursor: pointer; margin-top: 1rem;
+    text-decoration: underline; opacity: .7;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">GILD-TECH · Démo en direct</div>
+    <h1>Sarah Voice — Réceptionniste virtuelle en immobilier</h1>
+    <p class="sub">Cliquez <strong>Démarrer l'appel</strong>. Sophie décroche en français naturel. Dites-lui que vous cherchez un bien — elle qualifie et positionne la visite.</p>
+
+    <div class="agency">
+      <div class="agency-label">Vous appelez</div>
+      <div class="agency-name">Agence Démo Lyon</div>
+      <div class="agency-tagline">Sophie — réceptionniste virtuelle, disponible 24/7</div>
+    </div>
+
+    <button id="startBtn" class="btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span id="btnText">Démarrer l'appel</span>
+    </button>
+
+    <div id="status" class="status"><span class="dot"></span><span id="statusText">Prêt. Accès microphone requis.</span></div>
+
+    <div id="transcript" class="transcript"></div>
+
+    <button class="config-toggle" onclick="toggleConfig()">Configuration technique</button>
+    <div id="configSection" class="config">
+      <label for="pubKey">Clé Vapi publique (configuration unique, stockée localement)</label>
+      <input id="pubKey" type="text" placeholder="collez la clé publique Vapi (UUID)" autocomplete="off">
+      <p style="font-size:.75rem;color:var(--muted);margin:.5rem 0 0;">Disponible sur dashboard.vapi.ai/org/api-keys → Public Key → Copier. Stockée uniquement dans le localStorage du navigateur.</p>
+    </div>
+
+    <div class="footer">
+      <strong>Audit gratuit 30 min</strong> · <a href="https://calendly.com/grisoni-pierrejean/30min">Réserver l'audit</a><br>
+      GILD-TECH · Girlden LTD UK · <a href="https://gild-tech.com">gild-tech.com</a>
+    </div>
+  </div>
+
+<script type="module">
+  import Vapi from "https://esm.sh/@vapi-ai/web@2.3.6";
+  window.VapiCtor = Vapi;
+  window.dispatchEvent(new Event("vapi-ready"));
+</script>
+<script>
+  const ASSISTANT_ID = "189921d8-0da5-40b0-b5ee-c769d5351428"; // Sarah Démo Immo FR (Sophie / Agence Démo Lyon)
+  const STORAGE_KEY = "vapi_pub_key_v1";
+
+  const startBtn = document.getElementById("startBtn");
+  const btnText = document.getElementById("btnText");
+  const statusEl = document.getElementById("status");
+  const statusText = document.getElementById("statusText");
+  const transcriptEl = document.getElementById("transcript");
+  const pubKeyInput = document.getElementById("pubKey");
+  const configSection = document.getElementById("configSection");
+
+  let vapi = null;
+  let inCall = false;
+
+  function toggleConfig() {
+    configSection.style.display = configSection.style.display === "block" ? "none" : "block";
+  }
+
+  function setStatus(text, kind) {
+    statusText.textContent = text;
+    const dot = statusEl.querySelector(".dot");
+    dot.className = "dot" + (kind ? " " + kind : "");
+  }
+
+  function readKey() {
+    const fromHash = (location.hash || "").replace(/^#/, "").trim();
+    if (/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(fromHash)) {
+      localStorage.setItem(STORAGE_KEY, fromHash);
+      // Clean URL so the key disappears from address bar
+      history.replaceState(null, "", location.pathname);
+      return fromHash;
+    }
+    return localStorage.getItem(STORAGE_KEY) || "";
+  }
+
+  // Init
+  let publicKey = readKey();
+  if (publicKey) {
+    pubKeyInput.value = publicKey;
+  } else {
+    configSection.style.display = "block";
+    setStatus("Collez votre clé Vapi publique dans Configuration technique ci-dessous.", "error");
+    startBtn.disabled = true;
+  }
+
+  pubKeyInput.addEventListener("change", () => {
+    const v = pubKeyInput.value.trim();
+    if (/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(v)) {
+      localStorage.setItem(STORAGE_KEY, v);
+      publicKey = v;
+      setStatus("Configuré. Prêt à appeler.");
+      startBtn.disabled = false;
+    } else {
+      setStatus("Format de clé invalide (UUID requis).", "error");
+      startBtn.disabled = true;
+    }
+  });
+
+  function appendMsg(who, text) {
+    transcriptEl.classList.add("live");
+    const m = document.createElement("div");
+    m.className = "msg " + (who === "assistant" ? "assistant" : "user");
+    m.innerHTML = '<span class="who">' + (who === "assistant" ? "Sophie" : "Vous") + '</span><br>' + text.replace(/</g,"&lt;");
+    transcriptEl.appendChild(m);
+    transcriptEl.scrollTop = transcriptEl.scrollHeight;
+  }
+
+  function bindVapiEvents() {
+    if (!vapi) return;
+    vapi.on("call-start", () => {
+      inCall = true;
+      btnText.textContent = "Raccrocher";
+      startBtn.classList.add("danger");
+      setStatus("Connecté. Parlez maintenant — Sophie vous écoute.", "live");
+    });
+    vapi.on("call-end", () => {
+      inCall = false;
+      btnText.textContent = "Démarrer l'appel";
+      startBtn.classList.remove("danger");
+      setStatus("Appel terminé. Cliquez Démarrer pour rappeler.");
+    });
+    vapi.on("error", (e) => {
+      console.error(e);
+      setStatus("Erreur : " + (e && e.message ? e.message : JSON.stringify(e).substring(0,140)), "error");
+    });
+    vapi.on("speech-start", () => {});
+    vapi.on("speech-end", () => {});
+    vapi.on("message", (m) => {
+      if (m.type === "transcript" && m.transcriptType === "final") {
+        appendMsg(m.role || "user", m.transcript);
+      }
+    });
+  }
+
+  startBtn.addEventListener("click", async () => {
+    if (!publicKey) { setStatus("Clé publique non configurée.", "error"); return; }
+    if (inCall && vapi) {
+      try { await vapi.stop(); } catch(e) {}
+      return;
+    }
+    try {
+      if (!window.VapiCtor) {
+        setStatus("Chargement du SDK Vapi… patientez 2 secondes et réessayez.", "error");
+        return;
+      }
+      if (!vapi) {
+        vapi = new window.VapiCtor(publicKey);
+        bindVapiEvents();
+      }
+      setStatus("Connexion…");
+      await vapi.start(ASSISTANT_ID);
+    } catch (e) {
+      setStatus("Impossible de lancer l'appel : " + (e && e.message ? e.message : "inconnu"), "error");
+    }
+  });
+
+  // Auto-update status once SDK is ready
+  window.addEventListener("vapi-ready", () => {
+    if (publicKey) setStatus("Configuré. Prêt à appeler.");
+  });
+</script>
+</body>
+</html>
