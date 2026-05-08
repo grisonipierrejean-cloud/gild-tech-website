@@ -287,7 +287,11 @@
       const FIRST_MSG = "Good day, Chelsea Gate Properties, Charlotte speaking. Are you looking to move within three months, within six months, or further out?";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
-        model: { messages: [{ role: "system", content: SYSTEM_PROMPT }] }
+        model: {
+          provider: "anthropic",
+          model: "claude-haiku-4-5-20251001",
+          messages: [{ role: "system", content: SYSTEM_PROMPT }]
+        }
       });
     } catch (e) {
       setStatus("Could not start call: " + (e && e.message ? e.message : "unknown"), "error");

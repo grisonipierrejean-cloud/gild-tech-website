@@ -287,7 +287,11 @@
       const FIRST_MSG = "Bonjour, Agence Démo Lyon, Sophie à votre écoute. Votre projet d'achat se situe dans les trois mois, dans les six mois, ou plus tard ?";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
-        model: { messages: [{ role: "system", content: SYSTEM_PROMPT }] }
+        model: {
+          provider: "anthropic",
+          model: "claude-haiku-4-5-20251001",
+          messages: [{ role: "system", content: SYSTEM_PROMPT }]
+        }
       });
     } catch (e) {
       setStatus("Impossible de lancer l'appel : " + (e && e.message ? e.message : "inconnu"), "error");
