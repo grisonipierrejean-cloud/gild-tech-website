@@ -284,7 +284,7 @@
         "",
         "Goal: qualify and either book a viewing or politely close, in under 90 seconds total."
       ].join('\n');
-      const FIRST_MSG = "Good day, Chelsea Gate Properties, Charlotte speaking. Are you looking to move within three months, within six months, or further out?";
+      const FIRST_MSG = "Good day, Chelsea Gate Properties, Charlotte speaking. Are you looking to move within the next three months, within the next six months, or further out?";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
         model: {

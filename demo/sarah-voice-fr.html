@@ -110,7 +110,7 @@
 
     <div class="agency">
       <div class="agency-label">Vous appelez</div>
-      <div class="agency-name">Agence Démo Lyon</div>
+      <div class="agency-name">Bellecour Immobilier (Lyon)</div>
       <div class="agency-tagline">Sophie — réceptionniste virtuelle, disponible 24/7</div>
     </div>
 
@@ -256,7 +256,7 @@
       setStatus("Connexion…");
       // Overrides en direct — prompt corporate agence FR + chiffres verbalisés
       const SYSTEM_PROMPT = [
-        "Tu es Sophie, réceptionniste virtuelle de l'Agence Démo Lyon — agence immobilière à Lyon (Lyon 6e, Lyon 2e, Caluire, Tassin, Ecully).",
+        "Tu es Sophie, réceptionniste virtuelle de Bellecour Immobilier — agence immobilière à Lyon (place Bellecour, Lyon 6, Lyon 2, Caluire, Tassin, Ecully).",
         "",
         "TON OBJECTIF UNIQUE : qualifier le timing du prospect et positionner une visite. Rien d'autre.",
         "",
@@ -284,7 +284,7 @@
         "",
         "Objectif : qualifier et positionner une visite OU clore poliment, en moins de 90 secondes."
       ].join('\n');
-      const FIRST_MSG = "Bonjour, Agence Démo Lyon, Sophie à votre écoute. Votre projet d'achat se situe dans les trois mois, dans les six mois, ou plus tard ?";
+      const FIRST_MSG = "Bonjour, Bellecour Immobilier, Sophie à votre écoute. Votre projet d'achat se situe dans les trois mois à venir, dans les six mois à venir, ou bien plus tard ?";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
         model: {
