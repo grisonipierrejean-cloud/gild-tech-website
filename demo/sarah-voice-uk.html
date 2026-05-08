@@ -138,7 +138,11 @@
     </div>
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.3.6/dist/index.global.js"></script>
+<script type="module">
+  import Vapi from "https://esm.sh/@vapi-ai/web@2.3.6";
+  window.VapiCtor = Vapi;
+  window.dispatchEvent(new Event("vapi-ready"));
+</script>
 <script>
   const ASSISTANT_ID = "c4437f62-5f83-4c8c-8186-754259afb684"; // Demo - Chelsea Gate Properties (UK)
   const STORAGE_KEY = "vapi_pub_key_v1";
@@ -241,8 +245,12 @@
       return;
     }
     try {
+      if (!window.VapiCtor) {
+        setStatus("Loading Vapi SDK… please wait 2s and click again.", "error");
+        return;
+      }
       if (!vapi) {
-        vapi = new window.Vapi(publicKey);
+        vapi = new window.VapiCtor(publicKey);
         bindVapiEvents();
       }
       setStatus("Connecting…");
@@ -250,6 +258,11 @@
     } catch (e) {
       setStatus("Could not start call: " + (e && e.message ? e.message : "unknown"), "error");
     }
+  });
+
+  // Auto-update status once SDK is ready
+  window.addEventListener("vapi-ready", () => {
+    if (publicKey) setStatus("Configured. Ready to call.");
   });
 </script>
 </body>
