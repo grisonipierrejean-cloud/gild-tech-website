@@ -110,6 +110,16 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   .empty { text-align: center; color: var(--muted); padding: 2rem; }
   .wa-btn { background: var(--pink); color: white; padding: 5px 10px; border-radius: 5px; font-size: .7rem; }
+  .onboarding {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--shadow);
+  }
+  .onboarding h2 { margin: 0 0 .8rem; font-size: 1.4rem; }
+  .onboarding p { margin: 0 0 1rem; color: var(--muted); line-height: 1.55; }
+  .onboarding p strong { color: var(--text); }
+  .onb-steps { color: var(--muted); padding-left: 1.4rem; line-height: 1.7; margin: 0 0 1rem; }
+  .onb-steps li { margin-bottom: .4rem; }
+  .onb-note { font-size: .85rem; padding: .9rem 1.1rem; background: var(--kpi-soft); border-radius: 8px; margin-top: 1rem; }
 </style>
 </head>
 <body>
@@ -122,8 +132,8 @@
     </div>
     <div class="header-actions">
       <div class="toggle-group" role="group">
-        <button class="toggle-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
         <button class="toggle-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="toggle-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
       </div>
       <div class="toggle-group" role="group">
         <button class="toggle-btn" data-theme-btn="dark" onclick="setTheme('dark')" title="Dark">🌙</button>
@@ -131,6 +141,17 @@
       </div>
       <button class="btn" onclick="loadData()" data-i18n="refresh">↻ Refresh</button>
     </div>
+  </div>
+
+  <div id="onboarding" class="onboarding" style="display:none">
+    <h2 data-i18n="onb_title">🏢 Tableau de bord temps réel — votre agence</h2>
+    <p data-i18n="onb_intro">Cette page affiche le pipeline immobilier de <strong>votre agence en temps réel</strong>. Données rafraîchies toutes les 30 secondes depuis votre Google Sheet.</p>
+    <ol class="onb-steps">
+      <li data-i18n="onb_step1">Récupérez votre URL de webhook personnalisée (fournie par GILD-TECH après installation du workflow #17 dans votre n8n).</li>
+      <li data-i18n="onb_step2">Collez-la dans le champ ci-dessous.</li>
+      <li data-i18n="onb_step3">Le tableau se charge instantanément et se met à jour seul toutes les 30 secondes.</li>
+    </ol>
+    <p class="onb-note" data-i18n="onb_note"><strong>Sécurité :</strong> l'URL contient une clé d'authentification unique. Stockée uniquement dans votre navigateur (localStorage). Aucune transmission à GILD-TECH ni à un tiers.</p>
   </div>
 
   <div id="configBar" class="config-bar" style="display:none">
@@ -192,6 +213,12 @@ const I18N = {
     refresh: '↻ Refresh',
     save: 'Enregistrer',
     config_help: 'Configure le webhook URL ci-dessus pour démarrer.',
+    onb_title: '🏢 Tableau de bord temps réel — votre agence',
+    onb_intro: 'Cette page affiche le pipeline immobilier de <strong>votre agence en temps réel</strong>. Données rafraîchies toutes les 30 secondes depuis votre Google Sheet.',
+    onb_step1: 'Récupérez votre URL de webhook personnalisée (fournie par GILD-TECH après installation du workflow #17 dans votre n8n).',
+    onb_step2: 'Collez-la dans le champ ci-dessous.',
+    onb_step3: 'Le tableau se charge instantanément et se met à jour seul toutes les 30 secondes.',
+    onb_note: '<strong>Sécurité :</strong> l\'URL contient une clé d\'authentification unique. Stockée uniquement dans votre navigateur (localStorage). Aucune transmission à GILD-TECH ni à un tiers.',
     kpi_active: 'Leads actifs', kpi_active_sub: 'en pipeline',
     kpi_24h: 'Nouveaux 24h',
     kpi_rdv: 'RDV semaine', kpi_rdv_sub: '7 jours à venir',
@@ -221,6 +248,12 @@ const I18N = {
     refresh: '↻ Refresh',
     save: 'Save',
     config_help: 'Configure the webhook URL above to start.',
+    onb_title: '🏢 Real-time dashboard — your agency',
+    onb_intro: 'This page shows your <strong>agency\'s real-time pipeline</strong>. Data refreshes every 30 seconds from your Google Sheet.',
+    onb_step1: 'Get your unique webhook URL (provided by GILD-TECH after installing workflow #17 on your n8n instance).',
+    onb_step2: 'Paste it in the field below.',
+    onb_step3: 'The dashboard loads instantly and auto-refreshes every 30 seconds.',
+    onb_note: '<strong>Security:</strong> the URL contains a unique authentication key. Stored only in your browser (localStorage). Nothing transmitted to GILD-TECH or any third party.',
     kpi_active: 'Active leads', kpi_active_sub: 'in pipeline',
     kpi_24h: 'New in 24h',
     kpi_rdv: 'Viewings this week', kpi_rdv_sub: 'next 7 days',
@@ -256,7 +289,11 @@ function applyI18n() {
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (I18N[lang][key]) el.textContent = I18N[lang][key];
+    const v = I18N[lang][key];
+    if (v == null) return;
+    // If translation contains HTML tags, use innerHTML; else textContent
+    if (/[<>]/.test(v)) el.innerHTML = v;
+    else el.textContent = v;
   });
   document.querySelectorAll('[data-lang]').forEach(b => {
     b.classList.toggle('active', b.getAttribute('data-lang') === lang);
@@ -289,6 +326,7 @@ function saveWebhook() {
   localStorage.setItem(STORAGE_KEY, v);
   webhookUrl = v;
   document.getElementById('configBar').style.display = 'none';
+  document.getElementById('onboarding').style.display = 'none';
   loadData();
   if (!refreshTimer) refreshTimer = setInterval(loadData, 30000);
 }
@@ -405,6 +443,7 @@ applyI18n();
 
 if (!webhookUrl) {
   document.getElementById('configBar').style.display = 'flex';
+  document.getElementById('onboarding').style.display = 'block';
 } else {
   document.getElementById('webhookUrl').value = webhookUrl;
   loadData();
