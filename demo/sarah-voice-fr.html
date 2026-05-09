@@ -125,8 +125,8 @@
 
     <div id="transcript" class="transcript"></div>
 
-    <button class="config-toggle" onclick="toggleConfig()">Configuration technique</button>
-    <div id="configSection" class="config">
+    <button class="config-toggle" id="configToggleBtn" onclick="toggleConfig()" style="display:none;">Configuration technique</button>
+    <div id="configSection" class="config" style="display:none;">
       <label for="pubKey">Clé Vapi publique (configuration unique, stockée localement)</label>
       <input id="pubKey" type="text" placeholder="collez la clé publique Vapi (UUID)" autocomplete="off">
       <p style="font-size:.75rem;color:var(--muted);margin:.5rem 0 0;">Disponible sur dashboard.vapi.ai/org/api-keys → Public Key → Copier. Stockée uniquement dans le localStorage du navigateur.</p>
@@ -179,14 +179,26 @@
     return localStorage.getItem(STORAGE_KEY) || "";
   }
 
-  // Init
-  let publicKey = readKey();
-  if (publicKey) {
-    pubKeyInput.value = publicKey;
-  } else {
+  // PUBLIC KEY HARDCODED — safe to expose (Vapi public key, like Stripe pk_)
+  // To rotate: update PUBLIC_KEY below + redeploy
+  const PUBLIC_KEY = "388dcfa1-338a-4e47-9a45-cec83f475ad6";
+
+  // Init — priority: URL hash override > localStorage > hardcoded
+  let publicKey = readKey() || PUBLIC_KEY;
+  const configToggleBtn = document.getElementById("configToggleBtn");
+  if (publicKey === "388dcfa1-338a-4e47-9a45-cec83f475ad6") {
+    // Placeholder still in place — fallback for debug only
+    publicKey = "";
+    if (configToggleBtn) configToggleBtn.style.display = "block";
     configSection.style.display = "block";
-    setStatus("Collez votre clé Vapi publique dans Configuration technique ci-dessous.", "error");
+    setStatus("Démo en cours de configuration. Contactez l'équipe GILD-TECH.", "error");
     startBtn.disabled = true;
+  } else {
+    // Production — ready to call, no config UI
+    pubKeyInput.value = publicKey;
+    configSection.style.display = "none";
+    setStatus("Prêt. Cliquez Démarrer l'appel et autorisez le micro.");
+    startBtn.disabled = false;
   }
 
   pubKeyInput.addEventListener("change", () => {

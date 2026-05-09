@@ -125,8 +125,8 @@
 
     <div id="transcript" class="transcript"></div>
 
-    <button class="config-toggle" onclick="toggleConfig()">Configuration</button>
-    <div id="configSection" class="config">
+    <button class="config-toggle" id="configToggleBtn" onclick="toggleConfig()" style="display:none;">Configuration</button>
+    <div id="configSection" class="config" style="display:none;">
       <label for="pubKey">Vapi Public Key (one-time setup, stored locally on this device)</label>
       <input id="pubKey" type="text" placeholder="paste Vapi public key (UUID)" autocomplete="off">
       <p style="font-size:.75rem;color:var(--muted);margin:.5rem 0 0;">Find it at dashboard.vapi.ai/org/api-keys → Public Key → Copy. Stored only in your browser localStorage.</p>
@@ -179,14 +179,26 @@
     return localStorage.getItem(STORAGE_KEY) || "";
   }
 
-  // Init
-  let publicKey = readKey();
-  if (publicKey) {
-    pubKeyInput.value = publicKey;
-  } else {
+  // PUBLIC KEY HARDCODED — safe to expose (Vapi public key, like Stripe pk_)
+  // To rotate: update PUBLIC_KEY below + redeploy
+  const PUBLIC_KEY = "388dcfa1-338a-4e47-9a45-cec83f475ad6";
+
+  // Init — priority: URL hash override > localStorage > hardcoded
+  let publicKey = readKey() || PUBLIC_KEY;
+  const configToggleBtn = document.getElementById("configToggleBtn");
+  if (publicKey === "388dcfa1-338a-4e47-9a45-cec83f475ad6") {
+    // Placeholder still in place — fallback for debug only
+    publicKey = "";
+    if (configToggleBtn) configToggleBtn.style.display = "block";
     configSection.style.display = "block";
-    setStatus("Paste your Vapi public key in Configuration below to enable.", "error");
+    setStatus("Demo under configuration. Please contact the GILD-TECH team.", "error");
     startBtn.disabled = true;
+  } else {
+    // Production — ready to call, no config UI
+    pubKeyInput.value = publicKey;
+    configSection.style.display = "none";
+    setStatus("Ready. Click Start call and allow your microphone.");
+    startBtn.disabled = false;
   }
 
   pubKeyInput.addEventListener("change", () => {
