@@ -26,9 +26,11 @@
     --green: #22c55e;
     --red: #ef4444;
     --yellow: #eab308;
-    --shadow: 0 1px 0 rgba(255,255,255,.02), 0 8px 32px -8px rgba(0,0,0,.6);
+    --blue: #3b82f6;
+    --shadow: 0 1px 0 rgba(255,255,255,.02), 0 8px 32px -12px rgba(0,0,0,.7);
     --chat-user: #181820;
     --chat-bot: #0e0e12;
+    --skeleton: linear-gradient(90deg, #131318 0%, #1c1c22 50%, #131318 100%);
   }
   html[data-theme="light"] {
     --bg: #fafafa;
@@ -44,22 +46,26 @@
     --green: #16a34a;
     --red: #dc2626;
     --yellow: #ca8a04;
+    --blue: #2563eb;
     --shadow: 0 1px 2px rgba(10,10,12,.04), 0 8px 24px -12px rgba(10,10,12,.08);
     --chat-user: #f6f6f8;
     --chat-bot: #fcfcfd;
+    --skeleton: linear-gradient(90deg, #f0f0f3 0%, #fafafa 50%, #f0f0f3 100%);
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     min-height: 100vh;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     background: var(--bg);
     color: var(--text);
     transition: background .2s, color .2s;
     font-size: 14px;
     line-height: 1.5;
+    letter-spacing: -.01em;
   }
 
   .layout { display: grid; grid-template-columns: 1fr 380px; min-height: 100vh; }
@@ -71,51 +77,73 @@
   .main { padding: 1.25rem 1.5rem 4rem; max-width: 100%; overflow-x: hidden; }
 
   /* HEADER */
-  .topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--line); margin-bottom: 1.5rem; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem; }
   .brand-block { display: flex; align-items: center; gap: 12px; }
   .logo-mark { width: 28px; height: 28px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), #b8186e); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px; letter-spacing: -.02em; }
   .brand-text .brand { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
   .brand-text h1 { margin: 1px 0 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
-  .meta-bar { display: flex; align-items: center; gap: 14px; color: var(--text-2); font-size: 12px; }
+  .meta-bar { display: flex; align-items: center; gap: 14px; color: var(--text-2); font-size: 12px; font-variant-numeric: tabular-nums; }
   .meta-bar .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
   .meta-bar .dot.live { animation: pulse 1.4s infinite; }
+  .meta-bar .demo-badge { background: var(--accent-soft); color: var(--accent); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
   .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .seg { display: inline-flex; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 7px; padding: 2px; }
-  .seg-btn { background: transparent; border: 0; cursor: pointer; padding: 5px 10px; font-size: 12px; font-weight: 600; border-radius: 5px; color: var(--text-2); font-family: inherit; }
+  .seg-btn { background: transparent; border: 0; cursor: pointer; padding: 5px 10px; font-size: 12px; font-weight: 600; border-radius: 5px; color: var(--text-2); font-family: inherit; transition: all .12s; }
   .seg-btn.active { background: var(--text); color: var(--bg); }
-  .icon-btn { background: var(--bg-elev); border: 1px solid var(--line); color: var(--text); padding: 7px 11px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit; }
+  .icon-btn { background: var(--bg-elev); border: 1px solid var(--line); color: var(--text); padding: 7px 11px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit; display: inline-flex; align-items: center; gap: 5px; }
   .icon-btn:hover { border-color: var(--line-strong); }
+  .icon-btn.active { border-color: var(--accent-line); color: var(--accent); background: var(--accent-soft); }
   .btn { background: var(--accent); color: #fff; border: 0; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit; }
   .btn:hover { opacity: .92; }
 
   /* CONFIG */
-  .config-bar { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) auto; gap: 8px; align-items: center; box-shadow: var(--shadow); }
-  .config-bar input { padding: 8px 11px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 7px; color: var(--text); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
-  .config-bar input:focus { outline: 0; border-color: var(--accent-line); }
+  .config-panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .config-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) auto; gap: 8px; align-items: center; }
+  .config-row input { padding: 8px 11px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 7px; color: var(--text); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
+  .config-row input:focus { outline: 0; border-color: var(--accent-line); }
+  .config-tabs { display: flex; gap: 16px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  .config-tab { background: transparent; border: 0; padding: 8px 0; font-size: 13px; font-weight: 600; color: var(--text-2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: inherit; }
+  .config-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .crm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+  .crm-card { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-elev); font-size: 12.5px; cursor: pointer; transition: all .12s; }
+  .crm-card:hover { border-color: var(--accent-line); }
+  .crm-card .crm-name { font-weight: 700; margin-bottom: 2px; }
+  .crm-card .crm-region { font-size: 10.5px; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .crm-card .crm-status { font-size: 11px; color: var(--text-2); margin-top: 6px; display: flex; align-items: center; gap: 5px; }
+  .crm-card .crm-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-2); }
+  .crm-card.coming .crm-status::before { background: var(--yellow); }
+  .crm-card.ready .crm-status::before { background: var(--green); }
 
   .err { background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.22); color: var(--red); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 13px; }
 
-  /* KPI STRIP — minimal, dense, premium */
-  .kpi-strip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); margin-bottom: 16px; box-shadow: var(--shadow); overflow: hidden; }
-  .kpi { padding: 14px 18px; border-right: 1px solid var(--line); }
+  /* KPI STRIP */
+  .kpi-strip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  .kpi { padding: 14px 18px; border-right: 1px solid var(--line); position: relative; }
   .kpi:last-child { border-right: 0; }
-  .kpi-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); font-weight: 600; margin-bottom: 6px; }
-  .kpi-value { font-size: 24px; font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
+  .kpi-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .kpi-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); font-weight: 600; }
+  .kpi-trend { font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 3px; font-variant-numeric: tabular-nums; }
+  .kpi-trend.up { color: var(--green); background: rgba(34,197,94,.1); }
+  .kpi-trend.down { color: var(--red); background: rgba(239,68,68,.1); }
+  .kpi-trend.flat { color: var(--text-2); background: var(--row-hover); }
+  .kpi-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .kpi-value { font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
   .kpi-value.accent { color: var(--accent); }
   .kpi-value.green { color: var(--green); }
   .kpi-value.red { color: var(--red); }
   .kpi-value.yellow { color: var(--yellow); }
+  .kpi-spark { width: 50px; height: 18px; opacity: .6; flex-shrink: 0; }
   .kpi-sub { font-size: 11px; color: var(--text-2); margin-top: 4px; font-variant-numeric: tabular-nums; }
 
   /* PANELS */
   .grid-tables { display: grid; grid-template-columns: 1.65fr 1fr; gap: 14px; }
   @media (max-width: 800px) { .grid-tables { grid-template-columns: 1fr; } }
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 16px; box-shadow: var(--shadow); }
-  .panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
-  .panel-head h2 { font-size: 13px; font-weight: 700; margin: 0; letter-spacing: -.005em; }
-  .panel-head .accent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 8px; vertical-align: middle; }
+  .panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+  .panel-head h2 { font-size: 13px; font-weight: 700; margin: 0; letter-spacing: -.005em; display: flex; align-items: center; gap: 8px; }
+  .panel-head .accent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
   .panel-head .count { color: var(--text-2); font-size: 11px; font-weight: 500; font-variant-numeric: tabular-nums; }
 
   /* TABLES */
@@ -126,10 +154,11 @@
   tbody tr:hover td { background: var(--row-hover); }
   td a { color: var(--text); text-decoration: none; border-bottom: 1px dashed var(--line-strong); }
   td a:hover { color: var(--accent); border-bottom-color: var(--accent-line); }
-  td .lead-name { font-weight: 600; color: var(--text); }
+  td .lead-name { font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
   td .lead-reason { color: var(--text-2); font-size: 11px; margin-top: 2px; }
+  td .lead-source { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; padding: 1px 5px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg-elev); }
 
-  .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; gap: 5px; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; gap: 5px; font-variant-numeric: tabular-nums; }
   .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
   .badge.new { background: rgba(34,197,94,.12); color: var(--green); }
   .badge.warm { background: rgba(234,179,8,.12); color: var(--yellow); }
@@ -137,7 +166,7 @@
   .badge.rdv { background: var(--accent-soft); color: var(--accent); }
 
   .lead-actions { display: flex; gap: 5px; flex-wrap: nowrap; }
-  .act { padding: 4px 9px; border-radius: 5px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); text-decoration: none; font-family: inherit; line-height: 1.4; white-space: nowrap; }
+  .act { padding: 4px 9px; border-radius: 5px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); text-decoration: none; font-family: inherit; line-height: 1.4; white-space: nowrap; transition: all .1s; }
   .act:hover { border-color: var(--accent-line); color: var(--accent); }
   .act.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
   .act.primary:hover { background: #b8186e; border-color: #b8186e; color: #fff; }
@@ -168,7 +197,7 @@
   .chat-input-row { padding: 12px 14px 14px; border-top: 1px solid var(--line); display: flex; gap: 7px; align-items: flex-end; }
   .chat-input { flex: 1; min-height: 40px; max-height: 120px; padding: 9px 12px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 8px; color: var(--text); font: inherit; font-size: 13px; resize: none; line-height: 1.5; }
   .chat-input:focus { outline: 0; border-color: var(--accent-line); }
-  .mic-btn, .send-btn { width: 40px; height: 40px; border-radius: 8px; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: inherit; font-size: 14px; }
+  .mic-btn, .send-btn { width: 40px; height: 40px; border-radius: 8px; border: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: inherit; }
   .mic-btn { background: var(--bg-elev); border: 1px solid var(--line); color: var(--text); }
   .mic-btn:hover { border-color: var(--accent-line); color: var(--accent); }
   .mic-btn.live { background: var(--accent); color: #fff; border-color: var(--accent); animation: pulse-mic 1.2s infinite; }
@@ -176,13 +205,13 @@
   .send-btn { background: var(--accent); color: #fff; }
   .send-btn:disabled { opacity: .35; cursor: not-allowed; }
 
-  .sarah-toggle-mobile { display: none; position: fixed; bottom: 18px; right: 18px; width: 50px; height: 50px; border-radius: 12px; background: var(--accent); color: #fff; border: 0; box-shadow: 0 6px 20px rgba(233,30,140,.45); cursor: pointer; z-index: 60; font-size: 18px; }
+  .sarah-toggle-mobile { display: none; position: fixed; bottom: 18px; right: 18px; width: 50px; height: 50px; border-radius: 12px; background: var(--accent); color: #fff; border: 0; box-shadow: 0 6px 20px rgba(233,30,140,.45); cursor: pointer; z-index: 60; font-size: 14px; font-weight: 700; }
   @media (max-width: 1024px) { .sarah-toggle-mobile { display: flex; align-items: center; justify-content: center; } }
 
-  /* ICONS (tiny inline svgs) */
-  .ico { width: 13px; height: 13px; vertical-align: -2px; }
+  .ico { width: 12px; height: 12px; vertical-align: -2px; flex-shrink: 0; }
+  .source-pill { display: inline-flex; align-items: center; padding: 1px 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-2); border: 1px solid var(--line); border-radius: 3px; background: var(--bg-elev); }
+  .nego-avatar { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--accent), #b8186e); margin-right: 6px; vertical-align: middle; }
 
-  /* SUBTLE DETAILS */
   ::selection { background: var(--accent-soft); color: var(--accent); }
 </style>
 </head>
@@ -198,7 +227,11 @@
         </div>
       </div>
       <div class="header-actions">
-        <div class="meta-bar"><span class="dot live"></span><span id="lastUpdate" data-i18n="loading">Chargement…</span></div>
+        <div class="meta-bar"><span class="dot live"></span><span id="lastUpdate" data-i18n="loading">Chargement…</span><span id="demoBadge" class="demo-badge" style="display:none">DEMO</span></div>
+        <button id="demoBtn" class="icon-btn" onclick="toggleDemo()" title="Demo data">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          <span data-i18n="demo_btn">Demo</span>
+        </button>
         <div class="seg" role="group">
           <button class="seg-btn" data-lang="en" onclick="setLang('en')">EN</button>
           <button class="seg-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
@@ -212,24 +245,28 @@
       </div>
     </div>
 
-    <div id="configBar" class="config-bar" style="display:none">
-      <input id="webhookData" type="text" placeholder="Webhook data URL (n8n)">
-      <input id="webhookChat" type="text" placeholder="Webhook chat URL (n8n)">
-      <input id="vapiPubKey" type="text" placeholder="Vapi public key (UUID)">
-      <button class="btn" onclick="saveConfig()" data-i18n="save">Save</button>
+    <div id="configBar" class="config-panel" style="display:none">
+      <div class="config-tabs">
+        <button class="config-tab active" data-tab="connect" onclick="switchTab('connect')" data-i18n="tab_connect">Connexion directe</button>
+        <button class="config-tab" data-tab="crm" onclick="switchTab('crm')" data-i18n="tab_crm">Plug-ins CRM</button>
+      </div>
+      <div id="tab-connect" class="config-tab-pane">
+        <div class="config-row">
+          <input id="webhookData" type="text" placeholder="Webhook data URL (n8n)">
+          <input id="webhookChat" type="text" placeholder="Webhook chat URL (n8n)">
+          <input id="vapiPubKey" type="text" placeholder="Vapi public key (UUID)">
+          <button class="btn" onclick="saveConfig()" data-i18n="save">Save</button>
+        </div>
+      </div>
+      <div id="tab-crm" class="config-tab-pane" style="display:none">
+        <div style="font-size:12.5px;color:var(--text-2);margin-bottom:12px" data-i18n="crm_intro">Sarah Studio se connecte à votre CRM existant. Choisissez le vôtre — la sync passe par n8n côté GILD-TECH (vous donnez juste vos identifiants à votre interlocuteur).</div>
+        <div class="crm-grid" id="crmGrid"></div>
+      </div>
     </div>
 
     <div id="errorMsg" class="err" style="display:none"></div>
 
-    <div class="kpi-strip">
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_active">Leads actifs</div><div class="kpi-value accent" id="kpi-actifs">—</div><div class="kpi-sub" data-i18n="kpi_active_sub">en pipeline</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_24h">Nouveaux 24h</div><div class="kpi-value green" id="kpi-24h">—</div><div class="kpi-sub" id="kpi-24h-sub">—</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_rdv">RDV semaine</div><div class="kpi-value" id="kpi-rdv">—</div><div class="kpi-sub" data-i18n="kpi_rdv_sub">7 jours à venir</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_mandats">Mandats</div><div class="kpi-value accent" id="kpi-mandats">—</div><div class="kpi-sub" id="kpi-revenue">—</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_pipeline">Pipeline</div><div class="kpi-value" id="kpi-pipeline">—</div><div class="kpi-sub" data-i18n="kpi_pipeline_sub">commission potentielle</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_conv">Conversion</div><div class="kpi-value" id="kpi-conv">—</div><div class="kpi-sub" data-i18n="kpi_conv_sub">leads → mandats 30j</div></div>
-      <div class="kpi"><div class="kpi-label" data-i18n="kpi_rappel">Rappel sub-5min</div><div class="kpi-value" id="kpi-rappel">—</div><div class="kpi-sub" data-i18n="kpi_rappel_sub">cible 80%+</div></div>
-    </div>
+    <div class="kpi-strip" id="kpiStrip"></div>
 
     <div class="grid-tables">
       <div class="panel">
@@ -243,10 +280,11 @@
             <th data-i18n="th_prospect">Prospect</th>
             <th data-i18n="th_phone">Tel</th>
             <th data-i18n="th_property">Bien</th>
+            <th data-i18n="th_source">Source</th>
             <th data-i18n="th_status">Statut</th>
             <th data-i18n="th_action">Action</th>
           </tr></thead>
-          <tbody><tr><td colspan="6" class="empty" data-i18n="loading">Chargement…</td></tr></tbody>
+          <tbody><tr><td colspan="7" class="empty" data-i18n="loading">Chargement…</td></tr></tbody>
         </table>
       </div>
       <div class="panel">
@@ -288,7 +326,9 @@
     </div>
     <div class="chat-input-row">
       <textarea id="chatInput" class="chat-input" rows="1" placeholder="Demandez à Sarah…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
-      <button id="micBtn" class="mic-btn" onclick="toggleMic()" title="Push-to-talk">●</button>
+      <button id="micBtn" class="mic-btn" onclick="toggleMic()" title="Push-to-talk">
+        <svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4"/></svg>
+      </button>
       <button id="sendBtn" class="send-btn" onclick="sendChat()">→</button>
     </div>
   </aside>
@@ -307,34 +347,100 @@ const STORAGE_KEY_CHAT = 'sarahstudio_webhook_chat';
 const STORAGE_KEY_VAPI = 'sarahstudio_vapi_pub';
 const STORAGE_KEY_LANG = 'sarahstudio_lang';
 const STORAGE_KEY_THEME = 'sarahstudio_theme';
+const STORAGE_KEY_DEMO = 'sarahstudio_demo';
 const ASSISTANT_FR = '189921d8-0da5-40b0-b5ee-c769d5351428';
 const ASSISTANT_UK = 'c4437f62-5f83-4c8c-8186-754259afb684';
+
+// CRM list (FR + UK markets)
+const CRMS = [
+  { id: 'apimo', name: 'Apimo', region: 'FR', status: 'ready', desc: 'Leader marché FR' },
+  { id: 'hektor', name: 'Hektor', region: 'FR', status: 'ready', desc: 'Logiciel CRM immo' },
+  { id: 'iad', name: 'iAd Connect', region: 'FR', status: 'coming', desc: 'iAd réseau' },
+  { id: 'pericles', name: 'Périclès', region: 'FR', status: 'coming', desc: 'Périclès Immo' },
+  { id: 'netty', name: 'Netty', region: 'FR', status: 'coming', desc: 'Netty Software' },
+  { id: 'krealys', name: 'Krealys', region: 'FR', status: 'coming', desc: 'Krealys Immobilier' },
+  { id: 'reapit', name: 'Reapit', region: 'UK', status: 'ready', desc: 'UK estate agency leader' },
+  { id: 'alto', name: 'Alto', region: 'UK', status: 'ready', desc: 'Zoopla / OnTheMarket native' },
+  { id: 'jupix', name: 'Jupix', region: 'UK', status: 'coming', desc: 'Cloud lettings + sales' },
+  { id: 'vebra', name: 'Vebra', region: 'UK', status: 'coming', desc: 'Idealoutpost group' },
+  { id: 'gsheet', name: 'Google Sheets', region: 'ALL', status: 'ready', desc: 'Sync direct (default)' },
+  { id: 'custom', name: 'Custom API', region: 'ALL', status: 'ready', desc: 'Webhook sur mesure' }
+];
+
+// 7 KPIs definition with icons + accent + sparkline behaviour
+const KPI_DEFS = [
+  { key: 'leads_actifs', label_fr: 'Leads actifs', label_en: 'Active leads', sub_fr: 'en pipeline', sub_en: 'in pipeline', accent: 'accent', fmt: 'int' },
+  { key: 'nouveaux_24h', label_fr: 'Nouveaux 24h', label_en: 'New in 24h', sub_key: 'delta_24h_vs_yesterday', accent: 'green', fmt: 'int' },
+  { key: 'rdv_semaine', label_fr: 'RDV semaine', label_en: 'Viewings', sub_fr: '7 jours à venir', sub_en: 'next 7 days', accent: '', fmt: 'int' },
+  { key: 'mandats_semaine', label_fr: 'Mandats', label_en: 'Instructions', sub_key: 'revenue_estime_text', accent: 'accent', fmt: 'int' },
+  { key: 'pipeline_potential', label_fr: 'Pipeline', label_en: 'Pipeline', sub_fr: 'commission potentielle', sub_en: 'potential commission', accent: '', fmt: 'money_short' },
+  { key: 'taux_conversion_30j', label_fr: 'Conversion 30j', label_en: 'Conversion 30d', sub_fr: 'leads → mandats', sub_en: 'leads → instructions', accent: '', fmt: 'pct' },
+  { key: 'taux_rappel_sub5min', label_fr: 'Rappel sub-5min', label_en: 'Sub-5min callback', sub_fr: 'cible 80%+', sub_en: 'target 80%+', accent: 'auto_rappel', fmt: 'pct' }
+];
+
+// MOCK DATA — réaliste agence indépendante 5 négos, secteur Lyon
+const MOCK = {
+  agence_nom: 'Bellecour Immobilier',
+  timestamp: new Date().toISOString(),
+  kpis: {
+    leads_actifs: 42,
+    nouveaux_24h: 6,
+    delta_24h: 2,
+    rdv_semaine: 11,
+    mandats_semaine: 3,
+    revenue_estime: 24000,
+    pipeline_potential: 16800,
+    taux_conversion_30j: 7,
+    taux_rappel_sub5min: 84,
+    spark: {
+      leads_actifs: [38,40,39,41,42,42,42],
+      nouveaux_24h: [4,5,3,6,4,5,6],
+      rdv_semaine: [8,9,10,9,11,11,11],
+      mandats_semaine: [1,2,2,3,2,3,3],
+      pipeline_potential: [14000,14400,15200,15600,16000,16400,16800],
+      taux_conversion_30j: [5,5,6,6,7,7,7],
+      taux_rappel_sub5min: [72,76,80,82,84,84,84]
+    }
+  },
+  top_leads: [
+    { prenom: 'Marie',  nom: 'Dupont',   telephone: '+33612345678', bien_ref: 'BEL-2046 · 3P 78m²', budget: '380 000 €', status: 'chaud',   source: 'SeLoger',     _reason: 'nouveau (2h)', _nego: 'CB' },
+    { prenom: 'Pierre', nom: 'Lefèvre',  telephone: '+33687234511', bien_ref: 'BEL-2031 · 4P 92m²', budget: '520 000 €', status: 'a_rappeler', source: 'Formulaire', _reason: 'relancé hier', _nego: 'JM' },
+    { prenom: 'Sophie', nom: 'Marin',    telephone: '+33645678901', bien_ref: 'BEL-1987 · Loft',     budget: '650 000 €', status: 'rdv_programme', source: 'LeBonCoin', _reason: 'RDV jeudi 18h', _nego: 'CB' },
+    { prenom: 'Thomas', nom: 'Bernard',  telephone: '+33623456789', bien_ref: 'BEL-2088 · 2P 45m²', budget: '245 000 €', status: 'chaud',   source: 'Pige PAP',    _reason: 'chaud, 3j sans contact', _nego: 'AL' },
+    { prenom: 'Camille',nom: 'Rousseau', telephone: '+33698765432', bien_ref: 'BEL-2055 · Maison',   budget: '780 000 €', status: 'mandat_negociation', source: 'Recommandation', _reason: 'négo offre en cours', _nego: 'JM' },
+    { prenom: 'Julien', nom: 'Petit',    telephone: '+33677889944', bien_ref: 'BEL-1999 · 3P 65m²', budget: '320 000 €', status: 'nouveau', source: 'WhatsApp', _reason: 'nouveau (5h)', _nego: 'AL' },
+    { prenom: 'Léa',    nom: 'Garnier',  telephone: '+33611223344', bien_ref: 'BEL-2070',           budget: '280 000 €', status: 'tiede',   source: 'SeLoger',     _reason: 'dormant 9j', _nego: 'CB' },
+    { prenom: 'Hugo',   nom: 'Vidal',    telephone: '+33655443322', bien_ref: 'BEL-2012 · Studio',   budget: '180 000 €', status: 'a_rappeler', source: 'Sarah WA',    _reason: 'qualif Sarah hier 22h', _nego: 'JM' }
+  ],
+  visites_jour: [
+    { heure: '10:30', prenom: 'Anne',    nom: 'Lambert',  telephone: '+33633557799', bien_ref: 'BEL-2046 · 3P 78m²' },
+    { heure: '14:00', prenom: 'Marc',    nom: 'Roussel',  telephone: '+33641556677', bien_ref: 'BEL-2031 · 4P 92m²' },
+    { heure: '16:30', prenom: 'Élise',   nom: 'Charpentier', telephone: '+33688771122', bien_ref: 'BEL-2088 · 2P 45m²' },
+    { heure: '18:30', prenom: 'Olivier', nom: 'Joly',     telephone: '+33677339911', bien_ref: 'BEL-1999 · 3P 65m²' }
+  ]
+};
 
 const I18N = {
   fr: {
     brand: 'Sarah Studio', title: 'AI co-pilot',
-    loading: 'Chargement…', refresh: 'Refresh', save: 'Enregistrer', config_btn: 'Config',
+    loading: 'Chargement…', refresh: 'Refresh', save: 'Enregistrer', config_btn: 'Config', demo_btn: 'Demo',
     config_help: 'Collez les 3 valeurs pour activer Sarah Studio.',
     sarah_status: 'Disponible 24/7',
     welcome: 'Bonjour. Je pilote votre pipeline en temps réel. Je peux qualifier vos leads, rédiger un message WhatsApp, vous briefer avant une visite. Posez votre question — par écrit ou par la voix.',
     qp_top: 'Leads chauds', qp_brief: 'Brief du jour', qp_next: 'Prochaine action', qp_pige: 'Pige secteur',
-    kpi_active: 'Leads actifs', kpi_active_sub: 'en pipeline',
-    kpi_24h: 'Nouveaux 24h',
-    kpi_rdv: 'RDV semaine', kpi_rdv_sub: '7 jours à venir',
-    kpi_mandats: 'Mandats',
-    kpi_pipeline: 'Pipeline', kpi_pipeline_sub: 'commission potentielle',
-    kpi_conv: 'Conversion', kpi_conv_sub: 'leads → mandats 30j',
-    kpi_rappel: 'Rappel sub-5min', kpi_rappel_sub: 'cible 80%+',
+    tab_connect: 'Connexion directe', tab_crm: 'Plug-ins CRM',
+    crm_intro: 'Sarah Studio se connecte à votre CRM existant. Sélectionnez le vôtre — la synchronisation passe par n8n côté GILD-TECH, vous transmettez juste vos identifiants à votre interlocuteur.',
     top_leads: 'Leads prioritaires', visits_today: 'Visites du jour',
-    th_prospect: 'Prospect', th_phone: 'Tel', th_property: 'Bien', th_status: 'Statut', th_action: 'Action', th_time: 'Heure',
+    th_prospect: 'Prospect', th_phone: 'Tel', th_property: 'Bien', th_source: 'Source', th_status: 'Statut', th_action: 'Action', th_time: 'Heure',
     no_leads: 'Aucun lead à rappeler.', no_visits: 'Aucune visite aujourd’hui.',
     last_update: 'MAJ ', fetch_err: 'Erreur fetch : ', fetch_err_check: ' — vérifiez l’URL.',
-    delta_vs_yesterday: ' vs hier', suffix_pipeline: 'pipeline immobilier',
+    delta_vs_yesterday: ' vs hier',
     badge_rdv: 'RDV', badge_neg: 'Négo', badge_hot: 'Chaud', badge_new: 'Nouveau', badge_cold: 'Tiède',
     typing: 'Sarah réfléchit…', voice_listening: 'Sarah écoute… parlez maintenant.',
     voice_unavailable: 'Voix non configurée. Ajoutez la clé Vapi dans Config.',
     chat_unavailable: 'Webhook chat non configuré. Ajoutez l’URL dans Config.',
     btn_wa: 'WA', btn_call: 'Appel', btn_gen: 'Rédiger',
+    crm_ready: 'Prêt — contactez GILD-TECH', crm_coming: 'Bientôt',
     quick_prompts: {
       top_leads: 'Quels sont mes leads les plus chauds à rappeler maintenant ?',
       brief_today: 'Fais-moi le brief de ma journée — visites, priorités, alertes.',
@@ -344,28 +450,24 @@ const I18N = {
   },
   en: {
     brand: 'Sarah Studio', title: 'AI co-pilot',
-    loading: 'Loading…', refresh: 'Refresh', save: 'Save', config_btn: 'Config',
+    loading: 'Loading…', refresh: 'Refresh', save: 'Save', config_btn: 'Config', demo_btn: 'Demo',
     config_help: 'Paste all 3 values to activate Sarah Studio.',
     sarah_status: 'Available 24/7',
     welcome: 'Hello. I’m running your pipeline live. I can qualify leads, draft a WhatsApp, brief you before a viewing. Ask anything — by text or voice.',
     qp_top: 'Hot leads', qp_brief: 'Daily brief', qp_next: 'Next action', qp_pige: 'Market scan',
-    kpi_active: 'Active leads', kpi_active_sub: 'in pipeline',
-    kpi_24h: 'New in 24h',
-    kpi_rdv: 'Viewings', kpi_rdv_sub: 'next 7 days',
-    kpi_mandats: 'Instructions',
-    kpi_pipeline: 'Pipeline', kpi_pipeline_sub: 'potential commission',
-    kpi_conv: 'Conversion', kpi_conv_sub: 'leads → instructions 30d',
-    kpi_rappel: 'Sub-5min callback', kpi_rappel_sub: 'target 80%+',
+    tab_connect: 'Direct connection', tab_crm: 'CRM plug-ins',
+    crm_intro: 'Sarah Studio plugs into your existing CRM. Pick yours — sync runs via n8n on the GILD-TECH side, you only hand over your credentials to your contact.',
     top_leads: 'Priority leads', visits_today: 'Today’s viewings',
-    th_prospect: 'Prospect', th_phone: 'Phone', th_property: 'Property', th_status: 'Status', th_action: 'Action', th_time: 'Time',
+    th_prospect: 'Prospect', th_phone: 'Phone', th_property: 'Property', th_source: 'Source', th_status: 'Status', th_action: 'Action', th_time: 'Time',
     no_leads: 'No leads to call back.', no_visits: 'No viewings today.',
     last_update: 'Updated ', fetch_err: 'Fetch error: ', fetch_err_check: ' — check the URL.',
-    delta_vs_yesterday: ' vs yesterday', suffix_pipeline: 'real estate pipeline',
+    delta_vs_yesterday: ' vs yesterday',
     badge_rdv: 'VIEW', badge_neg: 'Neg.', badge_hot: 'Hot', badge_new: 'New', badge_cold: 'Cold',
     typing: 'Sarah is thinking…', voice_listening: 'Sarah is listening… speak now.',
     voice_unavailable: 'Voice not configured. Add the Vapi key in Config.',
     chat_unavailable: 'Chat webhook not configured. Add the URL in Config.',
     btn_wa: 'WA', btn_call: 'Call', btn_gen: 'Draft',
+    crm_ready: 'Ready — contact GILD-TECH', crm_coming: 'Coming soon',
     quick_prompts: {
       top_leads: 'What are my hottest leads to call back right now?',
       brief_today: 'Brief me on today — viewings, priorities, alerts.',
@@ -380,6 +482,7 @@ let webhookChat = localStorage.getItem(STORAGE_KEY_CHAT) || '';
 let vapiPubKey = localStorage.getItem(STORAGE_KEY_VAPI) || '';
 let lang = localStorage.getItem(STORAGE_KEY_LANG) || 'fr';
 let theme = localStorage.getItem(STORAGE_KEY_THEME) || 'dark';
+let demoMode = localStorage.getItem(STORAGE_KEY_DEMO) === '1';
 let lastData = null;
 let chatHistory = [];
 let vapi = null;
@@ -397,6 +500,7 @@ function applyI18n() {
   document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
   document.getElementById('chatInput').placeholder = lang === 'fr' ? 'Demandez à Sarah…' : 'Ask Sarah…';
   if (lastData) renderData(lastData);
+  renderCrmList();
 }
 
 function applyTheme() {
@@ -407,14 +511,11 @@ function applyTheme() {
 function setLang(l) { lang = l; localStorage.setItem(STORAGE_KEY_LANG, l); applyI18n(); }
 function setTheme(th) { theme = th; localStorage.setItem(STORAGE_KEY_THEME, th); applyTheme(); }
 
-function toggleConfig() {
-  const bar = document.getElementById('configBar');
-  bar.style.display = bar.style.display === 'none' ? 'grid' : 'none';
-  if (bar.style.display === 'grid') {
-    document.getElementById('webhookData').value = webhookData;
-    document.getElementById('webhookChat').value = webhookChat;
-    document.getElementById('vapiPubKey').value = vapiPubKey;
-  }
+function toggleConfig() { const bar = document.getElementById('configBar'); bar.style.display = bar.style.display === 'none' ? 'block' : 'none'; if (bar.style.display === 'block') { document.getElementById('webhookData').value = webhookData; document.getElementById('webhookChat').value = webhookChat; document.getElementById('vapiPubKey').value = vapiPubKey; }}
+
+function switchTab(name) {
+  document.querySelectorAll('.config-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.querySelectorAll('.config-tab-pane').forEach(p => p.style.display = p.id === 'tab-'+name ? 'block' : 'none');
 }
 
 function saveConfig() {
@@ -425,15 +526,112 @@ function saveConfig() {
   if (webhookChat) localStorage.setItem(STORAGE_KEY_CHAT, webhookChat);
   if (vapiPubKey) localStorage.setItem(STORAGE_KEY_VAPI, vapiPubKey);
   document.getElementById('configBar').style.display = 'none';
-  loadData();
+  if (!demoMode) loadData();
   if (!refreshTimer && webhookData) refreshTimer = setInterval(loadData, 30000);
+}
+
+function toggleDemo() {
+  demoMode = !demoMode;
+  localStorage.setItem(STORAGE_KEY_DEMO, demoMode ? '1' : '0');
+  document.getElementById('demoBtn').classList.toggle('active', demoMode);
+  document.getElementById('demoBadge').style.display = demoMode ? 'inline-block' : 'none';
+  loadData();
 }
 
 function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
 function clearError() { document.getElementById('errorMsg').style.display = 'none'; }
 function fmtPct(n) { return (n || 0) + '%'; }
 function fmtMoney(n) { const locale = lang === 'en' ? 'en-GB' : 'fr-FR'; const c = lang === 'en' ? '£' : '€'; return (n||0).toLocaleString(locale)+' '+c; }
-function fmtMoneyShort(n) { if (!n) return '0'; const c = lang === 'en' ? '£' : '€'; if (n >= 1000000) return c + (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return c + Math.round(n/1000) + 'k'; return c + n; }
+function fmtMoneyShort(n) { if (!n && n !== 0) return '—'; const c = lang === 'en' ? '£' : '€'; if (n >= 1000000) return c + (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return c + Math.round(n/1000) + 'k'; return c + n; }
+function fmtInt(n) { return (n ?? 0).toLocaleString(lang === 'en' ? 'en-GB' : 'fr-FR'); }
+
+function fmtKpi(val, fmt) {
+  if (val === null || val === undefined) return '—';
+  if (fmt === 'pct') return fmtPct(val);
+  if (fmt === 'money') return fmtMoney(val);
+  if (fmt === 'money_short') return fmtMoneyShort(val);
+  return fmtInt(val);
+}
+
+function buildSparkSvg(arr, color) {
+  if (!arr || !arr.length) return '';
+  const w = 50, h = 18, pad = 1;
+  const max = Math.max(...arr), min = Math.min(...arr);
+  const range = max - min || 1;
+  const step = (w - pad*2) / (arr.length - 1);
+  const points = arr.map((v, i) => `${pad + i*step},${h - pad - ((v-min)/range)*(h-pad*2)}`).join(' ');
+  return `<svg class="kpi-spark" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="${color}" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" points="${points}"/></svg>`;
+}
+
+function trendBadge(arr) {
+  if (!arr || arr.length < 2) return '';
+  const first = arr[0], last = arr[arr.length-1];
+  if (first === 0) return '';
+  const pct = Math.round(((last - first) / Math.abs(first)) * 100);
+  if (pct > 0) return `<span class="kpi-trend up">↑${pct}%</span>`;
+  if (pct < 0) return `<span class="kpi-trend down">↓${Math.abs(pct)}%</span>`;
+  return `<span class="kpi-trend flat">—</span>`;
+}
+
+function renderKpis(d) {
+  const strip = document.getElementById('kpiStrip');
+  const k = d.kpis || {};
+  const spark = k.spark || {};
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#E91E8C';
+  const greenColor = getComputedStyle(document.documentElement).getPropertyValue('--green').trim() || '#22c55e';
+
+  strip.innerHTML = KPI_DEFS.map(def => {
+    let val = k[def.key];
+    let label = lang === 'en' ? def.label_en : def.label_fr;
+    let sub;
+    if (def.sub_key === 'delta_24h_vs_yesterday') {
+      const dlt = k.delta_24h ?? 0;
+      sub = (dlt >= 0 ? '+' : '') + dlt + t('delta_vs_yesterday');
+    } else if (def.sub_key === 'revenue_estime_text') {
+      sub = '≈ ' + fmtMoney(k.revenue_estime);
+    } else {
+      sub = lang === 'en' ? def.sub_en : def.sub_fr;
+    }
+
+    let valueClass = def.accent;
+    if (def.accent === 'auto_rappel') {
+      valueClass = val >= 80 ? 'green' : val >= 50 ? 'yellow' : 'red';
+    }
+
+    const sparkArr = spark[def.key] || null;
+    const sparkColor = valueClass === 'green' ? greenColor : (valueClass === 'accent' ? accentColor : 'currentColor');
+    const sparkSvg = sparkArr ? buildSparkSvg(sparkArr, sparkColor) : '';
+    const trend = trendBadge(sparkArr);
+
+    return `<div class="kpi">
+      <div class="kpi-head">
+        <span class="kpi-label">${label}</span>
+        ${trend}
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-value ${valueClass}">${fmtKpi(val, def.fmt)}</span>
+        ${sparkSvg}
+      </div>
+      <div class="kpi-sub">${sub}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderCrmList() {
+  const grid = document.getElementById('crmGrid');
+  if (!grid) return;
+  grid.innerHTML = CRMS.map(c => `
+    <div class="crm-card ${c.status}">
+      <div class="crm-name">${c.name}</div>
+      <div class="crm-region">${c.region} · ${c.desc}</div>
+      <div class="crm-status">${c.status === 'ready' ? t('crm_ready') : t('crm_coming')}</div>
+    </div>
+  `).join('');
+}
+
+const SOURCE_PILLS = {
+  'seloger': 'SeLoger', 'leboncoin': 'LBC', 'lbc': 'LBC', 'pap': 'PAP', 'pige pap': 'PAP', 'formulaire': 'Formulaire', 'sarah wa': 'Sarah WA', 'whatsapp': 'WhatsApp', 'recommandation': 'Reco', 'apimo': 'Apimo', 'reapit': 'Reapit'
+};
 
 function badgeFor(s) {
   s = (s || '').toLowerCase();
@@ -443,18 +641,34 @@ function badgeFor(s) {
   if (s.includes('nouveau') || s.includes('new') || s === '') return `<span class="badge new">${t('badge_new')}</span>`;
   return `<span class="badge cold">${s || t('badge_cold')}</span>`;
 }
+
+function negoBadge(initials) {
+  if (!initials) return '';
+  return `<span class="nego-avatar" title="Négociateur ${initials}">${initials}</span>`;
+}
+
 function translateReason(r) {
   if (!r) return '';
   if (lang === 'fr') return r;
   const m = r.match(/^nouveau \((\d+)h\)$/); if (m) return `new (${m[1]}h)`;
   if (r.startsWith('relancé hier')) return 'followed up yesterday';
+  if (r.includes('RDV jeudi')) return 'viewing Thursday';
   const h = r.match(/^chaud, (\d+)j sans contact$/); if (h) return `hot, ${h[1]}d no contact`;
   const d = r.match(/^dormant (\d+)j$/); if (d) return `dormant ${d[1]}d`;
+  if (r === 'négo offre en cours') return 'offer in progress';
+  if (r.startsWith('qualif Sarah')) return 'Sarah qualified yesterday 22:00';
   return r;
 }
 
 async function loadData() {
-  if (!webhookData) { document.getElementById('configBar').style.display = 'grid'; showError(t('config_help')); return; }
+  if (demoMode) {
+    lastData = JSON.parse(JSON.stringify(MOCK));
+    renderData(lastData);
+    document.getElementById('lastUpdate').textContent = t('last_update') + new Date().toLocaleTimeString(lang === 'en' ? 'en-GB' : 'fr-FR', {hour:'2-digit', minute:'2-digit'});
+    clearError();
+    return;
+  }
+  if (!webhookData) { document.getElementById('configBar').style.display = 'block'; showError(t('config_help')); return; }
   clearError();
   try {
     const r = await fetch(webhookData, { cache: 'no-cache' });
@@ -468,37 +682,22 @@ async function loadData() {
 
 function renderData(d) {
   if (d.agence_nom) document.getElementById('agencyName').textContent = d.agence_nom;
-  document.getElementById('kpi-actifs').textContent = d.kpis?.leads_actifs ?? 0;
-  document.getElementById('kpi-24h').textContent = d.kpis?.nouveaux_24h ?? 0;
-  const delta24 = d.kpis?.delta_24h ?? 0;
-  document.getElementById('kpi-24h-sub').textContent = (delta24 >= 0 ? '+' : '') + delta24 + t('delta_vs_yesterday');
-  document.getElementById('kpi-rdv').textContent = d.kpis?.rdv_semaine ?? 0;
-  document.getElementById('kpi-mandats').textContent = d.kpis?.mandats_semaine ?? 0;
-  document.getElementById('kpi-revenue').textContent = '≈ ' + fmtMoney(d.kpis?.revenue_estime);
-
-  // Pipeline = pipeline_potential ou estimation: leads_actifs * commissionMoyenne (8000) * conversion (0.05)
-  const pipelinePot = d.kpis?.pipeline_potential ?? Math.round((d.kpis?.leads_actifs || 0) * 8000 * 0.05);
-  document.getElementById('kpi-pipeline').textContent = fmtMoneyShort(pipelinePot);
-
-  // Conversion = mandats_30j / leads_30j * 100
-  const conv30 = d.kpis?.taux_conversion_30j ?? null;
-  document.getElementById('kpi-conv').textContent = conv30 !== null ? fmtPct(conv30) : '—';
-
-  const rEl = document.getElementById('kpi-rappel');
-  const rappel = d.kpis?.taux_rappel_sub5min ?? 0;
-  rEl.textContent = fmtPct(rappel);
-  rEl.className = 'kpi-value ' + (rappel >= 80 ? 'green' : rappel >= 50 ? 'yellow' : 'red');
+  renderKpis(d);
 
   const tb = document.querySelector('#tableLeads tbody');
   const leads = d.top_leads || [];
   document.getElementById('topLeadsCount').textContent = leads.length ? leads.length : '';
-  if (!leads.length) tb.innerHTML = `<tr><td colspan="6" class="empty">${t('no_leads')}</td></tr>`;
+  if (!leads.length) tb.innerHTML = `<tr><td colspan="7" class="empty">${t('no_leads')}</td></tr>`;
   else tb.innerHTML = leads.slice(0, 8).map((l, i) => `
     <tr>
-      <td>${i+1}</td>
-      <td><div class="lead-name">${l.prenom || '?'} ${l.nom || ''}</div><div class="lead-reason">${translateReason(l._reason)}</div></td>
+      <td style="color:var(--muted);font-variant-numeric:tabular-nums">${String(i+1).padStart(2,'0')}</td>
+      <td>
+        <div class="lead-name">${negoBadge(l._nego)}${l.prenom || '?'} ${l.nom || ''}</div>
+        <div class="lead-reason">${translateReason(l._reason)}</div>
+      </td>
       <td><a href="tel:${l.telephone}">${l.telephone || '—'}</a></td>
       <td>${l.bien_ref || '—'}${l.budget ? `<div class="lead-reason">${l.budget}</div>` : ''}</td>
+      <td>${l.source ? `<span class="source-pill">${l.source}</span>` : '—'}</td>
       <td>${badgeFor(l.status)}</td>
       <td><div class="lead-actions">
         <button class="act primary" onclick="askSarah('Rédige un message WhatsApp court (3 phrases max) pour ${l.prenom} ${l.nom||''} (tel ${l.telephone}, bien ${l.bien_ref||'—'}, budget ${l.budget||'—'}). Ton chaleureux, immobilier pro, en français.')">${t('btn_gen')}</button>
@@ -546,32 +745,64 @@ async function sendChat(forcedText) {
   const input = document.getElementById('chatInput');
   const text = (forcedText || input.value).trim();
   if (!text) return;
+
+  if (demoMode) {
+    appendMsg('user', text);
+    input.value = '';
+    const typingEl = appendTyping();
+    setTimeout(() => {
+      typingEl.remove();
+      appendMsg('bot', mockReply(text));
+    }, 700);
+    return;
+  }
+
   if (!webhookChat) { appendMsg('bot', t('chat_unavailable')); return; }
   appendMsg('user', text);
   input.value = '';
   chatHistory.push({ role: 'user', content: text });
   const typingEl = appendTyping();
   try {
-    const r = await fetch(webhookChat, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: text,
-        history: chatHistory.slice(-10),
-        lang,
-        context: lastData ? { kpis: lastData.kpis, top_leads_summary: (lastData.top_leads||[]).slice(0,5).map(l=>({prenom:l.prenom, nom:l.nom, telephone:l.telephone, bien_ref:l.bien_ref, budget:l.budget, status:l.status, _reason:l._reason})), visites_jour: lastData.visites_jour, agence_nom: lastData.agence_nom } : null
-      })
-    });
+    const r = await fetch(webhookChat, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, history: chatHistory.slice(-10), lang, context: lastData ? { kpis: lastData.kpis, top_leads_summary: (lastData.top_leads||[]).slice(0,5).map(l=>({prenom:l.prenom, nom:l.nom, telephone:l.telephone, bien_ref:l.bien_ref, budget:l.budget, status:l.status, _reason:l._reason})), visites_jour: lastData.visites_jour, agence_nom: lastData.agence_nom } : null }) });
     typingEl.remove();
     if (!r.ok) { appendMsg('bot', `Erreur ${r.status}`); return; }
     const j = await r.json();
     const reply = j.reply || j.text || j.message || '(no reply)';
     appendMsg('bot', reply);
     chatHistory.push({ role: 'assistant', content: reply });
-  } catch (e) {
-    typingEl.remove();
-    appendMsg('bot', 'Erreur : ' + e.message);
+  } catch (e) { typingEl.remove(); appendMsg('bot', 'Erreur : ' + e.message); }
+}
+
+function mockReply(prompt) {
+  const p = prompt.toLowerCase();
+  if (p.includes('chaud') || p.includes('rappeler') || p.includes('hot')) {
+    return lang === 'fr'
+      ? 'Top 3 maintenant : Marie Dupont (06 12 34 56 78, BEL-2046, projet imminent), Pierre Lefèvre (relancé hier, 520k), Thomas Bernard (3j sans contact, 245k). Marie en priorité — fenêtre 24h critique.'
+      : 'Top 3 right now: Marie Dupont (06 12 34 56 78, BEL-2046, imminent project), Pierre Lefèvre (followed up yesterday, 520k), Thomas Bernard (3d no contact, 245k). Marie first — 24h window is critical.';
   }
+  if (p.includes('brief')) {
+    return lang === 'fr'
+      ? '4 visites aujourd’hui (10h30 Anne, 14h Marc, 16h30 Élise, 18h30 Olivier). 8 leads à rappeler. Priorité absolue : Marie Dupont — projet imminent, source SeLoger. Camille Rousseau passe en négo offre, à surveiller cet après-midi.'
+      : '4 viewings today (10:30 Anne, 14:00 Marc, 16:30 Élise, 18:30 Olivier). 8 leads to call back. Top priority: Marie Dupont — imminent project, SeLoger. Camille Rousseau is now in offer negotiation, keep an eye this afternoon.';
+  }
+  if (p.includes('action')) {
+    return lang === 'fr'
+      ? 'Une seule chose : appeler Marie Dupont MAINTENANT. Elle vient de remplir un formulaire SeLoger il y a 2h, projet imminent, budget 380k pour BEL-2046. Conversion x4 si rappel sub-1h.'
+      : 'One thing: call Marie Dupont NOW. Filled a SeLoger form 2h ago, imminent project, 380k budget for BEL-2046. 4x conversion if you call back within the hour.';
+  }
+  if (p.includes('pige') || p.includes('market')) {
+    return lang === 'fr'
+      ? 'Pige LBC/PAP en temps réel sera branchée en V1 (Outscraper déjà sur ta stack). En attendant, je peux te sortir les biens du fichier Apimo si tu actives le plug-in CRM (Config > Plug-ins CRM).'
+      : 'Live LBC/PAP scan will be wired in V1 (Outscraper already in your stack). Meanwhile, I can pull from your Apimo file if you enable the CRM plug-in (Config > CRM plug-ins).';
+  }
+  if (p.includes('rédige') || p.includes('whatsapp') || p.includes('draft')) {
+    return lang === 'fr'
+      ? 'Bonjour Marie, c’est Bellecour Immobilier. J’ai bien noté votre intérêt pour le 3 pièces de 78m² (BEL-2046). Êtes-vous disponible jeudi 18h pour une visite ?'
+      : 'Hi Marie, this is Bellecour. I’ve noted your interest in the 78m² 3-bed (BEL-2046). Would Thursday 6pm work for a viewing?';
+  }
+  return lang === 'fr'
+    ? 'Mode démo. Connecte le vrai webhook chat dans Config > Connexion directe pour répondre avec ton pipeline réel.'
+    : 'Demo mode. Hook up the real chat webhook in Config > Direct connection to reply on your real pipeline.';
 }
 
 function sendQuick(key) { sendChat(I18N[lang].quick_prompts[key]); }
@@ -612,13 +843,29 @@ window.saveConfig = saveConfig;
 window.setLang = setLang;
 window.setTheme = setTheme;
 window.loadData = loadData;
+window.toggleDemo = toggleDemo;
+window.switchTab = switchTab;
 
 // ===== INIT =====
 applyTheme();
 applyI18n();
+renderCrmList();
 
-if (!webhookData) document.getElementById('configBar').style.display = 'grid';
-else { loadData(); refreshTimer = setInterval(loadData, 30000); }
+if (demoMode) {
+  document.getElementById('demoBtn').classList.add('active');
+  document.getElementById('demoBadge').style.display = 'inline-block';
+  loadData();
+} else if (!webhookData) {
+  // Auto-enable demo for first visit so user sees the product
+  demoMode = true;
+  localStorage.setItem(STORAGE_KEY_DEMO, '1');
+  document.getElementById('demoBtn').classList.add('active');
+  document.getElementById('demoBadge').style.display = 'inline-block';
+  loadData();
+} else {
+  loadData();
+  refreshTimer = setInterval(loadData, 30000);
+}
 </script>
 </body>
 </html>
