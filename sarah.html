@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah — Réceptionniste virtuelle 24/7 pour agences immobilières · GILD-TECH</title>
-<meta name="description" content="Sarah qualifie vos prospects et booke vos rendez-vous 24h/24 sur WhatsApp. Plus aucun lead perdu, même dimanche soir 22h45. Inclus dans nos offres Pro et Scale.">
+<title>Sarah — Le luxe administratif pour dirigeants d'agence immobilière · GILD-TECH</title>
+<meta name="description" content="Le luxe que les dirigeants d'agence immo ne s'offrent pas encore : une employée virtuelle qui qualifie, prospecte, prépare l'équipe. 24/7. Sarah libère votre charge mentale. Starter, Pro, Scale.">
 <link rel="canonical" href="https://gild-tech.com/sarah">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sarah — Réceptionniste virtuelle 24/7 · GILD-TECH">
-<meta property="og:description" content="Plus jamais un lead perdu — même dimanche 22h45. Sarah qualifie et booke vos RDV automatiquement.">
+<meta property="og:title" content="Sarah — Le luxe administratif pour dirigeants d'agence · GILD-TECH">
+<meta property="og:description" content="Le dimanche soir, vous fermez votre tel. Sarah, elle, continue. Une employée virtuelle 24/7 qui libère votre charge mentale.">
 <meta property="og:url" content="https://gild-tech.com/sarah">
 <meta property="og:image" content="https://gild-tech.com/og-image.png">
 <link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah">
@@ -126,7 +126,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .roi-verdict { font-size: 1.5rem; font-weight: 800; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.3); }
 
 /* PRICING */
-.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 920px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
 .price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(233,30,140,0.10); }
 .price-card.featured::before { content: "★ RECOMMANDÉ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
@@ -162,11 +162,14 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .footer-links a:hover { color: var(--pink); }
 .footer-mention { font-size: 0.72rem; color: var(--g500); }
 
+@media (max-width: 1100px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 540px; }
+}
 @media (max-width: 880px) {
   .hero h1 { font-size: 2.2rem; }
   .stat-bar { grid-template-columns: 1fr; }
   .problem-grid, .demo-grid { grid-template-columns: 1fr; }
-  .steps, .pricing-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
   .nav-links { display: none; }
 }
 </style>
@@ -190,24 +193,24 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- HERO -->
   <section class="hero">
-    <span class="badge-new">🤖 NOUVEAU · Inclus dans Pro et Scale</span>
-    <h1>Plus jamais un lead perdu —<br>même <span class="accent">dimanche 22h45</span>.</h1>
-    <p class="subtitle"><strong>Sarah ne tombe jamais malade. Ne prend jamais de RTT. Ne part jamais en vacances.</strong> Elle qualifie vos prospects et booke vos rendez-vous 24h/24 sur WhatsApp pendant que vos négociateurs dorment.</p>
+    <span class="badge-new">✨ LE LUXE QU'AUCUNE AGENCE NE S'OFFRE ENCORE</span>
+    <h1>Le dimanche soir, vous fermez votre tel.<br>Sarah, elle, <span class="accent">continue</span>.</h1>
+    <p class="subtitle"><strong>Le vrai luxe pour un dirigeant d'agence en 2026, ce n'est pas un bureau plus grand. C'est une charge mentale plus légère.</strong> Sarah qualifie, relance, prospecte, prépare votre équipe. Pendant que vous dînez, dormez, ou récupérez votre weekend.</p>
     <div class="ctas">
       <a href="https://calendly.com/grisoni-pierrejean/30min" class="btn-primary">Réserver un audit gratuit (30 min)</a>
       <a href="#how" class="btn-secondary">Voir comment ça marche</a>
     </div>
     <div class="stat-bar">
       <div class="stat-item"><div class="stat-num">5 sec</div><div class="stat-label">Délai de réponse au prospect</div></div>
-      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Disponibilité — week-end inclus</div></div>
-      <div class="stat-item"><div class="stat-num">+30%</div><div class="stat-label">Conversion lead → RDV en moyenne</div></div>
+      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Y compris dimanche 22h45</div></div>
+      <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Heure de votre cerveau mobilisée</div></div>
     </div>
   </section>
 
   <!-- PROBLEM -->
   <section class="block" id="problem">
-    <h2 class="section-title">Cette semaine, vous avez perdu <span class="accent">53 600 €</span>.</h2>
-    <p class="section-subtitle">Et la semaine prochaine, idem. <strong>67% des prospects qui contactent une agence ne sont jamais rappelés</strong> (FNAIM 2024). Pas par incompétence. Par manque de temps. Vous le savez. Vos négociateurs le savent. Vos concurrents en profitent.</p>
+    <h2 class="section-title">Ce mois-ci, vous avez laissé filer <span class="accent">53 600 €</span>.</h2>
+    <p class="section-subtitle">Le mois prochain, idem. <strong>Une majorité des prospects qui contactent une agence ne sont jamais rappelés</strong> — pas par incompétence, par manque de temps. Vous le savez. Vos négociateurs le savent. Vos concurrents en profitent.</p>
     <div class="problem-grid">
       <ul class="problem-list">
         <li>Le formulaire SeLoger tombe à 22h47. Vous le voyez lundi 9h. Marie a déjà signé chez le concurrent d'à côté.</li>
@@ -217,9 +220,9 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <li>Pendant ce temps, l'agence à 200 m de la vôtre installe un assistant IA et capte vos prospects pendant que vous dormez.</li>
       </ul>
       <div class="problem-stat">
-        <div class="num">67 000 €</div>
-        <div class="desc">de perte mensuelle moyenne pour une agence à 200 demandes/mois (commission moyenne 10K€, conversion 5%)</div>
-        <div class="source">Source : FNAIM 2024 + benchmark GILD-TECH</div>
+        <div class="num">53 600 €</div>
+        <div class="desc">de perte mensuelle moyenne pour une agence à 200 demandes / mois (commission moyenne 8 000 €, conversion potentielle 5%)</div>
+        <div class="source">Benchmark GILD-TECH · à recouper avec vos chiffres pendant l'audit</div>
       </div>
     </div>
   </section>
@@ -326,60 +329,90 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- ROI -->
   <section class="block" id="roi">
     <h2 class="section-title">ROI — Sarah s'amortit en <span class="accent">1 mandat</span> récupéré.</h2>
-    <p class="section-subtitle">Le calcul simple à faire pendant l'audit. Aucune projection optimiste — données FNAIM 2024 + commission immobilière standard.</p>
+    <p class="section-subtitle">Le calcul simple à faire pendant l'audit. Aucune projection optimiste — benchmarks du secteur + commission immobilière standard.</p>
     <div class="roi-card">
-      <h3>Pour une agence à 200 demandes/mois</h3>
+      <h3>Pour une agence à 200 demandes / mois</h3>
       <div class="roi-calc">
         <strong>200 demandes / mois</strong> × 67% non rappelés = <strong>134 demandes mortes</strong><br>
-        × 5% conversion potentielle = <strong>6,7 mandats perdus/mois</strong><br>
+        × 5% conversion potentielle = <strong>6,7 mandats perdus / mois</strong><br>
         × 8 000 € de commission moyenne = <strong>53 600 € / mois</strong> de manque à gagner
       </div>
-      <div class="roi-verdict">Pro à 2 490 € HT ? Amortie en 4 jours. <br><span style="font-size:.85em;opacity:.85;">Soit 1 mandat. Vous en perdez 6 par mois aujourd'hui.</span></div>
+      <div class="roi-verdict">Pro à 2 490 € HT ? Amortie dès le 1<sup>er</sup> mandat récupéré. <br><span style="font-size:.85em;opacity:.85;">Soit 1 mandat sur les 6 que vous perdez chaque mois.</span></div>
     </div>
   </section>
 
   <!-- PRICING -->
   <section class="block" id="pricing">
-    <h2 class="section-title">Sarah est incluse dans <span class="accent">Pro et Scale</span>.</h2>
-    <p class="section-subtitle">Pas un add-on à 99 € / mois. Inclus dans le forfait, sans surcoût caché.</p>
+    <h2 class="section-title">Trois niveaux de <span class="accent">luxe administratif</span>.</h2>
+    <p class="section-subtitle">Le luxe d'un dirigeant en 2026, c'est de ne plus penser à tout. Vous choisissez à quel niveau vous voulez le déléguer.</p>
     <div class="pricing-grid">
-      <div class="price-card featured">
-        <h3>Pro</h3>
-        <div class="for">Pour les agences indépendantes 1-5 agents</div>
-        <div class="price">2 490 € HT <small>one-shot</small></div>
-        <div class="delai">→ Installation 4h chrono · actif sous 1 semaine</div>
+
+      <!-- STARTER -->
+      <div class="price-card">
+        <h3>Starter</h3>
+        <div class="for">La dégustation — 30 jours pour y croire</div>
+        <div class="price">990 € HT <small>one-shot</small></div>
+        <div class="delai">→ Mise en service sous 7 jours ouvrés</div>
         <ul>
           <li><strong>Sarah</strong> — Réceptionniste WhatsApp 24/7</li>
-          <li><strong>Sarah Brief matinal</strong> — WhatsApp 7h + email détaillé</li>
+          <li>1 portail connecté (SeLoger, MeilleursAgents, Bien'ici, ou Le Bon Coin au choix)</li>
+          <li>Scripts génériques optimisés immo</li>
+          <li>Calendrier de visite automatique (Calendly)</li>
+          <li>Accès au tableau de bord GILD-TECH temps réel</li>
+          <li>Reporting fin de période (mandats rentrés, RDV pris, conversion)</li>
+          <li><em>30 jours d'utilisation incluse — pour vérifier que ça marche chez vous</em></li>
+        </ul>
+      </div>
+
+      <!-- PRO -->
+      <div class="price-card featured">
+        <h3>Pro</h3>
+        <div class="for">Votre réceptionniste digitale — agences 1-5 agents</div>
+        <div class="price">2 490 € HT <small>one-shot</small></div>
+        <div class="delai">→ Mise en service sous 7 jours ouvrés</div>
+        <ul>
+          <li>Tout ce qui est dans <strong>Starter</strong></li>
+          <li><strong>Scripts personnalisés</strong> à votre agence (audit + interview directeur)</li>
+          <li><strong>3 portails connectés</strong> (SeLoger + MeilleursAgents + Bien'ici, ou combinaison au choix)</li>
+          <li>Intégration <strong>1 CRM</strong> (Hektor, Apimo, Adapt, Périmmo au choix)</li>
+          <li><strong>Sarah Brief matinal</strong> — WhatsApp 7h + email détaillé chaque jour</li>
           <li>Rappel automatique sub-5 min (WhatsApp + email + Slack)</li>
           <li>Relances auto J+3 / J+7 / J+14 si pas de réponse</li>
-          <li>Tableau de bord temps réel</li>
+          <li>Tableau de bord temps réel personnalisé à votre agence</li>
           <li>Bilan hebdo automatique lundi 8h</li>
           <li>Maintenance optionnelle 290 € / mois</li>
         </ul>
       </div>
+
+      <!-- SCALE -->
       <div class="price-card">
         <h3>Scale</h3>
-        <div class="for">Pour les agences 5+ agents avec prospection active</div>
+        <div class="for">Une employée complète — agences 5+ agents</div>
         <div class="price">4 990 € HT <small>one-shot</small></div>
-        <div class="delai">→ Installation 6h chrono · actif sous 2 semaines</div>
+        <div class="delai">→ Mise en service sous 7 jours ouvrés</div>
         <ul>
           <li>Tout ce qui est dans <strong>Pro</strong></li>
           <li><strong>Sarah Voice</strong> — réceptionniste vocale 24/7 (appels téléphoniques)</li>
           <li><strong>Brief matinal multi-agents</strong> — 1 brief personnalisé par négociateur</li>
-          <li>Bilan hebdo automatique lundi 8h</li>
-          <li>Pige PAP automatique (LeBonCoin + PAP)</li>
-          <li>Détection mandats expirés</li>
-          <li>Réveil fichier dormant (12 mois)</li>
-          <li>Fiche visite 1h avant chaque RDV</li>
+          <li><strong>Pige PAP automatique</strong> (LeBonCoin + PAP) — Sarah détecte les nouveaux mandats à attaquer</li>
+          <li><strong>Détection mandats expirés</strong> — Sarah identifie les mandats concurrents qui arrivent à échéance</li>
+          <li><strong>Réveil fichier dormant 12 mois</strong> — Sarah relance vos anciens contacts au bon moment</li>
+          <li><strong>Fiche visite</strong> envoyée 1h avant chaque RDV au négociateur</li>
+          <li>Tous les portails connectés (illimité)</li>
+          <li>Multi-CRM ou ERP custom</li>
           <li>Maintenance optionnelle 390 € / mois</li>
         </ul>
       </div>
+
     </div>
+
+    <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:780px;margin-left:auto;margin-right:auto;line-height:1.6;">
+      <strong>La règle simple :</strong> vous voulez tester ? <em>Starter</em>. Vous voulez votre réceptionniste digitale qui tourne tout seule ? <em>Pro</em>. Vous voulez l'équivalent d'une employée complète qui prospecte aussi ? <em>Scale</em>.
+    </p>
 
     <div style="margin-top:2rem;padding:1.4rem 1.8rem;background:linear-gradient(135deg,#16a34a,#15803d);color:white;border-radius:14px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 8px 24px rgba(22,163,74,.18);">
       <div style="font-size:1.6rem;font-weight:800;margin-bottom:0.4rem;">🛡️ Garantie 30 jours satisfait ou remboursé</div>
-      <p style="margin:0;font-size:0.95rem;opacity:.95;">Si Sarah ne tient pas ses promesses dans le premier mois, on vous rembourse intégralement. Sans questions. Inclus dans Pro et Scale.</p>
+      <p style="margin:0;font-size:0.95rem;opacity:.95;">Si Sarah ne tient pas ses promesses dans le premier mois, on vous rembourse intégralement. Sans questions. Inclus dans Starter, Pro et Scale.</p>
     </div>
   </section>
 
@@ -406,7 +439,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="faq-item">
         <h4>Combien de temps avant que Sarah soit en prod chez moi ?</h4>
-        <p>1 semaine maximum. Le déploiement technique côté GILD-TECH prend 4h chrono. Les jours restants sont pour : configurer votre Calendly, tester avec votre équipe, valider les wordings. Le 1er lead réel est traité par Sarah au plus tard le vendredi suivant la signature.</p>
+        <p>7 jours ouvrés maximum, sur les trois offres. Le déploiement technique côté GILD-TECH se fait en parallèle de la phase de validation : configuration de votre Calendly, tests avec votre équipe, validation des wordings, branchement portails et CRM. Le 1er prospect réel est traité par Sarah au plus tard le 7ème jour ouvré suivant la signature.</p>
       </div>
     </div>
   </section>
