@@ -186,8 +186,9 @@
   // Init — priority: URL hash override > localStorage > hardcoded
   let publicKey = readKey() || PUBLIC_KEY;
   const configToggleBtn = document.getElementById("configToggleBtn");
-  if (publicKey === "388dcfa1-338a-4e47-9a45-cec83f475ad6") {
-    // Placeholder still in place — fallback for debug only
+  const isValidUuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(publicKey);
+  if (!isValidUuid) {
+    // No valid key — fallback for debug only
     publicKey = "";
     if (configToggleBtn) configToggleBtn.style.display = "block";
     configSection.style.display = "block";
