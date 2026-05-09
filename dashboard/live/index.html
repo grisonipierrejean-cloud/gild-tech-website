@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard temps réel · GILD-TECH</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root {
+    --pink: #E91E8C;
+    --bg: #0a0a0c;
+    --panel: #15151a;
+    --line: #2a2a32;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, #1a0815 0%, var(--bg) 60%);
+    color: var(--text);
+    padding: 1.5rem;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+  .brand { font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--pink); }
+  h1 { margin: 0; font-size: 1.8rem; }
+  .meta { color: var(--muted); font-size: .85rem; }
+  .config-bar {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 1rem 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .config-bar input {
+    flex: 1; min-width: 280px; padding: .6rem .9rem;
+    background: #0d0d11; border: 1px solid var(--line); border-radius: 8px;
+    color: var(--text); font-family: ui-monospace, monospace; font-size: .85rem;
+  }
+  .config-bar button, .btn {
+    padding: .6rem 1.1rem; border: none; border-radius: 8px;
+    background: var(--pink); color: white; font-weight: 700; cursor: pointer; font-size: .9rem;
+  }
+  .config-bar button:hover, .btn:hover { opacity: .9; }
+  .grid-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 1.4rem 1.2rem;
+  }
+  .kpi-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .5rem; }
+  .kpi-value { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+  .kpi-value.pink { color: var(--pink); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red { color: var(--red); }
+  .kpi-sub { font-size: .8rem; color: var(--muted); margin-top: .4rem; }
+  .grid-tables { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+  @media (max-width: 900px) { .grid-tables { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; }
+  .panel h2 { font-size: 1rem; margin: 0 0 1rem; padding-bottom: .6rem; border-bottom: 2px solid var(--pink); }
+  table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+  th { text-align: left; color: var(--muted); padding: .6rem .4rem; font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--line); }
+  td { padding: .7rem .4rem; border-bottom: 1px solid #1a1a20; }
+  td a { color: var(--pink); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .badge { display: inline-block; padding: .15rem .55rem; border-radius: 999px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .badge.new { background: rgba(16,185,129,.18); color: var(--green); }
+  .badge.warm { background: rgba(245,158,11,.18); color: var(--yellow); }
+  .badge.cold { background: rgba(161,161,170,.18); color: var(--muted); }
+  .badge.rdv { background: rgba(233,30,140,.18); color: var(--pink); }
+  .err { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); color: var(--red); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 1.4s infinite; margin-right: 6px; vertical-align: middle; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .empty { text-align: center; color: var(--muted); padding: 2rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <div class="brand">GILD-TECH · Dashboard temps réel</div>
+      <h1 id="agencyName">Pipeline immobilier</h1>
+      <div class="meta"><span class="live-dot"></span><span id="lastUpdate">Chargement…</span> · refresh 30s</div>
+    </div>
+    <button class="btn" onclick="loadData()">↻ Refresh</button>
+  </div>
+
+  <div id="configBar" class="config-bar" style="display:none">
+    <input id="webhookUrl" type="text" placeholder="https://n8n.gild-tech.com/webhook/dashboard-data?key=...">
+    <button onclick="saveWebhook()">Enregistrer</button>
+  </div>
+
+  <div id="errorMsg" class="err" style="display:none"></div>
+
+  <div class="grid-kpis">
+    <div class="kpi"><div class="kpi-label">Leads actifs</div><div class="kpi-value pink" id="kpi-actifs">—</div><div class="kpi-sub">en pipeline</div></div>
+    <div class="kpi"><div class="kpi-label">Nouveaux 24h</div><div class="kpi-value green" id="kpi-24h">—</div><div class="kpi-sub" id="kpi-24h-sub">—</div></div>
+    <div class="kpi"><div class="kpi-label">RDV semaine</div><div class="kpi-value" id="kpi-rdv">—</div><div class="kpi-sub">7 jours à venir</div></div>
+    <div class="kpi"><div class="kpi-label">Mandats S</div><div class="kpi-value pink" id="kpi-mandats">—</div><div class="kpi-sub" id="kpi-revenue">—</div></div>
+    <div class="kpi"><div class="kpi-label">Taux rappel sub-5min</div><div class="kpi-value" id="kpi-rappel">—</div><div class="kpi-sub">cible 80%+</div></div>
+  </div>
+
+  <div class="grid-tables">
+    <div class="panel">
+      <h2>📞 Top 10 leads à rappeler maintenant</h2>
+      <table id="tableLeads">
+        <thead><tr><th>#</th><th>Prospect</th><th>Tel</th><th>Bien</th><th>Budget</th><th>Statut</th><th>Action</th></tr></thead>
+        <tbody><tr><td colspan="7" class="empty">Chargement…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h2>🏠 Visites du jour</h2>
+      <table id="tableVisites">
+        <thead><tr><th>Heure</th><th>Prospect</th><th>Bien</th></tr></thead>
+        <tbody><tr><td colspan="3" class="empty">Chargement…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'gildtech_dashboard_webhook';
+let webhookUrl = localStorage.getItem(STORAGE_KEY) || '';
+let refreshTimer = null;
+
+function saveWebhook() {
+  const v = document.getElementById('webhookUrl').value.trim();
+  if (!v) return;
+  localStorage.setItem(STORAGE_KEY, v);
+  webhookUrl = v;
+  document.getElementById('configBar').style.display = 'none';
+  loadData();
+  if (!refreshTimer) refreshTimer = setInterval(loadData, 30000);
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function clearError() { document.getElementById('errorMsg').style.display = 'none'; }
+
+function fmtPct(n) { return (n || 0) + '%'; }
+function fmtEuros(n) { return (n || 0).toLocaleString('fr-FR') + ' €'; }
+function badgeFor(status) {
+  const s = (status || '').toLowerCase();
+  if (s.includes('rdv')) return '<span class="badge rdv">RDV</span>';
+  if (s.includes('mandat_negociation')) return '<span class="badge warm">Négo</span>';
+  if (s.includes('chaud') || s.includes('a_rappeler')) return '<span class="badge warm">Chaud</span>';
+  if (s.includes('nouveau') || s === '') return '<span class="badge new">Nouveau</span>';
+  return '<span class="badge cold">' + (status || 'Tiède') + '</span>';
+}
+
+async function loadData() {
+  if (!webhookUrl) {
+    document.getElementById('configBar').style.display = 'flex';
+    showError('Configure le webhook URL ci-dessus pour démarrer.');
+    return;
+  }
+  clearError();
+  try {
+    const r = await fetch(webhookUrl, { cache: 'no-cache' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    render(d);
+    document.getElementById('lastUpdate').textContent = 'Dernière maj : ' + new Date().toLocaleTimeString('fr-FR');
+  } catch (e) {
+    showError('Erreur fetch : ' + e.message + ' — vérifie l\'URL du webhook.');
+  }
+}
+
+function render(d) {
+  if (d.agence_nom) document.getElementById('agencyName').textContent = d.agence_nom + ' — pipeline immobilier';
+
+  document.getElementById('kpi-actifs').textContent = d.kpis?.leads_actifs ?? 0;
+  document.getElementById('kpi-24h').textContent = d.kpis?.nouveaux_24h ?? 0;
+  document.getElementById('kpi-24h-sub').textContent = (d.kpis?.delta_24h ?? 0) >= 0 ? `+${d.kpis.delta_24h} vs hier` : `${d.kpis.delta_24h} vs hier`;
+  document.getElementById('kpi-rdv').textContent = d.kpis?.rdv_semaine ?? 0;
+  document.getElementById('kpi-mandats').textContent = d.kpis?.mandats_semaine ?? 0;
+  document.getElementById('kpi-revenue').textContent = '≈ ' + fmtEuros(d.kpis?.revenue_estime);
+
+  const rappelEl = document.getElementById('kpi-rappel');
+  const rappel = d.kpis?.taux_rappel_sub5min ?? 0;
+  rappelEl.textContent = fmtPct(rappel);
+  rappelEl.className = 'kpi-value ' + (rappel >= 80 ? 'green' : rappel >= 50 ? '' : 'red');
+
+  const leadsBody = document.querySelector('#tableLeads tbody');
+  if (!d.top_leads || !d.top_leads.length) {
+    leadsBody.innerHTML = '<tr><td colspan="7" class="empty">Aucun lead à rappeler 🎯</td></tr>';
+  } else {
+    leadsBody.innerHTML = d.top_leads.map((l, i) => `
+      <tr>
+        <td>${i+1}</td>
+        <td><strong>${l.prenom || '?'} ${l.nom || ''}</strong><br><span style="color:var(--muted);font-size:.75rem">${l._reason || ''}</span></td>
+        <td><a href="tel:${l.telephone}">${l.telephone || '—'}</a></td>
+        <td>${l.bien_ref || '—'}</td>
+        <td>${l.budget || '—'}</td>
+        <td>${badgeFor(l.status)}</td>
+        <td>
+          <a href="https://wa.me/${(l.telephone || '').replace(/[^0-9]/g, '')}" style="background:var(--pink);color:white;padding:5px 10px;border-radius:5px;font-size:.7rem">WhatsApp</a>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  const visitesBody = document.querySelector('#tableVisites tbody');
+  if (!d.visites_jour || !d.visites_jour.length) {
+    visitesBody.innerHTML = '<tr><td colspan="3" class="empty">Aucune visite aujourd\'hui</td></tr>';
+  } else {
+    visitesBody.innerHTML = d.visites_jour.map(v => `
+      <tr>
+        <td><strong>${v.heure || '??:??'}</strong></td>
+        <td>${v.prenom || '?'} ${v.nom || ''}<br><span style="color:var(--muted);font-size:.75rem"><a href="tel:${v.telephone}">${v.telephone || '—'}</a></span></td>
+        <td>${v.bien_ref || v.adresse || '—'}</td>
+      </tr>
+    `).join('');
+  }
+}
+
+if (!webhookUrl) {
+  document.getElementById('configBar').style.display = 'flex';
+} else {
+  document.getElementById('webhookUrl').value = webhookUrl;
+  loadData();
+  refreshTimer = setInterval(loadData, 30000);
+}
+</script>
+</body>
+</html>
