@@ -8,35 +8,70 @@
 <style>
   :root {
     --pink: #E91E8C;
+    --pink-soft: #fce4f1;
+  }
+  /* Dark theme (default) */
+  html[data-theme="dark"] {
     --bg: #0a0a0c;
+    --bg-grad: radial-gradient(ellipse at top, #1a0815 0%, #0a0a0c 60%);
     --panel: #15151a;
+    --panel-2: #0d0d11;
     --line: #2a2a32;
     --text: #f4f4f5;
     --muted: #a1a1aa;
+    --row-hover: #1a1a20;
+    --kpi-soft: rgba(233,30,140,.1);
     --green: #10b981;
     --red: #ef4444;
     --yellow: #f59e0b;
+    --shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  /* Light theme */
+  html[data-theme="light"] {
+    --bg: #fafafa;
+    --bg-grad: radial-gradient(ellipse at top, #fef6fa 0%, #fafafa 60%);
+    --panel: #ffffff;
+    --panel-2: #fafafa;
+    --line: #e5e5e8;
+    --text: #1a1a1a;
+    --muted: #666;
+    --row-hover: #f9f9fa;
+    --kpi-soft: #fdf2f8;
+    --green: #059669;
+    --red: #dc2626;
+    --yellow: #d97706;
+    --shadow: 0 6px 24px rgba(0,0,0,.06);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    background: radial-gradient(ellipse at top, #1a0815 0%, var(--bg) 60%);
+    background: var(--bg-grad);
     color: var(--text);
     padding: 1.5rem;
+    transition: background .3s, color .3s;
   }
   .container { max-width: 1280px; margin: 0 auto; }
   .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
   .brand { font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--pink); }
   h1 { margin: 0; font-size: 1.8rem; }
-  .meta { color: var(--muted); font-size: .85rem; }
+  .meta { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
+  .header-actions { display: flex; gap: .6rem; align-items: center; }
+  .toggle-group { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 3px; }
+  .toggle-btn {
+    background: transparent; border: none; cursor: pointer;
+    padding: .4rem .7rem; font-size: .8rem; font-weight: 600;
+    border-radius: 6px; color: var(--muted); transition: all .15s;
+  }
+  .toggle-btn.active { background: var(--pink); color: white; }
   .config-bar {
     background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
     padding: 1rem 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    box-shadow: var(--shadow);
   }
   .config-bar input {
     flex: 1; min-width: 280px; padding: .6rem .9rem;
-    background: #0d0d11; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
     color: var(--text); font-family: ui-monospace, monospace; font-size: .85rem;
   }
   .config-bar button, .btn {
@@ -47,7 +82,7 @@
   .grid-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
   .kpi {
     background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
-    padding: 1.4rem 1.2rem;
+    padding: 1.4rem 1.2rem; box-shadow: var(--shadow);
   }
   .kpi-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .5rem; }
   .kpi-value { font-size: 2.4rem; font-weight: 800; line-height: 1; }
@@ -57,11 +92,12 @@
   .kpi-sub { font-size: .8rem; color: var(--muted); margin-top: .4rem; }
   .grid-tables { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
   @media (max-width: 900px) { .grid-tables { grid-template-columns: 1fr; } }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; box-shadow: var(--shadow); }
   .panel h2 { font-size: 1rem; margin: 0 0 1rem; padding-bottom: .6rem; border-bottom: 2px solid var(--pink); }
   table { width: 100%; border-collapse: collapse; font-size: .87rem; }
   th { text-align: left; color: var(--muted); padding: .6rem .4rem; font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--line); }
-  td { padding: .7rem .4rem; border-bottom: 1px solid #1a1a20; }
+  td { padding: .7rem .4rem; border-bottom: 1px solid var(--line); }
+  tbody tr:hover td { background: var(--row-hover); }
   td a { color: var(--pink); text-decoration: none; }
   td a:hover { text-decoration: underline; }
   .badge { display: inline-block; padding: .15rem .55rem; border-radius: 999px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
@@ -73,47 +109,70 @@
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 1.4s infinite; margin-right: 6px; vertical-align: middle; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   .empty { text-align: center; color: var(--muted); padding: 2rem; }
+  .wa-btn { background: var(--pink); color: white; padding: 5px 10px; border-radius: 5px; font-size: .7rem; }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <div>
-      <div class="brand">GILD-TECH · Dashboard temps réel</div>
-      <h1 id="agencyName">Pipeline immobilier</h1>
-      <div class="meta"><span class="live-dot"></span><span id="lastUpdate">Chargement…</span> · refresh 30s</div>
+      <div class="brand" data-i18n="brand">GILD-TECH · Dashboard temps réel</div>
+      <h1 id="agencyName" data-i18n="title">Pipeline immobilier</h1>
+      <div class="meta"><span class="live-dot"></span><span id="lastUpdate" data-i18n="loading">Chargement…</span> · <span data-i18n="refresh30">refresh 30s</span></div>
     </div>
-    <button class="btn" onclick="loadData()">↻ Refresh</button>
+    <div class="header-actions">
+      <div class="toggle-group" role="group">
+        <button class="toggle-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+        <button class="toggle-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+      <div class="toggle-group" role="group">
+        <button class="toggle-btn" data-theme-btn="dark" onclick="setTheme('dark')" title="Dark">🌙</button>
+        <button class="toggle-btn" data-theme-btn="light" onclick="setTheme('light')" title="Light">☀️</button>
+      </div>
+      <button class="btn" onclick="loadData()" data-i18n="refresh">↻ Refresh</button>
+    </div>
   </div>
 
   <div id="configBar" class="config-bar" style="display:none">
     <input id="webhookUrl" type="text" placeholder="https://n8n.gild-tech.com/webhook/dashboard-data?key=...">
-    <button onclick="saveWebhook()">Enregistrer</button>
+    <button onclick="saveWebhook()" data-i18n="save">Enregistrer</button>
   </div>
 
   <div id="errorMsg" class="err" style="display:none"></div>
 
   <div class="grid-kpis">
-    <div class="kpi"><div class="kpi-label">Leads actifs</div><div class="kpi-value pink" id="kpi-actifs">—</div><div class="kpi-sub">en pipeline</div></div>
-    <div class="kpi"><div class="kpi-label">Nouveaux 24h</div><div class="kpi-value green" id="kpi-24h">—</div><div class="kpi-sub" id="kpi-24h-sub">—</div></div>
-    <div class="kpi"><div class="kpi-label">RDV semaine</div><div class="kpi-value" id="kpi-rdv">—</div><div class="kpi-sub">7 jours à venir</div></div>
-    <div class="kpi"><div class="kpi-label">Mandats S</div><div class="kpi-value pink" id="kpi-mandats">—</div><div class="kpi-sub" id="kpi-revenue">—</div></div>
-    <div class="kpi"><div class="kpi-label">Taux rappel sub-5min</div><div class="kpi-value" id="kpi-rappel">—</div><div class="kpi-sub">cible 80%+</div></div>
+    <div class="kpi"><div class="kpi-label" data-i18n="kpi_active">Leads actifs</div><div class="kpi-value pink" id="kpi-actifs">—</div><div class="kpi-sub" data-i18n="kpi_active_sub">en pipeline</div></div>
+    <div class="kpi"><div class="kpi-label" data-i18n="kpi_24h">Nouveaux 24h</div><div class="kpi-value green" id="kpi-24h">—</div><div class="kpi-sub" id="kpi-24h-sub">—</div></div>
+    <div class="kpi"><div class="kpi-label" data-i18n="kpi_rdv">RDV semaine</div><div class="kpi-value" id="kpi-rdv">—</div><div class="kpi-sub" data-i18n="kpi_rdv_sub">7 jours à venir</div></div>
+    <div class="kpi"><div class="kpi-label" data-i18n="kpi_mandats">Mandats S</div><div class="kpi-value pink" id="kpi-mandats">—</div><div class="kpi-sub" id="kpi-revenue">—</div></div>
+    <div class="kpi"><div class="kpi-label" data-i18n="kpi_rappel">Taux rappel sub-5min</div><div class="kpi-value" id="kpi-rappel">—</div><div class="kpi-sub" data-i18n="kpi_rappel_sub">cible 80%+</div></div>
   </div>
 
   <div class="grid-tables">
     <div class="panel">
-      <h2>📞 Top 10 leads à rappeler maintenant</h2>
+      <h2 data-i18n="top_leads">📞 Top 10 leads à rappeler maintenant</h2>
       <table id="tableLeads">
-        <thead><tr><th>#</th><th>Prospect</th><th>Tel</th><th>Bien</th><th>Budget</th><th>Statut</th><th>Action</th></tr></thead>
-        <tbody><tr><td colspan="7" class="empty">Chargement…</td></tr></tbody>
+        <thead><tr>
+          <th>#</th>
+          <th data-i18n="th_prospect">Prospect</th>
+          <th data-i18n="th_phone">Tel</th>
+          <th data-i18n="th_property">Bien</th>
+          <th data-i18n="th_budget">Budget</th>
+          <th data-i18n="th_status">Statut</th>
+          <th data-i18n="th_action">Action</th>
+        </tr></thead>
+        <tbody><tr><td colspan="7" class="empty" data-i18n="loading">Chargement…</td></tr></tbody>
       </table>
     </div>
     <div class="panel">
-      <h2>🏠 Visites du jour</h2>
+      <h2 data-i18n="visits_today">🏠 Visites du jour</h2>
       <table id="tableVisites">
-        <thead><tr><th>Heure</th><th>Prospect</th><th>Bien</th></tr></thead>
-        <tbody><tr><td colspan="3" class="empty">Chargement…</td></tr></tbody>
+        <thead><tr>
+          <th data-i18n="th_time">Heure</th>
+          <th data-i18n="th_prospect">Prospect</th>
+          <th data-i18n="th_property">Bien</th>
+        </tr></thead>
+        <tbody><tr><td colspan="3" class="empty" data-i18n="loading">Chargement…</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -121,8 +180,108 @@
 
 <script>
 const STORAGE_KEY = 'gildtech_dashboard_webhook';
+const LANG_KEY = 'gildtech_dashboard_lang';
+const THEME_KEY = 'gildtech_dashboard_theme';
+
+const I18N = {
+  fr: {
+    brand: 'GILD-TECH · Dashboard temps réel',
+    title: 'Pipeline immobilier',
+    loading: 'Chargement…',
+    refresh30: 'refresh 30s',
+    refresh: '↻ Refresh',
+    save: 'Enregistrer',
+    config_help: 'Configure le webhook URL ci-dessus pour démarrer.',
+    kpi_active: 'Leads actifs', kpi_active_sub: 'en pipeline',
+    kpi_24h: 'Nouveaux 24h',
+    kpi_rdv: 'RDV semaine', kpi_rdv_sub: '7 jours à venir',
+    kpi_mandats: 'Mandats S',
+    kpi_rappel: 'Taux rappel sub-5min', kpi_rappel_sub: 'cible 80%+',
+    top_leads: '📞 Top 10 leads à rappeler maintenant',
+    visits_today: '🏠 Visites du jour',
+    th_prospect: 'Prospect', th_phone: 'Tel', th_property: 'Bien', th_budget: 'Budget', th_status: 'Statut', th_action: 'Action', th_time: 'Heure',
+    no_leads: 'Aucun lead à rappeler 🎯',
+    no_visits: 'Aucune visite aujourd\'hui',
+    last_update: 'Dernière maj : ',
+    fetch_err: 'Erreur fetch : ',
+    fetch_err_check: ' — vérifie l\'URL du webhook.',
+    delta_vs_yesterday: ' vs hier',
+    suffix_pipeline: 'pipeline immobilier',
+    badge_rdv: 'RDV', badge_neg: 'Négo', badge_hot: 'Chaud', badge_new: 'Nouveau', badge_cold: 'Tiède',
+    reason_new: (h) => `nouveau (${h}h)`,
+    reason_relanced: 'relancé hier',
+    reason_hot: (d) => `chaud, ${d}j sans contact`,
+    reason_dormant: (d) => `dormant ${d}j`
+  },
+  en: {
+    brand: 'GILD-TECH · Real-time dashboard',
+    title: 'Real estate pipeline',
+    loading: 'Loading…',
+    refresh30: 'refresh 30s',
+    refresh: '↻ Refresh',
+    save: 'Save',
+    config_help: 'Configure the webhook URL above to start.',
+    kpi_active: 'Active leads', kpi_active_sub: 'in pipeline',
+    kpi_24h: 'New in 24h',
+    kpi_rdv: 'Viewings this week', kpi_rdv_sub: 'next 7 days',
+    kpi_mandats: 'Instructions',
+    kpi_rappel: 'Sub-5min callback rate', kpi_rappel_sub: 'target 80%+',
+    top_leads: '📞 Top 10 leads to call back now',
+    visits_today: '🏠 Today\'s viewings',
+    th_prospect: 'Prospect', th_phone: 'Phone', th_property: 'Property', th_budget: 'Budget', th_status: 'Status', th_action: 'Action', th_time: 'Time',
+    no_leads: 'No leads to call back 🎯',
+    no_visits: 'No viewings today',
+    last_update: 'Last update: ',
+    fetch_err: 'Fetch error: ',
+    fetch_err_check: ' — check the webhook URL.',
+    delta_vs_yesterday: ' vs yesterday',
+    suffix_pipeline: 'real estate pipeline',
+    badge_rdv: 'VIEW', badge_neg: 'Neg.', badge_hot: 'Hot', badge_new: 'New', badge_cold: 'Cold',
+    reason_new: (h) => `new (${h}h)`,
+    reason_relanced: 'followed up yesterday',
+    reason_hot: (d) => `hot, ${d}d no contact`,
+    reason_dormant: (d) => `dormant ${d}d`
+  }
+};
+
 let webhookUrl = localStorage.getItem(STORAGE_KEY) || '';
+let lang = localStorage.getItem(LANG_KEY) || 'fr';
+let theme = localStorage.getItem(THEME_KEY) || 'dark';
+let lastData = null;
 let refreshTimer = null;
+
+function t(key) { return I18N[lang][key] || I18N.fr[key] || key; }
+
+function applyI18n() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (I18N[lang][key]) el.textContent = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-lang]').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  if (lastData) render(lastData);
+}
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('[data-theme-btn]').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-theme-btn') === theme);
+  });
+}
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem(LANG_KEY, l);
+  applyI18n();
+}
+
+function setTheme(th) {
+  theme = th;
+  localStorage.setItem(THEME_KEY, th);
+  applyTheme();
+}
 
 function saveWebhook() {
   const v = document.getElementById('webhookUrl').value.trim();
@@ -143,20 +302,40 @@ function showError(msg) {
 function clearError() { document.getElementById('errorMsg').style.display = 'none'; }
 
 function fmtPct(n) { return (n || 0) + '%'; }
-function fmtEuros(n) { return (n || 0).toLocaleString('fr-FR') + ' €'; }
+function fmtMoney(n) {
+  const locale = lang === 'en' ? 'en-GB' : 'fr-FR';
+  const currency = lang === 'en' ? '£' : '€';
+  return (n || 0).toLocaleString(locale) + ' ' + currency;
+}
+
 function badgeFor(status) {
   const s = (status || '').toLowerCase();
-  if (s.includes('rdv')) return '<span class="badge rdv">RDV</span>';
-  if (s.includes('mandat_negociation')) return '<span class="badge warm">Négo</span>';
-  if (s.includes('chaud') || s.includes('a_rappeler')) return '<span class="badge warm">Chaud</span>';
-  if (s.includes('nouveau') || s === '') return '<span class="badge new">Nouveau</span>';
-  return '<span class="badge cold">' + (status || 'Tiède') + '</span>';
+  if (s.includes('rdv') || s.includes('viewing') || s.includes('appointment')) return `<span class="badge rdv">${t('badge_rdv')}</span>`;
+  if (s.includes('mandat_negociation') || s.includes('negotiation')) return `<span class="badge warm">${t('badge_neg')}</span>`;
+  if (s.includes('chaud') || s.includes('hot') || s.includes('a_rappeler')) return `<span class="badge warm">${t('badge_hot')}</span>`;
+  if (s.includes('nouveau') || s.includes('new') || s === '') return `<span class="badge new">${t('badge_new')}</span>`;
+  return `<span class="badge cold">${status || t('badge_cold')}</span>`;
+}
+
+// Translate "_reason" coming from n8n (always FR backend) into current lang
+function translateReason(reason) {
+  if (!reason) return '';
+  if (lang === 'fr') return reason;
+  // FR → EN best-effort
+  const m = reason.match(/^nouveau \((\d+)h\)$/);
+  if (m) return I18N.en.reason_new(m[1]);
+  if (reason.startsWith('relancé hier')) return I18N.en.reason_relanced;
+  const h = reason.match(/^chaud, (\d+)j sans contact$/);
+  if (h) return I18N.en.reason_hot(h[1]);
+  const d = reason.match(/^dormant (\d+)j$/);
+  if (d) return I18N.en.reason_dormant(d[1]);
+  return reason;
 }
 
 async function loadData() {
   if (!webhookUrl) {
     document.getElementById('configBar').style.display = 'flex';
-    showError('Configure le webhook URL ci-dessus pour démarrer.');
+    showError(t('config_help'));
     return;
   }
   clearError();
@@ -164,22 +343,23 @@ async function loadData() {
     const r = await fetch(webhookUrl, { cache: 'no-cache' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
+    lastData = d;
     render(d);
-    document.getElementById('lastUpdate').textContent = 'Dernière maj : ' + new Date().toLocaleTimeString('fr-FR');
+    document.getElementById('lastUpdate').textContent = t('last_update') + new Date().toLocaleTimeString(lang === 'en' ? 'en-GB' : 'fr-FR');
   } catch (e) {
-    showError('Erreur fetch : ' + e.message + ' — vérifie l\'URL du webhook.');
+    showError(t('fetch_err') + e.message + t('fetch_err_check'));
   }
 }
 
 function render(d) {
-  if (d.agence_nom) document.getElementById('agencyName').textContent = d.agence_nom + ' — pipeline immobilier';
+  if (d.agence_nom) document.getElementById('agencyName').textContent = `${d.agence_nom} — ${t('suffix_pipeline')}`;
 
   document.getElementById('kpi-actifs').textContent = d.kpis?.leads_actifs ?? 0;
   document.getElementById('kpi-24h').textContent = d.kpis?.nouveaux_24h ?? 0;
-  document.getElementById('kpi-24h-sub').textContent = (d.kpis?.delta_24h ?? 0) >= 0 ? `+${d.kpis.delta_24h} vs hier` : `${d.kpis.delta_24h} vs hier`;
+  document.getElementById('kpi-24h-sub').textContent = (d.kpis?.delta_24h ?? 0) >= 0 ? `+${d.kpis.delta_24h}${t('delta_vs_yesterday')}` : `${d.kpis.delta_24h}${t('delta_vs_yesterday')}`;
   document.getElementById('kpi-rdv').textContent = d.kpis?.rdv_semaine ?? 0;
   document.getElementById('kpi-mandats').textContent = d.kpis?.mandats_semaine ?? 0;
-  document.getElementById('kpi-revenue').textContent = '≈ ' + fmtEuros(d.kpis?.revenue_estime);
+  document.getElementById('kpi-revenue').textContent = '≈ ' + fmtMoney(d.kpis?.revenue_estime);
 
   const rappelEl = document.getElementById('kpi-rappel');
   const rappel = d.kpis?.taux_rappel_sub5min ?? 0;
@@ -188,18 +368,18 @@ function render(d) {
 
   const leadsBody = document.querySelector('#tableLeads tbody');
   if (!d.top_leads || !d.top_leads.length) {
-    leadsBody.innerHTML = '<tr><td colspan="7" class="empty">Aucun lead à rappeler 🎯</td></tr>';
+    leadsBody.innerHTML = `<tr><td colspan="7" class="empty">${t('no_leads')}</td></tr>`;
   } else {
     leadsBody.innerHTML = d.top_leads.map((l, i) => `
       <tr>
         <td>${i+1}</td>
-        <td><strong>${l.prenom || '?'} ${l.nom || ''}</strong><br><span style="color:var(--muted);font-size:.75rem">${l._reason || ''}</span></td>
+        <td><strong>${l.prenom || '?'} ${l.nom || ''}</strong><br><span style="color:var(--muted);font-size:.75rem">${translateReason(l._reason)}</span></td>
         <td><a href="tel:${l.telephone}">${l.telephone || '—'}</a></td>
         <td>${l.bien_ref || '—'}</td>
         <td>${l.budget || '—'}</td>
         <td>${badgeFor(l.status)}</td>
         <td>
-          <a href="https://wa.me/${(l.telephone || '').replace(/[^0-9]/g, '')}" style="background:var(--pink);color:white;padding:5px 10px;border-radius:5px;font-size:.7rem">WhatsApp</a>
+          <a class="wa-btn" href="https://wa.me/${(l.telephone || '').replace(/[^0-9]/g, '')}">WhatsApp</a>
         </td>
       </tr>
     `).join('');
@@ -207,7 +387,7 @@ function render(d) {
 
   const visitesBody = document.querySelector('#tableVisites tbody');
   if (!d.visites_jour || !d.visites_jour.length) {
-    visitesBody.innerHTML = '<tr><td colspan="3" class="empty">Aucune visite aujourd\'hui</td></tr>';
+    visitesBody.innerHTML = `<tr><td colspan="3" class="empty">${t('no_visits')}</td></tr>`;
   } else {
     visitesBody.innerHTML = d.visites_jour.map(v => `
       <tr>
@@ -218,6 +398,10 @@ function render(d) {
     `).join('');
   }
 }
+
+// Init
+applyTheme();
+applyI18n();
 
 if (!webhookUrl) {
   document.getElementById('configBar').style.display = 'flex';
