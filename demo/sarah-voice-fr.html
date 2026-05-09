@@ -336,9 +336,35 @@
       const FIRST_MSG = "Bellecour Immobilier, Sophie à votre écoute, bonjour.";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
+        // FIX A — endpointing intelligent + latence basse
+        startSpeakingPlan: {
+          waitSeconds: 0.4,
+          smartEndpointingEnabled: true
+        },
+        stopSpeakingPlan: {
+          numWords: 0,
+          voiceSeconds: 0.2,
+          backoffSeconds: 1.0
+        },
+        silenceTimeoutSeconds: 30,
+        backgroundDenoisingEnabled: true,
+        // FIX B — voix ElevenLabs Charlotte FR avec prosody chaleureuse
+        voice: {
+          provider: "11labs",
+          voiceId: "ThT5KcBeYPX3keUQqHPh",
+          model: "eleven_turbo_v2_5",
+          stability: 0.45,
+          similarityBoost: 0.85,
+          style: 0.45,
+          useSpeakerBoost: true,
+          optimizeStreamingLatency: 3
+        },
+        // FIX C — Sonnet 4.5 + temperature basse + maxTokens court (réponses concises)
         model: {
           provider: "anthropic",
           model: "claude-sonnet-4-5-20250929",
+          temperature: 0.4,
+          maxTokens: 120,
           messages: [{ role: "system", content: SYSTEM_PROMPT }]
         }
       });

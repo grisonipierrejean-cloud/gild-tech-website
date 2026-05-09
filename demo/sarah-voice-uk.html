@@ -336,9 +336,35 @@
       const FIRST_MSG = "Chelsea Gate Properties, Charlotte speaking, good morning.";
       await vapi.start(ASSISTANT_ID, {
         firstMessage: FIRST_MSG,
+        // FIX A — smart endpointing + low latency
+        startSpeakingPlan: {
+          waitSeconds: 0.4,
+          smartEndpointingEnabled: true
+        },
+        stopSpeakingPlan: {
+          numWords: 0,
+          voiceSeconds: 0.2,
+          backoffSeconds: 1.0
+        },
+        silenceTimeoutSeconds: 30,
+        backgroundDenoisingEnabled: true,
+        // FIX B — ElevenLabs Charlotte UK with warmer prosody
+        voice: {
+          provider: "11labs",
+          voiceId: "ThT5KcBeYPX3keUQqHPh",
+          model: "eleven_turbo_v2_5",
+          stability: 0.45,
+          similarityBoost: 0.85,
+          style: 0.45,
+          useSpeakerBoost: true,
+          optimizeStreamingLatency: 3
+        },
+        // FIX C — Sonnet 4.5 + low temperature + short maxTokens (concise replies)
         model: {
           provider: "anthropic",
           model: "claude-sonnet-4-5-20250929",
+          temperature: 0.4,
+          maxTokens: 120,
           messages: [{ role: "system", content: SYSTEM_PROMPT }]
         }
       });
