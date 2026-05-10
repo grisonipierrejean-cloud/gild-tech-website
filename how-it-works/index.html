@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>How it works — Sarah Studio · GILD-TECH</title>
-<meta name="description" content="Setup in one day. You keep your CRM. Sarah Studio plugs on top.">
+<meta name="description" content="Not a tool. A complete operational system. Strategic audit, bespoke configuration, 30-day partnership.">
 <link rel="canonical" href="https://gild-tech.com/how-it-works/">
 <link rel="alternate" hreflang="en" href="https://gild-tech.com/how-it-works/">
 <link rel="alternate" hreflang="fr" href="https://gild-tech.com/comment-ca-marche/">
@@ -46,7 +46,7 @@
   .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); padding: 5px 11px; background: var(--accent-soft); border-radius: 999px; margin-bottom: 22px; }
   .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.05; letter-spacing: -.025em; margin: 0 0 20px; color: var(--text); }
   .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero .lead { color: var(--text-2); font-size: 19px; max-width: 720px; margin: 0 auto 36px; line-height: 1.5; }
+  .hero .lead { color: var(--text-2); font-size: 19px; max-width: 740px; margin: 0 auto 36px; line-height: 1.5; }
   .cta-row { display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
   .btn { background: var(--accent); color: #fff; padding: 13px 22px; border-radius: 9px; text-decoration: none; font-weight: 700; font-size: 14.5px; display: inline-block; transition: opacity .12s, transform .12s; box-shadow: 0 4px 14px rgba(233,30,140,.25); }
   .btn:hover { opacity: .92; transform: translateY(-1px); }
@@ -55,6 +55,17 @@
 
   @media (max-width: 720px) { .hero { padding: 56px 20px 40px; } .hero h1 { font-size: 36px; } .hero .lead { font-size: 16px; } }
 
+  .vs-strip { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px; }
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .vs-grid { grid-template-columns: 1fr; } }
+  .vs-card { padding: 22px 24px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); }
+  .vs-card.no { background: var(--bg-elev); }
+  .vs-card.yes { border-color: var(--accent-line); background: linear-gradient(180deg, var(--accent-soft) 0%, #fff 80%); }
+  .vs-card .vs-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); margin-bottom: 8px; }
+  .vs-card.yes .vs-label { color: var(--accent); }
+  .vs-card h4 { margin: 0 0 12px; font-size: 17px; font-weight: 700; }
+  .vs-card ul { color: var(--text-2); padding-left: 18px; margin: 0; font-size: 14px; line-height: 1.7; }
+
   .section { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
   .section-head { text-align: center; max-width: 760px; margin: 0 auto 44px; }
   .section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
@@ -62,18 +73,23 @@
   .section .sub { color: var(--text-2); font-size: 17px; line-height: 1.5; }
   @media (max-width: 720px) { .section h2 { font-size: 26px; } }
 
-  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
-  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 28px 28px 26px; transition: border-color .15s, box-shadow .15s; position: relative; overflow: hidden; }
-  .step:hover { border-color: var(--accent-line); box-shadow: var(--shadow); }
-  .step-num-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-  .step-num { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), #b8186e); color: #fff; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 23px; top: 36px; bottom: 36px; width: 2px; background: linear-gradient(to bottom, var(--accent-line), var(--line)); }
+  @media (max-width: 720px) { .timeline::before { left: 17px; } }
+  .step { position: relative; padding-left: 70px; margin-bottom: 18px; }
+  @media (max-width: 720px) { .step { padding-left: 52px; } }
+  .step-num { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #b8186e); color: #fff; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(233,30,140,.3); }
+  @media (max-width: 720px) { .step-num { width: 36px; height: 36px; font-size: 14px; border-radius: 10px; } }
+  .step-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px 24px; transition: border-color .15s, box-shadow .15s; }
+  .step-card:hover { border-color: var(--accent-line); box-shadow: var(--shadow); }
+  .step-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
   .step-time { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); padding: 3px 9px; background: var(--accent-soft); border-radius: 999px; }
-  .step h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.01em; }
-  .step p { color: var(--text-2); margin: 0 0 12px; font-size: 14.5px; line-height: 1.55; }
-  .step ul { color: var(--text-2); padding-left: 18px; margin: 8px 0 0; font-size: 14px; }
-  .step ul li { margin-bottom: 6px; line-height: 1.5; }
-  .step ul li strong { color: var(--text); font-weight: 600; }
+  .step-actor { font-size: 11.5px; font-weight: 600; color: var(--text-2); padding: 3px 9px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 999px; }
+  .step-card h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px; letter-spacing: -.01em; }
+  .step-card p { color: var(--text-2); margin: 0 0 12px; font-size: 14.5px; line-height: 1.55; }
+  .step-card ul { color: var(--text-2); padding-left: 18px; margin: 8px 0 0; font-size: 14px; }
+  .step-card ul li { margin-bottom: 6px; line-height: 1.5; }
+  .step-card ul li strong { color: var(--text); font-weight: 600; }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
@@ -91,6 +107,12 @@
   .pill.ready::before { background: var(--green); }
   .pill.ondemand { background: var(--accent-soft); color: var(--accent); }
   .pill.ondemand::before { background: var(--accent); }
+
+  .stats-strip { background: var(--bg-elev); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 50px 24px; margin: 60px 0 0; }
+  .stats-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+  @media (max-width: 720px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } }
+  .stat-num { font-size: 36px; font-weight: 800; letter-spacing: -.02em; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-label { color: var(--text-2); font-size: 13px; margin-top: 8px; line-height: 1.4; }
 
   .guarantee { max-width: 880px; margin: 60px auto 0; padding: 36px 32px; border-radius: 16px; background: linear-gradient(135deg, var(--accent-soft) 0%, #fff 80%); border: 1px solid var(--accent-line); display: flex; gap: 22px; align-items: flex-start; }
   @media (max-width: 720px) { .guarantee { flex-direction: column; padding: 28px 22px; } }
@@ -129,81 +151,173 @@
 </nav>
 
 <section class="hero">
-  <span class="eyebrow">Onboarding · Sarah Studio</span>
-  <h1>Setup in <em>one day</em>. You keep your CRM. Sarah plugs on top.</h1>
-  <p class="lead">We don't change your existing stack. Sarah Studio plugs into your source of truth — Google Sheet, Apimo, Hektor, Reapit or another — and your negotiator wakes up to their AI co-pilot the next morning at 7 a.m.</p>
+  <span class="eyebrow">Methodology · Sarah Studio</span>
+  <h1>Not a tool. <em>A complete operational system</em>, calibrated to your agency.</h1>
+  <p class="lead">Strategic audit, bespoke configuration, 30-day partnership. You're not paying for a setup — you're hiring a partner who takes ownership of your acquisition. Lightning go-live once the stack is calibrated for you.</p>
   <div class="cta-row">
     <a href="https://calendly.com/ops-gild-tech/30min" class="btn">Book a free audit</a>
     <a href="/sarah-studio/" class="btn-ghost">See the live demo</a>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-eyebrow">The flow</div>
-    <h2>Four steps, one guarantee</h2>
-    <p class="sub">From audit to go-live, it's all framed. No grey areas.</p>
-  </div>
-  <div class="steps">
-
-    <div class="step">
-      <div class="step-num-row">
-        <div class="step-num">1</div>
-        <span class="step-time">Day 0 · 30 min</span>
-      </div>
-      <h3>Free audit</h3>
-      <p>30 minutes on a video call. We look at your current pipeline together: lead volume, CRM in use, acquisition channels (Rightmove, Zoopla, OnTheMarket, website forms, referrals), team, friction points.</p>
-      <p>By the end, you know <strong>exactly how much money your agency loses each month</strong> in unanswered leads. Quantified.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-num-row">
-        <div class="step-num">2</div>
-        <span class="step-time">Day 1 · 4 hrs flat</span>
-      </div>
-      <h3>Technical setup</h3>
-      <p>We deploy on your side, breaking nothing:</p>
+<section class="vs-strip">
+  <div class="vs-grid">
+    <div class="vs-card no">
+      <div class="vs-label">What we are not</div>
+      <h4>Software you install and forget</h4>
       <ul>
-        <li><strong>Workflows</strong>: sub-5min callback, follow-ups D+3/D+7/D+14, daily 7 a.m. brief, weekly Monday review, real-time dashboard</li>
-        <li><strong>Sarah WhatsApp 24/7</strong> on your Business number (or a dedicated one)</li>
-        <li><strong>Sarah Studio</strong>: your private URL, web and mobile access</li>
-        <li><strong>CRM connection</strong>: Google Sheets by default, Apimo / Hektor / Reapit / Alto on demand</li>
+        <li>We don't sell you a subscription to a generic SaaS</li>
+        <li>We don't hand you a training video and a PDF and walk away</li>
+        <li>We don't bill a "quick setup" then leave you stranded</li>
       </ul>
     </div>
-
-    <div class="step">
-      <div class="step-num-row">
-        <div class="step-num">3</div>
-        <span class="step-time">Day 1 evening · 30 min</span>
-      </div>
-      <h3>Team onboarding</h3>
-      <p>Video call with your negotiators. We show:</p>
+    <div class="vs-card yes">
+      <div class="vs-label">What we are</div>
+      <h4>Your outsourced acquisition team</h4>
       <ul>
-        <li>How to read the morning brief (WhatsApp + email, 7 a.m.)</li>
-        <li>How to use Sarah Studio: KPIs, top leads, push-to-talk voice</li>
-        <li>How to let Sarah qualify on WhatsApp while you're in viewings</li>
+        <li>A quantified strategic audit, on your real pipeline</li>
+        <li>An AI stack <strong>hand-calibrated by our team over 5–7 days</strong> before deployment</li>
+        <li>A <strong>daily operational partnership for the first 30 days</strong> post go-live</li>
       </ul>
-      <p>30 minutes is enough. No long training, no manual to print.</p>
     </div>
-
-    <div class="step">
-      <div class="step-num-row">
-        <div class="step-num">4</div>
-        <span class="step-time">Day 2 → Day 30</span>
-      </div>
-      <h3>30-day observation + guarantee</h3>
-      <p>Sarah runs. You measure. If within the first 30 days post go-live the stack doesn't deliver as promised, you get every penny back. No questions, no form to fill.</p>
-      <p>At the end of the 30 days, we review together: what works, what to tweak, then transition to optional maintenance (£250/month).</p>
-    </div>
-
   </div>
 </section>
 
 <section class="section">
   <div class="section-head">
+    <div class="section-eyebrow">The flow</div>
+    <h2>Six steps, two weeks of calibration, one partnership</h2>
+    <p class="sub">Total engagement spans 5 to 6 weeks. The stack is fully ready before we ever touch your live infrastructure.</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 0 · 30 min</span>
+          <span class="step-actor">You + GILD-TECH</span>
+        </div>
+        <h3>Strategic audit</h3>
+        <p>A focused video call, no commercial fluff. We measure your current pipeline: monthly lead volume, acquisition channels, conversion rates, leakage points, team seniority, GDPR constraints.</p>
+        <p>By the end, you walk away with your <strong>quantified monthly loss</strong>, an industry benchmark, and a <strong>precise roadmap</strong>. If we don't see real value, we tell you straight and we stop there.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 1 → Day 5 · backstage</span>
+          <span class="step-actor">GILD-TECH</span>
+        </div>
+        <h3>Deep diagnostic & bespoke architecture</h3>
+        <p>Our team analyses your real acquisition channels, your historical response rates, your negotiators' tone, your market positioning. We don't configure Sarah from a template — we calibrate her to your identity, your instruction types, your client objections.</p>
+        <ul>
+          <li>Full mapping of your current stack (CRM, mail, calendars, sources)</li>
+          <li>Algorithmic lead scoring tuned to your qualifying criteria</li>
+          <li>Sarah's tone matched to your brand (formal/casual, vocabulary, sign-offs)</li>
+          <li>Business thresholds (min budget, area, property type)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 5 → Day 7 · backstage</span>
+          <span class="step-actor">GILD-TECH</span>
+        </div>
+        <h3>Configuration & internal testing</h3>
+        <p>We deploy your stack in a pre-production environment. Every workflow runs against real cases you provide. We simulate calls, WA messages, traffic spikes. <strong>No go-live until every scenario passes.</strong></p>
+        <ul>
+          <li>Automated workflows (sub-5min callback, follow-ups, brief, weekly review, dashboard)</li>
+          <li>Sarah WhatsApp 24/7 tested across 50+ prospect scenarios</li>
+          <li>CRM connection (Google Sheets, Reapit, Alto, Apimo, Hektor…)</li>
+          <li>Sarah Studio personalised to your brand</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 7 · 4 hrs on-site</span>
+          <span class="step-actor">You + GILD-TECH</span>
+        </div>
+        <h3>Lightning go-live</h3>
+        <p>Everything is already calibrated on our side. Day-of at your office, we connect, switch to production, and run 50 safety checks before opening to real clients. No business interruption, no negotiator pulled away longer than necessary.</p>
+        <p>Team onboarding via video call the same evening: 30 minutes to walk through Sarah Studio, the morning brief, push-to-talk voice, and how to read WhatsApp notifications. No printable manual, no extended training session.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 8 → Day 37 · 30 days</span>
+          <span class="step-actor">GILD-TECH (daily follow-up)</span>
+        </div>
+        <h3>Daily operational partnership</h3>
+        <p>This is where 80% of the value lands. Sarah isn't delivered then abandoned. For 30 days, your GILD-TECH contact tracks your live pipeline, tunes the scripts, fixes blind spots, and recalibrates scoring based on your feedback.</p>
+        <ul>
+          <li>Direct hotline (WhatsApp + video call within 4 working hours)</li>
+          <li>Weekly personalised report (not the auto bilan — a human debrief)</li>
+          <li>Continuous script and threshold tuning, based on your input</li>
+          <li>Two strategic check-ins (week 2 and week 4)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-card">
+        <div class="step-meta">
+          <span class="step-time">Day 37 → ongoing</span>
+          <span class="step-actor">You (Sarah runs herself)</span>
+        </div>
+        <h3>Autonomy + optional maintenance</h3>
+        <p>By the end of the 30 days, your stack is dialled in. Sarah runs without intervention. You decide:</p>
+        <ul>
+          <li><strong>Pro Maintenance</strong> at £250/month: monitoring + ongoing tuning + new features auto-deployed</li>
+          <li><strong>No maintenance</strong>: you keep the build, we stay reachable on a best-effort basis for critical incidents</li>
+        </ul>
+        <p>No lock-in. No mandatory subscription. You paid for the build — it's yours.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">5-7 d</div>
+      <div class="stat-label">of GILD-TECH calibration<br>before go-live</div>
+    </div>
+    <div>
+      <div class="stat-num">4 hrs</div>
+      <div class="stat-label">on-site presence<br>on switchover day</div>
+    </div>
+    <div>
+      <div class="stat-num">30 d</div>
+      <div class="stat-label">of daily operational<br>partnership post go-live</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">refunded no questions asked<br>if dissatisfied within 30 days</div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-head">
     <div class="section-eyebrow">What we ask of you</div>
     <h2>The bare minimum, nothing more</h2>
-    <p class="sub">You provide 4 technical items + 1 hour of your time across 2 video calls. The rest is on us.</p>
+    <p class="sub">You provide 4 technical items and 2 short calls. The rest is on us — that's precisely what you're paying for.</p>
   </div>
 
   <div class="grid-2">
@@ -211,20 +325,20 @@
       <h3>Technical side</h3>
       <table>
         <tr><th>Item</th><th>How</th></tr>
-        <tr><td>Your lead list</td><td>Google Sheet / CRM export / API</td></tr>
-        <tr><td>WhatsApp number</td><td>Yours or a dedicated one</td></tr>
+        <tr><td>Your current lead list</td><td>Google Sheet, CRM export or API</td></tr>
+        <tr><td>Dedicated WhatsApp number</td><td>Yours or a new one in your name</td></tr>
         <tr><td>Viewings calendar</td><td>Google Calendar or export</td></tr>
-        <tr><td>Agency logo</td><td>PNG or SVG</td></tr>
+        <tr><td>Brand assets</td><td>Logo PNG/SVG, colours, tone of voice</td></tr>
       </table>
     </div>
     <div class="card">
       <h3>Human side</h3>
       <table>
         <tr><th>When</th><th>Who</th></tr>
-        <tr><td>Day 0 audit · 30 min</td><td>You (decision maker)</td></tr>
-        <tr><td>Day 1 onboarding · 30 min</td><td>Your negotiators</td></tr>
-        <tr><td>Monthly review</td><td>15 min on a video call</td></tr>
-        <tr><td>Technical maintenance</td><td>Nobody — Sarah runs herself</td></tr>
+        <tr><td>Day 0 audit · 30 min</td><td>You, the decision maker</td></tr>
+        <tr><td>Day 7 go-live · 4 hrs</td><td>You + 1 negotiator</td></tr>
+        <tr><td>Team onboarding · 30 min</td><td>All your negotiators</td></tr>
+        <tr><td>Strategic check-ins (week 2, 4)</td><td>You · 30 min each</td></tr>
       </table>
     </div>
   </div>
@@ -234,7 +348,7 @@
   <div class="section-head">
     <div class="section-eyebrow">Compatibility</div>
     <h2>Plays nicely with your existing CRM</h2>
-    <p class="sub">You keep your main tool. Sarah Studio plugs on top in read mode, and write mode on the Scale plan.</p>
+    <p class="sub">You keep your main tool — Reapit, Alto, Apimo, whatever. Sarah Studio plugs on top in read mode, and write mode on the Scale plan.</p>
   </div>
 
   <div class="card">
@@ -242,10 +356,10 @@
       <tr><th>CRM</th><th>Market</th><th>Availability</th></tr>
       <tr><td>Google Sheets</td><td>Universal</td><td><span class="pill ready">Available now</span></td></tr>
       <tr><td>Custom webhook</td><td>Universal</td><td><span class="pill ready">Available now</span></td></tr>
-      <tr><td>Reapit</td><td>UK · #1 leader</td><td><span class="pill ondemand">On demand · 1 day</span></td></tr>
-      <tr><td>Alto</td><td>UK · Zoopla native</td><td><span class="pill ondemand">On demand · 1 day</span></td></tr>
-      <tr><td>Apimo</td><td>FR · #1 leader</td><td><span class="pill ondemand">On demand · 1 day</span></td></tr>
-      <tr><td>Hektor</td><td>FR</td><td><span class="pill ondemand">On demand · 1 day</span></td></tr>
+      <tr><td>Reapit</td><td>UK · #1 leader</td><td><span class="pill ondemand">Bespoke calibration</span></td></tr>
+      <tr><td>Alto</td><td>UK · Zoopla native</td><td><span class="pill ondemand">Bespoke calibration</span></td></tr>
+      <tr><td>Apimo</td><td>FR · #1 leader</td><td><span class="pill ondemand">Bespoke calibration</span></td></tr>
+      <tr><td>Hektor</td><td>FR</td><td><span class="pill ondemand">Bespoke calibration</span></td></tr>
       <tr><td>Jupix, Vebra, iAd Connect, Périclès, Netty…</td><td>UK / FR</td><td><span class="pill ondemand">On request</span></td></tr>
     </table>
   </div>
@@ -257,13 +371,13 @@
   </div>
   <div>
     <h3>30-day money-back guarantee</h3>
-    <p>If Sarah doesn't deliver as promised within the first month after go-live, you get your full payment back. No questions, no forms. Included in Pro and Scale.</p>
+    <p>If Sarah doesn't deliver as promised within the first 30 days post go-live, you get the full payment back. No questions, no forms. Included in Pro and Scale, because that's exactly the test we hold ourselves to.</p>
   </div>
 </div>
 
 <section class="final-cta">
-  <h2>Ready to see your pipeline live?</h2>
-  <p>30 minutes on a video call. We quantify your monthly loss and show you Sarah Studio on your own data. You decide afterwards.</p>
+  <h2>Ready to measure what you're losing?</h2>
+  <p>30 minutes on a video call, no commitment. By the end of the audit you know exactly how much your agency leaves on the table each month — quantified on your actual pipeline, not on a generic benchmark.</p>
   <div class="cta-row">
     <a href="https://calendly.com/ops-gild-tech/30min" class="btn">Book the free audit</a>
     <a href="/sarah-uk" class="btn-ghost">See the Pro plan · £2,290</a>
