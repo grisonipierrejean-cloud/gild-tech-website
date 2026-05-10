@@ -113,6 +113,7 @@
   .crm-card .crm-region { font-size: 10.5px; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
   .crm-card .crm-status { font-size: 11px; color: var(--text-2); margin-top: 6px; display: flex; align-items: center; gap: 5px; }
   .crm-card .crm-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-2); }
+  .crm-card.ondemand .crm-status::before { background: var(--yellow); }
   .crm-card.coming .crm-status::before { background: var(--yellow); }
   .crm-card.ready .crm-status::before { background: var(--green); }
 
@@ -266,6 +267,20 @@
 
     <div id="errorMsg" class="err" style="display:none"></div>
 
+    <div id="demoBanner" class="config-panel" style="display:none;background:linear-gradient(180deg, var(--accent-soft), transparent);border-color:var(--accent-line);padding:18px 20px;margin-bottom:14px">
+      <div style="display:flex;align-items:flex-start;gap:14px;justify-content:space-between;flex-wrap:wrap;gap:14px">
+        <div style="flex:1;min-width:280px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px" data-i18n="demo_banner_brand">Mode démo · Bellecour Immobilier</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px" data-i18n="demo_banner_title">Voici ce que voit votre négociateur chaque matin.</div>
+          <div style="font-size:12.5px;color:var(--text-2);line-height:1.55" data-i18n="demo_banner_desc">Données fictives. En production, Sarah Studio se branche sur votre Google Sheet ou votre CRM (Apimo, Hektor, Reapit…). Setup en 1 jour, vous gardez tout votre setup actuel.</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="https://calendly.com/ops-gild-tech/30min" class="btn" target="_blank" data-i18n="demo_banner_cta">Réserver un audit</a>
+          <button class="icon-btn" onclick="toggleConfig()" data-i18n="demo_banner_connect">Connecter mon agence</button>
+        </div>
+      </div>
+    </div>
+
     <div class="kpi-strip" id="kpiStrip"></div>
 
     <div class="grid-tables">
@@ -348,23 +363,24 @@ const STORAGE_KEY_VAPI = 'sarahstudio_vapi_pub';
 const STORAGE_KEY_LANG = 'sarahstudio_lang';
 const STORAGE_KEY_THEME = 'sarahstudio_theme';
 const STORAGE_KEY_DEMO = 'sarahstudio_demo';
-const ASSISTANT_FR = '189921d8-0da5-40b0-b5ee-c769d5351428';
-const ASSISTANT_UK = 'c4437f62-5f83-4c8c-8186-754259afb684';
+// Sarah Pilot — assistants dédiés négociateur (pas réceptionniste)
+const ASSISTANT_FR = '0fa33b69-a461-41de-be19-75ca7fa379d6'; // Sarah — Pilote négociateur FR
+const ASSISTANT_UK = '341a5d5c-2393-46bf-a8e5-81e8d52da996'; // Sarah — Negotiator co-pilot UK
 
-// CRM list (FR + UK markets)
+// CRM list (FR + UK markets) — statuts honnêtes : "ready" = sync codée et testée, "ondemand" = on code en 1 jour quand le client signe
 const CRMS = [
-  { id: 'apimo', name: 'Apimo', region: 'FR', status: 'ready', desc: 'Leader marché FR' },
-  { id: 'hektor', name: 'Hektor', region: 'FR', status: 'ready', desc: 'Logiciel CRM immo' },
-  { id: 'iad', name: 'iAd Connect', region: 'FR', status: 'coming', desc: 'iAd réseau' },
-  { id: 'pericles', name: 'Périclès', region: 'FR', status: 'coming', desc: 'Périclès Immo' },
-  { id: 'netty', name: 'Netty', region: 'FR', status: 'coming', desc: 'Netty Software' },
-  { id: 'krealys', name: 'Krealys', region: 'FR', status: 'coming', desc: 'Krealys Immobilier' },
-  { id: 'reapit', name: 'Reapit', region: 'UK', status: 'ready', desc: 'UK estate agency leader' },
-  { id: 'alto', name: 'Alto', region: 'UK', status: 'ready', desc: 'Zoopla / OnTheMarket native' },
-  { id: 'jupix', name: 'Jupix', region: 'UK', status: 'coming', desc: 'Cloud lettings + sales' },
-  { id: 'vebra', name: 'Vebra', region: 'UK', status: 'coming', desc: 'Idealoutpost group' },
-  { id: 'gsheet', name: 'Google Sheets', region: 'ALL', status: 'ready', desc: 'Sync direct (default)' },
-  { id: 'custom', name: 'Custom API', region: 'ALL', status: 'ready', desc: 'Webhook sur mesure' }
+  { id: 'gsheet', name: 'Google Sheets', region: 'ALL', status: 'ready', desc: 'Sync directe — default' },
+  { id: 'custom', name: 'Webhook custom', region: 'ALL', status: 'ready', desc: 'Endpoint sur mesure' },
+  { id: 'apimo', name: 'Apimo', region: 'FR', status: 'ondemand', desc: 'Leader marché FR' },
+  { id: 'hektor', name: 'Hektor', region: 'FR', status: 'ondemand', desc: 'CRM immobilier FR' },
+  { id: 'iad', name: 'iAd Connect', region: 'FR', status: 'ondemand', desc: 'Réseau iAd' },
+  { id: 'pericles', name: 'Périclès', region: 'FR', status: 'ondemand', desc: 'Périclès Immo' },
+  { id: 'netty', name: 'Netty', region: 'FR', status: 'ondemand', desc: 'Netty Software' },
+  { id: 'krealys', name: 'Krealys', region: 'FR', status: 'ondemand', desc: 'Krealys Immobilier' },
+  { id: 'reapit', name: 'Reapit', region: 'UK', status: 'ondemand', desc: 'Leader UK' },
+  { id: 'alto', name: 'Alto', region: 'UK', status: 'ondemand', desc: 'Zoopla native' },
+  { id: 'jupix', name: 'Jupix', region: 'UK', status: 'ondemand', desc: 'Cloud lettings' },
+  { id: 'vebra', name: 'Vebra', region: 'UK', status: 'ondemand', desc: 'Idealoutpost' }
 ];
 
 // 7 KPIs definition with icons + accent + sparkline behaviour
@@ -440,7 +456,12 @@ const I18N = {
     voice_unavailable: 'Voix non configurée. Ajoutez la clé Vapi dans Config.',
     chat_unavailable: 'Webhook chat non configuré. Ajoutez l’URL dans Config.',
     btn_wa: 'WA', btn_call: 'Appel', btn_gen: 'Rédiger',
-    crm_ready: 'Prêt — contactez GILD-TECH', crm_coming: 'Bientôt',
+    crm_ready: 'Disponible immédiatement', crm_ondemand: 'À la demande (~1 jour)', crm_coming: 'Bientôt',
+    demo_banner_brand: 'Mode démo · Bellecour Immobilier',
+    demo_banner_title: 'Voici ce que voit votre négociateur chaque matin.',
+    demo_banner_desc: 'Données fictives. En production, Sarah Studio se branche sur votre Google Sheet ou votre CRM (Apimo, Hektor, Reapit…). Setup en 1 jour, vous gardez tout votre setup actuel.',
+    demo_banner_cta: 'Réserver un audit',
+    demo_banner_connect: 'Connecter mon agence',
     quick_prompts: {
       top_leads: 'Quels sont mes leads les plus chauds à rappeler maintenant ?',
       brief_today: 'Fais-moi le brief de ma journée — visites, priorités, alertes.',
@@ -467,7 +488,12 @@ const I18N = {
     voice_unavailable: 'Voice not configured. Add the Vapi key in Config.',
     chat_unavailable: 'Chat webhook not configured. Add the URL in Config.',
     btn_wa: 'WA', btn_call: 'Call', btn_gen: 'Draft',
-    crm_ready: 'Ready — contact GILD-TECH', crm_coming: 'Coming soon',
+    crm_ready: 'Available now', crm_ondemand: 'On demand (~1 day)', crm_coming: 'Coming soon',
+    demo_banner_brand: 'Demo mode · Bellecour Immobilier',
+    demo_banner_title: 'This is what your negotiator sees every morning.',
+    demo_banner_desc: 'Mock data. In production, Sarah Studio plugs into your Google Sheet or CRM (Apimo, Hektor, Reapit…). Setup in 1 day, you keep your existing stack.',
+    demo_banner_cta: 'Book an audit',
+    demo_banner_connect: 'Connect my agency',
     quick_prompts: {
       top_leads: 'What are my hottest leads to call back right now?',
       brief_today: 'Brief me on today — viewings, priorities, alerts.',
@@ -535,6 +561,7 @@ function toggleDemo() {
   localStorage.setItem(STORAGE_KEY_DEMO, demoMode ? '1' : '0');
   document.getElementById('demoBtn').classList.toggle('active', demoMode);
   document.getElementById('demoBadge').style.display = demoMode ? 'inline-block' : 'none';
+  document.getElementById('demoBanner').style.display = demoMode ? 'block' : 'none';
   loadData();
 }
 
@@ -620,13 +647,14 @@ function renderKpis(d) {
 function renderCrmList() {
   const grid = document.getElementById('crmGrid');
   if (!grid) return;
-  grid.innerHTML = CRMS.map(c => `
-    <div class="crm-card ${c.status}">
+  grid.innerHTML = CRMS.map(c => {
+    const label = c.status === 'ready' ? t('crm_ready') : (c.status === 'ondemand' ? t('crm_ondemand') : t('crm_coming'));
+    return `<div class="crm-card ${c.status}">
       <div class="crm-name">${c.name}</div>
       <div class="crm-region">${c.region} · ${c.desc}</div>
-      <div class="crm-status">${c.status === 'ready' ? t('crm_ready') : t('crm_coming')}</div>
-    </div>
-  `).join('');
+      <div class="crm-status">${label}</div>
+    </div>`;
+  }).join('');
 }
 
 const SOURCE_PILLS = {
@@ -854,6 +882,7 @@ renderCrmList();
 if (demoMode) {
   document.getElementById('demoBtn').classList.add('active');
   document.getElementById('demoBadge').style.display = 'inline-block';
+  document.getElementById('demoBanner').style.display = 'block';
   loadData();
 } else if (!webhookData) {
   // Auto-enable demo for first visit so user sees the product
@@ -861,6 +890,7 @@ if (demoMode) {
   localStorage.setItem(STORAGE_KEY_DEMO, '1');
   document.getElementById('demoBtn').classList.add('active');
   document.getElementById('demoBadge').style.display = 'inline-block';
+  document.getElementById('demoBanner').style.display = 'block';
   loadData();
 } else {
   loadData();
