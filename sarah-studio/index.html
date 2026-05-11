@@ -395,44 +395,51 @@ const KPI_DEFS = [
 ];
 
 // MOCK DATA — réaliste agence indépendante 5 négos, secteur Lyon
+// Compute live demo times for sense of urgency
+const _now = new Date();
+const _pad = n => String(n).padStart(2,'0');
+const _addH = h => { const d = new Date(_now.getTime() + h*3600000); return `${_pad(d.getHours())}:${_pad(d.getMinutes())}`; };
 const MOCK = {
   agence_nom: 'Bellecour Immobilier',
-  timestamp: new Date().toISOString(),
+  timestamp: _now.toISOString(),
   kpis: {
-    leads_actifs: 42,
-    nouveaux_24h: 6,
-    delta_24h: 2,
-    rdv_semaine: 11,
-    mandats_semaine: 3,
-    revenue_estime: 24000,
-    pipeline_potential: 16800,
-    taux_conversion_30j: 7,
-    taux_rappel_sub5min: 84,
+    leads_actifs: 47,
+    nouveaux_24h: 8,
+    delta_24h: 3,
+    rdv_semaine: 13,
+    mandats_semaine: 4,
+    revenue_estime: 32000,
+    pipeline_potential: 18800,
+    taux_conversion_30j: 8,
+    taux_rappel_sub5min: 87,
     spark: {
-      leads_actifs: [38,40,39,41,42,42,42],
-      nouveaux_24h: [4,5,3,6,4,5,6],
-      rdv_semaine: [8,9,10,9,11,11,11],
-      mandats_semaine: [1,2,2,3,2,3,3],
-      pipeline_potential: [14000,14400,15200,15600,16000,16400,16800],
-      taux_conversion_30j: [5,5,6,6,7,7,7],
-      taux_rappel_sub5min: [72,76,80,82,84,84,84]
+      leads_actifs: [38,40,39,41,42,45,47],
+      nouveaux_24h: [4,5,3,6,5,7,8],
+      rdv_semaine: [8,9,10,9,11,12,13],
+      mandats_semaine: [1,2,2,3,3,4,4],
+      pipeline_potential: [14000,14400,15200,15600,16400,17600,18800],
+      taux_conversion_30j: [5,5,6,6,7,8,8],
+      taux_rappel_sub5min: [72,76,80,82,84,86,87]
     }
   },
   top_leads: [
-    { prenom: 'Marie',  nom: 'Dupont',   telephone: '+33612345678', bien_ref: 'BEL-2046 · 3P 78m²', budget: '380 000 €', status: 'chaud',   source: 'SeLoger',     _reason: 'nouveau (2h)', _nego: 'CB' },
-    { prenom: 'Pierre', nom: 'Lefèvre',  telephone: '+33687234511', bien_ref: 'BEL-2031 · 4P 92m²', budget: '520 000 €', status: 'a_rappeler', source: 'Formulaire', _reason: 'relancé hier', _nego: 'JM' },
-    { prenom: 'Sophie', nom: 'Marin',    telephone: '+33645678901', bien_ref: 'BEL-1987 · Loft',     budget: '650 000 €', status: 'rdv_programme', source: 'LeBonCoin', _reason: 'RDV jeudi 18h', _nego: 'CB' },
-    { prenom: 'Thomas', nom: 'Bernard',  telephone: '+33623456789', bien_ref: 'BEL-2088 · 2P 45m²', budget: '245 000 €', status: 'chaud',   source: 'Pige PAP',    _reason: 'chaud, 3j sans contact', _nego: 'AL' },
-    { prenom: 'Camille',nom: 'Rousseau', telephone: '+33698765432', bien_ref: 'BEL-2055 · Maison',   budget: '780 000 €', status: 'mandat_negociation', source: 'Recommandation', _reason: 'négo offre en cours', _nego: 'JM' },
-    { prenom: 'Julien', nom: 'Petit',    telephone: '+33677889944', bien_ref: 'BEL-1999 · 3P 65m²', budget: '320 000 €', status: 'nouveau', source: 'WhatsApp', _reason: 'nouveau (5h)', _nego: 'AL' },
-    { prenom: 'Léa',    nom: 'Garnier',  telephone: '+33611223344', bien_ref: 'BEL-2070',           budget: '280 000 €', status: 'tiede',   source: 'SeLoger',     _reason: 'dormant 9j', _nego: 'CB' },
-    { prenom: 'Hugo',   nom: 'Vidal',    telephone: '+33655443322', bien_ref: 'BEL-2012 · Studio',   budget: '180 000 €', status: 'a_rappeler', source: 'Sarah WA',    _reason: 'qualif Sarah hier 22h', _nego: 'JM' }
+    { prenom: 'Marie',   nom: 'Dupont',     telephone: '+33612345678', bien_ref: 'BEL-2046 · 3P 78m² Presqu\'île', budget: '380 000 €', status: 'chaud',             source: 'SeLoger',        _reason: 'nouveau (47 min)',         _nego: 'CB' },
+    { prenom: 'Pierre',  nom: 'Lefèvre',    telephone: '+33687234511', bien_ref: 'BEL-2031 · 4P 92m² Brotteaux',   budget: '520 000 €', status: 'a_rappeler',        source: 'Sarah WA',       _reason: 'qualif Sarah hier 22h47',  _nego: 'JM' },
+    { prenom: 'Sophie',  nom: 'Marin',      telephone: '+33645678901', bien_ref: 'BEL-1987 · Loft 110m² Confluence', budget: '650 000 €', status: 'rdv_programme',    source: 'LeBonCoin',      _reason: 'RDV jeudi 18h',            _nego: 'CB' },
+    { prenom: 'Thomas',  nom: 'Bernard',    telephone: '+33623456789', bien_ref: 'BEL-2088 · 2P 45m² Croix-Rousse', budget: '245 000 €', status: 'chaud',             source: 'Pige PAP',       _reason: 'chaud, 3j sans contact',   _nego: 'AL' },
+    { prenom: 'Camille', nom: 'Rousseau',   telephone: '+33698765432', bien_ref: 'BEL-2055 · Maison 160m² Caluire', budget: '780 000 €', status: 'mandat_negociation', source: 'Recommandation', _reason: 'offre en négociation',     _nego: 'JM' },
+    { prenom: 'Julien',  nom: 'Petit',      telephone: '+33677889944', bien_ref: 'BEL-1999 · 3P 65m² Part-Dieu',    budget: '320 000 €', status: 'nouveau',           source: 'WhatsApp',       _reason: 'nouveau (3 h)',            _nego: 'AL' },
+    { prenom: 'Léa',     nom: 'Garnier',    telephone: '+33611223344', bien_ref: 'BEL-2070 · T2 52m² Bellecour',    budget: '290 000 €', status: 'tiede',             source: 'SeLoger',        _reason: 'dormant 9 j',              _nego: 'CB' },
+    { prenom: 'Hugo',    nom: 'Vidal',      telephone: '+33655443322', bien_ref: 'BEL-2012 · Studio 28m² Guillotière', budget: '180 000 €', status: 'a_rappeler',     source: 'Sarah WA',       _reason: 'relancé hier · pas de réponse', _nego: 'JM' },
+    { prenom: 'Inès',    nom: 'Moreau',     telephone: '+33644556677', bien_ref: 'BEL-2102 · T3 70m² Vieux-Lyon',   budget: '410 000 €', status: 'nouveau',           source: 'Site agence',    _reason: 'nouveau (12 min)',         _nego: 'CB' },
+    { prenom: 'Antoine', nom: 'Lemaire',    telephone: '+33633112277', bien_ref: 'BEL-2090 · Maison 200m² Écully',  budget: '950 000 €', status: 'chaud',             source: 'Recommandation', _reason: 'visite confirmée samedi 10h', _nego: 'JM' }
   ],
   visites_jour: [
-    { heure: '10:30', prenom: 'Anne',    nom: 'Lambert',  telephone: '+33633557799', bien_ref: 'BEL-2046 · 3P 78m²' },
-    { heure: '14:00', prenom: 'Marc',    nom: 'Roussel',  telephone: '+33641556677', bien_ref: 'BEL-2031 · 4P 92m²' },
-    { heure: '16:30', prenom: 'Élise',   nom: 'Charpentier', telephone: '+33688771122', bien_ref: 'BEL-2088 · 2P 45m²' },
-    { heure: '18:30', prenom: 'Olivier', nom: 'Joly',     telephone: '+33677339911', bien_ref: 'BEL-1999 · 3P 65m²' }
+    { heure: _addH(2),  prenom: 'Anne',    nom: 'Lambert',     telephone: '+33633557799', bien_ref: 'BEL-2046 · 3P Presqu\'île' },
+    { heure: _addH(4),  prenom: 'Marc',    nom: 'Roussel',     telephone: '+33641556677', bien_ref: 'BEL-2031 · 4P Brotteaux' },
+    { heure: _addH(6),  prenom: 'Élise',   nom: 'Charpentier', telephone: '+33688771122', bien_ref: 'BEL-2088 · 2P Croix-Rousse' },
+    { heure: _addH(8),  prenom: 'Olivier', nom: 'Joly',        telephone: '+33677339911', bien_ref: 'BEL-1999 · 3P Part-Dieu' },
+    { heure: _addH(10), prenom: 'Nadia',   nom: 'Aubert',      telephone: '+33656778899', bien_ref: 'BEL-2055 · Maison Caluire' }
   ]
 };
 
