@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sales Battle Card · FR · GILD-TECH</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#E91E8C; --accent-soft:#fef0f8; --bg:#fafafa; --panel:#ffffff; --line:#ececef; --text:#0a0a0c; --text-2:#4a4a52; --muted:#93939d; --green:#16a34a; --red:#dc2626; --yellow:#ca8a04; }
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:14px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1280px;margin:0 auto;padding:24px;}
+  .header{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+  .header h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.02em;}
+  .header .meta{font-size:12px;color:var(--text-2);}
+  .header .meta strong{color:var(--accent);}
+  .lang-toggle{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:2px;}
+  .lang-toggle a{padding:5px 12px;font-size:12px;font-weight:600;color:var(--text-2);text-decoration:none;border-radius:5px;}
+  .lang-toggle a.active{background:var(--text);color:#fff;}
+  .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px;}
+  @media(max-width:1024px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .card h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+  .card h2 .count{color:var(--text-2);font-weight:500;margin-left:6px;}
+  .card.span-2{grid-column:span 2;} @media(max-width:680px){.card.span-2{grid-column:span 1;}}
+  .url-list{display:flex;flex-direction:column;gap:6px;}
+  .url-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--line);}
+  .url-row:hover{border-color:var(--accent);}
+  .url-row .label{font-size:12.5px;font-weight:600;color:var(--text);}
+  .url-row .label small{color:var(--text-2);font-weight:400;display:block;font-size:11px;}
+  .url-row .copy-btn{padding:4px 10px;border-radius:5px;background:var(--accent);color:white;font-size:11px;font-weight:600;cursor:pointer;border:0;text-decoration:none;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .ptier{padding:10px 12px;border-radius:6px;background:var(--bg);border:1px solid var(--line);text-align:center;}
+  .ptier.featured{background:var(--accent-soft);border-color:var(--accent);}
+  .ptier .name{font-size:12px;font-weight:700;}
+  .ptier .price{font-size:16px;font-weight:800;color:var(--accent);margin:4px 0;font-variant-numeric:tabular-nums;}
+  .ptier .alt{font-size:10.5px;color:var(--text-2);}
+  .ptier .alt b{color:var(--text);font-weight:600;}
+  ul.facts{margin:0;padding-left:18px;font-size:13px;color:var(--text-2);}
+  ul.facts li{margin-bottom:4px;line-height:1.5;} ul.facts li strong{color:var(--text);}
+  .obj{margin-bottom:10px;padding:10px 12px;background:var(--bg);border-radius:6px;border-left:3px solid var(--accent);}
+  .obj .q{font-weight:600;font-size:12.5px;color:var(--text);margin-bottom:4px;}
+  .obj .a{font-size:12.5px;color:var(--text-2);line-height:1.5;}
+  .demo-step{display:flex;gap:10px;margin-bottom:8px;padding:8px 10px;background:var(--bg);border-radius:6px;}
+  .demo-step .n{width:22px;height:22px;border-radius:5px;background:var(--accent);color:white;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .demo-step .t{font-size:12px;color:var(--text-2);line-height:1.5;} .demo-step .t strong{color:var(--text);} .demo-step .t a{color:var(--accent);}
+  .num-block{display:flex;gap:12px;flex-wrap:wrap;}
+  .num{padding:8px 12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;}
+  .num small{display:block;font-size:10px;color:var(--text-2);font-weight:400;font-family:'Inter';margin-bottom:2px;}
+  .compare-mini{width:100%;border-collapse:collapse;font-size:12px;}
+  .compare-mini th{text-align:left;padding:6px 4px;color:var(--text-2);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);}
+  .compare-mini td{padding:7px 4px;border-bottom:1px solid var(--line);}
+  .compare-mini td:first-child{font-weight:600;color:var(--text);}
+  .check{color:var(--green);font-weight:700;} .ex{color:var(--red);opacity:.6;}
+  .closer-row{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--bg);border:1px solid var(--line);border-radius:6px;margin-bottom:6px;}
+  .closer-row .avatar{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#b8186e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;}
+  .closer-row .ident{flex:1;font-size:12.5px;font-weight:600;}
+  .closer-row .ident small{display:block;color:var(--text-2);font-weight:400;font-size:11px;}
+  .closer-row .ident small.warn{color:var(--yellow);font-weight:600;}
+  .closer-row .copy-btn{padding:4px 10px;border-radius:5px;background:var(--accent);color:white;font-size:11px;font-weight:600;text-decoration:none;}
+  .closer-row .copy-btn.disabled{background:var(--text-2);opacity:.5;pointer-events:none;}
+  .footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;}
+  .toast{position:fixed;bottom:24px;right:24px;padding:10px 16px;background:var(--accent);color:white;border-radius:8px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s;}
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <h1>🥷 Sales Battle Card · GILD-TECH</h1>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <div class="meta">MAJ <strong id="todayDate"></strong></div>
+      <div class="lang-toggle"><a href="/team/fr/" class="active">FR</a><a href="/team/en/">EN</a></div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>🇫🇷 URLs à partager avec un prospect <span class="count">8</span></h2>
+      <div class="url-list">
+        <div class="url-row"><div class="label">Sales page principale<small>gild-tech.com/sarah</small></div><a class="copy-btn" href="https://gild-tech.com/sarah" target="_blank">Ouvrir</a></div>
+        <div class="url-row"><div class="label">Comment ça marche (méthodo)<small>/comment-ca-marche/</small></div><a class="copy-btn" href="https://gild-tech.com/comment-ca-marche/" target="_blank">Ouvrir</a></div>
+        <div class="url-row"><div class="label">Démo Sarah Studio (pilote IA)<small>/sarah-studio/</small></div><a class="copy-btn" href="https://gild-tech.com/sarah-studio/" target="_blank">Ouvrir</a></div>
+        <div class="url-row"><div class="label">Démo voix Sophie 24/7<small>/demo/sarah-voice-fr</small></div><a class="copy-btn" href="https://gild-tech.com/demo/sarah-voice-fr" target="_blank">Ouvrir</a></div>
+        <div class="url-row"><div class="label">Comparatif concurrents<small>/vs-concurrents/</small></div><a class="copy-btn" href="https://gild-tech.com/vs-concurrents/" target="_blank">Ouvrir</a></div>
+        <div class="url-row"><div class="label">Calculateur ROI<small>/calculateur</small></div><a class="copy-btn" href="https://gild-tech.com/calculateur" target="_blank">Ouvrir</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📅 Calendly par closer <span class="count">4</span></h2>
+      <div class="closer-row">
+        <div class="avatar">PJ</div>
+        <div class="ident">Pierre-Jean (CEO)<small>FR + UK · audits stratégiques</small></div>
+        <a class="copy-btn" href="https://calendly.com/ops-gild-tech/30min" target="_blank">Ouvrir</a>
+      </div>
+      <div class="closer-row">
+        <div class="avatar">JC</div>
+        <div class="ident">Jack Chambers<small>UK · closer immobilier</small></div>
+        <a class="copy-btn" href="https://calendly.com/jack-gild-tech" target="_blank">Ouvrir</a>
+      </div>
+      <div class="closer-row">
+        <div class="avatar">HV</div>
+        <div class="ident">Hervé<small class="warn">⚠️ Calendly à créer avec herve@gild-tech.com</small></div>
+        <a class="copy-btn disabled">À créer</a>
+      </div>
+      <div class="closer-row">
+        <div class="avatar">CC</div>
+        <div class="ident">Cécile<small class="warn">⚠️ Calendly à créer avec cecile@gild-tech.com</small></div>
+        <a class="copy-btn disabled">À créer</a>
+      </div>
+      <ul class="facts" style="margin-top:10px">
+        <li><strong>En attendant</strong> que Hervé + Cécile créent les leurs : utilisez <em>ops-gild-tech/30min</em> (PJ dispatche derrière)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💰 Pricing — montants identiques EUR / GBP / USD</h2>
+      <div class="pricing-grid">
+        <div class="ptier"><div class="name">Starter</div><div class="price">990</div><div class="alt">€/£/$ · ou <b>3 × 363</b></div></div>
+        <div class="ptier featured"><div class="name">Pro ★</div><div class="price">2 490</div><div class="alt">€/£/$ · ou <b>3 × 913</b></div></div>
+        <div class="ptier"><div class="name">Scale</div><div class="price">4 990</div><div class="alt">€/£/$ · ou <b>3 × 1 830</b></div></div>
+      </div>
+      <ul class="facts" style="margin-top:10px">
+        <li><strong>Le montant est identique dans les 3 devises</strong> (€/£/$) — seul le symbole change. C'est le standard GILD-TECH 2026.</li>
+        <li>Maintenance optionnelle : <strong>290 (€/£/$)/mois Pro</strong> · 390 (€/£/$)/mois Scale</li>
+        <li>Élevate : <strong>14 900 €</strong> consulting (virement / PayPal)</li>
+        <li>Dépôt d'engagement : 500 (€/£/$) — versement Pro ou Scale</li>
+        <li>Garantie <strong>30 jours satisfait ou remboursé</strong> sur Pro et Scale</li>
+        <li>Commission closer : <strong>40% flat</strong> (setup + récurrent)</li>
+      </ul>
+    </div>
+
+    <div class="card span-2">
+      <h2>🎬 Flow démo visio · 25 minutes</h2>
+      <div class="demo-step"><div class="n">1</div><div class="t"><strong>0-2 min · Cadrage</strong> : "Avant tout, c'est quoi votre plus grosse galère prospection / rentrée de mandats aujourd'hui ?" Écouter, reformuler.</div></div>
+      <div class="demo-step"><div class="n">2</div><div class="t"><strong>2-5 min · ROI chiffré</strong> : ouvrir <a href="https://gild-tech.com/calculateur" target="_blank">/calculateur</a>, saisir leur volume mensuel, montrer la perte chiffrée. <em>"Voilà votre fuite réelle, en euros."</em></div></div>
+      <div class="demo-step"><div class="n">3</div><div class="t"><strong>5-15 min · Démo Sarah Studio</strong> : ouvrir <a href="https://gild-tech.com/sarah-studio/" target="_blank">/sarah-studio/</a>. Montrer KPIs sparklines + Top leads + chat IA + push-to-talk vocal. <em>"C'est ce qu'ils voient chaque matin à 7h."</em></div></div>
+      <div class="demo-step"><div class="n">4</div><div class="t"><strong>15-18 min · Démo voix live</strong> : ouvrir <a href="https://gild-tech.com/demo/sarah-voice-fr" target="_blank">/demo/sarah-voice-fr</a>, faire un test live "Bonjour, je vends mon 3 pièces" → Sophie qualifie. <em>Effet wahou garanti.</em></div></div>
+      <div class="demo-step"><div class="n">5</div><div class="t"><strong>18-22 min · Comment ça marche</strong> : ouvrir <a href="https://gild-tech.com/comment-ca-marche/" target="_blank">/comment-ca-marche/</a>. Insister sur les 30 j d'accompagnement (pas juste un setup).</div></div>
+      <div class="demo-step"><div class="n">6</div><div class="t"><strong>22-25 min · Closing</strong> : pricing Pro 2 490 € HT (ou 3 × 913 €). Garantie 30 j. Stripe link en visio si OK ou Calendly callback J+1.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>🧱 Comebacks objections</h2>
+      <div class="obj"><div class="q">"C'est trop cher"</div><div class="a">Sarah s'amortit dès le <strong>1er mandat récupéré</strong> (commission moyenne 8 000 €). Vous en perdez 6 par mois. Net : <strong>+10 310 €</strong>. 3 mensualités possibles.</div></div>
+      <div class="obj"><div class="q">"J'ai déjà un CRM (Apimo / Hektor)"</div><div class="a">On <strong>se branche par-dessus</strong>, on ne remplace pas. Sarah lit dans votre CRM, écrit les leads qualifiés dedans. <strong>Vous ne changez rien</strong>.</div></div>
+      <div class="obj"><div class="q">"Mes prospects vont sentir le robot"</div><div class="a">Sarah pose 1 question, envoie un Calendly. <strong>60% de clics</strong> vs 5% pour un rappel téléphonique classique. Escalade humaine si elle doute.</div></div>
+      <div class="obj"><div class="q">"Et MonAgent-IA à 99 €/mois ?"</div><div class="a">Ils font <strong>juste un chatbot WA</strong>. Pas de voix, pas de pilote négo, pas d'accompagnement 30 j, pas de garantie. Vous payez 99 € pour un quart de la stack.</div></div>
+      <div class="obj"><div class="q">"Je veux réfléchir"</div><div class="a">Pas de souci. 2 questions : <strong>(1)</strong> qu'est-ce qui vous fait hésiter concrètement ? <strong>(2)</strong> on cale un point à J+3 ou je vous oublie ? <em>(force la décision binaire)</em></div></div>
+      <div class="obj"><div class="q">"RGPD ?"</div><div class="a">Conforme. Votre numéro, votre branding, votre Google Workspace. <strong>Vous restez DPO</strong>. Contrat de sous-traitance signé.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>⚔️ Cheat sheet concurrents</h2>
+      <table class="compare-mini">
+        <thead><tr><th>Critère</th><th>Sarah</th><th>MonAgent-IA</th><th>Roof AI</th></tr></thead>
+        <tbody>
+          <tr><td>Voice 24/7</td><td><span class="check">OUI</span></td><td><span class="ex">NON</span></td><td><span class="ex">NON</span></td></tr>
+          <tr><td>WhatsApp</td><td><span class="check">OUI</span></td><td><span class="check">OUI</span></td><td><span class="ex">NON</span></td></tr>
+          <tr><td>Pilote IA négo</td><td><span class="check">OUI</span></td><td><span class="ex">NON</span></td><td><span class="ex">NON</span></td></tr>
+          <tr><td>Accompagnement 30 j</td><td><span class="check">OUI</span></td><td><span class="ex">NON</span></td><td><span class="ex">NON</span></td></tr>
+          <tr><td>Garantie 30 j remb.</td><td><span class="check">OUI</span></td><td>14 j essai</td><td><span class="ex">NON</span></td></tr>
+          <tr><td>Marché cible</td><td>FR/UK indé</td><td>FR indé</td><td>US brokerages</td></tr>
+          <tr><td>Pricing entry</td><td>990 / 99 €/mois</td><td>99-199 €/mois</td><td>caché</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>📞 Numéros démo · à appeler en visio</h2>
+      <div class="num-block">
+        <div class="num"><small>🇫🇷 Setter Marie</small>+1 707 669 9016</div>
+        <div class="num"><small>🇬🇧 Setter Riley</small>+1 618 726 1025</div>
+      </div>
+      <ul class="facts" style="margin-top:10px">
+        <li>Numéros US (TEST) — démo only, pas en prod</li>
+        <li>Le prospect peut appeler depuis n'importe où, Sarah décroche</li>
+        <li>Twilio FR/UK <strong>en attente de sign-in PJ</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎤 Pitch points en 5 phrases</h2>
+      <ul class="facts">
+        <li><strong>Sarah ne tombe jamais malade.</strong> Pas de RTT, pas de pause déjeuner, pas de congé maladie.</li>
+        <li><strong>67% des prospects qui contactent une agence ne sont jamais rappelés</strong> (FNAIM 2024). Sarah rappelle en sub-5 min.</li>
+        <li><strong>Pas un outil, un système opérationnel</strong> — diagnostic + calibration sur-mesure + 30 jours d'accompagnement quotidien.</li>
+        <li><strong>Aucun concurrent n'a la voix</strong>. Sophie / Charlotte décrochent à 22h47 un dimanche.</li>
+        <li><strong>Vous gardez votre CRM</strong> (Apimo, Hektor, Reapit, Alto…). Sarah se branche par-dessus.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📂 Assets backstage</h2>
+      <ul class="facts">
+        <li>Brochures FR/EN : <code>kit-premier-client/brochure-sarah-*.md</code></li>
+        <li>Cold mail kit : <code>kit-premier-client/08-cold-mailing-angles-immo.md</code></li>
+        <li>Scripts cold call FR/EN : <code>01-script-cold-call*.md</code></li>
+        <li>Template proposition : <code>F-brochure-template-proposition.md</code></li>
+        <li>Stripe links matrix : Notion <em>💳 Stripe Payment Links</em></li>
+        <li>Playbook complet : <code>kit-premier-client/SALES-PLAYBOOK.md</code></li>
+        <li>Compétitive landscape : <code>COMPETITIVE-LANDSCAPE.md</code></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer">Sales Battle Card FR · usage interne GILD-TECH · ne pas partager avec prospects.<br>Hervé · Jack · Cécile · PJ · Girlden LTD UK · gild-tech.com</div>
+</div>
+<div id="toast" class="toast">Copié dans le presse-papier ✓</div>
+<script>
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  document.querySelectorAll('.url-row a.copy-btn, .closer-row a.copy-btn:not(.disabled)').forEach(a=>{
+    a.addEventListener('contextmenu',e=>{e.preventDefault();navigator.clipboard.writeText(a.href);const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);});
+  });
+</script>
+</body>
+</html>
