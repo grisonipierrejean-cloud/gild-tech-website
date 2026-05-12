@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qui sommes-nous · GILD-TECH</title>
+<meta name="description" content="GILD-TECH est une agence d'automatisation commerciale spécialisée immobilier. Basée à Bath (UK) sous Girlden LTD. Équipe terrain — 15 ans de closing, 9 ans d'ingénierie d'automatisation.">
+<link rel="canonical" href="https://gild-tech.com/about/">
+<link rel="alternate" hreflang="en" href="https://gild-tech.com/about/en/">
+<link rel="alternate" hreflang="fr" href="https://gild-tech.com/about/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qui sommes-nous · GILD-TECH">
+<meta property="og:description" content="Équipe terrain — 15 ans de closing, 9 ans d'ingénierie d'automatisation. Basée à Bath sous Girlden LTD UK.">
+<meta property="og:url" content="https://gild-tech.com/about/">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#E91E8C; --accent-soft:#fef0f8; --accent-line:#fbcfe5; --bg:#ffffff; --bg-elev:#fafafa; --panel:#ffffff; --line:#ececef; --line-strong:#d8d8dd; --text:#0a0a0c; --text-2:#4a4a52; --muted:#93939d; --shadow:0 1px 2px rgba(10,10,12,.04),0 8px 24px -12px rgba(10,10,12,.08); }
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;font-feature-settings:'cv02','cv03','cv11','ss01';letter-spacing:-.011em;font-size:15px;}
+
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line);}
+  nav.top .nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  nav.top .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:var(--text);text-decoration:none;}
+  nav.top .logo-mark{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#b8186e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+  nav.top .nav-links{display:flex;gap:22px;align-items:center;font-size:14px;}
+  nav.top .nav-links a{color:var(--text-2);text-decoration:none;font-weight:500;}
+  nav.top .nav-links a:hover{color:var(--text);}
+  nav.top .nav-cta{background:var(--accent);color:#fff !important;padding:7px 14px;border-radius:7px;font-weight:600;}
+  nav.top .lang{display:inline-flex;background:var(--bg-elev);border:1px solid var(--line);border-radius:6px;padding:2px;}
+  nav.top .lang a{padding:4px 9px;font-size:12px;font-weight:600;color:var(--text-2);text-decoration:none;border-radius:4px;}
+  nav.top .lang a.active{background:var(--text);color:#fff;}
+
+  .hero{padding:80px 24px 50px;max-width:880px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding:5px 11px;background:var(--accent-soft);border-radius:999px;margin-bottom:22px;}
+  .hero h1{font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0 0 22px;}
+  .hero h1 em{font-style:normal;color:var(--accent);}
+  .hero .lead{color:var(--text-2);font-size:19px;max-width:720px;margin:0 0 20px;line-height:1.5;}
+
+  @media(max-width:720px){.hero h1{font-size:32px;}}
+
+  .section{max-width:880px;margin:0 auto;padding:50px 24px;}
+  .section h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0 0 18px;line-height:1.2;}
+  .section h2 em{font-style:normal;color:var(--accent);}
+  .section p{color:var(--text-2);margin:0 0 14px;font-size:15.5px;line-height:1.65;}
+  .section p strong{color:var(--text);}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:32px 0;}
+  .stat-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 22px;box-shadow:var(--shadow);}
+  .stat-card .num{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums;}
+  .stat-card .label{font-size:13.5px;color:var(--text-2);line-height:1.45;}
+
+  .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;}
+  .member{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 24px;}
+  .member .ini{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#b8186e);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em;margin-bottom:14px;}
+  .member h3{margin:0 0 4px;font-size:17px;font-weight:700;}
+  .member .role{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .member p{margin:0;font-size:13.5px;color:var(--text-2);line-height:1.55;}
+
+  .principle{padding:18px 22px;border-left:3px solid var(--accent);background:var(--bg-elev);border-radius:0 10px 10px 0;margin-bottom:12px;}
+  .principle h3{margin:0 0 6px;font-size:16px;font-weight:700;letter-spacing:-.005em;}
+  .principle p{margin:0;color:var(--text-2);font-size:14.5px;line-height:1.55;}
+
+  .company-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:18px;}
+  .company-card dl{margin:0;display:grid;grid-template-columns:140px 1fr;gap:8px 18px;}
+  .company-card dt{font-size:12px;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;font-weight:600;padding-top:2px;}
+  .company-card dd{margin:0;font-size:14px;}
+
+  .final-cta{text-align:center;padding:70px 24px 90px;background:var(--bg-elev);margin-top:60px;}
+  .final-cta h2{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0 0 14px;}
+  .final-cta p{color:var(--text-2);font-size:16px;max-width:580px;margin:0 auto 26px;}
+  .btn{background:var(--accent);color:#fff;padding:13px 22px;border-radius:9px;text-decoration:none;font-weight:700;font-size:14.5px;box-shadow:0 4px 14px rgba(233,30,140,.25);display:inline-block;}
+  .btn-ghost{background:var(--bg-elev);border:1px solid var(--line);color:var(--text);padding:12px 22px;border-radius:9px;text-decoration:none;font-weight:600;font-size:14.5px;display:inline-block;margin-left:8px;}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  footer{padding:24px;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);}
+  footer a{color:var(--text-2);text-decoration:none;}
+  ::selection{background:var(--accent-soft);color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="/" class="logo"><span class="logo-mark">G</span>GILD-TECH</a>
+    <div class="nav-links">
+      <a href="/sarah">Offre</a>
+      <a href="/comment-ca-marche/">Comment ça marche</a>
+      <a href="/sarah-studio/">Démo</a>
+      <a href="/vs-concurrents/">Concurrents</a>
+      <span class="lang">
+        <a href="/about/" class="active">FR</a>
+        <a href="/about/en/">EN</a>
+      </span>
+      <a href="https://calendly.com/ops-gild-tech/30min" class="nav-cta">Audit gratuit</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="eyebrow">Qui sommes-nous</span>
+  <h1>Une équipe <em>terrain</em>. Pas une startup qui parle de transformation digitale.</h1>
+  <p class="lead">GILD-TECH est l'outil qu'on aurait voulu avoir quand on faisait du closing à la voix. 15 ans à passer des appels nous-mêmes pour comprendre qu'aucun outil du marché n'épouse vraiment le quotidien d'un négociateur immobilier indépendant. Alors on l'a construit.</p>
+</section>
+
+<section class="section">
+  <h2>Notre <em>parti pris</em>.</h2>
+  <p>Le marché immobilier français et britannique est servi par deux types de solutions : les <strong>CRM lourds</strong> (Apimo, Hektor, Reapit, Alto) calibrés pour structurer un pipeline mais aveugles à l'instantanéité, et les <strong>chatbots génériques</strong> qui n'ont jamais qualifié un acquéreur de leur vie.</p>
+  <p>Notre angle : <strong>un système opérationnel qui se branche par-dessus votre stack actuelle</strong>, qui qualifie en temps réel sur WhatsApp ou au téléphone, et qui accompagne votre équipe 30 jours après la mise en service. Pas un outil de plus. Une couche d'exécution qui transforme les enquiries dormantes en mandats signés.</p>
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">15 ans</div><div class="label">d'expérience cumulée en closing téléphonique B2B et B2C</div></div>
+    <div class="stat-card"><div class="num">9 ans</div><div class="label">d'ingénierie d'automatisation (n8n, Stripe, Vapi, Anthropic)</div></div>
+    <div class="stat-card"><div class="num">100%</div><div class="label">remboursé si Sarah ne tient pas ses promesses sous 30 jours</div></div>
+    <div class="stat-card"><div class="num">2 marchés</div><div class="label">France métropolitaine et Royaume-Uni — clients indépendants 1 à 15 négociateurs</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>L'<em>équipe</em>.</h2>
+  <p>Quatre profils complémentaires. Chacun avec un terrain réel avant de toucher au produit.</p>
+  <div class="team">
+    <div class="member">
+      <div class="ini">PJ</div>
+      <h3>Pierre-Jean Grisoni</h3>
+      <div class="role">CEO · Architecture produit</div>
+      <p>Ancien closer B2B en cybersécurité et SaaS. Diagnostic stratégique, design des workflows, calibration des prompts Sarah, suivi opérationnel des 30 premiers jours de chaque client.</p>
+    </div>
+    <div class="member">
+      <div class="ini">JC</div>
+      <h3>Jack Chambers</h3>
+      <div class="role">Closer UK · Real estate</div>
+      <p>Expert marché britannique. Pilotage des audits UK, intégration des CRM Reapit / Alto / Jupix, déploiement chez les agences indépendantes de Bath, Bristol et Cambridge.</p>
+    </div>
+    <div class="member">
+      <div class="ini">HV</div>
+      <h3>Hervé</h3>
+      <div class="role">Closer FR · Onboarding</div>
+      <p>Spécialiste relation négociateur. Audits FR, onboarding équipe le jour de la mise en service, formation à Sarah Studio. Sensibilité forte au quotidien terrain de l'agence indépendante.</p>
+    </div>
+    <div class="member">
+      <div class="ini">CC</div>
+      <h3>Cécile</h3>
+      <div class="role">Closer FR · B2C overflow</div>
+      <p>Gestion des audits FR à fort volume. Expertise particulière sur les contextes B2C complexes (transitions de vie, divorces, successions) qui demandent un ton commercial empathique.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Nos <em>3 principes</em>.</h2>
+
+  <div class="principle">
+    <h3>1. On dit ce qu'on fait. Et on fait ce qu'on dit.</h3>
+    <p>Pas de promesse vague de "transformation digitale". Vous savez exactement ce que Sarah fait (qualifie, relance, briefe) et ce qu'elle ne fait pas (négocier un mandat, signer un compromis). Si Sarah ne tient pas ses promesses dans les 30 jours, vous récupérez 100% de votre paiement.</p>
+  </div>
+
+  <div class="principle">
+    <h3>2. On se branche, on ne remplace pas.</h3>
+    <p>Votre CRM (Apimo, Hektor, Reapit, Alto…) reste votre source de vérité. Vos négociateurs continuent d'utiliser leurs outils habituels. Sarah ajoute une couche d'exécution intelligente par-dessus — pas un énième logiciel à gérer.</p>
+  </div>
+
+  <div class="principle">
+    <h3>3. Le 30 premiers jours, on est avec vous au quotidien.</h3>
+    <p>La valeur ne se joue pas dans le setup, elle se joue dans l'ajustement opérationnel post-mise en service. Hotline directe, debriefs hebdomadaires, calibration continue des scripts sur vos retours. On reste partenaires jusqu'à ce que Sarah tourne sans intervention.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>L'<em>entreprise</em>.</h2>
+  <p>GILD-TECH est la marque opérée par <strong>Girlden LTD</strong>, société de droit britannique basée à Bath (Somerset). Statut professionnel actif, conformité RGPD, contrat de sous-traitance signé avec chaque client agence.</p>
+  <div class="company-card">
+    <dl>
+      <dt>Société</dt><dd>Girlden LTD</dd>
+      <dt>Statut</dt><dd>Private limited company (UK)</dd>
+      <dt>Adresse siège</dt><dd>Bath, Somerset, Royaume-Uni</dd>
+      <dt>Marque opérée</dt><dd>GILD-TECH</dd>
+      <dt>Marché cible</dt><dd>Agences immobilières indépendantes, France métropolitaine et UK</dd>
+      <dt>Email principal</dt><dd><a href="mailto:ops@gild-tech.com">ops@gild-tech.com</a></dd>
+      <dt>Téléphone</dt><dd>+33 6 99 08 05 39</dd>
+      <dt>Site</dt><dd><a href="https://gild-tech.com">gild-tech.com</a></dd>
+    </dl>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Vous êtes prêt à mesurer ce que vous perdez ?</h2>
+  <p>30 minutes en visio, sans engagement. À la fin de l'audit vous savez précisément combien votre agence laisse sur la table chaque mois.</p>
+  <a href="https://calendly.com/ops-gild-tech/30min" class="btn">Réserver l'audit gratuit</a>
+  <a href="/sarah" class="btn-ghost">Voir l'offre Pro · 2 490 €</a>
+</section>
+
+<footer>
+  <a href="/">GILD-TECH</a> · Girlden LTD · UK · <a href="mailto:ops@gild-tech.com">ops@gild-tech.com</a> · <a href="/mentions-legales/">Mentions légales</a>
+</footer>
+
+</body>
+</html>

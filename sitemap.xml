@@ -4,12 +4,101 @@
 
   <url>
     <loc>https://gild-tech.com/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/"/>
+  </url>
+
+  <url>
+    <loc>https://gild-tech.com/sarah</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-uk"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/sarah-uk</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-uk"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/comment-ca-marche/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/comment-ca-marche/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/how-it-works/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/how-it-works/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/comment-ca-marche/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/how-it-works/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/sarah-studio/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/vs-concurrents/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/vs-concurrents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/vs-competitors/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/vs-competitors/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/vs-concurrents/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/vs-competitors/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/about/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/about/en/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/about/en/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/about/en/"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/pitch/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/demo/sarah-voice-fr</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/demo/sarah-voice-uk</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
 
   <url>
