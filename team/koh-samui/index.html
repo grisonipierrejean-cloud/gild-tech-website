@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Battle Card · Koh Samui Real Estate · GILD-TECH</title>
+<meta name="description" content="Internal sales battle card · Koh Samui market · Sprint J+1 → J+30">
+<style>
+  :root {
+    --pink: #E91E8C;
+    --pink-soft: #fde4f1;
+    --pink-line: #fbcfe5;
+    --bg: #0a0a0c;
+    --panel: #14141a;
+    --panel-2: #1a1a22;
+    --line: #2a2a36;
+    --text: #f5f5fa;
+    --text-2: #b8b8c8;
+    --muted: #80808c;
+    --green: #2ecc71;
+    --red: #ff4d6d;
+    --gold: #f5d76e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 920px; margin: 0 auto; padding: 32px 22px 80px; }
+  .ribbon { background: linear-gradient(135deg, var(--pink), #b8186e); padding: 6px 14px; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 22px; }
+  .ribbon::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+  h1 { font-size: 38px; font-weight: 900; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 12px; }
+  h1 em { font-style: normal; color: var(--pink); }
+  .subhead { color: var(--text-2); font-size: 17px; margin-bottom: 28px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .chip { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--text-2); }
+  .chip.live { color: var(--green); border-color: rgba(46, 204, 113, 0.3); }
+  .chip.warn { color: var(--gold); border-color: rgba(245, 215, 110, 0.3); }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 26px; margin-bottom: 18px; }
+  section h2 { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; }
+  section h3 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; margin: 18px 0 10px; color: var(--text); }
+  section h3:first-of-type { margin-top: 0; }
+  blockquote { background: var(--panel-2); border-left: 3px solid var(--pink); border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 8px 0 14px; color: var(--text); font-size: 15.5px; font-style: italic; line-height: 1.6; }
+  blockquote strong { color: var(--pink); font-style: normal; }
+  .arrow-note { color: var(--text-2); font-size: 13.5px; margin: 4px 0 14px; padding-left: 8px; }
+  .arrow-note::before { content: '→ '; color: var(--pink); font-weight: 800; }
+  table.vocab { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13.5px; }
+  table.vocab th, table.vocab td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+  table.vocab th { color: var(--muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  table.vocab td.ok { color: var(--pink); font-weight: 700; }
+  .objection { background: var(--panel-2); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .objection .q { font-weight: 800; color: var(--text); margin-bottom: 6px; font-size: 14px; }
+  .objection .q::before { content: '"'; color: var(--pink); }
+  .objection .q::after { content: '"'; color: var(--pink); }
+  .objection .a { color: var(--text-2); font-size: 13.5px; font-style: italic; line-height: 1.55; }
+  ul.banned { list-style: none; padding: 0; }
+  ul.banned li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  ul.banned li:last-child { border-bottom: 0; }
+  ul.banned .ko { color: var(--red); text-decoration: line-through; }
+  ul.banned .arrow { color: var(--muted); margin: 0 6px; }
+  ul.banned .ok { color: var(--pink); font-weight: 700; }
+  .cta-bottom { background: linear-gradient(135deg, rgba(233, 30, 140, 0.12), rgba(233, 30, 140, 0.04)); border: 1px solid rgba(233, 30, 140, 0.3); border-radius: 14px; padding: 22px 26px; margin-top: 30px; text-align: center; }
+  .cta-bottom h3 { font-size: 17px; margin-bottom: 10px; color: var(--text); }
+  .cta-bottom p { color: var(--text-2); font-size: 14px; margin-bottom: 14px; }
+  .cta-bottom a { display: inline-block; background: var(--pink); color: #fff; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; }
+  .footer-internal { margin-top: 26px; text-align: center; color: var(--muted); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .warning-banner { background: linear-gradient(135deg, rgba(245, 215, 110, 0.12), rgba(245, 215, 110, 0.04)); border: 1px solid rgba(245, 215, 110, 0.3); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; color: var(--gold); }
+</style>
+  <!-- Cinema intro overlay (3.5s, once per session) -->
+  <script defer src="/assets/intro/intro.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <div class="ribbon">Live · Koh Samui Sprint J+1 → J+30</div>
+  <h1>Battle Card · <em>Koh Samui</em></h1>
+  <p class="subhead">Internal sales tool · GILD-TECH Sales Operating System · Updated 20 May 2026</p>
+  <div class="meta">
+    <span class="chip">Sprint window · 20 May → 20 June 2026</span>
+    <span class="chip live">Target: real estate brokers (NOT OTAs)</span>
+    <span class="chip warn">Excluded: FazWaz · Lazudi · Hipflat · BluePillow · Rentalsunited</span>
+    <span class="chip">Pricing: Pro $2,490 · Scale $4,990</span>
+  </div>
+
+  <div class="warning-banner">
+    <strong>Target rule</strong>: independent real estate brokers/agencies on Koh Samui only (Conrad Properties, Samui Holiday Homes, Tropical Real Estate, Siam Real Estate, Real Properties Samui-tier). <strong>Skip</strong> villa rental platforms / OTAs (FazWaz, Lazudi, Hipflat) — wrong ICP, they're not agencies.
+  </div>
+
+  <!-- 1. PATTERN INTERRUPTS -->
+  <section>
+    <h2>1 · Pattern interrupts · first 30 seconds</h2>
+    <p style="color: var(--text-2); font-size: 13.5px; margin-bottom: 16px; line-height: 1.55;">Goal: <strong style="color: var(--pink);">break</strong> the prospect's expectation in the first second. No polite classic intro. 3 <strong>expert-level</strong> techniques used by top B2B closers (Sandler · Cole Gordon · Jeremy Miner / NEPQ).</p>
+
+    <h3>#1 · UP FRONT CONTRACT · Sandler School (1967)</h3>
+    <blockquote>
+      Hi [First name], this is [Your name] from GILD-TECH. <strong>Here's how this is going to work</strong>: 90 seconds. If at the end it doesn't make sense for you, just say "not for me", we hang up no hard feelings. If it does, we keep going for 2 more minutes. <strong>Deal?</strong>
+    </blockquote>
+    <div class="arrow-note"><strong>Why it's expert</strong>: you set the rules. The prospect no longer wonders how much time he's going to lose — he accepts or declines. Firm + respectful. Sandler signature technique since 1967.</div>
+    <div class="arrow-note"><strong>When to use</strong>: default, 50% of calls. Particularly effective on UK / European agency owners on Koh Samui who appreciate structure.</div>
+
+    <h3>#2 · STATUS FRAME · Cole Gordon (NEPQ)</h3>
+    <blockquote>
+      [Your name] from GILD-TECH. <strong>I'm not sure we should work together</strong> — depends on your situation. 3 short questions to check. If I'm wasting your time, I'll stop. <strong>OK?</strong>
+    </blockquote>
+    <div class="arrow-note"><strong>Why it's expert</strong>: you're NOT a salesperson begging. You're an expert qualifying. The prospect has to prove HE is eligible — not the other way around. Cole Gordon (coach to $500k/year closers) popularised it. Completely inverts the power dynamic.</div>
+    <div class="arrow-note"><strong>When to use</strong>: "jaded" prospects who get 5 cold callers a week. Also for top players (large established agencies) who think they have nothing to learn.</div>
+
+    <h3>#3 · PERMISSION WITH STAKES · forced binary</h3>
+    <blockquote>
+      Hi [First name]. <strong>90 seconds.</strong> Two scenarios: either I waste your time, or I save you from leaving <strong>$60,000 USD on the table</strong> this year. Want to find out which one?
+    </blockquote>
+    <div class="arrow-note"><strong>Why it's expert</strong>: you present both possible outcomes. Curiosity to know "which of the two" forces the prospect to continue. The concrete number ($60k = MIT Sloan 21× × avg Koh Samui villa commission) anchors value from second one.</div>
+    <div class="arrow-note"><strong>When to use</strong>: when you have the energy to deliver with confidence. <strong>Warning</strong>: if prospect says "go on, show me", you MUST deliver concrete numbers in the next 60 seconds (avg Koh Samui villa price × commission × MIT Sloan multiplier).</div>
+
+    <div class="arrow-note" style="margin-top: 24px; padding: 14px 18px; background: var(--panel-2); border-radius: 8px; border-left: 3px solid var(--pink);">
+      <strong>Golden rule</strong>: if any response — whatever it is — transition to the 90-second pitch (section 3). If hard hang-up: "Not available" in CRM, recall in 6 months. <strong>Never insist.</strong>
+    </div>
+  </section>
+
+  <!-- 2. STATS BY HEART -->
+  <section>
+    <h2>2 · 5 stats by heart · context + verbatim hook</h2>
+    <p style="color: var(--text-2); font-size: 13.5px; margin-bottom: 18px; line-height: 1.55;">For each stat: <strong style="color: var(--text);">raw number</strong> · <strong style="color: var(--text);">simple analogy</strong> (9-year-old understandable) · then <strong style="color: var(--text);">verbatim phrase</strong> to say on the phone.</p>
+
+    <!-- Stat #1 -->
+    <div style="background: var(--panel-2); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--pink);">
+      <div style="font-size: 11px; color: var(--pink); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Stat #1 · Lead Response Time</div>
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.35;">5 min vs 30 min = <span style="color: var(--pink);">21× more qualified leads</span> · 9× more conversions</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Raw stat</strong>: MIT Sloan Management Review + University of Massachusetts analysed <strong>15,000 inbound B2B leads</strong> (James Oldroyd study). Conclusion: a business that calls back in under 5 minutes captures <strong>21×</strong> more qualified leads than one waiting 30 minutes. Conversion: 9× higher.</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Imagine</strong>: you're playing a game where 100 balls drop from the sky in a schoolyard. If you raise your hands in the first 5 seconds, you catch <strong>21</strong>. If you wait 30 seconds checking your phone, you catch <strong>1</strong>. Just 25 seconds difference — you miss 95% of the game.</div>
+      <div style="font-size: 13.5px; color: var(--pink); font-style: italic; line-height: 1.55;"><strong style="font-style: normal;">On the phone, say</strong>: "MIT Sloan measured it on 15,000 inbound leads: 5 minutes versus 30 minutes = 21× more booked viewings. Not 2×. Not 5×. <strong style="font-style: normal;">21 times.</strong>"</div>
+    </div>
+
+    <!-- Stat #2 -->
+    <div style="background: var(--panel-2); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--pink);">
+      <div style="font-size: 11px; color: var(--pink); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Stat #2 · Koh Samui buyer profile</div>
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.35;">90% of Koh Samui buyers = <span style="color: var(--pink);">foreign investors</span> · UK · EU · AUS · US · CN · RU</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Raw stat</strong>: Koh Samui real estate is overwhelmingly driven by foreign buyers (~90% of transactions on second-home & investment villas). They typically research from their home country across multiple timezones: search Bangkok-time evening = London/Paris afternoon = NY morning. Buyer rarely visits before committing — relies on <strong>fast WhatsApp/email response + virtual viewings</strong>.</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Imagine</strong>: you're selling lemonade. 9 out of 10 customers live in another country, never met you, can't taste before buying. The ONLY thing they care about: how fast do you reply to their messages? That's literally Koh Samui real estate.</div>
+      <div style="font-size: 13.5px; color: var(--pink); font-style: italic; line-height: 1.55;"><strong style="font-style: normal;">On the phone, say</strong>: "90% of your buyers are foreigners — UK, EU, US, AU, China. They research from 5,000+ km away, multiple timezones. The only thing they remember: which agency replied to their WhatsApp in 2 minutes, and which took 2 days. <strong style="font-style: normal;">Speed of reply = market share.</strong>"</div>
+    </div>
+
+    <!-- Stat #3 -->
+    <div style="background: var(--panel-2); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--pink);">
+      <div style="font-size: 11px; color: var(--pink); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Stat #3 · Commission Thailand</div>
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.35;">Standard commission: <span style="color: var(--pink);">3-5% of sale price</span> · often split 50/50 buyer/seller agent</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Raw stat</strong>: Real estate commission in Thailand sits at 3-5% of sale price, frequently split 50/50 between listing agent and buyer agent on Koh Samui. No mandatory licence (unlike CH USPI or BE IPI), but the Real Estate Broker Association of Thailand (REBA) provides industry guidelines.</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Imagine</strong>: on a typical Koh Samui sea-view villa at $500,000 USD, the agency earns ~$15,000-25,000 in commission. Sarah Pro costs $2,490. That's <strong>10-16% of ONE deal</strong>. Catch 1 extra buyer in the year = ×6-10 ROI on Sarah.</div>
+      <div style="font-size: 13.5px; color: var(--pink); font-style: italic; line-height: 1.55;"><strong style="font-style: normal;">On the phone, say</strong>: "On an average Koh Samui sea-view villa at $500k, your agency takes $15-25k commission. Sarah costs $2,490 — that's <strong style="font-style: normal;">10-16% of ONE deal</strong>. You catch one more buyer in 6 months and it's ×8 ROI."</div>
+    </div>
+
+    <!-- Stat #4 -->
+    <div style="background: var(--panel-2); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--pink);">
+      <div style="font-size: 11px; color: var(--pink); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Stat #4 · Market growth + price</div>
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.35;">Koh Samui real estate <span style="color: var(--pink);">+10-15% YoY growth</span> · avg sea-view villa $500k-$1.5M</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Raw stat</strong>: Koh Samui real estate market grew an estimated <strong>10-15% YoY since 2022</strong> (post-COVID rebound), driven by digital nomads, retirees, and foreign investors. Average sea-view villa pricing: <strong>$500k–$1.5M USD</strong> (typical 3-bed pool villa). Branded condo developments: $200k-$500k.</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Imagine</strong>: more new buyers arrive on Koh Samui every month than there are good villas available. Same villa = contacted by 4-6 agencies in parallel via Lazudi/Hipflat/DotProperty. The agency that replies in 5 minutes WhatsApp wins. The one that replies in 4 hours loses — buyer already booked a viewing with someone else.</div>
+      <div style="font-size: 13.5px; color: var(--pink); font-style: italic; line-height: 1.55;"><strong style="font-style: normal;">On the phone, say</strong>: "Koh Samui market is +10-15% per year since COVID. More buyers than good villas. Your listing gets 4-6 agencies competing in parallel. <strong style="font-style: normal;">5-minute WhatsApp reply = you win. 4-hour reply = buyer already booked with someone else.</strong>"</div>
+    </div>
+
+    <!-- Stat #5 -->
+    <div style="background: var(--panel-2); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--pink);">
+      <div style="font-size: 11px; color: var(--pink); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Stat #5 · Sarah ROI Koh Samui</div>
+      <div style="font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.35;">Pro $2,490 = <span style="color: var(--pink);">10-16% of ONE villa commission</span> · payback from first extra deal</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Raw stat</strong>: Sarah Pro $2,490 one-off (uniform GILD-TECH catalogue: £/€/$/CHF same number). Average villa commission Koh Samui: $15,000-25,000. One additional deal captured in the year = ×6-10 ROI on Sarah. MIT Sloan says you'll capture 21× more leads with sub-5-min response.</div>
+      <div style="font-size: 13px; color: var(--text-2); margin-bottom: 10px; line-height: 1.55;"><strong style="color: var(--text);">Imagine</strong>: Sarah is like buying ONE lottery ticket for $2,490 where every villa deal you catch returns $15-25k. Except it's not luck — MIT Sloan proved you catch 21× more leads with 5-minute reply. Math is impossible to ignore.</div>
+      <div style="font-size: 13.5px; color: var(--pink); font-style: italic; line-height: 1.55;"><strong style="font-style: normal;">On the phone, say</strong>: "Pro at $2,490 = 10% of a single villa commission. You catch ONE extra buyer in 6 months and it pays for itself <strong style="font-style: normal;">×8 times</strong>. Audit takes 30 minutes — I'll show you which leads you're losing right now."</div>
+    </div>
+
+  </section>
+
+  <!-- 3. PITCH -->
+  <section>
+    <h2>3 · The pitch · 90 seconds max</h2>
+    <blockquote>
+      We've worked with Koh Samui agencies and seen the same pattern everywhere — on Lazudi, DotProperty, Hipflat, even the major aggregators, a serious foreign buyer contacts <strong>4 to 6 agencies in the same evening</strong>. The agency that replies first books the viewing.
+      <br><br>
+      Here's the problem: your office isn't running at 10:47 PM Bangkok time — when the UK buyer just got home from work and decided to make 6 enquiries. MIT Sloan measured this on 15,000 inbound leads: replying in 5 minutes vs 30 minutes = <strong>21× more qualified leads</strong>. Not 2×. 21×.
+      <br><br>
+      That's why we built Sarah — a 24/7 virtual receptionist on WhatsApp. She replies in under 90 seconds, qualifies the buyer (budget, area, timeline, location preference), books a viewing slot via Calendly. Works in English, French, German, Russian. While your office is closed.
+      <br><br>
+      <strong>I'd like to propose a free 30-minute audit on Zoom</strong>: I calculate with you exactly how many qualified buyers your agency is losing every month on Koh Samui, and I show you Sarah live. Free, no commitment.
+    </blockquote>
+  </section>
+
+  <!-- 4. OBJECTIONS -->
+  <section>
+    <h2>4 · Top 3 objections · verbatim + psychology</h2>
+
+    <div class="objection">
+      <div class="q">We already list on FazWaz / Lazudi / Hipflat</div>
+      <div class="a">Of course — every serious Koh Samui agency does. Question though: when a buyer clicks your listing on Lazudi at 9 PM Sunday from London, does <strong>FazWaz reply for you in under 5 minutes via WhatsApp, in English, without a human touching it?</strong> Portals do lead aggregation, not sub-5-minute reply. That's what we install on top. 30 minutes, I'll show you.</div>
+      <div class="arrow-note" style="margin-top: 10px;"><strong>Why it works</strong>: you never attack the portals (they're invested in them). You pivot to one specific capability NO portal does. 3-condition closed question (5 min · WhatsApp · without human) = he can't honestly say yes.</div>
+    </div>
+
+    <div class="objection">
+      <div class="q">How much?</div>
+      <div class="a">Two tiers: Pro at <strong>$2,490 USD</strong> for agencies with 1-5 agents, Scale at <strong>$4,990</strong> for structures with 5+ and active prospecting. But the right choice depends on your specific situation — that's exactly what we work out in the audit. Audit's free, you'll tell me at the end.</div>
+      <div class="arrow-note" style="margin-top: 10px;"><strong>Why it works</strong>: you give the number directly (refusing burns trust). But you immediately pivot to "depends on your situation" → routes to the audit where you defend value in context. <strong>Never defend a price in a vacuum — always against quantified missed revenue.</strong></div>
+    </div>
+
+    <div class="objection">
+      <div class="q">We're not interested</div>
+      <div class="a">Fair enough. Just to understand: is that because you've <strong>already solved the sub-5-minute reply problem</strong>, or it's not a priority right now? […] Got it — appreciate your time, have a great day.</div>
+      <div class="arrow-note" style="margin-top: 10px;"><strong>Why it works</strong>: it's a NEPQ qualification loop (Jeremy Miner). 90% of "not interested" responses are automatic, not thoughtful. Your question forces real reflection. If they say "already solved", ask "how?" — usually it's not true and they realise as they explain. If they say "not a priority", exit clean + recall in 6 months.</div>
+    </div>
+    <div class="arrow-note" style="margin-top: 18px; padding: 14px 18px; background: var(--panel-2); border-radius: 8px; border-left: 3px solid var(--pink);">
+      <strong>Absolute rule</strong>: after a clear and conscious NO, never push. CRM = "Not interested", recall in 6 months. <strong>Pressure burns the relationship for 24 months.</strong>
+    </div>
+  </section>
+
+  <!-- 5. VOCABULARY -->
+  <section>
+    <h2>5 · Koh Samui vocabulary · non-negotiable</h2>
+    <table class="vocab">
+      <thead><tr><th style="width:50%">Generic / avoid</th><th>Koh Samui · say</th></tr></thead>
+      <tbody>
+        <tr><td>House</td><td class="ok">Villa / pool villa / sea-view villa</td></tr>
+        <tr><td>Apartment</td><td class="ok">Condo / branded residence</td></tr>
+        <tr><td>Property owner</td><td class="ok">Seller / vendor</td></tr>
+        <tr><td>Buyer</td><td class="ok">Investor / second-home buyer / digital nomad / expat</td></tr>
+        <tr><td>Lease / rent</td><td class="ok">Leasehold (30+30 years) vs Freehold (Thai national only)</td></tr>
+        <tr><td>HOA / fees</td><td class="ok">Common area fees · sinking fund</td></tr>
+        <tr><td>Property tax / TVA</td><td class="ok">Transfer fee (2%) · Specific Business Tax (3.3%) · Stamp Duty (0.5%)</td></tr>
+        <tr><td>Title deed</td><td class="ok">Chanote (full title) · Nor Sor 3 Gor (transferable) · Nor Sor 3 (partial)</td></tr>
+        <tr><td>Foreign ownership</td><td class="ok">Foreign Quota (max 49% of condo building) · BOI structure · Thai company</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6. BANNED WORDS -->
+  <section>
+    <h2>6 · Banned words · pro real estate doctrine</h2>
+    <ul class="banned">
+      <li><span class="ko">SME</span><span class="arrow">→</span><span class="ok">independent agencies · seasoned brokers</span></li>
+      <li><span class="ko">Lead</span><span class="arrow">→</span><span class="ok">enquiry · qualified buyer · inbound contact</span></li>
+      <li><span class="ko">Chatbot</span><span class="arrow">→</span><span class="ok">AI receptionist · virtual receptionist</span></li>
+      <li><span class="ko">Failed listing</span><span class="arrow">→</span><span class="ok">missed viewing opportunity</span></li>
+      <li><span class="ko">Appointment booked</span><span class="arrow">→</span><span class="ok">viewing scheduled · property visit confirmed</span></li>
+      <li><span class="ko">House</span><span class="arrow">→</span><span class="ok">villa (it's Koh Samui — you sell villas, not houses)</span></li>
+    </ul>
+  </section>
+
+  <!-- 7. CLOSE -->
+  <section>
+    <h2>7 · Close · 30 seconds</h2>
+    <blockquote>
+      So I'd suggest <strong>Tuesday 10 AM</strong> or <strong>Thursday 2 PM Bangkok time</strong> for the 30-minute audit — which one suits you better?
+    </blockquote>
+    <div class="arrow-note">Prospect picks → "Perfect. I'll send you the Calendly link + a brief recap within 5 minutes to your business email. Is [email] the right one?"</div>
+    <div class="arrow-note">Confirmation → "Got it. Talk Tuesday/Thursday. Have a great day [First name]."</div>
+    <div class="arrow-note" style="color: var(--pink); font-weight: 700; margin-top: 14px;">Hang up. Move to the next call. No rumination on the previous one.</div>
+  </section>
+
+  <!-- 8. TRAJECTORY -->
+  <section>
+    <h2>8 · Sprint trajectory · J+1 → J+30</h2>
+    <h3>Week 1 targets</h3>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 6px 0; color: var(--text-2);"><strong style="color: var(--pink);">J+7</strong> · 1st audit booked · 30 calls made</li>
+      <li style="padding: 6px 0; color: var(--text-2);"><strong style="color: var(--pink);">J+14</strong> · 3-5 audits completed · 1 proposal sent</li>
+      <li style="padding: 6px 0; color: var(--text-2);"><strong style="color: var(--pink);">J+21</strong> · 1 deal in closing</li>
+      <li style="padding: 6px 0; color: var(--text-2);"><strong style="color: var(--pink);">J+30</strong> · 1 deal signed</li>
+    </ul>
+    <div class="arrow-note">Volume: 15-20 calls/day (small ICP, deep ABM approach) · 60-80 calls in week 1</div>
+    <div class="arrow-note">Best calling window: <strong>Mon-Fri, 10 AM - 5 PM Bangkok time</strong> (avoid weekends — Thai cultural norm).</div>
+  </section>
+
+  <!-- TARGET LIST -->
+  <section>
+    <h2>9 · Tier-A target list · 25 agencies Koh Samui</h2>
+    <p style="color: var(--text-2); font-size: 13px; margin-bottom: 14px;">Real estate brokers/agencies only — <strong style="color: var(--gold);">NOT</strong> villa rental platforms or OTAs. Source for completion: Google Maps "real estate agency Koh Samui" + Real Estate Broker Association of Thailand.</p>
+    <ul style="list-style: none; padding: 0; columns: 2; column-gap: 24px; font-size: 13.5px; color: var(--text-2);">
+      <li style="padding: 4px 0;">Conrad Properties Samui</li>
+      <li style="padding: 4px 0;">Tropical Real Estate Koh Samui</li>
+      <li style="padding: 4px 0;">Siam Real Estate</li>
+      <li style="padding: 4px 0;">Samui Holiday Homes</li>
+      <li style="padding: 4px 0;">Real Properties Samui</li>
+      <li style="padding: 4px 0;">Koh Samui Real Estate</li>
+      <li style="padding: 4px 0;">Samui Island Realty</li>
+      <li style="padding: 4px 0;">Doctor Property Samui</li>
+      <li style="padding: 4px 0;">Indigo Realty Samui</li>
+      <li style="padding: 4px 0;">Premier Homes Samui</li>
+      <li style="padding: 4px 0;">Best Property Samui</li>
+      <li style="padding: 4px 0;">Coco Real Estate Samui</li>
+      <li style="padding: 4px 0;">Beach Republic Properties</li>
+      <li style="padding: 4px 0;">Samui Villa Specialists</li>
+      <li style="padding: 4px 0;">Lamai Property Samui</li>
+      <li style="padding: 4px 0;">Bophut Real Estate</li>
+      <li style="padding: 4px 0;">Chaweng Property Group</li>
+      <li style="padding: 4px 0;">Maenam Real Estate</li>
+      <li style="padding: 4px 0;">Plai Laem Properties</li>
+      <li style="padding: 4px 0;">Choeng Mon Estate</li>
+      <li style="padding: 4px 0;">Taling Ngam Realty</li>
+      <li style="padding: 4px 0;">Hua Thanon Property</li>
+      <li style="padding: 4px 0;">Lipa Noi Real Estate</li>
+      <li style="padding: 4px 0;">Bang Por Properties</li>
+      <li style="padding: 4px 0;">+1 to complete via Google Maps / REBA</li>
+    </ul>
+    <div class="arrow-note" style="margin-top: 14px;"><strong>Process</strong> (30 min before first call): verify each on Google Maps · pull dealer direct phone / WhatsApp · confirm independent agency (NOT FazWaz / Lazudi subsidiary) · log to CRM "Inbound Contacts Koh Samui".</div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-bottom">
+    <h3>Audit Calendly · Koh Samui closer shares with prospect</h3>
+    <p>Calendly timezone Asia/Bangkok · 30-minute Zoom · Free, no commitment</p>
+    <a href="https://calendly.com/ops-gild-tech/30min">calendly.com/ops-gild-tech/30min →</a>
+  </div>
+
+  <div class="footer-internal">
+    Internal · noindex · GILD-TECH · Girlden LTD, London<br>
+    Battle Card v1 · Koh Samui Sprint · Updated 20 May 2026
+  </div>
+
+</div>
+</body>
+</html>
