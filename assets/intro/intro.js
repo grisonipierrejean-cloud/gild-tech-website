@@ -1,6 +1,6 @@
 /*!
  * GILD-TECH cinema intro — 3.5s overlay
- * Chaos → Canalisé → Site
+ * The chaos → Channelled → Site
  * Plays once per session (sessionStorage)
  * Click anywhere or top-right "Skip" to dismiss
  */
@@ -112,8 +112,8 @@
       '<div class="gt-intro-frame gt-intro-frame-1"></div>' +
       '<div class="gt-intro-frame gt-intro-frame-2"></div>' +
       '<div class="gt-intro-vignette"></div>' +
-      '<div class="gt-intro-text gt-intro-text-1">Le chaos.</div>' +
-      '<div class="gt-intro-text gt-intro-text-2">Canalisé.</div>' +
+      '<div class="gt-intro-text gt-intro-text-1">The chaos.</div>' +
+      '<div class="gt-intro-text gt-intro-text-2">Channelled.</div>' +
       '<button class="gt-intro-skip" type="button" aria-label="Skip intro">Skip</button>';
     document.body.appendChild(overlay);
 
