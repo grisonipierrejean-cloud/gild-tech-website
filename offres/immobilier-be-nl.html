@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GILD-TECH, Vastgoedaanbiedingen België</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --pink: #E91E8C;
+  --pink-light: #f54da5;
+  --pink-soft: #fce4f1;
+  --pink-bg: #fef6fa;
+  --dark: #0f0f0f;
+  --g900: #111;
+  --g700: #333;
+  --g600: #555;
+  --g500: #777;
+  --g300: #ccc;
+  --g200: #e8e8e8;
+  --g100: #f5f5f5;
+  --white: #fff;
+  --font: 'Inter', -apple-system, sans-serif;
+  --max-w: 1100px;
+  --r: 14px;
+}
+body { background: var(--white); color: var(--g900); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
+
+/* HEADER */
+.header { border-bottom: 2px solid var(--pink); padding-bottom: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+.brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; }
+.brand .gild { color: var(--g900); }
+.brand .tech { color: var(--pink); }
+.vertical { font-size: 0.85rem; font-weight: 600; color: var(--g600); text-transform: uppercase; letter-spacing: 0.1em; padding: 0.4rem 0.8rem; background: var(--pink-bg); border: 1px solid var(--pink-soft); border-radius: 6px; }
+
+/* INTRO */
+.intro { margin-bottom: 2.5rem; }
+.intro h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.8rem; }
+.intro h1 .accent { color: var(--pink); }
+.intro .subtitle { font-size: 1.05rem; color: var(--g600); max-width: 720px; }
+
+/* OFFRES */
+.offres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
+.offre-card { border: 1px solid var(--g200); border-radius: var(--r); padding: 1.8rem 1.5rem; position: relative; background: var(--white); display: flex; flex-direction: column; }
+.offre-card.recommended { border-color: var(--pink); background: var(--pink-bg); box-shadow: 0 8px 24px rgba(233, 30, 140, 0.12); }
+.offre-card.recommended::before { content: "★ RECOMMANDÉ"; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--white); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; letter-spacing: 0.05em; }
+.offre-name { font-size: 1.3rem; font-weight: 800; color: var(--g900); margin-bottom: 0.3rem; }
+.offre-tagline { font-size: 0.85rem; color: var(--g500); margin-bottom: 1.2rem; }
+.offre-price { font-size: 2.2rem; font-weight: 900; color: var(--g900); letter-spacing: -0.02em; }
+.offre-price .price-suffix { font-size: 0.9rem; font-weight: 500; color: var(--g500); }
+.offre-delai { font-size: 0.85rem; color: var(--pink); font-weight: 600; margin-top: 0.3rem; margin-bottom: 1.2rem; }
+.offre-features { list-style: none; padding: 0; margin-top: auto; }
+.offre-features li { font-size: 0.9rem; color: var(--g700); padding: 0.45rem 0; border-bottom: 1px solid var(--g100); padding-left: 1.4rem; position: relative; }
+.offre-features li::before { content: "✓"; position: absolute; left: 0; color: var(--pink); font-weight: 700; }
+.offre-features li:last-child { border-bottom: none; }
+.offre-hook { font-size: 0.82rem; font-style: italic; color: var(--pink); font-weight: 600; margin-bottom: 1rem; line-height: 1.3; }
+
+/* PAIN POINTS */
+.pain-section { background: #fafafa; border-radius: var(--r); padding: 1.5rem 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--pink); }
+.pain-title { font-size: 0.85rem; font-weight: 700; color: var(--pink); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.pain-item { font-size: 0.9rem; color: var(--g700); }
+.pain-item strong { color: var(--g900); display: block; margin-bottom: 0.2rem; }
+
+/* ROI */
+.roi-box { background: var(--g900); color: var(--white); border-radius: var(--r); padding: 1.8rem; margin-bottom: 2rem; }
+.roi-label { font-size: 0.75rem; font-weight: 700; color: var(--pink-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.roi-value { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; }
+.roi-value .accent { color: var(--pink-light); }
+.roi-sub { font-size: 0.88rem; color: rgba(255,255,255,0.65); margin-top: 0.5rem; }
+
+/* SECONDAIRE (Autopilot + services additionnels) */
+.section-subtitle { font-size: 1.2rem; font-weight: 700; margin: 2rem 0 1rem; color: var(--g900); border-left: 4px solid var(--pink); padding-left: 0.8rem; }
+.additional { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.additional-item { background: var(--g100); padding: 1rem 1.2rem; border-radius: 10px; border-left: 3px solid var(--pink); }
+.additional-item .name { font-weight: 700; font-size: 0.95rem; }
+.additional-item .price { font-size: 0.85rem; color: var(--g600); margin-top: 0.2rem; }
+
+/* PARCOURS */
+.parcours { background: var(--pink-bg); border: 1px solid var(--pink-soft); border-radius: var(--r); padding: 1.5rem; margin-bottom: 2rem; text-align: center; }
+.parcours-title { font-size: 0.8rem; font-weight: 700; color: var(--pink); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+.parcours-steps { font-size: 1.05rem; font-weight: 600; color: var(--g900); }
+.parcours-steps .arrow { color: var(--pink); margin: 0 0.4rem; }
+
+/* CTA */
+.cta { border-top: 2px solid var(--pink); padding-top: 2rem; text-align: center; }
+.cta-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; }
+.cta-desc { color: var(--g600); margin-bottom: 1.2rem; }
+.cta-btn { display: inline-block; background: var(--pink); color: var(--white); padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; }
+
+/* FOOTER */
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--g200); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--g500); flex-wrap: wrap; gap: 0.5rem; }
+
+/* PRINT */
+@media print {
+  .page { padding: 1.5rem; max-width: 100%; }
+  body { font-size: 10pt; }
+  .offres-grid { gap: 0.6rem; }
+  .offre-card { padding: 1rem 0.8rem; }
+  .offre-card.recommended { box-shadow: none; }
+  .cta-btn { background: var(--pink) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+@media (max-width: 768px) {
+  .offres-grid { grid-template-columns: 1fr; }
+  .additional { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .intro h1 { font-size: 1.6rem; }
+}
+</style>
+  <!-- Cinema intro overlay (3.5s, once per session) -->
+  <script defer src="/assets/intro/intro.js"></script>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <div class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+  <div class="vertical">🏠 Vastgoed · België</div>
+</div>
+
+<div class="intro">
+  <h1>Commerciële <span class="accent">automatisering</span> voor onafhankelijke vastgoedkantoren in België</h1>
+  <p class="subtitle">Uw makelaars besteden uren aan opvolging, terugbellen, advertenties bekijken. Wij automatiseren dat alles, uw kantoor prospecteert terwijl uw team closet.</p>
+</div>
+
+<div class="pain-section">
+  <div class="pain-title">Wat we oplossen</div>
+  <div class="pain-grid">
+    <div class="pain-item"><strong>Mandaten verloren door traagheid</strong>Reageren in 5 min vs 30 min = 21× meer gekwalificeerde contacten (MIT Sloan, 15 000 inkomende contacten geanalyseerd).</div>
+    <div class="pain-item"><strong>Geen automatische opvolging</strong>Zonder geautomatiseerde opvolging op dag +3 / +7 / +14 verdwijnen inkomende contacten uit de pipeline binnen een week.</div>
+    <div class="pain-item"><strong>Manuele prospectie</strong>Uw team besteedt 10u+ per week aan zoeken, opvolgen, kopiëren-plakken. Nul toegevoegde waarde.</div>
+  </div>
+</div>
+
+<div class="parcours">
+  <div class="parcours-title">AANBEVOLEN TRAJECT</div>
+  <div class="parcours-steps">Starter <span class="arrow">→</span> Pro <span class="arrow">→</span> Scale <span class="arrow">→</span> Autopilot <span class="arrow">→</span> Maintenance</div>
+</div>
+
+<div class="offres-grid">
+
+  <div class="offre-card">
+    <div class="offre-name">STARTER</div>
+    <div class="offre-tagline">Uw kantoor belt elke prospect terug binnen 5 minuten, automatisch</div>
+    <div class="offre-price">990<span class="price-suffix">€ HT</span></div>
+    <div class="offre-delai">Geleverd in 1 week · of 3× 330€</div>
+    <div class="offre-hook">Uw kantoor antwoordt als eerste. Altijd.</div>
+    <ul class="offre-features">
+      <li>Automatisch terugbellen van elke nieuwe prospect binnen 5 min</li>
+      <li>Eerste contact verstuurd voordat de concurrent zijn telefoon opneemt</li>
+      <li>CRM operationeel vanaf de levering, niets te configureren</li>
+      <li>Teamtraining 1u · Support 30 dagen</li>
+    </ul>
+  </div>
+
+  <div class="offre-card recommended">
+    <div class="offre-name">PRO</div>
+    <div class="offre-tagline">Meer mandaten, en uw makelaars zijn de best voorbereide van de zone</div>
+    <div class="offre-price">2 490<span class="price-suffix">€ HT</span></div>
+    <div class="offre-delai">Geleverd in 2-3 weken · of 3× 830€</div>
+    <div class="offre-hook">Uw kantoor prospecteert om 3u 's nachts. Uw makelaars komen voorbereid om 9u.</div>
+    <ul class="offre-features">
+      <li>Automatisch terugbellen van prospect binnen 5 min, 24u/24</li>
+      <li>Opvolgingssequenties dag +3 / +7 / +14</li>
+      <li>Ochtendbriefing: taken, bezichtigingen en hete prospects van de dag</li>
+      <li>Bezichtigingsfiche, pand, verkopersprofiel, sleutelargumenten</li>
+      <li>Gecentraliseerde real-time pipeline · Support 60 dagen</li>
+    </ul>
+  </div>
+
+  <div class="offre-card">
+    <div class="offre-name">SCALE</div>
+    <div class="offre-tagline">Domineer uw zone, uw makelaars zijn de best geïnformeerde van de markt</div>
+    <div class="offre-price">4 990<span class="price-suffix">€ HT</span></div>
+    <div class="offre-delai">Geleverd in 3-4 weken · of 3× 1 663€</div>
+    <div class="offre-hook">Uw concurrenten prospecteren met de hand. Uw makelaars komen met marktgegevens.</div>
+    <ul class="offre-features">
+      <li>Multi-channel prospectie: e-mail + WhatsApp + SMS</li>
+      <li>Verrijkte briefing: real-time marktprijzen + concurrentie-intel per zone</li>
+      <li>AI-gepersonaliseerde pitch volgens verkopersprofiel (mutatie, scheiding, erfenis)</li>
+      <li>Prestatie-dashboard per makelaar: bezichtiging → mandaat conversie</li>
+      <li>Teamtraining 6u · Support 90 dagen</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="roi-box">
+  <div class="roi-label">Typische ROI, onafhankelijk vastgoedkantoor</div>
+  <div class="roi-value">1 mandaat teruggewonnen = <span class="accent">~€10 000 commissie</span></div>
+  <div class="roi-sub">Berekening: gemiddelde prijs €329 743 (Notaris.be, barometer 2024) × gemiddelde commissie 3% (BIV, vrij sinds 2016). Pro €2 490 terugverdiend vanaf het 1e mandaat. Netto: +€7 500. De volgende maand is pure winst.</div>
+</div>
+
+<div class="section-subtitle">Totale transformatie</div>
+<div class="additional">
+  <div class="additional-item">
+    <div class="name">AUTOPILOT, €14 900 excl. btw</div>
+    <div class="price">Systeem op maat + briefing gemodelleerd op uw methode + toegewijde operator 90 dagen + team performance coaching • SEPA overschrijving of PayPal alleen</div>
+  </div>
+  <div class="additional-item">
+    <div class="name">DEPOSIT, €500 excl. btw</div>
+    <div class="price">Voorschot om een Pro / Scale / Autopilot missie te starten</div>
+  </div>
+</div>
+
+<div class="section-subtitle">Na de missie</div>
+<div class="additional">
+  <div class="additional-item">
+    <div class="name">MAINTENANCE, €290/maand</div>
+    <div class="price">Doorlopende support, updates, monitoring van uw workflows</div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="cta-title">Gratis audit van 30 minuten</div>
+  <div class="cta-desc">We tonen u hoeveel u elke maand verliest aan niet-teruggebelde leads, en hoe we het oplossen.</div>
+  <a class="cta-btn" href="https://gild-tech.com/calculateur">Bereken mijn verlies →</a>
+</div>
+
+<div class="footer">
+  <span>© 2026 GILD-TECH · Girlden LTD (UK)</span>
+  <span>pierrejean@gild-tech.com · gild-tech.com</span>
+</div>
+
+</div>
+</body>
+</html>
