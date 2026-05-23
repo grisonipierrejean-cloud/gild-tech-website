@@ -280,7 +280,7 @@
     <div id="demoBanner" class="config-panel" style="display:none;background:linear-gradient(180deg, var(--accent-soft), transparent);border-color:var(--accent-line);padding:18px 20px;margin-bottom:14px">
       <div style="display:flex;align-items:flex-start;gap:14px;justify-content:space-between;flex-wrap:wrap;gap:14px">
         <div style="flex:1;min-width:280px">
-          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px" data-i18n="demo_banner_brand">Mode démo · Bellecour Immobilier</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px" data-i18n="demo_banner_brand">Mode démo · Mayfair & Partners</div>
           <div style="font-size:14px;font-weight:700;margin-bottom:6px" data-i18n="demo_banner_title">Voici ce que voit votre négociateur chaque matin.</div>
           <div style="font-size:12.5px;color:var(--text-2);line-height:1.55" data-i18n="demo_banner_desc">Données fictives. En production, Sarah Studio se branche sur votre Google Sheet ou votre CRM (Apimo, Hektor, Reapit…). Setup en 1 jour, vous gardez tout votre setup actuel.</div>
         </div>
@@ -410,7 +410,7 @@ const _now = new Date();
 const _pad = n => String(n).padStart(2,'0');
 const _addH = h => { const d = new Date(_now.getTime() + h*3600000); return `${_pad(d.getHours())}:${_pad(d.getMinutes())}`; };
 const MOCK = {
-  agence_nom: 'Bellecour Immobilier',
+  agence_nom: 'Mayfair & Partners',
   timestamp: _now.toISOString(),
   kpis: {
     leads_actifs: 47,
@@ -418,8 +418,8 @@ const MOCK = {
     delta_24h: 3,
     rdv_semaine: 13,
     mandats_semaine: 4,
-    revenue_estime: 32000,
-    pipeline_potential: 18800,
+    revenue_estime: 45000,
+    pipeline_potential: 38500,
     taux_conversion_30j: 8,
     taux_rappel_sub5min: 87,
     spark: {
@@ -427,29 +427,29 @@ const MOCK = {
       nouveaux_24h: [4,5,3,6,5,7,8],
       rdv_semaine: [8,9,10,9,11,12,13],
       mandats_semaine: [1,2,2,3,3,4,4],
-      pipeline_potential: [14000,14400,15200,15600,16400,17600,18800],
+      pipeline_potential: [28000,29400,31200,32600,34400,36800,38500],
       taux_conversion_30j: [5,5,6,6,7,8,8],
       taux_rappel_sub5min: [72,76,80,82,84,86,87]
     }
   },
   top_leads: [
-    { prenom: 'Marie',   nom: 'Dupont',     telephone: '+33612345678', bien_ref: 'BEL-2046 · 3P 78m² Presqu\'île', budget: '380 000 €', status: 'chaud',             source: 'SeLoger',        _reason: 'nouveau (47 min)',         _nego: 'CB' },
-    { prenom: 'Pierre',  nom: 'Lefèvre',    telephone: '+33687234511', bien_ref: 'BEL-2031 · 4P 92m² Brotteaux',   budget: '520 000 €', status: 'a_rappeler',        source: 'Sarah WA',       _reason: 'qualif Sarah hier 22h47',  _nego: 'JM' },
-    { prenom: 'Sophie',  nom: 'Marin',      telephone: '+33645678901', bien_ref: 'BEL-1987 · Loft 110m² Confluence', budget: '650 000 €', status: 'rdv_programme',    source: 'LeBonCoin',      _reason: 'RDV jeudi 18h',            _nego: 'CB' },
-    { prenom: 'Thomas',  nom: 'Bernard',    telephone: '+33623456789', bien_ref: 'BEL-2088 · 2P 45m² Croix-Rousse', budget: '245 000 €', status: 'chaud',             source: 'Pige PAP',       _reason: 'chaud, 3j sans contact',   _nego: 'AL' },
-    { prenom: 'Camille', nom: 'Rousseau',   telephone: '+33698765432', bien_ref: 'BEL-2055 · Maison 160m² Caluire', budget: '780 000 €', status: 'mandat_negociation', source: 'Recommandation', _reason: 'offre en négociation',     _nego: 'JM' },
-    { prenom: 'Julien',  nom: 'Petit',      telephone: '+33677889944', bien_ref: 'BEL-1999 · 3P 65m² Part-Dieu',    budget: '320 000 €', status: 'nouveau',           source: 'WhatsApp',       _reason: 'nouveau (3 h)',            _nego: 'AL' },
-    { prenom: 'Léa',     nom: 'Garnier',    telephone: '+33611223344', bien_ref: 'BEL-2070 · T2 52m² Bellecour',    budget: '290 000 €', status: 'tiede',             source: 'SeLoger',        _reason: 'dormant 9 j',              _nego: 'CB' },
-    { prenom: 'Hugo',    nom: 'Vidal',      telephone: '+33655443322', bien_ref: 'BEL-2012 · Studio 28m² Guillotière', budget: '180 000 €', status: 'a_rappeler',     source: 'Sarah WA',       _reason: 'relancé hier · pas de réponse', _nego: 'JM' },
-    { prenom: 'Inès',    nom: 'Moreau',     telephone: '+33644556677', bien_ref: 'BEL-2102 · T3 70m² Vieux-Lyon',   budget: '410 000 €', status: 'nouveau',           source: 'Site agence',    _reason: 'nouveau (12 min)',         _nego: 'CB' },
-    { prenom: 'Antoine', nom: 'Lemaire',    telephone: '+33633112277', bien_ref: 'BEL-2090 · Maison 200m² Écully',  budget: '950 000 €', status: 'chaud',             source: 'Recommandation', _reason: 'visite confirmée samedi 10h', _nego: 'JM' }
+    { prenom: 'William',   nom: 'Carter',    telephone: '+447700900146', bien_ref: 'MAY-2046 · 2-bed flat 78m² Belgravia',        budget: '£1,250,000', status: 'chaud',              source: 'Rightmove',       _reason: 'new (47 min)',                _nego: 'JC' },
+    { prenom: 'Emily',     nom: 'Thompson',  telephone: '+447700900511', bien_ref: 'MAY-2031 · 4-bed mews 92m² Chelsea',          budget: '£2,850,000', status: 'a_rappeler',         source: 'Sarah WA',        _reason: 'Sarah qualified yesterday 10:47pm', _nego: 'EW' },
+    { prenom: 'Oliver',    nom: 'Bennett',   telephone: '+447700900901', bien_ref: 'MAY-1987 · Penthouse 110m² Knightsbridge',    budget: '£4,650,000', status: 'rdv_programme',      source: 'OnTheMarket',     _reason: 'viewing Thursday 6pm',        _nego: 'JC' },
+    { prenom: 'Charlotte', nom: 'Hayes',     telephone: '+447700900789', bien_ref: 'MAY-2088 · 1-bed flat 45m² Notting Hill',     budget: '£695,000',   status: 'chaud',              source: 'Off-market pull', _reason: 'hot, 3 days no contact',      _nego: 'HM' },
+    { prenom: 'James',     nom: 'Brookes',   telephone: '+447700900432', bien_ref: 'MAY-2055 · 5-bed townhouse 160m² Mayfair',    budget: '£4,200,000', status: 'mandat_negociation', source: 'Referral',        _reason: 'offer in negotiation',        _nego: 'EW' },
+    { prenom: 'Sophie',    nom: 'Anderson',  telephone: '+447700900944', bien_ref: 'MAY-1999 · 3-bed terraced 65m² Marylebone',   budget: '£1,450,000', status: 'nouveau',            source: 'WhatsApp',        _reason: 'new (3h)',                    _nego: 'HM' },
+    { prenom: 'Henry',     nom: 'Whitmore',  telephone: '+447700900344', bien_ref: 'MAY-2070 · 2-bed 52m² Belgravia',             budget: '£1,100,000', status: 'tiede',              source: 'Zoopla',          _reason: 'dormant 9 days',              _nego: 'JC' },
+    { prenom: 'Olivia',    nom: 'Reed',      telephone: '+447700900322', bien_ref: 'MAY-2012 · Studio 28m² Notting Hill',         budget: '£550,000',   status: 'a_rappeler',         source: 'Sarah WA',        _reason: 'followed up yesterday · no reply', _nego: 'EW' },
+    { prenom: 'Edward',    nom: 'Lawson',    telephone: '+447700900677', bien_ref: 'MAY-2102 · 3-bed 70m² Kensington',            budget: '£1,650,000', status: 'nouveau',            source: 'Agency site',     _reason: 'new (12 min)',                _nego: 'JC' },
+    { prenom: 'Florence',  nom: 'Marshall',  telephone: '+447700900277', bien_ref: 'MAY-2090 · 6-bed house 200m² St John\'s Wood', budget: '£5,750,000', status: 'chaud',              source: 'Referral',        _reason: 'viewing confirmed Saturday 10am', _nego: 'EW' }
   ],
   visites_jour: [
-    { heure: _addH(2),  prenom: 'Anne',    nom: 'Lambert',     telephone: '+33633557799', bien_ref: 'BEL-2046 · 3P Presqu\'île' },
-    { heure: _addH(4),  prenom: 'Marc',    nom: 'Roussel',     telephone: '+33641556677', bien_ref: 'BEL-2031 · 4P Brotteaux' },
-    { heure: _addH(6),  prenom: 'Élise',   nom: 'Charpentier', telephone: '+33688771122', bien_ref: 'BEL-2088 · 2P Croix-Rousse' },
-    { heure: _addH(8),  prenom: 'Olivier', nom: 'Joly',        telephone: '+33677339911', bien_ref: 'BEL-1999 · 3P Part-Dieu' },
-    { heure: _addH(10), prenom: 'Nadia',   nom: 'Aubert',      telephone: '+33656778899', bien_ref: 'BEL-2055 · Maison Caluire' }
+    { heure: _addH(2),  prenom: 'Sarah',    nom: 'Mitchell',  telephone: '+447700900779', bien_ref: 'MAY-2046 · Belgravia flat' },
+    { heure: _addH(4),  prenom: 'Mark',     nom: 'Roberts',   telephone: '+447700900667', bien_ref: 'MAY-2031 · Chelsea mews' },
+    { heure: _addH(6),  prenom: 'Eleanor',  nom: 'Pritchard', telephone: '+447700900112', bien_ref: 'MAY-2088 · Notting Hill flat' },
+    { heure: _addH(8),  prenom: 'George',   nom: 'Sutton',    telephone: '+447700900991', bien_ref: 'MAY-1999 · Marylebone terraced' },
+    { heure: _addH(10), prenom: 'Isabella', nom: 'Khan',      telephone: '+447700900789', bien_ref: 'MAY-2055 · Mayfair townhouse' }
   ]
 };
 
@@ -474,7 +474,7 @@ const I18N = {
     chat_unavailable: 'Webhook chat non configuré. Ajoutez l’URL dans Config.',
     btn_wa: 'WA', btn_call: 'Appel', btn_gen: 'Rédiger',
     crm_ready: 'Disponible immédiatement', crm_ondemand: 'À la demande (~1 jour)', crm_coming: 'Bientôt',
-    demo_banner_brand: 'Mode démo · Bellecour Immobilier',
+    demo_banner_brand: 'Mode démo · Mayfair & Partners',
     demo_banner_title: 'Voici ce que voit votre négociateur chaque matin.',
     demo_banner_desc: 'Données fictives. En production, Sarah Studio se branche sur votre Google Sheet ou votre CRM (Apimo, Hektor, Reapit…). Setup en 1 jour, vous gardez tout votre setup actuel.',
     demo_banner_cta: 'Réserver un audit',
@@ -506,7 +506,7 @@ const I18N = {
     chat_unavailable: 'Chat webhook not configured. Add the URL in Config.',
     btn_wa: 'WA', btn_call: 'Call', btn_gen: 'Draft',
     crm_ready: 'Available now', crm_ondemand: 'On demand (~1 day)', crm_coming: 'Coming soon',
-    demo_banner_brand: 'Demo mode · Bellecour Immobilier',
+    demo_banner_brand: 'Demo mode · Mayfair & Partners',
     demo_banner_title: 'This is what your negotiator sees every morning.',
     demo_banner_desc: 'Mock data. In production, Sarah Studio plugs into your Google Sheet or CRM (Apimo, Hektor, Reapit…). Setup in 1 day, you keep your existing stack.',
     demo_banner_cta: 'Book an audit',
@@ -585,8 +585,9 @@ function toggleDemo() {
 function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; }
 function clearError() { document.getElementById('errorMsg').style.display = 'none'; }
 function fmtPct(n) { return (n || 0) + '%'; }
-function fmtMoney(n) { const locale = lang === 'en' ? 'en-GB' : 'fr-FR'; const c = lang === 'en' ? '£' : '€'; return (n||0).toLocaleString(locale)+' '+c; }
-function fmtMoneyShort(n) { if (!n && n !== 0) return '—'; const c = lang === 'en' ? '£' : '€'; if (n >= 1000000) return c + (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return c + Math.round(n/1000) + 'k'; return c + n; }
+// Demo agency is UK (Mayfair & Partners) — currency stays £ regardless of UI language.
+function fmtMoney(n) { const locale = lang === 'en' ? 'en-GB' : 'fr-FR'; return '£' + (n||0).toLocaleString(locale); }
+function fmtMoneyShort(n) { if (!n && n !== 0) return '—'; if (n >= 1000000) return '£' + (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return '£' + Math.round(n/1000) + 'k'; return '£' + n; }
 function fmtInt(n) { return (n ?? 0).toLocaleString(lang === 'en' ? 'en-GB' : 'fr-FR'); }
 
 function fmtKpi(val, fmt) {
@@ -822,28 +823,28 @@ function mockReply(prompt) {
   const p = prompt.toLowerCase();
   if (p.includes('chaud') || p.includes('rappeler') || p.includes('hot')) {
     return lang === 'fr'
-      ? 'Top 3 maintenant : Marie Dupont (06 12 34 56 78, BEL-2046, projet imminent), Pierre Lefèvre (relancé hier, 520k), Thomas Bernard (3j sans contact, 245k). Marie en priorité — fenêtre 24h critique.'
-      : 'Top 3 right now: Marie Dupont (06 12 34 56 78, BEL-2046, imminent project), Pierre Lefèvre (followed up yesterday, 520k), Thomas Bernard (3d no contact, 245k). Marie first — 24h window is critical.';
+      ? 'Top 3 maintenant : William Carter (+44 7700 900146, MAY-2046, projet imminent), Emily Thompson (relancée hier, £2.85M), Charlotte Hayes (3j sans contact, £695k). William en priorité — fenêtre 24h critique.'
+      : 'Top 3 right now: William Carter (+44 7700 900146, MAY-2046, imminent project), Emily Thompson (followed up yesterday, £2.85M), Charlotte Hayes (3d no contact, £695k). William first — 24h window is critical.';
   }
   if (p.includes('brief')) {
     return lang === 'fr'
-      ? '4 visites aujourd’hui (10h30 Anne, 14h Marc, 16h30 Élise, 18h30 Olivier). 8 leads à rappeler. Priorité absolue : Marie Dupont — projet imminent, source SeLoger. Camille Rousseau passe en négo offre, à surveiller cet après-midi.'
-      : '4 viewings today (10:30 Anne, 14:00 Marc, 16:30 Élise, 18:30 Olivier). 8 leads to call back. Top priority: Marie Dupont — imminent project, SeLoger. Camille Rousseau is now in offer negotiation, keep an eye this afternoon.';
+      ? '4 visites aujourd’hui (10h30 Sarah, 14h Mark, 16h30 Eleanor, 18h30 George). 8 leads à rappeler. Priorité absolue : William Carter — projet imminent, source Rightmove. James Brookes passe en négo offre, à surveiller cet après-midi.'
+      : '4 viewings today (10:30 Sarah, 14:00 Mark, 16:30 Eleanor, 18:30 George). 8 leads to call back. Top priority: William Carter — imminent project, Rightmove. James Brookes is now in offer negotiation, keep an eye this afternoon.';
   }
   if (p.includes('action')) {
     return lang === 'fr'
-      ? 'Une seule chose : appeler Marie Dupont MAINTENANT. Elle vient de remplir un formulaire SeLoger il y a 2h, projet imminent, budget 380k pour BEL-2046. Conversion x4 si rappel sub-1h.'
-      : 'One thing: call Marie Dupont NOW. Filled a SeLoger form 2h ago, imminent project, 380k budget for BEL-2046. 4x conversion if you call back within the hour.';
+      ? 'Une seule chose : appeler William Carter MAINTENANT. Il vient de remplir un formulaire Rightmove il y a 2h, projet imminent, budget £1.25M pour MAY-2046. Conversion x4 si rappel sub-1h.'
+      : 'One thing: call William Carter NOW. Filled a Rightmove form 2h ago, imminent project, £1.25M budget for MAY-2046. 4x conversion if you call back within the hour.';
   }
   if (p.includes('pige') || p.includes('market')) {
     return lang === 'fr'
-      ? 'Pige LBC/PAP en temps réel sera branchée en V1 (Outscraper déjà sur ta stack). En attendant, je peux te sortir les biens du fichier Apimo si tu actives le plug-in CRM (Config > Plug-ins CRM).'
-      : 'Live LBC/PAP scan will be wired in V1 (Outscraper already in your stack). Meanwhile, I can pull from your Apimo file if you enable the CRM plug-in (Config > CRM plug-ins).';
+      ? 'Pige Rightmove/Zoopla en temps réel sera branchée en V1 (Outscraper déjà sur ta stack). En attendant, je peux te sortir les biens du fichier Reapit si tu actives le plug-in CRM (Config > Plug-ins CRM).'
+      : 'Live Rightmove/Zoopla scan will be wired in V1 (Outscraper already in your stack). Meanwhile, I can pull from your Reapit file if you enable the CRM plug-in (Config > CRM plug-ins).';
   }
   if (p.includes('rédige') || p.includes('whatsapp') || p.includes('draft')) {
     return lang === 'fr'
-      ? 'Bonjour Marie, c’est Bellecour Immobilier. J’ai bien noté votre intérêt pour le 3 pièces de 78m² (BEL-2046). Êtes-vous disponible jeudi 18h pour une visite ?'
-      : 'Hi Marie, this is Bellecour. I’ve noted your interest in the 78m² 3-bed (BEL-2046). Would Thursday 6pm work for a viewing?';
+      ? 'Bonjour William, c’est Mayfair & Partners. J’ai bien noté votre intérêt pour le 2-bed de 78m² à Belgravia (MAY-2046). Êtes-vous disponible jeudi 18h pour une visite ?'
+      : 'Hi William, this is Mayfair & Partners. I’ve noted your interest in the 78m² 2-bed in Belgravia (MAY-2046). Would Thursday 6pm work for a viewing?';
   }
   return lang === 'fr'
     ? 'Mode démo. Connecte le vrai webhook chat dans Config > Connexion directe pour répondre avec ton pipeline réel.'
