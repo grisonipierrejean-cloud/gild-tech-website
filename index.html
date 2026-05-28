@@ -3,40 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gild-Tech | Automatisation Commerciale pour agences immobilières</title>
-  <meta name="description" content="Vos prospects n'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. Audit gratuit 30 min.">
+  <title>Gild-Tech · Le rappel mandant en 5 minutes · Agences immobilières CH / BE / UK</title>
+  <meta name="description" content="Cabinet d'opérations pour agences immobilières indépendantes. On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp — avant que le confrère d'en face n'ouvre sa boîte mail. Audit gratuit 30 min avec le fondateur.">
 
   <!-- SEO & Canonique -->
   <link rel="canonical" href="https://gild-tech.com/">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Gild-Tech (Girlden LTD)">
-  <meta name="keywords" content="automatisation agence immobilière, CRM immobilier, prospection mandats, relance automatique immobilier, IA immobilier, rappel proprio, workflow agence immo, Gild-Tech, Girlden">
-  <meta name="geo.region" content="FR">
+  <meta name="keywords" content="agence immobilière Suisse, agence immobilière Belgique, estate agency UK, real estate Koh Samui, rappel mandant 5 minutes, assistante IA WhatsApp, Sarah assistante immobilier, automatisation agence immo, Whise, Apimo, Reapit, CASAFARI, Immoweb, Homegate, Rightmove, Gild-Tech, Girlden">
+  <meta name="geo.region" content="CH,BE,GB,TH">
   <meta name="language" content="French">
 
   <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Gild-Tech">
-  <meta property="og:title" content="Gild-Tech | Automatisation Commerciale pour agences immobilières">
-  <meta property="og:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. 30 min d'audit gratuit.">
+  <meta property="og:title" content="Le rappel mandant en 5 minutes · Avant que le confrère d'en face n'ouvre sa boîte mail">
+  <meta property="og:description" content="Cabinet d'opérations pour agences immobilières indépendantes (Suisse · Belgique · UK · Koh Samui). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.">
   <meta property="og:url" content="https://gild-tech.com/">
   <meta property="og:image" content="https://gild-tech.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Gild-Tech | Automatisation Commerciale pour agences immobilières">
+  <meta property="og:image:alt" content="Gild-Tech · Le rappel mandant en 5 minutes pour agences immobilières">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="nl_BE">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gild-Tech | Automatisation Commerciale pour agences immobilières">
-  <meta name="twitter:description" content="Vos prospects n'attendent pas. Votre concurrent non plus. 30 min d'audit gratuit.">
+  <meta name="twitter:title" content="Le rappel mandant en 5 minutes · Gild-Tech">
+  <meta name="twitter:description" content="Cabinet d'opérations pour agences immobilières CH / BE / UK / Koh Samui. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.">
   <meta name="twitter:image" content="https://gild-tech.com/og-image.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#E91E8C">
+  <meta name="theme-color" content="#0E1117">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://gild-tech.com/">
@@ -128,21 +129,46 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --pink: #E91E8C;
-      --pink-light: #f54da5;
-      --pink-soft: #fce4f1;
-      --pink-bg: #fef6fa;
-      --dark: #0f0f0f;
-      --g900: #111;
-      --g700: #333;
-      --g600: #555;
-      --g500: #777;
-      --g400: #999;
-      --g300: #ccc;
-      --g200: #e8e8e8;
-      --g100: #f5f5f5;
-      --white: #fff;
+      /* === NEW: Cabinet de courtage premium palette === */
+      --ink: #0E1117;          /* anthracite profond - texte + nav */
+      --ink-soft: #1A1F26;
+      --bone: #F6F4EE;         /* blanc cassé crème - fonds */
+      --bone-soft: #FBF9F3;
+      --gold: #B79355;         /* champagne mat - accents premium */
+      --gold-soft: #E8DCC4;
+      --gold-bg: #F5EFE2;
+      --teal: #1F4D5C;         /* bleu pétrole - CTA principal */
+      --teal-dark: #133641;
+      --teal-soft: #E4ECEF;
+      --ash: #6B6F76;          /* gris textes secondaires */
+
+      /* Sarah Studio garde son rose en var dédiée, mais --pink global est repointé sur teal */
+      --sarah-pink: #E91E8C;
+      --sarah-pink-light: #f54da5;
+      --pink: var(--teal);              /* tout ce qui utilisait pink bascule sur teal */
+      --pink-light: #2A6577;
+      --pink-soft: var(--teal-soft);
+      --pink-bg: #F2F7F9;
+
+      /* Repointage des anciennes vars sur la nouvelle palette */
+      --dark: var(--ink);
+      --g900: var(--ink);
+      --g700: #2A2F36;
+      --g600: #4A4F57;
+      --g500: var(--ash);
+      --g400: #8C9098;
+      --g300: #C8CBD0;
+      --g200: #E2E4E7;
+      --g100: var(--bone-soft);
+      --white: #ffffff;
+
+      /* Brand accent : tout ce qui était "pink" comme accent générique devient gold/teal */
+      --accent: var(--teal);
+      --accent-hover: var(--teal-dark);
+      --premium: var(--gold);
+
       --font: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Inter', -apple-system, sans-serif;
       --max-w: 1100px;
       --r: 14px;
     }
@@ -150,8 +176,8 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--white);
-      color: var(--g900);
+      background: var(--bone);
+      color: var(--ink);
       font-family: var(--font);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -181,8 +207,8 @@
 
     .nav-mark {
       width: 30px; height: 30px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
-      border: 1.5px solid rgba(233,30,140,0.25);
+      background: radial-gradient(circle at 30% 30%, rgba(31,77,92,0.12), transparent 70%);
+      border: 1.5px solid rgba(31,77,92,0.25);
       display: flex; align-items: center; justify-content: center;
       position: relative;
       font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;
@@ -205,22 +231,55 @@
     .nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
     .nav-logo span { color: var(--pink); font-weight: 700; }
 
-    .lang-toggle {
-      display: flex; align-items: center; gap: 0.4rem;
-      padding: 0.35rem 0.7rem; border-radius: 8px;
+    /* === MARKET SWITCHER (5 drapeaux + dropdown) === */
+    .market-switch { position: relative; }
+    .market-toggle {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.4rem 0.75rem; border-radius: 8px;
       border: 1px solid var(--g200); background: white;
-      cursor: pointer; font-family: var(--font); font-size: 0.72rem;
-      font-weight: 600; color: var(--g600);
+      cursor: pointer; font-family: var(--font); font-size: 0.78rem;
+      font-weight: 600; color: var(--ink);
       transition: all 0.2s; margin-right: 0.5rem;
     }
+    .market-toggle:hover { border-color: var(--teal); color: var(--teal); }
+    .market-toggle .market-flag { font-size: 1.05rem; line-height: 1; }
+    .market-toggle svg { color: var(--ash); transition: transform 0.2s; }
+    .market-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 
-    .lang-toggle:hover { border-color: var(--pink); color: var(--pink); }
+    .market-menu {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: white; border: 1px solid var(--g200);
+      border-radius: 12px; padding: 0.5rem;
+      min-width: 240px; z-index: 200;
+      box-shadow: 0 12px 32px -8px rgba(14, 17, 23, 0.18);
+      opacity: 0; transform: translateY(-6px); pointer-events: none;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .market-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .market-menu-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      padding: 0.4rem 0.6rem 0.3rem;
+    }
+    .market-menu-label-2 { color: var(--ash); }
+    .market-menu-sep { height: 1px; background: var(--g200); margin: 0.4rem 0.3rem; }
+    .market-item {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.55rem 0.65rem; border-radius: 8px;
+      text-decoration: none; color: var(--ink);
+      transition: background 0.15s;
+    }
+    .market-item:hover { background: var(--bone); }
+    .market-item .market-flag { font-size: 1.2rem; line-height: 1; }
+    .market-item .market-name { font-size: 0.85rem; font-weight: 600; flex: 1; }
+    .market-item .market-locale { font-size: 0.68rem; color: var(--ash); font-weight: 500; }
+    .market-item-dim { opacity: 0.55; }
+    .market-item-dim:hover { opacity: 0.85; }
 
-    .lang-toggle svg { width: 16px; height: 12px; border-radius: 2px; }
-
+    /* Legacy lang-toggle styles conservés au cas où le toggle FR/EN soit réactivé */
+    .lang-toggle { display: none; }
     .lang-sep { color: var(--g300); margin: 0 0.2rem; }
-
-    .lang-active { color: var(--pink); font-weight: 700; }
+    .lang-active { color: var(--teal); font-weight: 700; }
 
     .nav-socials {
       display: inline-flex; align-items: center; gap: 0.4rem;
@@ -245,6 +304,177 @@
     .nav-hamburger span { width: 22px; height: 2px; background: var(--g700); border-radius: 1px; transition: all 0.25s; }
     .nav-social-linkedin:hover { color: #0A66C2; border-color: #0A66C2; background: rgba(10,102,194,0.08); transform: translateY(-1px); }
     .nav-social-whatsapp:hover { color: #25D366; border-color: #25D366; background: rgba(37,211,102,0.08); transform: translateY(-1px); }
+
+    /* ========== SARAH DEMO — faux iPhone + conversation WhatsApp ========== */
+    .sarah-demo-section {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .sarah-demo-grid {
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.5rem; align-items: center;
+    }
+    .sarah-demo-text .heading { margin: 0.5rem 0 1rem; }
+    .sarah-demo-text > p {
+      font-size: 1rem; color: var(--g700); line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .sarah-demo-points {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .sarah-demo-points li {
+      font-size: 0.92rem; color: var(--g700);
+      padding-left: 1.4rem; position: relative;
+    }
+    .sarah-demo-points li::before {
+      content: '◆'; color: var(--gold); position: absolute; left: 0; top: 0;
+      font-size: 0.7rem; line-height: 1.8;
+    }
+    .sarah-demo-points li strong { color: var(--ink); }
+
+    /* Phone frame (iPhone 15 Pro style) */
+    .sarah-demo-phone { display: flex; justify-content: center; }
+    .phone-frame {
+      width: 320px;
+      background: var(--ink);
+      border-radius: 38px;
+      padding: 10px;
+      box-shadow:
+        0 30px 60px -20px rgba(14,17,23,0.35),
+        0 0 0 2px rgba(255,255,255,0.04) inset,
+        0 1px 0 rgba(255,255,255,0.05) inset;
+      position: relative;
+    }
+    .phone-notch {
+      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 24px; background: var(--ink); border-radius: 14px;
+      z-index: 3;
+    }
+    .phone-screen {
+      background: #ECE5DD;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 580px;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .phone-statusbar {
+      background: #075E54; color: white;
+      padding: 14px 24px 6px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.7rem; font-weight: 700; font-feature-settings: "tnum";
+    }
+    .phone-time { padding-left: 8px; }
+    .phone-signal { display: flex; align-items: center; gap: 4px; }
+    .phone-dot { width: 3px; height: 3px; background: white; border-radius: 50%; }
+    .phone-dot:nth-child(4) { opacity: 0.55; }
+    .phone-wifi { font-size: 0.75rem; margin-left: 4px; }
+    .phone-batt {
+      display: inline-block; width: 22px; height: 10px;
+      border: 1px solid white; border-radius: 2px;
+      position: relative; margin-left: 4px;
+    }
+    .phone-batt::after {
+      content: ''; position: absolute; right: -3px; top: 2px;
+      width: 2px; height: 4px; background: white; border-radius: 0 1px 1px 0;
+    }
+    .phone-batt span {
+      display: block; width: 80%; height: 100%; background: white; border-radius: 1px;
+    }
+
+    /* WhatsApp header */
+    .wa-header {
+      background: #075E54; color: white;
+      padding: 10px 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .wa-back {
+      background: transparent; border: none; color: white;
+      font-size: 1.5rem; line-height: 1; padding: 0 2px; cursor: default;
+    }
+    .wa-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, #B79355, #d4b377);
+      color: white; font-weight: 800; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wa-contact { flex: 1; min-width: 0; }
+    .wa-name {
+      font-size: 0.85rem; font-weight: 600;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .wa-status {
+      font-size: 0.65rem; opacity: 0.75;
+    }
+    .wa-actions { display: flex; gap: 12px; opacity: 0.9; }
+    .wa-icon { font-size: 0.85rem; }
+
+    /* WhatsApp body */
+    .wa-body {
+      flex: 1; padding: 12px 10px;
+      background-color: #ECE5DD;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0);
+      background-size: 22px 22px;
+      overflow-y: auto;
+      display: flex; flex-direction: column; gap: 6px;
+      scrollbar-width: none;
+    }
+    .wa-body::-webkit-scrollbar { display: none; }
+    .wa-date-pill {
+      align-self: center;
+      background: #E1F2FB; color: #4a4a4a;
+      font-size: 0.62rem; padding: 4px 10px; border-radius: 6px;
+      margin: 4px 0 6px; font-weight: 500; text-transform: lowercase;
+      box-shadow: 0 1px 0.5px rgba(0,0,0,0.06);
+    }
+
+    .wa-bubble {
+      max-width: 85%; padding: 6px 8px 4px;
+      border-radius: 8px;
+      font-size: 0.78rem; line-height: 1.4;
+      position: relative;
+      box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+      word-wrap: break-word;
+    }
+    .wa-bubble-in {
+      background: #ffffff;
+      align-self: flex-start;
+      border-top-left-radius: 0;
+      color: #2A2F36;
+    }
+    .wa-bubble-out {
+      background: #DCF8C6;
+      align-self: flex-end;
+      border-top-right-radius: 0;
+      color: #2A2F36;
+    }
+    .wa-bubble-confirm {
+      background: #FBF9F3;
+      border: 1px solid var(--gold-soft);
+      border-top-right-radius: 0;
+    }
+    .wa-bubble-confirm strong { color: var(--ink); }
+    .wa-text { display: block; }
+    .wa-meta {
+      display: inline-block; float: right;
+      font-size: 0.6rem; color: #667781;
+      margin: 6px 0 -2px 8px;
+      font-weight: 500;
+    }
+    .wa-tick { color: #4FC3F7; margin-left: 2px; font-size: 0.62rem; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sarah-demo-grid {
+        grid-template-columns: 1fr; gap: 2rem;
+      }
+      .sarah-demo-phone { order: 2; }
+      .phone-frame { width: 290px; }
+      .phone-screen { height: 540px; }
+    }
 
     /* ========== TRUST BAR (Scrolling marquee) ========== */
     .trust-bar {
@@ -313,7 +543,7 @@
       padding: 1.8rem 1.4rem; transition: all 0.3s;
     }
     .service-card:hover {
-      transform: translateY(-4px); border-color: rgba(233,30,140,0.2);
+      transform: translateY(-4px); border-color: rgba(31,77,92,0.2);
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
     .service-card-icon {
@@ -372,6 +602,23 @@
     .temoignage-meta { line-height: 1.3; }
     .temoignage-meta-name { font-size: 0.85rem; font-weight: 700; }
     .temoignage-meta-role { font-size: 0.72rem; color: var(--g500); }
+
+    /* === MÉTHODE (réutilise temoignage-card mais sans la citation) === */
+    #methode .temoignage-card::before { display: none; }
+    .method-step {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem; display: inline-block;
+      padding: 0.25rem 0.6rem; border-radius: 4px;
+      background: var(--gold-bg); border: 1px solid var(--gold-soft);
+    }
+    .method-title {
+      font-size: 1.15rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin: 0.6rem 0 0.7rem;
+    }
+    .method-desc {
+      font-size: 0.9rem; color: var(--g700); line-height: 1.62;
+    }
 
     @media (max-width: 900px) {
       .temoignages-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -477,13 +724,13 @@
     }
 
     .btn-pink { background: var(--pink); color: white; padding: 0.6rem 1.4rem; }
-    .btn-pink:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(233,30,140,0.25); }
+    .btn-pink:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(31,77,92,0.25); }
 
     .btn-nav {
       background: white; color: var(--pink); padding: 0.55rem 1.3rem;
       border: 1.5px solid var(--pink);
     }
-    .btn-nav:hover { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(233,30,140,0.25); transform: translateY(-1px); }
+    .btn-nav:hover { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(31,77,92,0.25); transform: translateY(-1px); }
 
     .btn-lg { padding: 0.85rem 2rem; font-size: 0.95rem; border-radius: 12px; }
     .btn-ghost { background: transparent; color: var(--g700); padding: 0.6rem 1.4rem; border: 1px solid var(--g200); }
@@ -505,7 +752,7 @@
     .hero-grad {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 800px; height: 450px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(31,77,92,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -514,7 +761,7 @@
     .hero-pill {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.3rem 0.85rem 0.3rem 0.45rem;
-      background: var(--pink-bg); border: 1px solid rgba(233,30,140,0.12);
+      background: var(--pink-bg); border: 1px solid rgba(31,77,92,0.12);
       border-radius: 100px; font-size: 0.75rem; font-weight: 600; color: var(--pink);
       margin-bottom: 1.8rem;
       opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
@@ -579,12 +826,12 @@
       position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
       background: var(--pink); color: var(--white); padding: 0.95rem 1.4rem;
       border-radius: 50px; font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; box-shadow: 0 10px 30px rgba(233, 30, 140, 0.4);
+      text-decoration: none; box-shadow: 0 10px 30px rgba(31, 77, 92, 0.4);
       display: flex; align-items: center; gap: 0.5rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .sticky-cta:hover {
-      transform: translateY(-3px); box-shadow: 0 14px 40px rgba(233, 30, 140, 0.55);
+      transform: translateY(-3px); box-shadow: 0 14px 40px rgba(31, 77, 92, 0.55);
     }
     .sticky-cta .icon { font-size: 1.1rem; }
     @media (max-width: 600px) {
@@ -636,7 +883,7 @@
       padding: 1.8rem; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .prob-card:hover { border-color: rgba(233,30,140,0.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .prob-card:hover { border-color: rgba(31,77,92,0.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
     .prob-icon {
       width: 42px; height: 42px; border-radius: 10px; background: var(--pink-bg);
@@ -722,7 +969,7 @@
 
     .p-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     .p-card.ft { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink); }
-    .p-card.ft:hover { box-shadow: 0 0 0 1px var(--pink), 0 14px 40px rgba(233,30,140,0.1); }
+    .p-card.ft:hover { box-shadow: 0 0 0 1px var(--pink), 0 14px 40px rgba(31,77,92,0.1); }
 
     .pricing-grid { align-items: stretch; }
 
@@ -740,7 +987,7 @@
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.4rem 0.85rem; border-radius: 100px;
       width: fit-content;
-      border: 1px solid rgba(233,30,140,0.15);
+      border: 1px solid rgba(31,77,92,0.15);
       margin-bottom: 0.4rem;
     }
     .p-auto-badge.dark {
@@ -769,7 +1016,7 @@
       background: var(--pink-bg); color: var(--pink);
       padding: 0.5rem 0.8rem; border-radius: 8px;
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.01em;
-      border: 1px solid rgba(233,30,140,0.1);
+      border: 1px solid rgba(31,77,92,0.1);
       line-height: 1.4;
       overflow: hidden;
       box-sizing: border-box;
@@ -778,6 +1025,11 @@
     }
     .p-gain::before { content: '→'; font-weight: 700; flex-shrink: 0; }
     .p-price { font-size: 2.3rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.15rem; }
+    .p-price-suffix { font-size: 0.78rem; font-weight: 600; color: var(--ash); letter-spacing: 0; }
+    .p-unit {
+      font-size: 0.72rem; color: var(--g600); font-weight: 500;
+      margin-bottom: 0.7rem; line-height: 1.5;
+    }
     .p-note { font-size: 0.73rem; color: var(--g400); margin-bottom: 1.5rem; min-height: 1.1em; }
 
     .p-div { height: 1px; background: var(--g200); margin-bottom: 1.3rem; }
@@ -818,13 +1070,13 @@
     }
     .p-pay-link:hover { color: var(--pink); text-decoration: underline; }
     .p-card.ft .p-cta { background: var(--pink); color: white; border-color: var(--pink); }
-    .p-card.ft .p-cta:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(233,30,140,0.25); }
+    .p-card.ft .p-cta:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(31,77,92,0.25); }
 
     /* Maintenance band */
     .maint-band {
       margin-top: 2rem;
       background: linear-gradient(135deg, var(--pink-bg) 0%, #fff 60%);
-      border: 1px solid rgba(233,30,140,0.15);
+      border: 1px solid rgba(31,77,92,0.15);
       border-radius: var(--r);
       padding: 2rem 2.5rem;
       display: grid;
@@ -894,7 +1146,7 @@
       font-size: 0.8rem; transition: all 0.25s;
     }
 
-    .maint-cta:hover { background: var(--pink-light); box-shadow: 0 4px 15px rgba(233,30,140,0.25); transform: translateY(-1px); }
+    .maint-cta:hover { background: var(--pink-light); box-shadow: 0 4px 15px rgba(31,77,92,0.25); transform: translateY(-1px); }
 
     @media (max-width: 900px) {
       .maint-band { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem; }
@@ -915,7 +1167,7 @@
       transition: all 0.2s;
     }
 
-    .parcours-step.highlight { background: var(--pink-bg); border-color: rgba(233,30,140,0.2); color: var(--pink); }
+    .parcours-step.highlight { background: var(--pink-bg); border-color: rgba(31,77,92,0.2); color: var(--pink); }
 
     .parcours-arrow { color: var(--g300); font-size: 0.8rem; }
 
@@ -933,7 +1185,7 @@
       content: '';
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 900px; height: 500px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.18) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(31,77,92,0.18) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -970,7 +1222,7 @@
     }
     .calc-teaser-feat::before {
       content: '✓'; width: 24px; height: 24px; border-radius: 50%;
-      background: rgba(233,30,140,0.15); color: var(--pink);
+      background: rgba(31,77,92,0.15); color: var(--pink);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
     }
@@ -984,7 +1236,7 @@
     }
     .calc-teaser-cta:hover {
       background: var(--pink-light); transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(233,30,140,0.35);
+      box-shadow: 0 10px 30px rgba(31,77,92,0.35);
     }
 
     /* Right side: interactive preview card */
@@ -1204,7 +1456,7 @@
 
     .intro-cone {
       position: absolute; inset: 0;
-      background: conic-gradient(from 0deg, transparent, rgba(233,30,140,0.03), transparent, rgba(100,30,180,0.02), transparent);
+      background: conic-gradient(from 0deg, transparent, rgba(31,77,92,0.03), transparent, rgba(100,30,180,0.02), transparent);
       animation: spinCone 25s linear infinite;
     }
 
@@ -1212,7 +1464,7 @@
 
     .intro-ring {
       position: absolute; border-radius: 50%;
-      border: 1px solid rgba(233,30,140,0.06);
+      border: 1px solid rgba(31,77,92,0.06);
       animation: ringPulse 4s ease-in-out infinite;
     }
 
@@ -1228,12 +1480,12 @@
     .intro-logo-wrap {
       position: relative;
       width: 120px; height: 120px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.1), transparent 70%);
-      border: 1px solid rgba(233,30,140,0.12);
+      background: radial-gradient(circle at 30% 30%, rgba(31,77,92,0.1), transparent 70%);
+      border: 1px solid rgba(31,77,92,0.12);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transform: scale(0.7);
       animation: introIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
-      box-shadow: 0 0 60px rgba(233,30,140,0.1);
+      box-shadow: 0 0 60px rgba(31,77,92,0.1);
     }
 
     .intro-logo-wrap::after {
@@ -1273,7 +1525,7 @@
 
     .intro-sub {
       margin-top: 0.5rem; font-size: 0.62rem; letter-spacing: 0.18em;
-      color: rgba(233,30,140,0.5); opacity: 0; animation: introFade 0.6s ease 0.9s forwards;
+      color: rgba(31,77,92,0.5); opacity: 0; animation: introFade 0.6s ease 0.9s forwards;
     }
 
     .intro-line {
@@ -1328,24 +1580,50 @@
         <li><a href="blog/" data-fr="Blog" data-en="Blog">Blog</a></li>
         <li><a href="faq/" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
         <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
-        <li>
-          <button class="lang-toggle" onclick="toggleLang()" aria-label="Change language">
-            <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:10px">
-              <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
-              <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
-              <g clip-path="url(#s)">
-                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-              </g>
-            </svg>
-            <span id="lang-en">EN</span>
-            <span class="lang-sep">|</span>
-            <span id="lang-fr" class="lang-active">FR</span>
-            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>
+        <li class="market-switch">
+          <button class="market-toggle" onclick="toggleMarketMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Choisir votre marché">
+            <span class="market-flag" id="market-current-flag">🇨🇭</span>
+            <span class="market-current" id="market-current-name">CH</span>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
           </button>
+          <div class="market-menu" id="market-menu" role="menu">
+            <div class="market-menu-label">Marchés</div>
+            <a href="/sarah-ch.html" class="market-item" data-market="ch" role="menuitem">
+              <span class="market-flag">🇨🇭</span>
+              <span class="market-name">Suisse</span>
+              <span class="market-locale">FR · CHF</span>
+            </a>
+            <a href="/sarah-be.html" class="market-item" data-market="be-fr" role="menuitem">
+              <span class="market-flag">🇧🇪</span>
+              <span class="market-name">Belgique</span>
+              <span class="market-locale">FR · EUR</span>
+            </a>
+            <a href="/sarah-be-nl.html" class="market-item" data-market="be-nl" role="menuitem">
+              <span class="market-flag">🇧🇪</span>
+              <span class="market-name">België</span>
+              <span class="market-locale">NL · EUR</span>
+            </a>
+            <a href="/?market=fr" class="market-item" data-market="fr" role="menuitem">
+              <span class="market-flag">🇫🇷</span>
+              <span class="market-name">France</span>
+              <span class="market-locale">FR · EUR</span>
+            </a>
+            <a href="/sarah-uk.html" class="market-item" data-market="uk" role="menuitem">
+              <span class="market-flag">🇬🇧</span>
+              <span class="market-name">United Kingdom</span>
+              <span class="market-locale">EN · GBP</span>
+            </a>
+            <a href="/?market=qc" class="market-item" data-market="qc" role="menuitem">
+              <span class="market-flag">🇨🇦</span>
+              <span class="market-name">Québec</span>
+              <span class="market-locale">FR · CAD</span>
+            </a>
+            <a href="/sarah-ko.html" class="market-item" data-market="ko" role="menuitem">
+              <span class="market-flag">🇹🇭</span>
+              <span class="market-name">Koh Samui</span>
+              <span class="market-locale">Thaïlande · EN</span>
+            </a>
+          </div>
         </li>
         <li><a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-nav" data-fr="Audit gratuit" data-en="Free audit">Audit gratuit</a></li>
         <li class="nav-socials">
@@ -1366,100 +1644,183 @@
     <div class="hero-content">
       <div class="hero-pill">
         <div class="pill-dot"></div>
-        <span data-fr="Automatisation pour agences immobilières" data-en="Automation for estate agencies">Automatisation pour agences immobilières</span>
+        <span data-fr="Cabinet d'opérations · Agences immobilières indépendantes" data-en="Operations practice · Independent estate agencies">Cabinet d'opérations · Agences immobilières indépendantes</span>
       </div>
-      <h1 data-fr-html="Vos mandats n&apos;attendent pas. <span class=&quot;hl&quot;>Votre concurrent non plus.</span>" data-en-html="Your instructions won&apos;t wait. <span class=&quot;hl&quot;>Neither will your competitor.</span>">Vos mandats n'attendent pas. <span class="hl">Votre concurrent non plus.</span></h1>
-      <p class="hero-desc" data-fr="19 ans dans la vente. L'immobilier. Toujours la même scène : de bons négociateurs, des contacts entrants qui meurent dans un tableur, et des mandats signés chez le confrère d'à côté. Le goulot d'étranglement n'est jamais le volume de contacts. C'est toujours le temps de réponse. On le répare." data-en="19 years in sales. Real estate. Always the same scene: good negotiators, inbound contacts dying in a spreadsheet, instructions signed at the agency next door. The bottleneck is never the lead supply. It's always the response time. We fix it.">19 ans dans la vente. L'immobilier. Toujours la même scène : de bons négociateurs, des contacts entrants qui meurent dans un tableur, et des mandats signés chez le confrère d'à côté. Le goulot d'étranglement n'est jamais le volume de contacts. C'est toujours le temps de réponse. On le répare.</p>
+      <h1 data-fr-html="Le rappel mandant en 5 minutes. <span class=&quot;hl&quot;>Avant que le confrère d'en face n'ouvre sa boîte mail.</span>" data-en-html="Every enquiry called back in 5 minutes. <span class=&quot;hl&quot;>Before the agency across the road opens their inbox.</span>">Le rappel mandant en 5 minutes. <span class="hl">Avant que le confrère d'en face n'ouvre sa boîte mail.</span></h1>
+      <p class="hero-desc" data-fr="Pour les agences indépendantes qui voient des rentrées partir chez le voisin. On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp — dans votre ton, avec votre marque, branchée sur votre CRM." data-en="For independent estate agencies tired of watching instructions walk to whoever picked up first. We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp — in your tone, with your brand, plugged into your CRM.">Pour les agences indépendantes qui voient des rentrées partir chez le voisin. On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp — dans votre ton, avec votre marque, branchée sur votre CRM.</p>
       <div class="hero-actions">
-        <a href="calculateur.html" class="btn btn-pink btn-lg" data-fr="Calculer ce que je perds chaque mois &rarr;" data-en="Calculate what I'm losing every month &rarr;">
-          Calculer ce que je perds chaque mois &rarr;
+        <a href="#sarah-demo" class="btn btn-pink btn-lg" data-fr="Voir Sarah en action &rarr;" data-en="See Sarah live &rarr;">
+          Voir Sarah en action &rarr;
         </a>
-        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-ghost btn-lg" data-fr="Audit 30 min" data-en="30-min audit">Audit 30 min</a>
+        <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-ghost btn-lg" data-fr="Audit 30 min avec le fondateur" data-en="30-min audit with the founder">Audit 30 min avec le fondateur</a>
       </div>
-      <p class="hero-note" data-fr="Audit gratuit 30 min · on vous montre combien de mandats vous avez perdus ce mois-ci" data-en="30 min free audit · we show you how many instructions you lost this month">Audit gratuit 30 min · on vous montre combien de mandats vous avez perdus ce mois-ci</p>
+      <p class="hero-note" data-fr="Audit gratuit · 30 minutes · sans engagement · le fondateur en visio" data-en="Free audit · 30 minutes · no commitment · founder on video">Audit gratuit · 30 minutes · sans engagement · le fondateur en visio</p>
     </div>
   </div>
 
-  <!-- TRUST BAR (Scrolling marquee) -->
+  <!-- SARAH DEMO — faux iPhone + conversation WhatsApp simulée (le produit phare en hero secondaire) -->
+  <section id="sarah-demo" class="sarah-demo-section">
+    <div class="sarah-demo-grid">
+      <div class="sarah-demo-text">
+        <div class="tag rv" data-fr="Sarah au travail · 22h47, mardi soir" data-en="Sarah at work · 10:47pm, Tuesday">Sarah au travail · 22h47, mardi soir</div>
+        <h2 class="heading rv" data-fr-html="Pendant que vous dîniez, <span class=&quot;hl&quot;>elle a verrouillé une estimation pour jeudi 10 h.</span>" data-en-html="While you were at dinner, <span class=&quot;hl&quot;>she locked in a valuation for Thursday 10am.</span>">Pendant que vous dîniez, <span class="hl">elle a verrouillé une estimation pour jeudi 10 h.</span></h2>
+        <p class="rv" data-fr="Marie, propriétaire d'un T3 à Lausanne, a vu une de vos annonces sur Homegate. Elle a cliqué « contactez-moi » à 22 h 43. Quatre minutes plus tard, Sarah lui répondait sur WhatsApp — dans le ton de votre agence. Voici la conversation, telle qu'elle s'est déroulée." data-en="Marie, owner of a 2-bed in Lausanne, saw one of your listings on Homegate. She clicked &quot;contact me&quot; at 10:43pm. Four minutes later, Sarah was replying on WhatsApp — in your agency's tone. Here's the conversation, exactly as it played out.">Marie, propriétaire d'un T3 à Lausanne, a vu une de vos annonces sur Homegate. Elle a cliqué « contactez-moi » à 22 h 43. Quatre minutes plus tard, Sarah lui répondait sur WhatsApp — dans le ton de votre agence. Voici la conversation, telle qu'elle s'est déroulée.</p>
+        <ul class="sarah-demo-points rv">
+          <li data-fr-html="<strong>Temps de premier contact :</strong> 4 minutes" data-en-html="<strong>Time to first contact:</strong> 4 minutes"><strong>Temps de premier contact :</strong> 4 minutes</li>
+          <li data-fr-html="<strong>Qualification automatique :</strong> bien, surface, motivation, calendrier" data-en-html="<strong>Auto-qualification:</strong> property, size, motivation, timeline"><strong>Qualification automatique :</strong> bien, surface, motivation, calendrier</li>
+          <li data-fr-html="<strong>Créneau d'estimation :</strong> posé dans votre Calendly, synchronisé sur le téléphone du négociateur" data-en-html="<strong>Valuation slot:</strong> dropped into your Calendly, synced to your negotiator's phone"><strong>Créneau d'estimation :</strong> posé dans votre Calendly, synchronisé sur le téléphone du négociateur</li>
+          <li data-fr-html="<strong>Vous :</strong> vous dormez. Vous découvrez le RDV au petit déjeuner." data-en-html="<strong>You:</strong> you sleep. You find the booking over breakfast."><strong>Vous :</strong> vous dormez. Vous découvrez le RDV au petit déjeuner.</li>
+        </ul>
+        <div class="rv" style="margin-top:1.5rem; display:flex; gap:.75rem; flex-wrap:wrap">
+          <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-pink btn-lg" data-fr="Voir Sarah live sur mon agence →" data-en="See Sarah live on my agency →">Voir Sarah live sur mon agence →</a>
+        </div>
+      </div>
+
+      <div class="sarah-demo-phone rv">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-statusbar">
+              <span class="phone-time">22:47</span>
+              <span class="phone-signal">
+                <span class="phone-dot"></span><span class="phone-dot"></span><span class="phone-dot"></span><span class="phone-dot"></span>
+                <span class="phone-wifi">●</span>
+                <span class="phone-batt"><span></span></span>
+              </span>
+            </div>
+            <div class="wa-header">
+              <button class="wa-back" aria-hidden="true">‹</button>
+              <div class="wa-avatar">
+                <span>S</span>
+              </div>
+              <div class="wa-contact">
+                <div class="wa-name">Agence Léman · Sarah</div>
+                <div class="wa-status">en ligne</div>
+              </div>
+              <div class="wa-actions">
+                <span class="wa-icon">📹</span>
+                <span class="wa-icon">📞</span>
+              </div>
+            </div>
+            <div class="wa-body" id="wa-body">
+              <div class="wa-date-pill">aujourd'hui</div>
+
+              <div class="wa-bubble wa-bubble-in">
+                <span class="wa-text">Bonjour, j'aimerais vendre mon appartement. Pouvez-vous m'estimer ?</span>
+                <span class="wa-meta">22:43</span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-out">
+                <span class="wa-text">Bonsoir Marie 🌙 Ici Sarah, l'assistante de l'Agence Léman. Merci pour votre message ! Pour vous donner une estimation juste, j'aurais besoin de quelques infos rapides — ça vous va si je vous pose 3 questions ?</span>
+                <span class="wa-meta">22:47 <span class="wa-tick">✓✓</span></span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-in">
+                <span class="wa-text">Oui bien sûr</span>
+                <span class="wa-meta">22:48</span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-out">
+                <span class="wa-text">Parfait. 1) C'est quel type de bien ? Appartement / villa / autre ? 2) Surface habitable approximative ? 3) Vous visez plutôt une mise en vente sous 1 mois, 3 mois, ou plus tard dans l'année ?</span>
+                <span class="wa-meta">22:48 <span class="wa-tick">✓✓</span></span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-in">
+                <span class="wa-text">Un T3 de 78 m² à Lausanne, on aimerait vendre vite, on déménage pour Genève en septembre</span>
+                <span class="wa-meta">22:50</span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-out">
+                <span class="wa-text">Compris — déménagement pour Genève, vous voulez avancer. Notre courtier Jérôme connaît bien le marché lausannois. Il peut passer faire l'estimation chez vous jeudi à 10 h, c'est ok pour vous ?</span>
+                <span class="wa-meta">22:51 <span class="wa-tick">✓✓</span></span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-in">
+                <span class="wa-text">Oui ça me va parfaitement 🙏</span>
+                <span class="wa-meta">22:52</span>
+              </div>
+
+              <div class="wa-bubble wa-bubble-out wa-bubble-confirm">
+                <span class="wa-text"><strong>✅ RDV confirmé</strong><br>📍 Jeudi 10 h chez vous<br>👤 Jérôme · Agence Léman<br><br>Je vous envoie le rappel demain. À jeudi, Marie 👋</span>
+                <span class="wa-meta">22:52 <span class="wa-tick">✓✓</span></span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR — outils métier de la cible (par marché) -->
   <div class="trust-bar">
-    <div class="trust-label" data-fr="Les outils qu'on branche dans votre agence" data-en="The tools we wire into your agency">Les outils qu'on branche dans votre agence</div>
+    <div class="trust-label" data-fr="Se branche sur vos outils existants" data-en="Plugs into the tools you already run">Se branche sur vos outils existants</div>
     <div class="trust-marquee">
       <div class="trust-track">
-        <!-- Set 1 -->
-        <div class="trust-logo"><span class="trust-logo-dot"></span>n8n</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>OpenAI</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Twilio</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Stripe</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Notion</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>HubSpot</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Aircall</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Make</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Zapier</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Airtable</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Calendly</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Brevo</div>
+        <!-- Set 1 — CRM, portails et téléphonie du métier sur les 4 marchés -->
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Apimo</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Whise</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Sweepbright</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Hektor</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Reapit</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Alto</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>CASAFARI</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Immoweb</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Homegate</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>ImmoScout24</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Rightmove</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Zoopla</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>DDproperty</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>WhatsApp Business</div>
         <!-- Set 2 (duplicate for seamless loop) -->
-        <div class="trust-logo"><span class="trust-logo-dot"></span>n8n</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>OpenAI</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Twilio</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Stripe</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Notion</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>HubSpot</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Aircall</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Make</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Zapier</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Airtable</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Calendly</div>
-        <div class="trust-logo"><span class="trust-logo-dot"></span>Brevo</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Apimo</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Whise</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Sweepbright</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Hektor</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Reapit</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Alto</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>CASAFARI</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Immoweb</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Homegate</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>ImmoScout24</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Rightmove</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>Zoopla</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>DDproperty</div>
+        <div class="trust-logo"><span class="trust-logo-dot"></span>WhatsApp Business</div>
       </div>
     </div>
   </div>
 
-  <!-- CE QUE J'AURAIS AIMÉ QU'ON ME DISE EN 2024 -->
-  <section id="temoignages">
-    <div class="tag rv" data-fr="Ce que j'ai vu de l'intérieur" data-en="What I saw from the inside">Ce que j'ai vu de l'intérieur</div>
-    <h2 class="heading rv" data-fr="3 chiffres que les agences ne voient pas." data-en="3 numbers agencies don't see.">3 chiffres que les agences ne voient pas.</h2>
-    <p class="subdesc rv" data-fr="Pas de stats institutionnelles. Trois réalités observées en closant pour des agences pendant 19 ans. Trois choses que tout patron d'agence devrait savoir." data-en="No institutional stats. Three realities observed closing for agencies over 19 years. Three things every agency principal should know.">Pas de stats institutionnelles. Trois réalités observées en closant pour des agences pendant 19 ans. Trois choses que tout patron d'agence devrait savoir.</p>
+  <!-- MÉTHODE — 3 étapes (remplace les 3 témoignages PJ qui migrent vers /a-propos) -->
+  <section id="methode">
+    <div class="tag rv" data-fr="Notre méthode" data-en="Our method">Notre méthode</div>
+    <h2 class="heading rv" data-fr-html="3 étapes. <span class=&quot;hl&quot;>Rien de plus.</span>" data-en-html="3 steps. <span class=&quot;hl&quot;>Nothing more.</span>">3 étapes. <span class="hl">Rien de plus.</span></h2>
+    <p class="subdesc rv" data-fr="Pas de PowerPoint, pas de séminaire, pas de transformation digitale en 18 mois. On regarde votre agence, on installe Sarah sous 14 jours, vous mesurez le résultat. Si ça ne tient pas la promesse, on rembourse." data-en="No PowerPoint, no seminar, no 18-month digital transformation. We look at your agency, we install Sarah within 14 days, you measure. If it doesn't hold up, we refund.">Pas de PowerPoint, pas de séminaire, pas de transformation digitale en 18 mois. On regarde votre agence, on installe Sarah sous 14 jours, vous mesurez le résultat. Si ça ne tient pas la promesse, on rembourse.</p>
     <div class="temoignages-grid">
 
       <div class="temoignage-card rv rv-d1">
-        <div class="temoignage-stat">5 min</div>
-        <div class="temoignage-text" data-fr="« Les agences qui signaient le plus avaient une chose en commun : elles rappelaient dans les 5 minutes. Les autres rappelaient à J+3. Et se demandaient où était passé le mandat. »" data-en="&quot;The agencies signing the most had one thing in common: they called back within 5 minutes. The others called back at D+3. Then wondered where the instruction went.&quot;">« Les agences qui signaient le plus avaient une chose en commun : elles rappelaient dans les 5 minutes. Les autres rappelaient à J+3. Et se demandaient où était passé le mandat. »</div>
-        <div class="temoignage-author">
-          <div class="temoignage-avatar">PJ</div>
-          <div class="temoignage-meta">
-            <div class="temoignage-meta-name">Pierre-Jean Grisoni</div>
-            <div class="temoignage-meta-role" data-fr="19 ans au téléphone · Gild-Tech" data-en="19 years on the phone · Gild-Tech">19 ans au téléphone · Gild-Tech</div>
-          </div>
-        </div>
+        <div class="method-step" data-fr="Étape 1 · J+0" data-en="Step 1 · D+0">Étape 1 · J+0</div>
+        <div class="temoignage-stat" style="font-size: 2.2rem; line-height: 1.1;">🔍</div>
+        <div class="method-title" data-fr="Audit 30 min avec le fondateur" data-en="30-min audit with the founder">Audit 30 min avec le fondateur</div>
+        <div class="method-desc" data-fr="On cartographie votre process en 30 minutes en visio. Combien de contacts entrants par semaine, combien rappelés en 5 minutes, où ça fuit. Vous repartez avec un chiffre noir sur blanc. Si on ne peut pas le résoudre, on vous le dit et on ne prend pas votre argent." data-en="We map your process in 30 minutes on video. How many enquiries per week, how many answered in 5 minutes, where it leaks. You leave with a number in black and white. If we can't fix it, we tell you and don't take your money.">On cartographie votre process en 30 minutes en visio. Combien de contacts entrants par semaine, combien rappelés en 5 minutes, où ça fuit. Vous repartez avec un chiffre noir sur blanc. Si on ne peut pas le résoudre, on vous le dit et on ne prend pas votre argent.</div>
       </div>
 
       <div class="temoignage-card rv rv-d2">
-        <div class="temoignage-stat">47</div>
-        <div class="temoignage-text" data-fr="« Un gérant m'a ouvert son fichier un soir. 200 contacts. La moitié n'avait jamais été rappelée. 100 personnes qui avaient dit « je veux vendre ». Ignorées. Sa mémoire à 22h après une journée de visites — comme la vôtre — elle lâche. C'est mathématique. »" data-en="&quot;A principal showed me his file one evening. 200 contacts. Half had never been called back. 100 people who said 'I want to sell.' Ignored. His memory at 10pm after a day of viewings — like yours — gives up. It's mathematical.&quot;">« Un gérant m'a ouvert son fichier un soir. 200 contacts. La moitié n'avait jamais été rappelée. 100 personnes qui avaient dit « je veux vendre ». Ignorées. Sa mémoire à 22h après une journée de visites — comme la vôtre — elle lâche. C'est mathématique. »</div>
-        <div class="temoignage-author">
-          <div class="temoignage-avatar">PJ</div>
-          <div class="temoignage-meta">
-            <div class="temoignage-meta-name">Pierre-Jean Grisoni</div>
-            <div class="temoignage-meta-role" data-fr="Ce que j'ai vu · Gild-Tech" data-en="What I saw · Gild-Tech">Ce que j'ai vu · Gild-Tech</div>
-          </div>
-        </div>
+        <div class="method-step" data-fr="Étape 2 · 14 jours" data-en="Step 2 · 14 days">Étape 2 · 14 jours</div>
+        <div class="temoignage-stat" style="font-size: 2.2rem; line-height: 1.1;">⚡</div>
+        <div class="method-title" data-fr="Installation, calibrée, mesurée" data-en="Install, calibrated, measured">Installation, calibrée, mesurée</div>
+        <div class="method-desc" data-fr="On branche Sarah sur votre numéro WhatsApp Business, vos portails, votre CRM. Elle apprend votre ton, vos biens, vos arguments. 14 jours plus tard, chaque contact entrant est rappelé en moins de 5 minutes. C'est mesuré. C'est tracé. Pas de magie." data-en="We plug Sarah into your WhatsApp Business number, your portals, your CRM. She learns your tone, your stock, your arguments. 14 days later, every enquiry is answered in under 5 minutes. Measured. Logged. No magic.">On branche Sarah sur votre numéro WhatsApp Business, vos portails, votre CRM. Elle apprend votre ton, vos biens, vos arguments. 14 jours plus tard, chaque contact entrant est rappelé en moins de 5 minutes. C'est mesuré. C'est tracé. Pas de magie.</div>
       </div>
 
       <div class="temoignage-card rv rv-d3">
-        <div class="temoignage-stat">19 ans</div>
-        <div class="temoignage-text" data-fr="« En 19 ans au téléphone pour des agences immo, j'ai vu ce problème partout, sans exception. Ce n'est jamais un manque de talent. C'est toujours la même fuite : le vide entre le lead et le premier vrai contact. »" data-en="&quot;In 19 years on the phone for estate agencies, I saw this problem everywhere, without exception. It's never a lack of talent. It's always the same leak: the gap between the lead and the first real contact.&quot;">« En 19 ans au téléphone pour des agences immo, j'ai vu ce problème partout, sans exception. Ce n'est jamais un manque de talent. C'est toujours la même fuite : le vide entre le lead et le premier vrai contact. »</div>
-        <div class="temoignage-author">
-          <div class="temoignage-avatar">PJ</div>
-          <div class="temoignage-meta">
-            <div class="temoignage-meta-name">Pierre-Jean Grisoni</div>
-            <div class="temoignage-meta-role" data-fr="La leçon qui a fondé Gild-Tech" data-en="The lesson that founded Gild-Tech">La leçon qui a fondé Gild-Tech</div>
-          </div>
-        </div>
+        <div class="method-step" data-fr="Étape 3 · 30 jours" data-en="Step 3 · 30 days">Étape 3 · 30 jours</div>
+        <div class="temoignage-stat" style="font-size: 2.2rem; line-height: 1.1;">🛡️</div>
+        <div class="method-title" data-fr="Satisfait, ou remboursé." data-en="Satisfied, or refunded.">Satisfait, ou remboursé.</div>
+        <div class="method-desc" data-fr="Vous avez 30 jours pour mesurer. Si Sarah ne tient pas la promesse — temps de réponse, RDV pris, taux de qualification — on vous rembourse intégralement. Sans discussion, sans paperasse. C'est notre garantie écrite depuis mai 2026." data-en="You have 30 days to measure. If Sarah doesn't deliver — response time, viewings booked, qualification rate — we refund in full. No argument, no paperwork. Written guarantee since May 2026.">Vous avez 30 jours pour mesurer. Si Sarah ne tient pas la promesse — temps de réponse, RDV pris, taux de qualification — on vous rembourse intégralement. Sans discussion, sans paperasse. C'est notre garantie écrite depuis mai 2026.</div>
       </div>
 
     </div>
-    <p class="temoignage-note rv" data-fr="Trois constats vécus. Pas un slide McKinsey. La même rigueur s'applique à votre agence." data-en="Three lived realisations. Not a McKinsey slide. The same rigour applies to your agency.">Trois constats vécus. Pas un slide McKinsey. La même rigueur s'applique à votre agence.</p>
+    <p class="temoignage-note rv" data-fr="Méthode appliquée chez les agences accompagnées par le cabinet. Pas un slide McKinsey. Un protocole opérationnel." data-en="Method applied with every agency we work with. Not a McKinsey slide. An operational protocol.">Méthode appliquée chez les agences accompagnées par le cabinet. Pas un slide McKinsey. Un protocole opérationnel.</p>
   </section>
 
   <!-- ACCOMPAGNEMENT FONDATEUR -->
@@ -1468,8 +1829,8 @@
     <h2 class="heading rv" data-fr="5 agences accompagnées par trimestre. C'est notre limite." data-en="5 agencies supported per quarter. That's our limit.">5 agences accompagnées par trimestre. C'est notre limite.</h2>
     <p class="subdesc rv" data-fr="Cabinet sélectif. Pas de mass-market, pas de chaîne de production. Le fondateur travaille personnellement avec chaque patron d'agence sur 90 jours. Pricing préférentiel sur les places ouvertes." data-en="Selective practice. No mass-market, no factory line. The founder personally works with every agency principal over 90 days. Preferential pricing on open spots.">Cabinet sélectif. Pas de mass-market, pas de chaîne de production. Le fondateur travaille personnellement avec chaque patron d'agence sur 90 jours. Pricing préférentiel sur les places ouvertes.</p>
 
-    <div class="rv" style="background: linear-gradient(135deg, #fef6fa 0%, #fce4f1 100%); border-left: 4px solid var(--pink); border-radius: var(--r); padding: 2rem 2.2rem; margin: 2rem 0; position: relative;">
-      <div style="font-size: 2.5rem; line-height: 1; color: var(--pink); position: absolute; top: 1rem; left: 1.5rem; opacity: 0.3;">"</div>
+    <div class="rv" style="background: linear-gradient(135deg, var(--bone-soft) 0%, var(--gold-bg) 100%); border-left: 4px solid var(--gold); border-radius: var(--r); padding: 2rem 2.2rem; margin: 2rem 0; position: relative;">
+      <div style="font-size: 2.5rem; line-height: 1; color: var(--gold); position: absolute; top: 1rem; left: 1.5rem; opacity: 0.45;">"</div>
       <p style="font-size: 1.15rem; line-height: 1.6; color: var(--g900); font-weight: 500; padding-left: 2rem; margin-bottom: 1rem;" data-fr="On prend 5 patrons d'agence par trimestre, pas 50. Je m'engage personnellement sur chaque dossier. 30 minutes d'audit gratuit, je vous montre noir sur blanc combien vous perdez chaque mois. Si je ne pense pas qu'on peut le résoudre ensemble, je vous le dis et je ne prends pas votre argent." data-en="We take 5 agency principals per quarter, not 50. I commit personally to every single file. 30 minutes of free audit, I show you in black and white what you're losing every month. If I don't think we can fix it together, I'll tell you and I won't take your money.">On prend 5 patrons d'agence par trimestre, pas 50. Je m'engage personnellement sur chaque dossier. 30 minutes d'audit gratuit, je vous montre noir sur blanc combien vous perdez chaque mois. Si je ne pense pas qu'on peut le résoudre ensemble, je vous le dis et je ne prends pas votre argent.</p>
       <div style="display: flex; align-items: center; gap: 0.8rem; padding-left: 2rem;">
         <div class="temoignage-avatar" style="width: 44px; height: 44px; font-size: 0.95rem;">PJ</div>
@@ -1541,8 +1902,8 @@
   <div class="section-full prob-bg" id="probleme">
     <div class="section-inner">
       <div class="tag rv" data-fr="Le constat" data-en="The reality">Le constat</div>
-      <h2 class="heading rv" data-fr="Ce qui se passe dans votre fichier chaque semaine." data-en="What's happening in your pipeline every week.">Ce qui se passe dans votre fichier chaque semaine.</h2>
-      <p class="subdesc rv" data-fr="Vos négociateurs sont bons. Le problème se joue dans les secondes entre l'annonce publiée et le premier coup de fil. Et ça coûte 15 000 à 35 000€ de commissions par mois à votre agence." data-en="Your negotiators are good. The problem plays out in the seconds between a listing going live and the first call. That's £12,000 to £28,000 of commission walking out every month.">Vos négociateurs sont bons. Le problème se joue dans les secondes entre l'annonce publiée et le premier coup de fil. Et ça coûte 15 000 à 35 000€ de commissions par mois à votre agence.</p>
+      <h2 class="heading rv" data-fr-html="Ce qui se passe dans votre pipeline <span class=&quot;hl&quot;>chaque semaine.</span>" data-en-html="What plays out in your pipeline <span class=&quot;hl&quot;>every week.</span>">Ce qui se passe dans votre pipeline <span class="hl">chaque semaine.</span></h2>
+      <p class="subdesc rv" data-fr="Vos négociateurs sont bons. Le problème ne se joue pas dans leurs visites. Il se joue dans les minutes entre le contact entrant et le premier coup de fil. C'est là que se gagnent et se perdent les mandats. Source de référence : MIT Sloan / Oldroyd, 15 000 contacts analysés." data-en="Your negotiators are good. The problem doesn't play out in their viewings. It plays out in the minutes between an enquiry coming in and the first call. That's where instructions are won and lost. Reference source: MIT Sloan / Oldroyd, 15,000 enquiries analysed.">Vos négociateurs sont bons. Le problème ne se joue pas dans leurs visites. Il se joue dans les minutes entre le contact entrant et le premier coup de fil. C'est là que se gagnent et se perdent les mandats. Source de référence : MIT Sloan / Oldroyd, 15 000 contacts analysés.</p>
       <div class="prob-grid">
         <div class="prob-card rv rv-d1">
           <div class="prob-icon">📞</div>
@@ -1613,8 +1974,8 @@
   <div class="section-full services-bg" id="services">
     <div class="section-inner">
       <div class="tag rv" data-fr="Ce qu'on installe chez vous" data-en="What we install in your agency">Ce qu'on installe chez vous</div>
-      <h2 class="heading rv" data-fr="Le système que vos concurrents n'ont pas encore." data-en="The system your competitors don't have yet.">Le système que vos concurrents n'ont pas encore.</h2>
-      <p class="subdesc rv" data-fr="Quatre briques. Pas dix. Chacune corrige une fuite observée en closant pour des dizaines d'agences." data-en="Four bricks. Not ten. Each one plugs a leak observed closing for dozens of agencies.">Quatre briques. Pas dix. Chacune corrige une fuite observée en closant pour des dizaines d'agences.</p>
+      <h2 class="heading rv" data-fr-html="Quatre briques. <span class=&quot;hl&quot;>Pas dix.</span>" data-en-html="Four bricks. <span class=&quot;hl&quot;>Not ten.</span>">Quatre briques. <span class="hl">Pas dix.</span></h2>
+      <p class="subdesc rv" data-fr="Sarah n'est pas un produit isolé. C'est l'orchestratrice d'un système à quatre briques qui se branchent sur vos outils existants — Apimo, Whise, Sweepbright, Reapit, Immoweb, Homegate, Rightmove selon votre marché. Chaque brique corrige une fuite. Aucune ne double-fait." data-en="Sarah isn't a standalone product. She orchestrates a four-brick system that plugs into the tools you already run — Apimo, Whise, Sweepbright, Reapit, Immoweb, Homegate, Rightmove depending on your market. Each brick plugs a leak. None duplicates another.">Sarah n'est pas un produit isolé. C'est l'orchestratrice d'un système à quatre briques qui se branchent sur vos outils existants — Apimo, Whise, Sweepbright, Reapit, Immoweb, Homegate, Rightmove selon votre marché. Chaque brique corrige une fuite. Aucune ne double-fait.</p>
       <div class="services-grid">
         <div class="service-card rv rv-d1">
           <div class="service-card-icon">🔍</div>
@@ -1645,9 +2006,9 @@
     <div class="sol-grid">
       <div class="sol-text">
         <div class="tag rv" data-fr="La solution" data-en="The solution">La solution</div>
-        <h2 class="heading rv" data-fr="Votre agence prospecte à 3h du matin. Vos agents signent à 10h." data-en="Your agency prospects at 3am. Your agents win instructions by 10am.">Votre agence prospecte à 3h du matin. Vos agents signent à 10h.</h2>
-        <p class="rv" data-fr-html="GILD-TECH installe <strong>le système qui prend le premier contact pour votre agence</strong>. Un proprio publie son annonce ? Il est contacté en <em>moins de 5 minutes</em>. Un acquéreur hésite ? Il reçoit la relance qui convertit. Vos négociateurs arrivent en visite avec le dossier complet du proprio sur leur téléphone, pas avec leur seul charisme." data-en-html="GILD-TECH installs <strong>the system that takes the first contact for your agency</strong>. A vendor lists their property? They&apos;re contacted in <em>under 5 minutes</em>. A buyer hesitates? They get the follow-up that converts. Your negotiators walk into viewings with the full vendor file on their phone, not just their charm.">GILD-TECH installe <strong>le système qui prend le premier contact pour votre agence</strong>. Un proprio publie son annonce ? Il est contacté en <em>moins de 5 minutes</em>. Un acquéreur hésite ? Il reçoit la relance qui convertit. Vos négociateurs arrivent en visite avec le dossier complet du proprio sur leur téléphone, pas avec leur seul charisme.</p>
-        <p class="rv" data-fr-html="<strong>Zéro embauche. Zéro formation lourde. Zéro effort quotidien.</strong> Vous récupérez les mandats que vos concurrents laissent filer." data-en-html="<strong>Zero hiring. Zero heavy training. Zero daily effort.</strong> You capture the instructions your competitors let slip away."><strong>Zéro embauche. Zéro formation lourde. Zéro effort quotidien.</strong> Vous récupérez les mandats que vos concurrents laissent filer.</p>
+        <h2 class="heading rv" data-fr-html="Sarah travaille pendant que vous dînez. <span class=&quot;hl&quot;>Vos négociateurs signent le lendemain.</span>" data-en-html="Sarah works while you're at dinner. <span class=&quot;hl&quot;>Your negotiators sign the next day.</span>">Sarah travaille pendant que vous dînez. <span class="hl">Vos négociateurs signent le lendemain.</span></h2>
+        <p class="rv" data-fr-html="<strong>Sarah</strong> est l'assistante IA qui prend le premier contact à votre place sur WhatsApp Business — dans votre ton, avec votre marque, branchée sur votre CRM. Un mandant publie son bien à 22 h ? Sarah lui écrit à 22 h 03, qualifie sa demande, lui propose un créneau d'estimation. Vos négociateurs arrivent en visite avec le dossier complet du mandant sur leur téléphone." data-en-html="<strong>Sarah</strong> is the AI assistant taking the first contact for you on WhatsApp Business — in your tone, with your brand, plugged into your CRM. A vendor lists their property at 10pm? Sarah writes them at 10:03pm, qualifies the request, offers a valuation slot. Your negotiators walk into viewings with the full vendor file on their phone."><strong>Sarah</strong> est l'assistante IA qui prend le premier contact à votre place sur WhatsApp Business — dans votre ton, avec votre marque, branchée sur votre CRM. Un mandant publie son bien à 22 h ? Sarah lui écrit à 22 h 03, qualifie sa demande, lui propose un créneau d'estimation. Vos négociateurs arrivent en visite avec le dossier complet du mandant sur leur téléphone.</p>
+        <p class="rv" data-fr-html="<strong>Zéro embauche. Zéro formation lourde. Zéro effort quotidien.</strong> Vous récupérez les mandats que vos confrères laissent filer." data-en-html="<strong>Zero hiring. Zero heavy training. Zero daily effort.</strong> You capture the instructions your peers let slip away."><strong>Zéro embauche. Zéro formation lourde. Zéro effort quotidien.</strong> Vous récupérez les mandats que vos confrères laissent filer.</p>
       </div>
       <div class="sol-box rv">
         <div class="sol-row">
@@ -1721,7 +2082,8 @@
         <div class="p-promise" data-fr="Rappelez chaque mandant en moins de 5 minutes." data-en="Call back every vendor in under 5 minutes.">Rappelez chaque mandant en moins de 5 minutes.</div>
         <div class="p-for" data-fr-html="Pour les agences qui reçoivent <strong>10 à 30 mandants par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps." data-en-html="For agencies receiving <strong>10 to 30 vendors per week</strong> they can't call back in time.">Pour les agences qui reçoivent <strong>10 à 30 mandants par semaine</strong> et qui n'arrivent pas à toutes les rappeler à temps.</div>
         <div class="p-gain" data-fr="3 à 5 mandats/mois · amorti dès le 1er signé" data-en="3 to 5 instructions/month · paid back on the 1st signed">3 à 5 mandats/mois · amorti dès le 1er signé</div>
-        <div class="p-price" data-fr="990€" data-en="£990">990€</div>
+        <div class="p-price" data-fr="990€" data-en="£990">990€<span class="p-price-suffix" data-fr=" · setup unique" data-en=" · one-off setup"> · setup unique</span></div>
+        <div class="p-unit" data-fr="APIs ≤ 50€/mois · transparentes · facturées à ton nom" data-en="APIs ≤ £50/mo · transparent · billed in your name">APIs ≤ 50€/mois · transparentes · facturées à ton nom</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr-html="<strong>Automation 1 :</strong> rappel auto SMS/email du mandant en moins de 5 min" data-en-html="<strong>Automation 1:</strong> auto SMS/email vendor call-back in under 5 min"><strong>Automation 1 :</strong> rappel auto SMS/email du mandant en moins de 5 min</li>
@@ -1739,7 +2101,8 @@
         <div class="p-promise" data-fr="Vos agents arrivent en visite avec le dossier complet." data-en="Your agents walk into viewings with the full file.">Vos agents arrivent en visite avec le dossier complet.</div>
         <div class="p-for" data-fr-html="Pour les patrons qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et qui voient leurs négociateurs improviser sur place." data-en-html="For principals losing <strong>10 to 15 h per week</strong> on manual follow-ups and watching their negotiators wing it on the doorstep.">Pour les patrons qui perdent <strong>10 à 15 h par semaine</strong> à relancer manuellement et qui voient leurs négociateurs improviser sur place.</div>
         <div class="p-gain" data-fr="+10 h/sem libérées · taux de signature x2 en visite" data-en="+10 h/week back · viewing close rate x2">+10 h/sem libérées · taux de signature x2 en visite</div>
-        <div class="p-price" data-fr="2 490€" data-en="£2,490">2 490€</div>
+        <div class="p-price" data-fr="2 490€" data-en="£2,490">2 490€<span class="p-price-suffix" data-fr=" · setup unique" data-en=" · one-off setup"> · setup unique</span></div>
+        <div class="p-unit" data-fr="APIs 80–150€/mois · transparentes · paiement 3x sans frais" data-en="APIs £80–150/mo · transparent · 3× interest-free option">APIs 80–150€/mois · transparentes · paiement 3x sans frais</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr-html="<strong>Automation 1 :</strong> rappel mandant &lt; 5 min, 24h/24" data-en-html="<strong>Automation 1:</strong> vendor call-back &lt; 5 min, 24/7"><strong>Automation 1 :</strong> rappel mandant &lt; 5 min, 24h/24</li>
@@ -1758,11 +2121,12 @@
         <div class="p-promise" data-fr="Un négociateur virtuel qui prospecte 24h/24, sans embauche." data-en="A virtual negotiator prospecting 24/7, without hiring.">Un négociateur virtuel qui prospecte 24h/24, sans embauche.</div>
         <div class="p-for" data-fr-html="Pour les agences qui veulent <strong>doubler leurs mandats sans embaucher</strong> un négociateur à 4 000 €/mois, ni dépendre à 100 % des portails." data-en-html="For agencies wanting to <strong>double their instructions without hiring</strong> a £4,000/month negotiator, or relying 100% on property portals.">Pour les agences qui veulent <strong>doubler leurs mandats sans embaucher</strong> un négociateur à 4 000 €/mois, ni dépendre à 100 % des portails.</div>
         <div class="p-gain" data-fr="Objectif : 30 à 50 RDV vendeurs/mois · ~10× moins cher qu'un négociateur junior chargé sur 12 mois" data-en="Target: 30 to 50 vendor meetings/month · ~10× cheaper than a loaded junior negotiator over 12 months">Objectif : 30 à 50 RDV vendeurs/mois · ~10× moins cher qu'un négociateur junior chargé sur 12 mois</div>
-        <div class="p-price" data-fr="4 990€" data-en="£4,990">4 990€</div>
+        <div class="p-price" data-fr="4 990€" data-en="£4,990">4 990€<span class="p-price-suffix" data-fr=" · setup unique" data-en=" · one-off setup"> · setup unique</span></div>
+        <div class="p-unit" data-fr="APIs 150–300€/mois · transparentes · paiement 3x sans frais" data-en="APIs £150–300/mo · transparent · 3× interest-free option">APIs 150–300€/mois · transparentes · paiement 3x sans frais</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr-html="<strong>Tout Pro inclus</strong> + automations illimitées débloquées" data-en-html="<strong>All of Pro included</strong> + unlimited automations unlocked"><strong>Tout Pro inclus</strong> + automations illimitées débloquées</li>
-          <li data-fr="Pige PAP quotidienne (Leboncoin, PAP, Bien'ici)" data-en="Daily private-seller scraping (Leboncoin, PAP, Bien'ici)">Pige PAP quotidienne (Leboncoin, PAP, Bien'ici)</li>
+          <li data-fr="Pige propriétaires quotidienne (portails locaux : Immoweb, Homegate, Rightmove, DDproperty selon marché)" data-en="Daily private-seller scrape (local portals: Immoweb, Homegate, Rightmove, DDproperty per market)">Pige propriétaires quotidienne (portails locaux : Immoweb, Homegate, Rightmove, DDproperty selon marché)</li>
           <li data-fr="Détection mandats expirés + relance auto" data-en="Expired instructions detection + auto follow-up">Détection mandats expirés + relance auto</li>
           <li data-fr="Réveil de base dormante (email + SMS 12 mois)" data-en="Dormant database reactivation (email + SMS 12 months)">Réveil de base dormante (email + SMS 12 mois)</li>
           <li data-fr="Pitch IA personnalisé selon profil vendeur (mutation, divorce, succession)" data-en="AI-personalised pitch by vendor profile (relocation, divorce, probate)">Pitch IA personnalisé selon profil vendeur (mutation, divorce, succession)</li>
@@ -1778,7 +2142,8 @@
         <div class="p-promise" data-fr="Votre agence reconstruite par le fondateur en 90 jours." data-en="Your agency rebuilt by the founder in 90 days.">Votre agence reconstruite par le fondateur en 90 jours.</div>
         <div class="p-for" data-fr-html="Pour les patrons qui veulent un <strong>cabinet privé</strong> : audit complet, plan calqué sur leur méthode, opérateur dédié qui pilote la transformation." data-en-html="For principals who want a <strong>private practice</strong>: full audit, plan tailored to their methodology, dedicated operator driving the transformation.">Pour les patrons qui veulent un <strong>cabinet privé</strong> : audit complet, plan calqué sur leur méthode, opérateur dédié qui pilote la transformation.</div>
         <div class="p-gain" data-fr="Objectif fondateur : transformation pipeline sur 90 jours, ROI mesurable au mandat récupéré" data-en="Founder target: pipeline transformation in 90 days, ROI measurable per recovered instruction">Objectif fondateur : transformation pipeline sur 90 jours, ROI mesurable au mandat récupéré</div>
-        <div class="p-price" data-fr="14 900€" data-en="£14,900">14 900€</div>
+        <div class="p-price" data-fr="14 900€" data-en="£14,900">14 900€<span class="p-price-suffix" data-fr=" · pack 90 jours" data-en=" · 90-day pack"> · pack 90 jours</span></div>
+        <div class="p-unit" data-fr="Cabinet privé · 5 places / trimestre · paiement 3x sans frais" data-en="Private practice · 5 spots / quarter · 3× interest-free option">Cabinet privé · 5 places / trimestre · paiement 3x sans frais</div>
         <div class="p-div"></div>
         <ul class="p-features">
           <li data-fr="Audit complet de votre agence (J+0) avec PJ" data-en="Full agency audit (D+0) with PJ">Audit complet de votre agence (J+0) avec PJ</li>
@@ -1837,30 +2202,25 @@
       <div class="about-text">
         <div class="tag rv" data-fr="Notre histoire" data-en="Our story">Notre histoire</div>
         <h2 class="heading rv" data-fr-html="Pourquoi GILD-TECH existe." data-en-html="Why GILD-TECH exists.">Pourquoi GILD-TECH existe.</h2>
-        <p class="rv" data-fr-html="Un soir, j'ai vu un homme perdre <strong>60 000€</strong> sans le savoir." data-en-html="One evening, I watched a man lose <strong>€60,000</strong> without knowing it.">Un soir, j'ai vu un homme perdre <strong>60 000€</strong> sans le savoir.</p>
-        <p class="rv" data-fr-html="200 contacts dans son fichier. Des gens qui avaient dit <em>« je veux vendre »</em>. <em>« rappelez-moi »</em>. <em>« j'ai un projet »</em>. <strong>La moitié n'avait jamais reçu d'appel.</strong>" data-en-html="200 contacts in his file. People who'd said <em>&quot;I want to sell&quot;</em>. <em>&quot;Call me back&quot;</em>. <em>&quot;I have a project&quot;</em>. <strong>Half had never received a call.</strong>">200 contacts dans son fichier. Des gens qui avaient dit <em>« je veux vendre »</em>. <em>« rappelez-moi »</em>. <em>« j'ai un projet »</em>. <strong>La moitié n'avait jamais reçu d'appel.</strong></p>
-        <p class="rv" data-fr-html="Pendant qu'il dormait, ses leads choisissaient le concurrent. Pendant qu'il bossait, ils l'oubliaient. Pas par incompétence. <strong>Par absence de système.</strong>" data-en-html="While he slept, his leads chose the competitor. While he worked, they forgot him. Not from incompetence. <strong>From the absence of a system.</strong>">Pendant qu'il dormait, ses leads choisissaient le concurrent. Pendant qu'il bossait, ils l'oubliaient. Pas par incompétence. <strong>Par absence de système.</strong></p>
-        <p class="rv" data-fr-html="J'étais là. Je voyais les chiffres. Je fermais ses deals. Et je le regardais perdre tout ce qu'on n'avait pas eu le temps de rappeler." data-en-html="I was there. I saw the numbers. I closed his deals. And I watched him lose everything we hadn't had time to call back.">J'étais là. Je voyais les chiffres. Je fermais ses deals. Et je le regardais perdre tout ce qu'on n'avait pas eu le temps de rappeler.</p>
-        <p class="rv" data-fr-html="Ce gérant, c'était <strong>mon beau-père</strong>. Ce fichier, c'était <strong>dix ans de boulot</strong>." data-en-html="That principal — was <strong>my father-in-law</strong>. That file — was <strong>ten years of work</strong>.">Ce gérant, c'était <strong>mon beau-père</strong>. Ce fichier, c'était <strong>dix ans de boulot</strong>.</p>
-        <p class="rv" data-fr-html="Ce soir-là, j'ai arrêté de closer pour les autres. J'ai construit ce que personne ne lui avait jamais vendu : <strong>le système qui prend le premier contact à votre place</strong>." data-en-html="That evening, I stopped closing for others. I built what no one had ever sold him: <strong>the system that takes the first contact for you</strong>.">Ce soir-là, j'ai arrêté de closer pour les autres. J'ai construit ce que personne ne lui avait jamais vendu : <strong>le système qui prend le premier contact à votre place</strong>.</p>
-        <p class="rv" data-fr-html="Ce système a un nom : <strong>Sarah Studio</strong>. Le premier contact, la qualification, le RDV de visite — pris en moins de cinq minutes, dans votre ton, vingt-quatre heures sur vingt-quatre. C'est ce que les agences immobilières auraient dû avoir il y a dix ans." data-en-html="That system has a name: <strong>Sarah Studio</strong>. The first contact, the qualification, the viewing — taken in under five minutes, in your tone, twenty-four hours a day. It's what estate agencies should have had ten years ago.">Ce système a un nom : <strong>Sarah Studio</strong>. Le premier contact, la qualification, le RDV de visite — pris en moins de cinq minutes, dans votre ton, vingt-quatre heures sur vingt-quatre. C'est ce que les agences immobilières auraient dû avoir il y a dix ans.</p>
+        <p class="rv" data-fr-html="Un soir, j'ai vu un patron d'agence perdre <strong>60 000 €</strong> sans le savoir : 200 mandants dans son fichier, la moitié jamais rappelée. <strong>Pas par incompétence. Par absence de système.</strong>" data-en-html="One evening, I watched an agency principal lose <strong>€60,000</strong> without knowing it: 200 vendors in his file, half never called back. <strong>Not from incompetence. From the absence of a system.</strong>">Un soir, j'ai vu un patron d'agence perdre <strong>60 000 €</strong> sans le savoir : 200 mandants dans son fichier, la moitié jamais rappelée. <strong>Pas par incompétence. Par absence de système.</strong></p>
+        <p class="rv" data-fr-html="J'étais closer pour lui. Je voyais les chiffres. <strong>Ce patron, c'était mon beau-père.</strong> Ce soir-là, j'ai arrêté de closer pour les autres — j'ai construit ce que personne ne lui avait jamais vendu : <strong>Sarah</strong>, l'assistante qui prend le premier contact 24/7, dans votre ton." data-en-html="I was closing for him. I saw the numbers. <strong>That principal was my father-in-law.</strong> That evening, I stopped closing for others — and built what no one had ever sold him: <strong>Sarah</strong>, the assistant who takes the first contact 24/7, in your tone.">J'étais closer pour lui. Je voyais les chiffres. <strong>Ce patron, c'était mon beau-père.</strong> Ce soir-là, j'ai arrêté de closer pour les autres — j'ai construit ce que personne ne lui avait jamais vendu : <strong>Sarah</strong>, l'assistante qui prend le premier contact 24/7, dans votre ton.</p>
         <div class="rv" style="margin-top:1.5rem; display:flex; gap:.75rem; flex-wrap:wrap">
-          <a href="/sarah-studio/" class="btn btn-pink btn-lg" data-fr="Voir Sarah Studio en direct →" data-en="See Sarah Studio live →">Voir Sarah Studio en direct →</a>
+          <a href="/a-propos.html" class="btn btn-pink btn-lg" data-fr="Lire l'histoire complète →" data-en="Read the full story →">Lire l'histoire complète →</a>
           <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" class="btn btn-ghost btn-lg" data-fr="Audit 30 min" data-en="30-min audit">Audit 30 min</a>
         </div>
       </div>
       <div class="about-stats rv">
         <div class="about-stat">
           <div class="about-stat-num" data-fr="19 ans" data-en="19 years">19 ans</div>
-          <div class="about-stat-label" data-fr="de closing B2B" data-en="of B2B closing">de closing B2B</div>
+          <div class="about-stat-label" data-fr="de closing B2B (parcours fondateur)" data-en="of B2B closing (founder track-record)">de closing B2B (parcours fondateur)</div>
         </div>
         <div class="about-stat">
           <div class="about-stat-num">200+</div>
-          <div class="about-stat-label" data-fr="deals closés" data-en="deals closed">deals closés</div>
+          <div class="about-stat-label" data-fr="deals closés (parcours fondateur)" data-en="deals closed (founder track-record)">deals closés (parcours fondateur)</div>
         </div>
         <div class="about-stat">
-          <div class="about-stat-num">FR · BE · UK</div>
-          <div class="about-stat-label" data-fr="marchés servis" data-en="markets served">marchés servis</div>
+          <div class="about-stat-num">CH · BE · UK · TH</div>
+          <div class="about-stat-label" data-fr="marchés actifs" data-en="active markets">marchés actifs</div>
         </div>
       </div>
     </div>
@@ -1932,7 +2292,7 @@
         <li><a href="mailto:contact@gild-tech.com" data-fr="Contact" data-en="Contact">Contact</a></li>
       </ul>
     </div>
-    <p class="footer-copy" data-fr="&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés" data-en="&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; All rights reserved">&copy; 2025 Gild-Tech (Girlden LTD) &middot; Automation Digital Systems &middot; Tous droits réservés</p>
+    <p class="footer-copy" data-fr="&copy; 2026 Gild-Tech (Girlden LTD) &middot; Cabinet d'opérations pour agences immobilières indépendantes &middot; Tous droits réservés" data-en="&copy; 2026 Gild-Tech (Girlden LTD) &middot; Operations practice for independent estate agencies &middot; All rights reserved">&copy; 2026 Gild-Tech (Girlden LTD) &middot; Cabinet d'opérations pour agences immobilières indépendantes &middot; Tous droits réservés</p>
   </footer>
 
   <script>
@@ -1943,6 +2303,73 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+    // === MARKET SWITCHER ===
+    // Map marché → drapeau + label affichés dans le bouton (auto-détection sommaire via locale)
+    const MARKETS = {
+      ch:    { flag: '🇨🇭', name: 'CH' },
+      'be-fr': { flag: '🇧🇪', name: 'BE' },
+      'be-nl': { flag: '🇧🇪', name: 'BE-NL' },
+      uk:    { flag: '🇬🇧', name: 'UK' },
+      ko:    { flag: '🇹🇭', name: 'Koh Samui' },
+      fr:    { flag: '🇫🇷', name: 'FR' },
+      qc:    { flag: '🇨🇦', name: 'QC' }
+    };
+
+    function getInitialMarket() {
+      // 1. URL override : ?market=xx
+      const urlMarket = new URLSearchParams(location.search).get('market');
+      if (urlMarket && MARKETS[urlMarket]) return urlMarket;
+      // 2. localStorage
+      try {
+        const stored = localStorage.getItem('gt_market');
+        if (stored && MARKETS[stored]) return stored;
+      } catch (e) {}
+      // 3. Heuristique langue navigateur
+      const nav = (navigator.language || 'fr').toLowerCase();
+      if (nav.startsWith('en-gb') || nav === 'en') return 'uk';
+      if (nav.startsWith('nl')) return 'be-nl';
+      if (nav.startsWith('de-ch') || nav.startsWith('fr-ch') || nav.startsWith('it-ch')) return 'ch';
+      if (nav.startsWith('fr-be')) return 'be-fr';
+      if (nav.startsWith('th')) return 'ko';
+      if (nav.startsWith('fr-ca')) return 'qc';
+      if (nav.startsWith('fr')) return 'ch';  // default FR → CH (notre marché prio)
+      return 'uk';
+    }
+
+    let currentMarket = getInitialMarket();
+    function applyMarketBadge() {
+      const m = MARKETS[currentMarket] || MARKETS.ch;
+      const flagEl = document.getElementById('market-current-flag');
+      const nameEl = document.getElementById('market-current-name');
+      if (flagEl) flagEl.textContent = m.flag;
+      if (nameEl) nameEl.textContent = m.name;
+    }
+    applyMarketBadge();
+
+    function toggleMarketMenu(evt) {
+      if (evt) evt.stopPropagation();
+      const menu = document.getElementById('market-menu');
+      const btn  = document.querySelector('.market-toggle');
+      if (!menu || !btn) return;
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.market-switch')) {
+        const menu = document.getElementById('market-menu');
+        const btn  = document.querySelector('.market-toggle');
+        if (menu) menu.classList.remove('open');
+        if (btn)  btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Persiste le choix marché quand un item est cliqué (avant la navigation)
+    document.querySelectorAll('.market-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const m = item.getAttribute('data-market');
+        try { if (m) localStorage.setItem('gt_market', m); } catch (e) {}
+      });
+    });
 
     // LANGUAGE TOGGLE (persisted across pages via URL ?lang= + localStorage)
     function getInitialLang() {
@@ -1998,27 +2425,27 @@
 
     const META = {
       fr: {
-        title: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
-        description: 'Vos prospects n\'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. Audit gratuit 30 min.',
-        keywords: 'automatisation agence immobilière, CRM immobilier, prospection mandats, relance automatique immobilier, IA immobilier, rappel proprio, workflow agence immo, Gild-Tech, Girlden',
-        ogTitle: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
-        ogDesc: 'Vos prospects n\'attendent pas. Votre concurrent non plus. Gild-Tech automatise votre prospection, vos relances et votre suivi. 30 min d\'audit gratuit.',
+        title: 'Gild-Tech · Le rappel mandant en 5 minutes · Agences immobilières CH / BE / UK',
+        description: "Cabinet d'opérations pour agences immobilières indépendantes. On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp — avant que le confrère d'en face n'ouvre sa boîte mail. Audit gratuit 30 min avec le fondateur.",
+        keywords: 'agence immobilière Suisse, agence immobilière Belgique, rappel mandant 5 minutes, assistante IA WhatsApp, Sarah assistante immobilier, automatisation agence immo, Whise, Apimo, CASAFARI, Immoweb, Homegate, Gild-Tech, Girlden',
+        ogTitle: "Le rappel mandant en 5 minutes · Avant que le confrère d'en face n'ouvre sa boîte mail",
+        ogDesc: "Cabinet d'opérations pour agences immobilières indépendantes (Suisse · Belgique · UK · Koh Samui). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.",
         ogLocale: 'fr_FR',
-        ogImgAlt: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
-        twTitle: 'Gild-Tech | Automatisation Commerciale pour agences immobilières',
-        twDesc: 'Vos prospects n\'attendent pas. Votre concurrent non plus. 30 min d\'audit gratuit.',
+        ogImgAlt: 'Gild-Tech · Le rappel mandant en 5 minutes pour agences immobilières',
+        twTitle: 'Le rappel mandant en 5 minutes · Gild-Tech',
+        twDesc: 'Cabinet d\'opérations pour agences immobilières CH / BE / UK / Koh Samui. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.',
         language: 'French'
       },
       en: {
-        title: 'GILD-TECH | Sales Automation for UK Estate Agents',
-        description: 'Stop losing instructions to slow follow-up. GILD-TECH automates prospecting, follow-ups and closing for independent UK estate agents. Free 30-min audit.',
-        keywords: 'sales automation estate agents UK, CRM real estate UK, lead follow-up automation, AI estate agency, property lead callback, workflow estate agent, Gild-Tech, Girlden',
-        ogTitle: 'GILD-TECH | Sales Automation for UK Estate Agents',
-        ogDesc: 'Stop losing instructions to slow follow-up. GILD-TECH automates prospecting, follow-ups and closing for UK estate agents. Free 30-min audit.',
+        title: 'Gild-Tech · Every enquiry called back in 5 minutes · Estate agencies CH / BE / UK / Asia',
+        description: "Operations practice for independent estate agencies. We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp — before the agency across the road opens their inbox. Free 30-min audit with the founder.",
+        keywords: 'estate agency UK, real estate Koh Samui, vendor call-back 5 minutes, AI WhatsApp assistant, Sarah real estate assistant, estate agency automation, Reapit, Alto, CASAFARI, Rightmove, Zoopla, Gild-Tech, Girlden',
+        ogTitle: "Every enquiry called back in 5 minutes · Before the agency across the road opens their inbox",
+        ogDesc: 'Operations practice for independent estate agencies (UK · Koh Samui · CH · BE). We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp. Free 30-min audit with the founder, 30-day money-back guarantee.',
         ogLocale: 'en_GB',
-        ogImgAlt: 'GILD-TECH | Sales Automation for UK Estate Agents',
-        twTitle: 'GILD-TECH | Sales Automation for UK Estate Agents',
-        twDesc: 'Stop losing instructions to slow follow-up. Free 30-min audit for independent UK estate agents.',
+        ogImgAlt: 'Gild-Tech · Every enquiry called back in 5 minutes for estate agencies',
+        twTitle: 'Every enquiry called back in 5 minutes · Gild-Tech',
+        twDesc: 'Operations practice for independent estate agencies UK / CH / BE / Koh Samui. Sarah handles first contact 24/7. Free 30-min audit, 30-day guarantee.',
         language: 'English'
       }
     };

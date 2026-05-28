@@ -5,7 +5,7 @@
       "name": "gild-tech",
       "runtimeExecutable": "node",
       "runtimeArgs": ["serve.mjs"],
-      "port": 3000
+      "port": 8082
     }
   ]
 }
