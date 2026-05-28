@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://gild-tech.com/">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Gild-Tech (Girlden LTD)">
-  <meta name="keywords" content="agence immobilière Suisse, agence immobilière Belgique, estate agency UK, real estate Koh Samui, rappel mandant 5 minutes, assistante IA WhatsApp, Sarah assistante immobilier, automatisation agence immo, Whise, Apimo, Reapit, CASAFARI, Immoweb, Homegate, Rightmove, Gild-Tech, Girlden">
+  <meta name="keywords" content="agence immobilière Suisse, agence immobilière Belgique, estate agency UK, real estate Thailand Phuket Samui, rappel mandant 5 minutes, assistante IA WhatsApp, Sarah assistante immobilier, automatisation agence immo, Whise, Apimo, Reapit, CASAFARI, Immoweb, Homegate, Rightmove, Gild-Tech, Girlden">
   <meta name="geo.region" content="CH,BE,GB,TH">
   <meta name="language" content="French">
 
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Gild-Tech">
   <meta property="og:title" content="Le rappel mandant en 5 minutes · Avant que le confrère d'en face n'ouvre sa boîte mail">
-  <meta property="og:description" content="Cabinet d'opérations pour agences immobilières (Suisse · Belgique · UK · Koh Samui). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.">
+  <meta property="og:description" content="Cabinet d'opérations pour agences immobilières (Suisse · Belgique · UK · Thaïlande). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.">
   <meta property="og:url" content="https://gild-tech.com/">
   <meta property="og:image" content="https://gild-tech.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Le rappel mandant en 5 minutes · Gild-Tech">
-  <meta name="twitter:description" content="Cabinet d'opérations pour agences immobilières CH / BE / UK / Koh Samui. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.">
+  <meta name="twitter:description" content="Cabinet d'opérations pour agences immobilières CH / BE / UK / Thaïlande. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.">
   <meta name="twitter:image" content="https://gild-tech.com/og-image.png">
 
   <!-- Favicon -->
@@ -1618,10 +1618,10 @@
               <span class="market-name">Québec</span>
               <span class="market-locale">FR · CAD</span>
             </a>
-            <a href="/sarah-ko.html" class="market-item" data-market="ko" role="menuitem">
+            <a href="/sarah-th.html" class="market-item" data-market="th" role="menuitem">
               <span class="market-flag">🇹🇭</span>
-              <span class="market-name">Koh Samui</span>
-              <span class="market-locale">Thaïlande · EN</span>
+              <span class="market-name">Thailand</span>
+              <span class="market-locale">USD · EN</span>
             </a>
           </div>
         </li>
@@ -2311,7 +2311,9 @@
       'be-fr': { flag: '🇧🇪', name: 'BE' },
       'be-nl': { flag: '🇧🇪', name: 'BE-NL' },
       uk:    { flag: '🇬🇧', name: 'UK' },
-      ko:    { flag: '🇹🇭', name: 'Koh Samui' },
+      th:    { flag: '🇹🇭', name: 'Thailand' },
+      // legacy code 'ko' → migrated to 'th' (Koh Samui label removed 2026-05)
+      ko:    { flag: '🇹🇭', name: 'Thailand' },
       fr:    { flag: '🇫🇷', name: 'FR' },
       qc:    { flag: '🇨🇦', name: 'QC' }
     };
@@ -2331,7 +2333,7 @@
       if (nav.startsWith('nl')) return 'be-nl';
       if (nav.startsWith('de-ch') || nav.startsWith('fr-ch') || nav.startsWith('it-ch')) return 'ch';
       if (nav.startsWith('fr-be')) return 'be-fr';
-      if (nav.startsWith('th')) return 'ko';
+      if (nav.startsWith('th')) return 'th';
       if (nav.startsWith('fr-ca')) return 'qc';
       if (nav.startsWith('fr')) return 'ch';  // default FR → CH (notre marché prio)
       return 'uk';
@@ -2429,23 +2431,23 @@
         description: "Cabinet d'opérations pour agences immobilières. On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp — avant que le confrère d'en face n'ouvre sa boîte mail. Audit gratuit 30 min avec le fondateur.",
         keywords: 'agence immobilière Suisse, agence immobilière Belgique, rappel mandant 5 minutes, assistante IA WhatsApp, Sarah assistante immobilier, automatisation agence immo, Whise, Apimo, CASAFARI, Immoweb, Homegate, Gild-Tech, Girlden',
         ogTitle: "Le rappel mandant en 5 minutes · Avant que le confrère d'en face n'ouvre sa boîte mail",
-        ogDesc: "Cabinet d'opérations pour agences immobilières (Suisse · Belgique · UK · Koh Samui). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.",
+        ogDesc: "Cabinet d'opérations pour agences immobilières (Suisse · Belgique · UK · Thaïlande). On installe Sarah, l'assistante IA qui prend le premier contact 24/7 sur WhatsApp. Audit gratuit 30 min avec le fondateur, garantie 30 jours satisfait ou remboursé.",
         ogLocale: 'fr_FR',
         ogImgAlt: 'Gild-Tech · Le rappel mandant en 5 minutes pour agences immobilières',
         twTitle: 'Le rappel mandant en 5 minutes · Gild-Tech',
-        twDesc: 'Cabinet d\'opérations pour agences immobilières CH / BE / UK / Koh Samui. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.',
+        twDesc: 'Cabinet d\'opérations pour agences immobilières CH / BE / UK / Thaïlande. Sarah prend le premier contact 24/7. Audit gratuit 30 min, garantie 30 jours.',
         language: 'French'
       },
       en: {
         title: 'Gild-Tech · Every enquiry called back in 5 minutes · Estate agencies CH / BE / UK / Asia',
         description: "Operations practice for estate agencies. We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp — before the agency across the road opens their inbox. Free 30-min audit with the founder.",
-        keywords: 'estate agency UK, real estate Koh Samui, vendor call-back 5 minutes, AI WhatsApp assistant, Sarah real estate assistant, estate agency automation, Reapit, Alto, CASAFARI, Rightmove, Zoopla, Gild-Tech, Girlden',
+        keywords: 'estate agency UK, real estate Thailand, real estate Phuket Samui, vendor call-back 5 minutes, AI WhatsApp assistant, Sarah real estate assistant, estate agency automation, Reapit, Alto, CASAFARI, Rightmove, Zoopla, Gild-Tech, Girlden',
         ogTitle: "Every enquiry called back in 5 minutes · Before the agency across the road opens their inbox",
-        ogDesc: 'Operations practice for estate agencies (UK · Koh Samui · CH · BE). We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp. Free 30-min audit with the founder, 30-day money-back guarantee.',
+        ogDesc: 'Operations practice for estate agencies (UK · Thailand · CH · BE). We install Sarah, the AI assistant taking your first contact 24/7 on WhatsApp. Free 30-min audit with the founder, 30-day money-back guarantee.',
         ogLocale: 'en_GB',
         ogImgAlt: 'Gild-Tech · Every enquiry called back in 5 minutes for estate agencies',
         twTitle: 'Every enquiry called back in 5 minutes · Gild-Tech',
-        twDesc: 'Operations practice for estate agencies UK / CH / BE / Koh Samui. Sarah handles first contact 24/7. Free 30-min audit, 30-day guarantee.',
+        twDesc: 'Operations practice for estate agencies UK / CH / BE / Thailand. Sarah handles first contact 24/7. Free 30-min audit, 30-day guarantee.',
         language: 'English'
       }
     };

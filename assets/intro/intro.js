@@ -148,7 +148,7 @@
     { code: 'fr',    flag: '🇫🇷', name: 'France',         meta: 'EUR · FR',         href: '/sarah-fr.html' },
     { code: 'uk',    flag: '🇬🇧', name: 'United Kingdom', meta: 'GBP · EN',         href: '/sarah-uk.html' },
     { code: 'qc',    flag: '🇨🇦', name: 'Québec',         meta: 'CAD · FR',         href: '/sarah-qc.html' },
-    { code: 'ko',    flag: '🇹🇭', name: 'Koh Samui',      meta: 'Thaïlande · EN',   href: '/sarah-ko.html' }
+    { code: 'th',    flag: '🇹🇭', name: 'Thailand',        meta: 'USD · EN',         href: '/sarah-th.html' }
   ];
 
   var overlay = document.createElement('div');
