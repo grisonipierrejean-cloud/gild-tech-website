@@ -145,9 +145,9 @@
     { code: 'ch',    flag: '🇨🇭', name: 'Suisse',         meta: 'CHF · FR',         href: '/sarah-ch.html' },
     { code: 'be-fr', flag: '🇧🇪', name: 'Belgique',       meta: 'EUR · FR',         href: '/sarah-be.html' },
     { code: 'be-nl', flag: '🇧🇪', name: 'België',         meta: 'EUR · NL',         href: '/sarah-be-nl.html' },
-    { code: 'fr',    flag: '🇫🇷', name: 'France',         meta: 'EUR · FR',         href: '/?market=fr' },
+    { code: 'fr',    flag: '🇫🇷', name: 'France',         meta: 'EUR · FR',         href: '/sarah-fr.html' },
     { code: 'uk',    flag: '🇬🇧', name: 'United Kingdom', meta: 'GBP · EN',         href: '/sarah-uk.html' },
-    { code: 'qc',    flag: '🇨🇦', name: 'Québec',         meta: 'CAD · FR',         href: '/?market=qc' },
+    { code: 'qc',    flag: '🇨🇦', name: 'Québec',         meta: 'CAD · FR',         href: '/sarah-qc.html' },
     { code: 'ko',    flag: '🇹🇭', name: 'Koh Samui',      meta: 'Thaïlande · EN',   href: '/sarah-ko.html' }
   ];
 
@@ -178,7 +178,7 @@
 
   var sub = document.createElement('p');
   sub.className = 'gt-intro-sub';
-  sub.textContent = "Cabinet d'opérations pour agences immobilières indépendantes. Choisissez votre marché pour accéder au contenu localisé : devise, vocabulaire métier, portails de votre zone.";
+  sub.textContent = "Cabinet d'opérations pour agences immobilières. Choisissez votre marché pour accéder au contenu localisé : devise, vocabulaire métier, portails de votre zone.";
   overlay.appendChild(sub);
 
   var grid = document.createElement('div');
