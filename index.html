@@ -1153,6 +1153,222 @@
       .maint-price { text-align: left; }
     }
 
+    /* ========== GILD CARE — 3 tiers maintenance ========== */
+    .gildcare-wrap {
+      margin-top: 3rem;
+      padding: 2.5rem 0 1rem;
+    }
+    .gildcare-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.2rem;
+    }
+    .gildcare-header .tag {
+      display: inline-block;
+      background: var(--gold-bg);
+      color: var(--gold);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--gold-soft);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .gildcare-title {
+      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .gildcare-title .hl { color: var(--teal); }
+    .gildcare-desc {
+      font-size: 0.95rem;
+      color: var(--g600);
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .gildcare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      align-items: stretch;
+    }
+
+    .gildcare-card {
+      background: white;
+      border: 1px solid var(--g200);
+      border-radius: var(--r);
+      padding: 1.8rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .gildcare-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px -10px rgba(14, 17, 23, 0.12);
+    }
+
+    .gildcare-featured {
+      border: 2px solid var(--teal);
+      background: linear-gradient(180deg, #ffffff 0%, var(--teal-soft) 100%);
+      transform: translateY(-4px);
+    }
+    .gildcare-featured:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 44px -12px rgba(31, 77, 92, 0.28);
+    }
+
+    .gildcare-premium {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    .gildcare-premium .gildcare-name,
+    .gildcare-premium .gildcare-price { color: white; }
+    .gildcare-premium .gildcare-price span { color: var(--gold); }
+    .gildcare-premium .gildcare-for { color: rgba(255, 255, 255, 0.7); }
+    .gildcare-premium .gildcare-feats li { color: rgba(255, 255, 255, 0.85); }
+    .gildcare-premium .gildcare-feats li::before { color: var(--gold); }
+    .gildcare-premium .gildcare-feats li strong { color: white; }
+    .gildcare-premium:hover {
+      border-color: var(--gold);
+      box-shadow: 0 18px 44px -12px rgba(183, 147, 85, 0.35);
+    }
+
+    .gildcare-badge {
+      position: absolute;
+      top: -0.7rem; left: 50%;
+      transform: translateX(-50%);
+      background: var(--teal);
+      color: white;
+      padding: 0.25rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px -2px rgba(31, 77, 92, 0.4);
+    }
+
+    .gildcare-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--g600);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+
+    .gildcare-price {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+    }
+    .gildcare-price span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ash);
+      letter-spacing: 0;
+    }
+
+    .gildcare-for {
+      font-size: 0.82rem;
+      color: var(--g600);
+      font-weight: 500;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--g200);
+    }
+    .gildcare-premium .gildcare-for {
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .gildcare-feats {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .gildcare-feats li {
+      font-size: 0.85rem;
+      color: var(--g700);
+      line-height: 1.45;
+      padding-left: 1.3rem;
+      position: relative;
+    }
+    .gildcare-feats li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+
+    .gildcare-cta {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      background: var(--teal);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .gildcare-cta:hover {
+      background: var(--teal-dark);
+      box-shadow: 0 6px 20px rgba(31, 77, 92, 0.25);
+      transform: translateY(-1px);
+    }
+    .gildcare-cta-ghost {
+      background: white;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+    .gildcare-cta-ghost:hover {
+      background: var(--teal);
+      color: white;
+    }
+    .gildcare-cta-dark {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .gildcare-cta-dark:hover {
+      background: #C9A86A;
+      box-shadow: 0 6px 20px rgba(183, 147, 85, 0.35);
+    }
+
+    .gildcare-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--g500);
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .gildcare-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+      .gildcare-featured { transform: none; }
+      .gildcare-featured:hover { transform: translateY(-3px); }
+    }
+
     /* Parcours indicator */
     .parcours {
       display: flex; align-items: center; justify-content: center;
@@ -2158,25 +2374,65 @@
 
     </div>
 
-    <!-- MAINTENANCE BAND -->
-    <div class="maint-band rv">
-      <div>
-        <div class="maint-tag" data-fr="Après votre support" data-en="After your support">Après votre support</div>
-        <div class="maint-title" data-fr="Maintenance mensuelle" data-en="Monthly maintenance">Maintenance mensuelle</div>
-        <div class="maint-desc" data-fr="Vos outils évoluent, les APIs changent, votre business bouge. On garde votre système en pleine forme et on l'optimise tous les mois. Sans engagement." data-en="Your tools evolve, APIs change, your business shifts. We keep your system in top shape and optimize it every month. No commitment.">Vos outils évoluent, les APIs changent, votre business bouge. On garde votre système en pleine forme et on l'optimise tous les mois. Sans engagement.</div>
-        <div class="maint-feats">
-          <span class="maint-feat" data-fr="Monitoring 24/7" data-en="24/7 monitoring">Monitoring 24/7</span>
-          <span class="maint-feat" data-fr="Optimisation mensuelle" data-en="Monthly optimization">Optimisation mensuelle</span>
-          <span class="maint-feat" data-fr="Corrections incluses" data-en="Fixes included">Corrections incluses</span>
-          <span class="maint-feat" data-fr="Support prioritaire" data-en="Priority support">Support prioritaire</span>
+    <!-- GILD CARE — 3 tiers maintenance & accompagnement -->
+    <div class="gildcare-wrap rv">
+      <div class="gildcare-header">
+        <div class="tag" data-fr="Après le go-live" data-en="After go-live">Après le go-live</div>
+        <h3 class="gildcare-title" data-fr-html="GILD Care · <span class=&quot;hl&quot;>maintenance &amp; accompagnement</span>" data-en-html="GILD Care · <span class=&quot;hl&quot;>maintenance &amp; ongoing support</span>">GILD Care · <span class="hl">maintenance &amp; accompagnement</span></h3>
+        <p class="gildcare-desc" data-fr="Vos outils évoluent, les APIs changent, votre business bouge. Sarah se renforce chaque mois. Trois niveaux d'accompagnement, sans engagement, résiliable à tout moment." data-en="Your tools evolve, APIs change, your business shifts. Sarah gets sharper every month. Three tiers of ongoing support, no commitment, cancel anytime.">Vos outils évoluent, les APIs changent, votre business bouge. Sarah se renforce chaque mois. Trois niveaux d'accompagnement, sans engagement, résiliable à tout moment.</p>
+      </div>
+
+      <div class="gildcare-grid">
+
+        <div class="gildcare-card">
+          <div class="gildcare-name">Essential</div>
+          <div class="gildcare-price" data-fr-html="390 €<span>/ mois</span>" data-en-html="£390<span> / mo</span>">390 €<span>/ mois</span></div>
+          <div class="gildcare-for" data-fr="Pour Starter · la base solide" data-en="For Starter · the solid baseline">Pour Starter · la base solide</div>
+          <ul class="gildcare-feats">
+            <li data-fr="Monitoring 24/7 · uptime &amp; alertes" data-en="24/7 monitoring · uptime &amp; alerts">Monitoring 24/7 · uptime &amp; alertes</li>
+            <li data-fr="Corrections de bugs incluses" data-en="Bug fixes included">Corrections de bugs incluses</li>
+            <li data-fr="1 ajustement workflow par mois" data-en="1 workflow adjustment per month">1 ajustement workflow par mois</li>
+            <li data-fr="Rapport mensuel de performance" data-en="Monthly performance report">Rapport mensuel de performance</li>
+            <li data-fr="Support email · réponse 24 h ouvrées" data-en="Email support · 24h business reply">Support email · réponse 24 h ouvrées</li>
+          </ul>
+          <a href="https://calendly.com/ops-gild-tech/30min?utm_source=site&amp;utm_campaign=gildcare-essential" target="_blank" class="gildcare-cta gildcare-cta-ghost" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
         </div>
+
+        <div class="gildcare-card gildcare-featured">
+          <div class="gildcare-badge" data-fr="Recommandé" data-en="Recommended">Recommandé</div>
+          <div class="gildcare-name">Performance</div>
+          <div class="gildcare-price" data-fr-html="890 €<span>/ mois</span>" data-en-html="£890<span> / mo</span>">890 €<span>/ mois</span></div>
+          <div class="gildcare-for" data-fr="Pour Pro &amp; Scale · l'optimisation continue" data-en="For Pro &amp; Scale · continuous optimisation">Pour Pro &amp; Scale · l'optimisation continue</div>
+          <ul class="gildcare-feats">
+            <li data-fr-html="<strong>Tout Essential inclus</strong>" data-en-html="<strong>Everything in Essential</strong>"><strong>Tout Essential inclus</strong></li>
+            <li data-fr="4 h de tweaks Sarah par mois (ton, scripts, qualif)" data-en="4 hrs of Sarah tweaks per month (tone, scripts, qualif)">4 h de tweaks Sarah par mois (ton, scripts, qualif)</li>
+            <li data-fr="Nouvelle automation tous les 2 mois" data-en="New automation every 2 months">Nouvelle automation tous les 2 mois</li>
+            <li data-fr="Bilan trimestriel avec le fondateur (1 h)" data-en="Quarterly review with the founder (1 h)">Bilan trimestriel avec le fondateur (1 h)</li>
+            <li data-fr="Slack dédié · réponse en 4 h ouvrées" data-en="Dedicated Slack · 4h business reply">Slack dédié · réponse en 4 h ouvrées</li>
+            <li data-fr="Optimisation IA (prompt, modèle, voix)" data-en="AI optimisation (prompt, model, voice)">Optimisation IA (prompt, modèle, voix)</li>
+          </ul>
+          <a href="https://calendly.com/ops-gild-tech/30min?utm_source=site&amp;utm_campaign=gildcare-performance" target="_blank" class="gildcare-cta" data-fr="En discuter →" data-en="Let's talk →">En discuter →</a>
+        </div>
+
+        <div class="gildcare-card gildcare-premium">
+          <div class="gildcare-name">Concierge</div>
+          <div class="gildcare-price" data-fr-html="1 990 €<span>/ mois</span>" data-en-html="£1,990<span> / mo</span>">1 990 €<span>/ mois</span></div>
+          <div class="gildcare-for" data-fr="Pour Autopilot &amp; multi-agences" data-en="For Autopilot &amp; multi-branch">Pour Autopilot &amp; multi-agences</div>
+          <ul class="gildcare-feats">
+            <li data-fr-html="<strong>Tout Performance inclus</strong>" data-en-html="<strong>Everything in Performance</strong>"><strong>Tout Performance inclus</strong></li>
+            <li data-fr="Ajustements Sarah illimités" data-en="Unlimited Sarah adjustments">Ajustements Sarah illimités</li>
+            <li data-fr="Cellule SLA · réponse en 4 h ouvrées" data-en="SLA cell · 4h business response">Cellule SLA · réponse en 4 h ouvrées</li>
+            <li data-fr="90 min de concierge mensuel avec le fondateur" data-en="90 min of monthly concierge with the founder">90 min de concierge mensuel avec le fondateur</li>
+            <li data-fr="Roadmap d'évolution personnalisée" data-en="Personalised evolution roadmap">Roadmap d'évolution personnalisée</li>
+            <li data-fr="Intégrations sur mesure (CRM, portails, voix Vapi)" data-en="Custom integrations (CRM, portals, Vapi voice)">Intégrations sur mesure (CRM, portails, voix Vapi)</li>
+            <li data-fr="Onboarding nouvelle agence du groupe inclus" data-en="Onboarding of new group branches included">Onboarding nouvelle agence du groupe inclus</li>
+          </ul>
+          <a href="https://calendly.com/ops-gild-tech/30min?utm_source=site&amp;utm_campaign=gildcare-concierge" target="_blank" class="gildcare-cta gildcare-cta-dark" data-fr="Postuler →" data-en="Apply →">Postuler →</a>
+        </div>
+
       </div>
-      <div></div>
-      <div class="maint-price">
-        <div class="maint-price-num" data-fr-html="290<span>€ / mois</span>" data-en-html="£290<span> / mo</span>">290<span>€ / mois</span></div>
-        <div class="maint-price-note" data-fr="sans engagement · résiliable à tout moment" data-en="no commitment · cancel anytime">sans engagement · résiliable à tout moment</div>
-        <a href="https://buy.stripe.com/fZucN5eZc7v72vNaU62sM05" target="_blank" class="maint-cta" data-fr="Souscrire · 290€/mois" data-en="Subscribe · £290/mo">Souscrire · 290€/mois</a>
-      </div>
+
+      <p class="gildcare-note" data-fr="Sans engagement · résiliable à tout moment · facilités de paiement sur demande · le tier peut évoluer dans les 2 sens selon vos besoins" data-en="No commitment · cancel anytime · flexible payment on request · tier can move up or down based on your needs">Sans engagement · résiliable à tout moment · facilités de paiement sur demande · le tier peut évoluer dans les 2 sens selon vos besoins</p>
     </div>
 
     <!-- PARCOURS -->
@@ -2189,7 +2445,7 @@
       <span class="parcours-arrow">→</span>
       <span class="parcours-step" data-fr="Autopilot" data-en="Autopilot">Autopilot</span>
       <span class="parcours-arrow">+</span>
-      <span class="parcours-step highlight" data-fr="Maintenance 290€/mois" data-en="Maintenance £290/mo">Maintenance 290€/mois</span>
+      <span class="parcours-step highlight" data-fr="GILD Care · dès 390 €/mois" data-en="GILD Care · from £390/mo">GILD Care · dès 390 €/mois</span>
     </div>
 
     <!-- PAYMENT NOTE -->
