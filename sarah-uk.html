@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah, virtual WhatsApp employee 24/7 for UK estate agencies · GILD-TECH</title>
-<meta name="description" content="Sarah, virtual WhatsApp employee 24/7 for independent UK estate agencies. Replies in minutes, qualifies, books viewings. Founding client RESPOND £249/mo, 30-day money-back.">
+<meta name="description" content="Sarah — the perfect employee for UK estate agencies. 7/7, 24/24, never sick, never on leave. Replies to every enquiry in under 5 minutes, qualifies, books the viewing. £35k/yr negotiator vs £249/mo Sarah. Founding client offer · 30-day money-back.">
 <link rel="canonical" href="https://gild-tech.com/sarah-uk">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
@@ -121,6 +121,31 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .faq-item h4::before { content: "Q."; color: var(--pink); font-weight: 800; flex-shrink: 0; }
 .faq-item p { color: var(--g600); font-size: 0.92rem; line-height: 1.6; padding-left: 1.7rem; }
 
+/* EMPLOYEE-VS (perfect employee comparison) */
+.employee-vs { display:grid; grid-template-columns: 1fr 1fr; gap:1.4rem; max-width:1080px; margin:0 auto; }
+.ev-card { background:var(--white); border:1px solid var(--g200); border-radius:18px; padding:2rem 2.2rem; box-shadow:0 1px 2px rgba(10,10,12,.04), 0 8px 32px -16px rgba(10,10,12,.10); position:relative; }
+.ev-card.ev-sarah { background:linear-gradient(180deg,#0E1117 0%,#1a1d24 100%); color:var(--white); border-color:#B79355; box-shadow:0 1px 2px rgba(10,10,12,.04), 0 12px 36px -12px rgba(183,147,85,.30); }
+.ev-card.ev-sarah::before { content:"✨ THE PERFECT EMPLOYEE"; position:absolute; top:-12px; right:1.4rem; background:#B79355; color:#0E1117; font-size:10px; font-weight:800; letter-spacing:.12em; padding:5px 11px; border-radius:999px; }
+.ev-header { display:flex; align-items:center; gap:.8rem; margin-bottom:1rem; }
+.ev-emoji { font-size:1.8rem; filter:saturate(.9); }
+.ev-title { font-size:1.05rem; font-weight:800; letter-spacing:-0.01em; }
+.ev-card.ev-sarah .ev-title { color:#fff; }
+.ev-card.ev-human .ev-title { color:var(--g700); }
+.ev-price { font-size:2.4rem; font-weight:900; letter-spacing:-0.03em; margin-bottom:1.4rem; line-height:1.05; }
+.ev-card.ev-sarah .ev-price { color:#fff; }
+.ev-card.ev-human .ev-price { color:var(--g900); }
+.ev-price small { display:block; font-size:.75rem; font-weight:500; opacity:.65; margin-top:.2rem; letter-spacing:0; }
+.ev-list { list-style:none; padding:0; margin:0; }
+.ev-list li { padding:.55rem 0 .55rem 1.6rem; position:relative; font-size:.92rem; line-height:1.55; border-bottom:1px solid rgba(0,0,0,.06); }
+.ev-card.ev-sarah .ev-list li { color:rgba(255,255,255,.85); border-bottom-color:rgba(255,255,255,.08); }
+.ev-card.ev-human .ev-list li { color:var(--g700); }
+.ev-card.ev-sarah .ev-list li strong { color:#fff; }
+.ev-list li:last-child { border-bottom:none; }
+.ev-card.ev-human .ev-list li::before { content:"–"; position:absolute; left:.3rem; top:.65rem; color:var(--red); font-weight:800; font-size:1.1rem; }
+.ev-card.ev-sarah .ev-list li::before { content:"✓"; position:absolute; left:.2rem; top:.55rem; color:#B79355; font-weight:800; font-size:1rem; }
+.ev-list li em { font-style:normal; font-size:.78rem; opacity:.7; display:block; margin-top:.15rem; }
+@media (max-width:880px) { .employee-vs { grid-template-columns:1fr; } }
+
 .cta-final { background: var(--g100); border-radius: var(--r); padding: 3rem 2rem; text-align: center; margin: 4rem 0; }
 .cta-final h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
 .cta-final p { font-size: 1rem; color: var(--g600); max-width: 600px; margin: 0 auto 1.6rem; line-height: 1.55; }
@@ -166,21 +191,55 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 <div class="page">
 
   <section class="hero">
-    <span class="badge-new">🇬🇧 Reapit Property Outlook 2025 · 60% of UK agents increased automation in the last 12 months</span>
-    <h1>Every enquiry called back in 5 minutes.<br><span class="accent">Before the agency across the road opens their inbox.</span></h1>
-    <p class="subtitle"><strong>Sarah, the AI assistant taking your first contact on WhatsApp Business 24/7</strong> — in your tone, with your brand, sitting on top of any CRM. Nothing to change in your setup. Pays back from the 1<sup>st</sup> instruction recovered. 30-day money-back guarantee.</p>
+    <span class="badge-new">🇬🇧 For independent UK estate agencies · Founding client offer</span>
+    <h1>Sarah, the <span class="accent">perfect employee</span>.<br>Never sleeps. Never sick. Never on leave.</h1>
+    <p class="subtitle"><strong>Sarah replies to every enquiry in under 5 minutes. 7 days a week, 24 hours a day.</strong> She qualifies the applicant. Books the viewing. She doesn't replace your human touch — she frees it up. <strong>A junior negotiator costs ~£35,000/year, loaded. Sarah costs £249/month.</strong> She sits on top of any CRM. Nothing to change in your setup.</p>
     <div class="ctas">
       <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Become Founding Client · 30-day money-back</a>
       <a href="#how" class="btn-secondary">See how it works</a>
     </div>
     <div class="stat-bar">
-      <div class="stat-item"><div class="stat-num">5 min</div><div class="stat-label">Sarah callback SLA on every enquiry</div></div>
-      <div class="stat-item"><div class="stat-num">21×</div><div class="stat-label">More qualified contacts when replying within 5 min <em>(MIT Sloan, 15,000 enquiries)</em></div></div>
-      <div class="stat-item"><div class="stat-num">~£7,200</div><div class="stat-label">Average UK multi-agency commission per instruction <em>(£288k ONS × 2.5%)</em></div></div>
+      <div class="stat-item"><div class="stat-num">£249<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mo</small></div><div class="stat-label">Sarah, founding client offer</div></div>
+      <div class="stat-item"><div class="stat-num">£35,000<small style="font-size:1rem;color:var(--g500);font-weight:500;">/yr</small></div><div class="stat-label">UK junior negotiator, loaded employer cost <em>(Glassdoor + UK gov NI/pension)</em></div></div>
+      <div class="stat-item"><div class="stat-num">12×</div><div class="stat-label">Cheaper than hiring · works 4.6× the hours</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
       ✓ Sits on top of <strong style="color:var(--g700);">any CRM</strong> · nothing to change &nbsp;·&nbsp; ✓ Your existing WhatsApp Business number &nbsp;·&nbsp; ✓ GDPR-compliant &nbsp;·&nbsp; ✓ Data in your Google Workspace
     </div>
+  </section>
+
+  <!-- WHY SARAH — Perfect employee comparison -->
+  <section class="block" id="why-sarah" style="background:linear-gradient(180deg,#FBF9F3 0%,#fff 100%);border-top:none;">
+    <div style="text-align:center;max-width:720px;margin:0 auto 2.5rem;">
+      <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B79355;padding:5px 11px;background:#fbf1de;border:1px solid #ebd9b4;border-radius:999px;margin-bottom:14px;">⭐ The perfect employee</div>
+      <h2 class="section-title" style="margin-bottom:.6rem;">She just doesn't have a <span class="accent">CV</span>.</h2>
+      <p class="section-subtitle" style="margin:0 auto;">Why independent UK agencies hire Sarah instead of a second junior negotiator.</p>
+    </div>
+    <div class="employee-vs">
+      <div class="ev-card ev-human">
+        <div class="ev-header"><span class="ev-emoji">👔</span><span class="ev-title">A junior negotiator</span></div>
+        <div class="ev-price">£35,000 <small>/ year loaded</small></div>
+        <ul class="ev-list">
+          <li>35h / week (no nights, no Sundays)</li>
+          <li>Sick days, bank holidays, annual leave</li>
+          <li>Onboarding takes 3–6 months</li>
+          <li>Costs whether they bill or not</li>
+          <li>Recruitment is hard: <strong>50%+ of UK agencies get fewer than 5 qualified candidates per role</strong> <em>(Reapit Property Outlook 2025)</em></li>
+        </ul>
+      </div>
+      <div class="ev-card ev-sarah">
+        <div class="ev-header"><span class="ev-emoji">🚀</span><span class="ev-title">Sarah</span></div>
+        <div class="ev-price">£249 <small>/ month · £2,988 / year</small></div>
+        <ul class="ev-list">
+          <li>168h / week — 24/7/365, every channel</li>
+          <li>Never sick, never on leave, never a bad mood</li>
+          <li>Live from day one — your tone, your brand</li>
+          <li>30-day money-back · cancel anytime</li>
+          <li><strong>Pays for herself with the first instruction recovered</strong> <em>(£7,200 avg UK multi-agency commission, ONS + HOA)</em></li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:1rem;color:var(--g600);max-width:780px;margin-left:auto;margin-right:auto;font-style:italic;line-height:1.6;">Sarah doesn't replace your human team. She <strong style="color:var(--g900);font-style:normal;">frees them</strong> — so they spend their day in front of vendors, not at a keyboard chasing dead enquiries.</p>
   </section>
 
   <section class="block" id="problem">
@@ -336,42 +395,48 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
     <div class="pricing-grid">
 
-      <!-- RESPOND -->
+      <!-- RESPOND — buyer/applicant focus -->
       <div class="price-card">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">FOR APPLICANTS · ENQUIRIES → VIEWINGS</div>
         <h3>RESPOND</h3>
-        <div class="for"><strong>Never lose another enquiry.</strong> Founding client offer.</div>
+        <div class="for"><strong>The virtual receptionist.</strong> She catches every applicant. Day, night, weekend.</div>
         <div class="price">£249 <small>/ month</small></div>
         <div class="delai">→ Setup offered · price locked for life · 30-day money-back</div>
         <ul>
-          <li><strong>Sarah</strong> — 24/7 WhatsApp first contact on every enquiry</li>
-          <li>Qualifies and books the viewing on your Calendly</li>
+          <li><strong>Sarah</strong> — 24/7 WhatsApp first contact on every enquiry, in under 5 minutes</li>
+          <li>Qualifies the applicant (budget, timeline, area)</li>
+          <li>Books the viewing on your Calendly — applicant picks their slot</li>
           <li>Auto follow-ups Day+3 / Day+7 / Day+14 if no reply</li>
-          <li>Sits on top of any CRM — nothing to change</li>
+          <li>Sits on top of any CRM — nothing to change in your setup</li>
           <li>Your wording, your tone, your brand</li>
-          <li><strong>Bonus month 1:</strong> we reactivate a batch of your dormant leads so you see booked viewings fast</li>
+          <li><strong>Bonus month 1:</strong> dormant lead reactivation to surface booked viewings fast</li>
           <li><em>🔜 Rolling out: real-time activity dashboard</em></li>
         </ul>
+        <div style="margin-top:1rem;padding:.7rem .9rem;background:var(--g100);border-radius:8px;font-size:.78rem;color:var(--g600);line-height:1.5;"><strong style="color:var(--g900);">1 applicant = 1 viewing.</strong> RESPOND captures every buyer enquiry before they go down the road.</div>
       </div>
 
-      <!-- RESCUE -->
+      <!-- RESCUE — vendor focus (the core) -->
       <div class="price-card featured">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#B79355;background:#fbf1de;border:1px solid #ebd9b4;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">FOR VENDORS · DORMANT LEADS → INSTRUCTIONS</div>
         <h3>RESCUE</h3>
-        <div class="for"><strong>Keep your vendors engaged.</strong> Don't let dormant leads die.</div>
+        <div class="for"><strong>The virtual assistant.</strong> She wakes your dormant vendors — and turns silence into instructions.</div>
         <div class="price">£490 <small>/ month</small></div>
         <div class="delai">→ Cancel anytime · 30-day money-back</div>
         <ul>
           <li>Everything in <strong>RESPOND</strong></li>
-          <li><strong>Continuous dormant lead re-engagement</strong> — Sarah goes back through your old contacts and wakes them at the right moment</li>
+          <li><strong>Daily 7am WhatsApp brief</strong> — today's viewings, top callbacks, Sarah's recommendation for the day</li>
+          <li><strong>Continuous dormant vendor re-engagement</strong> — Sarah works back through your old vendor contacts and wakes them at the right moment</li>
           <li>Priority Slack / Teams escalation when Sarah is in doubt</li>
-          <li><em>🔜 Rolling out: daily 7am brief — today's viewings, top callbacks, Sarah's recommendation</em></li>
-          <li><em>🔜 Rolling out: auto weekly report Monday 8am</em></li>
+          <li>Auto weekly report Monday 8am</li>
         </ul>
+        <div style="margin-top:1rem;padding:.7rem .9rem;background:#fbf1de;border-radius:8px;font-size:.78rem;color:#8a6a30;line-height:1.5;"><strong style="color:#5a4520;">1 instruction = ~£7,200 commission</strong> <em>(ONS + HOA, UK multi-agency)</em>. Two thirds of UK agents say winning instructions is their #1 challenge <em>(Voice of the Agent · ESTAS, 2024)</em>.</div>
       </div>
 
-      <!-- GENERATE -->
+      <!-- GENERATE — vendor acquisition + marketing team -->
       <div class="price-card">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#2A6577;background:#E4ECEF;border:1px solid #c7d8de;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">FOR THE WHOLE TEAM · NEW VENDORS</div>
         <h3>GENERATE</h3>
-        <div class="for"><strong>Generate instructions.</strong> Multi-negotiator team coverage.</div>
+        <div class="for"><strong>The marketing team.</strong> She captures new vendor leads and dresses your listings for sale.</div>
         <div class="price">£790 <small>/ month</small></div>
         <div class="delai">→ Cancel anytime · 30-day money-back</div>
         <ul>
@@ -380,8 +445,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li>Custom playbook for your branch (lettings, sales, new builds, mixed)</li>
           <li>Monthly director review with our team</li>
           <li>Priority SLA + dedicated support</li>
-          <li><em>🔜 Rolling out: one personalised brief per negotiator at 7am</em></li>
+          <li><em>🔜 Rolling out: instant valuation tool — captures new vendor leads off your website (Land Registry data, EPC licence pending)</em></li>
+          <li><em>🔜 Rolling out: AI listing video from your existing real photos — proven sales lift <strong>+73%</strong> with video <em>(V7 Labs / Inman, 2023)</em></em></li>
+          <li><em>🔜 Rolling out: ROI dashboard wired into your CRM via API (Reapit · Alto · Street)</em></li>
         </ul>
+        <div style="margin-top:1rem;padding:.7rem .9rem;background:var(--pink-bg);border-radius:8px;font-size:.78rem;color:var(--pink);line-height:1.5;"><strong style="color:var(--pink);">From defence to offence.</strong> RESPOND saves the enquiries you already get. GENERATE goes hunting for new vendors.</div>
       </div>
 
     </div>
