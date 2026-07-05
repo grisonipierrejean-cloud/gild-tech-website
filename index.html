@@ -1856,144 +1856,47 @@
     </div>
   </nav>
 
-  <!-- WORLDWIDE HERO — Sarah répond. Partout. 24/7. -->
-  <section class="ww" aria-label="GILD-TECH — présence internationale">
+  <!-- MARKET CHOOSER — Sarah répond. Partout. 24/7. -->
+  <section class="mk" aria-label="GILD-TECH — choisissez votre marché">
     <style>
-      .ww { position: relative; background: #0A0A0A; color: #FFFFFF; padding: 5rem 1.5rem 4rem; overflow: hidden; }
-      .ww-inner { max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-      .ww-tag { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #94A3B8; margin-bottom: 1.2rem; font-weight: 600; }
-      .ww-title { font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: .8rem; color: #FFFFFF; }
-      .ww-title .ww-accent { color: #2563EB; }
-      .ww-sub { font-size: clamp(.95rem, 1.3vw, 1.05rem); color: #94A3B8; margin-bottom: 3rem; letter-spacing: .04em; }
-      .ww-map-wrap { position: relative; max-width: 960px; margin: 0 auto; }
-      .ww-map { width: 100%; height: auto; display: block; }
-      .ww-map .continent { fill: none; stroke: #1E3A5F; stroke-width: 1.2; stroke-linejoin: round; stroke-linecap: round; }
-      .ww-map .grat { stroke: #1E3A5F; stroke-width: .35; fill: none; opacity: .55; }
-      .ww-map .dot { fill: #2563EB; filter: drop-shadow(0 0 6px rgba(37,99,235,.7)); cursor: pointer; }
-      .ww-map .dot-hit { fill: transparent; cursor: pointer; }
-      .ww-map .dot-label { font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #FFFFFF; pointer-events: none; letter-spacing: -.01em; }
-      .ww-map .dot-label-sub { font-size: 10px; fill: #94A3B8; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; pointer-events: none; }
-      .ww-map g.marker:hover .dot { fill: #FFFFFF; filter: drop-shadow(0 0 10px #2563EB); }
-      .ww-cities { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; font-size: .88rem; }
-      .ww-city { display: inline-flex; align-items: center; gap: .5rem; color: #94A3B8; text-decoration: none; transition: color .15s; padding: .5rem .9rem; border: 1px solid #1E3A5F; border-radius: 999px; }
-      .ww-city:hover { color: #FFFFFF; border-color: #2563EB; }
-      .ww-city .flag { font-size: 1.1em; }
-      @media (max-width: 720px) {
-        .ww { padding: 3.5rem 1rem 3rem; }
-        .ww-map .dot-label { font-size: 12px; }
-        .ww-map .dot-label-sub { display: none; }
-        .ww-sub { margin-bottom: 2rem; }
-      }
+      .mk { background: #0A0A0A; color: #FFFFFF; padding: 4.5rem 1.5rem 4rem; }
+      .mk-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+      .mk-tag { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #94A3B8; margin-bottom: 1.2rem; font-weight: 600; }
+      .mk-title { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: .8rem; color: #FFFFFF; }
+      .mk-title .mk-accent { color: #2563EB; }
+      .mk-sub { font-size: clamp(.95rem, 1.3vw, 1.05rem); color: #94A3B8; margin-bottom: 2.8rem; }
+      .mk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 920px; margin: 0 auto; }
+      .mk-card { display: block; text-decoration: none; background: #0B1D33; border: 1px solid #1E3A5F; border-radius: 16px; padding: 2rem 1.5rem; transition: border-color .15s, transform .15s; }
+      .mk-card:hover { border-color: #2563EB; transform: translateY(-2px); }
+      .mk-flag { font-size: 2rem; display: block; margin-bottom: .8rem; }
+      .mk-country { font-size: 1.15rem; font-weight: 800; color: #FFFFFF; letter-spacing: -.01em; margin-bottom: .25rem; }
+      .mk-meta { font-size: .8rem; color: #94A3B8; letter-spacing: .04em; }
+      .mk-cta { display: inline-block; margin-top: 1.1rem; font-size: .85rem; font-weight: 700; color: #2563EB; }
+      @media (max-width: 720px) { .mk-grid { grid-template-columns: 1fr; max-width: 400px; } .mk { padding: 3rem 1rem 2.6rem; } }
     </style>
-    <div class="ww-inner">
-      <div class="ww-tag">GILD-TECH · UK · BE · Koh Samui</div>
-      <h1 class="ww-title" data-fr="Sarah répond. Partout. 24/7." data-en="Sarah answers. Everywhere. 24/7.">Sarah répond. <span class="ww-accent">Partout.</span> 24/7.</h1>
-      <p class="ww-sub" data-fr="Trois marchés, un même produit. Choisissez le vôtre." data-en="Three markets, one product. Pick yours.">Trois marchés, un même produit. Choisissez le vôtre.</p>
-
-      <div class="ww-map-wrap">
-        <svg class="ww-map" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ww-map-title ww-map-desc">
-          <title id="ww-map-title">Carte des marchés GILD-TECH</title>
-          <desc id="ww-map-desc">Londres, Bruxelles et Koh Samui, marqués par des points lumineux bleus sur une carte du monde stylisée.</desc>
-
-          <!-- graticule (méridiens + parallèles très fins) -->
-          <g class="grat">
-            <line x1="0" y1="125" x2="1000" y2="125"/>
-            <line x1="0" y1="250" x2="1000" y2="250"/>
-            <line x1="0" y1="375" x2="1000" y2="375"/>
-            <line x1="250" y1="0" x2="250" y2="500"/>
-            <line x1="500" y1="0" x2="500" y2="500"/>
-            <line x1="750" y1="0" x2="750" y2="500"/>
-          </g>
-
-          <!-- continents (silhouettes simplifiées, style wireframe premium) -->
-          <g class="continent">
-            <!-- North America -->
-            <path d="M 100 100 L 175 85 L 220 90 L 250 115 L 290 130 L 300 165 L 275 205 L 240 240 L 195 260 L 155 245 L 120 220 L 105 180 L 100 140 Z"/>
-            <!-- Central America / Caribbean -->
-            <path d="M 240 245 L 275 245 L 285 275 L 260 285 L 245 270 Z"/>
-            <!-- South America -->
-            <path d="M 270 285 L 305 275 L 335 305 L 340 355 L 325 405 L 295 445 L 265 435 L 255 395 L 260 340 Z"/>
-            <!-- Greenland -->
-            <path d="M 350 55 L 400 45 L 420 70 L 405 100 L 375 105 L 355 85 Z"/>
-            <!-- Europe (compact) -->
-            <path d="M 465 95 L 495 82 L 530 88 L 555 110 L 555 148 L 515 168 L 480 158 L 460 130 Z"/>
-            <!-- UK / Ireland -->
-            <path d="M 478 100 L 495 96 L 500 118 L 490 128 L 478 118 Z"/>
-            <!-- Scandinavia -->
-            <path d="M 505 55 L 540 45 L 555 80 L 530 100 L 512 85 Z"/>
-            <!-- Africa -->
-            <path d="M 480 175 L 520 168 L 560 180 L 590 220 L 600 285 L 580 345 L 550 395 L 520 415 L 495 405 L 475 370 L 465 315 L 470 245 Z"/>
-            <!-- Madagascar -->
-            <path d="M 605 355 L 620 350 L 625 380 L 615 400 L 605 385 Z"/>
-            <!-- Middle East / Arabia -->
-            <path d="M 570 195 L 610 190 L 625 220 L 620 255 L 590 260 L 575 235 Z"/>
-            <!-- Asia (main body) -->
-            <path d="M 555 88 L 630 60 L 725 55 L 810 80 L 855 110 L 875 155 L 855 200 L 810 220 L 770 210 L 725 200 L 685 195 L 645 180 L 615 165 L 585 140 L 570 115 Z"/>
-            <!-- India -->
-            <path d="M 700 205 L 735 200 L 745 240 L 725 270 L 705 260 L 695 230 Z"/>
-            <!-- Southeast Asia peninsula / Thailand -->
-            <path d="M 770 220 L 795 218 L 810 250 L 795 275 L 780 265 L 770 245 Z"/>
-            <!-- Indonesia archipelago (stylized) -->
-            <path d="M 800 285 L 850 280 L 875 300 L 855 315 L 820 315 L 800 305 Z"/>
-            <!-- Australia -->
-            <path d="M 810 355 L 870 345 L 905 355 L 920 385 L 900 415 L 855 425 L 815 410 L 800 385 Z"/>
-            <!-- New Zealand -->
-            <path d="M 935 415 L 950 410 L 955 430 L 945 445 L 935 430 Z"/>
-            <!-- Japan (stylized) -->
-            <path d="M 858 150 L 875 145 L 883 170 L 872 185 L 862 175 Z"/>
-          </g>
-
-          <!-- MARKERS -->
-          <!-- London (lat 51.5, lon -0.1) — label ABOVE-LEFT via leader line -->
-          <a href="/sarah-uk.html" class="marker-link">
-            <g class="marker" data-city="london">
-              <line x1="497" y1="122" x2="470" y2="95" stroke="#2563EB" stroke-width="0.7" opacity="0.5"/>
-              <circle cx="497" cy="122" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
-                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="0s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="0s" repeatCount="indefinite"/>
-              </circle>
-              <circle class="dot" cx="497" cy="122" r="5"/>
-              <circle class="dot-hit" cx="497" cy="122" r="18"/>
-              <text class="dot-label" x="466" y="88" text-anchor="end">London</text>
-              <text class="dot-label-sub" x="466" y="103" text-anchor="end">🇬🇧 · sarah-uk</text>
-            </g>
-          </a>
-
-          <!-- Brussels (lat 50.85, lon 4.35) — label BELOW-RIGHT via leader line -->
-          <a href="/sarah-be.html" class="marker-link">
-            <g class="marker" data-city="brussels">
-              <line x1="516" y1="140" x2="548" y2="168" stroke="#2563EB" stroke-width="0.7" opacity="0.5"/>
-              <circle cx="516" cy="140" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
-                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
-              </circle>
-              <circle class="dot" cx="516" cy="140" r="5"/>
-              <circle class="dot-hit" cx="516" cy="140" r="18"/>
-              <text class="dot-label" x="552" y="173">Brussels</text>
-              <text class="dot-label-sub" x="552" y="188">🇧🇪 · sarah-be</text>
-            </g>
-          </a>
-
-          <!-- Koh Samui (lat 9.5, lon 100) -->
-          <a href="/sarah-th.html" class="marker-link">
-            <g class="marker" data-city="samui">
-              <circle cx="783" cy="264" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
-                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
-              </circle>
-              <circle class="dot" cx="783" cy="264" r="5"/>
-              <circle class="dot-hit" cx="783" cy="264" r="18"/>
-              <text class="dot-label" x="799" y="257">Koh Samui</text>
-              <text class="dot-label-sub" x="799" y="272">🇹🇭 · sarah-th</text>
-            </g>
-          </a>
-        </svg>
-      </div>
-
-      <div class="ww-cities">
-        <a class="ww-city" href="/sarah-uk.html"><span class="flag">🇬🇧</span> London · Sarah UK</a>
-        <a class="ww-city" href="/sarah-be.html"><span class="flag">🇧🇪</span> Brussels · Sarah BE</a>
-        <a class="ww-city" href="/sarah-th.html"><span class="flag">🇹🇭</span> Koh Samui · Sarah SAMUI</a>
+    <div class="mk-inner">
+      <div class="mk-tag">GILD-TECH</div>
+      <h1 class="mk-title" data-fr-html="Sarah répond. <span class=&quot;mk-accent&quot;>Partout.</span> 24/7." data-en-html="Sarah answers. <span class=&quot;mk-accent&quot;>Everywhere.</span> 24/7.">Sarah répond. <span class="mk-accent">Partout.</span> 24/7.</h1>
+      <p class="mk-sub" data-fr="Trois marchés, un même produit. Choisissez le vôtre." data-en="Three markets, one product. Pick yours.">Trois marchés, un même produit. Choisissez le vôtre.</p>
+      <div class="mk-grid">
+        <a class="mk-card" href="/sarah-uk.html">
+          <span class="mk-flag">🇬🇧</span>
+          <div class="mk-country">United Kingdom</div>
+          <div class="mk-meta">London · EN · £</div>
+          <span class="mk-cta">Sarah UK →</span>
+        </a>
+        <a class="mk-card" href="/sarah-be.html">
+          <span class="mk-flag">🇧🇪</span>
+          <div class="mk-country">Belgique</div>
+          <div class="mk-meta">Bruxelles · FR · €</div>
+          <span class="mk-cta">Sarah BE →</span>
+        </a>
+        <a class="mk-card" href="/sarah-th.html">
+          <span class="mk-flag">🇹🇭</span>
+          <div class="mk-country">Thaïlande</div>
+          <div class="mk-meta">Koh Samui · EN · £</div>
+          <span class="mk-cta">Sarah Samui →</span>
+        </a>
       </div>
     </div>
   </section>
