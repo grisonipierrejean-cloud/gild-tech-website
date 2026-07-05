@@ -7,16 +7,18 @@
 <meta name="description" content="Tableau de bord temps réel de l'agence — visites du jour, contacts à rappeler, pipeline acquéreurs, alertes Sarah. Démo GILD-TECH.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="theme-color" content="#E91E8C">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --pink: #2E6BE6;
-  --pink-light: #1e56c9;
-  --pink-soft: #E7ECF3;
-  --pink-bg: #F3F6FA;
+  --pink: #2563EB;
+  --pink-light: #1D4ED8;
+  --pink-soft: #E5E7EB;
+  --pink-bg: #F1F5F9;
   --green: #16a34a;
   --green-bg: #f0fdf4;
   --green-soft: #dcfce7;
@@ -25,7 +27,7 @@
   --orange: #ea580c;
   --orange-bg: #fff7ed;
   --red: #dc2626;
-  --red-bg: #fef2f2;
+  --red-bg: #F1F5F9;
   --dark: #0f0f0f;
   --g900: #111;
   --g800: #1e1e1e;
@@ -66,7 +68,7 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 .main { max-width: var(--max-w); margin: 0 auto; padding: 28px 24px 60px; }
 
 /* HERO BRIEF AI */
-.brief-banner { background: linear-gradient(135deg, var(--pink) 0%, #c91e7c 100%); color: white; padding: 22px 26px; border-radius: var(--r-lg); margin-bottom: 24px; display: flex; gap: 18px; align-items: flex-start; box-shadow: 0 8px 24px rgba(233, 30, 140, .14); }
+.brief-banner { background: linear-gradient(135deg, var(--pink) 0%, #c91e7c 100%); color: white; padding: 22px 26px; border-radius: var(--r-lg); margin-bottom: 24px; display: flex; gap: 18px; align-items: flex-start; box-shadow: 0 8px 24px rgba(37, 99, 235, .14); }
 .brief-icon { width: 46px; height: 46px; background: rgba(255,255,255,.18); border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; font-size: 22px; }
 .brief-content { flex: 1; }
 .brief-content .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: .85; font-weight: 600; }
@@ -211,16 +213,16 @@ body { background: var(--g50); color: var(--g900); font-family: var(--font); lin
 }
 
 /* DEMO BAR */
-.demo-bar { background: linear-gradient(90deg, #fef6fa, #fff, #fef6fa); border-bottom: 1px solid var(--pink-soft); padding: 9px 0; font-size: 12px; color: var(--pink); text-align: center; font-weight: 600; }
+.demo-bar { background: linear-gradient(90deg, #f1f5f9, #fff, #f1f5f9); border-bottom: 1px solid var(--pink-soft); padding: 9px 0; font-size: 12px; color: var(--pink); text-align: center; font-weight: 600; }
 .demo-bar a { color: var(--pink); text-decoration: underline; }
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 
-<div style="background: linear-gradient(90deg, #fbf1de, #fff, #fbf1de); border-bottom: 1px solid #ebd9b4; padding: 11px 16px; font-size: 13px; color: #8a6a30; text-align: center; font-weight: 700; letter-spacing: .02em;">
-  🔜 <strong>Preview</strong> — tableau de bord temps réel en déploiement, se branche au CRM uniquement via API (<strong>Whise · SweepBright · Omnicasa</strong> en BE, <strong>Reapit · Alto · Street</strong> en UK). Données fictives affichées · <a href="https://gild-tech.com/sarah-be" style="color:#8a6a30;text-decoration:underline;">Devenir Client Fondateur (30j satisfait ou remboursé)</a>
+<div style="background: linear-gradient(90deg, #f1f5f9, #fff, #f1f5f9); border-bottom: 1px solid #e5e7eb; padding: 11px 16px; font-size: 13px; color: #94a3b8; text-align: center; font-weight: 700; letter-spacing: .02em;">
+  🔜 <strong>Preview</strong> — tableau de bord temps réel en déploiement, se branche au CRM uniquement via API (<strong>Whise · SweepBright · Omnicasa</strong> en BE, <strong>Reapit · Alto · Street</strong> en UK). Données fictives affichées · <a href="https://gild-tech.com/sarah-be" style="color:#94a3b8;text-decoration:underline;">Devenir Client Fondateur (30j satisfait ou remboursé)</a>
 </div>
 <div style="background:#fff;border-bottom:1px solid #ececef;padding:7px 16px;font-size:11px;color:#525159;text-align:center;letter-spacing:.02em;line-height:1.5;">
   <em>Pourquoi uniquement via API CRM ?</em> Le dashboard tire les données acquéreurs + visites + mandats de votre CRM. Si votre CRM n'expose pas d'API ouverte, on bascule sur un reporting Google Sheets — confirmé pendant l'audit, sans aucun engagement préalable. <strong>Jamais vendu sur un CRM sans API.</strong>

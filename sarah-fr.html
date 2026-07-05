@@ -15,24 +15,26 @@
 <link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah">
 <link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-uk">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="theme-color" content="#E91E8C">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --pink: #1F4D5C;
-  --pink-light: #2A6577;
-  --pink-soft: #E4ECEF;
-  --pink-bg: #F2F7F9;
+  --pink: #2563EB;
+  --pink-light: #1D4ED8;
+  --pink-soft: #E5E7EB;
+  --pink-bg: #F1F5F9;
   --green: #16a34a;
   --green-bg: #f0fdf4;
   --blue: #2563eb;
   --blue-bg: #eff6ff;
   --red: #dc2626;
-  --red-bg: #fef2f2;
-  --dark: #0E1117;
-  --g900: #0E1117;
+  --red-bg: #F1F5F9;
+  --dark: #0A0A0A;
+  --g900: #0A0A0A;
   --g700: #2A2F36;
   --g600: #4A4F57;
   --g500: #6B6F76;
@@ -56,7 +58,7 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover { color: var(--g900); }
 .btn-nav { background: var(--pink); color: var(--white) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
-.btn-nav:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(31,77,92,0.25); transform: translateY(-1px); }
+.btn-nav:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(11,29,51,0.25); transform: translateY(-1px); }
 .lang-toggle { font-size: 0.78rem; color: var(--g500); }
 .lang-toggle a { color: var(--g500); text-decoration: none; padding: 0 0.3rem; }
 .lang-toggle a.active { color: var(--pink); font-weight: 700; }
@@ -71,7 +73,7 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .hero .subtitle { font-size: 1.15rem; color: var(--g600); max-width: 720px; line-height: 1.55; margin-bottom: 2rem; }
 .hero .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .btn-primary { display: inline-block; background: var(--pink); color: var(--white); padding: 0.85rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
-.btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(31,77,92,0.25); }
+.btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(11,29,51,0.25); }
 .btn-secondary { display: inline-block; background: var(--white); color: var(--g900); padding: 0.85rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 1.5px solid var(--g200); transition: all 0.2s; }
 .btn-secondary:hover { border-color: var(--pink); color: var(--pink); }
 
@@ -119,7 +121,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .msg-time { font-size: 9px; color: var(--g500); text-align: right; margin-top: 1px; }
 
 /* ROI */
-.roi-card { background: linear-gradient(135deg, var(--pink) 0%, #c41679 100%); color: var(--white); padding: 3rem; border-radius: var(--r); text-align: center; }
+.roi-card { background: linear-gradient(135deg, var(--pink) 0%, #1d4ed8 100%); color: var(--white); padding: 3rem; border-radius: var(--r); text-align: center; }
 .roi-card h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 1.6rem; letter-spacing: -0.01em; }
 .roi-calc { font-size: 1rem; line-height: 1.9; margin-bottom: 2rem; opacity: 0.95; }
 .roi-calc strong { font-weight: 700; font-size: 1.15rem; }
@@ -128,7 +130,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 /* PRICING */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
-.price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(31,77,92,0.10); }
+.price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(11,29,51,0.10); }
 .price-card.featured::before { content: "★ RECOMMANDÉ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
 .price-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
 .price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
@@ -174,7 +176,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 }
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 
@@ -328,7 +330,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <h2 class="section-title">Et un <span class="accent">tableau de bord temps réel</span> que vous regardez 30 sec par jour.</h2>
     <p class="section-subtitle">Tous les indicateurs de votre agence sur une page. Pas de logiciel à installer, pas de formation, juste un lien que vous mettez en favori.</p>
     <div style="text-align:center;margin-top:2rem;">
-      <a href="/dashboard/" target="_blank" rel="noopener" style="display:inline-block;background:var(--pink);color:white;padding:14px 28px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1rem;box-shadow:0 8px 24px rgba(31,77,92,.18);transition:transform .15s;">📊 Voir le tableau de bord en démo →</a>
+      <a href="/dashboard/" target="_blank" rel="noopener" style="display:inline-block;background:var(--pink);color:white;padding:14px 28px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1rem;box-shadow:0 8px 24px rgba(11,29,51,.18);transition:transform .15s;">📊 Voir le tableau de bord en démo →</a>
       <p style="margin-top:1rem;font-size:0.85rem;color:var(--g500);">Données fictives Agence Démo Lyon · pas de signup, pas d'email demandé</p>
     </div>
     <ul style="margin-top:2.5rem;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.9;">
@@ -438,7 +440,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <section class="block" id="vs-concurrents" style="background:#fafafa;border-top:1px solid #ececef;border-bottom:1px solid #ececef;padding:3.5rem 1.5rem;">
     <div style="max-width:1080px;margin:0 auto;">
       <div style="text-align:center;max-width:720px;margin:0 auto 2rem;">
-        <div style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E91E8C;padding:5px 11px;background:#fef0f8;border-radius:999px;margin-bottom:14px;">Sur le marché</div>
+        <div style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2563EB;padding:5px 11px;background:#eff6ff;border-radius:999px;margin-bottom:14px;">Sur le marché</div>
         <h2 class="section-title" style="margin-bottom:.5rem;">Pourquoi pas <span class="accent">les autres</span> ?</h2>
         <p class="section-subtitle">Roof AI, MonAgent-IA, Hektor — comparaison sur 6 critères clés.</p>
       </div>
@@ -448,19 +450,19 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <thead>
             <tr style="background:#fafafa;">
               <th style="padding:14px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#525159;font-weight:600;border-bottom:1px solid #ececef;">Critère</th>
-              <th style="padding:14px 14px;text-align:left;font-size:13px;font-weight:700;color:#E91E8C;background:linear-gradient(180deg,#fef0f8,#fafafa);border-bottom:1px solid #fbcfe5;white-space:nowrap;">Sarah Studio<br><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#525159;display:block;margin-top:2px;">FR + UK</span></th>
+              <th style="padding:14px 14px;text-align:left;font-size:13px;font-weight:700;color:#2563EB;background:linear-gradient(180deg,#eff6ff,#fafafa);border-bottom:1px solid #93c5fd;white-space:nowrap;">Sarah Studio<br><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#525159;display:block;margin-top:2px;">FR + UK</span></th>
               <th style="padding:14px 14px;text-align:left;font-size:13px;font-weight:700;border-bottom:1px solid #ececef;white-space:nowrap;">Roof AI<br><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#525159;display:block;margin-top:2px;">US brokerages</span></th>
               <th style="padding:14px 14px;text-align:left;font-size:13px;font-weight:700;border-bottom:1px solid #ececef;white-space:nowrap;">MonAgent-IA<br><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#525159;display:block;margin-top:2px;">FR indé</span></th>
               <th style="padding:14px 14px;text-align:left;font-size:13px;font-weight:700;border-bottom:1px solid #ececef;white-space:nowrap;">Hektor IA<br><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#525159;display:block;margin-top:2px;">CRM FR</span></th>
             </tr>
           </thead>
           <tbody style="color:#4a4a52;">
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">WhatsApp 24/7</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ canal principal</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#16a34a;font-weight:600;">✓</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Voice 24/7 (téléphone)</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ Sophie / Charlotte</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Pilote IA négociateur</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ Sarah Studio</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">partiel</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Accompagnement 30 jours post-setup</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ 30 jours inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Garantie satisfait ou remboursé</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ 30 jours</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">14 j essai</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;">Conçu pour agences indé FR/UK</td><td style="padding:11px 14px;background:rgba(254,240,248,.4);color:#16a34a;font-weight:700;">✓ marché cible</td><td style="padding:11px 14px;color:#dc2626;opacity:.55;">✗ US 50+ agents</td><td style="padding:11px 14px;color:#16a34a;font-weight:600;">✓</td><td style="padding:11px 14px;color:#4a4a52;font-style:italic;">CRM enterprise</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">WhatsApp 24/7</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ canal principal</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#16a34a;font-weight:600;">✓</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Voice 24/7 (téléphone)</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ Sophie / Charlotte</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Pilote IA négociateur</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ Sarah Studio</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">partiel</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Accompagnement 30 jours post-setup</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ 30 jours inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ non inclus</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Garantie satisfait ou remboursé</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ 30 jours</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">14 j essai</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;">Conçu pour agences indé FR/UK</td><td style="padding:11px 14px;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ marché cible</td><td style="padding:11px 14px;color:#dc2626;opacity:.55;">✗ US 50+ agents</td><td style="padding:11px 14px;color:#16a34a;font-weight:600;">✓</td><td style="padding:11px 14px;color:#4a4a52;font-style:italic;">CRM enterprise</td></tr>
           </tbody>
         </table>
       </div>
@@ -542,7 +544,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     font-weight: 700;
     text-decoration: none;
     font-size: 0.95rem;
-    box-shadow: 0 8px 24px rgba(31,77,92,.35);
+    box-shadow: 0 8px 24px rgba(11,29,51,.35);
     z-index: 99;
     letter-spacing: 0.01em;
   }

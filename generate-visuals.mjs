@@ -33,15 +33,15 @@ async function generateImage(prompt, filename) {
 // Generate visuals for the site
 const visuals = [
   {
-    prompt: "Abstract dark futuristic technology background, deep navy blue #0b0b14 base color with vibrant hot pink #E91E8C energy streams and glowing neural network connections, flowing data particles, cinematic lighting, ultra wide 21:9 aspect ratio, 4K quality, no text, no people, ethereal and premium feel, subtle grid pattern fading into darkness",
+    prompt: "Abstract dark futuristic technology background, deep navy blue #0b0b14 base color with vibrant hot pink #2563EB energy streams and glowing neural network connections, flowing data particles, cinematic lighting, ultra wide 21:9 aspect ratio, 4K quality, no text, no people, ethereal and premium feel, subtle grid pattern fading into darkness",
     file: "hero-bg.png"
   },
   {
-    prompt: "Abstract geometric 3D shapes floating in dark space, deep navy #0b0b14 background, hot pink #E91E8C and magenta glowing edges on translucent glass-like polyhedra, light refractions, bokeh particles, premium tech aesthetic, no text, minimalist and elegant, cinematic depth of field",
+    prompt: "Abstract geometric 3D shapes floating in dark space, deep navy #0b0b14 background, hot pink #2563EB and magenta glowing edges on translucent glass-like polyhedra, light refractions, bokeh particles, premium tech aesthetic, no text, minimalist and elegant, cinematic depth of field",
     file: "abstract-shapes.png"
   },
   {
-    prompt: "Futuristic holographic dashboard interface floating in dark void, deep navy blue #0b0b14 background, hot pink #E91E8C accent highlights on graphs and data visualizations, AI automation concept, glowing connection lines between nodes, premium and clean, no text readable, blurred slightly for background use, cinematic",
+    prompt: "Futuristic holographic dashboard interface floating in dark void, deep navy blue #0b0b14 background, hot pink #2563EB accent highlights on graphs and data visualizations, AI automation concept, glowing connection lines between nodes, premium and clean, no text readable, blurred slightly for background use, cinematic",
     file: "dashboard-hologram.png"
   }
 ];

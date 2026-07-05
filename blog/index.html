@@ -19,8 +19,10 @@
 <meta property="og:image" content="https://gild-tech.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="Gild-Tech Blog RSS" href="/blog/rss.xml">
-<meta name="theme-color" content="#E91E8C">
+<meta name="theme-color" content="#0A0A0A">
 
 <script type="application/ld+json">
 {
@@ -54,7 +56,7 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --pink: #E91E8C; --pink-light: #f54da5; --pink-bg: #fef6fa;
+    --pink: #2563EB; --pink-light: #1d4ed8; --pink-bg: #f1f5f9;
     --g900: #111; --g700: #333; --g600: #555; --g500: #777; --g400: #999; --g200: #e8e8e8; --g100: #f5f5f5;
     --font: 'Inter', -apple-system, sans-serif;
   }
@@ -70,8 +72,8 @@
   .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
   .nav-mark {
     width: 30px; height: 30px; border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
-    border: 1.5px solid rgba(233,30,140,0.25);
+    background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.12), transparent 70%);
+    border: 1.5px solid rgba(37,99,235,0.25);
     display: flex; align-items: center; justify-content: center;
     position: relative; font-size: 0.75rem; font-weight: 800; color: var(--g900);
   }
@@ -96,7 +98,7 @@
   .hero::before {
     content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
     width: 100%; max-width: 800px; height: 400px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-inner { max-width: 780px; margin: 0 auto; position: relative; }
@@ -124,7 +126,7 @@
     display: flex; flex-direction: column;
   }
   .article-card:hover {
-    transform: translateY(-4px); border-color: rgba(233,30,140,0.2);
+    transform: translateY(-4px); border-color: rgba(37,99,235,0.2);
     box-shadow: 0 12px 40px rgba(0,0,0,0.06);
   }
   .article-thumb {
@@ -135,13 +137,13 @@
   }
   .article-thumb::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 30%, rgba(233,30,140,0.25), transparent 60%);
+    background: radial-gradient(ellipse at 70% 30%, rgba(37,99,235,0.25), transparent 60%);
   }
   .article-thumb-icon {
     position: relative; font-size: 3rem; opacity: 0.9;
   }
   .article-card.pillar-1 .article-thumb::before {
-    background: radial-gradient(ellipse at 70% 30%, rgba(233,30,140,0.4), transparent 60%);
+    background: radial-gradient(ellipse at 70% 30%, rgba(37,99,235,0.4), transparent 60%);
   }
   .article-card.pillar-2 .article-thumb {
     background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%);
@@ -153,7 +155,7 @@
     background: linear-gradient(135deg, #14080a 0%, #2a0a1a 100%);
   }
   .article-card.pillar-3 .article-thumb::before {
-    background: radial-gradient(ellipse at 50% 50%, rgba(233,30,140,0.35), transparent 65%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(37,99,235,0.35), transparent 65%);
   }
 
   .article-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
@@ -201,7 +203,7 @@
   }
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 

@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #E91E8C;
-    --accent-soft: rgba(233,30,140,.08);
-    --accent-line: rgba(233,30,140,.22);
+    --accent: #2563EB;
+    --accent-soft: rgba(37,99,235,.08);
+    --accent-line: rgba(37,99,235,.22);
   }
   html[data-theme="dark"] {
     --bg: #08080a;
@@ -212,11 +212,11 @@
   .mic-btn { background: var(--bg-elev); border: 1px solid var(--line); color: var(--text); }
   .mic-btn:hover { border-color: var(--accent-line); color: var(--accent); }
   .mic-btn.live { background: var(--accent); color: #fff; border-color: var(--accent); animation: pulse-mic 1.2s infinite; }
-  @keyframes pulse-mic { 0%,100%{box-shadow:0 0 0 0 rgba(233,30,140,.5)} 50%{box-shadow:0 0 0 6px rgba(233,30,140,0)} }
+  @keyframes pulse-mic { 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.5)} 50%{box-shadow:0 0 0 6px rgba(37,99,235,0)} }
   .send-btn { background: var(--accent); color: #fff; }
   .send-btn:disabled { opacity: .35; cursor: not-allowed; }
 
-  .sarah-toggle-mobile { display: none; position: fixed; bottom: 18px; right: 18px; width: 50px; height: 50px; border-radius: 12px; background: var(--accent); color: #fff; border: 0; box-shadow: 0 6px 20px rgba(233,30,140,.45); cursor: pointer; z-index: 60; font-size: 14px; font-weight: 700; }
+  .sarah-toggle-mobile { display: none; position: fixed; bottom: 18px; right: 18px; width: 50px; height: 50px; border-radius: 12px; background: var(--accent); color: #fff; border: 0; box-shadow: 0 6px 20px rgba(37,99,235,.45); cursor: pointer; z-index: 60; font-size: 14px; font-weight: 700; }
   @media (max-width: 1024px) { .sarah-toggle-mobile { display: flex; align-items: center; justify-content: center; } }
 
   .ico { width: 12px; height: 12px; vertical-align: -2px; flex-shrink: 0; }
@@ -226,7 +226,7 @@
   ::selection { background: var(--accent-soft); color: var(--accent); }
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 <div class="layout">
@@ -624,7 +624,7 @@ function renderKpis(d) {
   const strip = document.getElementById('kpiStrip');
   const k = d.kpis || {};
   const spark = k.spark || {};
-  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#E91E8C';
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#2563EB';
   const greenColor = getComputedStyle(document.documentElement).getPropertyValue('--green').trim() || '#22c55e';
 
   strip.innerHTML = KPI_DEFS.map(def => {

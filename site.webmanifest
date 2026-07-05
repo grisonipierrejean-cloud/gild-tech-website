@@ -1,18 +1,13 @@
 {
-  "name": "Gild-Tech | Automatisation Commerciale IA",
-  "short_name": "Gild-Tech",
-  "description": "Automatisation commerciale pour PME. Prospection, relances et suivi automatisés.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#E91E8C",
-  "lang": "fr-FR",
+  "name": "GILD-TECH",
+  "short_name": "GILD-TECH",
+  "description": "Sarah — the AI receptionist for independent estate agencies. UK · BE · Samui.",
   "icons": [
-    {
-      "src": "/favicon.svg",
-      "type": "image/svg+xml",
-      "sizes": "any",
-      "purpose": "any maskable"
-    }
-  ]
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/apple-touch-icon.svg", "type": "image/svg+xml", "sizes": "180x180", "purpose": "any" }
+  ],
+  "theme_color": "#0A0A0A",
+  "background_color": "#0A0A0A",
+  "display": "standalone",
+  "start_url": "/"
 }

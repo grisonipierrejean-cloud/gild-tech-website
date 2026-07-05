@@ -36,8 +36,10 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0E1117">
+  <meta name="theme-color" content="#0A0A0A">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="fr" href="https://gild-tech.com/">
@@ -130,25 +132,25 @@
 
     :root {
       /* === NEW: Cabinet de courtage premium palette === */
-      --ink: #0E1117;          /* anthracite profond - texte + nav */
+      --ink: #0A0A0A;          /* anthracite profond - texte + nav */
       --ink-soft: #1A1F26;
       --bone: #F6F4EE;         /* blanc cassé crème - fonds */
       --bone-soft: #FBF9F3;
-      --gold: #B79355;         /* champagne mat - accents premium */
+      --gold: #94A3B8;         /* champagne mat - accents premium */
       --gold-soft: #E8DCC4;
       --gold-bg: #F5EFE2;
-      --teal: #1F4D5C;         /* bleu pétrole - CTA principal */
+      --teal: #2563EB;         /* bleu pétrole - CTA principal */
       --teal-dark: #133641;
-      --teal-soft: #E4ECEF;
+      --teal-soft: #E5E7EB;
       --ash: #6B6F76;          /* gris textes secondaires */
 
       /* Sarah Studio garde son rose en var dédiée, mais --pink global est repointé sur teal */
-      --sarah-pink: #E91E8C;
-      --sarah-pink-light: #f54da5;
+      --sarah-pink: #2563EB;
+      --sarah-pink-light: #1d4ed8;
       --pink: var(--teal);              /* tout ce qui utilisait pink bascule sur teal */
-      --pink-light: #2A6577;
+      --pink-light: #1D4ED8;
       --pink-soft: var(--teal-soft);
-      --pink-bg: #F2F7F9;
+      --pink-bg: #F1F5F9;
 
       /* Repointage des anciennes vars sur la nouvelle palette */
       --dark: var(--ink);
@@ -207,8 +209,8 @@
 
     .nav-mark {
       width: 30px; height: 30px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(31,77,92,0.12), transparent 70%);
-      border: 1.5px solid rgba(31,77,92,0.25);
+      background: radial-gradient(circle at 30% 30%, rgba(11,29,51,0.12), transparent 70%);
+      border: 1.5px solid rgba(11,29,51,0.25);
       display: flex; align-items: center; justify-content: center;
       position: relative;
       font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;
@@ -395,7 +397,7 @@
     }
     .wa-avatar {
       width: 34px; height: 34px; border-radius: 50%;
-      background: linear-gradient(135deg, #B79355, #d4b377);
+      background: linear-gradient(135deg, #94A3B8, #d4b377);
       color: white; font-weight: 800; font-size: 0.95rem;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
@@ -543,7 +545,7 @@
       padding: 1.8rem 1.4rem; transition: all 0.3s;
     }
     .service-card:hover {
-      transform: translateY(-4px); border-color: rgba(31,77,92,0.2);
+      transform: translateY(-4px); border-color: rgba(11,29,51,0.2);
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
     .service-card-icon {
@@ -724,13 +726,13 @@
     }
 
     .btn-pink { background: var(--pink); color: white; padding: 0.6rem 1.4rem; }
-    .btn-pink:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(31,77,92,0.25); }
+    .btn-pink:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(11,29,51,0.25); }
 
     .btn-nav {
       background: white; color: var(--pink); padding: 0.55rem 1.3rem;
       border: 1.5px solid var(--pink);
     }
-    .btn-nav:hover { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(31,77,92,0.25); transform: translateY(-1px); }
+    .btn-nav:hover { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(11,29,51,0.25); transform: translateY(-1px); }
 
     .btn-lg { padding: 0.85rem 2rem; font-size: 0.95rem; border-radius: 12px; }
     .btn-ghost { background: transparent; color: var(--g700); padding: 0.6rem 1.4rem; border: 1px solid var(--g200); }
@@ -752,7 +754,7 @@
     .hero-grad {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 800px; height: 450px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(31,77,92,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(11,29,51,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -761,7 +763,7 @@
     .hero-pill {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.3rem 0.85rem 0.3rem 0.45rem;
-      background: var(--pink-bg); border: 1px solid rgba(31,77,92,0.12);
+      background: var(--pink-bg); border: 1px solid rgba(11,29,51,0.12);
       border-radius: 100px; font-size: 0.75rem; font-weight: 600; color: var(--pink);
       margin-bottom: 1.8rem;
       opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
@@ -826,12 +828,12 @@
       position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
       background: var(--pink); color: var(--white); padding: 0.95rem 1.4rem;
       border-radius: 50px; font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; box-shadow: 0 10px 30px rgba(31, 77, 92, 0.4);
+      text-decoration: none; box-shadow: 0 10px 30px rgba(11, 29, 51, 0.4);
       display: flex; align-items: center; gap: 0.5rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .sticky-cta:hover {
-      transform: translateY(-3px); box-shadow: 0 14px 40px rgba(31, 77, 92, 0.55);
+      transform: translateY(-3px); box-shadow: 0 14px 40px rgba(11, 29, 51, 0.55);
     }
     .sticky-cta .icon { font-size: 1.1rem; }
     @media (max-width: 600px) {
@@ -883,7 +885,7 @@
       padding: 1.8rem; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .prob-card:hover { border-color: rgba(31,77,92,0.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .prob-card:hover { border-color: rgba(11,29,51,0.2); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
     .prob-icon {
       width: 42px; height: 42px; border-radius: 10px; background: var(--pink-bg);
@@ -969,7 +971,7 @@
 
     .p-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     .p-card.ft { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink); }
-    .p-card.ft:hover { box-shadow: 0 0 0 1px var(--pink), 0 14px 40px rgba(31,77,92,0.1); }
+    .p-card.ft:hover { box-shadow: 0 0 0 1px var(--pink), 0 14px 40px rgba(11,29,51,0.1); }
 
     .pricing-grid { align-items: stretch; }
 
@@ -987,7 +989,7 @@
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.4rem 0.85rem; border-radius: 100px;
       width: fit-content;
-      border: 1px solid rgba(31,77,92,0.15);
+      border: 1px solid rgba(11,29,51,0.15);
       margin-bottom: 0.4rem;
     }
     .p-auto-badge.dark {
@@ -1016,7 +1018,7 @@
       background: var(--pink-bg); color: var(--pink);
       padding: 0.5rem 0.8rem; border-radius: 8px;
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.01em;
-      border: 1px solid rgba(31,77,92,0.1);
+      border: 1px solid rgba(11,29,51,0.1);
       line-height: 1.4;
       overflow: hidden;
       box-sizing: border-box;
@@ -1070,13 +1072,13 @@
     }
     .p-pay-link:hover { color: var(--pink); text-decoration: underline; }
     .p-card.ft .p-cta { background: var(--pink); color: white; border-color: var(--pink); }
-    .p-card.ft .p-cta:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(31,77,92,0.25); }
+    .p-card.ft .p-cta:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(11,29,51,0.25); }
 
     /* Maintenance band */
     .maint-band {
       margin-top: 2rem;
       background: linear-gradient(135deg, var(--pink-bg) 0%, #fff 60%);
-      border: 1px solid rgba(31,77,92,0.15);
+      border: 1px solid rgba(11,29,51,0.15);
       border-radius: var(--r);
       padding: 2rem 2.5rem;
       display: grid;
@@ -1146,7 +1148,7 @@
       font-size: 0.8rem; transition: all 0.25s;
     }
 
-    .maint-cta:hover { background: var(--pink-light); box-shadow: 0 4px 15px rgba(31,77,92,0.25); transform: translateY(-1px); }
+    .maint-cta:hover { background: var(--pink-light); box-shadow: 0 4px 15px rgba(11,29,51,0.25); transform: translateY(-1px); }
 
     @media (max-width: 900px) {
       .maint-band { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem; }
@@ -1224,7 +1226,7 @@
     }
     .gildcare-featured:hover {
       transform: translateY(-7px);
-      box-shadow: 0 18px 44px -12px rgba(31, 77, 92, 0.28);
+      box-shadow: 0 18px 44px -12px rgba(11, 29, 51, 0.28);
     }
 
     .gildcare-premium {
@@ -1256,7 +1258,7 @@
       font-weight: 800;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      box-shadow: 0 4px 14px -2px rgba(31, 77, 92, 0.4);
+      box-shadow: 0 4px 14px -2px rgba(11, 29, 51, 0.4);
     }
 
     .gildcare-name {
@@ -1334,7 +1336,7 @@
     }
     .gildcare-cta:hover {
       background: var(--teal-dark);
-      box-shadow: 0 6px 20px rgba(31, 77, 92, 0.25);
+      box-shadow: 0 6px 20px rgba(11, 29, 51, 0.25);
       transform: translateY(-1px);
     }
     .gildcare-cta-ghost {
@@ -1383,7 +1385,7 @@
       transition: all 0.2s;
     }
 
-    .parcours-step.highlight { background: var(--pink-bg); border-color: rgba(31,77,92,0.2); color: var(--pink); }
+    .parcours-step.highlight { background: var(--pink-bg); border-color: rgba(11,29,51,0.2); color: var(--pink); }
 
     .parcours-arrow { color: var(--g300); font-size: 0.8rem; }
 
@@ -1401,7 +1403,7 @@
       content: '';
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 900px; height: 500px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(31,77,92,0.18) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(11,29,51,0.18) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -1438,7 +1440,7 @@
     }
     .calc-teaser-feat::before {
       content: '✓'; width: 24px; height: 24px; border-radius: 50%;
-      background: rgba(31,77,92,0.15); color: var(--pink);
+      background: rgba(11,29,51,0.15); color: var(--pink);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
     }
@@ -1452,7 +1454,7 @@
     }
     .calc-teaser-cta:hover {
       background: var(--pink-light); transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(31,77,92,0.35);
+      box-shadow: 0 10px 30px rgba(11,29,51,0.35);
     }
 
     /* Right side: interactive preview card */
@@ -1672,7 +1674,7 @@
 
     .intro-cone {
       position: absolute; inset: 0;
-      background: conic-gradient(from 0deg, transparent, rgba(31,77,92,0.03), transparent, rgba(100,30,180,0.02), transparent);
+      background: conic-gradient(from 0deg, transparent, rgba(11,29,51,0.03), transparent, rgba(100,30,180,0.02), transparent);
       animation: spinCone 25s linear infinite;
     }
 
@@ -1680,7 +1682,7 @@
 
     .intro-ring {
       position: absolute; border-radius: 50%;
-      border: 1px solid rgba(31,77,92,0.06);
+      border: 1px solid rgba(11,29,51,0.06);
       animation: ringPulse 4s ease-in-out infinite;
     }
 
@@ -1696,12 +1698,12 @@
     .intro-logo-wrap {
       position: relative;
       width: 120px; height: 120px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(31,77,92,0.1), transparent 70%);
-      border: 1px solid rgba(31,77,92,0.12);
+      background: radial-gradient(circle at 30% 30%, rgba(11,29,51,0.1), transparent 70%);
+      border: 1px solid rgba(11,29,51,0.12);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transform: scale(0.7);
       animation: introIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
-      box-shadow: 0 0 60px rgba(31,77,92,0.1);
+      box-shadow: 0 0 60px rgba(11,29,51,0.1);
     }
 
     .intro-logo-wrap::after {
@@ -1741,7 +1743,7 @@
 
     .intro-sub {
       margin-top: 0.5rem; font-size: 0.62rem; letter-spacing: 0.18em;
-      color: rgba(31,77,92,0.5); opacity: 0; animation: introFade 0.6s ease 0.9s forwards;
+      color: rgba(11,29,51,0.5); opacity: 0; animation: introFade 0.6s ease 0.9s forwards;
     }
 
     .intro-line {
@@ -1769,7 +1771,7 @@
     nav.show { opacity: 1; transform: translateY(0); }
   </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 
@@ -1853,6 +1855,148 @@
       </ul>
     </div>
   </nav>
+
+  <!-- WORLDWIDE HERO — Sarah répond. Partout. 24/7. -->
+  <section class="ww" aria-label="GILD-TECH — présence internationale">
+    <style>
+      .ww { position: relative; background: #0A0A0A; color: #FFFFFF; padding: 5rem 1.5rem 4rem; overflow: hidden; }
+      .ww-inner { max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+      .ww-tag { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #94A3B8; margin-bottom: 1.2rem; font-weight: 600; }
+      .ww-title { font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: .8rem; color: #FFFFFF; }
+      .ww-title .ww-accent { color: #2563EB; }
+      .ww-sub { font-size: clamp(.95rem, 1.3vw, 1.05rem); color: #94A3B8; margin-bottom: 3rem; letter-spacing: .04em; }
+      .ww-map-wrap { position: relative; max-width: 960px; margin: 0 auto; }
+      .ww-map { width: 100%; height: auto; display: block; }
+      .ww-map .continent { fill: none; stroke: #1E3A5F; stroke-width: 1.2; stroke-linejoin: round; stroke-linecap: round; }
+      .ww-map .grat { stroke: #1E3A5F; stroke-width: .35; fill: none; opacity: .55; }
+      .ww-map .dot { fill: #2563EB; filter: drop-shadow(0 0 6px rgba(37,99,235,.7)); cursor: pointer; }
+      .ww-map .dot-hit { fill: transparent; cursor: pointer; }
+      .ww-map .dot-label { font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #FFFFFF; pointer-events: none; letter-spacing: -.01em; }
+      .ww-map .dot-label-sub { font-size: 10px; fill: #94A3B8; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; pointer-events: none; }
+      .ww-map g.marker:hover .dot { fill: #FFFFFF; filter: drop-shadow(0 0 10px #2563EB); }
+      .ww-cities { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; font-size: .88rem; }
+      .ww-city { display: inline-flex; align-items: center; gap: .5rem; color: #94A3B8; text-decoration: none; transition: color .15s; padding: .5rem .9rem; border: 1px solid #1E3A5F; border-radius: 999px; }
+      .ww-city:hover { color: #FFFFFF; border-color: #2563EB; }
+      .ww-city .flag { font-size: 1.1em; }
+      @media (max-width: 720px) {
+        .ww { padding: 3.5rem 1rem 3rem; }
+        .ww-map .dot-label { font-size: 12px; }
+        .ww-map .dot-label-sub { display: none; }
+        .ww-sub { margin-bottom: 2rem; }
+      }
+    </style>
+    <div class="ww-inner">
+      <div class="ww-tag">GILD-TECH · UK · BE · Koh Samui</div>
+      <h1 class="ww-title" data-fr="Sarah répond. Partout. 24/7." data-en="Sarah answers. Everywhere. 24/7.">Sarah répond. <span class="ww-accent">Partout.</span> 24/7.</h1>
+      <p class="ww-sub" data-fr="Trois marchés, un même produit. Choisissez le vôtre." data-en="Three markets, one product. Pick yours.">Trois marchés, un même produit. Choisissez le vôtre.</p>
+
+      <div class="ww-map-wrap">
+        <svg class="ww-map" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ww-map-title ww-map-desc">
+          <title id="ww-map-title">Carte des marchés GILD-TECH</title>
+          <desc id="ww-map-desc">Londres, Bruxelles et Koh Samui, marqués par des points lumineux bleus sur une carte du monde stylisée.</desc>
+
+          <!-- graticule (méridiens + parallèles très fins) -->
+          <g class="grat">
+            <line x1="0" y1="125" x2="1000" y2="125"/>
+            <line x1="0" y1="250" x2="1000" y2="250"/>
+            <line x1="0" y1="375" x2="1000" y2="375"/>
+            <line x1="250" y1="0" x2="250" y2="500"/>
+            <line x1="500" y1="0" x2="500" y2="500"/>
+            <line x1="750" y1="0" x2="750" y2="500"/>
+          </g>
+
+          <!-- continents (silhouettes simplifiées, style wireframe premium) -->
+          <g class="continent">
+            <!-- North America -->
+            <path d="M 100 100 L 175 85 L 220 90 L 250 115 L 290 130 L 300 165 L 275 205 L 240 240 L 195 260 L 155 245 L 120 220 L 105 180 L 100 140 Z"/>
+            <!-- Central America / Caribbean -->
+            <path d="M 240 245 L 275 245 L 285 275 L 260 285 L 245 270 Z"/>
+            <!-- South America -->
+            <path d="M 270 285 L 305 275 L 335 305 L 340 355 L 325 405 L 295 445 L 265 435 L 255 395 L 260 340 Z"/>
+            <!-- Greenland -->
+            <path d="M 350 55 L 400 45 L 420 70 L 405 100 L 375 105 L 355 85 Z"/>
+            <!-- Europe (compact) -->
+            <path d="M 465 95 L 495 82 L 530 88 L 555 110 L 555 148 L 515 168 L 480 158 L 460 130 Z"/>
+            <!-- UK / Ireland -->
+            <path d="M 478 100 L 495 96 L 500 118 L 490 128 L 478 118 Z"/>
+            <!-- Scandinavia -->
+            <path d="M 505 55 L 540 45 L 555 80 L 530 100 L 512 85 Z"/>
+            <!-- Africa -->
+            <path d="M 480 175 L 520 168 L 560 180 L 590 220 L 600 285 L 580 345 L 550 395 L 520 415 L 495 405 L 475 370 L 465 315 L 470 245 Z"/>
+            <!-- Madagascar -->
+            <path d="M 605 355 L 620 350 L 625 380 L 615 400 L 605 385 Z"/>
+            <!-- Middle East / Arabia -->
+            <path d="M 570 195 L 610 190 L 625 220 L 620 255 L 590 260 L 575 235 Z"/>
+            <!-- Asia (main body) -->
+            <path d="M 555 88 L 630 60 L 725 55 L 810 80 L 855 110 L 875 155 L 855 200 L 810 220 L 770 210 L 725 200 L 685 195 L 645 180 L 615 165 L 585 140 L 570 115 Z"/>
+            <!-- India -->
+            <path d="M 700 205 L 735 200 L 745 240 L 725 270 L 705 260 L 695 230 Z"/>
+            <!-- Southeast Asia peninsula / Thailand -->
+            <path d="M 770 220 L 795 218 L 810 250 L 795 275 L 780 265 L 770 245 Z"/>
+            <!-- Indonesia archipelago (stylized) -->
+            <path d="M 800 285 L 850 280 L 875 300 L 855 315 L 820 315 L 800 305 Z"/>
+            <!-- Australia -->
+            <path d="M 810 355 L 870 345 L 905 355 L 920 385 L 900 415 L 855 425 L 815 410 L 800 385 Z"/>
+            <!-- New Zealand -->
+            <path d="M 935 415 L 950 410 L 955 430 L 945 445 L 935 430 Z"/>
+            <!-- Japan (stylized) -->
+            <path d="M 858 150 L 875 145 L 883 170 L 872 185 L 862 175 Z"/>
+          </g>
+
+          <!-- MARKERS -->
+          <!-- London (lat 51.5, lon -0.1) — label ABOVE-LEFT via leader line -->
+          <a href="/sarah-uk.html" class="marker-link">
+            <g class="marker" data-city="london">
+              <line x1="497" y1="122" x2="470" y2="95" stroke="#2563EB" stroke-width="0.7" opacity="0.5"/>
+              <circle cx="497" cy="122" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
+                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="0s" repeatCount="indefinite"/>
+              </circle>
+              <circle class="dot" cx="497" cy="122" r="5"/>
+              <circle class="dot-hit" cx="497" cy="122" r="18"/>
+              <text class="dot-label" x="466" y="88" text-anchor="end">London</text>
+              <text class="dot-label-sub" x="466" y="103" text-anchor="end">🇬🇧 · sarah-uk</text>
+            </g>
+          </a>
+
+          <!-- Brussels (lat 50.85, lon 4.35) — label BELOW-RIGHT via leader line -->
+          <a href="/sarah-be.html" class="marker-link">
+            <g class="marker" data-city="brussels">
+              <line x1="516" y1="140" x2="548" y2="168" stroke="#2563EB" stroke-width="0.7" opacity="0.5"/>
+              <circle cx="516" cy="140" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
+                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+              </circle>
+              <circle class="dot" cx="516" cy="140" r="5"/>
+              <circle class="dot-hit" cx="516" cy="140" r="18"/>
+              <text class="dot-label" x="552" y="173">Brussels</text>
+              <text class="dot-label-sub" x="552" y="188">🇧🇪 · sarah-be</text>
+            </g>
+          </a>
+
+          <!-- Koh Samui (lat 9.5, lon 100) -->
+          <a href="/sarah-th.html" class="marker-link">
+            <g class="marker" data-city="samui">
+              <circle cx="783" cy="264" r="16" fill="none" stroke="#2563EB" stroke-width="1.6" opacity="0.75">
+                <animate attributeName="r" from="6" to="22" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from="0.75" to="0" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
+              </circle>
+              <circle class="dot" cx="783" cy="264" r="5"/>
+              <circle class="dot-hit" cx="783" cy="264" r="18"/>
+              <text class="dot-label" x="799" y="257">Koh Samui</text>
+              <text class="dot-label-sub" x="799" y="272">🇹🇭 · sarah-th</text>
+            </g>
+          </a>
+        </svg>
+      </div>
+
+      <div class="ww-cities">
+        <a class="ww-city" href="/sarah-uk.html"><span class="flag">🇬🇧</span> London · Sarah UK</a>
+        <a class="ww-city" href="/sarah-be.html"><span class="flag">🇧🇪</span> Brussels · Sarah BE</a>
+        <a class="ww-city" href="/sarah-th.html"><span class="flag">🇹🇭</span> Koh Samui · Sarah SAMUI</a>
+      </div>
+    </div>
+  </section>
 
   <!-- HERO -->
   <div class="hero">

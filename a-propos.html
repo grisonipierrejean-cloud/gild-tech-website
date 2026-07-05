@@ -16,7 +16,9 @@
   <meta property="og:image" content="https://gild-tech.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="theme-color" content="#E91E8C">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0A0A0A">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +27,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --pink: #E91E8C;
-      --pink-light: #f54da5;
-      --pink-soft: #fce4f1;
-      --pink-bg: #fef6fa;
+      --pink: #2563EB;
+      --pink-light: #1d4ed8;
+      --pink-soft: #dbeafe;
+      --pink-bg: #f1f5f9;
       --g900: #111;
       --g700: #333;
       --g600: #555;
@@ -61,8 +63,8 @@
     .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
     .nav-mark {
       width: 30px; height: 30px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
-      border: 1.5px solid rgba(233,30,140,0.25);
+      background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.12), transparent 70%);
+      border: 1.5px solid rgba(37,99,235,0.25);
       display: flex; align-items: center; justify-content: center;
       position: relative;
       font-size: 0.75rem; font-weight: 800; color: var(--g900);
@@ -90,14 +92,14 @@
     .hero-grad {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 900px; height: 500px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-content { position: relative; max-width: 820px; margin: 0 auto; }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.3rem 0.9rem 0.3rem 0.45rem;
-      background: var(--pink-bg); border: 1px solid rgba(233,30,140,0.12);
+      background: var(--pink-bg); border: 1px solid rgba(37,99,235,0.12);
       border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: var(--pink);
       margin-bottom: 1.8rem;
     }
@@ -131,7 +133,7 @@
       width: 44px; height: 44px; border-radius: 50%;
       background: var(--pink-bg); color: var(--pink);
       font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em;
-      border: 1px solid rgba(233,30,140,0.15);
+      border: 1px solid rgba(37,99,235,0.15);
       margin-bottom: 1.2rem;
     }
 
@@ -335,7 +337,7 @@
     }
   </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
-  <script defer src="/assets/intro/intro.js"></script>
+  
 </head>
 <body>
 

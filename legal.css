@@ -2,9 +2,9 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --pink: #E91E8C;
-  --pink-light: #f54da5;
-  --pink-bg: #fef6fa;
+  --pink: #2563EB;
+  --pink-light: #1d4ed8;
+  --pink-bg: #f1f5f9;
   --g900: #111;
   --g700: #333;
   --g600: #555;
@@ -43,8 +43,8 @@ nav {
 
 .nav-mark {
   width: 30px; height: 30px; border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(233,30,140,0.12), transparent 70%);
-  border: 1.5px solid rgba(233,30,140,0.25);
+  background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.12), transparent 70%);
+  border: 1.5px solid rgba(37,99,235,0.25);
   display: flex; align-items: center; justify-content: center;
   position: relative;
   font-size: 0.75rem; font-weight: 800; color: var(--g900);
