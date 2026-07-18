@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GILD-TECH · Sarah répond. Partout. 24/7. — United Kingdom · Belgique · Thaïlande</title>
+  <title>GILD-TECH · L'employée parfaite pour votre agence immobilière · United Kingdom · Belgique · Thaïlande</title>
   <meta name="description" content="Sarah, l'employée parfaite des agences immobilières. Elle répond à chaque demande en moins de 5 minutes, 24h/24, fixe le rendez-vous, briefe ton négociateur. Sarah answers every enquiry in under 5 minutes, 24/7. United Kingdom · Belgique · Thaïlande (Koh Samui).">
 
   <!-- SEO & Canonique -->
@@ -79,6 +79,12 @@
     .brand span { color: var(--cta); }
     .btn-nav { background: var(--cta); color: var(--blanc); padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background .15s; }
     .btn-nav:hover { background: var(--cta-hover); }
+    .nav-right { display: inline-flex; align-items: center; gap: 1.1rem; }
+    .lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+    .lang-select .lang { color: var(--ardoise); }
+    .lang-select .lang.active { color: var(--cta); }
+    .lang-select .lang.off { opacity: .4; cursor: not-allowed; }
+    .lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; opacity: .5; }
 
     /* GATEWAY */
     .mk { flex: 1; display: flex; align-items: center; padding: 4rem 1.5rem; }
@@ -117,16 +123,22 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="brand">GILD<span>-TECH</span></a>
-      <a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Audit gratuit · Free audit</a>
+      <div class="nav-right">
+        <div class="lang-select" role="group" aria-label="Langue">
+          <span class="lang off" title="coming soon" aria-disabled="true">EN</span>
+          <span class="lang active" aria-current="true">FR</span>
+          <span class="lang off" title="coming soon" aria-disabled="true">RU</span>
+        </div>
+        <a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Audit gratuit · Free audit</a>
+      </div>
     </div>
   </nav>
 
-  <section class="mk" aria-label="GILD-TECH — choisissez votre marché · pick your market">
+  <section class="mk" aria-label="GILD-TECH, choisissez votre marché · pick your market">
     <div class="mk-inner">
       <div class="mk-tag">GILD-TECH</div>
-      <h1 class="mk-title">Sarah répond. <span class="mk-accent">Partout.</span> 24/7.</h1>
-      <p class="mk-echo">Sarah answers. Everywhere. 24/7.</p>
-      <p class="mk-sub">Trois marchés, un même produit. Choisissez le vôtre. · Three markets, one product. Pick yours.</p>
+      <h1 class="mk-title">L'employée parfaite n'existe pas. <span class="mk-accent">La nôtre, si.</span></h1>
+      <p class="mk-sub">Votre secrétaire virtuelle répond à chaque acheteur, 24h/24, pendant que vous faites ce que vous seul savez faire : vendre.</p>
       <div class="mk-grid">
         <a class="mk-card" href="/sarah-uk.html">
           <span class="mk-flag">🇬🇧</span>
@@ -147,7 +159,7 @@
           <span class="mk-cta">Sarah Samui →</span>
         </a>
       </div>
-      <p class="mk-trust">Un même produit, un même prix — seule la devise change. · Same product, same price — only the currency changes.<br>Girlden LTD (UK) · RGPD / GDPR · 30 jours satisfait ou remboursé · 30-day money-back</p>
+      <p class="mk-trust">Un même produit, un même prix, seule la devise change. · Same product, same price, only the currency changes.<br>Girlden LTD (UK) · RGPD / GDPR · 30 jours satisfait ou remboursé · 30-day money-back</p>
     </div>
   </section>
 
