@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah — l'employée qui te rentre des mandats · Belgique · GILD-TECH</title>
-<meta name="description" content="Combien de mandats tu laisses filer parce que tu réponds trop tard ? Sur Immoweb, le vendeur contacte 4 agences. La première qui répond décroche l'estimation, et souvent le mandat. Sarah répond en moins de 5 minutes, 24h/24, fixe le rendez-vous d'estimation, briefe ton négociateur.">
+<title>Sarah, l'employée qui vous rentre des mandats · Belgique · GILD-TECH</title>
+<meta name="description" content="Vos acheteurs écrivent le soir, vous répondez le lendemain, le concurrent a déjà rappelé. Sur Immoweb, le vendeur contacte plusieurs agences. La première qui répond décroche l'estimation, et souvent le mandat. Sarah répond en quelques minutes, 24h/24, fixe le rendez-vous d'estimation, briefe votre négociateur.">
 <link rel="canonical" href="https://gild-tech.com/sarah-be">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sarah — l'employée qui te rentre des mandats · Belgique">
-<meta property="og:description" content="Sur Immoweb, la première agence qui répond décroche l'estimation. Sarah répond en moins de 5 min, 24h/24, fixe le rendez-vous, briefe ton négociateur.">
+<meta property="og:title" content="Sarah, l'employée qui vous rentre des mandats · Belgique">
+<meta property="og:description" content="Sur Immoweb, la première agence qui répond décroche l'estimation. Sarah répond en quelques minutes, 24h/24, fixe le rendez-vous, briefe votre négociateur.">
 <meta property="og:url" content="https://gild-tech.com/sarah-be">
 <meta property="og:image" content="https://gild-tech.com/og-image.png">
 <link rel="alternate" hreflang="fr-be" href="https://gild-tech.com/sarah-be">
@@ -61,6 +61,12 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .nav-links a:hover { color: var(--noir); }
 .btn-nav { background: var(--cta); color: var(--blanc) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
 .btn-nav:hover { background: var(--cta-hover); box-shadow: 0 6px 20px rgba(46,107,230,0.25); transform: translateY(-1px); }
+.nav-right { display: flex; align-items: center; gap: 1.3rem; }
+.lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+.lang-select .lang { color: var(--g500); }
+.lang-select .lang.active { color: var(--cta); }
+.lang-select .lang.off { color: var(--g400); opacity: .7; cursor: not-allowed; }
+.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g400); }
 
 .page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
 
@@ -223,12 +229,19 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 <nav class="top">
   <div class="nav-inner">
     <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
-    <ul class="nav-links">
-      <li><a href="/offres/immobilier-be">Offres · BE</a></li>
-      <li><a href="/calculateur">Calculateur</a></li>
-      <li><a href="/a-propos">À propos</a></li>
-      <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Audit gratuit (30 min)</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/offres/immobilier-be">Offres · BE</a></li>
+        <li><a href="/calculateur">Calculateur</a></li>
+        <li><a href="/a-propos">À propos</a></li>
+        <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Audit gratuit (30 min)</a></li>
+      </ul>
+      <div class="lang-select" role="group" aria-label="Langue">
+        <span class="lang off" title="coming soon" aria-disabled="true">EN</span>
+        <span class="lang active" aria-current="true">FR</span>
+        <span class="lang off" title="coming soon" aria-disabled="true">RU</span>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -236,34 +249,34 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- HERO -->
   <section class="hero">
-    <span class="badge-new">🇧🇪 Pour agences immobilières indépendantes · Offre client fondateur</span>
-    <h1>Combien de mandats tu laisses <span class="accent">filer</span><br>parce que tu réponds trop tard&nbsp;?</h1>
-    <p class="subtitle"><strong>Sur Immoweb, le vendeur contacte quatre agences en même temps.</strong> La première qui répond décroche le rendez-vous d'estimation. Et souvent le mandat qui va avec. <strong>Sarah répond en moins de 5 minutes, 24h/24, fixe l'estimation dans ton agenda, et briefe ton négociateur avant qu'il sonne à la porte.</strong> Elle vit au-dessus de ton CRM (Whise, SweepBright, Omnicasa, Hovi). Rien à changer dans ta boîte.</p>
+    <span class="badge-new">🇧🇪 Pour agences immobilières indépendantes</span>
+    <h1>Vos acheteurs écrivent le soir.<br>Vous répondez le lendemain.<br><span class="accent">Le concurrent, lui, a déjà rappelé.</span></h1>
+    <p class="subtitle">Sarah répond en quelques minutes, trie le sérieux du curieux, et vous laisse la relation. Le vrai travail reste le vôtre.</p>
     <div class="ctas">
       <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Réserver mon audit gratuit (30 min)</a>
       <a href="#comment" class="btn-secondary">Voir Sarah en action</a>
     </div>
     <div class="stat-bar">
-      <div class="stat-item"><div class="stat-num">21×</div><div class="stat-label">plus de contacts vendeurs qui signent quand tu réponds en 5 min vs 30 min <em>(MIT / Oldroyd via HBR, 15 000 demandes)</em></div></div>
+      <div class="stat-item"><div class="stat-num">21×</div><div class="stat-label">plus de contacts vendeurs qui signent quand vous répondez en 5 min vs 30 min <em>(MIT / Oldroyd via <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>, 15 000 demandes)</em></div></div>
       <div class="stat-item"><div class="stat-num">~10 000 €</div><div class="stat-label">de commission moyenne par mandat en Belgique <em>(Statbel × pratique IPI 3%)</em></div></div>
-      <div class="stat-item"><div class="stat-num">249 €<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mois</small></div><div class="stat-label">Sarah, offre client fondateur · setup 990 € offert · prix bloqué à vie</div></div>
+      <div class="stat-item"><div class="stat-num">290 €<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mois</small></div><div class="stat-label">Sarah · setup 495 € · Summer Deal (−50%, jusqu'au 31 août) · tarif bloqué 24 mois</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
-      ✓ Se branche à ton CRM (<strong style="color:var(--g700);">Whise · SweepBright · Omnicasa · Hovi</strong>) · rien à changer &nbsp;·&nbsp; ✓ Ton numéro WhatsApp Business existant &nbsp;·&nbsp; ✓ RGPD-compliant &nbsp;·&nbsp; ✓ 30 jours satisfait ou remboursé
+      ✓ Se branche à votre CRM (<strong style="color:var(--g700);">Whise · SweepBright · Omnicasa · Hovi</strong>) · rien à changer &nbsp;·&nbsp; ✓ Votre numéro WhatsApp Business existant &nbsp;·&nbsp; ✓ RGPD-compliant &nbsp;·&nbsp; ✓ 30 jours satisfait ou remboursé
     </div>
   </section>
 
   <!-- PROBLEM -->
   <section class="block" id="probleme">
-    <h2 class="section-title">Ta plus grosse fuite, c'est pas le prix. C'est la <span class="accent">montre</span>.</h2>
-    <p class="section-subtitle"><strong>Répondre en 5 minutes vs 30 minutes = 21× plus de contacts vendeurs qui signent</strong> <em>(MIT Sloan, étude Oldroyd via HBR, 15 000 demandes analysées)</em>. La fenêtre est minuscule. Sur Immoweb, tes concurrents le savent. Chaque estimation ratée = un mandat qui part chez le voisin.</p>
+    <h2 class="section-title">Votre plus grosse fuite, ce n'est pas le prix. C'est la <span class="accent">montre</span>.</h2>
+    <p class="section-subtitle"><strong>Répondre en 5 minutes vs 30 minutes = 21× plus de contacts vendeurs qui signent</strong> <em>(MIT Sloan, étude Oldroyd via <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>, 15 000 demandes analysées)</em>. La fenêtre est minuscule. Sur Immoweb, vos concurrents le savent. Chaque estimation ratée = un mandat qui part chez le voisin.</p>
     <div class="problem-grid">
       <ul class="problem-list">
-        <li>Le vendeur remplit le formulaire Immoweb à 22h47. Tu le vois lundi 9h. Marie a déjà pris rendez-vous chez ton concurrent d'à côté.</li>
-        <li>Le contact vendeur arrive par téléphone, ton négociateur est en visite. Tu rappelles 3h après. Trop tard, il en a testé deux avant toi.</li>
+        <li>Le vendeur remplit le formulaire Immoweb à 22h47. Vous le voyez lundi 9h. Marie a déjà pris rendez-vous chez votre concurrent d'à côté.</li>
+        <li>Le contact vendeur arrive par téléphone, votre négociateur est en visite. Vous rappelez 3h après. Trop tard, il en a testé deux avant vous.</li>
         <li>Embaucher un junior pour couvrir les rappels : ~3 000 € brut × 13,92 + ONSS patronal + pécule + assurance loi ≈ <strong>42 000 €/an chargé</strong>. Disponible 38h/semaine. Inutile le dimanche soir.</li>
-        <li>Un chatbot générique sur ton site ? Le vendeur veut du WhatsApp humain, pas un widget gris qui lui demande un email.</li>
-        <li>Pendant ce temps, l'agence à 200 m installe une réceptionniste virtuelle. Et te prend tes estimations pendant que tu dors.</li>
+        <li>Un chatbot générique sur votre site ? Le vendeur veut du WhatsApp humain, pas un widget gris qui lui demande un email.</li>
+        <li>Pendant ce temps, l'agence à 200 m installe une réceptionniste virtuelle. Et vous prend vos estimations pendant que vous dormez.</li>
       </ul>
       <div class="problem-stat">
         <div class="num">4 agences</div>
@@ -275,10 +288,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div style="margin-top:2.2rem;padding:1.6rem 1.8rem;background:var(--g100);border-radius:var(--r);font-size:0.92rem;color:var(--g700);line-height:1.65;">
       <strong style="color:var(--noir);">Le contexte du marché immobilier belge en 2024 :</strong>
       <ul style="margin-top:0.8rem;padding-left:1.2rem;list-style:disc;">
-        <li style="margin:0.35rem 0;">Prix médians <strong>Statbel 2024</strong> : maison mitoyenne <strong>285 000 €</strong>, maison 4 façades <strong>405 000 €</strong>, appartement <strong>257 000 €</strong>. Ta commission dépend de ton parc et de ta zone.</li>
-        <li style="margin:0.35rem 0;">Marché des portails consolidé : <strong>Immoweb leader (AVIV Group)</strong> · <strong>Zimmo / Logic-Immo (Mediahuis, fusionnés mai 2023)</strong> · <strong>Immovlan</strong>. Sois présent partout, réponds vite.</li>
+        <li style="margin:0.35rem 0;">Prix médians <strong>Statbel 2024</strong> : maison mitoyenne <strong>285 000 €</strong>, maison 4 façades <strong>405 000 €</strong>, appartement <strong>257 000 €</strong>. Votre commission dépend de votre parc et de votre zone.</li>
+        <li style="margin:0.35rem 0;">Marché des portails consolidé : <strong>Immoweb leader (AVIV Group)</strong> · <strong>Zimmo / Logic-Immo (Mediahuis, fusionnés mai 2023)</strong> · <strong>Immovlan</strong>. Soyez présent partout, répondez vite.</li>
         <li style="margin:0.35rem 0;">Les <strong>commissions sont libres en Belgique</strong> depuis 2016 (Autorité de la concurrence). 3% reste la pratique de marché référencée par l'<strong>IPI</strong>. Sur une mitoyenne à 285 000 €, ça fait ~8 500 €. Sur une 4 façades à 405 000 €, ça fait ~12 000 €.</li>
-        <li style="margin:0.35rem 0;">La commission est due <strong>après la vente effective</strong> — mandat, réservation, acte. Sarah te rentre le mandat sans risque : la charge financière arrive quand tu encaisses.</li>
+        <li style="margin:0.35rem 0;">La commission est due <strong>après la vente effective</strong> — mandat, réservation, acte. Sarah vous rentre le mandat sans risque : la charge financière arrive quand vous encaissez.</li>
       </ul>
       <p style="margin-top:0.9rem;font-size:0.78rem;font-style:italic;color:var(--g500);">Sources : <a href="https://statbel.fgov.be/fr/themes/construction-logement/prix-de-limmobilier" target="_blank" rel="noopener" style="color:var(--g500);">Statbel, prix médians 2024</a> · <a href="https://www.ipi.be/" target="_blank" rel="noopener" style="color:var(--g500);">IPI Belgique — Institut Professionnel des agents immobiliers</a> · <a href="https://www.notaire.be/nouveautes/detail/limmobilier-en-2024-nombre-de-ventes-stable-prix-en-legere-hausse" target="_blank" rel="noopener" style="color:var(--g500);">Fednot — baromètre notarial 2024</a>.</p>
     </div>
@@ -287,24 +300,24 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- STEPS -->
   <section class="block" id="comment">
     <h2 class="section-title">3 étapes. Du contact vendeur au <span class="accent">rendez-vous d'estimation</span>.</h2>
-    <p class="section-subtitle">Zéro humain dans la boucle entre la demande du vendeur et le rendez-vous d'estimation calé dans l'agenda de ton négociateur. Pas demain. Ce soir.</p>
+    <p class="section-subtitle">Zéro humain dans la boucle entre la demande du vendeur et le rendez-vous d'estimation calé dans l'agenda de votre négociateur. Pas demain. Ce soir.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Le vendeur te contacte</h3>
+        <h3>Le vendeur vous contacte</h3>
         <p>Formulaire site, <strong>Immoweb</strong>, Zimmo, Immovlan, Logic-Immo, Immoscoop… ou un appel manqué. Sarah détecte tout, en direct.</p>
         <span class="time">⏱ Instantané</span>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <h3>Sarah répond et fixe l'estimation</h3>
-        <p>WhatsApp envoyé en moins de 5 minutes. Sarah confirme le type de bien, la zone, et propose deux créneaux dans ton agenda pour venir estimer.</p>
+        <p>WhatsApp envoyé en moins de 5 minutes. Sarah confirme le type de bien, la zone, et propose deux créneaux dans votre agenda pour venir estimer.</p>
         <span class="time">⏱ Moins de 5 minutes</span>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Ton négociateur arrive préparé</h3>
-        <p>Fiche du bien, contexte du vendeur, comparables du quartier, prix médian Statbel de la zone : ton négociateur sonne à la porte avec l'estimation déjà en tête.</p>
+        <h3>Votre négociateur arrive préparé</h3>
+        <p>Fiche du bien, contexte du vendeur, comparables du quartier, prix médian Statbel de la zone : votre négociateur sonne à la porte avec l'estimation déjà en tête.</p>
         <span class="time">⏱ Le jour de la visite</span>
       </div>
     </div>
@@ -313,16 +326,16 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- DEMO -->
   <section class="block" id="demo">
     <h2 class="section-title">Une vraie conversation Sarah ↔ <span class="accent">vendeur</span>.</h2>
-    <p class="section-subtitle">Pas un chatbot bête. Sarah pose la bonne question, comprend les réponses en français naturel, et passe la main à ton négociateur quand elle doute.</p>
+    <p class="section-subtitle">Pas un chatbot bête. Sarah pose la bonne question, comprend les réponses en français naturel, et passe la main à votre négociateur quand elle doute.</p>
     <div class="demo-grid">
       <div class="demo-text">
         <ul>
           <li>Le vendeur répond comme à un humain (« un 3-façades à Ixelles », « oui je peux samedi matin »)</li>
           <li>Sarah connaît la zone : elle sait combien vaut une maison à Uccle et distingue Watermael de Saint-Gilles</li>
-          <li>Si Sarah doute (bien inhabituel, vendeur émotionnel), elle escalade à toi ou ton négociateur en 1 clic sur Slack, Teams ou email</li>
-          <li>Conversation logguée dans ton Google Sheet — tu gardes toute la trace</li>
-          <li>Le wording est 100% ajustable — tu peux modifier les messages à tout moment</li>
-          <li>Compatible avec ton numéro WhatsApp Business existant</li>
+          <li>Si Sarah doute (bien inhabituel, vendeur émotionnel), elle escalade vers vous ou votre négociateur en 1 clic sur Slack, Teams ou email</li>
+          <li>Conversation logguée dans votre Google Sheet, vous gardez toute la trace</li>
+          <li>Le wording est 100% ajustable, vous pouvez modifier les messages à tout moment</li>
+          <li>Compatible avec votre numéro WhatsApp Business existant</li>
         </ul>
       </div>
       <div class="phone">
@@ -337,18 +350,17 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
   </section>
 
-  <!-- MINE D'OR — RESCUE headline -->
+  <!-- CÔTÉ VENDEUR — estimation entrante -->
   <section class="block" id="mine-d-or">
     <div class="mine-card">
-      <span class="badge">RESCUE · Ta vraie mine d'or</span>
-      <h3>Tes estimations qui n'ont jamais signé.</h3>
-      <p>Elles sont dans ton Google Sheet, ton Whise, ton SweepBright. Elles ont demandé une estimation il y a 4 mois, 8 mois, 14 mois. Elles n'ont pas signé chez toi. Elles n'ont peut-être pas signé chez le concurrent non plus. Le vendeur qui a testé le marché il y a 6 mois est souvent celui qui décide de vendre pour de bon aujourd'hui.</p>
-      <p><strong>Sarah les rappelle une par une. Au bon moment. Avec le bon message.</strong> Elle te ressort les mandants qui sont mûrs. Ton négociateur repositionne l'estimation, cette fois avec ton nom en tête de liste.</p>
+      <span class="badge">Côté vendeur</span>
+      <h3>Pas que les acheteurs. Sarah répond aussi aux vendeurs.</h3>
+      <p>Un propriétaire vous écrit pour une estimation, un dimanche à 22h. Cette demande, c'est un futur mandat. Sarah répond en quelques minutes, capte l'essentiel, et selon votre procédure, pose le rendez-vous d'estimation dans l'agenda de votre négociateur, dans votre ton.</p>
       <ul>
-        <li><strong>Brief matinal WhatsApp 7h</strong> — les 3 vendeurs à rappeler aujourd'hui, avec le contexte de chaque relance</li>
-        <li><strong>Réveil des estimations dormantes</strong> — Sarah remonte le fil de ta base et relance au moment où le vendeur est susceptible d'avoir mûri sa décision</li>
-        <li><strong>Repositionnement en douceur</strong> — pas de spam agressif, un message calibré vendeur par vendeur</li>
-        <li><strong>Escalade prioritaire</strong> quand Sarah détecte un signal chaud (« on remet en vente », « on veut changer d'agence »)</li>
+        <li><strong>Réponse immédiate</strong> à chaque demande d'estimation entrante, jour et nuit</li>
+        <li><strong>Pose le rendez-vous d'estimation</strong> dans l'agenda de votre négociateur, selon votre procédure</li>
+        <li><strong>Briefe votre négociateur</strong> avant le rendez-vous</li>
+        <li><strong>Escalade prioritaire</strong> quand un vendeur est prêt à bouger (« on remet en vente », « on veut changer d'agence »)</li>
       </ul>
     </div>
   </section>
@@ -356,128 +368,124 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- OFFRES -->
   <section class="block" id="offres">
     <h2 class="section-title">Trois offres. Une <span class="accent">échelle</span> claire.</h2>
-    <p class="section-subtitle" style="margin-bottom:1.6rem;">Le setup est offert sur l'offre fondateur. Aucun engagement. Garantie 30 jours satisfait ou remboursé sur le premier mois. Si Sarah ne t'a pas remboursé son abonnement, on te rend chaque centime. Sans questions.</p>
+    <p class="section-subtitle" style="margin-bottom:1.6rem;">Le setup est offert. Aucun engagement. Garantie 30 jours satisfait ou remboursé sur le premier mois. Si Sarah ne vous a pas remboursé son abonnement, on vous rend chaque centime. Sans questions.</p>
 
     <div style="text-align:center;font-size:1.15rem;color:var(--noir);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
-      Elle répond. Elle t'organise et réveille tes vendeurs. Elle t'en trouve des nouveaux.
+      Elle répond. Elle transforme vos réponses en visites. Elle vous rentre de nouveaux mandats.
     </div>
 
     <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:var(--noir);color:var(--blanc);border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(10,10,10,.22);">
-      <div style="font-size:0.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:.5rem;">⭐ Offre client fondateur</div>
-      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">249 €/mois · setup 990 € offert · prix bloqué à vie</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.9;line-height:1.5;max-width:680px;">Bonus mois 1 : on relance une salve de tes estimations dormantes pour te sortir des mandats vite. Résiliable à tout moment. 30 jours satisfait ou remboursé.</p>
+      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">Dès 290 €/mois · setup 495 € · Summer Deal (−50%, jusqu'au 31 août) · tarif bloqué 24 mois</div>
+      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.9;line-height:1.5;max-width:680px;">Résiliable à tout moment. 30 jours satisfait ou remboursé sur le premier mois.</p>
     </div>
 
     <div class="pricing-grid">
 
-      <!-- Virtual Réceptionniste — Scène : 21h -->
+      <!-- Virtual Réceptionniste — Capter -->
       <div class="price-card">
-        <span class="kicker">Elle répond</span>
+        <span class="kicker">Capter · Elle répond</span>
         <h3>Virtual Réceptionniste</h3>
-        <div class="price">249 €<small> / mois</small></div>
-        <div class="delai">→ Setup 990 € offert · prix bloqué à vie · 30 jours satisfait ou remboursé</div>
+        <div class="price">290 €<small> / mois</small></div>
+        <div class="delai">→ Setup 495 € · Summer Deal (−50%, jusqu'au 31 août) · tarif bloqué 24 mois · 30 jours satisfait ou remboursé</div>
 
         <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Un acheteur t'écrit à 21h. À 21h05, Sarah a répondu, filtré le curieux du sérieux, et posé le rendez-vous dans ton agenda. Toi, tu dormais. Le concurrent aussi.
+          Un acheteur vous écrit à 21h. À 21h05, Sarah a répondu, filtré le curieux du sérieux, et posé le rendez-vous dans votre agenda. Vous, vous dormiez. Le concurrent aussi.
         </div>
 
         <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--noir);">Preuve :</strong> répondre en 5 min plutôt qu'en 30 = <strong>10× plus de chances de qualifier</strong> le prospect. <em>(MIT / Oldroyd via Harvard Business Review, 15 000 demandes analysées.)</em>
+          <strong style="color:var(--noir);">Preuve :</strong> répondre en 5 min plutôt qu'en 30 = <strong>21× plus de contacts qualifiés</strong>. <em>(MIT / Oldroyd via <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>, 15 000 demandes.)</em>
         </div>
         <div style="font-size:.82rem;color:var(--bleu-nuit);font-weight:700;margin-bottom:1rem;">
-          Promesse : <span style="color:var(--noir);">tu ne perds plus jamais un contact entrant.</span>
+          Promesse : <span style="color:var(--noir);">vous ne perdez plus jamais un contact entrant.</span>
         </div>
 
         <ul>
           <li>Premier contact WhatsApp 24/7, en moins de 5 minutes, sur chaque demande</li>
-          <li>Fixe le rendez-vous d'estimation ou de visite dans ton agenda</li>
-          <li>Relances automatiques J+3 / J+7 / J+14 si le vendeur ne répond pas</li>
-          <li>Se branche à ton CRM (Whise, SweepBright, Omnicasa, Hovi) — rien à changer</li>
-          <li>Ton wording, ton ton, ta marque</li>
-          <li><strong>Bonus mois 1 :</strong> salve de relances sur ta base d'estimations dormantes</li>
+          <li>Fixe le rendez-vous d'estimation ou de visite dans votre agenda</li>
+          <li>Répond aussi aux vendeurs qui vous demandent une estimation</li>
+          <li>Se branche à votre CRM (Whise, SweepBright, Omnicasa, Hovi), rien à changer</li>
+          <li>Votre wording, votre ton, votre marque</li>
         </ul>
       </div>
 
-      <!-- Virtual Assistante (LE CŒUR) — Scène : 7h -->
+      <!-- Virtual Assistante (LE CŒUR) — Convertir -->
       <div class="price-card featured">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Elle t'organise et réveille tes vendeurs</span>
+        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Convertir · Elle transforme vos réponses en visites</span>
         <h3>Virtual Assistante</h3>
         <div class="price">490 €<small> / mois</small></div>
-        <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
+        <div class="delai">→ Summer Deal : 290 €/mois les 2 premiers mois, puis 490 € · Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
 
         <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Chaque matin à 7h, un WhatsApp : tes rendez-vous du jour avec le contexte, les 3 propriétaires à rappeler en priorité — ceux qui t'ont demandé une estimation et que tu as oubliés — et ce que Sarah a fait cette nuit.
+          Un acheteur hésite sur un bien à gros ticket. Sarah répond de sa propre voix, une note vocale naturelle qui rassure comme le ferait un bon négociateur, puis vous passe un contact chaud, prêt.
         </div>
 
         <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--noir);">Preuve :</strong> une relance structurée post-estimation transforme <strong>+25 à +40%</strong> des estimations en mandat signé. <em>(Baromètre marché 8UP Media, briefings agents Belgique 2024.)</em>
+          <strong style="color:var(--noir);">Pourquoi ça compte :</strong> sur un achat à gros ticket, une voix humaine installe une confiance qu'un texte ne crée pas. Et Sarah reste pilotée par vous, pas l'inverse.
         </div>
         <div style="font-size:.82rem;color:var(--bleu-nuit);font-weight:700;margin-bottom:1rem;">
-          Promesse : <span style="color:var(--noir);">ta journée servie sur un plateau + 2–3 mandats/mois ressuscités de ta base dormante.</span>
+          Promesse : <span style="color:var(--noir);">plus de vos réponses se transforment en visites posées.</span>
         </div>
 
         <ul>
           <li>Tout ce qui est dans <strong>Virtual Réceptionniste</strong></li>
-          <li><strong>Brief matinal WhatsApp 7h</strong> — visites du jour avec le contexte + 3 vendeurs prioritaires à rappeler + résumé de ce que Sarah a traité cette nuit</li>
-          <li><strong>Réveil continu des estimations dormantes</strong> — Sarah retravaille ta base et relance au moment où le vendeur est prêt à ré-écouter</li>
+          <li><strong>Voix</strong> : Sarah répond avec une note vocale naturelle, rassurante sur un achat à gros ticket</li>
+          <li><strong>Support email</strong> de l'équipe GILD-TECH</li>
+          <li><strong>Vous gardez la main</strong> : vous réglez les questions de qualification et les horaires de Sarah</li>
           <li>Escalade prioritaire Slack / Teams quand Sarah détecte un signal chaud</li>
-          <li>Bilan hebdo automatique lundi 8h</li>
+          <li><em>🔜 Instagram &amp; Facebook DM : en déploiement</em></li>
         </ul>
       </div>
 
-      <!-- Équipe Marketing — Scène : propriétaire tape adresse -->
+      <!-- Équipe Marketing — Développer -->
       <div class="price-card">
-        <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">Elle t'en trouve des nouveaux</span>
+        <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">Développer · Elle vous rentre de nouveaux mandats</span>
         <h3>Équipe Marketing</h3>
         <div class="price">790 €<small> / mois</small></div>
         <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
 
         <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Un propriétaire tape son adresse sur ton site — tu as son contact avant qu'il appelle une agence. Tes annonces deviennent des films. Et tu VOIS ce que Sarah te rapporte, chiffré.
+          Un propriétaire hésite, il n'est pas sûr que votre agence soit la bonne. Les vraies photos de son bien, montées en présentation premium en ligne, en ligne avant même que le concurrent ait publié la sienne. Il se projette dans la vente, et il signe avec vous.
         </div>
 
-        <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--noir);">Preuve :</strong> une annonce avec vidéo se vend <strong>+73%</strong> plus vite qu'une annonce avec photos seules. <em>(V7 Labs pour Inman, 2023.)</em>
-        </div>
         <div style="font-size:.82rem;color:var(--bleu-nuit);font-weight:700;margin-bottom:1rem;">
-          Promesse : <span style="color:var(--noir);">tu ne cours plus après les mandats — ils viennent à toi, et tu le prouves.</span>
+          Promesse : <span style="color:var(--noir);">un pitch de présentation plus fort qui vous aide à gagner plus de mandats.</span>
         </div>
 
-        <p style="font-size:.85rem;font-weight:700;color:var(--noir);margin-bottom:.4rem;">Les 4 briques :</p>
         <ul>
           <li>Tout ce qui est dans <strong>Virtual Assistante</strong></li>
-          <li><em>🔜 Rolling out : <strong>estimateur capteur de vendeurs</strong> — le propriétaire tape son adresse, Sarah récupère son contact avant qu'il appelle une agence. Les données prix belges étant fermées, le chiffre exact est validé lors de la visite d'estimation, pas donné à l'aveugle.</em></li>
-          <li><em>🔜 Rolling out : <strong>vidéos d'annonce IA</strong> — tes photos réelles deviennent un film cinématique. On sublime le vrai, on ne fabrique jamais un bien.</em></li>
-          <li><em>🔜 Rolling out : <strong>dashboard ROI</strong> — mandats gagnés, € récupérés, retour brut de ce que Sarah te rapporte, branché à ton CRM par API (Whise · SweepBright · Omnicasa exposent des connecteurs).</em></li>
-          <li><em>🔜 Rolling out : <strong>réactivation continue</strong> — Sarah remonte ta base entière et te la re-fait travailler, mois après mois.</em></li>
+          <li><strong>Présentation premium</strong> : les vraies photos de votre agence, montées en présentation premium en ligne. Chaque mandat, sa présentation, sans compter. On sublime le vrai, on ne fabrique jamais un bien.</li>
         </ul>
+
+        <div style="margin-top:.8rem;padding:.7rem .9rem;background:var(--g100);border-radius:8px;font-size:.8rem;color:var(--noir);font-weight:700;line-height:1.5;">
+          Un mandat vendu en Belgique, c'est ~10 000 € de commission. Une année de Sarah coûte moins qu'une seule commission.
+        </div>
       </div>
 
     </div>
 
     <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:820px;margin-left:auto;margin-right:auto;line-height:1.6;">
-      <strong>La règle simple :</strong> tu démarres et tu veux arrêter de rater les contacts entrants ? <em>Virtual Réceptionniste</em>. Ta vraie mine d'or est dans ta base d'estimations dormantes ? <em>Virtual Assistante</em>. Tu veux qu'on te rapporte des mandats neufs et que tu VOIES le retour ? <em>Équipe Marketing</em>.
+      <strong>La règle simple :</strong> vous démarrez et vous voulez arrêter de rater les contacts entrants ? <em>Virtual Réceptionniste</em>. Vous voulez que plus de vos réponses deviennent des visites, avec la voix de Sarah ? <em>Virtual Assistante</em>. Vous voulez un pitch plus fort pour gagner plus de mandats ? <em>Équipe Marketing</em>.
     </p>
 
     <div class="garantie-band">
       <div class="t">🛡️ Garantie 30 jours satisfait ou remboursé</div>
-      <p>Si Sarah ne t'a pas remboursé son abonnement sur le premier mois, chaque centime revient. Sans questions, sans friction. Les trois offres ont la même garantie.</p>
+      <p>Si Sarah ne vous a pas remboursé son abonnement sur le premier mois, chaque centime revient. Sans questions, sans friction. Les trois offres ont la même garantie.</p>
     </div>
   </section>
 
   <!-- POSITIONNEMENT -->
   <section class="block" id="positionnement">
     <div class="pos-card">
-      <div class="quote">« Les autres te donnent une liste ou un chatbot.<br>Nous, on fait le travail. »</div>
-      <p style="opacity:.85;line-height:1.65;font-size:1rem;max-width:720px;">On n'est ni un outil de data (TwentyEA, Sprift) qui te dit qui cibler mais ne fait rien à ta place. Ni un chatbot générique qui bricole une réponse et te laisse gérer la suite. On est la <strong style="color:var(--blanc);">couche d'exécution</strong> qui prend le contact vendeur au moment où il tombe, le mène jusqu'au rendez-vous d'estimation, et briefe ton négociateur avant qu'il arrive.</p>
+      <div class="quote">« Les autres vous donnent une liste ou un chatbot.<br>Nous, on fait le travail. »</div>
+      <p style="opacity:.85;line-height:1.65;font-size:1rem;max-width:720px;">On n'est ni un outil de data (TwentyEA, Sprift) qui vous dit qui cibler mais ne fait rien à votre place. Ni un chatbot générique qui bricole une réponse et vous laisse gérer la suite. On est la <strong style="color:var(--blanc);">couche d'exécution</strong> qui prend le contact vendeur au moment où il tombe, le mène jusqu'au rendez-vous d'estimation, et briefe votre négociateur avant qu'il arrive.</p>
       <div class="pos-grid">
         <div class="pos-item">
           <div class="name">Data</div>
-          <div class="what">TwentyEA, Sprift : ils te disent qui est susceptible de vendre. Puis ils te laissent le rappeler.</div>
+          <div class="what">TwentyEA, Sprift : ils vous disent qui est susceptible de vendre. Puis ils vous laissent le rappeler.</div>
         </div>
         <div class="pos-item">
           <div class="name">Chatbots</div>
-          <div class="what">Ils envoient une phrase générique. Ils ne fixent pas d'estimation. Ils ne briefent pas ton négociateur.</div>
+          <div class="what">Ils envoient une phrase générique. Ils ne fixent pas d'estimation. Ils ne briefent pas votre négociateur.</div>
         </div>
         <div class="pos-item">
           <div class="name" style="color:var(--cta);">GILD-TECH</div>
@@ -490,50 +498,50 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- ROI -->
   <section class="block" id="roi">
     <h2 class="section-title">Le calcul que tu fais <span class="accent">une fois</span>.</h2>
-    <p class="section-subtitle">Sources officielles : Statbel (prix médians 2024) et IPI Belgique (pratique de marché des commissions, libres depuis 2016). Le chiffre exact dépend de ta zone et de ton parc.</p>
+    <p class="section-subtitle">Sources officielles : Statbel (prix médians 2024) et IPI Belgique (pratique de marché des commissions, libres depuis 2016). Le chiffre exact dépend de votre zone et de votre parc.</p>
     <div class="roi-card">
-      <h3>Un mandat rentré paie Sarah pour la moitié de l'année.</h3>
+      <h3>Un mandat rentré paie plus de deux ans de Sarah.</h3>
       <div class="roi-calc">
         <strong>Maison mitoyenne médiane BE</strong> ≈ 285 000 € · commission 3% pratique IPI = <strong>~8 500 €</strong><br>
         <strong>Maison 4 façades médiane BE</strong> ≈ 405 000 € · commission 3% = <strong>~12 000 €</strong><br>
         <strong>Appartement médian BE</strong> ≈ 257 000 € · commission 3% = <strong>~7 700 €</strong>
       </div>
-      <div class="roi-verdict">Virtual Réceptionniste à 249 €/mois est <strong>amorti ×34</strong> par un seul mandat mitoyenne récupéré.<br><span style="font-size:.85em;opacity:.85;">Et tu as toute l'année devant toi.</span></div>
+      <div class="roi-verdict">Virtual Réceptionniste à 290 €/mois est <strong>amorti ×29</strong> par un seul mandat mitoyenne récupéré.<br><span style="font-size:.85em;opacity:.85;">Et vous avez toute l'année devant vous.</span></div>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="block" id="faq">
     <h2 class="section-title">Les 5 questions que <span class="accent">tous les dirigeants d'agence</span> nous posent.</h2>
-    <p class="section-subtitle">Si la tienne n'y est pas, pose-la pendant l'audit gratuit de 30 minutes.</p>
+    <p class="section-subtitle">Si la vôtre n'y est pas, posez-la pendant l'audit gratuit de 30 minutes.</p>
     <div>
       <div class="faq-item">
         <h4>Mes vendeurs vont-ils sentir qu'ils parlent à un robot ?</h4>
-        <p>Sarah pose une question pertinente puis propose deux créneaux dans ton agenda. C'est plus rapide qu'un humain et plus pratique pour le vendeur — il choisit son moment. Le ton est humain, le wording est ajustable, le numéro WhatsApp est le tien. Tu gardes la main complète sur la conversation, tu la reprends d'un clic si tu veux.</p>
+        <p>Sarah pose une question pertinente puis propose deux créneaux dans votre agenda. C'est plus rapide qu'un humain et plus pratique pour le vendeur : il choisit son moment. Le ton est humain, le wording est ajustable, le numéro WhatsApp est le vôtre. Vous gardez la main complète sur la conversation, vous la reprenez d'un clic si vous voulez.</p>
       </div>
       <div class="faq-item">
         <h4>Et si Sarah comprend mal une réponse ?</h4>
-        <p>Sarah escalade automatiquement à toi ou à ton négociateur sur Slack, Teams ou email dès qu'elle doute. Tu as la conversation complète sous les yeux et tu reprends la main en 1 clic. Les cas escaladés sont rares (situations émotionnelles, biens atypiques) et chaque escalade améliore Sarah pour la suite.</p>
+        <p>Sarah escalade automatiquement à vous ou à votre négociateur sur Slack, Teams ou email dès qu'elle doute. Vous avez la conversation complète sous les yeux et vous reprenez la main en 1 clic. Les cas escaladés sont rares (situations émotionnelles, biens atypiques) et chaque escalade améliore Sarah pour la suite.</p>
       </div>
       <div class="faq-item">
         <h4>RGPD et déontologie IPI ?</h4>
-        <p>Sarah envoie via ton numéro WhatsApp Business avec ton branding. Contrat de sous-traitance GILD-TECH signé au kick-off. Tu restes Responsable de traitement, on reste sous-traitant. Données stockées dans ton Google Workspace, pas chez nous. Aucune fabrication de bien ou de prix — c'est ton négociateur qui donne l'estimation, en visite, sous ton mandat IPI.</p>
+        <p>Sarah envoie via votre numéro WhatsApp Business avec votre branding. Contrat de sous-traitance GILD-TECH signé au kick-off. Vous restez Responsable de traitement, on reste sous-traitant. Données stockées dans votre Google Workspace, pas chez nous. Aucune fabrication de bien ou de prix : c'est votre négociateur qui donne l'estimation, en visite, sous votre mandat IPI.</p>
       </div>
       <div class="faq-item">
         <h4>Ça marche avec mon CRM (Whise / SweepBright / Omnicasa / Hovi) ?</h4>
-        <p>Sarah ne remplace pas ton CRM, elle se pose au-dessus. Elle prend les demandes dès leur arrivée, fixe l'estimation, briefe ton négociateur. Quand le mandat est signé, tu le pousses dans ton CRM comme avant. Sarah gère la phase pré-mandat, celle que les CRM immo couvrent peu. Pour le dashboard ROI, on s'appuie sur les connecteurs de ton CRM — sinon on reste sur un reporting Google Sheets clair.</p>
+        <p>Sarah ne remplace pas votre CRM, elle se pose au-dessus. Elle prend les demandes dès leur arrivée, fixe l'estimation, briefe votre négociateur. Quand le mandat est signé, vous le poussez dans votre CRM comme avant. Sarah gère la phase pré-mandat, celle que les CRM immo couvrent peu. Pour le reporting, on s'appuie sur les connecteurs de votre CRM, sinon on reste sur un Google Sheets clair.</p>
       </div>
       <div class="faq-item">
         <h4>Combien de temps avant que Sarah rentre le premier mandat ?</h4>
-        <p>On ne vend pas de délai, on vend un résultat. Le setup se fait en parallèle de ta validation : configuration de ton agenda, tests avec ton équipe, validation du wording, branchement sur ton numéro WhatsApp Business existant. À la minute où tu valides Sarah, elle commence à répondre — et le compteur 30 jours satisfait ou remboursé démarre. Si le mois 1 n'a pas remboursé l'abonnement, on te rend chaque centime.</p>
+        <p>On ne vend pas de délai, on vend un résultat. Le setup se fait en parallèle de votre validation : configuration de votre agenda, tests avec votre équipe, validation du wording, branchement sur votre numéro WhatsApp Business existant. À la minute où vous validez Sarah, elle commence à répondre, et le compteur 30 jours satisfait ou remboursé démarre. Si le mois 1 n'a pas remboursé l'abonnement, on vous rend chaque centime.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
   <div class="cta-final">
-    <h2>30 minutes. On chiffre ce que tu laisses filer. Tu décides.</h2>
-    <p>Audit gratuit, sans engagement. On regarde ton flux Immoweb réel, on compte les demandes que tu rates, on te dit combien Sarah peut te rentrer dès le premier mois. Et on te met en client fondateur si ça matche.</p>
+    <h2>30 minutes. On chiffre ce que vous laissez filer. Vous décidez.</h2>
+    <p>Audit gratuit, sans engagement. On regarde votre flux Immoweb réel, on compte les demandes que vous ratez, on vous dit combien Sarah peut vous rentrer dès le premier mois. Et on vous embarque si ça matche.</p>
     <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem;">Réserver mon audit gratuit (30 min)</a>
   </div>
 
