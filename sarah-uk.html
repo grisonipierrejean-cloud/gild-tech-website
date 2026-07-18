@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah, virtual WhatsApp employee 24/7 for UK estate agencies · GILD-TECH</title>
-<meta name="description" content="Sarah — the perfect employee for UK estate agencies. 7/7, 24/24, never sick, never on leave. Replies to every enquiry in under 5 minutes, qualifies, books the viewing. £35k/yr negotiator vs £249/mo Sarah. Founding client offer · 30-day money-back.">
+<meta name="description" content="Sarah, the perfect employee for UK estate agencies. 24/7, never sick, never on leave. Replies to every enquiry in under 5 minutes, qualifies, books the viewing. £35k/yr negotiator vs £290/mo Sarah. 30-day money-back.">
 <link rel="canonical" href="https://gild-tech.com/sarah-uk">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
@@ -46,6 +46,13 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .lang-toggle { font-size: 0.78rem; color: var(--g500); }
 .lang-toggle a { color: var(--g500); text-decoration: none; padding: 0 0.3rem; }
 .lang-toggle a.active { color: var(--pink); font-weight: 700; }
+.nav-right { display: flex; align-items: center; gap: 1.3rem; }
+.lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+.lang-select .lang { color: var(--g500); }
+.lang-select .lang.active { color: var(--pink); }
+.lang-select .lang.off { color: var(--g300); cursor: not-allowed; }
+.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g300); }
+.src-link { color: var(--pink); text-decoration: underline; text-underline-offset: 3px; }
 
 .page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
 
@@ -181,29 +188,36 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 <nav class="top">
   <div class="nav-inner">
     <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
-    <ul class="nav-links">
-      <li><a href="/offres/immobilier-uk">Real Estate Offers</a></li>
-      <li><a href="/calculateur">Calculator</a></li>
-      <li><a href="/a-propos">About</a></li>
-      <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Free audit</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/offres/immobilier-uk">Real Estate Offers</a></li>
+        <li><a href="/calculateur">Calculator</a></li>
+        <li><a href="/a-propos">About</a></li>
+        <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Free audit</a></li>
+      </ul>
+      <div class="lang-select" role="group" aria-label="Language">
+        <span class="lang active" aria-current="true">EN</span>
+        <span class="lang off" title="coming soon" aria-disabled="true">FR</span>
+        <span class="lang off" title="coming soon" aria-disabled="true">RU</span>
+      </div>
+    </div>
   </div>
 </nav>
 
 <div class="page">
 
   <section class="hero">
-    <span class="badge-new">🇬🇧 For independent UK estate agencies · Founding client offer</span>
-    <h1>Sarah, the <span class="accent">perfect employee</span>.<br>Never sleeps. Never sick. Never on leave.</h1>
-    <p class="subtitle"><strong>Sarah replies to every enquiry in under 5 minutes. 7 days a week, 24 hours a day.</strong> She qualifies the applicant. Books the viewing. She doesn't replace your human touch — she frees it up. <strong>A junior negotiator costs ~£35,000/year, loaded. Sarah costs £249/month.</strong> She sits on top of any CRM. Nothing to change in your setup.</p>
+    <span class="badge-new">🇬🇧 For independent UK estate agencies</span>
+    <h1>The average UK agent takes almost <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" class="src-link">four business hours</a> to reply.</h1>
+    <p class="subtitle"><strong>Buyers wait five minutes, then move on. Sarah answers in three.</strong> Guess whose viewing they book. She sits on top of your CRM, nothing to change in your setup.</p>
     <div class="ctas">
-      <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Become Founding Client · 30-day money-back</a>
+      <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Book my free audit · 30-day money-back</a>
       <a href="#how" class="btn-secondary">See how it works</a>
     </div>
     <div class="stat-bar">
-      <div class="stat-item"><div class="stat-num">£249<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mo</small></div><div class="stat-label">Sarah, founding client offer</div></div>
+      <div class="stat-item"><div class="stat-num">£290<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mo</small></div><div class="stat-label">Sarah, monthly subscription</div></div>
       <div class="stat-item"><div class="stat-num">£35,000<small style="font-size:1rem;color:var(--g500);font-weight:500;">/yr</small></div><div class="stat-label">UK junior negotiator, loaded employer cost <em>(Glassdoor + UK gov NI/pension)</em></div></div>
-      <div class="stat-item"><div class="stat-num">12×</div><div class="stat-label">Cheaper than hiring · works 4.6× the hours</div></div>
+      <div class="stat-item"><div class="stat-num">£3,480<small style="font-size:1rem;color:var(--g500);font-weight:500;">/yr</small></div><div class="stat-label">Sarah for a full year. About a tenth of a junior hire, and always on.</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
       ✓ Sits on top of <strong style="color:var(--g700);">any CRM</strong> · nothing to change &nbsp;·&nbsp; ✓ Your existing WhatsApp Business number &nbsp;·&nbsp; ✓ GDPR-compliant &nbsp;·&nbsp; ✓ Data in your Google Workspace
@@ -231,7 +245,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="ev-card ev-sarah">
         <div class="ev-header"><span class="ev-emoji">🚀</span><span class="ev-title">Sarah</span></div>
-        <div class="ev-price">£249 <small>/ month · £2,988 / year</small></div>
+        <div class="ev-price">£290 <small>/ month · £3,480 / year</small></div>
         <ul class="ev-list">
           <li>168h / week — 24/7/365, every channel</li>
           <li>Never sick, never on leave, never a bad mood</li>
@@ -241,12 +255,12 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         </ul>
       </div>
     </div>
-    <p style="text-align:center;margin-top:2rem;font-size:1rem;color:var(--g600);max-width:780px;margin-left:auto;margin-right:auto;font-style:italic;line-height:1.6;">Sarah doesn't replace your human team. She <strong style="color:var(--g900);font-style:normal;">frees them</strong> — so they spend their day in front of vendors, not at a keyboard chasing dead enquiries.</p>
+    <p style="text-align:center;margin-top:2rem;font-size:1rem;color:var(--g600);max-width:780px;margin-left:auto;margin-right:auto;font-style:italic;line-height:1.6;">Sarah doesn't replace your human team. She <strong style="color:var(--g900);font-style:normal;">frees them</strong>, so they spend their day in front of vendors, not at a keyboard chasing dead enquiries.</p>
   </section>
 
   <section class="block" id="problem">
     <h2 class="section-title">How many instructions are you losing each month <span class="accent">without knowing</span>?</h2>
-    <p class="section-subtitle"><strong>Replying within 5 minutes vs 30 minutes = 21× more qualified contacts and 9× more conversions</strong> <em>(MIT Sloan, Oldroyd study, 15,000 enquiries, <a href="http://www.onecavo.com/wp-content/uploads/2015/11/MIT-InsideSales.com_Lead-Response-Management.pdf" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">PDF</a>)</em>. UK-specific: average response time across UK estate agencies is <strong>229 working minutes</strong> (Homeflow mystery-shopper, <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">2023</a>). Your negotiators know it. Your competitors are quietly cashing in.</p>
+    <p class="section-subtitle"><strong>Replying within 5 minutes vs 30 minutes = 21× more qualified contacts</strong> <em>(MIT Sloan, Oldroyd study, 15,000 enquiries, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>)</em>. UK-specific: average response time across UK estate agencies is <strong>229 working minutes</strong> (Homeflow mystery-shopper, <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">2023</a>). Your negotiators know it. Your competitors are quietly cashing in.</p>
     <div class="problem-grid">
       <ul class="problem-list">
         <li>The Rightmove enquiry hits at 10:47pm. You see it Monday 9am. John has already booked a viewing with the agency three streets down.</li>
@@ -325,52 +339,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
   </section>
 
-  <section class="block" id="brief">
-    <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8;padding:5px 11px;background:#f1f5f9;border:1px solid #e5e7eb;border-radius:999px;margin-bottom:14px;">🔜 Rolling out · preview for RESCUE &amp; GENERATE</div>
-    <h2 class="section-title">Every morning at 7am, your <span class="accent">daily brief</span>.</h2>
-    <p class="section-subtitle">Sarah doesn't stop at qualifying enquiries. She also plans your day. Short WhatsApp at wake-up + detailed email for the office. <em>Rolling out for RESCUE &amp; GENERATE clients.</em></p>
-    <div class="demo-grid">
-      <div class="demo-text">
-        <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:1rem;">What you get every morning</h3>
-        <ul>
-          <li><strong>Today's viewings</strong> — time, prospect, property, budget, clickable phone</li>
-          <li><strong>Top priority callbacks</strong> — top 5 by score, justified ("John — re-engaged on Rightmove last night")</li>
-          <li><strong>1 Sarah recommendation</strong> — "Start with X, 24h window, hottest applicant of the week"</li>
-          <li><strong>Pipeline snapshot</strong> — active applicants, weekly viewings, instructions to sign</li>
-          <li><em>🔜 Rolling out: one personalised brief per negotiator (GENERATE)</em></li>
-        </ul>
-        <p style="margin-top:1rem;font-size:0.9rem;color:var(--g600);font-style:italic;">You wake up with your day already planned. No more "what should I do today?".</p>
-      </div>
-      <div class="phone">
-        <div class="phone-screen">
-          <div class="msg in">☀️ Today's brief · Tuesday 5 May · Hi John<div class="msg-time">07:00</div></div>
-          <div class="msg in">🏠 3 viewings scheduled<br>• 10am Sarah Walsh — 2-bed Bath<br>• 2pm James Holloway — House Marylebone £480k<br>• 4pm Anne Whitmore — Apartment Notting Hill<div class="msg-time">07:00</div></div>
-          <div class="msg in">📞 2 priority callbacks<br>• Patrick Holland · 4 days no reply<br>• Catherine Wilson · hot lead never called<div class="msg-time">07:00</div></div>
-          <div class="msg in">⚡ Start with Patrick — very hot applicant, 24h window.<div class="msg-time">07:00</div></div>
-          <div class="msg in">📊 Pipeline: 47 active applicants · 8 viewings this week · 2 instructions to sign<div class="msg-time">07:00</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="dashboard">
-    <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8;padding:5px 11px;background:#f1f5f9;border:1px solid #e5e7eb;border-radius:999px;margin-bottom:14px;">🔜 Rolling out · preview</div>
-    <h2 class="section-title">A <span class="accent">real-time dashboard</span> you check 30 seconds a day.</h2>
-    <p class="section-subtitle">All your agency KPIs on one page. No software to install, no training — just a link you bookmark. <em>Preview below; rolling out for RESPOND + RESCUE clients.</em></p>
-    <div style="text-align:center;margin-top:2rem;">
-      <a href="/dashboard/en/" target="_blank" rel="noopener" style="display:inline-block;background:var(--pink);color:white;padding:14px 28px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1rem;box-shadow:0 8px 24px rgba(11,29,51,.18);transition:transform .15s;">📊 See the dashboard demo →</a>
-      <p style="margin-top:1rem;font-size:0.85rem;color:var(--g500);">Demo data from "London Bridge Estates" · no signup, no email asked</p>
-    </div>
-    <ul style="margin-top:2.5rem;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.9;">
-      <li>🏠 <strong>Today's viewings</strong> — time, prospect, address, budget, click-to-call</li>
-      <li>📞 <strong>Top 5 priority applicants</strong> — AI-scored, with the reason for each priority</li>
-      <li>⚡ <strong>Sarah's recommendation</strong> — who to call first and why</li>
-      <li>🌊 <strong>Applicant pipeline</strong> — applicants by stage, from new to signed</li>
-      <li>📊 <strong>Enquiry sources</strong> — what works this week, what doesn't</li>
-      <li>⚡ <strong>Sarah live activity</strong> — every qualification, every booking, every follow-up live</li>
-    </ul>
-  </section>
-
   <section class="block" id="roi">
     <h2 class="section-title">ROI — Sarah pays for herself with <span class="accent">1 instruction</span> recovered.</h2>
     <p class="section-subtitle">The simple math we run during the audit. Official sources: ONS House Price Index June 2024 and HomeOwners Alliance (UK estate agent fees, multi-agency basis).</p>
@@ -381,118 +349,114 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <strong>Average multi-agency commission</strong> ≈ 2.5% <em>(<a href="https://hoa.org.uk/advice/guides-for-homeowners/i-am-selling/how-much-should-i-pay-the-estate-agent/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.9);text-decoration:underline;">HomeOwners Alliance</a>)</em><br>
         <strong>Avg commission per instruction</strong> ≈ <strong>£7,200</strong>
       </div>
-      <div class="roi-verdict">RESPOND at £249/month is paid back ×29 by a single recovered instruction.<br><span style="font-size:.85em;opacity:.85;">Net: +£6,951 from one instruction in month one. And that's just one of the enquiries quietly dying in your inbox every month.</span></div>
+      <div class="roi-verdict">Virtual Receptionist at £290/month is paid back ×25 by a single recovered instruction.<br><span style="font-size:.85em;opacity:.85;">Net: +£6,910 from one instruction in month one. And that's just one of the enquiries quietly dying in your inbox every month.</span></div>
     </div>
   </section>
 
   <section class="block" id="pricing">
     <h2 class="section-title">Three levels of <span class="accent">delegation</span>. Monthly. Cancel anytime.</h2>
-    <p class="section-subtitle">No setup fee on the founding offer. No commitment. 30-day money-back guarantee on month one — if Sarah hasn't earned back her subscription, every penny back. No questions.</p>
+    <p class="section-subtitle">Setup £495 · Summer Deal (−50%, until 31 Aug). Price locked for 24 months. No commitment. 30-day money-back guarantee on month one: if Sarah hasn't earned back her subscription, every penny back. No questions.</p>
 
-    <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:linear-gradient(135deg,#94A3B8 0%,#0B1D33 100%);color:white;border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(183,147,85,.22);">
-      <div style="font-size:0.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-bottom:.5rem;">⭐ Founding client offer</div>
-      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">RESPOND at £249/mo · setup offered · price locked for life</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.97;line-height:1.5;max-width:680px;">Month-one bonus: we reactivate a batch of your dormant leads so you see booked viewings fast. Cancel anytime. 30-day money-back.</p>
+    <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:linear-gradient(135deg,#94A3B8 0%,#0B1D33 100%);color:white;border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(11,29,51,.22);">
+      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">From £290/mo · setup £495 · Summer Deal (−50%, until 31 Aug) · price locked for 24 months</div>
+      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.97;line-height:1.5;max-width:680px;">Cancel anytime. 30-day money-back on month one.</p>
     </div>
 
     <div style="text-align:center;font-size:1.15rem;color:var(--g900);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
-      She replies. She runs your day &amp; wakes your dormant vendors. She brings you new ones.
+      She answers every enquiry. She turns replies into booked viewings. She helps you win more instructions.
     </div>
 
     <div class="pricing-grid">
 
-      <!-- Virtual Receptionist — Scene: 9pm -->
+      <!-- Virtual Receptionist — Capter -->
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE REPLIES</div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">CAPTER · SHE REPLIES</div>
         <h3>Virtual Receptionist</h3>
-        <div class="price">£249 <small>/ month</small></div>
-        <div class="delai">→ Setup offered · price locked for life · 30-day money-back</div>
+        <div class="price">£290 <small>/ month</small></div>
+        <div class="delai">→ Setup £495 · Summer Deal (−50%, until 31 Aug) · price locked for 24 months · 30-day money-back</div>
 
         <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
           A buyer messages you at 9pm. By 9:05pm, Sarah has replied, sorted the tyre-kicker from the serious buyer, and put the viewing in your diary. You were asleep. Your competitor too.
         </div>
 
         <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--g900);">Proof:</strong> replying within 5 minutes vs 30 = <strong>10× more chance of qualifying</strong> the enquiry. <em>(MIT / Oldroyd via Harvard Business Review, 15,000 enquiries analysed.)</em>
+          <strong style="color:var(--g900);">Proof:</strong> replying within 5 minutes vs 30 = <strong>21× more chance of qualifying</strong> the enquiry. <em>(MIT / Oldroyd, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>, 15,000 enquiries.)</em>
         </div>
         <div style="font-size:.82rem;color:var(--pink);font-weight:700;margin-bottom:1rem;">
-          Promise: <span style="color:var(--g900);">you never miss another incoming enquiry.</span>
+          Promise: <span style="color:var(--g900);">you never miss a lead.</span>
         </div>
 
         <ul>
-          <li>24/7 WhatsApp first contact, under 5 minutes, on every enquiry</li>
-          <li>Books the viewing or valuation in your diary</li>
-          <li>Auto follow-ups Day+3 / Day+7 / Day+14 if the buyer or vendor goes quiet</li>
-          <li>Sits on top of any CRM — nothing to change in your setup</li>
+          <li>24/7 first WhatsApp contact on every enquiry, under 5 minutes</li>
+          <li>Qualifies, logs, and books the viewing or valuation in your diary</li>
+          <li>Also answers owners asking for a valuation</li>
+          <li>Sits on top of any CRM, nothing to change in your setup</li>
           <li>Your wording, your tone, your brand</li>
-          <li><strong>Bonus month 1:</strong> a re-engagement wave across your dormant vendor file</li>
         </ul>
       </div>
 
-      <!-- Virtual Assistant (THE CORE) — Scene: 7am brief -->
+      <!-- Virtual Assistant (THE CORE) — Convertir -->
       <div class="price-card featured">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE RUNS YOUR DAY &amp; WAKES YOUR VENDORS</div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">CONVERTIR · SHE TURNS REPLIES INTO VIEWINGS</div>
         <h3>Virtual Assistant</h3>
         <div class="price">£490 <small>/ month</small></div>
-        <div class="delai">→ Cancel anytime · 30-day money-back</div>
+        <div class="delai">→ Summer Deal: £290/mo for the first 2 months, then £490 · Cancel anytime · 30-day money-back</div>
 
         <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Every morning at 7am, one WhatsApp: today's viewings with context, the three vendors to ring first — the ones who asked for a valuation and you forgot — and what Sarah handled overnight.
+          A buyer hesitates on a big-ticket enquiry. Sarah answers in her own voice, a natural voice note that reassures the way a good negotiator would, then hands a warm, ready buyer to your team.
         </div>
 
         <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--g900);">Proof:</strong> a structured post-valuation follow-up turns <strong>+25% to +40%</strong> more valuations into signed instructions. Two thirds of UK agents say winning instructions is their #1 challenge <em>(Voice of the Agent · ESTAS, 2024)</em>.
+          <strong style="color:var(--g900);">Why it matters:</strong> on a high-ticket purchase, a human-sounding voice builds the trust a text can't. And Sarah stays piloted by you, not the other way around.
         </div>
         <div style="font-size:.82rem;color:var(--pink);font-weight:700;margin-bottom:1rem;">
-          Promise: <span style="color:var(--g900);">your day served on a plate + 2–3 instructions/month resurrected from your dormant file.</span>
+          Promise: <span style="color:var(--g900);">more of your replies turn into booked viewings.</span>
         </div>
 
         <ul>
           <li>Everything in <strong>Virtual Receptionist</strong></li>
-          <li><strong>7am WhatsApp brief</strong> — today's viewings with context + top 3 vendors to ring + overnight summary</li>
-          <li><strong>Continuous dormant vendor re-engagement</strong> — Sarah works your file back and reopens the conversation at the right moment</li>
-          <li>Priority Slack / Teams escalation when Sarah is in doubt</li>
-          <li>Auto weekly report Monday 8am</li>
+          <li><strong>Voice</strong>: Sarah replies with a natural voice note, reassuring on a big-ticket enquiry</li>
+          <li><strong>Email support</strong> from the GILD-TECH team</li>
+          <li><strong>Hands on the wheel</strong>: you set the qualifying questions and Sarah's hours</li>
+          <li>Priority Slack / Teams escalation when Sarah picks up a hot signal</li>
+          <li><em>Instagram &amp; Facebook DM: rolling out</em></li>
         </ul>
       </div>
 
-      <!-- Marketing Team — Scene: vendor types address -->
+      <!-- Marketing Team — Développer -->
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE BRINGS YOU NEW ONES</div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">DÉVELOPPER · SHE WINS YOU MORE INSTRUCTIONS</div>
         <h3>Marketing Team</h3>
         <div class="price">£790 <small>/ month</small></div>
         <div class="delai">→ Cancel anytime · 30-day money-back</div>
 
         <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          A vendor types their address on your site — you have their contact before they call another agent. Your listings become films. And you SEE what Sarah brings you, in £.
+          A hesitant vendor isn't sure your agency is the one. Their property's real photos, turned into a premium online presentation, live before the competitor has even published theirs. They picture the sale, and they sign with you.
         </div>
 
-        <div style="font-size:.82rem;color:var(--g600);margin-bottom:.6rem;line-height:1.55;">
-          <strong style="color:var(--g900);">Proof:</strong> listings with video sell <strong>+73%</strong> faster than photo-only ones. <em>(V7 Labs for Inman, 2023.)</em>
-        </div>
         <div style="font-size:.82rem;color:var(--pink);font-weight:700;margin-bottom:1rem;">
-          Promise: <span style="color:var(--g900);">you stop chasing instructions — they come to you, and you can prove it.</span>
+          Promise: <span style="color:var(--g900);">a sharper listing pitch that helps you win more instructions.</span>
         </div>
 
-        <p style="font-size:.85rem;font-weight:700;color:var(--g900);margin-bottom:.4rem;">The 4 building blocks:</p>
         <ul>
           <li>Everything in <strong>Virtual Assistant</strong></li>
-          <li><em>🔜 Rolling out: <strong>instant valuation tool</strong> — the vendor types their address, Sarah captures their contact before they call another agent. Land Registry cross-checked with EPC data; guidance range is honest, exact figure validated on the valuation appointment.</em></li>
-          <li><em>🔜 Rolling out: <strong>AI listing video</strong> — your real photos become a cinematic film. We enhance the real, we never fabricate a property.</em></li>
-          <li><em>🔜 Rolling out: <strong>ROI dashboard</strong> — instructions won, £ recovered, raw output of what Sarah brought in, wired to your CRM via API (Reapit · Alto · Street). Never sold on a CRM without API.</em></li>
-          <li><em>🔜 Rolling out: <strong>continuous re-engagement</strong> — Sarah works your entire file back, month after month.</em></li>
+          <li><strong>Premium presentation</strong>: your agency's real photos, edited into a premium online listing presentation. Every mandate, its own presentation, no cap. We enhance the real, we never fabricate a property.</li>
         </ul>
+
+        <div style="margin-top:.8rem;padding:.7rem .9rem;background:var(--g100);border-radius:8px;font-size:.8rem;color:var(--g900);font-weight:700;line-height:1.5;">
+          One recovered instruction is ~£7,200 in commission (ONS + HomeOwners Alliance). A full year of Sarah costs less than one.
+        </div>
       </div>
 
     </div>
 
     <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:820px;margin-left:auto;margin-right:auto;line-height:1.6;">
-      <strong>The simple rule:</strong> starting out and tired of missing incoming enquiries? <em>Virtual Receptionist</em>. Your real gold mine is your dormant valuation file? <em>Virtual Assistant</em>. You want new instructions brought to you — and to SEE the ROI? <em>Marketing Team</em>.
+      <strong>The simple rule:</strong> tired of missing incoming enquiries? <em>Virtual Receptionist</em>. Want more of your replies to become viewings, in Sarah's voice? <em>Virtual Assistant</em>. Want a sharper pitch to win more instructions? <em>Marketing Team</em>.
     </p>
 
     <div style="margin-top:2rem;padding:1.4rem 1.8rem;background:linear-gradient(135deg,#16a34a,#15803d);color:white;border-radius:14px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 8px 24px rgba(22,163,74,.18);">
       <div style="font-size:1.6rem;font-weight:800;margin-bottom:0.4rem;">🛡️ 30-day money-back guarantee</div>
-      <p style="margin:0;font-size:0.95rem;opacity:.95;">If Sarah hasn't earned her keep in your first month, every penny back. No questions, no friction. RESPOND · RESCUE · GENERATE — same guarantee on all three.</p>
+      <p style="margin:0;font-size:0.95rem;opacity:.95;">If Sarah hasn't earned her keep in your first month, every penny back. No questions, no friction. Same guarantee on all three tiers.</p>
     </div>
   </section>
 
@@ -502,7 +466,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div style="text-align:center;max-width:720px;margin:0 auto 2rem;">
         <div style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2563EB;padding:5px 11px;background:#eff6ff;border-radius:999px;margin-bottom:14px;">Where we stand</div>
         <h2 class="section-title" style="margin-bottom:.5rem;">Why not <span class="accent">the others</span>?</h2>
-        <p class="section-subtitle">Roof AI, Structurely, Reapit/Alto, a 6-criteria comparison.</p>
+        <p class="section-subtitle">Roof AI, Structurely, Reapit/Alto, a 5-criteria comparison.</p>
       </div>
 
       <div style="overflow-x:auto;border:1px solid #ececef;border-radius:14px;background:#fff;box-shadow:0 1px 2px rgba(10,10,12,.04), 0 8px 24px -12px rgba(10,10,12,.08);">
@@ -519,7 +483,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <tbody style="color:#4a4a52;">
             <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">WhatsApp 24/7</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ primary channel</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ SMS only</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
             <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Sits on top of any CRM (nothing to change)</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ any CRM, no migration</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ US CRMs only</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ US CRMs only</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">is a CRM</td></tr>
-            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Continuous dormant lead re-engagement</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ RESCUE &amp; GENERATE</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">CRM only</td></tr>
+            <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Continuous dormant lead re-engagement</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ Convertir &amp; Développer</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#4a4a52;font-style:italic;">CRM only</td></tr>
             <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">30-day post-setup partnership</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ 30 days included</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ not included</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ not included</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗ not included</td></tr>
             <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;border-bottom:1px solid #ececef;">Money-back guarantee</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ 30 days</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;border-bottom:1px solid #ececef;color:#dc2626;opacity:.55;">✗</td></tr>
             <tr><td style="padding:11px 14px;font-weight:600;color:#0a0a0c;">Built for UK independent estate agencies</td><td style="padding:11px 14px;background:rgba(219,234,254,.4);color:#16a34a;font-weight:700;">✓ target market</td><td style="padding:11px 14px;color:#dc2626;opacity:.55;">✗ US 50+ agents</td><td style="padding:11px 14px;color:#dc2626;opacity:.55;">✗</td><td style="padding:11px 14px;color:#4a4a52;font-style:italic;">enterprise UK</td></tr>
@@ -562,7 +526,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <div class="cta-final">
     <h2>Become Founding Client. Start tonight.</h2>
-    <p>RESPOND £249/mo · setup offered · price locked for life. Cancel anytime. 30-day money-back — if Sarah hasn't earned her keep in month one, every penny back. We onboard you in a 30-min call.</p>
+    <p>Capter £290/mo · setup £495 · Summer Deal (−50%, until 31 Aug) · price locked for 24 months. Cancel anytime. 30-day money-back — if Sarah hasn't earned her keep in month one, every penny back. We onboard you in a 30-min call.</p>
     <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Become Founding Client (30-day money-back)</a>
   </div>
 
@@ -584,7 +548,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 </footer>
 
 <!-- Sticky CTA mobile only -->
-<a href="https://calendly.com/ops-gild-tech/30min" class="sticky-cta-mobile" aria-label="Become Founding Client — 30-day money-back">🚀 Become Founding Client · 30-day money-back</a>
+<a href="https://calendly.com/ops-gild-tech/30min" class="sticky-cta-mobile" aria-label="Book my free audit, 30-day money-back">🚀 Book my free audit · 30-day money-back</a>
 <style>
 .sticky-cta-mobile { display: none; }
 @media (max-width: 880px) {
