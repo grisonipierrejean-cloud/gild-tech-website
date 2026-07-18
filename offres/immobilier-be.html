@@ -55,7 +55,7 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 .offres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
 .offre-card { border: 1px solid var(--g200); border-radius: var(--r); padding: 1.8rem 1.5rem; position: relative; background: var(--white); display: flex; flex-direction: column; }
 .offre-card.recommended { border-color: var(--pink); background: var(--pink-bg); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12); }
-.offre-card.recommended::before { content: "★ RECOMMENDED"; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--white); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; letter-spacing: 0.05em; }
+.offre-card.recommended::before { content: "★ RECOMMANDÉ"; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--white); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; letter-spacing: 0.05em; }
 .offre-name { font-size: 1.3rem; font-weight: 800; color: var(--g900); margin-bottom: 0.3rem; }
 .offre-tagline { font-size: 0.85rem; color: var(--g500); margin-bottom: 1.2rem; }
 .offre-price { font-size: 2.2rem; font-weight: 900; color: var(--g900); letter-spacing: -0.02em; }
@@ -174,98 +174,137 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
   <div class="vertical">🏠 Immobilier · Belgique</div>
 </div>
 
-<div class="intro">
-  <h1>Sarah, l'<span class="accent">employée parfaite</span> pour les agences immobilières belges</h1>
-  <p class="subtitle"><strong>7 jours sur 7, 24 heures sur 24. Jamais malade, jamais en congé, jamais une mauvaise humeur.</strong> Sarah répond à chaque demande en moins de 5 minutes, qualifie, positionne la visite. Elle ne remplace pas votre contact humain — elle le libère. <strong>Un négociateur junior coûte ~42 000€/an chargé · Sarah coûte 249€/mois.</strong> Vit au-dessus de votre CRM, rien à changer.</p>
-</div>
+<!-- ================================================================
+     A: ATTENTION
+     ================================================================ -->
+<section class="intro" id="aida-attention">
+  <h1>365 jours par an. <span class="accent">Jamais malade, jamais en cong&eacute;.</span></h1>
+  <p class="subtitle"><strong>Sarah r&eacute;pond &agrave; vos candidats acqu&eacute;reurs pendant que vous dormez, pendant que vous &ecirc;tes en visite, pendant que vous signez.</strong> Elle r&eacute;pond en quelques minutes, jour et nuit, dans la langue du candidat. Elle se branche sur ce que vous utilisez d&eacute;j&agrave;. Rien &agrave; installer, rien &agrave; apprendre.</p>
+</section>
+<!-- /A: ATTENTION -->
 
-<div class="pain-section">
-  <div class="pain-title">Ce que ça résout</div>
+<!-- ================================================================
+     I: INTÉRÊT
+     ================================================================ -->
+<section class="pain-section" id="aida-interet">
+  <div class="pain-title">Chaque demande qui refroidit &eacute;tait une visite</div>
   <div class="pain-grid">
-    <div class="pain-item"><strong>Lenteur de réponse</strong>Répondre en 5 min vs 30 min = 21× plus de contacts qualifiés (MIT Sloan, 15 000 contacts entrants analysés). La fenêtre est minuscule.</div>
-    <div class="pain-item"><strong>Pas de relance auto</strong>Sans séquence J+3 / +7 / +14, les contacts entrants disparaissent du pipeline en moins d'une semaine.</div>
-    <div class="pain-item"><strong>Pipeline à la main</strong>Votre équipe passe 10h+ par semaine à relancer, suivre, copier-coller. Zéro valeur ajoutée.</div>
+    <div class="pain-item"><strong>Le concurrent a d&eacute;j&agrave; rappel&eacute;</strong>Vos candidats acqu&eacute;reurs &eacute;crivent le soir. Vous r&eacute;pondez le lendemain matin. Le concurrent, lui, a d&eacute;j&agrave; rappel&eacute;.</div>
+    <div class="pain-item"><strong>Ce n'est pas une question de comp&eacute;tence</strong>Vous &ecirc;tes bon, vos propri&eacute;taires vous font confiance, vos estimations tiennent la route. Mais vous ne pouvez pas &ecirc;tre partout. Le soir, le week-end, pendant vos rendez-vous, les demandes tombent dans le vide.</div>
+    <div class="pain-item"><strong>Vous ne le saurez jamais</strong>Vous ne saurez jamais lesquelles vous avez perdues, parce qu'elles ne vous l'ont pas dit. Elles sont simplement all&eacute;es ailleurs.</div>
   </div>
-</div>
+  <p style="margin-top:0.9rem;font-size:0.85rem;color:var(--g600);line-height:1.55;">R&eacute;pondre en 5 minutes plut&ocirc;t qu'en 30 = <strong style="color:var(--g900);">21&times; plus de contacts qualifi&eacute;s</strong> <em>(MIT Sloan, &eacute;tude Oldroyd, 15 000 demandes analys&eacute;es, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;">HBR 2011</a>)</em>.</p>
+</section>
+<!-- /I: INTÉRÊT -->
 
-<div class="parcours">
-  <div class="parcours-title">PARCOURS RECOMMANDÉ</div>
-  <div class="parcours-steps">RESPOND <span class="arrow">→</span> RESCUE <span class="arrow">→</span> GENERATE</div>
-</div>
+<!-- ================================================================
+     D: DÉSIR
+     ================================================================ -->
+<section id="aida-desir">
+  <div class="section-subtitle">Sarah s'occupe des candidats acqu&eacute;reurs. Vous gardez les propri&eacute;taires.</div>
+  <p style="font-size:0.95rem;color:var(--g700);margin-bottom:1.1rem;max-width:900px;">Elle r&eacute;pond en quelques minutes, jour et nuit, dans la langue du candidat. Elle trie le curieux du s&eacute;rieux, prend les informations, et selon votre proc&eacute;dure elle pose une visite ou transmet le dossier &agrave; votre n&eacute;gociateur.</p>
 
-<div style="margin:0 auto 1.5rem;padding:1.2rem 1.6rem;background:linear-gradient(135deg,#94A3B8 0%,#0B1D33 100%);color:white;border-radius:12px;text-align:center;max-width:780px;box-shadow:0 6px 18px rgba(183,147,85,.22);">
-  <div style="font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-bottom:.3rem;">⭐ Offre client fondateur</div>
-  <div style="font-size:1.15rem;font-weight:800;line-height:1.3;">RESPOND à 249€/mois · setup offert · prix bloqué à vie</div>
-  <p style="margin:.4rem auto 0;font-size:0.88rem;opacity:.95;line-height:1.5;max-width:600px;">Bonus mois 1 : on relance un lot de vos contacts dormants pour générer des visites rapidement. Résiliable à tout moment. 30 jours satisfait ou remboursé.</p>
-</div>
-
-<div class="offres-grid">
-
-  <div class="offre-card">
-    <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">POUR LES ACHETEURS · CONTACTS → VISITES</div>
-    <div class="offre-name">RESPOND</div>
-    <div class="offre-tagline"><strong>La réceptionniste virtuelle.</strong> Elle capte chaque acheteur. Jour, nuit, week-end.</div>
-    <div class="offre-price">249€<span class="price-suffix"> / mois</span></div>
-    <div class="offre-delai">Setup offert · prix bloqué à vie · 30 jours satisfait ou remboursé</div>
-    <div class="offre-hook">1 acheteur = 1 visite. Avant qu'il aille chez le voisin.</div>
-    <ul class="offre-features">
-      <li>Sarah — premier contact WhatsApp 24/7 sur chaque demande en moins de 5 min</li>
-      <li>Qualifie l'acheteur (budget, timing, zone)</li>
-      <li>Positionne la visite sur votre Calendly — l'acheteur choisit son créneau</li>
-      <li>Relances auto J+3 / J+7 / J+14 si pas de réponse</li>
-      <li>Vit au-dessus de n'importe quel CRM — rien à changer</li>
-      <li>Bonus mois 1 : relance de vos contacts dormants pour générer des visites rapidement</li>
-      <li><em>🔜 Rolling out : tableau de bord d'activité temps réel</em></li>
-    </ul>
+  <div class="parcours">
+    <div class="parcours-title">COMMENT &Ccedil;A SE PASSE</div>
+    <div class="parcours-steps">LA DEMANDE ARRIVE <span class="arrow">&rarr;</span> SARAH R&Eacute;POND ET TRIE <span class="arrow">&rarr;</span> LA VISITE EST POS&Eacute;E</div>
   </div>
 
-  <div class="offre-card recommended">
-    <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#94A3B8;background:#f1f5f9;border:1px solid #e5e7eb;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">POUR LES VENDEURS · CONTACTS DORMANTS → MANDATS</div>
-    <div class="offre-name">RESCUE</div>
-    <div class="offre-tagline"><strong>L'assistante virtuelle.</strong> Elle réveille vos vendeurs dormants — et transforme le silence en mandats.</div>
-    <div class="offre-price">490€<span class="price-suffix"> / mois</span></div>
-    <div class="offre-delai">Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-    <div class="offre-hook">1 mandat = ~10 000€ de commission. <em>Voice of the Agent · ESTAS 2024 :</em> gagner des mandats est le défi n°1 de la majorité des agents.</div>
-    <ul class="offre-features">
-      <li>Tout ce qui est dans RESPOND</li>
-      <li><strong>Brief WhatsApp matinal 7h</strong> — visites du jour, contacts prioritaires, recommandation du jour</li>
-      <li><strong>Réveil continu des vendeurs dormants</strong> — Sarah retravaille votre base d'anciens contacts vendeurs et les relance au bon moment</li>
-      <li>Escalade prioritaire Slack/Teams quand Sarah doute</li>
-      <li>Bilan hebdo automatique lundi 8h</li>
-    </ul>
+  <div class="additional">
+    <div class="additional-item">
+      <div class="name">Une liste propre, et le tableau de bord</div>
+      <div class="price">Vous ouvrez le matin sur une liste propre au lieu d'une bo&icirc;te pleine. Et le soir, vous vous asseyez, vous ouvrez le tableau de bord, tout est l&agrave;. Qui a &eacute;crit, ce qui a &eacute;t&eacute; dit, o&ugrave; en est chaque dossier. &Ccedil;a se branche sur ce que vous utilisez d&eacute;j&agrave;. Rien &agrave; installer, rien &agrave; apprendre.</div>
+    </div>
+    <div class="additional-item">
+      <div class="name">Vous restez le n&eacute;gociateur</div>
+      <div class="price">Le mandat, la visite, l'offre d'achat, c'est vous. Toujours. Elle fait le travail que vous n'avez pas envie de faire &agrave; 23h. Une assistante qui n'est jamais malade, jamais en cong&eacute;, jamais de mauvais jour.</div>
+    </div>
+  </div>
+</section>
+<!-- /D: DÉSIR -->
+
+<!-- ================================================================
+     LES 3 OFFRES
+     ================================================================ -->
+<section id="aida-offres">
+  <div class="section-subtitle">Trois offres. Mensuel. R&eacute;siliable &agrave; tout moment.</div>
+
+  <div class="offres-grid">
+
+    <div class="offre-card">
+      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">ELLE R&Eacute;POND</div>
+      <div class="offre-name">Je ne rate plus un candidat</div>
+      <div class="offre-tagline">Chaque personne qui &eacute;crit &agrave; votre agence trouve quelqu'un en face, jour et nuit, dans sa langue.</div>
+      <div class="offre-price">290 &euro;<span class="price-suffix"> / mois</span></div>
+      <div class="offre-delai">Tarif bloqu&eacute; 24 mois &middot; 30 jours satisfait ou rembours&eacute;</div>
+      <div class="offre-hook">Tri&eacute;e, not&eacute;e, pr&ecirc;te. Votre journ&eacute;e commence avec une liste claire.</div>
+      <ul class="offre-features">
+        <li>R&eacute;pond &agrave; chaque demande en quelques minutes, jour et nuit, en 8 langues</li>
+        <li>Trie le curieux du s&eacute;rieux et prend les informations</li>
+        <li>Pose la visite ou transmet le dossier &agrave; votre n&eacute;gociateur, selon votre proc&eacute;dure</li>
+        <li>Vous ouvrez le matin sur une liste propre au lieu d'une bo&icirc;te pleine</li>
+        <li>Se branche sur ce que vous utilisez d&eacute;j&agrave; (Whise, SweepBright, Omnicasa, Hovi)</li>
+      </ul>
+    </div>
+
+    <div class="offre-card recommended">
+      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--white);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">ELLE TRANSFORME</div>
+      <div class="offre-name">Mes candidats deviennent des visites</div>
+      <div class="offre-tagline">R&eacute;pondre ne suffit pas, il faut transformer. Sarah rappelle &agrave; la voix, garde le fil.</div>
+      <div class="offre-price">490 &euro;<span class="price-suffix"> / mois</span></div>
+      <div class="offre-delai">Promo : 290 &euro; par mois pendant 60 jours &middot; r&eacute;siliable &agrave; tout moment &middot; 30 jours satisfait ou rembours&eacute;</div>
+      <div class="offre-hook">Vous savez ce qui s'est pass&eacute; pendant votre absence, sans avoir &agrave; demander.</div>
+      <ul class="offre-features">
+        <li>Tout ce qui est dans <strong>Je ne rate plus un candidat</strong></li>
+        <li><strong>Voix</strong> : Sarah rappelle &agrave; la voix, en note vocale naturelle, et garde le fil</li>
+        <li><strong>Vous savez ce qui s'est pass&eacute;</strong> pendant votre absence : chaque matin, chaque soir, chaque semaine</li>
+        <li><strong>Vous gardez la main</strong> : vous d&eacute;cidez comment elle travaille, quels candidats elle pousse, &agrave; quel rythme</li>
+        <li>Escalade prioritaire Slack / Teams sur un signal chaud</li>
+        <li>Support email de l'&eacute;quipe GILD-TECH</li>
+      </ul>
+    </div>
+
+    <div class="offre-card">
+      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#1D4ED8;background:#E5E7EB;border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">ELLE VOUS FAIT GAGNER</div>
+      <div class="offre-name">Je gagne plus de mandats</div>
+      <div class="offre-tagline">Un mandat se gagne au rendez-vous d'estimation, face &agrave; deux agences qui veulent le m&ecirc;me bien.</div>
+      <div class="offre-price">790 &euro;<span class="price-suffix"> / mois</span></div>
+      <div class="offre-delai">R&eacute;siliable &agrave; tout moment &middot; 30 jours satisfait ou rembours&eacute;</div>
+      <div class="offre-hook">Celui qui repart avec la signature est celui qui a fait sentir au propri&eacute;taire que son bien serait trait&eacute; comme un bien d'exception.</div>
+      <ul class="offre-features">
+        <li>Tout ce qui est dans <strong>Mes candidats deviennent des visites</strong></li>
+        <li>Pendant que le concurrent range son appareil, votre bien est d&eacute;j&agrave; en ligne, mis en valeur, pr&ecirc;t &agrave; montrer</li>
+        <li><strong>Pr&eacute;sentation premium</strong> : vos vraies photos transform&eacute;es en pr&eacute;sentation premium en ligne, en quelques minutes, sans lever le petit doigt</li>
+        <li>Chaque mandat, sa pr&eacute;sentation premium. Sans compter</li>
+        <li>On sublime le vrai, on ne fabrique jamais un bien</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<!-- /LES 3 OFFRES -->
+
+<!-- ================================================================
+     A: ACTION
+     ================================================================ -->
+<section id="aida-action">
+  <div class="roi-box">
+    <div class="roi-label">Un seul mandat gagn&eacute; rembourse Sarah plusieurs fois</div>
+    <div class="roi-value">~10 000 &euro;<small style="font-size:.7em;font-weight:500;color:rgba(255,255,255,.6);"> de commission par mandat</small> &nbsp;vs&nbsp; 290 &euro;<small style="font-size:.7em;font-weight:500;color:rgba(255,255,255,.6);"> / mois Sarah</small></div>
+    <div class="roi-sub" style="margin-top:0.9rem;">Prix m&eacute;dians <em>(Statbel 2024)</em> : maison mitoyenne 285 000 &euro;, maison 4 fa&ccedil;ades 405 000 &euro;, appartement 257 000 &euro;. Les commissions sont libres en Belgique depuis 2016, 3% reste la pratique de march&eacute; r&eacute;f&eacute;renc&eacute;e par l'IPI, soit <strong style="color:var(--pink-light);">~8 500 &euro; sur une mitoyenne et ~12 000 &euro; sur une 4 fa&ccedil;ades</strong>. Et c'est une des demandes qui refroidit dans votre bo&icirc;te chaque mois. Tarif bloqu&eacute; 24 mois, r&eacute;siliable, 30 jours satisfait ou rembours&eacute; : si Sarah ne vous a pas rembours&eacute; son abonnement sur le premier mois, chaque centime revient.</div>
   </div>
 
-  <div class="offre-card">
-    <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#1D4ED8;background:#E5E7EB;border:1px solid #c7d8de;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">POUR TOUTE L'ÉQUIPE · NOUVEAUX VENDEURS</div>
-    <div class="offre-name">GENERATE</div>
-    <div class="offre-tagline"><strong>L'équipe marketing.</strong> Elle capte de nouveaux vendeurs et sublime vos annonces pour la vente.</div>
-    <div class="offre-price">790€<span class="price-suffix"> / mois</span></div>
-    <div class="offre-delai">Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-    <div class="offre-hook">De la défense à l'attaque. En chasse de nouveaux vendeurs, pas seulement les contacts sauvés.</div>
-    <ul class="offre-features">
-      <li>Tout ce qui est dans RESCUE</li>
-      <li>Conversations et qualifications routées vers le bon négociateur</li>
-      <li>Playbook personnalisé pour votre agence (vente, location, neuf, mixte)</li>
-      <li>Bilan mensuel direction · SLA prioritaire</li>
-      <li><em>🔜 Rolling out : estimateur instantané — capte de nouveaux contacts vendeurs depuis votre site (données prix BE fermées : on capte le lead, le chiffre est validé en visite)</em></li>
-      <li><em>🔜 Rolling out : vidéo de listing IA à partir de vos vraies photos — lift de ventes prouvé <strong>+73%</strong> avec vidéo <em>(V7 Labs / Inman, 2023)</em></em></li>
-      <li><em>🔜 Rolling out : tableau de bord ROI branché à votre CRM via API (Whise · SweepBright · Omnicasa)</em></li>
-    </ul>
+  <div class="cta">
+    <div class="cta-title">R&eacute;servez 30 minutes.</div>
+    <div class="cta-desc">On regarde ensemble vos derniers candidats perdus, et je vous montre o&ugrave; ils sont partis. Sarah d&egrave;s 290 &euro; par mois, tarif bloqu&eacute; 24 mois, r&eacute;siliable &agrave; tout moment, 30 jours satisfait ou rembours&eacute;.</div>
+    <a class="cta-btn" href="https://calendly.com/ops-gild-tech/30min">R&eacute;server 30 minutes &rarr;</a>
   </div>
 
-</div>
-
-<div class="roi-box">
-  <div class="roi-label">Le calcul que chaque dirigeant fait une fois</div>
-  <div class="roi-value">42 000€<small style="font-size:.7em;font-weight:500;color:rgba(255,255,255,.6);"> /an négociateur</small> &nbsp;vs&nbsp; 249€<small style="font-size:.7em;font-weight:500;color:rgba(255,255,255,.6);"> /mois Sarah</small></div>
-  <div class="roi-sub" style="margin-top:0.9rem;">Négociateur junior BE base ~3 000€ brut × 13,92 + ONSS patronal + pécule + assurance loi ≈ 42 000€/an chargé. Sarah RESPOND 249€/mois = <strong style="color:var(--pink-light);">2 988€/an — 14× moins cher, 4,6× les heures couvertes</strong>. Et : 1 mandat récupéré ≈ 10 000€ de commission (Notaires.be 2024, maison moyenne 329 743€ × 3% IPI pratique courante) — RESPOND est amorti ×40 par un seul mandat récupéré. Net : +9 751€ dès le premier mois. 30 jours satisfait ou remboursé si Sarah ne fait pas son keep.</div>
-</div>
-
-<div class="cta">
-  <div class="cta-title">Devenez Client Fondateur. Démarrez ce soir.</div>
-  <div class="cta-desc">RESPOND 249€/mois · setup offert · prix bloqué à vie. Résiliable à tout moment. 30 jours satisfait ou remboursé — si Sarah n'a pas remboursé son abonnement sur le 1<sup>er</sup> mois, chaque centime revient. On vous onboarde en 30 minutes.</div>
-  <a class="cta-btn" href="https://calendly.com/ops-gild-tech/30min">Devenir Client Fondateur (30j satisfait ou remboursé) →</a>
-</div>
+  <p style="text-align:center;margin-top:1.1rem;font-size:0.82rem;color:var(--g500);line-height:1.6;">
+    Tarif bloqu&eacute; 24 mois &middot; r&eacute;siliable &agrave; tout moment &middot; 30 jours satisfait ou rembours&eacute;.<br>
+    Comment &ccedil;a marche : elle se branche sur ce que vous utilisez d&eacute;j&agrave;, aucune formation, 8 langues.
+  </p>
+</section>
+<!-- /A: ACTION -->
 
 <div class="footer">
   <span>© 2026 GILD-TECH · Girlden LTD · Registered in England &amp; Wales</span>
