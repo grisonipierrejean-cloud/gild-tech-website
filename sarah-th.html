@@ -16,10 +16,10 @@
 <meta name="twitter:title" content="365 days a year. Never ill, never on holiday. · Sarah · Samui">
 <meta name="twitter:description" content="Sarah answers your buyers while you sleep, while you are out on viewings, while you are signing. From £290/month for Koh Samui agencies.">
 <meta name="twitter:image" content="https://gild-tech.com/og-image.png">
-<link rel="alternate" hreflang="en-th" href="https://gild-tech.com/sarah-th">
-<link rel="alternate" hreflang="en-gb" href="https://gild-tech.com/sarah-uk">
-<link rel="alternate" hreflang="fr-be" href="https://gild-tech.com/sarah-be">
-<link rel="alternate" hreflang="fr-fr" href="https://gild-tech.com/sarah">
+<link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-th">
+<link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-th-fr">
+<link rel="alternate" hreflang="ru" href="https://gild-tech.com/sarah-th-ru">
+<link rel="alternate" hreflang="x-default" href="https://gild-tech.com/sarah-th">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
 <link rel="manifest" href="/site.webmanifest">
@@ -58,6 +58,8 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .nav-right { display: flex; align-items: center; gap: 1.3rem; }
 .lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
 .lang-select .lang { color: var(--g500); }
+.lang-select a.lang { text-decoration: none; }
+.lang-select a.lang:hover { color: var(--cta); }
 .lang-select .lang.active { color: var(--cta); }
 .lang-select .lang.off { color: var(--g400); opacity: .7; cursor: not-allowed; }
 .lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g400); }
@@ -227,8 +229,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </ul>
       <div class="lang-select" role="group" aria-label="Language">
         <span class="lang active" aria-current="true">EN</span>
-        <span class="lang off" title="coming soon" aria-disabled="true">FR</span>
-        <span class="lang off" title="coming soon" aria-disabled="true">RU</span>
+        <a class="lang" href="/sarah-th-fr.html" hreflang="fr">FR</a>
+        <a class="lang" href="/sarah-th-ru.html" hreflang="ru">RU</a>
       </div>
     </div>
   </div>
