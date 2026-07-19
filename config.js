@@ -24,7 +24,7 @@ window.GILDTECH_CONFIG = {
   CALENDLY_URL: 'https://calendly.com/ops-gild-tech/30min',
 
   // Contact
-  CONTACT_EMAIL: 'contact@gild-tech.com',
+  CONTACT_EMAIL: 'ops@gild-tech.com',
   CONTACT_WHATSAPP: '33699080539',
   LINKEDIN_URL: 'https://www.linkedin.com/company/gild-tech/'
 };
