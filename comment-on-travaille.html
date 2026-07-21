@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment on travaille · GILD-TECH</title>
+  <meta name="description" content="Vous n'achetez pas un logiciel, vous ajoutez quelqu'un à votre équipe. Voici exactement comment ça se passe : l'échange, l'installation, le quotidien, et ce qu'on ne vend pas.">
+
+  <link rel="canonical" href="https://gild-tech.com/comment-on-travaille">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Gild-Tech">
+  <meta property="og:title" content="Comment on travaille · GILD-TECH">
+  <meta property="og:description" content="Vous n'achetez pas un logiciel, vous ajoutez quelqu'un à votre équipe. Voici exactement comment ça se passe.">
+  <meta property="og:url" content="https://gild-tech.com/comment-on-travaille">
+  <meta property="og:image" content="https://gild-tech.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #2563EB;
+      --pink-light: #1d4ed8;
+      --pink-soft: #dbeafe;
+      --pink-bg: #f1f5f9;
+      --g900: #111;
+      --g700: #333;
+      --g600: #555;
+      --g500: #777;
+      --g400: #999;
+      --g300: #ccc;
+      --g200: #e8e8e8;
+      --g100: #f5f5f5;
+      --font: 'Inter', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: white; color: var(--g900);
+      font-family: var(--font); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g200);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.12), transparent 70%);
+      border: 1.5px solid rgba(37,99,235,0.25);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      font-size: 0.75rem; font-weight: 800; color: var(--g900);
+    }
+    .nav-mark span { color: var(--pink); }
+    .nav-mark::after {
+      content: ''; position: absolute; inset: -1.5px; border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), transparent 30%, transparent 70%, var(--pink));
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      animation: spinMark 4s linear infinite;
+    }
+    @keyframes spinMark { to { rotate: 360deg; } }
+    .nav-logo { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--g900); }
+    .nav-logo span { color: var(--pink); }
+    .nav-back { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-back:hover { color: var(--pink); }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 2rem 3rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-grad {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 900px; height: 500px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 780px; margin: 0 auto; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.9rem 0.3rem 0.45rem;
+      background: var(--pink-bg); border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: var(--pink);
+      margin-bottom: 1.8rem;
+    }
+    .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.5vw, 3.6rem); font-weight: 900;
+      line-height: 1.06; letter-spacing: -0.04em; margin-bottom: 1.3rem;
+    }
+    .hero h1 .hl { color: var(--pink); }
+
+    .hero-sub {
+      font-size: 1.15rem; color: var(--g600);
+      max-width: 620px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* STEPS CONTAINER */
+    .story {
+      max-width: 720px; margin: 0 auto;
+      padding: 2.5rem 2rem 3rem;
+    }
+
+    .step {
+      margin-bottom: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--g200);
+    }
+    .step:first-child { border-top: none; padding-top: 0; }
+
+    .step-kicker {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 0.7rem;
+    }
+
+    .step h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900; letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+
+    .step p {
+      font-size: 1.05rem; color: var(--g700);
+      line-height: 1.8; margin-bottom: 1rem;
+    }
+    .step p:last-child { margin-bottom: 0; }
+    .step p strong { color: var(--g900); font-weight: 700; }
+    .step .line-strong { color: var(--g900); font-weight: 700; }
+
+    /* NE VEND PAS */
+    .op-list { list-style: none; margin-top: 0.5rem; }
+    .op-list li {
+      font-size: 1.02rem; color: var(--g700); line-height: 1.7;
+      padding: 0.8rem 0 0.8rem 1.9rem; position: relative;
+      border-top: 1px solid var(--g200);
+    }
+    .op-list li:first-child { border-top: none; }
+    .op-list li::before {
+      content: '✕'; position: absolute; left: 0; top: 0.8rem;
+      color: var(--pink); font-weight: 800; font-size: 0.9rem;
+    }
+    .op-list li strong { color: var(--g900); font-weight: 700; }
+
+    /* GARANTIE */
+    .guarantee-box {
+      margin-top: 0.8rem; padding: 1.4rem 1.6rem;
+      background: var(--pink-bg); border-left: 4px solid var(--pink);
+      border-radius: 0 12px 12px 0;
+      font-size: 1.05rem; color: var(--g900); font-weight: 600; line-height: 1.65;
+    }
+
+    /* CTA FINAL */
+    .cta-wrap { padding: 2rem 2rem 5rem; max-width: 1100px; margin: 0 auto; }
+    .cta-box {
+      background: var(--pink); border-radius: 22px; padding: 3.5rem 2.5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: -40%; right: -15%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+    }
+    .cta-box h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 900;
+      letter-spacing: -0.03em; color: white; margin-bottom: 0.8rem; position: relative;
+    }
+    .cta-box p {
+      font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 500px;
+      margin: 0 auto 2rem; line-height: 1.7; position: relative;
+    }
+    .cta-box .btn-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: white; color: var(--pink);
+      padding: 0.95rem 2rem; border-radius: 12px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; position: relative;
+      transition: all 0.25s;
+    }
+    .cta-box .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+    .cta-email { display: block; margin-top: 1.3rem; font-size: 0.9rem; color: rgba(255,255,255,0.9); position: relative; }
+    .cta-email a { color: white; text-decoration: underline; font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--g200); padding: 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-brand { font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; }
+    .footer-brand span { color: var(--pink); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { color: var(--g400); text-decoration: none; font-size: 0.78rem; font-weight: 500; }
+    .footer-links a:hover { color: var(--g700); }
+    .footer-copy { font-size: 0.7rem; color: var(--g400); text-align: center; margin-top: 1.5rem; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 2.5rem; }
+      .story { padding: 2rem 1.5rem 2.5rem; }
+      .cta-box { padding: 2.5rem 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-mark">G<span>T</span></div>
+        <div class="nav-logo">GILD <span>TECH</span></div>
+      </a>
+      <a href="index.html" class="nav-back">&larr; Retour au site</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+      <div class="hero-pill">
+        <div class="pill-dot"></div>
+        Notre méthode
+      </div>
+      <h1>Comment <span class="hl">on travaille</span>.</h1>
+      <p class="hero-sub">
+        Vous n'achetez pas un logiciel, vous ajoutez quelqu'un à votre équipe. Voici exactement comment ça se passe.
+      </p>
+    </div>
+  </div>
+
+  <!-- ETAPES -->
+  <div class="story">
+
+    <!-- AVANT -->
+    <div class="step">
+      <div class="step-kicker">Avant</div>
+      <h2>Une conversation, pas une démo.</h2>
+      <p>
+        Une conversation de 30 minutes. On regarde vos derniers acheteurs perdus, et où ils sont partis.
+      </p>
+      <p>
+        Si vous n'avez pas de problème de réactivité, je vous le dis et on s'arrête là.
+      </p>
+    </div>
+
+    <!-- L'INSTALLATION -->
+    <div class="step">
+      <div class="step-kicker">L'installation</div>
+      <h2>Je la fais moi-même.</h2>
+      <p>
+        Vous n'avez rien à installer, rien à apprendre, aucun outil à changer.
+      </p>
+      <p>
+        Ce dont j'ai besoin de vous : votre façon de répondre, vos questions de qualification, vos horaires, et ce qui doit vous être transmis tout de suite.
+      </p>
+      <p>
+        Sarah apprend vos annonces, vos réponses habituelles, votre ton. <span class="line-strong">Elle ne sort rien que vous n'ayez lu et validé.</span>
+      </p>
+    </div>
+
+    <!-- AU QUOTIDIEN -->
+    <div class="step">
+      <div class="step-kicker">Au quotidien</div>
+      <h2>Elle répond, vous commandez.</h2>
+      <p>
+        Elle répond à vos acheteurs, jour et nuit, dans leur langue. Elle trie, elle note, elle pose la visite ou transmet le dossier selon votre procédure.
+      </p>
+      <p>
+        C'est vous qui commandez. Vous l'allumez, vous l'éteignez, vous changez ses horaires ou ses questions quand vous voulez. Si vous préférez reprendre la main sur une conversation, vous la reprenez.
+      </p>
+      <p>
+        Le soir, vous vous asseyez, vous ouvrez le tableau de bord, tout est là.
+      </p>
+    </div>
+
+    <!-- QUAND CA DERAILLE -->
+    <div class="step">
+      <div class="step-kicker">Quand ça déraille</div>
+      <h2>Ça arrivera.</h2>
+      <p>
+        Une question hors sujet, un acheteur qui écrit quelque chose d'inattendu.
+      </p>
+      <p>
+        Sarah passe la main à un humain dès qu'elle doute. Elle préfère se taire que dire une bêtise.
+      </p>
+      <p>
+        Et si le problème vient de nous, vous ne remplissez pas de ticket. Vous m'écrivez, et c'est moi qui réponds.
+      </p>
+      <p>
+        <span class="line-strong">C'est votre nom sur la vitrine, pas le mien.</span>
+      </p>
+    </div>
+
+    <!-- CE QU'ON NE VEND PAS -->
+    <div class="step">
+      <div class="step-kicker">Ce qu'on ne vend pas</div>
+      <h2>Les limites, dites d'avance.</h2>
+      <ul class="op-list">
+        <li>Sarah ne démarche personne. Elle répond aux gens qui vous ont écrit. <strong>Jamais de message à froid.</strong></li>
+        <li>Elle ne parle jamais à vos propriétaires. <strong>Les vendeurs, c'est vous.</strong></li>
+        <li>Elle ne remplace ni votre équipe ni votre logiciel. Elle se pose au-dessus de ce que vous utilisez déjà.</li>
+        <li>On ne vend pas ce qui n'est pas construit. Si une fonction est en cours, on vous le dit, <strong>on ne la facture pas.</strong></li>
+      </ul>
+    </div>
+
+    <!-- SI CA NE VOUS CONVIENT PAS -->
+    <div class="step">
+      <div class="step-kicker">Si ça ne vous convient pas</div>
+      <h2>Vous partez, sans friction.</h2>
+      <div class="guarantee-box">
+        30 jours satisfait ou remboursé. Résiliable à tout moment. Vos données restent les vôtres et vous partez avec.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-wrap">
+    <div class="cta-box">
+      <h2>Réservez 30 minutes.</h2>
+      <p>On regarde vos derniers acheteurs perdus, ensemble. Sans engagement, et sans jargon.</p>
+      <a href="https://calendly.com/ops-gild-tech/30min" target="_blank" rel="noopener" class="btn-white">
+        Réserver un créneau &rarr;
+      </a>
+      <span class="cta-email">Ou écrivez-nous : <a href="mailto:ops@gild-tech.com">ops@gild-tech.com</a></span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">GILD <span>TECH</span></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="cgv.html">CGV</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
+        <li><a href="https://www.linkedin.com/company/gild-tech/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">GILD-TECH &middot; Girlden LTD &middot; CRN 14837617 &middot; Automation Digital Systems</p>
+  </footer>
+
+</body>
+</html>
