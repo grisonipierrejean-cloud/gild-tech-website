@@ -25,6 +25,6 @@ window.GILDTECH_CONFIG = {
 
   // Contact
   CONTACT_EMAIL: 'ops@gild-tech.com',
-  CONTACT_WHATSAPP: '33699080539',
+  CONTACT_WHATSAPP: ''  // retire du repo public (numero perso PJ) — remettre un numero WhatsApp GILD-TECH dedie,
   LINKEDIN_URL: 'https://www.linkedin.com/company/gild-tech/'
 };
