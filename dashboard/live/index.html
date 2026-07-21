@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Tableau de bord Sarah — GILD-TECH</title></head><body>
+<!doctype html><html lang="fr"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Tableau de bord Sarah · GILD-TECH</title></head><body>
 <style>
   :root{
     --bg:#eef2f8; --bg-2:#e4eaf3; --panel:#ffffff; --panel-soft:#f5f8fd; --line:#dde5f0;
@@ -154,7 +154,7 @@
         <div class="side before">
           <div class="t">⏳ <span data-i="ba_before">Avant Sarah</span></div>
           <div class="track"><i id="bar-before"></i></div>
-          <div class="v num" id="v-before">6 h</div>
+          <div class="v num" id="v-before">4 h</div>
         </div>
         <div class="side after">
           <div class="t">⚡ <span data-i="ba_after">Avec Sarah</span></div>
@@ -162,7 +162,7 @@
           <div class="v num" id="v-after">3 min</div>
         </div>
       </div>
-      <div class="smile">🚀 <span id="ba-smile" data-i="ba_smile">120× plus rapide — le prospect est cueilli à chaud.</span></div>
+      <div class="smile">🚀</div>
     </section>
 
     <!-- CASH -->
@@ -173,7 +173,7 @@
       </div>
       <div class="est">
         <span class="k" data-i="cash_est">Pipeline potentiel estimé*</span>
-        <span class="val num" id="cash-pipe">—</span>
+        <span class="val num" id="cash-pipe">…</span>
       </div>
     </section>
 
@@ -199,7 +199,7 @@
 (function(){
   const SAMPLE={
     generated_at:"2026-07-16T09:00:00Z", agency:"Samui Estate",
-    config:{ avg_commission:8000, response_before_min:360 },
+    config:{ avg_commission:8000, response_before_min:240 },
     week:{ leads_captured:68, rdv_booked:19, conversion_pct:28, avg_response_min:3, sla_5min_rate:82,
       queue:7, to_call:3, time_saved_h:14,
       rdv_series:[1,2,2,4,3,4,3],
@@ -221,26 +221,23 @@
       m_conv:"Taux de conversion",m_conv_s:"contacts → RDV",m_saved:"Temps rendu",m_saved_s:"de veille commerciale",
       m_queue:"En qualification",m_queue_s:"contacts en cours",m_call:"À rappeler",m_call_s:"transmis à un humain",
       p_lab:"Les biens qui attirent",foot:"Chiffres en direct depuis votre CRM. *Estimation indicative (RDV × commission moyenne paramétrable), jamais un montant garanti.",
-      faster:"× plus rapide — le prospect est cueilli à chaud.",
-      demo:"Données de démonstration",empty_cap:"première semaine",empty_say:"Sarah veille 24/7 — dès le 1ᵉʳ contact, tout s'affiche ici"},
+      demo:"Données de démonstration",empty_cap:"première semaine",empty_say:"Sarah veille 24/7, dès le 1ᵉʳ contact, tout s'affiche ici"},
     en:{tag:"Sarah · WhatsApp 24/7",hero_kick:"This week",hero_cap:"viewings booked",hero_say:"that many shots at a new mandate",
       ba_lab:"Response time to a lead",ba_before:"Before Sarah",ba_after:"With Sarah",
       cash_a:"leads captured",cash_b:"= that many commission opportunities that no longer slip away.",cash_est:"Estimated pipeline value*",
       m_conv:"Conversion rate",m_conv_s:"leads → viewings",m_saved:"Time given back",m_saved_s:"of sales cover",
       m_queue:"Qualifying",m_queue_s:"leads in progress",m_call:"To call back",m_call_s:"handed to a human",
       p_lab:"Properties drawing interest",foot:"Live figures from your CRM. *Indicative estimate (viewings × configurable average commission), never a guaranteed amount.",
-      faster:"× faster — the lead is caught while hot.",
-      demo:"Demo data",empty_cap:"first week",empty_say:"Sarah is on watch 24/7 — from the first lead, it all shows here"},
+      demo:"Demo data",empty_cap:"first week",empty_say:"Sarah is on watch 24/7, from the first lead, it all shows here"},
     ru:{tag:"Sarah · WhatsApp 24/7",hero_kick:"На этой неделе",hero_cap:"назначено показов",hero_say:"столько же шансов на новый мандат",
       ba_lab:"Время ответа лиду",ba_before:"До Sarah",ba_after:"С Sarah",
       cash_a:"захвачено лидов",cash_b:"= столько же возможностей комиссии, которые больше не теряются.",cash_est:"Оценка потенциала*",
       m_conv:"Конверсия",m_conv_s:"лиды → показы",m_saved:"Возвращено времени",m_saved_s:"коммерческого дежурства",
       m_queue:"Квалификация",m_queue_s:"лидов в работе",m_call:"Перезвонить",m_call_s:"передано человеку",
       p_lab:"Объекты, которые привлекают",foot:"Данные в реальном времени из вашей CRM. *Ориентировочная оценка (показы × средняя комиссия), не гарантия.",
-      faster:"× быстрее — лид пойман горячим.",
-      demo:"Демо-данные",empty_cap:"первая неделя",empty_say:"Sarah дежурит 24/7 — с первого лида всё появится здесь"}
+      demo:"Демо-данные",empty_cap:"первая неделя",empty_say:"Sarah дежурит 24/7, с первого лида всё появится здесь"}
   };
-  let lang="fr";   // fixé par client (D.lang) au chargement
+  let lang="en";   // fixé par client (D.lang) au chargement
 
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
   const fmtResp=m=>m==null?"n/a":(m<1?"<1 min":(m<60?m+" min":(m/60).toFixed(m%60?1:0)+" h"));
@@ -250,9 +247,7 @@
     const t=I18N[lang]||I18N.fr;
     $$("[data-i]").forEach(el=>{const k=el.getAttribute("data-i"); if(t[k]!=null) el.textContent=t[k];});
     // avant/après smile (dynamique)
-    const before=cfg.response_before_min||360, after=w.avg_response_min||3;
-    const factor=Math.max(2,Math.round(before/Math.max(after,1)));
-    $("#ba-smile").textContent=factor+" "+(t.faster);
+    const before=cfg.response_before_min||240, after=w.avg_response_min||3;
     document.documentElement.lang=lang;
     $$(".langs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.l===lang));
   }
@@ -289,7 +284,7 @@
     // hero
     countUp($("#hero"),w.rdv_booked,1100);
     // avant/après bars
-    const before=cfg.response_before_min||360, after=w.avg_response_min||3;
+    const before=cfg.response_before_min||240, after=w.avg_response_min||3;
     $("#v-before").textContent=fmtResp(before);
     $("#v-after").textContent=fmtResp(after);
     requestAnimationFrame(()=>{ $("#bar-before").style.width="100%"; $("#bar-after").style.width=Math.max(3,100*after/before)+"%"; });
@@ -297,7 +292,7 @@
     countUp($("#cash-n"),w.leads_captured,1100);
     if(cfg.avg_commission){ const pipe=w.rdv_booked*cfg.avg_commission;
       $("#cash-pipe").innerHTML=money(pipe)+' <small>('+w.rdv_booked+' RDV × '+money(cfg.avg_commission)+')</small>'; }
-    else $("#cash-pipe").textContent="—";
+    else $("#cash-pipe").textContent="…";
     // mini
     countUp($("#m-conv"),w.conversion_pct,900," %");
     countUp($("#m-saved"),w.time_saved_h,900," h",(w.time_saved_h%1?1:0));
