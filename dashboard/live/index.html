@@ -36,7 +36,11 @@
   .spark::after{content:"";position:absolute;inset:9px;border-radius:6px;
     background:radial-gradient(circle at 30% 30%,#fff,transparent 60%);opacity:.9}
   .who h1{font-size:16px;font-weight:660;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .status{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);font-weight:600;margin-top:2px}
+  .status{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);font-weight:600;margin-top:3px;
+    border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 10px 3px 8px;cursor:pointer;font-family:inherit;transition:.15s}
+  .status:hover{border-color:var(--accent);color:var(--ink)}
+  .status:active{transform:scale(.97)}
+  .status.busy{opacity:.55;pointer-events:none}
   .status .dot{width:7px;height:7px;border-radius:50%;background:var(--gain);box-shadow:0 0 0 0 var(--gain);animation:pulse 2.6s infinite}
   .status.off .dot{background:var(--faint);animation:none}
   @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gain) 55%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
@@ -102,7 +106,7 @@
       <div class="spark"></div>
       <div>
         <h1 id="agency">Samui Estate</h1>
-        <span class="status" id="status"><span class="dot"></span><span data-i="tag">Sarah active · 24/7</span></span>
+        <button class="status" id="status" type="button" title="Activer / mettre en pause"><span class="dot"></span><span data-i="tag">Sarah active · 24/7</span></button>
       </div>
     </div>
     <div class="langs" role="group" aria-label="Langue">
@@ -294,6 +298,25 @@
     const cap=document.querySelector(".hero .cap"); if(cap) cap.textContent=t.empty_cap;
   }
   $$(".langs button").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.l;applyLang();emptyState();}));
+
+  // Pastille cliquable : le patron met Sarah en pause / la reactive depuis le dashboard.
+  const TOGGLE={fr:{pause:"Mettre Sarah en pause ? Elle cessera de repondre. Les contacts restent enregistres.",resume:"Reactiver Sarah ?",err:"Action impossible pour l instant. Reessayez."},
+    en:{pause:"Pause Sarah? She will stop replying. Leads are still logged.",resume:"Reactivate Sarah?",err:"Action failed. Try again."},
+    ru:{pause:"Поставить Sarah на паузу? Она перестанет отвечать. Лиды сохраняются.",resume:"Возобновить Sarah?",err:"Не удалось. Повторите."}};
+  $("#status").addEventListener("click",async()=>{
+    const s=D.sarah||(D.sarah={active:true,hours:"247"});
+    const t=TOGGLE[lang]||TOGGLE.fr;
+    const next = s.active===false;                     // true => on reactive
+    if(!confirm(next? t.resume : t.pause)) return;
+    const btn=$("#status"); btn.classList.add("busy");
+    const p=new URLSearchParams(location.search); const token=p.get("token");
+    const api=(p.get("api")||API).replace(/\/dashboard$/,"")+"/sarah/toggle";
+    let ok=true;
+    if(token){ try{ const r=await fetch(api,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({token,active:next})}); ok=r.ok; }catch(e){ ok=false; } }
+    if(ok){ s.active=next; statusLabel(); } else { alert(t.err); }
+    btn.classList.remove("busy");
+  });
   (async()=>{
     D=await loadData(); w=D.week; cfg=D.config||SAMPLE.config;
     lang=(D.lang&&I18N[D.lang])?D.lang:"fr";
