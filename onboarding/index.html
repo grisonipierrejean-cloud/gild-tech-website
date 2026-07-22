@@ -190,16 +190,16 @@
   "use strict";
   // ---- offre depuis l'URL (pre-remplie, non modifiable) ----
   var OFFERS = {
-    capter:     "Capter — Sarah ecrit (WhatsApp)",
-    convertir:  "Convertir — Sarah vocale + Meta DM",
-    developper: "Developper — video d'annonces"
+    capter:     "Capter : Sarah ecrit (WhatsApp)",
+    convertir:  "Convertir : Sarah vocale + Meta DM",
+    developper: "Developper : video d'annonces"
   };
   var qs = new URLSearchParams(location.search);
   var token = qs.get('t') || '';
   var offerKey = (qs.get('offer') || '').toLowerCase();
   var offerName = OFFERS[offerKey] || "Sarah";
   document.getElementById('offer').value = offerName;
-  document.getElementById('offerBadge').textContent = offerName.split('—')[0].trim();
+  document.getElementById('offerBadge').textContent = offerName.split(':')[0].trim();
 
   // ---- endpoint n8n (pose par le workflow onboarding) ----
   var WEBHOOK = 'https://peejay.app.n8n.cloud/webhook/onboarding';
