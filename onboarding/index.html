@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Configuration de Sarah · GILD-TECH</title>
+<style>
+  :root{
+    --bg:#0A0A0A; --card:#111319; --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.16);
+    --txt:#F5F7FA; --mut:#94A3B8; --accent:#2563EB; --accent2:#1d4ed8;
+    --ok:#22c55e; --warn:#f59e0b; --field:#0d0f14;
+  }
+  @media (prefers-color-scheme:light){
+    :root{ --bg:#F4F6FB; --card:#ffffff; --line:rgba(11,29,51,.12); --line2:rgba(11,29,51,.20);
+      --txt:#0B1D33; --mut:#5b6b7f; --field:#fbfcfe; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 20px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:18px}
+  .logo span{color:var(--accent)}
+  .badge{font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+  .bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:8px}
+  .bar > i{display:block;height:100%;width:25%;background:var(--accent);transition:width .35s ease}
+  .steplabel{font-size:12px;color:var(--mut);margin-bottom:24px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  h1{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--mut);font-size:14px;margin:0 0 22px}
+  label{display:block;font-size:14px;font-weight:600;margin:18px 0 6px}
+  label .opt{font-weight:400;color:var(--mut);font-size:12px}
+  .hint{font-size:12px;color:var(--mut);margin:5px 0 0}
+  input,select,textarea{width:100%;background:var(--field);color:var(--txt);
+    border:1px solid var(--line2);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit}
+  input:focus,select,textarea:focus{outline:none;border-color:var(--accent)}
+  textarea{min-height:96px;resize:vertical}
+  .locked{background:transparent;border-style:dashed;color:var(--mut)}
+  .choices{display:grid;gap:10px;margin-top:6px}
+  .choice{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line2);border-radius:10px;
+    padding:12px 14px;cursor:pointer}
+  .choice:hover{border-color:var(--accent)}
+  .choice input{width:auto;margin-top:3px}
+  .choice b{display:block;font-size:14px}
+  .choice small{color:var(--mut)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > div{flex:1;min-width:150px}
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+  button{font-family:inherit;font-size:15px;font-weight:600;border-radius:10px;padding:12px 22px;cursor:pointer;border:1px solid transparent}
+  .primary{background:var(--accent);color:#fff}
+  .primary:hover{background:var(--accent2)}
+  .primary:disabled{opacity:.5;cursor:not-allowed}
+  .ghost{background:transparent;color:var(--mut);border-color:var(--line2)}
+  .ghost:hover{color:var(--txt)}
+  .saved{font-size:12px;color:var(--mut);text-align:center;margin-top:16px;min-height:16px}
+  .err{color:var(--warn);font-size:13px;margin-top:6px}
+  .hidden{display:none}
+  .callout{border:1px solid var(--line2);border-radius:12px;padding:16px;margin:18px 0;background:var(--field)}
+  .callout b{display:block;margin-bottom:6px}
+  .qr{display:flex;gap:14px;align-items:flex-start}
+  .qr .ico{font-size:26px;line-height:1}
+  ol.next{padding-left:20px;margin:10px 0 0}
+  ol.next li{margin:8px 0;font-size:14px}
+  .done-ico{font-size:40px;text-align:center;margin:4px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">GILD<span>-TECH</span></div>
+    <div class="badge" id="offerBadge">Offre</div>
+  </header>
+
+  <div class="bar"><i id="prog"></i></div>
+  <div class="steplabel" id="stepLabel">Etape 1 sur 4</div>
+
+  <!-- ETAPE 1 : le minimum -->
+  <div class="card step" data-step="1">
+    <h1>Configurons Sarah</h1>
+    <p class="sub">Trois minutes. Vos reponses sont sauvegardees a chaque etape, vous pouvez revenir sur ce lien tant que ce n'est pas termine.</p>
+
+    <label>Votre email</label>
+    <input type="email" id="email" placeholder="vous@votre-agence.com" autocomplete="email">
+
+    <label>Numero WhatsApp dedie a Sarah</label>
+    <input type="tel" id="wa_number" placeholder="+32 470 00 00 00" autocomplete="off">
+    <p class="hint">Un numero reserve a Sarah, jamais votre ligne personnelle. Nous verifions qu'il n'est pas deja rattache a une WhatsApp Business API avant la mise en service.</p>
+
+    <label>Nom de l'agence</label>
+    <input type="text" id="agency" placeholder="Immo Brabant" autocomplete="organization">
+
+    <label>Offre souscrite</label>
+    <input type="text" id="offer" class="locked" readonly>
+    <p class="hint">Definie par votre paiement, non modifiable.</p>
+
+    <div class="nav">
+      <span></span>
+      <button class="primary" data-next>Continuer</button>
+    </div>
+  </div>
+
+  <!-- ETAPE 2 : l'essentiel -->
+  <div class="card step hidden" data-step="2">
+    <h1>Le terrain de Sarah</h1>
+    <p class="sub">Ce que Sarah doit connaitre pour parler juste a vos contacts.</p>
+
+    <label>Zones et types de biens traites</label>
+    <textarea id="zones" placeholder="Ex : Ixelles, Uccle, Watermael. Appartements et maisons, du studio au 4 chambres."></textarea>
+    <p class="hint">Vos quartiers et les types de biens. En clair, comme vous le diriez a un nouveau collaborateur.</p>
+
+    <label>Procedure de sortie</label>
+    <p class="hint" style="margin-top:0">Quand un contact est qualifie, que fait Sarah ?</p>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="exit" value="visio"><span><b>Visio</b><small>Elle propose un appel video</small></span></label>
+      <label class="choice"><input type="radio" name="exit" value="visite"><span><b>Visite physique</b><small>Elle propose une visite du bien</small></span></label>
+      <label class="choice"><input type="radio" name="exit" value="classement"><span><b>Classement</b><small>Elle recueille le creneau de rappel et transmet a l'agent</small></span></label>
+    </div>
+
+    <label>Horaires de Sarah</label>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="hours" value="247"><span><b>24 / 7</b><small>Elle repond a toute heure</small></span></label>
+      <label class="choice"><input type="radio" name="hours" value="plage"><span><b>Plage definie</b><small>Vous fixez les heures ci-dessous</small></span></label>
+    </div>
+    <div id="hoursRange" class="row hidden" style="margin-top:10px">
+      <div><label style="margin-top:0">Debut</label><input type="time" id="h_start" value="08:00"></div>
+      <div><label style="margin-top:0">Fin</label><input type="time" id="h_end" value="20:00"></div>
+    </div>
+
+    <div class="nav">
+      <button class="ghost" data-prev>Retour</button>
+      <button class="primary" data-next>Continuer</button>
+    </div>
+  </div>
+
+  <!-- ETAPE 3 : optionnel -->
+  <div class="card step hidden" data-step="3">
+    <h1>Le ton de votre agence <span style="color:var(--mut);font-weight:400;font-size:15px">optionnel</span></h1>
+    <p class="sub">Facultatif. Vous pouvez terminer sans, et nous completer plus tard.</p>
+
+    <label>Annonces, FAQ, ton <span class="opt">optionnel</span></label>
+    <textarea id="content" placeholder="Collez ici vos reponses habituelles, une FAQ, votre facon de parler a vos contacts. Tout ce qui aide Sarah a vous ressembler."></textarea>
+    <p class="hint">Vous pourrez aussi nous envoyer des documents apres la mise en service.</p>
+
+    <label>Delai des rappels par email</label>
+    <p class="hint" style="margin-top:0">Si ce formulaire reste incomplet, quand voulez-vous un rappel ?</p>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="remind" value="default" checked><span><b>Par defaut</b><small>Confirmation tout de suite, rappel a 24h puis 48h si besoin</small></span></label>
+      <label class="choice"><input type="radio" name="remind" value="24"><span><b>Un seul rappel a 24h</b><small>Puis on n'insiste plus</small></span></label>
+      <label class="choice"><input type="radio" name="remind" value="none"><span><b>Aucun rappel</b><small>Vous gerez seul</small></span></label>
+    </div>
+
+    <div class="nav">
+      <button class="ghost" data-prev>Retour</button>
+      <button class="primary" id="finishBtn" data-finish>Terminer la configuration</button>
+    </div>
+  </div>
+
+  <!-- ETAPE 4 : fin -->
+  <div class="card step hidden" data-step="4">
+    <div class="done-ico">✅</div>
+    <h1 style="text-align:center">C'est envoye</h1>
+    <p class="sub" style="text-align:center">Sarah est en cours de configuration pour <b id="doneAgency">votre agence</b>.</p>
+
+    <div class="callout">
+      <div class="qr">
+        <div class="ico">📱</div>
+        <div>
+          <b>Une etape a faire de votre cote</b>
+          Pour que Sarah reponde sur WhatsApp, il faut connecter le numero une seule fois : vous scannerez un QR code avec le telephone qui porte ce numero. Nous vous l'envoyons par email. Sans ce scan, Sarah ne peut pas recevoir de messages.
+        </div>
+      </div>
+    </div>
+
+    <b>La suite</b>
+    <ol class="next">
+      <li>Vous recevez un email de confirmation avec le recapitulatif.</li>
+      <li>Nous verifions le numero et preparons Sarah avec vos reponses.</li>
+      <li>Nous vous envoyons le QR code a scanner.</li>
+      <li>Une fois scanne, Sarah est en service. Comptez quelques jours ouvres.</li>
+    </ol>
+    <p class="hint" style="margin-top:18px">Une question ? Repondez simplement a l'email de confirmation.</p>
+  </div>
+
+  <div class="saved" id="savedMsg"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  // ---- offre depuis l'URL (pre-remplie, non modifiable) ----
+  var OFFERS = {
+    capter:     "Capter — Sarah ecrit (WhatsApp)",
+    convertir:  "Convertir — Sarah vocale + Meta DM",
+    developper: "Developper — video d'annonces"
+  };
+  var qs = new URLSearchParams(location.search);
+  var token = qs.get('t') || '';
+  var offerKey = (qs.get('offer') || '').toLowerCase();
+  var offerName = OFFERS[offerKey] || "Sarah";
+  document.getElementById('offer').value = offerName;
+  document.getElementById('offerBadge').textContent = offerName.split('—')[0].trim();
+
+  // ---- endpoint n8n (pose par le workflow onboarding) ----
+  var WEBHOOK = 'https://peejay.app.n8n.cloud/webhook/onboarding';
+  var STORE_KEY = 'gt_onboard_' + (token || 'anon');
+
+  var state = { token: token, offer: offerKey, step: 1, data: {}, completed: false };
+  // reprise : localStorage d'abord (instantane), le serveur reste la source pour la relance
+  try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (saved) state = Object.assign(state, saved); } catch(e){}
+  if (state.completed) state.step = 4;
+
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var prog = document.getElementById('prog');
+  var stepLabel = document.getElementById('stepLabel');
+  var savedMsg = document.getElementById('savedMsg');
+
+  var fields = {
+    email:'email', wa_number:'wa_number', agency:'agency',
+    zones:'zones', content:'content', h_start:'h_start', h_end:'h_end'
+  };
+
+  function collect(){
+    var d = state.data;
+    Object.keys(fields).forEach(function(id){ var el=document.getElementById(id); if(el) d[id]=el.value.trim(); });
+    var ex=document.querySelector('input[name=exit]:checked'); if(ex) d.exit=ex.value;
+    var hr=document.querySelector('input[name=hours]:checked'); if(hr) d.hours=hr.value;
+    var rm=document.querySelector('input[name=remind]:checked'); if(rm) d.remind=rm.value;
+    d.offer=offerKey; d.offer_name=offerName;
+    return d;
+  }
+  function restore(){
+    var d=state.data||{};
+    Object.keys(fields).forEach(function(id){ var el=document.getElementById(id); if(el&&d[id]!=null) el.value=d[id]; });
+    if(d.exit){var e=document.querySelector('input[name=exit][value="'+d.exit+'"]'); if(e)e.checked=true;}
+    if(d.hours){var h=document.querySelector('input[name=hours][value="'+d.hours+'"]'); if(h){h.checked=true; toggleHours();}}
+    if(d.remind){var r=document.querySelector('input[name=remind][value="'+d.remind+'"]'); if(r)r.checked=true;}
+  }
+
+  function persist(kind){
+    collect();
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
+    // envoi non bloquant au serveur (save partiel ou submit final)
+    if (!token) { flash('Sauvegarde locale (lien de test sans jeton)'); return; }
+    var path = kind==='submit' ? '/submit' : '/save';
+    fetch(WEBHOOK + path, {
+      method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
+      body: JSON.stringify({ token:token, offer:offerKey, step:state.step, completed:state.completed, data:state.data })
+    }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegarde'); })
+      .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
+  }
+  var flashT;
+  function flash(m){ savedMsg.textContent=m; clearTimeout(flashT); if(m) flashT=setTimeout(function(){savedMsg.textContent='';},2200); }
+
+  function show(n){
+    state.step=n;
+    steps.forEach(function(s){ s.classList.toggle('hidden', +s.dataset.step!==n); });
+    prog.style.width=(n*25)+'%';
+    stepLabel.textContent = n<4 ? ('Etape '+n+' sur 4') : 'Termine';
+    if(n===4){ document.getElementById('doneAgency').textContent = state.data.agency || 'votre agence'; }
+    window.scrollTo(0,0);
+  }
+
+  function validStep(n){
+    if(n===1){
+      var em=document.getElementById('email').value.trim();
+      var wa=document.getElementById('wa_number').value.trim();
+      var ag=document.getElementById('agency').value.trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return 'Un email valide est requis.';
+      if(wa.replace(/\D/g,'').length<8) return 'Le numero WhatsApp semble incomplet.';
+      if(!ag) return 'Le nom de l\'agence est requis.';
+    }
+    if(n===2){
+      if(!document.getElementById('zones').value.trim()) return 'Indiquez vos zones et types de biens.';
+      if(!document.querySelector('input[name=exit]:checked')) return 'Choisissez une procedure de sortie.';
+      if(!document.querySelector('input[name=hours]:checked')) return 'Choisissez les horaires de Sarah.';
+    }
+    return null;
+  }
+  function clearErr(){ var e=document.querySelector('.err'); if(e)e.remove(); }
+  function showErr(msg){ clearErr(); var card=steps[state.step-1]; var nav=card.querySelector('.nav');
+    var p=document.createElement('div'); p.className='err'; p.textContent=msg; nav.parentNode.insertBefore(p,nav); }
+
+  function toggleHours(){ var v=document.querySelector('input[name=hours]:checked');
+    document.getElementById('hoursRange').classList.toggle('hidden', !v || v.value!=='plage'); }
+
+  // ---- events ----
+  document.querySelectorAll('[data-next]').forEach(function(b){ b.addEventListener('click', function(){
+    clearErr(); var err=validStep(state.step); if(err){ showErr(err); return; }
+    persist('save'); show(state.step+1);
+  });});
+  document.querySelectorAll('[data-prev]').forEach(function(b){ b.addEventListener('click', function(){
+    clearErr(); persist('save'); show(state.step-1);
+  });});
+  document.querySelector('[data-finish]').addEventListener('click', function(){
+    clearErr(); state.completed=true; persist('submit'); show(4);
+  });
+  document.querySelectorAll('input[name=hours]').forEach(function(r){ r.addEventListener('change', toggleHours); });
+  // autosave leger a la frappe
+  document.querySelectorAll('input,textarea,select').forEach(function(el){
+    el.addEventListener('change', function(){ try{ collect(); localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} });
+  });
+
+  restore(); show(state.completed ? 4 : (state.step||1));
+})();
+</script>
+</body>
+</html>
