@@ -214,6 +214,26 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 }
 </style>
   
+<style>
+/* SAMUI 2026 - taxi / horloge / scenes */
+.taxi-callout{max-width:820px;margin:0 auto;padding:1.8rem 2rem;background:var(--g100);border-left:4px solid var(--noir);border-radius:0 var(--r) var(--r) 0;}
+.taxi-callout p{font-size:1.1rem;color:var(--g900);line-height:1.6;}
+.taxi-callout .taxi-punch{margin-top:1rem;font-weight:800;color:var(--noir);font-size:1.25rem;}
+.clock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:2rem auto 0;}
+.clock-item{background:var(--blanc);border:1px solid var(--g200);border-radius:var(--r);padding:1.6rem;}
+.clock-item h3{font-size:1.02rem;font-weight:800;color:var(--noir);margin-bottom:0.6rem;}
+.clock-item p{font-size:0.94rem;color:var(--g700);line-height:1.6;}
+.scene{margin-bottom:1rem;}
+.scene .lbl{font-size:0.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.25rem;}
+.scene.before .lbl{color:var(--g500);}
+.scene.after .lbl{color:var(--cta);}
+.scene p{font-size:0.92rem;color:var(--g700);line-height:1.6;}
+.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 14px 34px rgba(46,107,230,0.20);transform:scale(1.03);z-index:1;}
+@media(max-width:820px){.price-card.heart{transform:none;}}
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
+@media(max-width:820px){.clock-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
@@ -261,38 +281,36 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div class="stat-item"><div class="stat-num">290 £<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mois</small></div><div class="stat-label">Sarah · tarif bloqué 24 mois</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
-      ✓ Se branche sur <strong style="color:var(--g700);">votre WhatsApp</strong> et les outils que vous utilisez déjà &nbsp;·&nbsp; ✓ Votre numéro WhatsApp Business existant &nbsp;·&nbsp; ✓ Aucune formation &nbsp;·&nbsp; ✓ Conforme PDPA (Thaïlande 2019) &nbsp;·&nbsp; ✓ Facturé en GBP par Girlden LTD (UK)
+      ✓ Se branche sur <strong style="color:var(--g700);">votre WhatsApp</strong> et les outils que vous utilisez déjà &nbsp;·&nbsp; ✓ Votre numéro WhatsApp Business existant &nbsp;·&nbsp; ✓ Aucune formation  &nbsp;·&nbsp; ✓ Facturé en GBP par Girlden LTD (UK)
     </div>
   </section>
 
   <!-- I · INTEREST -->
   <section class="block" id="problem">
-    <h2 class="section-title">Trois agences ont le même bien que vous. <span class="accent">La vente va à celui qui répond en premier.</span></h2>
-    <p class="section-subtitle">Le propriétaire ne vous a pas donné d'exclusivité, il a confié le bien à tout le monde. La vente ne se gagne donc plus sur le bien. Elle se gagne sur celui qui répond en premier. Et <strong>répondre en 5 minutes plutôt qu'en 30, c'est 21× plus d'acheteurs qualifiés</strong> <em>(MIT Sloan, étude Oldroyd, 15 000 demandes, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>)</em>.</p>
-    <div class="problem-grid">
-      <ul class="problem-list">
-        <li>Un acheteur à Londres écrit à 21h. Il est 3h du matin chez vous.</li>
-        <li>Un autre depuis Dubaï, à minuit.</li>
-        <li>Les week-ends, pendant vos visites, pendant vos rendez-vous.</li>
-        <li>Vous rappelez quand vous pouvez. Entre-temps, l'agence d'à côté a déjà décroché.</li>
-        <li>Vous ne saurez jamais quels acheteurs vous avez perdus, parce qu'ils ne vous l'ont pas dit.</li>
-      </ul>
-      <div class="problem-stat">
-        <div class="num">3 agences</div>
-        <div class="desc">ont exactement le même bien que vous essayez de vendre. La vente ne se gagne plus sur le bien. Elle se gagne sur celui qui est là quand l'acheteur écrit.</div>
-        <div class="source">C'est une station de taxis. Le client monte dans la première voiture qui avance. Pas dans la plus belle.</div>
-      </div>
+    <h2 class="section-title">Vous vendez le même bien que <span class="accent">deux autres agences</span>.</h2>
+    <p class="section-subtitle">Le propriétaire ne vous a pas donné l'exclusivité. Il a confié son bien à tout le monde. Vous vous battez donc à armes égales, sur exactement le même produit, avec les mêmes photos. Alors la vente ne se gagne plus sur le bien.</p>
+    <div class="taxi-callout">
+      <p>C'est une station de taxis. Le client monte dans la première voiture avancée. Pas dans la plus belle, pas dans la mieux entretenue. La première.</p>
+      <p class="taxi-punch">Celui qui répond en premier a déjà gagné la moitié de la vente.</p>
     </div>
+  </section>
 
-    <div style="margin-top:2.2rem;padding:1.6rem 1.8rem;background:var(--g100);border-radius:var(--r);font-size:0.92rem;color:var(--g700);line-height:1.65;">
-      <strong style="color:var(--noir);">Pourquoi l'horloge joue contre vous à Samui :</strong>
-      <ul style="margin-top:0.8rem;padding-left:1.2rem;list-style:disc;">
-        <li style="margin:0.35rem 0;">L'acheteur type à Samui est international : <strong>Royaume-Uni, Europe, Golfe et Asie</strong>. Les pics de demandes se situent entre 20h et 23h dans <em>leur</em> fuseau, c'est-à-dire de la fin de soirée à l'aube chez vous.</li>
-        <li style="margin:0.35rem 0;">Les acheteurs sérieux posent trois questions d'emblée : <strong>le rendement locatif</strong>, la structure de propriété (freehold, leasehold, société) et la vue. Sarah traite les trois dans un échange WhatsApp naturel.</li>
-        <li style="margin:0.35rem 0;">Les portails légitimes : <strong>DDproperty, Hipflat, FazWaz</strong>, plus votre propre site et Google Maps. Tout ce qui scrape et republie sans votre accord n'est pas votre canal.</li>
-        <li style="margin:0.35rem 0;">La <strong>PDPA thaïlandaise de 2019</strong> exige un consentement écrit explicite avant toute prise de contact sortante vers un nouveau prospect. Sarah travaille <em>en entrant uniquement</em> : elle répond aux acheteurs qui vous écrivent. Elle ne démarche jamais une liste scrapée.</li>
-      </ul>
-      <p style="margin-top:0.9rem;font-size:0.78rem;font-style:italic;color:var(--g500);">Sources : <a href="https://www.ddproperty.com/en/property-market-index" target="_blank" rel="noopener" style="color:var(--g500);">DDproperty Thailand Property Market Index</a> · <a href="https://www.pdpc.or.th/" target="_blank" rel="noopener" style="color:var(--g500);">Office of the Personal Data Protection Committee (PDPC Thaïlande)</a> · <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" style="color:var(--g500);">Homeflow 2023, benchmark mystery shopper : 229 minutes ouvrées de délai de réponse moyen</a>.</p>
+  <section class="block" id="clock">
+    <h2 class="section-title">Et vos acheteurs ne vivent pas <span class="accent">à votre heure</span>.</h2>
+    <p class="section-subtitle">Vos acheteurs sont à Londres, à Dubaï, en Europe, en Asie. Ils regardent des biens le soir, tranquilles, après le dîner. Chez eux il est 21h. Chez vous il est 3h du matin. Vous dormez, c'est normal. Mais eux sont en train de choisir.</p>
+    <div class="clock-grid">
+      <div class="clock-item">
+        <h3>Ce qu'ils demandent en premier</h3>
+        <p>Un acheteur sérieux pose toujours les mêmes trois questions dès le premier message : ce que le bien rapporte à la location, ce qu'il possède exactement en achetant ici, et la vue. S'il attend la réponse jusqu'au lendemain, il l'a déjà demandée ailleurs.</p>
+      </div>
+      <div class="clock-item">
+        <h3>D'où ils viennent</h3>
+        <p>Ils vous écrivent depuis DDproperty, Hipflat, FazWaz, votre propre site, ou Google Maps. Ce sont vos vrais canaux. Le reste, ce sont des sites qui recopient vos annonces sans vous demander votre avis.</p>
+      </div>
+      <div class="clock-item">
+        <h3>Et pourquoi on ne démarche personne</h3>
+        <p>En Thaïlande, la loi interdit d'aller chercher quelqu'un qui ne vous a rien demandé. Pas de liste achetée, pas de message à froid. Sarah ne fait que répondre. Elle parle uniquement aux gens qui ont écrit à votre agence. C'est plus lent que le démarchage, et c'est la seule façon de travailler sans vous exposer.</p>
+      </div>
     </div>
   </section>
 
@@ -348,7 +366,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="phone-screen">
           <div class="msg in">Bonjour James, ici Sarah pour Samui Coast Estates. Merci pour votre demande sur la villa vue mer de Bophut, je vous explique tout avec plaisir.<div class="msg-time">03:04</div></div>
           <div class="msg out">Merci. C'est dans quel ordre de prix ?<div class="msg-time">03:04</div></div>
-          <div class="msg in">420 000 £, en leasehold ou via une structure société, je peux vous expliquer les deux. C'est dans votre budget, ou vous cherchez plutôt au-dessus ou en dessous ?<div class="msg-time">03:05</div></div>
+          <div class="msg in">420 000 £. Et je peux vous détailler exactement ce que vous détenez en achetant ici. C'est dans votre budget, ou vous cherchez plutôt au-dessus ou en dessous ?<div class="msg-time">03:05</div></div>
           <div class="msg out">Oui c'est dans le budget. Vous êtes sur place cette semaine ? J'arrive jeudi<div class="msg-time">03:06</div></div>
           <div class="msg in">Parfait, notre consultant David est libre vendredi 11h ou samedi 15h à la villa. Qu'est-ce qui vous arrange ?<div class="msg-time">03:06</div></div>
           <div class="msg out">Vendredi 11h svp<div class="msg-time">03:07</div></div>
@@ -391,11 +409,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <h2 class="section-title">Trois offres. Mensuel. <span class="accent">Résiliable.</span></h2>
     <p class="section-subtitle">Tarif bloqué 24 mois. Aucun engagement. 30 jours satisfait ou remboursé : pas satisfait dans les 30 premiers jours ? Chaque penny revient. Sans questions.</p>
 
-    <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:var(--noir);color:var(--blanc);border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(10,10,10,.22);">
-      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">Dès 290 £/mois · tarif bloqué 24 mois</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.9;line-height:1.5;max-width:680px;">Résiliable à tout moment. 30 jours satisfait ou remboursé sur le premier mois.</p>
-    </div>
-
     <div style="text-align:center;font-size:1.15rem;color:var(--noir);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
       Elle répond. Elle transforme les réponses en visites. Elle vous aide à gagner plus de mandats.
     </div>
@@ -407,37 +420,18 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Je ne rate plus un acheteur</h3>
         <div class="price">290 £<small> / mois</small></div>
         <div class="delai">→ Tarif bloqué 24 mois · 30 jours satisfait ou remboursé</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Chaque personne qui écrit à votre agence trouve quelqu'un en face, jour et nuit, dans sa langue. Triée, notée, prête. Le matin, votre journée commence sur une liste claire au lieu d'une boîte pleine.
-        </div>
-
-
-<ul>
-          <li>Répond à chaque acheteur en quelques minutes, jour et nuit, en 8 langues</li>
-          <li>Trie le curieux du sérieux et prend les notes</li>
-          <li>Pose une visite, organise un appel vidéo, ou transmet le dossier à votre consultant</li>
-          <li>Se branche sur votre WhatsApp et les outils que vous utilisez déjà</li>
-        </ul>
+        <div class="scene before"><span class="lbl">Avant</span><p>Vous ouvrez l'agence à 9h. Quarante messages. Trois sérieux, le reste des curieux. Vous ne savez pas lesquels, alors vous les traitez tous, et vous perdez la matinée.</p></div>
+        <div class="scene after"><span class="lbl">Après</span><p>Vous ouvrez l'agence à 9h. Tout le monde a déjà reçu une réponse pendant la nuit, dans sa langue. Les trois sérieux sont identifiés, avec leurs questions et leur budget. Vous commencez votre journée par eux.</p></div>
       </div>
 
-      <div class="price-card featured">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Elle transforme</span>
+      <div class="price-card featured heart">
+        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Le cœur</span>
         <h3>Mes acheteurs deviennent des visites</h3>
-        <div class="price">490 £<small> / mois</small></div>
-        <div class="delai">→ Promo : 290 £ par mois pendant 60 jours · Résiliable à tout moment · 30 jours satisfait ou remboursé · support email</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Répondre ne suffit pas, il faut transformer. Sarah relance à la voix, garde le fil.
-        </div>
-
-
-<ul>
-          <li>Tout ce qui est dans <strong>Je ne rate plus un acheteur</strong></li>
-          <li><strong>Voix</strong> : Sarah relance à la voix, en note vocale naturelle, et garde le fil</li>
-          <li><strong>Vous savez ce qui s'est passé</strong> pendant votre absence : chaque matin, chaque soir, chaque semaine</li>
-          <li><strong>Vous gardez la main</strong> : vous décidez comment elle travaille, quels acheteurs elle pousse, à quel rythme</li>
-        </ul>
+        <div class="price"><span class="price-old">490 £</span>290 £<small> / mois</small></div>
+        <div class="price-save">290 £ les deux premiers mois · vous économisez 400 £</div>
+        <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
+        <div class="scene before"><span class="lbl">Avant</span><p>L'acheteur a écrit lundi. Vous avez répondu. Il n'a jamais rappelé. Vous n'avez pas eu le temps de le relancer, et vous ne saurez jamais s'il a acheté ailleurs.</p></div>
+        <div class="scene after"><span class="lbl">Après</span><p>Sarah le rappelle à la voix, comme une vraie personne. Elle garde le fil. Et le soir, vous vous asseyez, vous ouvrez le tableau de bord, et vous voyez qui a bougé, qui attend, qui est prêt à visiter. Sans rien demander à personne.</p></div>
       </div>
 
       <div class="price-card">
@@ -445,19 +439,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Je gagne plus de mandats</h3>
         <div class="price">790 £<small> / mois</small></div>
         <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Un mandat se gagne au rendez-vous d'estimation, face à deux agences qui veulent le même bien.
-        </div>
-
-
-        <ul>
-          <li>Tout ce qui est dans <strong>Mes acheteurs deviennent des visites</strong></li>
-          <li><strong>Présentation premium</strong> : vos vraies photos transformées en présentation premium en ligne, en quelques minutes</li>
-          <li>On sublime le vrai, on ne fabrique jamais un bien</li>
-          <li>Sarah ne parle jamais à vos propriétaires : elle libère votre agenda pour les estimations</li>
-        </ul>
-
+        <div class="scene before"><span class="lbl">Avant</span><p>Rendez-vous d'estimation. Deux autres agences sont passées avant vous. Vous dites la même chose qu'elles, avec le même sourire. Le propriétaire hésite, puis choisit celui qu'il a senti le plus sérieux.</p></div>
+        <div class="scene after"><span class="lbl">Après</span><p>Vous sortez votre téléphone et vous lui montrez son bien, déjà mis en valeur, prêt à être diffusé. Il voit ce que les autres lui ont seulement promis. C'est vous qu'il choisit.</p></div>
       </div>
 
     </div>
@@ -507,8 +490,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <p>Sarah pose une question pertinente puis propose deux créneaux de visite. C'est plus rapide qu'un humain et plus pratique pour l'acheteur : il choisit son moment. Le ton est humain, le wording est ajustable, le numéro WhatsApp est le vôtre. Vous reprenez la conversation dès que vous le souhaitez.</p>
       </div>
       <div class="faq-item">
-        <h4>Et la PDPA thaïlandaise ?</h4>
-        <p>Sarah fonctionne <strong>en entrant uniquement</strong> : elle répond aux acheteurs qui vous ont contacté. Elle ne démarche jamais une liste scrapée. La prise de contact directe vers de nouveaux prospects exige un consentement écrit au titre du Personal Data Protection Act thaïlandais de 2019. Nous respectons cette limite. Les données restent dans votre propre Google Workspace ou Microsoft 365, pas chez nous. Contrat de sous-traitance avec GILD-TECH signé au kick-off. Vous restez Responsable de traitement.</p>
+        <h4>Vous démarchez des gens pour moi ?</h4>
+        <p>Non. Sarah répond seulement aux personnes qui ont écrit à votre agence, jamais à une liste achetée. En Thaïlande, aller chercher quelqu'un qui ne vous a rien demandé exige son accord écrit, donc on ne le fait pas. Vos données restent dans votre propre Google Workspace ou Microsoft 365, pas chez nous. Contrat de sous-traitance signé au démarrage, et vous restez responsable de vos données.</p>
       </div>
       <div class="faq-item">
         <h4>Et si Sarah comprend mal un message ?</h4>
