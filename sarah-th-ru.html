@@ -136,7 +136,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
-.price-card.featured::before { content: "★ ОСНОВА"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
+.price-card.featured::before { content: "★ СЕРДЦЕ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
 .price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .6rem; }
 .price-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--noir); }
 .price-card .for { font-size: 0.9rem; color: var(--g700); margin-bottom: 1.1rem; line-height: 1.5; }
@@ -214,6 +214,26 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 }
 </style>
   
+<style>
+/* SAMUI 2026 - taxi / horloge / scenes */
+.taxi-callout{max-width:820px;margin:0 auto;padding:1.8rem 2rem;background:var(--g100);border-left:4px solid var(--noir);border-radius:0 var(--r) var(--r) 0;}
+.taxi-callout p{font-size:1.1rem;color:var(--g900);line-height:1.6;}
+.taxi-callout .taxi-punch{margin-top:1rem;font-weight:800;color:var(--noir);font-size:1.25rem;}
+.clock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:2rem auto 0;}
+.clock-item{background:var(--blanc);border:1px solid var(--g200);border-radius:var(--r);padding:1.6rem;}
+.clock-item h3{font-size:1.02rem;font-weight:800;color:var(--noir);margin-bottom:0.6rem;}
+.clock-item p{font-size:0.94rem;color:var(--g700);line-height:1.6;}
+.scene{margin-bottom:1rem;}
+.scene .lbl{font-size:0.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.25rem;}
+.scene.before .lbl{color:var(--g500);}
+.scene.after .lbl{color:var(--cta);}
+.scene p{font-size:0.92rem;color:var(--g700);line-height:1.6;}
+.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 14px 34px rgba(46,107,230,0.20);transform:scale(1.03);z-index:1;}
+@media(max-width:820px){.price-card.heart{transform:none;}}
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
+@media(max-width:820px){.clock-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
@@ -260,38 +280,36 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div class="stat-item"><div class="stat-num">290 £<small style="font-size:1rem;color:var(--g500);font-weight:500;">/мес</small></div><div class="stat-label">Sarah · цена зафиксирована на 24 месяца</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
-      ✓ Подключается к <strong style="color:var(--g700);">вашему WhatsApp</strong> и к инструментам, которыми вы уже пользуетесь &nbsp;·&nbsp; ✓ Ваш действующий номер WhatsApp Business &nbsp;·&nbsp; ✓ Без обучения &nbsp;·&nbsp; ✓ Соответствие PDPA (Таиланд, 2019) &nbsp;·&nbsp; ✓ Счета в GBP от Girlden LTD (Великобритания)
+      ✓ Подключается к <strong style="color:var(--g700);">вашему WhatsApp</strong> и к инструментам, которыми вы уже пользуетесь &nbsp;·&nbsp; ✓ Ваш действующий номер WhatsApp Business &nbsp;·&nbsp; ✓ Без обучения &nbsp;·&nbsp; ✓ Счета в GBP от Girlden LTD (Великобритания)
     </div>
   </section>
 
   <!-- I · INTEREST -->
   <section class="block" id="problem">
-    <h2 class="section-title">Тот же объект продают ещё три агентства. <span class="accent">Сделка достаётся тому, кто ответит первым.</span></h2>
-    <p class="section-subtitle">Собственник не дал вам эксклюзив, он отдал объект всем сразу. Значит, сделка выигрывается уже не объектом. Она выигрывается тем, кто ответит первым. А <strong>ответ за 5 минут вместо 30 даёт 21× больше квалифицированных покупателей</strong> <em>(MIT Sloan, исследование Oldroyd, 15 000 заявок, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>)</em>.</p>
-    <div class="problem-grid">
-      <ul class="problem-list">
-        <li>Покупатель в Лондоне пишет в 21:00. У вас в это время 3 часа ночи.</li>
-        <li>Ещё один из Дубая, в полночь.</li>
-        <li>Выходные, ваши показы, ваши встречи.</li>
-        <li>Вы перезваниваете, когда можете. А соседнее агентство уже сняло трубку.</li>
-        <li>Вы никогда не узнаете, каких покупателей потеряли, потому что вам об этом не скажут.</li>
-      </ul>
-      <div class="problem-stat">
-        <div class="num">3 агентства</div>
-        <div class="desc">продают ровно тот же объект, что и вы. Сделка выигрывается уже не объектом. Она выигрывается тем, кто на месте, когда покупатель пишет.</div>
-        <div class="source">Это стоянка такси. Клиент садится в первую машину, которая подъехала. Не в самую красивую.</div>
-      </div>
+    <h2 class="section-title">Вы продаёте тот же объект, что и <span class="accent">два других агентства</span>.</h2>
+    <p class="section-subtitle">Собственник не дал вам эксклюзив. Он отдал объект всем сразу. Значит, вы боретесь на равных, за один и тот же продукт, с одинаковыми фотографиями. И продажа больше не выигрывается объектом.</p>
+    <div class="taxi-callout">
+      <p>Это стоянка такси. Клиент садится в первую подъехавшую машину. Не в самую красивую и не в самую ухоженную. В первую.</p>
+      <p class="taxi-punch">Кто ответил первым, уже выиграл половину сделки.</p>
     </div>
+  </section>
 
-    <div style="margin-top:2.2rem;padding:1.6rem 1.8rem;background:var(--g100);border-radius:var(--r);font-size:0.92rem;color:var(--g700);line-height:1.65;">
-      <strong style="color:var(--noir);">Почему на Самуи часы работают против вас:</strong>
-      <ul style="margin-top:0.8rem;padding-left:1.2rem;list-style:disc;">
-        <li style="margin:0.35rem 0;">Типичный покупатель на Самуи международный: <strong>Великобритания, Европа, страны Залива и Азия</strong>. Пик заявок приходится на 20:00 и 23:00 по <em>их</em> времени, а у вас это глубокая ночь и предрассветные часы.</li>
-        <li style="margin:0.35rem 0;">Серьёзные покупатели сразу задают три вопроса: <strong>арендная доходность</strong>, форма владения (freehold, leasehold, через компанию) и вид. Sarah закрывает все три в естественной переписке в WhatsApp.</li>
-        <li style="margin:0.35rem 0;">Легитимные площадки: <strong>DDproperty, Hipflat, FazWaz</strong>, плюс ваш собственный сайт и Google Maps. Всё, что копирует и перевыкладывает объекты без вашего согласия, вашим каналом не является.</li>
-        <li style="margin:0.35rem 0;">Тайский закон <strong>PDPA 2019</strong> требует явного письменного согласия до любого исходящего обращения к новому контакту. Sarah работает <em>только на входящих</em>: она отвечает покупателям, которые написали вам сами. Она никогда не пишет по скопированной базе.</li>
-      </ul>
-      <p style="margin-top:0.9rem;font-size:0.78rem;font-style:italic;color:var(--g500);">Источники: <a href="https://www.ddproperty.com/en/property-market-index" target="_blank" rel="noopener" style="color:var(--g500);">DDproperty Thailand Property Market Index</a> · <a href="https://www.pdpc.or.th/" target="_blank" rel="noopener" style="color:var(--g500);">Office of the Personal Data Protection Committee (PDPC, Таиланд)</a> · <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" style="color:var(--g500);">Homeflow 2023, замер тайного покупателя: средний ответ 229 рабочих минут</a>.</p>
+  <section class="block" id="clock">
+    <h2 class="section-title">И ваши покупатели живут не по <span class="accent">вашим часам</span>.</h2>
+    <p class="section-subtitle">Ваши покупатели в Лондоне, в Дубае, в Европе, в Азии. Они смотрят объекты вечером, спокойно, после ужина. У них девять вечера. У вас три часа ночи. Вы спите, и это нормально. Но они как раз выбирают.</p>
+    <div class="clock-grid">
+      <div class="clock-item">
+        <h3>Что они спрашивают первым</h3>
+        <p>Серьёзный покупатель всегда задаёт одни и те же три вопроса в первом же сообщении: сколько объект приносит в аренду, чем именно он владеет, покупая здесь, и вид. Если он ждёт ответа до завтра, он уже спросил в другом месте.</p>
+      </div>
+      <div class="clock-item">
+        <h3>Откуда они приходят</h3>
+        <p>Они пишут вам с DDproperty, Hipflat, FazWaz, с вашего собственного сайта или из Google Maps. Это ваши настоящие каналы. Остальное: сайты, которые копируют ваши объявления, не спрашивая вас.</p>
+      </div>
+      <div class="clock-item">
+        <h3>И почему мы никого не обзваниваем</h3>
+        <p>В Таиланде закон запрещает идти к тому, кто вас ни о чём не просил. Никаких купленных списков, никаких холодных сообщений. Sarah только отвечает. Она говорит только с теми, кто написал в ваше агентство. Это медленнее, чем холодный обзвон, и это единственный способ работать, не подставляя вас.</p>
+      </div>
     </div>
   </section>
 
@@ -347,7 +365,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="phone-screen">
           <div class="msg in">Здравствуйте, Джеймс, это Сара из Samui Coast Estates. Спасибо за заявку по вилле с видом на море в Бопхуте, с удовольствием всё расскажу.<div class="msg-time">03:04</div></div>
           <div class="msg out">Спасибо. Какой примерно ценовой ориентир?<div class="msg-time">03:04</div></div>
-          <div class="msg in">420 000 £, лизхолд или через компанию, могу объяснить оба варианта. Это в вашем диапазоне, или вы смотрите выше или ниже?<div class="msg-time">03:05</div></div>
+          <div class="msg in">420 000 £. И я могу подробно объяснить, чем именно вы владеете, покупая здесь, если хотите. Это в вашем диапазоне, или вы смотрите выше или ниже?<div class="msg-time">03:05</div></div>
           <div class="msg out">Да, в диапазоне. Вы на месте на этой неделе? Я прилетаю в четверг<div class="msg-time">03:06</div></div>
           <div class="msg in">Отлично, наш консультант Дэвид свободен в пятницу в 11:00 или в субботу в 15:00 прямо на вилле. Что вам удобнее?<div class="msg-time">03:06</div></div>
           <div class="msg out">Пятница, 11:00, пожалуйста<div class="msg-time">03:07</div></div>
@@ -390,11 +408,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <h2 class="section-title">Три тарифа. Помесячно. <span class="accent">Отказаться можно в любой момент.</span></h2>
     <p class="section-subtitle">Цена зафиксирована на 24 месяца. Без обязательств. Возврат денег в течение 30 дней: что-то не устроило в первые 30 дней? Вернём всё до пенни. Без вопросов.</p>
 
-    <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:var(--noir);color:var(--blanc);border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(10,10,10,.22);">
-      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">От 290 £ в месяц · цена зафиксирована на 24 месяца</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.9;line-height:1.5;max-width:680px;">Отказаться можно в любой момент. Возврат денег в течение 30 дней на первый месяц.</p>
-    </div>
-
     <div style="text-align:center;font-size:1.15rem;color:var(--noir);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
       Она отвечает. Она превращает ответы в показы. Она помогает подписывать больше договоров.
     </div>
@@ -404,59 +417,29 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div class="price-card">
         <span class="kicker">Она отвечает</span>
         <h3>Ни одного упущенного покупателя</h3>
-        <div class="price">290 £<small> / в месяц</small></div>
+        <div class="price">290 £<small> / мес</small></div>
         <div class="delai">→ Цена зафиксирована на 24 месяца · возврат денег в течение 30 дней</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Каждый, кто пишет в ваше агентство, находит собеседника, днём и ночью, на своём языке. Отсортировано, зафиксировано, готово. Утром ваш день начинается с понятного списка вместо переполненного ящика.
-        </div>
-
-
-<ul>
-          <li>Отвечает каждому покупателю за считанные минуты, днём и ночью, на 8 языках</li>
-          <li>Отделяет любопытных от серьёзных и фиксирует детали</li>
-          <li>Назначает показ, ставит видеозвонок или передаёт заявку вашему консультанту</li>
-          <li>Подключается к вашему WhatsApp и к инструментам, которыми вы уже пользуетесь</li>
-        </ul>
+        <div class="scene before"><span class="lbl">До</span><p>Вы открываете агентство в 9 утра. Сорок сообщений. Трое серьёзных, остальные просто любопытные. Вы не знаете, кто есть кто, поэтому берётесь за всех и теряете всё утро.</p></div>
+        <div class="scene after"><span class="lbl">После</span><p>Вы открываете агентство в 9 утра. Все уже получили ответ ночью, на своём языке. Трое серьёзных выделены, с их вопросами и бюджетом. Вы начинаете день с них.</p></div>
       </div>
 
-      <div class="price-card featured">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Она конвертирует</span>
-        <h3>Покупатели доходят до показа</h3>
-        <div class="price">490 £<small> / в месяц</small></div>
-        <div class="delai">→ Промо: 290 £ в месяц в течение 60 дней · отказаться можно в любой момент · возврат денег в течение 30 дней · поддержка по email</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Ответить мало, нужно довести до показа. Sarah напоминает о себе голосом и не даёт разговору заглохнуть.
-        </div>
-
-
-<ul>
-          <li>Всё, что входит в <strong>Ни одного упущенного покупателя</strong></li>
-          <li><strong>Голос</strong>: Sarah напоминает о себе живым голосовым сообщением и не даёт разговору заглохнуть</li>
-          <li><strong>Вы знаете, что происходило</strong> в ваше отсутствие: каждое утро, каждый вечер, каждую неделю</li>
-          <li><strong>Руль остаётся у вас</strong>: вы решаете, как она работает, кого подталкивает и в каком темпе</li>
-        </ul>
+      <div class="price-card featured heart">
+        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Сердце</span>
+        <h3>Мои покупатели доходят до показа</h3>
+        <div class="price"><span class="price-old">490 £</span>290 £<small> / мес</small></div>
+        <div class="price-save">290 £ первые два месяца · вы экономите 400 £</div>
+        <div class="delai">→ Отказаться можно в любой момент · возврат денег в течение 30 дней</div>
+        <div class="scene before"><span class="lbl">До</span><p>Покупатель написал в понедельник. Вы ответили. Он так и не перезвонил. У вас не было времени напомнить о себе, и вы никогда не узнаете, купил ли он в другом месте.</p></div>
+        <div class="scene after"><span class="lbl">После</span><p>Sarah напоминает о себе голосом, как живой человек. Она не даёт разговору заглохнуть. А вечером вы садитесь, открываете панель, и видите, кто сдвинулся, кто ждёт, кто готов на показ. Ни у кого ничего не спрашивая.</p></div>
       </div>
 
       <div class="price-card">
         <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">Она приносит договоры</span>
         <h3>Больше подписанных договоров</h3>
-        <div class="price">790 £<small> / в месяц</small></div>
+        <div class="price">790 £<small> / мес</small></div>
         <div class="delai">→ Отказаться можно в любой момент · возврат денег в течение 30 дней</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Договор выигрывается на встрече по оценке, где за тот же объект борются ещё два агентства.
-        </div>
-
-
-        <ul>
-          <li>Всё, что входит в <strong>Покупатели доходят до показа</strong></li>
-          <li><strong>Премиальная презентация</strong>: ваши настоящие фотографии превращаются в премиальную онлайн-презентацию за считанные минуты</li>
-          <li>Мы улучшаем то, что есть, и никогда не выдумываем объект</li>
-          <li>Sarah никогда не общается с вашими собственниками: она освобождает ваш график для встреч по оценке</li>
-        </ul>
-
+        <div class="scene before"><span class="lbl">До</span><p>Встреча по оценке. Два других агентства побывали до вас. Вы говорите то же, что и они, с той же улыбкой. Собственник колеблется, потом выбирает того, кто показался ему серьёзнее.</p></div>
+        <div class="scene after"><span class="lbl">После</span><p>Вы достаёте телефон и показываете ему его объект, уже красиво поданный, готовый к публикации. Он видит то, что другие только пообещали. Он выбирает вас.</p></div>
       </div>
 
     </div>
@@ -506,8 +489,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <p>Sarah задаёт один уместный вопрос, а затем предлагает два времени для показа. Это быстрее человека и удобнее для покупателя: он сам выбирает момент. Тон живой, формулировки настраиваются, номер WhatsApp ваш. Вы забираете переписку себе в любой момент, когда захотите.</p>
       </div>
       <div class="faq-item">
-        <h4>А как же тайский PDPA?</h4>
-        <p>Sarah работает <strong>только на входящих</strong>: она отвечает покупателям, которые сами к вам обратились. Она никогда не пишет по скопированной базе. Прямое обращение к новым контактам требует письменного согласия по тайскому Personal Data Protection Act 2019. Мы эту границу соблюдаем. Данные остаются в вашем собственном Google Workspace или Microsoft 365, а не у нас. Договор об обработке данных с GILD-TECH подписывается на старте. Контролёром данных остаётесь вы.</p>
+        <h4>Вы обзваниваете людей за меня?</h4>
+        <p>Нет. Sarah отвечает только тем, кто написал в ваше агентство, никогда по купленному списку. В Таиланде идти к тому, кто вас ни о чём не просил, можно только с его письменного согласия, поэтому мы этого не делаем. Ваши данные остаются в вашем Google Workspace или Microsoft 365, не у нас.</p>
       </div>
       <div class="faq-item">
         <h4>А если Sarah неправильно поймёт сообщение?</h4>
