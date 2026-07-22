@@ -136,7 +136,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
-.price-card.featured::before { content: "★ THE CORE"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
+.price-card.featured::before { content: "★ THE HEART"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
 .price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .6rem; }
 .price-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--noir); }
 .price-card .for { font-size: 0.9rem; color: var(--g700); margin-bottom: 1.1rem; line-height: 1.5; }
@@ -213,7 +213,27 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   }
 }
 </style>
-  
+
+<style>
+/* SAMUI 2026 - taxi / clock / scenes */
+.taxi-callout{max-width:820px;margin:0 auto;padding:1.8rem 2rem;background:var(--g100);border-left:4px solid var(--noir);border-radius:0 var(--r) var(--r) 0;}
+.taxi-callout p{font-size:1.1rem;color:var(--g900);line-height:1.6;}
+.taxi-callout .taxi-punch{margin-top:1rem;font-weight:800;color:var(--noir);font-size:1.25rem;}
+.clock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:2rem auto 0;}
+.clock-item{background:var(--blanc);border:1px solid var(--g200);border-radius:var(--r);padding:1.6rem;}
+.clock-item h3{font-size:1.02rem;font-weight:800;color:var(--noir);margin-bottom:0.6rem;}
+.clock-item p{font-size:0.94rem;color:var(--g700);line-height:1.6;}
+.scene{margin-bottom:1rem;}
+.scene .lbl{font-size:0.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.25rem;}
+.scene.before .lbl{color:var(--g500);}
+.scene.after .lbl{color:var(--cta);}
+.scene p{font-size:0.92rem;color:var(--g700);line-height:1.6;}
+.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 14px 34px rgba(46,107,230,0.20);transform:scale(1.03);z-index:1;}
+@media(max-width:820px){.price-card.heart{transform:none;}}
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
+@media(max-width:820px){.clock-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
@@ -260,38 +280,36 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div class="stat-item"><div class="stat-num">£290<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mo</small></div><div class="stat-label">Sarah · price locked for 24 months</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
-      ✓ Plugs into <strong style="color:var(--g700);">your WhatsApp</strong> and the tools you already use &nbsp;·&nbsp; ✓ Your existing WhatsApp Business number &nbsp;·&nbsp; ✓ No training &nbsp;·&nbsp; ✓ PDPA-compliant (Thailand 2019) &nbsp;·&nbsp; ✓ Billed in GBP by Girlden LTD (UK)
+      ✓ Plugs into <strong style="color:var(--g700);">your WhatsApp</strong> and the tools you already use &nbsp;·&nbsp; ✓ Your existing WhatsApp Business number &nbsp;·&nbsp; ✓ No training &nbsp;·&nbsp; ✓ Billed in GBP by Girlden LTD (UK)
     </div>
   </section>
 
   <!-- I · INTEREST -->
   <section class="block" id="problem">
-    <h2 class="section-title">Three agencies have the same property you do. <span class="accent">The sale goes to whoever replies first.</span></h2>
-    <p class="section-subtitle">The owner did not give you an exclusive, he gave the property to everyone. So the sale is no longer won on the property. It is won on who replies first. And <strong>replying within 5 minutes rather than 30 means 21× more qualified buyers</strong> <em>(MIT Sloan, Oldroyd study, 15,000 enquiries, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">HBR 2011</a>)</em>.</p>
-    <div class="problem-grid">
-      <ul class="problem-list">
-        <li>A buyer in London writes at 9pm. It is 3am where you are.</li>
-        <li>Another one from Dubai, at midnight.</li>
-        <li>Weekends, during your viewings, during your appointments.</li>
-        <li>You call back when you can. In the meantime, the agency next door has already picked up.</li>
-        <li>You will never know which buyers you lost, because they never told you.</li>
-      </ul>
-      <div class="problem-stat">
-        <div class="num">3 agencies</div>
-        <div class="desc">have the very same property you are trying to sell. The sale is not won on the property any more. It is won on who is there when the buyer writes.</div>
-        <div class="source">It is a taxi rank. The customer gets into the first car that pulls forward. Not the nicest one.</div>
-      </div>
+    <h2 class="section-title">You are selling the same property as <span class="accent">two other agencies</span>.</h2>
+    <p class="section-subtitle">The owner did not give you an exclusive. He handed his property to everyone. So you are competing on a level field, on exactly the same product, with the same photos. Which means the sale is no longer won on the property.</p>
+    <div class="taxi-callout">
+      <p>It is a taxi rank. The client gets into the first car that pulls forward. Not the nicest one, not the best kept. The first one.</p>
+      <p class="taxi-punch">Whoever replies first has already won half the sale.</p>
     </div>
+  </section>
 
-    <div style="margin-top:2.2rem;padding:1.6rem 1.8rem;background:var(--g100);border-radius:var(--r);font-size:0.92rem;color:var(--g700);line-height:1.65;">
-      <strong style="color:var(--noir);">Why the clock runs against you on Samui:</strong>
-      <ul style="margin-top:0.8rem;padding-left:1.2rem;list-style:disc;">
-        <li style="margin:0.35rem 0;">The typical Samui buyer is international: <strong>UK, Europe, the Gulf and Asia</strong>. Peak enquiry windows are 8pm to 11pm in <em>their</em> timezone, which is late night to dawn for you.</li>
-        <li style="margin:0.35rem 0;">Serious buyers ask three questions upfront: <strong>rental yield</strong>, ownership structure (freehold, leasehold, company), and view. Sarah handles all three in a natural WhatsApp exchange.</li>
-        <li style="margin:0.35rem 0;">Legitimate portals: <strong>DDproperty, Hipflat, FazWaz</strong>, plus your own website and Google Maps. Anything that scrapes and re-lists without your consent is not your channel.</li>
-        <li style="margin:0.35rem 0;"><strong>PDPA Thailand 2019</strong> requires explicit written consent before any direct outbound to a new prospect. Sarah works <em>inbound only</em>: she answers the buyers who reach out to you. She never cold-messages a scraped list.</li>
-      </ul>
-      <p style="margin-top:0.9rem;font-size:0.78rem;font-style:italic;color:var(--g500);">Sources: <a href="https://www.ddproperty.com/en/property-market-index" target="_blank" rel="noopener" style="color:var(--g500);">DDproperty Thailand Property Market Index</a> · <a href="https://www.pdpc.or.th/" target="_blank" rel="noopener" style="color:var(--g500);">Office of the Personal Data Protection Committee (PDPC Thailand)</a> · <a href="https://www.homeflow.co.uk/posts/39-of-home-sellers-wait-for-an-estate-agents-response" target="_blank" rel="noopener" style="color:var(--g500);">Homeflow 2023, mystery-shopper benchmark: 229 working minutes average reply time</a>.</p>
+  <section class="block" id="clock">
+    <h2 class="section-title">And your buyers do not live <span class="accent">on your clock</span>.</h2>
+    <p class="section-subtitle">Your buyers are in London, in Dubai, in Europe, in Asia. They browse properties in the evening, relaxed, after dinner. Where they are it is 9pm. Where you are it is 3am. You are asleep, and that is normal. But they are choosing right now.</p>
+    <div class="clock-grid">
+      <div class="clock-item">
+        <h3>What they ask first</h3>
+        <p>A serious buyer always asks the same three questions in the very first message: what the property earns in rent, what exactly they own by buying here, and the view. If he waits until the next day for the answer, he has already asked elsewhere.</p>
+      </div>
+      <div class="clock-item">
+        <h3>Where they come from</h3>
+        <p>They write to you from DDproperty, Hipflat, FazWaz, your own site, or Google Maps. Those are your real channels. The rest are sites that copy your listings without asking you.</p>
+      </div>
+      <div class="clock-item">
+        <h3>And why we prospect no one</h3>
+        <p>In Thailand, the law forbids going after someone who never asked you anything. No bought list, no cold message. Sarah only replies. She speaks only to the people who wrote to your agency. It is slower than cold outreach, and it is the only way to work without exposing you.</p>
+      </div>
     </div>
   </section>
 
@@ -347,7 +365,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="phone-screen">
           <div class="msg in">Hi James, this is Sarah for Samui Coast Estates. Thanks for enquiring about the Bophut sea-view villa, happy to walk you through it.<div class="msg-time">03:04</div></div>
           <div class="msg out">Cheers. Roughly what’s the guide on this one?<div class="msg-time">03:04</div></div>
-          <div class="msg in">£420k, leasehold or via a company structure, I can walk you through both. Would that be around your buying range, or are you looking above or below?<div class="msg-time">03:05</div></div>
+          <div class="msg in">£420k. And I can walk you through exactly what you own when you buy here, if you like. Is that around your range, or are you looking above or below?<div class="msg-time">03:05</div></div>
           <div class="msg out">Yeah that’s in range. Are you around this week? I’m flying in Thursday<div class="msg-time">03:06</div></div>
           <div class="msg in">Perfect, our consultant David has Friday 11am or Saturday 3pm free at the villa. Which works for you?<div class="msg-time">03:06</div></div>
           <div class="msg out">Friday 11am please<div class="msg-time">03:07</div></div>
@@ -390,11 +408,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <h2 class="section-title">Three plans. Monthly. <span class="accent">Cancel anytime.</span></h2>
     <p class="section-subtitle">Price locked for 24 months. No lock-in. 30-day money-back: not happy in your first 30 days? Every penny back. No questions.</p>
 
-    <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:var(--noir);color:var(--blanc);border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(10,10,10,.22);">
-      <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">From £290/month · price locked for 24 months</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.9;line-height:1.5;max-width:680px;">Cancel anytime. 30-day money-back on month one.</p>
-    </div>
-
     <div style="text-align:center;font-size:1.15rem;color:var(--noir);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
       She replies. She turns replies into viewings. She helps you win more listings.
     </div>
@@ -406,57 +419,27 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Never miss a buyer</h3>
         <div class="price">£290<small> / month</small></div>
         <div class="delai">→ Price locked for 24 months · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Every person who writes to your agency finds someone there, day and night, in their language. Sorted, logged, ready. In the morning, your day starts with a clear list instead of a full inbox.
-        </div>
-
-
-<ul>
-          <li>Answers every buyer in minutes, day and night, in 8 languages</li>
-          <li>Sorts the curious from the serious and takes the notes</li>
-          <li>Books a viewing, a video call, or files the enquiry for your consultant</li>
-          <li>Plugs into your WhatsApp and the tools you already use</li>
-        </ul>
+        <div class="scene before"><span class="lbl">Before</span><p>You open the agency at 9am. Forty messages. Three serious, the rest just curious. You do not know which, so you handle them all, and you lose the morning.</p></div>
+        <div class="scene after"><span class="lbl">After</span><p>You open the agency at 9am. Everyone already got a reply during the night, in their language. The three serious ones are identified, with their questions and their budget. You start your day with them.</p></div>
       </div>
 
-      <div class="price-card featured">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">She converts</span>
-        <h3>My buyers become viewings</h3>
-        <div class="price">£490<small> / month</small></div>
-        <div class="delai">→ Promo: £290 a month for 60 days · Cancel anytime · 30-day money-back · email support</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.
-        </div>
-
-
-<ul>
-          <li>Everything in <strong>Never miss a buyer</strong></li>
-          <li><strong>Voice</strong>: Sarah follows up with a natural voice note and keeps the thread alive</li>
-          <li><strong>You know what happened</strong> while you were away: every morning, every evening, every week</li>
-          <li><strong>Hands on the wheel</strong>: you decide how she works, which buyers she pushes, at what pace</li>
-        </ul>
+      <div class="price-card featured heart">
+        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">The heart</span>
+        <h3>My buyers turn into viewings</h3>
+        <div class="price"><span class="price-old">£490</span>£290<small> / month</small></div>
+        <div class="price-save">£290 for the first two months · you save £400</div>
+        <div class="delai">→ Cancel anytime · 30-day money-back</div>
+        <div class="scene before"><span class="lbl">Before</span><p>The buyer wrote on Monday. You replied. He never called back. You did not have time to follow up, and you will never know whether he bought elsewhere.</p></div>
+        <div class="scene after"><span class="lbl">After</span><p>Sarah follows up by voice, like a real person. She keeps the thread alive. And in the evening you sit down, you open the dashboard, and you see who moved, who is waiting, who is ready to view. Without asking anyone.</p></div>
       </div>
 
       <div class="price-card">
-        <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">She wins listings</span>
+        <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">She wins you listings</span>
         <h3>Win more listings</h3>
         <div class="price">£790<small> / month</small></div>
         <div class="delai">→ Cancel anytime · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          A listing is won in the valuation appointment, facing two agencies after the same property.
-        </div>
-
-
-        <ul>
-          <li>Everything in <strong>My buyers become viewings</strong></li>
-          <li><strong>Premium presentation</strong>: your real photos turned into a premium online presentation, in minutes</li>
-          <li>We enhance the real, we never fabricate a property</li>
-          <li>Sarah never speaks to your owners: she frees up your diary for valuations</li>
-        </ul>
-
+        <div class="scene before"><span class="lbl">Before</span><p>Valuation appointment. Two other agencies came before you. You say the same thing they did, with the same smile. The owner hesitates, then picks the one who felt the most serious.</p></div>
+        <div class="scene after"><span class="lbl">After</span><p>You take out your phone and show him his property, already presented properly, ready to publish. He sees what the others only promised him. He picks you.</p></div>
       </div>
 
     </div>
@@ -506,8 +489,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <p>Sarah asks one relevant question then offers two viewing slots. It's faster than a human and more convenient for the buyer, they pick their moment. The tone is human, the wording is adjustable, the WhatsApp number is yours. You take back the conversation the moment you want to.</p>
       </div>
       <div class="faq-item">
-        <h4>What about PDPA Thailand?</h4>
-        <p>Sarah operates on <strong>inbound only</strong>: she answers buyers who have contacted you. She never cold-messages a scraped list. Direct outreach to new prospects requires written consent under Thailand's Personal Data Protection Act 2019. We respect that boundary. Data stays in your own Google Workspace or Microsoft 365, not ours. Data processing agreement with GILD-TECH signed at kick-off. You remain Data Controller.</p>
+        <h4>Do you prospect people for me?</h4>
+        <p>No. Sarah only replies to people who wrote to your agency, never a bought list. In Thailand, going after someone who never contacted you needs their written consent, so we do not do it. Your data stays in your own Google Workspace or Microsoft 365, not with us. A data processing agreement is signed at kick-off, and you remain responsible for your own data.</p>
       </div>
       <div class="faq-item">
         <h4>What if Sarah misreads a message?</h4>
@@ -515,11 +498,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="faq-item">
         <h4>Does it work with my CRM?</h4>
-        <p>Sarah sits on top of any CRM, nothing to change in your current setup. She takes the enquiry the second it arrives, qualifies, books the viewing on your Calendly. Once the owner signs, you log the listing in your CRM as before. Sarah handles the pre-listing / pre-viewing phase, the one CRMs cover lightly.</p>
+        <p>Sarah sits on top of any CRM, nothing to change in what you already run. She takes the enquiry the second it arrives, qualifies, books the viewing on your Calendly. Once the owner signs, you log the listing in your CRM as before. Sarah handles the pre-listing / pre-viewing phase, the one CRMs cover lightly.</p>
       </div>
       <div class="faq-item">
         <h4>How quickly does Sarah start delivering?</h4>
-        <p>We don't sell delivery deadlines, we sell results. Setup runs in parallel with your validation: we configure your Calendly, test with your team, agree the wording, connect your existing WhatsApp Business number. The moment you approve Sarah, she starts answering, and the 30-day money-back clock starts. Not happy in your first 30 days? Every penny back.</p>
+        <p>We don't sell delivery deadlines, we sell results. Going live happens in parallel with your validation: we configure your Calendly, test with your team, agree the wording, connect your existing WhatsApp Business number. The moment you approve Sarah, she starts answering, and the 30-day money-back clock starts. Not happy in your first 30 days? Every penny back.</p>
       </div>
     </div>
   </section>
