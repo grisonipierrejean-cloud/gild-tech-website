@@ -90,9 +90,13 @@
     <label>Nom de l'agence</label>
     <input type="text" id="agency" placeholder="Immo Brabant" autocomplete="organization">
 
-    <label>Offre souscrite</label>
-    <input type="text" id="offer" class="locked" readonly>
-    <p class="hint">Definie par votre paiement, non modifiable.</p>
+    <label>Offre</label>
+    <select id="offer">
+      <option value="capter">Capter : Sarah ecrit (WhatsApp)</option>
+      <option value="convertir">Convertir : Sarah vocale + Meta DM</option>
+      <option value="developper">Developper : video d'annonces</option>
+    </select>
+    <p class="hint">Pre-selectionnee depuis votre lien. Vous pouvez la changer.</p>
 
     <div class="nav">
       <span></span>
@@ -188,18 +192,20 @@
 <script>
 (function(){
   "use strict";
-  // ---- offre depuis l'URL (pre-remplie, non modifiable) ----
+  // ---- offre : pre-selectionnee depuis l'URL, mais librement modifiable ----
   var OFFERS = {
-    capter:     "Capter : Sarah ecrit (WhatsApp)",
-    convertir:  "Convertir : Sarah vocale + Meta DM",
-    developper: "Developper : video d'annonces"
+    capter:     "Capter",
+    convertir:  "Convertir",
+    developper: "Developper"
   };
   var qs = new URLSearchParams(location.search);
   var token = qs.get('t') || '';
+  var offerSel = document.getElementById('offer');
   var offerKey = (qs.get('offer') || '').toLowerCase();
-  var offerName = OFFERS[offerKey] || "Sarah";
-  document.getElementById('offer').value = offerName;
-  document.getElementById('offerBadge').textContent = offerName.split(':')[0].trim();
+  if (OFFERS[offerKey]) offerSel.value = offerKey; else offerKey = offerSel.value;
+  function syncOfferBadge(){ offerKey = offerSel.value; document.getElementById('offerBadge').textContent = OFFERS[offerKey] || 'Offre'; }
+  offerSel.addEventListener('change', syncOfferBadge);
+  syncOfferBadge();
 
   // ---- endpoint n8n (pose par le workflow onboarding) ----
   var WEBHOOK = 'https://peejay.app.n8n.cloud/webhook/onboarding';
@@ -226,7 +232,7 @@
     var ex=document.querySelector('input[name=exit]:checked'); if(ex) d.exit=ex.value;
     var hr=document.querySelector('input[name=hours]:checked'); if(hr) d.hours=hr.value;
     var rm=document.querySelector('input[name=remind]:checked'); if(rm) d.remind=rm.value;
-    d.offer=offerKey; d.offer_name=offerName;
+    offerKey=offerSel.value; d.offer=offerKey; d.offer_name=OFFERS[offerKey]||offerKey;
     return d;
   }
   function restore(){
