@@ -32,7 +32,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#FFFFFF">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="en" href="https://gild-tech.com/">
@@ -71,12 +71,12 @@
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     html, body { height: 100%; }
-    body { background: var(--noir); color: var(--blanc); font-family: var(--font); -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh; }
+    body { background: var(--blanc); color: var(--noir); font-family: var(--font); -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh; }
 
     /* NAV */
-    nav { border-bottom: 1px solid rgba(255,255,255,.07); }
+    nav { border-bottom: 1px solid rgba(0,0,0,.08); }
     .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em; text-decoration: none; color: var(--blanc); }
+    .brand { font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em; text-decoration: none; color: var(--noir); }
     .brand span { color: var(--cta); }
     .btn-nav { background: var(--cta); color: var(--blanc); padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background .15s; }
     .btn-nav:hover { background: var(--cta-hover); }
@@ -84,7 +84,7 @@
     .lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
     .lang-select .lang { color: var(--ardoise); }
     .lang-select a.lang { text-decoration: none; }
-    .lang-select a.lang:hover { color: var(--blanc); }
+    .lang-select a.lang:hover { color: var(--noir); }
     .lang-select .lang.active { color: var(--cta); }
     .lang-select .lang.off { opacity: .4; cursor: not-allowed; }
     .lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; opacity: .5; }
@@ -92,26 +92,26 @@
     /* GATEWAY */
     .mk { flex: 1; display: flex; align-items: center; padding: 4rem 1.5rem; }
     .mk-inner { max-width: 1080px; margin: 0 auto; text-align: center; width: 100%; }
-    .mk-tag { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ardoise); margin-bottom: 1.4rem; font-weight: 600; }
-    .mk-title { font-size: clamp(2.1rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: .6rem; color: var(--blanc); }
+    .mk-tag { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cta); margin-bottom: 1.4rem; font-weight: 700; }
+    .mk-title { font-size: clamp(2.1rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: .6rem; color: var(--noir); }
     .mk-title .mk-accent { color: var(--cta); }
     .mk-echo { font-size: clamp(1rem, 1.6vw, 1.2rem); color: var(--ardoise); font-weight: 500; margin-bottom: .9rem; }
-    .mk-sub { font-size: clamp(.9rem, 1.2vw, 1rem); color: var(--ardoise); margin-bottom: 3rem; }
+    .mk-sub { font-size: clamp(.9rem, 1.2vw, 1rem); color: #475569; margin-bottom: 3rem; }
     .mk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 920px; margin: 0 auto; }
-    .mk-card { display: block; text-decoration: none; background: var(--bleu-nuit); border: 1px solid var(--trait); border-radius: 16px; padding: 2.2rem 1.5rem; transition: border-color .15s, transform .15s; }
-    .mk-card:hover { border-color: var(--cta); transform: translateY(-2px); }
+    .mk-card { display: block; text-decoration: none; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 2.2rem 1.5rem; transition: border-color .15s, transform .15s, box-shadow .15s; }
+    .mk-card:hover { border-color: var(--cta); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,.10); }
     .mk-flag { font-size: 2.1rem; display: block; margin-bottom: .9rem; }
-    .mk-country { font-size: 1.18rem; font-weight: 800; color: var(--blanc); letter-spacing: -.01em; margin-bottom: .3rem; }
+    .mk-country { font-size: 1.18rem; font-weight: 800; color: var(--noir); letter-spacing: -.01em; margin-bottom: .3rem; }
     .mk-meta { font-size: .8rem; color: var(--ardoise); letter-spacing: .04em; }
     .mk-cta { display: inline-block; margin-top: 1.2rem; font-size: .88rem; font-weight: 700; color: var(--cta); }
     .mk-trust { margin-top: 3rem; font-size: .78rem; color: var(--ardoise); letter-spacing: .03em; line-height: 1.8; }
 
     /* FOOTER */
-    footer { border-top: 1px solid rgba(255,255,255,.07); padding: 1.6rem 1.5rem; }
+    footer { border-top: 1px solid rgba(0,0,0,.08); padding: 1.6rem 1.5rem; }
     .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: .75rem; color: var(--ardoise); }
     .footer-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
     .footer-links a { color: var(--ardoise); text-decoration: none; transition: color .15s; }
-    .footer-links a:hover { color: var(--blanc); }
+    .footer-links a:hover { color: var(--noir); }
 
     @media (max-width: 720px) {
       .mk { padding: 3rem 1rem; }
@@ -139,7 +139,7 @@
 
   <section class="mk" aria-label="GILD-TECH, выберите свой рынок">
     <div class="mk-inner">
-      <div class="mk-tag">GILD-TECH</div>
+      <div class="mk-tag">Для независимых агентств недвижимости</div>
       <h1 class="mk-title">Кто отвечает вашим покупателям, <span class="mk-accent">пока вы на показе?</span></h1>
       <p class="mk-sub">Sarah. 365 дней в году, никогда не болеет, никогда не в отпуске, пока вы делаете то, что умеете только вы: продаёте.</p>
       <div class="mk-grid">
