@@ -119,7 +119,28 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .roi-calc strong { font-weight: 700; font-size: 1.15rem; }
 .roi-verdict { font-size: 1.5rem; font-weight: 800; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.3); }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: stretch; column-gap: 1.2rem; row-gap: 0; max-width: 1200px; margin: 0 auto; }
+/* pricing 2026-07 : receive blocks, dominant heart, subgrid alignment */
+.price-card { display: grid; }
+.price-card .kicker { font-size:10px;font-weight:800;letter-spacing:.12em;color:#0B1D33;background:#F1F5F9;border:1px solid #E5E7EB;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem; }
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--pink);font-weight:700;margin:.3rem 0 .2rem;}
+.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}
+.blurb{padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;}
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}
+.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g900);margin-bottom:.5rem;}
+.receive ul{list-style:none;padding-top:0;border-top:none;}
+.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}
+.receive li::before{content:'\2713';position:absolute;left:0;color:var(--pink);font-weight:800;}
+.receive li.more{font-weight:700;color:var(--g900);}
+.receive li.more::before{content:'+';}
+.price-card.heart{border-color:var(--pink);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);z-index:2;padding:2rem 2.2rem;}
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto auto;align-items:stretch;row-gap:0;}
+  .price-card{grid-row:1 / span 2;grid-template-rows:subgrid;row-gap:0;}
+  .price-card > .pc-top{display:flex;flex-direction:column;}
+}
+@media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
 .price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(11,29,51,0.10); }
 .price-card.featured::before { content: "★ LE CŒUR"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
@@ -127,7 +148,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
 .price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
 .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.price-card .delai { font-size: 0.78rem; color: var(--pink); font-weight: 600; margin-bottom: 1.2rem; }
+.price-card .delai { font-size: 0.78rem; color: var(--g600); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.45; }
 .price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); }
 .price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.88rem; color: var(--g700); line-height: 1.5; }
 .price-card li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; }
@@ -391,61 +412,62 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="pricing-grid">
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ELLE RÉPOND</div>
+        <div class="pc-top">
+        <span class="kicker">ELLE RÉPOND</span>
         <h3>Je ne rate plus une demande</h3>
         <div class="price">290 £ <small>/ mois</small></div>
-        <div class="delai">→ Tarif bloqué 24 mois · 30 jours satisfait ou remboursé</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Chaque personne qui contacte votre agence reçoit une réponse, jour et nuit, dans sa langue. Triée, notée, prête. Votre matinée commence sur une liste propre.
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c&#39;est le prix qui est bloqué, pas vous.</div>
+        <div class="blurb">Chaque personne qui contacte votre agence reçoit une réponse, jour et nuit, dans sa langue. Triée, notée, prête. Votre matinée commence sur une liste propre.</div>
         </div>
-
-
-<ul>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
           <li>Répond à chaque demande en quelques minutes, jour et nuit, en 8 langues</li>
           <li>Trie le curieux du sérieux et prend les informations</li>
           <li>Pose la visite ou transmet le dossier à votre négociateur, selon votre procédure</li>
           <li>Se branche sur votre CRM et les outils que vous utilisez déjà</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
-      <div class="price-card featured">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ELLE TRANSFORME</div>
+      <div class="price-card featured heart">
+        <div class="pc-top">
+        <span class="kicker"  style="color:var(--pink);background:#DBEAFE;border-color:#93C5FD;">ELLE TRANSFORME</span>
         <h3>Mes demandes deviennent des visites</h3>
-        <div class="price">490 £ <small>/ mois</small></div>
-        <div class="delai">→ Promo : 290 £ par mois pendant 60 jours · Résiliable à tout moment · 30 jours satisfait ou remboursé · support email</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Répondre ne suffit pas, il faut transformer. Sarah relance à la voix, garde le fil.
+        <div class="price"><span class="price-old">490 £</span>290 £ <small>/ mois</small></div>
+        <div class="price-save">Vos deux premiers mois à 290 £ au lieu de 490 £. Vous gardez 400 £.</div>
+        <div class="price-sub">Au bout de deux mois, le tarif passe à 490 £. Aucune surprise, aucune reconduction cachée.</div>
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c&#39;est le prix qui est bloqué, pas vous.</div>
+        <div class="blurb">Répondre ne suffit pas, il faut transformer. Sarah relance à la voix, garde le fil.</div>
         </div>
-
-
-<ul>
-          <li>Tout ce qui est dans <strong>Je ne rate plus une demande</strong></li>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
+          <li class="more">Tout le palier précédent, plus :</li>
+          <li>Le point du matin et le point du soir sur votre WhatsApp, plus le récap de la semaine. Vous savez ce qui s&#39;est passé sans avoir à le demander.</li>
           <li><strong>Voix</strong> : Sarah relance à la voix, en note vocale naturelle, et garde le fil</li>
-          <li><strong>Vous savez ce qui s'est passé</strong> pendant votre absence : chaque matin, chaque soir, chaque semaine</li>
           <li><strong>Vous gardez la main</strong> : vous décidez comment elle travaille, quels candidats elle pousse, à quel rythme</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ELLE VOUS FAIT GAGNER</div>
+        <div class="pc-top">
+        <span class="kicker" style="color:#0A0A0A;background:var(--g100);border-color:var(--g200);">ELLE VOUS FAIT GAGNER</span>
         <h3>Je gagne plus de mandats</h3>
         <div class="price">790 £ <small>/ mois</small></div>
-        <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Un mandat se gagne au rendez-vous d'estimation, face à deux autres agences qui veulent le même bien.
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c&#39;est le prix qui est bloqué, pas vous.</div>
+        <div class="blurb">Un mandat se gagne au rendez-vous d&#39;estimation, face à deux autres agences qui veulent le même bien.</div>
         </div>
-
-
-        <ul>
-          <li>Tout ce qui est dans <strong>Mes demandes deviennent des visites</strong></li>
-          <li><strong>Présentation premium</strong> : vos vraies photos transformées en présentation premium en ligne, en quelques minutes</li>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
+          <li class="more">Tout le palier précédent, plus :</li>
+          <li>Vos vraies photos, mises en mouvement. Un mouvement lent et sobre, aucun angle inventé, aucune pièce reconstituée, aucune retouche. Ce que le propriétaire voit existe.</li>
           <li>On sublime le vrai, on ne fabrique jamais un bien</li>
           <li>Sarah ne parle jamais à vos propriétaires : elle libère votre agenda pour les estimations</li>
-        </ul>
-
+          </ul>
+        </div>
       </div>
 
     </div>

@@ -142,7 +142,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .price-card .for { font-size: 0.9rem; color: var(--g700); margin-bottom: 1.1rem; line-height: 1.5; }
 .price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; color: var(--noir); }
 .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.price-card .delai { font-size: 0.78rem; color: var(--cta); font-weight: 700; margin-bottom: 1.2rem; }
+.price-card .delai { font-size: 0.78rem; color: var(--g600); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.45; }
 .price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); flex: 1; }
 .price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.9rem; color: var(--g700); line-height: 1.55; }
 .price-card li::before { content: "✓"; color: var(--cta); font-weight: 800; position: absolute; left: 0; }
@@ -228,11 +228,18 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .scene.before .lbl{color:var(--g500);}
 .scene.after .lbl{color:var(--cta);}
 .scene p{font-size:0.92rem;color:var(--g700);line-height:1.6;}
-.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);transform:translateY(-14px) scale(1.02);z-index:2;padding:2.8rem 2.2rem;}
-@media(max-width:820px){.pricing-grid{grid-template-columns:1fr;}.price-card.heart{transform:none;padding:2rem;}}
+.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);z-index:2;padding:2rem 2.2rem;}
+@media(max-width:820px){.pricing-grid{grid-template-columns:1fr;}.price-card.heart{padding:2rem;}}
 .price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
 .price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
 @media(max-width:820px){.clock-grid{grid-template-columns:1fr;}}
+/* pricing alignment 2026-07 : subgrid aligns the receive titles on one line */
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto auto; align-items:stretch; row-gap:0;}
+  .price-card{display:grid; grid-row:1 / span 2; grid-template-rows:subgrid; row-gap:0;}
+  .price-card > .pc-top{display:flex; flex-direction:column;}
+}
+@media (max-width:1100px){ .price-card.heart{order:-1;} }
 </style>
 </head>
 <body>
@@ -416,12 +423,14 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="pricing-grid">
 
       <div class="price-card">
+        <div class="pc-top">
         <span class="kicker">Elle répond</span>
         <h3>Je ne rate plus un acheteur</h3>
         <div class="price">290 £<small> / mois</small></div>
-        <div class="delai">→ Tarif bloqué 24 mois · 30 jours satisfait ou remboursé</div>
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
         <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>Vous ouvrez l'agence à 9h. Quarante messages. Trois sérieux, le reste des curieux. Vous ne savez pas lesquels, alors vous les traitez tous, et vous perdez la matinée.</p></div>
         <div class="scene after"><span class="lbl">Ce qui change</span><p>Vous ouvrez l'agence à 9h. Tout le monde a déjà reçu une réponse pendant la nuit, dans sa langue. Les trois sérieux sont identifiés, avec leurs questions et leur budget. Vous commencez votre journée par eux.</p></div>
+        </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
           <ul>
@@ -434,18 +443,21 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
 
       <div class="price-card featured heart">
+        <div class="pc-top">
         <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Elle transforme</span>
         <h3>Mes acheteurs deviennent des visites</h3>
         <div class="price"><span class="price-old">490 £</span>290 £<small> / mois</small></div>
         <div class="price-save">Vos deux premiers mois à 290 £ au lieu de 490 £. Vous gardez 400 £.</div>
-        <div class="price-sub">Ensuite 490 £, résiliable à tout moment. Aucun engagement, aucune pénalité.</div>
-        <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
+        <div class="price-sub">Au bout de deux mois, le tarif passe à 490 £. Aucune surprise, aucune reconduction cachée.</div>
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
         <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>L'acheteur a écrit lundi. Vous avez répondu. Il n'a jamais rappelé. Vous n'avez pas eu le temps de le relancer, et vous ne saurez jamais s'il a acheté ailleurs.</p></div>
         <div class="scene after"><span class="lbl">Ce qui change</span><p>Sarah le rappelle à la voix, comme une vraie personne. Elle garde le fil. Et le soir, vous vous asseyez, vous ouvrez le tableau de bord, et vous voyez qui a bougé, qui attend, qui est prêt à visiter. Sans rien demander à personne.</p></div>
+        </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
           <ul>
           <li class="more">Tout le palier précédent, plus :</li>
+          <li>Le point du matin et le point du soir sur votre WhatsApp, plus le récap de la semaine. Vous savez ce qui s'est passé sans avoir à le demander.</li>
           <li>La relance à la voix, en note vocale naturelle, qui garde le fil</li>
           <li>Le tableau de bord du soir : qui a bougé, qui attend, qui est prêt à visiter</li>
           <li>La main sur tout : quand elle répond, qui elle pousse, à quel rythme</li>
@@ -454,17 +466,19 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
 
       <div class="price-card">
+        <div class="pc-top">
         <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">Elle vous fait gagner</span>
         <h3>Je gagne plus de mandats</h3>
         <div class="price">790 £<small> / mois</small></div>
-        <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
+        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
         <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>Rendez-vous d'estimation. Deux autres agences sont passées avant vous. Vous dites la même chose qu'elles, avec le même sourire. Le propriétaire hésite, puis choisit celui qu'il a senti le plus sérieux.</p></div>
         <div class="scene after"><span class="lbl">Ce qui change</span><p>Vous sortez votre téléphone et vous lui montrez son bien, déjà mis en valeur, prêt à être diffusé. Il voit ce que les autres lui ont seulement promis. C'est vous qu'il choisit.</p></div>
+        </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
           <ul>
           <li class="more">Tout le palier précédent, plus :</li>
-          <li>Vos vraies photos transformées en présentation soignée, prête à diffuser</li>
+          <li>Vos vraies photos, mises en mouvement. Un mouvement lent et sobre, aucun angle inventé, aucune pièce reconstituée, aucune retouche. Ce que le propriétaire voit existe.</li>
           <li>Une présentation par bien, pour arriver en tête au rendez-vous d'estimation</li>
           </ul>
         </div>

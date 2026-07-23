@@ -119,15 +119,36 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .roi-calc strong { font-weight: 700; font-size: 1.15rem; }
 .roi-verdict { font-size: 1.5rem; font-weight: 800; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.3); }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: stretch; column-gap: 1.2rem; row-gap: 0; max-width: 1200px; margin: 0 auto; }
+/* pricing 2026-07 : receive blocks, dominant heart, subgrid alignment */
+.price-card { display: grid; }
+.price-card .kicker { font-size:10px;font-weight:800;letter-spacing:.12em;color:#0B1D33;background:#F1F5F9;border:1px solid #E5E7EB;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem; }
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--pink);font-weight:700;margin:.3rem 0 .2rem;}
+.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}
+.blurb{padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;}
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}
+.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g900);margin-bottom:.5rem;}
+.receive ul{list-style:none;padding-top:0;border-top:none;}
+.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}
+.receive li::before{content:'\2713';position:absolute;left:0;color:var(--pink);font-weight:800;}
+.receive li.more{font-weight:700;color:var(--g900);}
+.receive li.more::before{content:'+';}
+.price-card.heart{border-color:var(--pink);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);z-index:2;padding:2rem 2.2rem;}
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto auto;align-items:stretch;row-gap:0;}
+  .price-card{grid-row:1 / span 2;grid-template-rows:subgrid;row-gap:0;}
+  .price-card > .pc-top{display:flex;flex-direction:column;}
+}
+@media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
 .price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(11,29,51,0.10); }
-.price-card.featured::before { content: "★ РЕКОМЕНДУЕМ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
+.price-card.featured::before { content: "★ СЕРДЦЕ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
 .price-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
 .price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
 .price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
 .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.price-card .delai { font-size: 0.78rem; color: var(--pink); font-weight: 600; margin-bottom: 1.2rem; }
+.price-card .delai { font-size: 0.78rem; color: var(--g600); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.45; }
 .price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); }
 .price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.88rem; color: var(--g700); line-height: 1.5; }
 .price-card li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; }
@@ -389,61 +410,62 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="pricing-grid">
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ОНА ОТВЕЧАЕТ</div>
+        <div class="pc-top">
+        <span class="kicker">ОНА ОТВЕЧАЕТ</span>
         <h3>Ни одной упущенной заявки</h3>
         <div class="price">290 £ <small>/ в месяц</small></div>
-        <div class="delai">→ Цена зафиксирована на 24 месяца · возврат денег в течение 30 дней</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Каждый, кто обращается в ваше агентство, получает ответ, днём и ночью, на своём языке. Отсортировано, зафиксировано, готово. Ваше утро начинается с чистого списка.
+        <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
+        <div class="blurb">Каждый, кто обращается в ваше агентство, получает ответ, днём и ночью, на своём языке. Отсортировано, зафиксировано, готово. Ваше утро начинается с чистого списка.</div>
         </div>
-
-
-<ul>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
           <li>Отвечает на каждую заявку за считанные минуты, днём и ночью, на 8 языках</li>
           <li>Отделяет просто любопытных от серьёзных и собирает данные</li>
           <li>Назначает показ или передаёт заявку вашему агенту, по вашему процессу</li>
           <li>Подключается к вашей CRM и к инструментам, которыми вы уже пользуетесь</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
-      <div class="price-card featured">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ОНА КОНВЕРТИРУЕТ</div>
+      <div class="price-card featured heart">
+        <div class="pc-top">
+        <span class="kicker"  style="color:var(--pink);background:#DBEAFE;border-color:#93C5FD;">ОНА КОНВЕРТИРУЕТ</span>
         <h3>Заявки становятся показами</h3>
-        <div class="price">490 £ <small>/ в месяц</small></div>
-        <div class="delai">→ Промо: 290 £ в месяц в течение 60 дней · отказаться можно в любой момент · возврат денег в течение 30 дней · поддержка по email</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Ответить мало, нужно довести до показа. Sarah напоминает о себе голосом и не даёт разговору заглохнуть.
+        <div class="price"><span class="price-old">490 £</span>290 £ <small>/ в месяц</small></div>
+        <div class="price-save">Первые два месяца по 290 £ вместо 490 £. Вы оставляете себе 400 £.</div>
+        <div class="price-sub">Через два месяца тариф становится 490 £. Никаких сюрпризов, никакого скрытого продления.</div>
+        <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
+        <div class="blurb">Ответить мало, нужно довести до показа. Sarah напоминает о себе голосом и не даёт разговору заглохнуть.</div>
         </div>
-
-
-<ul>
-          <li>Всё, что входит в <strong>Ни одной упущенной заявки</strong></li>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
+          <li class="more">Всё из предыдущего тарифа, плюс:</li>
+          <li>Утренняя и вечерняя сводка в вашем WhatsApp, плюс итоги недели. Вы знаете, что произошло, не спрашивая.</li>
           <li><strong>Голос</strong>: Sarah напоминает о себе живым голосовым сообщением и не даёт разговору заглохнуть</li>
-          <li><strong>Вы знаете, что происходило</strong> в ваше отсутствие: каждое утро, каждый вечер, каждую неделю</li>
           <li><strong>Руль остаётся у вас</strong>: вы решаете, как она работает, кого подталкивает и в каком темпе</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">ОНА ПРИНОСИТ ДОГОВОРЫ</div>
+        <div class="pc-top">
+        <span class="kicker" style="color:#0A0A0A;background:var(--g100);border-color:var(--g200);">ОНА ПРИНОСИТ ДОГОВОРЫ</span>
         <h3>Больше подписанных договоров</h3>
         <div class="price">790 £ <small>/ в месяц</small></div>
-        <div class="delai">→ Отказаться можно в любой момент · возврат денег в течение 30 дней</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Договор выигрывается на встрече по оценке, где за тот же объект борются ещё два агента.
+        <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
+        <div class="blurb">Договор выигрывается на встрече по оценке, где за тот же объект борются ещё два агента.</div>
         </div>
-
-
-        <ul>
-          <li>Всё, что входит в <strong>Заявки становятся показами</strong></li>
-          <li><strong>Премиальная презентация</strong>: ваши настоящие фотографии превращаются в премиальную онлайн-презентацию за считанные минуты</li>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
+          <li class="more">Всё из предыдущего тарифа, плюс:</li>
+          <li>Ваши настоящие фотографии, приведённые в движение. Медленное, сдержанное движение. Никаких выдуманных ракурсов, никаких воссозданных комнат, никакой ретуши. То, что видит собственник, действительно существует.</li>
           <li>Мы улучшаем то, что есть, и никогда не выдумываем объект</li>
           <li>Sarah никогда не общается с вашими собственниками: она освобождает ваш график для встреч по оценке</li>
-        </ul>
-
+          </ul>
+        </div>
       </div>
 
     </div>

@@ -119,15 +119,36 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .roi-calc strong { font-weight: 700; font-size: 1.15rem; }
 .roi-verdict { font-size: 1.5rem; font-weight: 800; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.3); }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: stretch; column-gap: 1.2rem; row-gap: 0; max-width: 1200px; margin: 0 auto; }
+/* pricing 2026-07 : receive blocks, dominant heart, subgrid alignment */
+.price-card { display: grid; }
+.price-card .kicker { font-size:10px;font-weight:800;letter-spacing:.12em;color:#0B1D33;background:#F1F5F9;border:1px solid #E5E7EB;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem; }
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-save{font-size:0.85rem;color:var(--pink);font-weight:700;margin:.3rem 0 .2rem;}
+.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}
+.blurb{padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;}
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}
+.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g900);margin-bottom:.5rem;}
+.receive ul{list-style:none;padding-top:0;border-top:none;}
+.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}
+.receive li::before{content:'\2713';position:absolute;left:0;color:var(--pink);font-weight:800;}
+.receive li.more{font-weight:700;color:var(--g900);}
+.receive li.more::before{content:'+';}
+.price-card.heart{border-color:var(--pink);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);z-index:2;padding:2rem 2.2rem;}
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto auto;align-items:stretch;row-gap:0;}
+  .price-card{grid-row:1 / span 2;grid-template-rows:subgrid;row-gap:0;}
+  .price-card > .pc-top{display:flex;flex-direction:column;}
+}
+@media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
 .price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(11,29,51,0.10); }
-.price-card.featured::before { content: "★ RECOMMENDED"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
+.price-card.featured::before { content: "★ THE HEART"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
 .price-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
 .price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
 .price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
 .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.price-card .delai { font-size: 0.78rem; color: var(--pink); font-weight: 600; margin-bottom: 1.2rem; }
+.price-card .delai { font-size: 0.78rem; color: var(--g600); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.45; }
 .price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); }
 .price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.88rem; color: var(--g700); line-height: 1.5; }
 .price-card li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; }
@@ -389,61 +410,62 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="pricing-grid">
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE REPLIES</div>
+        <div class="pc-top">
+        <span class="kicker">SHE REPLIES</span>
         <h3>Never miss an enquiry</h3>
         <div class="price">£290 <small>/ month</small></div>
-        <div class="delai">→ Price locked for 24 months · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Every person who contacts your agency gets a reply, day and night, in their language. Sorted, logged, ready. Your morning starts with a clean list.
+        <div class="delai">Price locked for 24 months, Sarah&#39;s improvements included. Cancel anytime: it is the price that is locked, not you.</div>
+        <div class="blurb">Every person who contacts your agency gets a reply, day and night, in their language. Sorted, logged, ready. Your morning starts with a clean list.</div>
         </div>
-
-
-<ul>
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
           <li>Answers every enquiry in minutes, day and night, in 8 languages</li>
           <li>Sorts the tyre kickers from the serious ones and takes the details</li>
           <li>Books the viewing or passes the file to your negotiator, your process</li>
           <li>Plugs into your CRM and the tools you already use</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
-      <div class="price-card featured">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE CONVERTS</div>
+      <div class="price-card featured heart">
+        <div class="pc-top">
+        <span class="kicker"  style="color:var(--pink);background:#DBEAFE;border-color:#93C5FD;">SHE CONVERTS</span>
         <h3>Enquiries become viewings</h3>
-        <div class="price">£490 <small>/ month</small></div>
-        <div class="delai">→ Promo: £290 a month for 60 days · Cancel anytime · 30-day money-back · email support</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.
+        <div class="price"><span class="price-old">£490</span>£290 <small>/ month</small></div>
+        <div class="price-save">Your first two months at £290 instead of £490. You keep £400.</div>
+        <div class="price-sub">After two months it goes to £490. No surprise, no hidden renewal.</div>
+        <div class="delai">Price locked for 24 months, Sarah&#39;s improvements included. Cancel anytime: it is the price that is locked, not you.</div>
+        <div class="blurb">Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.</div>
         </div>
-
-
-<ul>
-          <li>Everything in <strong>Never miss an enquiry</strong></li>
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
+          <li class="more">Everything in the previous plan, plus:</li>
+          <li>A morning and an evening round-up on your WhatsApp, plus the weekly recap. You know what happened without having to ask.</li>
           <li><strong>Voice</strong>: Sarah follows up with a natural voice note and keeps the thread alive</li>
-          <li><strong>You know what happened</strong> while you were out, every morning, every evening, every week</li>
           <li><strong>Hands on the wheel</strong>: you decide how she works, which buyers she pushes, at what pace</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem;">SHE WINS INSTRUCTIONS</div>
+        <div class="pc-top">
+        <span class="kicker" style="color:#0A0A0A;background:var(--g100);border-color:var(--g200);">SHE WINS INSTRUCTIONS</span>
         <h3>Win more instructions</h3>
         <div class="price">£790 <small>/ month</small></div>
-        <div class="delai">→ Cancel anytime · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--pink-bg);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          An instruction is won in the valuation appointment, against two other agents after the same property.
+        <div class="delai">Price locked for 24 months, Sarah&#39;s improvements included. Cancel anytime: it is the price that is locked, not you.</div>
+        <div class="blurb">An instruction is won in the valuation appointment, against two other agents after the same property.</div>
         </div>
-
-
-        <ul>
-          <li>Everything in <strong>Enquiries become viewings</strong></li>
-          <li><strong>Premium presentation</strong>: your real photos turned into a premium online presentation, in minutes</li>
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
+          <li class="more">Everything in the previous plan, plus:</li>
+          <li>Your real photos, brought to life. Slow, restrained movement. No invented angles, no reconstructed rooms, no retouching. What the vendor sees is what is there.</li>
           <li>We enhance the real, we never fabricate a property</li>
           <li>Sarah never speaks to your vendors: she frees up your diary for valuations</li>
-        </ul>
-
+          </ul>
+        </div>
       </div>
 
     </div>
