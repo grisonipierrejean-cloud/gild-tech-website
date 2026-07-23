@@ -133,7 +133,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .mine-card li { padding: 0.6rem 0 0.6rem 1.7rem; position: relative; font-size: 0.95rem; opacity: 0.9; line-height: 1.55; }
 .mine-card li::before { content: "→"; position: absolute; left: 0; color: var(--cta); font-weight: 800; }
 
-.pricing-grid { display: grid; grid-template-columns: 1fr 1.34fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
 .price-card.featured::before { content: "★ LE CŒUR"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
@@ -212,7 +212,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99; letter-spacing: 0.01em;
   }
 }
-</style>
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--noir);margin-bottom:.5rem;}.receive ul{list-style:none;}.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}.receive li::before{content:'\2713';position:absolute;left:0;color:var(--cta);font-weight:800;}.receive li.more{font-weight:700;color:var(--noir);}.receive li.more::before{content:'+';}.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}</style>
   
 <style>
 /* SAMUI 2026 - taxi / horloge / scenes */
@@ -420,18 +420,37 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Je ne rate plus un acheteur</h3>
         <div class="price">290 £<small> / mois</small></div>
         <div class="delai">→ Tarif bloqué 24 mois · 30 jours satisfait ou remboursé</div>
-        <div class="scene before"><span class="lbl">Avant</span><p>Vous ouvrez l'agence à 9h. Quarante messages. Trois sérieux, le reste des curieux. Vous ne savez pas lesquels, alors vous les traitez tous, et vous perdez la matinée.</p></div>
-        <div class="scene after"><span class="lbl">Après</span><p>Vous ouvrez l'agence à 9h. Tout le monde a déjà reçu une réponse pendant la nuit, dans sa langue. Les trois sérieux sont identifiés, avec leurs questions et leur budget. Vous commencez votre journée par eux.</p></div>
+        <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>Vous ouvrez l'agence à 9h. Quarante messages. Trois sérieux, le reste des curieux. Vous ne savez pas lesquels, alors vous les traitez tous, et vous perdez la matinée.</p></div>
+        <div class="scene after"><span class="lbl">Ce qui change</span><p>Vous ouvrez l'agence à 9h. Tout le monde a déjà reçu une réponse pendant la nuit, dans sa langue. Les trois sérieux sont identifiés, avec leurs questions et leur budget. Vous commencez votre journée par eux.</p></div>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
+          <li>Une réponse à chaque acheteur, jour et nuit, dans sa langue</li>
+          <li>Les sérieux séparés des curieux, avec leur budget et leurs questions</li>
+          <li>La visite posée dans votre agenda, ou le dossier passé à votre consultant</li>
+          <li>Votre liste du matin, prête à travailler</li>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card featured heart">
         <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Elle transforme</span>
         <h3>Mes acheteurs deviennent des visites</h3>
         <div class="price"><span class="price-old">490 £</span>290 £<small> / mois</small></div>
-        <div class="price-save">290 £ les deux premiers mois · vous économisez 400 £</div>
+        <div class="price-save">Vos deux premiers mois à 290 £ au lieu de 490 £. Vous gardez 400 £.</div>
+        <div class="price-sub">Ensuite 490 £, résiliable à tout moment. Aucun engagement, aucune pénalité.</div>
         <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-        <div class="scene before"><span class="lbl">Avant</span><p>L'acheteur a écrit lundi. Vous avez répondu. Il n'a jamais rappelé. Vous n'avez pas eu le temps de le relancer, et vous ne saurez jamais s'il a acheté ailleurs.</p></div>
-        <div class="scene after"><span class="lbl">Après</span><p>Sarah le rappelle à la voix, comme une vraie personne. Elle garde le fil. Et le soir, vous vous asseyez, vous ouvrez le tableau de bord, et vous voyez qui a bougé, qui attend, qui est prêt à visiter. Sans rien demander à personne.</p></div>
+        <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>L'acheteur a écrit lundi. Vous avez répondu. Il n'a jamais rappelé. Vous n'avez pas eu le temps de le relancer, et vous ne saurez jamais s'il a acheté ailleurs.</p></div>
+        <div class="scene after"><span class="lbl">Ce qui change</span><p>Sarah le rappelle à la voix, comme une vraie personne. Elle garde le fil. Et le soir, vous vous asseyez, vous ouvrez le tableau de bord, et vous voyez qui a bougé, qui attend, qui est prêt à visiter. Sans rien demander à personne.</p></div>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
+          <li class="more">Tout le palier précédent, plus :</li>
+          <li>La relance à la voix, en note vocale naturelle, qui garde le fil</li>
+          <li>Le tableau de bord du soir : qui a bougé, qui attend, qui est prêt à visiter</li>
+          <li>La main sur tout : quand elle répond, qui elle pousse, à quel rythme</li>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card">
@@ -439,8 +458,16 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Je gagne plus de mandats</h3>
         <div class="price">790 £<small> / mois</small></div>
         <div class="delai">→ Résiliable à tout moment · 30 jours satisfait ou remboursé</div>
-        <div class="scene before"><span class="lbl">Avant</span><p>Rendez-vous d'estimation. Deux autres agences sont passées avant vous. Vous dites la même chose qu'elles, avec le même sourire. Le propriétaire hésite, puis choisit celui qu'il a senti le plus sérieux.</p></div>
-        <div class="scene after"><span class="lbl">Après</span><p>Vous sortez votre téléphone et vous lui montrez son bien, déjà mis en valeur, prêt à être diffusé. Il voit ce que les autres lui ont seulement promis. C'est vous qu'il choisit.</p></div>
+        <div class="scene before"><span class="lbl">Ce que vous perdez aujourd'hui</span><p>Rendez-vous d'estimation. Deux autres agences sont passées avant vous. Vous dites la même chose qu'elles, avec le même sourire. Le propriétaire hésite, puis choisit celui qu'il a senti le plus sérieux.</p></div>
+        <div class="scene after"><span class="lbl">Ce qui change</span><p>Vous sortez votre téléphone et vous lui montrez son bien, déjà mis en valeur, prêt à être diffusé. Il voit ce que les autres lui ont seulement promis. C'est vous qu'il choisit.</p></div>
+        <div class="receive">
+          <h4>Ce que vous recevez</h4>
+          <ul>
+          <li class="more">Tout le palier précédent, plus :</li>
+          <li>Vos vraies photos transformées en présentation soignée, prête à diffuser</li>
+          <li>Une présentation par bien, pour arriver en tête au rendez-vous d'estimation</li>
+          </ul>
+        </div>
       </div>
 
     </div>

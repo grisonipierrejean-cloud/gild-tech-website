@@ -133,7 +133,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .mine-card li { padding: 0.6rem 0 0.6rem 1.7rem; position: relative; font-size: 0.95rem; opacity: 0.9; line-height: 1.55; }
 .mine-card li::before { content: "→"; position: absolute; left: 0; color: var(--cta); font-weight: 800; }
 
-.pricing-grid { display: grid; grid-template-columns: 1fr 1.34fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
 .price-card.featured::before { content: "★ СЕРДЦЕ"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
@@ -212,7 +212,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99; letter-spacing: 0.01em;
   }
 }
-</style>
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--noir);margin-bottom:.5rem;}.receive ul{list-style:none;}.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}.receive li::before{content:'\2713';position:absolute;left:0;color:var(--cta);font-weight:800;}.receive li.more{font-weight:700;color:var(--noir);}.receive li.more::before{content:'+';}.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}</style>
   
 <style>
 /* SAMUI 2026 - taxi / horloge / scenes */
@@ -419,18 +419,37 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Ни одного упущенного покупателя</h3>
         <div class="price">290 £<small> / мес</small></div>
         <div class="delai">→ Цена зафиксирована на 24 месяца · возврат денег в течение 30 дней</div>
-        <div class="scene before"><span class="lbl">До</span><p>Вы открываете агентство в 9 утра. Сорок сообщений. Трое серьёзных, остальные просто любопытные. Вы не знаете, кто есть кто, поэтому берётесь за всех и теряете всё утро.</p></div>
-        <div class="scene after"><span class="lbl">После</span><p>Вы открываете агентство в 9 утра. Все уже получили ответ ночью, на своём языке. Трое серьёзных выделены, с их вопросами и бюджетом. Вы начинаете день с них.</p></div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Вы открываете агентство в 9 утра. Сорок сообщений. Трое серьёзных, остальные просто любопытные. Вы не знаете, кто есть кто, поэтому берётесь за всех и теряете всё утро.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы открываете агентство в 9 утра. Все уже получили ответ ночью, на своём языке. Трое серьёзных выделены, с их вопросами и бюджетом. Вы начинаете день с них.</p></div>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
+          <li>Ответ каждому покупателю, днём и ночью, на его языке</li>
+          <li>Серьёзные отделены от любопытных, с бюджетом и вопросами</li>
+          <li>Показ в вашем календаре или заявка передана вашему консультанту</li>
+          <li>Ваш утренний список, готовый к работе</li>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card featured heart">
         <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Она превращает</span>
         <h3>Мои покупатели доходят до показа</h3>
         <div class="price"><span class="price-old">490 £</span>290 £<small> / мес</small></div>
-        <div class="price-save">290 £ первые два месяца · вы экономите 400 £</div>
+        <div class="price-save">Первые два месяца по 290 £ вместо 490 £. Вы оставляете себе 400 £.</div>
+        <div class="price-sub">Затем 490 £, отказаться можно в любой момент. Без обязательств и штрафов.</div>
         <div class="delai">→ Отказаться можно в любой момент · возврат денег в течение 30 дней</div>
-        <div class="scene before"><span class="lbl">До</span><p>Покупатель написал в понедельник. Вы ответили. Он так и не перезвонил. У вас не было времени напомнить о себе, и вы никогда не узнаете, купил ли он в другом месте.</p></div>
-        <div class="scene after"><span class="lbl">После</span><p>Sarah напоминает о себе голосом, как живой человек. Она не даёт разговору заглохнуть. А вечером вы садитесь, открываете панель, и видите, кто сдвинулся, кто ждёт, кто готов на показ. Ни у кого ничего не спрашивая.</p></div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Покупатель написал в понедельник. Вы ответили. Он так и не перезвонил. У вас не было времени напомнить о себе, и вы никогда не узнаете, купил ли он в другом месте.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Sarah напоминает о себе голосом, как живой человек. Она не даёт разговору заглохнуть. А вечером вы садитесь, открываете панель, и видите, кто сдвинулся, кто ждёт, кто готов на показ. Ни у кого ничего не спрашивая.</p></div>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
+          <li class="more">Всё из предыдущего тарифа, плюс:</li>
+          <li>Голосовая дозвонка, живое голосовое сообщение, которое держит нить</li>
+          <li>Вечерняя панель: кто сдвинулся, кто ждёт, кто готов на показ</li>
+          <li>Полный контроль: когда она отвечает, кого подталкивает и в каком темпе</li>
+          </ul>
+        </div>
       </div>
 
       <div class="price-card">
@@ -438,8 +457,16 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Больше подписанных договоров</h3>
         <div class="price">790 £<small> / мес</small></div>
         <div class="delai">→ Отказаться можно в любой момент · возврат денег в течение 30 дней</div>
-        <div class="scene before"><span class="lbl">До</span><p>Встреча по оценке. Два других агентства побывали до вас. Вы говорите то же, что и они, с той же улыбкой. Собственник колеблется, потом выбирает того, кто показался ему серьёзнее.</p></div>
-        <div class="scene after"><span class="lbl">После</span><p>Вы достаёте телефон и показываете ему его объект, уже красиво поданный, готовый к публикации. Он видит то, что другие только пообещали. Он выбирает вас.</p></div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Встреча по оценке. Два других агентства побывали до вас. Вы говорите то же, что и они, с той же улыбкой. Собственник колеблется, потом выбирает того, кто показался ему серьёзнее.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы достаёте телефон и показываете ему его объект, уже красиво поданный, готовый к публикации. Он видит то, что другие только пообещали. Он выбирает вас.</p></div>
+        <div class="receive">
+          <h4>Что вы получаете</h4>
+          <ul>
+          <li class="more">Всё из предыдущего тарифа, плюс:</li>
+          <li>Ваши настоящие фото, превращённые в аккуратную презентацию, готовую к публикации</li>
+          <li>Отдельная презентация на каждый объект, чтобы прийти на оценку с преимуществом</li>
+          </ul>
+        </div>
       </div>
 
     </div>
