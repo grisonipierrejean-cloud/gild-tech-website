@@ -288,7 +288,7 @@
     if(!D.__demo || document.getElementById("demo-badge")) return;
     const b=document.createElement("div"); b.id="demo-badge";
     b.textContent="⚠ "+((I18N[lang]||I18N.fr).demo);
-    b.style.cssText="position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:99;font:700 11px/1 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.02em;color:#fff;background:#d97706;padding:7px 13px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.28)";
+    b.style.cssText="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:99;font:700 10.5px/1 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.02em;color:#fff;background:rgba(217,119,6,.92);padding:6px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.28);backdrop-filter:blur(4px);pointer-events:none";
     document.body.appendChild(b);
   }
   function emptyState(){
