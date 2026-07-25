@@ -233,7 +233,12 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
 .price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
 .tier-diff{font-size:1rem;font-weight:700;color:var(--noir);margin:.15rem 0 1rem;line-height:1.35;}
-.value-line{font-size:0.85rem;font-weight:600;color:var(--cta);margin:.1rem 0 1rem;line-height:1.4;}
+.value-line{font-size:0.95rem;font-weight:800;color:var(--cta);margin:.15rem 0 1rem;line-height:1.4;}
+.scenes-band{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:1.5rem auto 2.5rem;}
+.scene-col{background:#F8FAFC;border:1px solid var(--g200);border-radius:var(--r);padding:1.4rem 1.3rem;}
+.scene-col-h{font-size:1rem;font-weight:800;color:var(--noir);margin-bottom:.8rem;line-height:1.25;}
+.config-note{text-align:center;font-size:0.92rem;color:var(--g600);font-weight:600;max-width:660px;margin:1.6rem auto 0;line-height:1.5;}
+@media(max-width:820px){.scenes-band{grid-template-columns:1fr;}}
 .card-cta-wrap{margin-top:1.2rem;}
 .card-cta{display:block;text-align:center;background:var(--cta);color:var(--blanc);padding:.85rem 1rem;border-radius:10px;font-weight:700;font-size:0.92rem;text-decoration:none;transition:all .2s;}
 .card-cta:hover{background:var(--cta-hover);box-shadow:0 8px 24px rgba(37,99,235,.28);transform:translateY(-1px);}
@@ -422,6 +427,24 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       Она отвечает. Она превращает ответы в показы. Она помогает подписывать больше договоров.
     </div>
 
+    <div class="scenes-band">
+      <div class="scene-col">
+        <div class="scene-col-h">Ни одного упущенного покупателя</div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Вы открываете агентство в 9 утра. Сорок сообщений. Трое серьёзных, остальные просто любопытные. Вы не знаете, кто есть кто, поэтому берётесь за всех и теряете всё утро.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы открываете агентство в 9 утра. Все уже получили ответ ночью, на своём языке. Трое серьёзных выделены, с их вопросами и бюджетом. Вы начинаете день с них.</p></div>
+      </div>
+      <div class="scene-col">
+        <div class="scene-col-h">Мои покупатели доходят до показа</div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Покупатель написал в понедельник. Вы ответили. Он так и не перезвонил. У вас не было времени напомнить о себе, и вы никогда не узнаете, купил ли он в другом месте.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Sarah напоминает о себе голосом, как живой человек. Она не даёт разговору заглохнуть. А вечером вы садитесь, открываете панель, и видите, кто сдвинулся, кто ждёт, кто готов на показ. Ни у кого ничего не спрашивая.</p></div>
+      </div>
+      <div class="scene-col">
+        <div class="scene-col-h">Больше подписанных договоров</div>
+        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Встреча по оценке. Два других агентства побывали до вас. Вы говорите то же, что и они, с той же улыбкой. Собственник колеблется, потом выбирает того, кто показался ему серьёзнее.</p></div>
+        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы достаёте телефон и показываете ему его объект, уже красиво поданный, готовый к публикации. Он видит то, что другие только пообещали. Он выбирает вас.</p></div>
+      </div>
+    </div>
+
     <div class="pricing-grid">
 
       <div class="price-card">
@@ -430,10 +453,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Ни одного упущенного покупателя</h3>
         <div class="tier-diff">Она отвечает. Никто не остаётся без ответа.</div>
         <div class="price">290 £<small> / мес</small></div>
-        <div class="value-line">Один купивший покупатель окупает год.</div>
+        <div class="value-line">Один договор на Самуи ≈ 750 000 THB.</div>
         <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
-        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Вы открываете агентство в 9 утра. Сорок сообщений. Трое серьёзных, остальные просто любопытные. Вы не знаете, кто есть кто, поэтому берётесь за всех и теряете всё утро.</p></div>
-        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы открываете агентство в 9 утра. Все уже получили ответ ночью, на своём языке. Трое серьёзных выделены, с их вопросами и бюджетом. Вы начинаете день с них.</p></div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Что вы получаете</h4>
@@ -455,10 +476,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="price"><span class="price-old">490 £</span>290 £<small> / мес</small></div>
         <div class="price-save">Первые два месяца по 290 £ вместо 490 £. Вы оставляете себе 400 £.</div>
         <div class="price-sub">Через два месяца тариф становится 490 £. Никаких сюрпризов, никакого скрытого продления.</div>
-        <div class="value-line">Один закрывшийся показ окупает год.</div>
+        <div class="value-line">Один договор на Самуи ≈ 750 000 THB.</div>
         <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
-        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Покупатель написал в понедельник. Вы ответили. Он так и не перезвонил. У вас не было времени напомнить о себе, и вы никогда не узнаете, купил ли он в другом месте.</p></div>
-        <div class="scene after"><span class="lbl">Что меняется</span><p>Sarah напоминает о себе голосом, как живой человек. Она не даёт разговору заглохнуть. А вечером вы садитесь, открываете панель, и видите, кто сдвинулся, кто ждёт, кто готов на показ. Ни у кого ничего не спрашивая.</p></div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Что вы получаете</h4>
@@ -477,10 +496,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Больше подписанных договоров</h3>
         <div class="tier-diff">Она приносит вам договор.</div>
         <div class="price">790 £<small> / мес</small></div>
-        <div class="value-line">Один выигранный договор окупает год.</div>
+        <div class="value-line">Один договор на Самуи ≈ 750 000 THB.</div>
         <div class="delai">Цена зафиксирована на 24 месяца, улучшения Sarah включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</div>
-        <div class="scene before"><span class="lbl">Что вы теряете сегодня</span><p>Встреча по оценке. Два других агентства побывали до вас. Вы говорите то же, что и они, с той же улыбкой. Собственник колеблется, потом выбирает того, кто показался ему серьёзнее.</p></div>
-        <div class="scene after"><span class="lbl">Что меняется</span><p>Вы достаёте телефон и показываете ему его объект, уже красиво поданный, готовый к публикации. Он видит то, что другие только пообещали. Он выбирает вас.</p></div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Что вы получаете</h4>
@@ -494,6 +511,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
 
     </div>
+
+    <p class="config-note">Настроено вручную, тем, кто знает Самуи.</p>
 
     <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:820px;margin-left:auto;margin-right:auto;line-height:1.6;">
       <strong>Простое правило:</strong> надоело терять покупателей в три часа ночи? <em>Ни одного упущенного покупателя</em>. Хотите, чтобы больше ваших ответов доходило до показа, голосом Sarah? <em>Покупатели доходят до показа</em>. Хотите сильнее выступать на оценке? <em>Больше подписанных договоров</em>.
