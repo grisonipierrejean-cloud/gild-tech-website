@@ -23,7 +23,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#FFFFFF">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
@@ -142,10 +142,30 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .mine-card li::before { content: "→"; position: absolute; left: 0; color: var(--cta); font-weight: 800; }
 
 /* OFFRES / PRICING */
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: stretch; column-gap: 1.2rem; row-gap: 0; max-width: 1200px; margin: 0 auto; }
+.price-card { display: grid; }
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.9rem;}
+.value-line{font-size:0.95rem;font-weight:800;color:var(--cta);margin:.15rem 0 1rem;line-height:1.4;}
+.price-save{font-size:0.85rem;color:var(--cta);font-weight:700;margin:.3rem 0 .2rem;}
+.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}
+.blurb{padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;}
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}
+.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--noir);margin-bottom:.5rem;}
+.receive ul{list-style:none;padding-top:0;border-top:none;}
+.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}
+.receive li::before{content:'\2713';position:absolute;left:0;color:var(--cta);font-weight:800;}
+.tier-diff{font-size:1rem;font-weight:700;color:var(--noir);margin:.15rem 0 1rem;line-height:1.35;}
+.lock-line{font-size:0.72rem;color:var(--g500);line-height:1.4;padding-top:.9rem;margin-top:.4rem;border-top:1px solid var(--g100);}
+.price-card.heart{border-color:var(--cta);border-width:2px;box-shadow:0 28px 60px rgba(37,99,235,0.30);z-index:2;padding:2rem 2.2rem;}
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto auto auto;align-items:stretch;row-gap:0;}
+  .price-card{grid-row:1 / span 3;grid-template-rows:subgrid;row-gap:0;}
+  .price-card > .pc-top{display:flex;flex-direction:column;}
+}
+@media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
-.price-card.featured::before { content: "★ RECOMMENDED"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
+.price-card.featured::before { content: "★ THE HEART"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
 .price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .6rem; }
 .price-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--noir); }
 .price-card .for { font-size: 0.9rem; color: var(--g700); margin-bottom: 1.1rem; line-height: 1.5; }
@@ -198,9 +218,9 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .footer-mention { font-size: 0.72rem; color: var(--g500); }
 
 /* GARANTIE */
-.garantie-band { margin-top: 2rem; padding: 1.4rem 1.8rem; background: var(--vert); color: var(--blanc); border-radius: 14px; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; box-shadow: 0 8px 24px rgba(22,163,74,.18); }
-.garantie-band .t { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
-.garantie-band p { margin: 0; font-size: 0.95rem; opacity: .95; }
+.garantie-band { margin-top: 1.4rem; padding: .75rem 1.1rem; background: var(--g50); color: var(--g600); border: 1px solid var(--g200); border-radius: 10px; text-align: center; max-width: 480px; margin-left: auto; margin-right: auto; }
+.garantie-band .t { font-size: .9rem; font-weight: 700; color: var(--g700); margin-bottom: .15rem; }
+.garantie-band p { margin: 0; font-size: 0.8rem; color: var(--g500); }
 
 @media (max-width: 1100px) {
   .pricing-grid { grid-template-columns: 1fr; max-width: 540px; }
@@ -414,61 +434,66 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="pricing-grid">
 
       <div class="price-card">
+        <div class="pc-top">
         <span class="kicker">She replies</span>
         <h3>Never miss a buyer</h3>
+        <div class="tier-diff">She answers everyone, day and night. No enquiry left cold.</div>
         <div class="price">€290<small> / month</small></div>
-        <div class="delai">→ Price locked for 24 months · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Every person who writes to your agency finds someone there, day and night, in their language. Sorted, logged, ready. Your day starts with a clear list.
+        <div class="value-line">One saved buyer can be worth a whole sale. Sarah costs you €3,480 a year.</div>
+        <div class="blurb">Every person who writes to your agency finds someone there, day and night, in their language. Sorted, logged, ready. Your day starts with a clear list.</div>
         </div>
-
-
-<ul>
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
           <li>Answers every enquiry in minutes, day and night, in 8 languages</li>
           <li>Sorts the curious from the serious and takes the details</li>
           <li>Books the viewing or passes the file to your negotiator, your procedure</li>
           <li>Plugs into what you already use (Whise, SweepBright, Omnicasa, Hovi)</li>
-        </ul>
+          </ul>
+        </div>
+        <div class="lock-line">Price locked for 24 months, improvements included. Cancel anytime.</div>
       </div>
 
-      <div class="price-card featured">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">She converts</span>
+      <div class="price-card featured heart">
+        <div class="pc-top">
+        <span class="kicker"  style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">She converts</span>
         <h3>My buyers become viewings</h3>
-        <div class="price">€490<small> / month</small></div>
-        <div class="delai">→ Promo: €290 a month for 60 days · Cancel anytime · 30-day money-back · email support</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.
+        <div class="tier-diff">She follows up, then reports back.</div>
+        <div class="price"><span class="price-old">€490</span>€290<small> / month</small></div>
+        <div class="price-save">Your first two months at €290 instead of €490. You keep €400.</div>
+        <div class="price-sub">After two months it goes to €490. No surprise, no hidden renewal.</div>
+        <div class="value-line">A single recovered buyer pays back your year.</div>
+        <div class="blurb">Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.</div>
         </div>
-
-
-<ul>
-          <li>Everything in <strong>Never miss a buyer</strong></li>
-          <li><strong>Voice</strong>: Sarah follows up with a natural voice note and keeps the thread alive</li>
-          <li><strong>You know what happened</strong> while you were away: every morning, every evening, every week</li>
-          <li><strong>Hands on the wheel</strong>: you decide how she works, which buyers she pushes, at what pace</li>
-        </ul>
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
+          <li>A morning and an evening round-up on your WhatsApp, plus the weekly recap. You know what happened without having to ask.</li>
+          <li>Voice follow-up on buyers who have gone quiet, in their own language.</li>
+          <li>Full control: when she replies, which buyers she pushes, at what pace</li>
+          </ul>
+        </div>
+        <div class="lock-line">Price locked for 24 months, improvements included. Cancel anytime.</div>
       </div>
 
       <div class="price-card">
+        <div class="pc-top">
         <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">She wins listings</span>
         <h3>Win more listings</h3>
+        <div class="tier-diff">She wins you the listing.</div>
         <div class="price">€790<small> / month</small></div>
-        <div class="delai">→ Cancel anytime · 30-day money-back</div>
-
-        <div style="padding:1rem 1.1rem;background:var(--bleu-nuit-bg);border-left:3px solid var(--cta);border-radius:0 8px 8px 0;margin-bottom:1rem;font-size:.95rem;line-height:1.6;color:var(--g900);font-style:italic;">
-          A listing is won in the valuation appointment, facing two agencies after the same property.
+        <div class="value-line">One listing won is worth about €10,000. Sarah costs you €9,480 a year.</div>
+        <div class="blurb">A listing is won in the valuation appointment, facing two agencies after the same property.</div>
         </div>
-
-
-        <ul>
-          <li>Everything in <strong>My buyers become viewings</strong></li>
-          <li><strong>Premium presentation</strong>: your real photos turned into a premium online presentation, in minutes</li>
-          <li>We enhance the real, we never fabricate a property</li>
-          <li>Sarah never speaks to your owners: she frees up your diary for valuations</li>
-        </ul>
-
+        <div class="receive">
+          <h4>What you receive</h4>
+          <ul>
+          <li>Your real photos, brought to life. Slow, restrained movement. No invented angles, no reconstructed rooms, no retouching. What the vendor sees is what is there.</li>
+          <li>A presentation ready before the competitor has packed their camera away.</li>
+          <li>As many presentations as you have listings.</li>
+          </ul>
+        </div>
+        <div class="lock-line">Price locked for 24 months, improvements included. Cancel anytime.</div>
       </div>
 
     </div>
@@ -478,7 +503,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </p>
 
     <div class="garantie-band">
-      <div class="t">🛡️ 30-day money-back guarantee</div>
+      <div class="t">30-day money-back guarantee</div>
       <p>Not happy in your first 30 days? Every cent back. No questions, no friction. Same guarantee on all three plans.</p>
     </div>
 
@@ -533,7 +558,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="faq-item">
         <h4>How quickly does Sarah start answering my buyers?</h4>
-        <p>We don’t sell delivery deadlines, we sell results. Setup runs in parallel with your validation: we configure your diary, test with your team, agree the wording, connect your existing WhatsApp Business number. The minute you approve Sarah, she starts answering, and the 30-day money-back clock starts. Not happy in your first 30 days? Every cent comes back to you.</p>
+        <p>We don’t sell delivery deadlines, we sell results. Going live runs in parallel with your validation: we configure your diary, test with your team, agree the wording, connect your existing WhatsApp Business number. The minute you approve Sarah, she starts answering, and the 30-day money-back clock starts.</p>
       </div>
     </div>
   </section>
@@ -553,6 +578,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <ul class="footer-links">
       <li><a href="/offres/immobilier-be">Offers</a></li>
       <li><a href="/sarah-be">Sarah</a></li>
+      <li><a href="/terms">Terms</a></li>
       <li><a href="/legal-notice">Legal</a></li>
       <li><a href="/privacy">Privacy</a></li>
     </ul>
