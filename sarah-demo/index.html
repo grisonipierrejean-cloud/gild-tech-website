@@ -7,44 +7,72 @@
 <title>Sarah — Aperçu dashboard</title>
 <style>
   :root{
-    --bg:#0f1417;
-    --panel:#161d21;
-    --panel-2:#1c2429;
-    --line:#252f35;
-    --txt:#e6ebe9;
-    --txt-dim:#8a9a99;
-    --accent:#4fb3a3;
-    --warm:#d9a05b;
-    --hot:#e0705c;
+    --bg:#0f1417; --panel:#161d21; --panel-2:#1c2429; --line:#252f35;
+    --txt:#e6ebe9; --txt-dim:#8a9a99; --accent:#4fb3a3; --warm:#d9a05b; --hot:#e0705c;
+    --shadow:0 8px 30px -14px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f7f6; --panel:#ffffff; --panel-2:#eef3f2; --line:#e2e9e7;
+    --txt:#12201d; --txt-dim:#5f726e; --accent:#2f8d7e; --warm:#b9792f; --hot:#c9503c;
+    --shadow:0 10px 30px -16px rgba(18,32,29,.25);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--txt);
+  body{background:var(--bg);color:var(--txt);
     font-family:ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
-    padding:28px;
-    line-height:1.5;
-  }
-  .banner{
-    background:rgba(217,160,91,.12);
-    border:1px solid rgba(217,160,91,.35);
-    color:var(--warm);
-    padding:11px 16px;
-    border-radius:10px;
-    font-size:13px;
-    letter-spacing:.02em;
-    margin-bottom:26px;
-  }
-  header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-  h1{font-size:21px;font-weight:600;letter-spacing:-.01em}
+    padding:24px 20px 40px;line-height:1.5;max-width:900px;margin:0 auto;
+    transition:background .3s ease,color .3s ease}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+  .brand{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .brand span{color:var(--accent)}
+  .theme{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:var(--shadow)}
+  .theme button{border:0;background:none;color:var(--txt-dim);font:inherit;font-size:13px;font-weight:600;
+    padding:6px 13px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
+  .theme button[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+  .banner{background:rgba(217,160,91,.12);border:1px solid rgba(217,160,91,.35);color:var(--warm);
+    padding:10px 15px;border-radius:10px;font-size:12.5px;margin-bottom:22px}
+
+  header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+  h1{font-size:22px;font-weight:600;letter-spacing:-.01em}
   h1 span{color:var(--txt-dim);font-weight:400}
-  .status{font-size:13px;color:var(--accent);display:flex;align-items:center;gap:7px}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:14px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .status{font-size:13px;color:var(--accent);display:flex;align-items:center;gap:7px;font-weight:600}
+  .status.off{color:var(--txt-dim)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .status.off .dot{background:var(--txt-dim)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
   .label{font-size:12px;color:var(--txt-dim);letter-spacing:.03em;margin-bottom:9px}
   .value{font-size:29px;font-weight:600;letter-spacing:-.02em}
   .sub{font-size:12px;color:var(--txt-dim);margin-top:5px}
+
+  /* CONTROLE SARAH */
+  .control{margin-bottom:16px}
+  .control .head{display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .control .ttl{font-size:15px;font-weight:650}
+  .control .ttl .st{font-size:12.5px;color:var(--txt-dim);font-weight:400;margin-top:2px}
+  .switch{position:relative;width:52px;height:30px;flex:none;cursor:pointer}
+  .switch input{opacity:0;width:0;height:0}
+  .slider{position:absolute;inset:0;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);transition:.25s}
+  .slider::before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;border-radius:50%;
+    background:var(--txt-dim);transition:.25s}
+  .switch input:checked + .slider{background:var(--accent);border-color:var(--accent)}
+  .switch input:checked + .slider::before{transform:translateX(22px);background:#fff}
+
+  .hoursbox{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .seg{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px}
+  .seg button{border:0;background:none;color:var(--txt-dim);font:inherit;font-size:13px;font-weight:600;
+    padding:7px 14px;border-radius:8px;cursor:pointer;transition:.15s}
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+  .range{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .range label{font-size:12.5px;color:var(--txt-dim)}
+  .range input[type=time]{background:var(--panel-2);color:var(--txt);border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font:inherit;font-size:15px}
+  .range .arrow{color:var(--txt-dim)}
+  .hint{font-size:12px;color:var(--txt-dim);margin-top:12px}
+  .hint b{color:var(--txt)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:16px 0}
   .cols{display:grid;grid-template-columns:1.6fr 1fr;gap:14px}
   @media(max-width:760px){.cols{grid-template-columns:1fr}}
   h2{font-size:13px;font-weight:600;color:var(--txt-dim);letter-spacing:.04em;margin-bottom:14px}
@@ -57,92 +85,76 @@
   .t-rdv{background:rgba(79,179,163,.13);color:var(--accent);border:1px solid rgba(79,179,163,.28)}
   .t-new{background:var(--panel-2);color:var(--txt-dim);border:1px solid var(--line)}
   .bar-row{display:flex;align-items:center;gap:11px;margin-bottom:11px;font-size:13px}
-  .bar-lang{width:66px;color:var(--txt-dim);font-size:12px}
+  .bar-lang{width:70px;color:var(--txt-dim);font-size:12px}
   .bar-track{flex:1;height:6px;background:var(--panel-2);border-radius:4px;overflow:hidden}
-  .bar-fill{height:100%;background:var(--accent);opacity:.75;border-radius:4px}
+  .bar-fill{height:100%;background:var(--accent);opacity:.8;border-radius:4px}
   .bar-num{width:30px;text-align:right;color:var(--txt-dim);font-size:12px}
-  footer{margin-top:22px;font-size:12px;color:var(--txt-dim);text-align:center}
+  .card + .card{margin-top:14px}
+  footer{margin-top:24px;font-size:12px;color:var(--txt-dim);text-align:center}
 </style>
 </head>
 <body>
 
-<div class="banner">Aperçu en développement. Toutes les données affichées sont fictives et ne correspondent à aucun client réel.</div>
+<div class="topbar">
+  <div class="brand">GILD<span>-TECH</span></div>
+  <div class="theme" role="group" aria-label="Thème">
+    <button data-theme-btn="light" aria-pressed="false">☀︎ Clair</button>
+    <button data-theme-btn="dark" aria-pressed="true">☾ Sombre</button>
+  </div>
+</div>
+
+<div class="banner">Aperçu de démonstration. Toutes les données affichées sont fictives et ne correspondent à aucun client réel.</div>
 
 <header>
   <h1>Agence Démo <span>· Koh Samui</span></h1>
-  <div class="status"><span class="dot"></span>Sarah active · 24/7</div>
+  <div class="status" id="status"><span class="dot"></span><span id="status-txt">Sarah active · 24/7</span></div>
 </header>
 
+<div class="card control">
+  <div class="head">
+    <div class="ttl">Sarah
+      <div class="st" id="ctrl-st">En service, elle répond à vos contacts.</div>
+    </div>
+    <label class="switch" title="Activer / mettre en pause">
+      <input type="checkbox" id="power" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="hoursbox">
+    <div class="label">HEURES DE TRAVAIL</div>
+    <div class="seg" role="group" aria-label="Horaires">
+      <button data-hours="247" aria-pressed="true">24h/24 · 7j/7</button>
+      <button data-hours="range" aria-pressed="false">Plage définie</button>
+    </div>
+    <div class="range" id="range" hidden>
+      <label>De</label><input type="time" id="h-start" value="08:00">
+      <span class="arrow">→</span>
+      <label>à</label><input type="time" id="h-end" value="20:00">
+    </div>
+    <div class="hint" id="hours-hint">Sarah répond <b>jour et nuit</b>, week-ends compris.</div>
+  </div>
+</div>
+
 <div class="grid">
-  <div class="card">
-    <div class="label">LEADS CAPTÉS</div>
-    <div class="value">47</div>
-    <div class="sub">30 derniers jours</div>
-  </div>
-  <div class="card">
-    <div class="label">TEMPS DE RÉPONSE MOYEN</div>
-    <div class="value">2 min</div>
-    <div class="sub">jour et nuit</div>
-  </div>
-  <div class="card">
-    <div class="label">RENDEZ-VOUS POSÉS</div>
-    <div class="value">11</div>
-    <div class="sub">visites et visios</div>
-  </div>
-  <div class="card">
-    <div class="label">LEADS CHAUDS SIGNALÉS</div>
-    <div class="value">4</div>
-    <div class="sub">alertes envoyées</div>
-  </div>
+  <div class="card"><div class="label">LEADS CAPTÉS</div><div class="value">47</div><div class="sub">30 derniers jours</div></div>
+  <div class="card"><div class="label">TEMPS DE RÉPONSE MOYEN</div><div class="value">2 min</div><div class="sub">jour et nuit</div></div>
+  <div class="card"><div class="label">RENDEZ-VOUS POSÉS</div><div class="value">11</div><div class="sub">visites et visios</div></div>
+  <div class="card"><div class="label">LEADS CHAUDS SIGNALÉS</div><div class="value">4</div><div class="sub">alertes envoyées</div></div>
 </div>
 
 <div class="cols">
   <div class="card">
     <h2>DERNIERS LEADS</h2>
-
-    <div class="lead">
-      <div>
-        <div class="lead-main">Villa · Lamai · 12 M THB</div>
-        <div class="lead-meta">03:14 · russe · signature envisagée cette semaine</div>
-      </div>
-      <span class="tag t-hot">Chaud</span>
-    </div>
-
-    <div class="lead">
-      <div>
-        <div class="lead-main">Condo · Chaweng · 6 M THB</div>
-        <div class="lead-meta">01:47 · anglais · visite jeudi 10h</div>
-      </div>
-      <span class="tag t-rdv">RDV posé</span>
-    </div>
-
-    <div class="lead">
-      <div>
-        <div class="lead-main">Terrain · Bophut · budget à préciser</div>
-        <div class="lead-meta">23:52 · français · qualification en cours</div>
-      </div>
-      <span class="tag t-new">Nouveau</span>
-    </div>
-
-    <div class="lead">
-      <div>
-        <div class="lead-main">Villa · Maenam · 18 M THB</div>
-        <div class="lead-meta">22:08 · allemand · visio proposée</div>
-      </div>
-      <span class="tag t-rdv">RDV posé</span>
-    </div>
-
-    <div class="lead">
-      <div>
-        <div class="lead-main">Condo · Chaweng Noi · 4 M THB</div>
-        <div class="lead-meta">20:31 · anglais · exploration</div>
-      </div>
-      <span class="tag t-new">Nouveau</span>
-    </div>
+    <div class="lead"><div><div class="lead-main">Villa · Lamai · 12 M THB</div><div class="lead-meta">03:14 · russe · signature envisagée cette semaine</div></div><span class="tag t-hot">Chaud</span></div>
+    <div class="lead"><div><div class="lead-main">Condo · Chaweng · 6 M THB</div><div class="lead-meta">01:47 · anglais · visite jeudi 10h</div></div><span class="tag t-rdv">RDV posé</span></div>
+    <div class="lead"><div><div class="lead-main">Terrain · Bophut · budget à préciser</div><div class="lead-meta">23:52 · français · qualification en cours</div></div><span class="tag t-new">Nouveau</span></div>
+    <div class="lead"><div><div class="lead-main">Villa · Maenam · 18 M THB</div><div class="lead-meta">22:08 · allemand · visio proposée</div></div><span class="tag t-rdv">RDV posé</span></div>
+    <div class="lead"><div><div class="lead-main">Condo · Chaweng Noi · 4 M THB</div><div class="lead-meta">20:31 · anglais · exploration</div></div><span class="tag t-new">Nouveau</span></div>
   </div>
 
   <div>
-    <div class="card" style="margin-bottom:14px">
+    <div class="card">
       <h2>LANGUES</h2>
       <div class="bar-row"><span class="bar-lang">Anglais</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-num">19</span></div>
       <div class="bar-row"><span class="bar-lang">Russe</span><span class="bar-track"><span class="bar-fill" style="width:68%"></span></span><span class="bar-num">13</span></div>
@@ -150,7 +162,6 @@
       <div class="bar-row"><span class="bar-lang">Allemand</span><span class="bar-track"><span class="bar-fill" style="width:21%"></span></span><span class="bar-num">4</span></div>
       <div class="bar-row"><span class="bar-lang">Chinois</span><span class="bar-track"><span class="bar-fill" style="width:11%"></span></span><span class="bar-num">2</span></div>
     </div>
-
     <div class="card">
       <h2>QUAND ILS ÉCRIVENT</h2>
       <div class="bar-row"><span class="bar-lang">00h à 06h</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-num">21</span></div>
@@ -162,6 +173,52 @@
 </div>
 
 <footer>Maquette GILD-TECH · données de démonstration · non connecté à un flux réel</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s)};
+  var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+  var LS="gt_sarah_demo";
+  var state={theme:"dark",power:true,hours:"247",start:"08:00",end:"20:00"};
+  try{var s=JSON.parse(localStorage.getItem(LS)||"null"); if(s) state=Object.assign(state,s);}catch(e){}
+
+  function applyTheme(){
+    document.documentElement.setAttribute("data-theme", state.theme);
+    $$("[data-theme-btn]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-theme-btn")===state.theme); });
+  }
+  $$("[data-theme-btn]").forEach(function(b){ b.addEventListener("click", function(){ state.theme=b.getAttribute("data-theme-btn"); save(); applyTheme(); }); });
+
+  function hoursLabelShort(){ return state.hours==="247" ? "24/7" : (state.start+"–"+state.end); }
+
+  function applyPower(){
+    $("#power").checked=state.power;
+    var st=$("#status"), stx=$("#status-txt"), cst=$("#ctrl-st");
+    st.classList.toggle("off", !state.power);
+    if(state.power){ stx.textContent="Sarah active · "+hoursLabelShort(); cst.textContent="En service, elle répond à vos contacts."; }
+    else { stx.textContent="Sarah en pause"; cst.textContent="En pause. Les leads sont enregistrés, aucune réponse envoyée."; }
+  }
+  $("#power").addEventListener("change", function(){ state.power=$("#power").checked; save(); applyPower(); });
+
+  function applyHours(){
+    $$("[data-hours]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-hours")===state.hours); });
+    var isRange=state.hours==="range";
+    $("#range").hidden=!isRange;
+    $("#h-start").value=state.start; $("#h-end").value=state.end;
+    $("#hours-hint").innerHTML = isRange
+      ? "Sarah répond de <b>"+state.start+"</b> à <b>"+state.end+"</b>. En dehors, les leads sont enregistrés pour le lendemain."
+      : "Sarah répond <b>jour et nuit</b>, week-ends compris.";
+    if(state.power) $("#status-txt").textContent="Sarah active · "+hoursLabelShort();
+  }
+  $$("[data-hours]").forEach(function(b){ b.addEventListener("click", function(){ state.hours=b.getAttribute("data-hours"); save(); applyHours(); }); });
+  $("#h-start").addEventListener("change", function(){ state.start=$("#h-start").value; save(); applyHours(); });
+  $("#h-end").addEventListener("change", function(){ state.end=$("#h-end").value; save(); applyHours(); });
+
+  function save(){ try{ localStorage.setItem(LS, JSON.stringify(state)); }catch(e){} }
+
+  applyTheme(); applyHours(); applyPower();
+})();
+</script>
 
 </body>
 </html>
