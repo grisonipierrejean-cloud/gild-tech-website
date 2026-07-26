@@ -123,7 +123,8 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 /* pricing 2026-07 : receive blocks, dominant heart, subgrid alignment */
 .price-card { display: grid; }
 .price-card .kicker { font-size:10px;font-weight:800;letter-spacing:.12em;color:#0B1D33;background:#F1F5F9;border:1px solid #E5E7EB;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem; }
-.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.5rem;}
+.price-old{font-size:1.2rem;color:var(--g500);text-decoration:line-through;font-weight:600;margin-right:.9rem;}
+.value-line{font-size:0.95rem;font-weight:800;color:var(--pink);margin:.15rem 0 1rem;line-height:1.4;}
 .price-save{font-size:0.85rem;color:var(--pink);font-weight:700;margin:.3rem 0 .2rem;}
 .price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}
 .tier-diff{font-size:1rem;font-weight:700;color:var(--g900);margin:.15rem 0 1rem;line-height:1.35;}
@@ -398,11 +399,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <section class="block" id="pricing">
     <h2 class="section-title">Three plans. Monthly. <span class="accent">Cancel anytime.</span></h2>
-    <p class="section-subtitle">Price locked for 24 months. No lock-in. 30-day money-back: not happy in your first 30 days? Every penny back. No questions.</p>
+    <p class="section-subtitle">Price locked for 24 months. No lock-in.</p>
 
     <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:#EFF6FF;color:var(--g900);border:1px solid #DBEAFE;border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(11,29,51,.22);">
       <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">From £290/month · price locked for 24 months</div>
-      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.97;line-height:1.5;max-width:680px;">Cancel anytime. 30-day money-back on month one.</p>
+      <p style="margin:.6rem auto 0;font-size:0.95rem;opacity:.97;line-height:1.5;max-width:680px;">Cancel anytime.</p>
     </div>
 
     <div style="text-align:center;font-size:1.15rem;color:var(--g900);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
@@ -417,6 +418,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Never miss an enquiry</h3>
         <div class="tier-diff">She answers everyone, day and night. No enquiry left cold.</div>
         <div class="price">£290 <small>/ month</small></div>
+        <div class="value-line">One saved buyer can be worth a whole sale. Sarah costs you £3,480 a year.</div>
         <div class="blurb">Every person who contacts your agency gets a reply, day and night, in their language. Sorted, logged, ready. Your morning starts with a clean list.</div>
         </div>
         <div class="receive">
@@ -439,6 +441,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="price"><span class="price-old">£490</span>£290 <small>/ month</small></div>
         <div class="price-save">Your first two months at £290 instead of £490. You keep £400.</div>
         <div class="price-sub">After two months it goes to £490. No surprise, no hidden renewal.</div>
+        <div class="value-line">A single recovered buyer pays back your year.</div>
         <div class="blurb">Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.</div>
         </div>
         <div class="receive">
@@ -458,6 +461,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h3>Win more instructions</h3>
         <div class="tier-diff">She wins you the instruction.</div>
         <div class="price">£790 <small>/ month</small></div>
+        <div class="value-line">Two instructions won ≈ £14,400. Sarah costs you £9,480 a year.</div>
         <div class="blurb">An instruction is won in the valuation appointment, against two other agents after the same property.</div>
         </div>
         <div class="receive">
@@ -477,13 +481,13 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <strong>The simple rule:</strong> tired of missing enquiries? <em>Never miss an enquiry</em>. Want more of them to become viewings, in Sarah’s voice? <em>Enquiries become viewings</em>. Want a sharper pitch at the valuation? <em>Win more instructions</em>.
     </p>
 
-    <div style="margin-top:2rem;padding:1.4rem 1.8rem;background:linear-gradient(135deg,#16a34a,#15803d);color:white;border-radius:14px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 8px 24px rgba(22,163,74,.18);">
-      <div style="font-size:1.6rem;font-weight:800;margin-bottom:0.4rem;">🛡️ 30-day money-back guarantee</div>
-      <p style="margin:0;font-size:0.95rem;opacity:.95;">Not happy in your first 30 days? Every penny back. No questions, no friction. Same guarantee on all three plans.</p>
+    <div style="margin-top:1.4rem;padding:.75rem 1.1rem;background:var(--g100);color:var(--g600);border:1px solid var(--g200);border-radius:10px;text-align:center;max-width:480px;margin-left:auto;margin-right:auto;">
+      <div style="font-size:.9rem;font-weight:700;color:var(--g700);margin-bottom:.15rem;">30-day money-back guarantee</div>
+      <p style="margin:0;font-size:0.8rem;color:var(--g500);">Not happy in your first 30 days? You are refunded, with no performance condition.</p>
     </div>
 
     <p style="text-align:center;margin-top:1.4rem;font-size:0.88rem;color:var(--g500);line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto;">
-      Price locked for 24 months · cancel anytime · 30-day money-back.<br>
+      Price locked for 24 months · cancel anytime.<br>
       How it works: she plugs into your CRM and the tools you already use, no training, 8 languages.
     </p>
   </section>
@@ -544,7 +548,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="faq-item">
         <h4>How quickly will Sarah start delivering?</h4>
-        <p>We don't sell delivery timeframes, we sell results. Going live runs in parallel with your validation: we configure your Calendly, test with your team, agree the wording, plug into your existing WhatsApp Business number. The moment Sarah is approved, she starts catching enquiries, and the 30-day money-back clock starts. Not happy in your first 30 days? Every penny back. No questions.</p>
+        <p>We don't sell delivery timeframes, we sell results. Going live runs in parallel with your validation: we configure your Calendly, test with your team, agree the wording, plug into your existing WhatsApp Business number. The moment Sarah is approved, she starts catching enquiries, and the 30-day money-back clock starts.</p>
       </div>
     </div>
   </section>
