@@ -212,7 +212,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99; letter-spacing: 0.01em;
   }
 }
-.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--noir);margin-bottom:.5rem;}.receive ul{list-style:none;}.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}.receive li::before{content:'\2713';position:absolute;left:0;color:var(--cta);font-weight:800;}.receive li.more{font-weight:700;color:var(--noir);}.receive li.more::before{content:'+';}.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}</style>
+.receive{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--g200);}.receive h4{font-size:0.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--noir);margin-bottom:.5rem;}.receive ul{list-style:none;}.receive li{font-size:0.9rem;color:var(--g700);line-height:1.5;padding:.32rem 0 .32rem 1.4rem;position:relative;}.receive li::before{content:'\2713';position:absolute;left:0;color:var(--cta);font-weight:800;}.receive li.more{font-weight:700;color:var(--noir);}.receive li.more::before{content:'+';}.price-sub{font-size:0.78rem;color:var(--g600);margin:.15rem 0 .2rem;line-height:1.4;}.promo-box{border:1px solid #E2E8F0;background:#F8FAFC;border-radius:9px;padding:.5rem .7rem;margin:.15rem 0 .95rem;}
+.promo-box .ps1{display:block;font-size:0.8rem;font-weight:700;color:var(--g700);line-height:1.35;}
+.promo-box .ps2{display:block;font-size:0.74rem;font-weight:400;color:var(--g500);line-height:1.4;margin-top:.2rem;}
+.lock-note{text-align:center;font-size:0.8rem;color:var(--g500);max-width:620px;margin:.55rem auto 0;line-height:1.5;}
+</style>
   
 <style>
 /* SAMUI 2026 - taxi / horloge / scenes */
@@ -424,7 +428,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <section class="block" id="pricing">
     <h2 class="section-title">Trois offres. Mensuel. <span class="accent">Résiliable.</span></h2>
-    <p class="section-subtitle">Tarif bloqué 24 mois. Résiliable à tout moment : c’est le prix qui est bloqué, pas vous.</p>
+    <p class="section-subtitle">Tarif bloqué 24 mois. Résiliable à tout moment.</p>
 
     <div style="text-align:center;font-size:1.15rem;color:var(--noir);max-width:820px;margin:0 auto 2rem;line-height:1.5;font-weight:600;">
       Elle répond. Elle transforme les réponses en visites. Elle vous aide à gagner plus de mandats.
@@ -454,10 +458,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="pc-top">
         <span class="kicker">Elle répond</span>
         <h3>Je ne rate plus un acheteur</h3>
-        <div class="tier-diff">Elle répond. Personne ne reste sans réponse.</div>
         <div class="price">290 £<small> / mois</small></div>
         <div class="value-line">Un acheteur sauvé peut valoir une vente entière. Sarah vous coûte 3 480 GBP sur l’année.</div>
-        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
@@ -475,12 +477,9 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="pc-top">
         <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">Elle transforme</span>
         <h3>Mes acheteurs deviennent des visites</h3>
-        <div class="tier-diff">Elle poursuit et vous rend compte.</div>
         <div class="price"><span class="price-old">490 £</span>290 £<small> / mois</small></div>
-        <div class="price-save">Vos deux premiers mois à 290 £ au lieu de 490 £. Vous gardez 400 £.</div>
-        <div class="price-sub">Au bout de deux mois, le tarif passe à 490 £. Aucune surprise, aucune reconduction cachée.</div>
+        <div class="promo-box"><span class="ps1">Vos deux premiers mois à 290 £ au lieu de 490 £. Vous gardez 400 £.</span><span class="ps2">Au bout de deux mois, le tarif passe à 490 £. Aucune surprise, aucune reconduction cachée.</span></div>
         <div class="value-line">Un seul acheteur rattrapé rembourse votre année.</div>
-        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
@@ -497,17 +496,17 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="pc-top">
         <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">Elle vous fait gagner</span>
         <h3>Je gagne plus de mandats</h3>
-        <div class="tier-diff">Elle vous fait gagner le mandat.</div>
         <div class="price">790 £<small> / mois</small></div>
-        <div class="value-line">Un mandat gagné à Samui vaut environ 750 000 THB. Sarah vous coûte 9 480 GBP sur l’année.</div>
-        <div class="delai">Tarif bloqué 24 mois, améliorations de Sarah comprises. Résiliable à tout moment : c'est le prix qui est bloqué, pas vous.</div>
+        <div class="value-line">Un mandat gagné à Samui vaut environ 750 000 THB. Une année entière de Sarah en coûte moins de la moitié.</div>
         </div><!--/pc-top-->
         <div class="receive">
           <h4>Ce que vous recevez</h4>
           <ul>
           <li>Vos vraies photos, mises en mouvement. Un mouvement lent et sobre, aucun angle inventé, aucune pièce reconstituée, aucune retouche. Ce que le propriétaire voit existe.<div class="concret"><strong>Concrètement :</strong> vous envoyez les photos du bien, vous recevez la présentation sous 24 à 48h, prête à montrer au propriétaire ou à diffuser.</div></li>
-          <li>Une présentation prête avant que le concurrent ait rangé son appareil.</li>
           <li>Autant de présentations que vous avez de mandats.</li>
+          <li>La présentation d’estimation à votre marque : votre logo, le nom du propriétaire, prête à montrer en rendez-vous.</li>
+          <li>Chaque mois, le portrait de votre demande : d’où viennent vos acheteurs, ce qu’ils cherchent, ce qui attire.</li>
+          <li>Vous passez en premier : vos présentations avant tout le monde, une ligne directe.</li>
           </ul>
         </div>
         <div class="card-cta-wrap"><a class="card-cta" href="https://calendly.com/ops-gild-tech/30min">Réserver 30 min</a></div>
@@ -515,7 +514,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
     </div>
 
-    <p class="config-note">Configuré à la main, par quelqu’un qui connaît Samui.</p>
+    <p class="config-note">Configuré à la main par Pierre-Jean Grisoni, quelqu’un qui connaît Samui.</p>
+    <p class="lock-note">Tarif bloqué 24 mois, améliorations comprises. Résiliable à tout moment : c’est le prix qui est bloqué, pas vous.</p>
 
     <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:820px;margin-left:auto;margin-right:auto;line-height:1.6;">
       <strong>La règle simple :</strong> vous en avez assez de rater des acheteurs à 3h du matin ? <em>Je ne rate plus un acheteur</em>. Vous voulez que plus de vos réponses deviennent des visites, avec la voix de Sarah ? <em>Mes acheteurs deviennent des visites</em>. Vous voulez un pitch plus fort à l'estimation ? <em>Je gagne plus de mandats</em>.
@@ -527,7 +527,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
 
     <p style="text-align:center;margin-top:1.4rem;font-size:0.88rem;color:var(--g500);line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto;">
-      Tarif bloqué 24 mois · résiliable à tout moment.<br>
       Comment ça marche : elle se branche sur votre WhatsApp et les outils que vous utilisez déjà, aucune formation, 8 langues.
     </p>
   </section>

@@ -213,6 +213,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   .steps { grid-template-columns: 1fr; }
   .nav-links { display: none; }
 }
+.config-note{text-align:center;font-size:0.92rem;color:var(--g600);font-weight:600;max-width:660px;margin:1.6rem auto 0;line-height:1.5;}
+.promo-box{border:1px solid #E2E8F0;background:#F8FAFC;border-radius:9px;padding:.5rem .7rem;margin:.15rem 0 .95rem;}
+.promo-box .ps1{display:block;font-size:0.8rem;font-weight:700;color:var(--g700);line-height:1.35;}
+.promo-box .ps2{display:block;font-size:0.74rem;font-weight:400;color:var(--g500);line-height:1.4;margin-top:.2rem;}
+.lock-note{text-align:center;font-size:0.8rem;color:var(--g500);max-width:620px;margin:.55rem auto 0;line-height:1.5;}
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
   
@@ -401,7 +406,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <section class="block" id="pricing">
     <h2 class="section-title">Три тарифа. Помесячно. <span class="accent">Отказаться можно в любой момент.</span></h2>
-    <p class="section-subtitle">Цена зафиксирована на 24 месяца. Отказаться можно в любой момент: зафиксирована цена, а не вы.</p>
+    <p class="section-subtitle">Цена зафиксирована на 24 месяца. Отказаться можно в любой момент.</p>
 
     <div style="margin:0 auto 2rem;padding:1.6rem 2rem;background:#EFF6FF;color:var(--g900);border:1px solid #DBEAFE;border-radius:14px;text-align:center;max-width:820px;box-shadow:0 8px 24px rgba(11,29,51,.22);">
       <div style="font-size:1.35rem;font-weight:800;line-height:1.3;">От 290 £ в месяц · цена зафиксирована на 24 месяца</div>
@@ -418,10 +423,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="pc-top">
         <span class="kicker">ОНА ОТВЕЧАЕТ</span>
         <h3>Ни одной упущенной заявки</h3>
-        <div class="tier-diff">Она отвечает каждому, днём и ночью. Ни одна заявка не остаётся без ответа.</div>
         <div class="price">290 £ <small>/ в месяц</small></div>
         <div class="value-line">Один спасённый покупатель может стоить целой продажи. Sarah обходится вам в 3 480 £ в год.</div>
-        <div class="blurb">Каждый, кто обращается в ваше агентство, получает ответ, днём и ночью, на своём языке. Отсортировано, зафиксировано, готово. Ваше утро начинается с чистого списка.</div>
         </div>
         <div class="receive">
           <h4>Что вы получаете</h4>
@@ -432,19 +435,15 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li>Подключается к вашей CRM и к инструментам, которыми вы уже пользуетесь</li>
           </ul>
         </div>
-        <div class="lock-line">Цена зафиксирована на 24 месяца, улучшения включены. Отказаться можно в любой момент.</div>
       </div>
 
       <div class="price-card featured heart">
         <div class="pc-top">
         <span class="kicker"  style="color:var(--pink);background:#DBEAFE;border-color:#93C5FD;">ОНА КОНВЕРТИРУЕТ</span>
         <h3>Заявки становятся показами</h3>
-        <div class="tier-diff">Она добивается ответа и отчитывается перед вами.</div>
         <div class="price"><span class="price-old">490 £</span>290 £ <small>/ в месяц</small></div>
-        <div class="price-save">Первые два месяца по 290 £ вместо 490 £. Вы оставляете себе 400 £.</div>
-        <div class="price-sub">Через два месяца тариф становится 490 £. Никаких сюрпризов, никакого скрытого продления.</div>
+        <div class="promo-box"><span class="ps1">Первые два месяца по 290 £ вместо 490 £. Вы оставляете себе 400 £.</span><span class="ps2">Через два месяца тариф становится 490 £. Никаких сюрпризов, никакого скрытого продления.</span></div>
         <div class="value-line">Один вернувшийся покупатель окупает ваш год.</div>
-        <div class="blurb">Ответить мало, нужно довести до показа. Sarah напоминает о себе голосом и не даёт разговору заглохнуть.</div>
         </div>
         <div class="receive">
           <h4>Что вы получаете</h4>
@@ -454,30 +453,31 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li>Руль остаётся у вас: когда она отвечает, кого подталкивает и в каком темпе<div class="concret"><strong>На практике:</strong> вы настраиваете её часы и вопросы из вашей панели, и перехватываете разговор, когда захотите.</div></li>
           </ul>
         </div>
-        <div class="lock-line">Цена зафиксирована на 24 месяца, улучшения включены. Отказаться можно в любой момент.</div>
       </div>
 
       <div class="price-card">
         <div class="pc-top">
         <span class="kicker" style="color:#0A0A0A;background:var(--g100);border-color:var(--g200);">ОНА ПРИНОСИТ ДОГОВОРЫ</span>
         <h3>Больше подписанных договоров</h3>
-        <div class="tier-diff">Она приносит вам договор.</div>
         <div class="price">790 £ <small>/ в месяц</small></div>
         <div class="value-line">Два выигранных договора ≈ 14 400 £. Sarah обходится вам в 9 480 £ в год.</div>
-        <div class="blurb">Договор выигрывается на встрече по оценке, где за тот же объект борются ещё два агента.</div>
         </div>
         <div class="receive">
           <h4>Что вы получаете</h4>
           <ul>
           <li>Ваши настоящие фотографии, приведённые в движение. Медленное, сдержанное движение. Никаких выдуманных ракурсов, никаких воссозданных комнат, никакой ретуши. То, что видит собственник, действительно существует.<div class="concret"><strong>На практике:</strong> вы отправляете фотографии объекта и получаете презентацию в течение от 24 до 48 часов, готовую показать собственнику или опубликовать.</div></li>
-          <li>Презентация готова раньше, чем конкурент успел убрать камеру.</li>
           <li>Столько презентаций, сколько у вас договоров.</li>
+          <li>Презентация оценки в вашем бренде: ваш логотип, имя собственника, готова к показу на встрече.</li>
+          <li>Каждый месяц — портрет вашего спроса: откуда приходят покупатели, что они ищут, что их привлекает.</li>
+          <li>Вы идёте первыми: ваши презентации раньше всех, прямая линия.</li>
           </ul>
         </div>
-        <div class="lock-line">Цена зафиксирована на 24 месяца, улучшения включены. Отказаться можно в любой момент.</div>
       </div>
 
     </div>
+
+    <p class="config-note">Настроено вручную Пьером-Жаном Гризони.</p>
+    <p class="lock-note">Цена зафиксирована на 24 месяца, улучшения включены. Отказаться можно в любой момент: зафиксирована цена, а не вы.</p>
 
     <p style="text-align:center;margin-top:2.5rem;font-size:1.05rem;color:var(--g700);max-width:820px;margin-left:auto;margin-right:auto;line-height:1.6;">
       <strong>Простое правило:</strong> надоело упускать заявки? <em>Ни одной упущенной заявки</em>. Хотите, чтобы больше из них доходило до показа, голосом Sarah? <em>Заявки становятся показами</em>. Хотите сильнее выступать на оценке? <em>Больше подписанных договоров</em>.
@@ -489,7 +489,6 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
 
     <p style="text-align:center;margin-top:1.4rem;font-size:0.88rem;color:var(--g500);line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto;">
-      Цена зафиксирована на 24 месяца · отказаться можно в любой момент.<br>
       Как это работает: она подключается к вашей CRM и к инструментам, которыми вы уже пользуетесь, без обучения, 8 языков.
     </p>
   </section>
