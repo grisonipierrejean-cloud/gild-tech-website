@@ -73,30 +73,30 @@
   </header>
 
   <div class="bar"><i id="prog"></i></div>
-  <div class="steplabel" id="stepLabel">Etape 1 sur 4</div>
+  <div class="steplabel" id="stepLabel">Étape 1 sur 4</div>
 
   <!-- ETAPE 1 : le minimum -->
   <div class="card step" data-step="1">
     <h1>Configurons Sarah</h1>
-    <p class="sub">Trois minutes. Vos reponses sont sauvegardees a chaque etape, vous pouvez revenir sur ce lien tant que ce n'est pas termine.</p>
+    <p class="sub">Trois minutes. Vos réponses sont sauvegardées à chaque étape, vous pouvez revenir sur ce lien tant que ce n'est pas terminé.</p>
 
     <label>Votre email</label>
     <input type="email" id="email" placeholder="vous@votre-agence.com" autocomplete="email">
 
-    <label>Numero WhatsApp dedie a Sarah</label>
+    <label>Numéro WhatsApp dédié à Sarah</label>
     <input type="tel" id="wa_number" placeholder="+32 470 00 00 00" autocomplete="off">
-    <p class="hint">Un numero reserve a Sarah, jamais votre ligne personnelle. Nous verifions qu'il n'est pas deja rattache a une WhatsApp Business API avant la mise en service.</p>
+    <p class="hint">Un numéro réservé à Sarah, jamais votre ligne personnelle. Nous vérifions qu'il n'est pas déjà rattaché à une WhatsApp Business API avant la mise en service.</p>
 
     <label>Nom de l'agence</label>
     <input type="text" id="agency" placeholder="Immo Brabant" autocomplete="organization">
 
     <label>Offre</label>
     <select id="offer">
-      <option value="capter">Capter : Sarah ecrit (WhatsApp)</option>
+      <option value="capter">Capter : Sarah écrit (WhatsApp)</option>
       <option value="convertir">Convertir : Sarah vocale + Meta DM</option>
-      <option value="developper">Developper : video d'annonces</option>
+      <option value="developper">Développer : vidéo d'annonces</option>
     </select>
-    <p class="hint">Pre-selectionnee depuis votre lien. Vous pouvez la changer.</p>
+    <p class="hint">Pré-sélectionnée depuis votre lien. Vous pouvez la changer.</p>
 
     <div class="nav">
       <span></span>
@@ -107,27 +107,27 @@
   <!-- ETAPE 2 : l'essentiel -->
   <div class="card step hidden" data-step="2">
     <h1>Le terrain de Sarah</h1>
-    <p class="sub">Ce que Sarah doit connaitre pour parler juste a vos contacts.</p>
+    <p class="sub">Ce que Sarah doit connaître pour parler juste à vos contacts.</p>
 
-    <label>Zones et types de biens traites</label>
+    <label>Zones et types de biens traités</label>
     <textarea id="zones" placeholder="Ex : Ixelles, Uccle, Watermael. Appartements et maisons, du studio au 4 chambres."></textarea>
-    <p class="hint">Vos quartiers et les types de biens. En clair, comme vous le diriez a un nouveau collaborateur.</p>
+    <p class="hint">Vos quartiers et les types de biens. En clair, comme vous le diriez à un nouveau collaborateur.</p>
 
-    <label>Procedure de sortie</label>
-    <p class="hint" style="margin-top:0">Quand un contact est qualifie, que fait Sarah ?</p>
+    <label>Procédure de sortie</label>
+    <p class="hint" style="margin-top:0">Quand un contact est qualifié, que fait Sarah ?</p>
     <div class="choices">
-      <label class="choice"><input type="radio" name="exit" value="visio"><span><b>Visio</b><small>Elle propose un appel video</small></span></label>
+      <label class="choice"><input type="radio" name="exit" value="visio"><span><b>Visio</b><small>Elle propose un appel vidéo</small></span></label>
       <label class="choice"><input type="radio" name="exit" value="visite"><span><b>Visite physique</b><small>Elle propose une visite du bien</small></span></label>
-      <label class="choice"><input type="radio" name="exit" value="classement"><span><b>Classement</b><small>Elle recueille le creneau de rappel et transmet a l'agent</small></span></label>
+      <label class="choice"><input type="radio" name="exit" value="classement"><span><b>Classement</b><small>Elle recueille le créneau de rappel et transmet à l'agent</small></span></label>
     </div>
 
     <label>Horaires de Sarah</label>
     <div class="choices">
-      <label class="choice"><input type="radio" name="hours" value="247"><span><b>24 / 7</b><small>Elle repond a toute heure</small></span></label>
-      <label class="choice"><input type="radio" name="hours" value="plage"><span><b>Plage definie</b><small>Vous fixez les heures ci-dessous</small></span></label>
+      <label class="choice"><input type="radio" name="hours" value="247"><span><b>24 / 7</b><small>Elle répond à toute heure</small></span></label>
+      <label class="choice"><input type="radio" name="hours" value="plage"><span><b>Plage définie</b><small>Vous fixez les heures ci-dessous</small></span></label>
     </div>
     <div id="hoursRange" class="row hidden" style="margin-top:10px">
-      <div><label style="margin-top:0">Debut</label><input type="time" id="h_start" value="08:00"></div>
+      <div><label style="margin-top:0">Début</label><input type="time" id="h_start" value="08:00"></div>
       <div><label style="margin-top:0">Fin</label><input type="time" id="h_end" value="20:00"></div>
     </div>
 
@@ -140,18 +140,18 @@
   <!-- ETAPE 3 : optionnel -->
   <div class="card step hidden" data-step="3">
     <h1>Le ton de votre agence <span style="color:var(--mut);font-weight:400;font-size:15px">optionnel</span></h1>
-    <p class="sub">Facultatif. Vous pouvez terminer sans, et nous completer plus tard.</p>
+    <p class="sub">Facultatif. Vous pouvez terminer sans, et nous compléter plus tard.</p>
 
     <label>Annonces, FAQ, ton <span class="opt">optionnel</span></label>
-    <textarea id="content" placeholder="Collez ici vos reponses habituelles, une FAQ, votre facon de parler a vos contacts. Tout ce qui aide Sarah a vous ressembler."></textarea>
-    <p class="hint">Vous pourrez aussi nous envoyer des documents apres la mise en service.</p>
+    <textarea id="content" placeholder="Collez ici vos réponses habituelles, une FAQ, votre façon de parler à vos contacts. Tout ce qui aide Sarah à vous ressembler."></textarea>
+    <p class="hint">Vous pourrez aussi nous envoyer des documents après la mise en service.</p>
 
-    <label>Delai des rappels par email</label>
+    <label>Délai des rappels par email</label>
     <p class="hint" style="margin-top:0">Si ce formulaire reste incomplet, quand voulez-vous un rappel ?</p>
     <div class="choices">
-      <label class="choice"><input type="radio" name="remind" value="default" checked><span><b>Par defaut</b><small>Confirmation tout de suite, rappel a 24h puis 48h si besoin</small></span></label>
-      <label class="choice"><input type="radio" name="remind" value="24"><span><b>Un seul rappel a 24h</b><small>Puis on n'insiste plus</small></span></label>
-      <label class="choice"><input type="radio" name="remind" value="none"><span><b>Aucun rappel</b><small>Vous gerez seul</small></span></label>
+      <label class="choice"><input type="radio" name="remind" value="default" checked><span><b>Par défaut</b><small>Confirmation tout de suite, rappel à 24h puis 48h si besoin</small></span></label>
+      <label class="choice"><input type="radio" name="remind" value="24"><span><b>Un seul rappel à 24h</b><small>Puis on n'insiste plus</small></span></label>
+      <label class="choice"><input type="radio" name="remind" value="none"><span><b>Aucun rappel</b><small>Vous gérez seul</small></span></label>
     </div>
 
     <div class="nav">
@@ -163,27 +163,27 @@
   <!-- ETAPE 4 : fin -->
   <div class="card step hidden" data-step="4">
     <div class="done-ico">✅</div>
-    <h1 style="text-align:center">C'est envoye</h1>
+    <h1 style="text-align:center">C'est envoyé</h1>
     <p class="sub" style="text-align:center">Sarah est en cours de configuration pour <b id="doneAgency">votre agence</b>.</p>
 
     <div class="callout">
       <div class="qr">
         <div class="ico">📱</div>
         <div>
-          <b>Une etape a faire de votre cote</b>
-          Pour que Sarah reponde sur WhatsApp, il faut connecter le numero une seule fois : vous scannerez un QR code avec le telephone qui porte ce numero. Nous vous l'envoyons par email. Sans ce scan, Sarah ne peut pas recevoir de messages.
+          <b>Une étape à faire de votre côté</b>
+          Pour que Sarah réponde sur WhatsApp, il faut connecter le numéro une seule fois : vous scannerez un QR code avec le téléphone qui porte ce numéro. Nous vous l'envoyons par email. Sans ce scan, Sarah ne peut pas recevoir de messages.
         </div>
       </div>
     </div>
 
     <b>La suite</b>
     <ol class="next">
-      <li>Vous recevez un email de confirmation avec le recapitulatif.</li>
-      <li>Nous verifions le numero et preparons Sarah avec vos reponses.</li>
-      <li>Nous vous envoyons le QR code a scanner.</li>
-      <li>Une fois scanne, Sarah est en service. Comptez quelques jours ouvres.</li>
+      <li>Vous recevez un email de confirmation avec le récapitulatif.</li>
+      <li>Nous vérifions le numéro et préparons Sarah avec vos réponses.</li>
+      <li>Nous vous envoyons le QR code à scanner.</li>
+      <li>Une fois scanné, Sarah est en service. Comptez quelques jours ouvrés.</li>
     </ol>
-    <p class="hint" style="margin-top:18px">Une question ? Repondez simplement a l'email de confirmation.</p>
+    <p class="hint" style="margin-top:18px">Une question ? Répondez simplement à l'email de confirmation.</p>
   </div>
 
   <div class="saved" id="savedMsg"></div>
@@ -196,7 +196,7 @@
   var OFFERS = {
     capter:     "Capter",
     convertir:  "Convertir",
-    developper: "Developper"
+    developper: "Développer"
   };
   var qs = new URLSearchParams(location.search);
   var token = qs.get('t') || '';
@@ -252,7 +252,7 @@
     fetch(WEBHOOK + path, {
       method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
       body: JSON.stringify({ token:token, offer:offerKey, step:state.step, completed:state.completed, data:state.data })
-    }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegarde'); })
+    }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegardé'); })
       .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
   }
   var flashT;
@@ -262,7 +262,7 @@
     state.step=n;
     steps.forEach(function(s){ s.classList.toggle('hidden', +s.dataset.step!==n); });
     prog.style.width=(n*25)+'%';
-    stepLabel.textContent = n<4 ? ('Etape '+n+' sur 4') : 'Termine';
+    stepLabel.textContent = n<4 ? ('Étape '+n+' sur 4') : 'Terminé';
     if(n===4){ document.getElementById('doneAgency').textContent = state.data.agency || 'votre agence'; }
     window.scrollTo(0,0);
   }
@@ -273,12 +273,12 @@
       var wa=document.getElementById('wa_number').value.trim();
       var ag=document.getElementById('agency').value.trim();
       if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return 'Un email valide est requis.';
-      if(wa.replace(/\D/g,'').length<8) return 'Le numero WhatsApp semble incomplet.';
+      if(wa.replace(/\D/g,'').length<8) return 'Le numéro WhatsApp semble incomplet.';
       if(!ag) return 'Le nom de l\'agence est requis.';
     }
     if(n===2){
       if(!document.getElementById('zones').value.trim()) return 'Indiquez vos zones et types de biens.';
-      if(!document.querySelector('input[name=exit]:checked')) return 'Choisissez une procedure de sortie.';
+      if(!document.querySelector('input[name=exit]:checked')) return 'Choisissez une procédure de sortie.';
       if(!document.querySelector('input[name=hours]:checked')) return 'Choisissez les horaires de Sarah.';
     }
     return null;
