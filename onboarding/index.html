@@ -248,10 +248,9 @@
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
     // envoi non bloquant au serveur (save partiel ou submit final)
     if (!token) { flash('Sauvegarde locale (lien de test sans jeton)'); return; }
-    var path = kind==='submit' ? '/submit' : '/save';
-    fetch(WEBHOOK + path, {
+    fetch(WEBHOOK, {
       method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
-      body: JSON.stringify({ token:token, offer:offerKey, step:state.step, completed:state.completed, data:state.data })
+      body: JSON.stringify({ action:kind, token:token, offer:offerKey, step:state.step, completed:state.completed, data:state.data })
     }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegardé'); })
       .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
   }
