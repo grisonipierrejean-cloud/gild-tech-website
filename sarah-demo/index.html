@@ -103,10 +103,10 @@
   </div>
 </div>
 
-<div class="banner">Aperçu de démonstration. Toutes les données affichées sont fictives et ne correspondent à aucun client réel.</div>
+<div class="banner" id="banner">Aperçu de démonstration. Toutes les données affichées sont fictives et ne correspondent à aucun client réel.</div>
 
 <header>
-  <h1>Agence Démo <span>· Koh Samui</span></h1>
+  <h1 id="agencyName">Agence Démo <span>· Koh Samui</span></h1>
   <div class="status" id="status"><span class="dot"></span><span id="status-txt">Sarah active · 24/7</span></div>
 </header>
 
@@ -137,24 +137,26 @@
 </div>
 
 <div class="grid">
-  <div class="card"><div class="label">LEADS CAPTÉS</div><div class="value">47</div><div class="sub">30 derniers jours</div></div>
-  <div class="card"><div class="label">TEMPS DE RÉPONSE MOYEN</div><div class="value">2 min</div><div class="sub">jour et nuit</div></div>
-  <div class="card"><div class="label">RENDEZ-VOUS POSÉS</div><div class="value">11</div><div class="sub">visites et visios</div></div>
-  <div class="card"><div class="label">LEADS CHAUDS SIGNALÉS</div><div class="value">4</div><div class="sub">alertes envoyées</div></div>
+  <div class="card"><div class="label">LEADS CAPTÉS</div><div class="value" id="k-leads">47</div><div class="sub">30 derniers jours</div></div>
+  <div class="card"><div class="label">TEMPS DE RÉPONSE MOYEN</div><div class="value" id="k-response">2 min</div><div class="sub">jour et nuit</div></div>
+  <div class="card"><div class="label">RENDEZ-VOUS POSÉS</div><div class="value" id="k-rdv">11</div><div class="sub">visites et visios</div></div>
+  <div class="card"><div class="label">LEADS CHAUDS SIGNALÉS</div><div class="value" id="k-hot">4</div><div class="sub">alertes envoyées</div></div>
 </div>
 
 <div class="cols">
   <div class="card">
     <h2>DERNIERS LEADS</h2>
+    <div id="leadsList">
     <div class="lead"><div><div class="lead-main">Villa · Lamai · 12 M THB</div><div class="lead-meta">03:14 · russe · signature envisagée cette semaine</div></div><span class="tag t-hot">Chaud</span></div>
     <div class="lead"><div><div class="lead-main">Condo · Chaweng · 6 M THB</div><div class="lead-meta">01:47 · anglais · visite jeudi 10h</div></div><span class="tag t-rdv">RDV posé</span></div>
     <div class="lead"><div><div class="lead-main">Terrain · Bophut · budget à préciser</div><div class="lead-meta">23:52 · français · qualification en cours</div></div><span class="tag t-new">Nouveau</span></div>
     <div class="lead"><div><div class="lead-main">Villa · Maenam · 18 M THB</div><div class="lead-meta">22:08 · allemand · visio proposée</div></div><span class="tag t-rdv">RDV posé</span></div>
     <div class="lead"><div><div class="lead-main">Condo · Chaweng Noi · 4 M THB</div><div class="lead-meta">20:31 · anglais · exploration</div></div><span class="tag t-new">Nouveau</span></div>
+    </div>
   </div>
 
   <div>
-    <div class="card">
+    <div class="card" id="card-langues">
       <h2>LANGUES</h2>
       <div class="bar-row"><span class="bar-lang">Anglais</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-num">19</span></div>
       <div class="bar-row"><span class="bar-lang">Russe</span><span class="bar-track"><span class="bar-fill" style="width:68%"></span></span><span class="bar-num">13</span></div>
@@ -164,15 +166,17 @@
     </div>
     <div class="card">
       <h2>QUAND ILS ÉCRIVENT</h2>
+      <div id="hoursList">
       <div class="bar-row"><span class="bar-lang">00h à 06h</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-num">21</span></div>
       <div class="bar-row"><span class="bar-lang">06h à 12h</span><span class="bar-track"><span class="bar-fill" style="width:38%"></span></span><span class="bar-num">8</span></div>
       <div class="bar-row"><span class="bar-lang">12h à 18h</span><span class="bar-track"><span class="bar-fill" style="width:33%"></span></span><span class="bar-num">7</span></div>
       <div class="bar-row"><span class="bar-lang">18h à 00h</span><span class="bar-track"><span class="bar-fill" style="width:52%"></span></span><span class="bar-num">11</span></div>
+      </div>
     </div>
   </div>
 </div>
 
-<footer>Maquette GILD-TECH · données de démonstration · non connecté à un flux réel</footer>
+<footer id="footer">Maquette GILD-TECH · données de démonstration · non connecté à un flux réel</footer>
 
 <script>
 (function(){
@@ -217,6 +221,41 @@
   function save(){ try{ localStorage.setItem(LS, JSON.stringify(state)); }catch(e){} }
 
   applyTheme(); applyHours(); applyPower();
+
+  // ---- données live : si un token est dans l'URL (?token= ou ?t=), on remplace la maquette par les vraies donnees ----
+  (function loadLive(){
+    var q = new URLSearchParams(location.search);
+    var tok = q.get('token') || q.get('t');
+    if(!tok) return; // pas de token -> on reste sur la maquette de demonstration
+    var API = 'https://peejay.app.n8n.cloud/webhook/sarah/dashboard?token=' + encodeURIComponent(tok);
+    var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+    var set = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+    fetch(API, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); }).then(function(j){
+      var D = j.dashboard; if(!D) return;
+      var an=document.getElementById('agencyName'); if(an && j.agency) an.innerHTML = esc(j.agency)+' <span>· en direct</span>';
+      var bn=document.getElementById('banner'); if(bn) bn.textContent = 'Donnees reelles, en direct. Mises a jour a chaque ouverture.';
+      var ft=document.getElementById('footer'); if(ft) ft.textContent = 'GILD-TECH · flux live securise · '+(D.total_leads||0)+' contacts au total';
+      var H = D.headline || {};
+      set('k-leads', H.leads!=null?H.leads:'0');
+      set('k-response', H.response_min!=null?(Math.round(H.response_min)+' min'):'—');
+      set('k-rdv', H.rdv!=null?H.rdv:'0');
+      set('k-hot', H.hot!=null?H.hot:'0');
+      var LL=document.getElementById('leadsList');
+      if(LL){
+        var tagMap={ hot:['t-hot','Chaud'], rdv:['t-rdv','RDV posé'], 'new':['t-new','Nouveau'] };
+        if(!D.recent || !D.recent.length){ LL.innerHTML='<div class="lead"><div class="lead-meta">Aucun contact pour l’instant.</div></div>'; }
+        else LL.innerHTML = D.recent.map(function(l){ var t=tagMap[l.tag]||tagMap['new'];
+          return '<div class="lead"><div><div class="lead-main">'+esc(l.title)+'</div><div class="lead-meta">'+esc(l.meta)+'</div></div><span class="tag '+t[0]+'">'+t[1]+'</span></div>';
+        }).join(''); }
+      var cl=document.getElementById('card-langues'); if(cl) cl.style.display='none';
+      var HL=document.getElementById('hoursList');
+      if(HL && D.hours){ var labels=['00h à 06h','06h à 12h','12h à 18h','18h à 00h'];
+        var max=Math.max.apply(null, D.hours.concat([1]));
+        HL.innerHTML = D.hours.map(function(n,i){ var w=Math.round((n/max)*100);
+          return '<div class="bar-row"><span class="bar-lang">'+labels[i]+'</span><span class="bar-track"><span class="bar-fill" style="width:'+w+'%"></span></span><span class="bar-num">'+n+'</span></div>';
+        }).join(''); }
+    }).catch(function(){ /* erreur reseau -> on garde la maquette */ });
+  })();
 })();
 </script>
 
