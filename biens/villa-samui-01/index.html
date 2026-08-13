@@ -159,7 +159,7 @@ footer{border-top:1px solid var(--line);padding:46px 0}
 <section class="hero">
   <div class="hero-media" id="heroMedia">
     <video id="heroVid" poster="photos/01-hero-aerial.jpg" autoplay muted loop playsinline preload="auto">
-      <source src="../../assets/reel-villa-lamai.mp4" type="video/mp4">
+      <source src="../../assets/villa-samui-01/reel-01-aerial.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-scrim"></div>
@@ -181,8 +181,8 @@ footer{border-top:1px solid var(--line);padding:46px 0}
 <!-- FILM : le cadre s'ouvre plein écran au scroll -->
 <section class="scrub-sec" id="film">
   <div class="scrub-frame" id="filmFrame">
-    <video id="scrub" poster="photos/02-facade-pool.jpg" autoplay muted loop playsinline preload="auto">
-      <source src="../../assets/reel-villa-lamai.mp4" type="video/mp4">
+    <video id="scrub" poster="photos/02-facade-pool.jpg" autoplay muted playsinline preload="auto">
+      <source src="../../assets/villa-samui-01/reel-02-facade.mp4" type="video/mp4">
     </video>
   </div>
   <div class="scrub-cap"><div class="label">Le film</div><h2>Ouvert sur<br>les <em>collines</em></h2></div>
@@ -269,6 +269,19 @@ const PROPERTY = {
       '<span class="idx">'+String(i+1).padStart(2,'0')+' / '+String(p.photos.length).padStart(2,'0')+'</span>'+
       '<figcaption>'+ph.cap+'</figcaption></figure>';
   }).join('');
+
+  // FILM : les 8 plans s'enchaînent en boucle dans la section film
+  var film=$("scrub");
+  if(film){
+    var reels=["reel-02-facade","reel-03-dining","reel-04-living","reel-05-master",
+               "reel-06-bedroom","reel-07-bedroom2","reel-08-bathroom","reel-01-aerial"]
+      .map(function(n){return "../../assets/villa-samui-01/"+n+".mp4";});
+    var fi=0;
+    film.addEventListener("ended",function(){
+      fi=(fi+1)%reels.length; film.src=reels[fi];
+      var pr=film.play&&film.play(); if(pr&&pr.catch)pr.catch(function(){});
+    });
+  }
 })();
 
 (function(){

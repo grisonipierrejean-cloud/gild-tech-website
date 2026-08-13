@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Villa contemporaine · Koh Samui — Le film</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#000;overflow:hidden}
+  #stage{position:fixed;inset:0;display:grid;place-items:center;background:#000}
+  video{width:100%;height:100%;object-fit:cover;background:#000}
+  #cap{position:fixed;left:0;right:0;bottom:34px;text-align:center;z-index:3;
+    font-family:'Space Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:#ECE4D6;mix-blend-mode:difference;opacity:.9;transition:opacity .6s}
+  #bar{position:fixed;left:0;bottom:0;height:2px;background:#C79A5B;width:0;z-index:4;transition:width .25s linear}
+  #tap{position:fixed;inset:0;z-index:5;display:grid;place-items:center;cursor:pointer;
+    background:radial-gradient(60% 50% at 50% 50%,rgba(0,0,0,.15),rgba(0,0,0,.55));
+    font-family:'Space Mono',ui-monospace,monospace;color:#ECE4D6;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem}
+  #tap span{border:1px solid rgba(236,228,214,.5);border-radius:100px;padding:16px 26px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <video id="v" autoplay muted playsinline preload="auto"></video>
+</div>
+<div id="cap"></div>
+<div id="bar"></div>
+<div id="tap"><span>▶ Lancer le film</span></div>
+<script>
+  var base="../../assets/villa-samui-01/";
+  var shots=[
+    {f:"reel-01-aerial",  c:"La villa"},
+    {f:"reel-02-facade",  c:"Façade & piscine à débordement"},
+    {f:"reel-03-dining",  c:"Salle à manger, crépuscule"},
+    {f:"reel-04-living",  c:"Séjour ouvert"},
+    {f:"reel-05-master",  c:"Chambre principale"},
+    {f:"reel-06-bedroom", c:"Chambre, accès terrasse"},
+    {f:"reel-07-bedroom2",c:"Chambre"},
+    {f:"reel-08-bathroom",c:"Salle d'eau, pierre"}
+  ];
+  var v=document.getElementById('v'),cap=document.getElementById('cap'),
+      bar=document.getElementById('bar'),tap=document.getElementById('tap'),i=0;
+  function load(n){ i=n; v.src=base+shots[n].f+".mp4"; cap.textContent=shots[n].c;
+    bar.style.width=((n)/(shots.length-1)*100)+"%";
+    var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
+  v.addEventListener('ended',function(){ load((i+1)%shots.length); });
+  load(0);
+  tap.addEventListener('click',function(){ v.muted=false; v.play(); tap.style.display='none'; });
+  // masque l'invite si le son n'est pas requis (autoplay muet démarre seul)
+  setTimeout(function(){ if(!v.paused) tap.querySelector('span').textContent='▶ Activer le son'; },1200);
+</script>
+</body>
+</html>
