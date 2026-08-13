@@ -43,9 +43,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:c
 
 /* HERO */
 .hero{position:relative;height:100svh;min-height:600px;overflow:hidden}
-.hero-media{position:absolute;inset:-10% 0;z-index:0;will-change:transform}
-.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
-.hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,11,.6),rgba(10,10,11,.03) 30%,rgba(10,10,11,.12) 58%,rgba(10,10,11,.94))}
+.hero-media{position:absolute;inset:-10% 0;z-index:0;will-change:transform;background:#0A0A0B}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;transform:scale(1.06);filter:saturate(.92) contrast(1.06) brightness(.9)}
+.hero-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(10,10,11,.62),rgba(10,10,11,.05) 26%,rgba(10,10,11,.14) 54%,rgba(10,10,11,.96)),
+  radial-gradient(130% 100% at 50% 38%,transparent 42%,rgba(10,10,11,.55))}
 .hero-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(40px,8vh,92px)}
 .hero .eyeb{display:block;margin-bottom:26px;overflow:hidden}
 .hero h1{font-size:clamp(3rem,11vw,10.5rem);max-width:15ch}
@@ -67,15 +69,18 @@ header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:c
 .statement .word{display:inline-block;overflow:hidden;vertical-align:top}
 .statement .word>span{display:inline-block}
 
-/* VIDEO SCRUB (polidori-style) */
-.scrub-sec{position:relative;height:100svh;overflow:hidden;background:#000}
-.scrub-sec video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.scrub-sec::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 42%,rgba(10,10,11,.15),rgba(10,10,11,.8))}
-.scrub-cap{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;text-align:center;pointer-events:none}
+/* FILM : le cadre s'ouvre au scroll (transforms only, aucun seek) */
+.scrub-sec{position:relative;height:100svh;overflow:hidden;background:#0A0A0B}
+.scrub-frame{position:absolute;inset:0;overflow:hidden;z-index:0;
+  clip-path:inset(15% 19% 15% 19% round 6px);will-change:clip-path}
+.scrub-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.08) brightness(.86)}
+.scrub-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(125% 95% at 50% 44%,transparent 40%,rgba(10,10,11,.72))}
+.scrub-cap{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;text-align:center;pointer-events:none;padding:0 var(--pad)}
 .scrub-cap .label{margin-bottom:20px}
 .scrub-cap h2{font-size:clamp(2.2rem,6.5vw,5.6rem);line-height:1}
 .scrub-cap h2 em{font-style:italic;color:var(--accent)}
 .no-js .scrub-sec,.reduce .scrub-sec{height:70svh}
+.no-js .scrub-frame,.reduce .scrub-frame{clip-path:none}
 
 /* GALLERY */
 .gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:36px;flex-wrap:wrap}
@@ -152,7 +157,11 @@ footer{border-top:1px solid var(--line);padding:46px 0}
 </a>
 
 <section class="hero">
-  <div class="hero-media" id="heroMedia"><img src="photos/01-hero-aerial.jpg" alt="Vue aérienne de la villa et de sa piscine à débordement"></div>
+  <div class="hero-media" id="heroMedia">
+    <video id="heroVid" poster="photos/01-hero-aerial.jpg" autoplay muted loop playsinline preload="auto">
+      <source src="../../assets/reel-villa-lamai.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-scrim"></div>
   <div class="hero-c wrap">
     <span class="eyeb label" id="heroEyebrow">Les hauteurs de Koh Samui &nbsp;·&nbsp; 09°30'N 100°00'E</span>
@@ -169,9 +178,13 @@ footer{border-top:1px solid var(--line);padding:46px 0}
   <p id="statement">Le calme des hauteurs, le séjour ouvert plein cadre sur la canopée, <em>la ville à quelques minutes.</em></p>
 </div></section>
 
-<!-- VIDÉO SCRUB : le scroll fait défiler le film -->
-<section class="scrub-sec">
-  <video id="scrub" src="../../assets/reel-villa-lamai.mp4" muted playsinline preload="auto"></video>
+<!-- FILM : le cadre s'ouvre plein écran au scroll -->
+<section class="scrub-sec" id="film">
+  <div class="scrub-frame" id="filmFrame">
+    <video id="scrub" poster="photos/02-facade-pool.jpg" autoplay muted loop playsinline preload="auto">
+      <source src="../../assets/reel-villa-lamai.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="scrub-cap"><div class="label">Le film</div><h2>Vivre au-dessus<br>de la <em>canopée</em></h2></div>
 </section>
 
@@ -292,17 +305,17 @@ const PROPERTY = {
     gsap.set("#statement .word>span",{yPercent:110});
     gsap.to("#statement .word>span",{yPercent:0,duration:1,ease:"expo.out",stagger:.04,scrollTrigger:{trigger:sp,start:"top 78%"}}); }
 
-  // VIDÉO SCRUB : le scroll pilote video.currentTime (pattern polidori.dev)
-  if(v){
-    var setupScrub=function(){
-      // scrubbing vidéo fiable : on pilote currentTime directement dans onUpdate (pattern polidori.dev)
-      ScrollTrigger.create({trigger:".scrub-sec",start:"top top",end:"+=180%",scrub:.4,pin:true,invalidateOnRefresh:true,
-        onUpdate:function(self){ var d=v.duration; if(d && isFinite(d)) v.currentTime = self.progress * d; }});
-      gsap.from(".scrub-cap h2",{y:40,opacity:0,duration:1.2,ease:"expo.out",
-        scrollTrigger:{trigger:".scrub-sec",start:"top 60%"}});
-    };
-    if(v.readyState>=1) setupScrub(); else v.addEventListener("loadedmetadata",setupScrub);
+  // FILM : le cadre s'ouvre plein écran au scroll (clip-path, aucun seek → fiable partout)
+  var frame=document.getElementById("filmFrame");
+  if(frame){
+    var tlFilm=gsap.timeline({scrollTrigger:{trigger:".scrub-sec",start:"top top",end:"+=140%",scrub:.5,pin:true,invalidateOnRefresh:true}});
+    tlFilm.fromTo(frame,{clipPath:"inset(15% 19% 15% 19% round 6px)"},{clipPath:"inset(0% 0% 0% 0% round 0px)",ease:"none"},0)
+          .fromTo(".scrub-cap",{opacity:1},{opacity:0,ease:"none"},0);
+    gsap.from(".scrub-cap h2",{y:44,opacity:0,duration:1.2,ease:"expo.out",
+      scrollTrigger:{trigger:".scrub-sec",start:"top 62%"}});
   }
+  // les deux vidéos jouent en boucle (muet) — autoplay géré par l'attribut, relance de sécurité
+  gsap.utils.toArray("video").forEach(function(vid){ var pr=vid.play&&vid.play(); if(pr&&pr.catch)pr.catch(function(){}); });
 
   // galerie horizontale épinglée
   var track=document.getElementById("galTrack"),pin=document.getElementById("galPin");
