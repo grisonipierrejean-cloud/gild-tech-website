@@ -180,6 +180,9 @@
     <textarea id="content" placeholder="Collez ici vos réponses habituelles, une FAQ, votre façon de parler à vos contacts. Tout ce qui aide Sarah à vous ressembler."></textarea>
     <p class="hint">Vous pourrez aussi nous envoyer des documents après la mise en service.</p>
 
+    <label>Notes pour l'équipe <span class="opt">optionnel</span></label>
+    <textarea id="notes" placeholder="Une précision, une demande particulière, un point d'attention ? Notez tout ce que vous voulez nous dire ici."></textarea>
+
     <label>Délai des rappels par email</label>
     <p class="hint" style="margin-top:0">Si ce formulaire reste incomplet, quand voulez-vous un rappel ?</p>
     <div class="choices">
@@ -298,7 +301,7 @@
   var fields = {
     email:'email', wa_number:'wa_number', agent_wa:'agent_wa', agency:'agency',
     zones:'zones', calendar:'calendar', listings:'listings', crm:'crm',
-    content:'content', h_start:'h_start', h_end:'h_end'
+    content:'content', notes:'notes', h_start:'h_start', h_end:'h_end'
   };
 
   // Nom d'agence effectif (saisi > pré-rempli depuis l'URL). Utilisé partout où figurait "votre agence".
