@@ -282,7 +282,11 @@
   var STORE_KEY = 'gt_onboard_' + (token || 'anon');
 
   var state = { token: token, offer: offerKey, agency_url: agencyFromUrl, step: 1, data: {}, completed: false };
-  try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (saved) state = Object.assign(state, saved); } catch(e){}
+  // Reprise UNIQUEMENT sur un lien client (avec token). Sans token = lien neutre/démo :
+  // on démarre toujours vierge, jamais de données d'un client précédent en cache.
+  if (token) {
+    try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (saved) state = Object.assign(state, saved); } catch(e){}
+  }
   if (state.completed) state.step = 4;
 
   var steps = [].slice.call(document.querySelectorAll('.step'));
