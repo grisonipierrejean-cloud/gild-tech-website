@@ -4,95 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Villa contemporaine · Koh Samui — Maquette</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Maquette · en révision</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;background:#0A0A0B;overflow:hidden;color:#ECE4D6;font-family:'Space Mono',monospace}
-  #stage{position:fixed;inset:0;background:#0A0A0B}
-  video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0A0A0B}
-  .scrim{position:fixed;inset:0;z-index:2;pointer-events:none;
-    background:linear-gradient(180deg,rgba(10,10,11,.55),transparent 22%,transparent 62%,rgba(10,10,11,.85))}
-  /* carton titre / outro */
-  .card{position:fixed;inset:0;z-index:6;display:grid;place-items:center;text-align:center;background:#0A0A0B;transition:opacity 1s ease}
-  .card.hide{opacity:0;pointer-events:none}
-  .card .ey{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:#C79A5B;margin-bottom:22px}
-  .card h1{font-family:'Fraunces',serif;font-weight:330;font-size:clamp(2.4rem,7vw,5.5rem);line-height:1;letter-spacing:-.02em}
-  .card h1 em{font-style:italic;color:#C79A5B}
-  .card .sub{margin-top:26px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#A79B88}
-  .card .go{margin-top:40px;border:1px solid rgba(236,228,214,.5);border-radius:100px;padding:15px 30px;
-    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:.3s}
-  .card .go:hover{background:#ECE4D6;color:#0A0A0B}
-  /* légende plan */
-  #cap{position:fixed;left:0;right:0;bottom:38px;z-index:4;text-align:center;transition:opacity .5s}
-  #cap .n{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:#ECE4D6}
-  #cap .m{margin-top:8px;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:#C79A5B}
-  #idx{position:fixed;top:30px;right:34px;z-index:4;font-size:.62rem;letter-spacing:.18em;color:#A79B88}
-  #brand{position:fixed;top:28px;left:34px;z-index:4;font-family:'Fraunces',serif;font-size:1.1rem}
-  #bar{position:fixed;left:0;bottom:0;height:2px;background:#C79A5B;width:0;z-index:5;transition:width .3s linear}
-  .outro{display:none}.outro.on{display:grid}
+  html,body{height:100%}
+  body{background:#0A0A0B;color:#ECE4D6;font-family:ui-monospace,'Space Mono',monospace;
+    display:grid;place-items:center;text-align:center;padding:24px;letter-spacing:.04em}
+  .k{color:#C79A5B;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:20px}
+  h1{font-weight:400;font-size:clamp(1.2rem,3.4vw,1.8rem);line-height:1.4;max-width:34ch}
+  p{margin-top:18px;color:#A79B88;font-size:.8rem;max-width:40ch;line-height:1.6}
 </style>
 </head>
 <body>
-<div id="stage"><video id="v" autoplay muted playsinline preload="auto"></video></div>
-<div class="scrim"></div>
-<div id="brand">Villa Samui</div>
-<div id="idx"></div>
-<div id="cap"><div class="n"></div><div class="m"></div></div>
-<div id="bar"></div>
-
-<div class="card" id="intro">
   <div>
-    <div class="ey">Koh Samui · Villa contemporaine de plain-pied</div>
-    <h1>Villa contemporaine,<br><em>à débordement</em></h1>
-    <div class="sub">Maquette · film cinématique par bien</div>
-    <div class="go" id="start">▶ Lancer la maquette</div>
+    <div class="k">Villa Samui</div>
+    <h1>Maquette temporairement indisponible — contrôle qualité en cours.</h1>
+    <p>Les plans sont en cours de re-vérification image par image avant remise en ligne.</p>
   </div>
-</div>
-
-<div class="card outro" id="outro">
-  <div>
-    <div class="ey">Cette villa vous intéresse</div>
-    <h1>Parlons-en,<br><em>simplement</em></h1>
-    <div class="sub">GILD-TECH · démo interne</div>
-    <div class="go" id="replay">↻ Revoir</div>
-  </div>
-</div>
-
-<script>
-  // CLIPS : rempli après génération DoP (url + légende + motion)
-  const H="https://cloud-cdn.higgsfield.ai/0d817b7d-6903-4e6e-8b37-4ed26c02ebac/";
-  const CLIPS = [
-    {url:H+"97d7168b-8510-4976-9442-08bffa17a693.mp4", n:"La villa vue du ciel",           m:"FPV Drone"},
-    {url:H+"0a42db59-06fc-4bbc-8553-9cb4a6144dea.mp4", n:"Façade & piscine à débordement", m:"Aerial Pullback"},
-    {url:H+"ed30a1fe-f986-47ea-a4f9-e265fbc3722c.mp4", n:"Salle à manger, crépuscule",     m:"Super Dolly In"},
-    {url:H+"68fb1841-6a09-4b8f-af44-88bc51228be8.mp4", n:"Séjour ouvert",                  m:"Arc Right"},
-    {url:H+"8f0858e0-d5fd-4de4-8fe9-5d6ac082bf83.mp4", n:"Chambre principale",             m:"Super Dolly In"},
-    {url:H+"398d398e-e2f6-480d-85c4-12acba85c7b6.mp4", n:"Chambre, accès terrasse",        m:"Arc Right"},
-    {url:H+"501ba539-f043-4f27-82f9-31d5e694e76c.mp4", n:"Chambre",                        m:"Super Dolly In"},
-    {url:H+"99f6db0a-6a74-4d01-bacc-67df6f301b3c.mp4", n:"Salle d'eau, pierre",            m:"Super Dolly Out"}
-  ];
-  const v=document.getElementById('v'), cap=document.getElementById('cap'),
-        capN=cap.querySelector('.n'), capM=cap.querySelector('.m'),
-        idx=document.getElementById('idx'), bar=document.getElementById('bar'),
-        intro=document.getElementById('intro'), outro=document.getElementById('outro');
-  let i=0, playing=false;
-  function show(n){
-    i=n; const c=CLIPS[n];
-    v.src=c.url; capN.textContent=c.n; capM.textContent="Mouvement — "+c.m;
-    idx.textContent=String(n+1).padStart(2,'0')+" / "+String(CLIPS.length).padStart(2,'0');
-    bar.style.width=(n/(CLIPS.length-1)*100)+"%";
-    const p=v.play&&v.play(); if(p&&p.catch)p.catch(()=>{});
-  }
-  v.addEventListener('ended',()=>{
-    if(i+1<CLIPS.length) show(i+1);
-    else { cap.style.opacity=0; idx.style.opacity=0; outro.classList.add('on','card'); outro.classList.remove('hide'); playing=false; }
-  });
-  function start(){ intro.classList.add('hide'); outro.classList.remove('on'); cap.style.opacity=1; idx.style.opacity=1; playing=true; show(0); }
-  document.getElementById('start').addEventListener('click',start);
-  document.getElementById('replay').addEventListener('click',()=>{ outro.classList.remove('on'); start(); });
-</script>
 </body>
 </html>
