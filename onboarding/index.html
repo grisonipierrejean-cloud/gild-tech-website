@@ -6,14 +6,11 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Configuration de Sarah · GILD-TECH</title>
 <style>
+  /* Fond blanc, texte sombre (forcé, quel que soit le thème de l'OS) */
   :root{
-    --bg:#0A0A0A; --card:#111319; --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.16);
-    --txt:#F5F7FA; --mut:#94A3B8; --accent:#2563EB; --accent2:#1d4ed8;
-    --ok:#22c55e; --warn:#f59e0b; --field:#0d0f14;
-  }
-  @media (prefers-color-scheme:light){
-    :root{ --bg:#F4F6FB; --card:#ffffff; --line:rgba(11,29,51,.12); --line2:rgba(11,29,51,.20);
-      --txt:#0B1D33; --mut:#5b6b7f; --field:#fbfcfe; }
+    --bg:#F5F7FB; --card:#ffffff; --line:rgba(11,29,51,.12); --line2:rgba(11,29,51,.20);
+    --txt:#0B1D33; --mut:#5b6b7f; --accent:#2563EB; --accent2:#1d4ed8;
+    --ok:#16a34a; --warn:#b45309; --field:#fbfcfe;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);
@@ -26,24 +23,29 @@
   .bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:8px}
   .bar > i{display:block;height:100%;width:25%;background:var(--accent);transition:width .35s ease}
   .steplabel{font-size:12px;color:var(--mut);margin-bottom:24px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;
+    box-shadow:0 1px 2px rgba(11,29,51,.04),0 8px 24px -16px rgba(11,29,51,.18)}
   h1{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
   .sub{color:var(--mut);font-size:14px;margin:0 0 22px}
   label{display:block;font-size:14px;font-weight:600;margin:18px 0 6px}
   label .opt{font-weight:400;color:var(--mut);font-size:12px}
+  .req{color:var(--accent);font-weight:700}
   .hint{font-size:12px;color:var(--mut);margin:5px 0 0}
   input,select,textarea{width:100%;background:var(--field);color:var(--txt);
     border:1px solid var(--line2);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit}
-  input:focus,select,textarea:focus{outline:none;border-color:var(--accent)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
   textarea{min-height:96px;resize:vertical}
-  .locked{background:transparent;border-style:dashed;color:var(--mut)}
   .choices{display:grid;gap:10px;margin-top:6px}
   .choice{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line2);border-radius:10px;
-    padding:12px 14px;cursor:pointer}
+    padding:12px 14px;cursor:pointer;background:var(--field)}
   .choice:hover{border-color:var(--accent)}
   .choice input{width:auto;margin-top:3px}
   .choice b{display:block;font-size:14px}
   .choice small{color:var(--mut)}
+  .langs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+  .lang{display:flex;gap:9px;align-items:center;border:1px solid var(--line2);border-radius:9px;padding:9px 12px;cursor:pointer;background:var(--field);font-size:14px}
+  .lang:hover{border-color:var(--accent)}
+  .lang input{width:auto}
   .row{display:flex;gap:12px;flex-wrap:wrap}
   .row > div{flex:1;min-width:150px}
   .nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
@@ -57,12 +59,15 @@
   .err{color:var(--warn);font-size:13px;margin-top:6px}
   .hidden{display:none}
   .callout{border:1px solid var(--line2);border-radius:12px;padding:16px;margin:18px 0;background:var(--field)}
+  .callout.warn{border-color:#f0b463;background:#fff8ee}
   .callout b{display:block;margin-bottom:6px}
   .qr{display:flex;gap:14px;align-items:flex-start}
   .qr .ico{font-size:26px;line-height:1}
   ol.next{padding-left:20px;margin:10px 0 0}
   ol.next li{margin:8px 0;font-size:14px}
   .done-ico{font-size:40px;text-align:center;margin:4px 0 10px}
+  .rgpd{font-size:11.5px;color:var(--mut);line-height:1.5;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+  .rgpd a{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -77,26 +82,31 @@
 
   <!-- ETAPE 1 : le minimum -->
   <div class="card step" data-step="1">
-    <h1>Configurons Sarah</h1>
+    <h1 id="h1Step1">Configurons Sarah</h1>
     <p class="sub">Trois minutes. Vos réponses sont sauvegardées à chaque étape, vous pouvez revenir sur ce lien tant que ce n'est pas terminé.</p>
 
-    <label>Votre email</label>
+    <label>Nom de l'agence <span class="req">*</span></label>
+    <input type="text" id="agency" placeholder="Agence" autocomplete="organization">
+    <p class="hint">C'est ce nom que Sarah utilise en se présentant à vos contacts.</p>
+
+    <label>Votre email <span class="req">*</span></label>
     <input type="email" id="email" placeholder="vous@votre-agence.com" autocomplete="email">
 
-    <label>Numéro WhatsApp dédié à Sarah</label>
-    <input type="tel" id="wa_number" placeholder="+32 470 00 00 00" autocomplete="off">
+    <label>Numéro WhatsApp dédié à Sarah <span class="req">*</span></label>
+    <input type="tel" id="wa_number" placeholder="+66 00 000 0000" autocomplete="off">
     <p class="hint">Un numéro réservé à Sarah, jamais votre ligne personnelle. Nous vérifions qu'il n'est pas déjà rattaché à une WhatsApp Business API avant la mise en service.</p>
 
-    <label>Nom de l'agence</label>
-    <input type="text" id="agency" placeholder="Immo Brabant" autocomplete="organization">
+    <label>Votre WhatsApp personnel (agent) <span class="req">*</span></label>
+    <input type="tel" id="agent_wa" placeholder="+66 00 000 0000" autocomplete="off">
+    <p class="hint">Là où Sarah vous alerte immédiatement en cas de lead chaud. Sans lui, elle ne peut prévenir personne.</p>
 
     <label>Offre</label>
     <select id="offer">
-      <option value="capter">Capter : Sarah écrit (WhatsApp)</option>
-      <option value="convertir">Convertir : Sarah vocale + Meta DM</option>
-      <option value="developper">Développer : vidéo d'annonces</option>
+      <option value="respond">RESPOND · 290 €/mois</option>
+      <option value="convert">CONVERT · 490 €/mois</option>
+      <option value="dominate">DOMINATE · 790 €/mois</option>
     </select>
-    <p class="hint">Pré-sélectionnée depuis votre lien. Vous pouvez la changer.</p>
+    <p class="hint" id="offerDesc"></p>
 
     <div class="nav">
       <span></span>
@@ -107,21 +117,45 @@
   <!-- ETAPE 2 : l'essentiel -->
   <div class="card step hidden" data-step="2">
     <h1>Le terrain de Sarah</h1>
-    <p class="sub">Ce que Sarah doit connaître pour parler juste à vos contacts.</p>
+    <p class="sub">Ce que Sarah doit connaître pour parler juste à vos contacts et poser des rendez-vous.</p>
 
-    <label>Zones et types de biens traités</label>
-    <textarea id="zones" placeholder="Ex : Ixelles, Uccle, Watermael. Appartements et maisons, du studio au 4 chambres."></textarea>
-    <p class="hint">Vos quartiers et les types de biens. En clair, comme vous le diriez à un nouveau collaborateur.</p>
+    <label>Zones et types de biens traités <span class="req">*</span></label>
+    <textarea id="zones" placeholder="Ex : Bophut, Chaweng, Lamai, Maenam. Villas et condos, du studio au 4 chambres."></textarea>
+    <p class="hint">Vos secteurs et les types de biens. En clair, comme vous le diriez à un nouveau collaborateur.</p>
 
-    <label>Procédure de sortie</label>
+    <label>Lien d'agenda ou créneaux habituels <span class="req">*</span></label>
+    <input type="text" id="calendar" placeholder="Lien Calendly / Google Agenda, ou vos créneaux (ex : lun-ven 10h-18h)">
+    <p class="hint">Sans agenda ni créneaux, Sarah ne peut pas proposer de rendez-vous.</p>
+
+    <label>Vos annonces actives <span class="opt">recommandé</span></label>
+    <input type="text" id="listings" placeholder="Lien vers votre site ou catalogue d'annonces">
+    <p class="hint">Un lien vers votre catalogue. Vous pourrez aussi nous envoyer vos fichiers par email après la mise en service.</p>
+
+    <label>Langues prioritaires de votre clientèle</label>
+    <div class="langs" id="langs">
+      <label class="lang"><input type="checkbox" name="lang" value="Français"> Français</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Anglais"> Anglais</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Russe"> Russe</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Allemand"> Allemand</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Italien"> Italien</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Espagnol"> Espagnol</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Néerlandais"> Néerlandais</label>
+      <label class="lang"><input type="checkbox" name="lang" value="Chinois"> Chinois</label>
+    </div>
+
+    <label>CRM utilisé</label>
+    <input type="text" id="crm" placeholder="CRM (lequel ?), Excel, Google Sheets, ou aucun">
+    <p class="hint">Pour savoir où Sarah doit remonter les contacts.</p>
+
+    <label>Procédure de sortie <span class="req">*</span></label>
     <p class="hint" style="margin-top:0">Quand un contact est qualifié, que fait Sarah ?</p>
     <div class="choices">
       <label class="choice"><input type="radio" name="exit" value="visio"><span><b>Visio</b><small>Elle propose un appel vidéo</small></span></label>
       <label class="choice"><input type="radio" name="exit" value="visite"><span><b>Visite physique</b><small>Elle propose une visite du bien</small></span></label>
-      <label class="choice"><input type="radio" name="exit" value="classement"><span><b>Classement</b><small>Elle recueille le créneau de rappel et transmet à l'agent</small></span></label>
+      <label class="choice"><input type="radio" name="exit" value="classement"><span><b>Rappel agent</b><small>Elle recueille le créneau de rappel et transmet à l'agent</small></span></label>
     </div>
 
-    <label>Horaires de Sarah</label>
+    <label>Horaires de Sarah <span class="req">*</span></label>
     <div class="choices">
       <label class="choice"><input type="radio" name="hours" value="247"><span><b>24 / 7</b><small>Elle répond à toute heure</small></span></label>
       <label class="choice"><input type="radio" name="hours" value="plage"><span><b>Plage définie</b><small>Vous fixez les heures ci-dessous</small></span></label>
@@ -176,43 +210,78 @@
       </div>
     </div>
 
+    <div class="callout warn">
+      <div class="qr">
+        <div class="ico">🔌</div>
+        <div>
+          <b>Le téléphone dédié doit rester allumé et connecté</b>
+          Sarah répond depuis ce numéro : le téléphone qui le porte doit rester allumé, chargé et connecté à Internet en permanence. S'il s'éteint ou perd le réseau, Sarah cesse de répondre jusqu'au retour de la connexion.
+        </div>
+      </div>
+    </div>
+
     <b>La suite</b>
     <ol class="next">
       <li>Vous recevez un email de confirmation avec le récapitulatif.</li>
       <li>Nous vérifions le numéro et préparons Sarah avec vos réponses.</li>
       <li>Nous vous envoyons le QR code à scanner.</li>
-      <li>Une fois scanné, Sarah est en service. Comptez quelques jours ouvrés.</li>
+      <li>Une fois le QR scanné, Sarah est en service <b>sous 3 jours ouvrés</b>.</li>
     </ol>
     <p class="hint" style="margin-top:18px">Une question ? Répondez simplement à l'email de confirmation.</p>
   </div>
 
   <div class="saved" id="savedMsg"></div>
+
+  <p class="rgpd">
+    <b>Protection de vos données.</b> Les informations saisies (coordonnées de l'agence, numéros, paramètres de Sarah)
+    sont collectées uniquement pour configurer et faire fonctionner votre assistante Sarah. Responsable du traitement :
+    Girlden LTD (GILD-TECH). Elles sont conservées le temps de la relation commerciale, puis supprimées, et ne sont
+    jamais revendues. Vous disposez d'un droit d'accès, de rectification et de suppression, exerçable par simple email.
+    Détails : <a href="/confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.
+  </p>
 </div>
 
 <script>
 (function(){
   "use strict";
-  // ---- offre : pre-selectionnee depuis l'URL, mais librement modifiable ----
+  // ---- offres (grille officielle) : clé -> nom + prix + une ligne de ce qui TOURNE ----
   var OFFERS = {
-    capter:     "Capter",
-    convertir:  "Convertir",
-    developper: "Développer"
+    respond:  { name:"RESPOND",  price:"290 €/mois", desc:"Sarah répond sur WhatsApp en moins de 5 minutes, qualifie le contact et alerte l'agent sur les leads chauds." },
+    convert:  { name:"CONVERT",  price:"490 €/mois", desc:"Tout RESPOND, plus les relances automatiques des contacts silencieux et un tableau de bord de suivi." },
+    dominate: { name:"DOMINATE", price:"790 €/mois", desc:"Tout CONVERT, plus Sarah sur les emails entrants et un brief quotidien pour l'agent." }
   };
-  var qs = new URLSearchParams(location.search);
-  var token = qs.get('t') || '';
-  var offerSel = document.getElementById('offer');
-  var offerKey = (qs.get('offer') || '').toLowerCase();
-  if (OFFERS[offerKey]) offerSel.value = offerKey; else offerKey = offerSel.value;
-  function syncOfferBadge(){ offerKey = offerSel.value; document.getElementById('offerBadge').textContent = OFFERS[offerKey] || 'Offre'; }
-  offerSel.addEventListener('change', syncOfferBadge);
-  syncOfferBadge();
+  // compat anciens liens (?offer=capter/convertir/developper)
+  var OFFER_ALIAS = { capter:"respond", convertir:"convert", developper:"dominate",
+                      respond:"respond", convert:"convert", dominate:"dominate" };
 
-  // ---- endpoint n8n (pose par le workflow onboarding) ----
+  // ---- clients connus : token -> nom d'agence (résolution du nom sans serveur) ----
+  var CLIENTS = {};
+
+  var qs = new URLSearchParams(location.search);
+  var token = (qs.get('t') || '').trim();
+  // Nom d'agence résolu : param ?a= (générique, prioritaire) sinon table CLIENTS via le token.
+  var agencyFromUrl = (qs.get('a') || '').trim();
+  if (!agencyFromUrl && token && CLIENTS[token.toLowerCase()]) agencyFromUrl = CLIENTS[token.toLowerCase()];
+
+  var offerSel = document.getElementById('offer');
+  var rawOffer = (qs.get('offer') || '').toLowerCase();
+  var offerKey = OFFER_ALIAS[rawOffer] || offerSel.value;
+  offerSel.value = offerKey;
+
+  function syncOffer(){
+    offerKey = offerSel.value;
+    var o = OFFERS[offerKey] || {};
+    document.getElementById('offerBadge').textContent = o.name || 'Offre';
+    document.getElementById('offerDesc').textContent = o.desc || '';
+  }
+  offerSel.addEventListener('change', syncOffer);
+  syncOffer();
+
+  // ---- endpoint n8n ----
   var WEBHOOK = 'https://peejay.app.n8n.cloud/webhook/onboarding';
   var STORE_KEY = 'gt_onboard_' + (token || 'anon');
 
-  var state = { token: token, offer: offerKey, step: 1, data: {}, completed: false };
-  // reprise : localStorage d'abord (instantane), le serveur reste la source pour la relance
+  var state = { token: token, offer: offerKey, agency_url: agencyFromUrl, step: 1, data: {}, completed: false };
   try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); if (saved) state = Object.assign(state, saved); } catch(e){}
   if (state.completed) state.step = 4;
 
@@ -221,10 +290,18 @@
   var stepLabel = document.getElementById('stepLabel');
   var savedMsg = document.getElementById('savedMsg');
 
+  // champs texte simples
   var fields = {
-    email:'email', wa_number:'wa_number', agency:'agency',
-    zones:'zones', content:'content', h_start:'h_start', h_end:'h_end'
+    email:'email', wa_number:'wa_number', agent_wa:'agent_wa', agency:'agency',
+    zones:'zones', calendar:'calendar', listings:'listings', crm:'crm',
+    content:'content', h_start:'h_start', h_end:'h_end'
   };
+
+  // Nom d'agence effectif (saisi > pré-rempli depuis l'URL). Utilisé partout où figurait "votre agence".
+  function agencyName(){
+    var typed = (document.getElementById('agency').value || '').trim();
+    return typed || state.data.agency || state.agency_url || '';
+  }
 
   function collect(){
     var d = state.data;
@@ -232,25 +309,32 @@
     var ex=document.querySelector('input[name=exit]:checked'); if(ex) d.exit=ex.value;
     var hr=document.querySelector('input[name=hours]:checked'); if(hr) d.hours=hr.value;
     var rm=document.querySelector('input[name=remind]:checked'); if(rm) d.remind=rm.value;
-    offerKey=offerSel.value; d.offer=offerKey; d.offer_name=OFFERS[offerKey]||offerKey;
+    d.langs = [].slice.call(document.querySelectorAll('input[name=lang]:checked')).map(function(c){return c.value;});
+    offerKey=offerSel.value; d.offer=offerKey; d.offer_name=(OFFERS[offerKey]||{}).name||offerKey;
     return d;
   }
   function restore(){
     var d=state.data||{};
-    Object.keys(fields).forEach(function(id){ var el=document.getElementById(id); if(el&&d[id]!=null) el.value=d[id]; });
+    // pré-remplissage du nom d'agence depuis l'URL si pas encore saisi
+    if(!d.agency && state.agency_url){ var ag=document.getElementById('agency'); if(ag) ag.value=state.agency_url; }
+    Object.keys(fields).forEach(function(id){ var el=document.getElementById(id); if(el&&d[id]!=null&&d[id]!=='') el.value=d[id]; });
     if(d.exit){var e=document.querySelector('input[name=exit][value="'+d.exit+'"]'); if(e)e.checked=true;}
     if(d.hours){var h=document.querySelector('input[name=hours][value="'+d.hours+'"]'); if(h){h.checked=true; toggleHours();}}
     if(d.remind){var r=document.querySelector('input[name=remind][value="'+d.remind+'"]'); if(r)r.checked=true;}
+    if(Array.isArray(d.langs)){ d.langs.forEach(function(v){ var c=document.querySelector('input[name=lang][value="'+v+'"]'); if(c)c.checked=true; }); }
+    // greeting personnalisé
+    var nm=agencyName();
+    if(nm){ document.getElementById('h1Step1').textContent='Configurons Sarah pour '+nm; }
   }
 
   function persist(kind){
     collect();
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
-    // envoi non bloquant au serveur (save partiel ou submit final)
     if (!token) { flash('Sauvegarde locale (lien de test sans jeton)'); return; }
     fetch(WEBHOOK, {
       method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
-      body: JSON.stringify({ action:kind, token:token, offer:offerKey, step:state.step, completed:state.completed, data:state.data })
+      body: JSON.stringify({ action:kind, token:token, offer:offerKey, agency_url:state.agency_url,
+        step:state.step, completed:state.completed, data:state.data })
     }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegardé'); })
       .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
   }
@@ -262,21 +346,24 @@
     steps.forEach(function(s){ s.classList.toggle('hidden', +s.dataset.step!==n); });
     prog.style.width=(n*25)+'%';
     stepLabel.textContent = n<4 ? ('Étape '+n+' sur 4') : 'Terminé';
-    if(n===4){ document.getElementById('doneAgency').textContent = state.data.agency || 'votre agence'; }
+    if(n===4){ document.getElementById('doneAgency').textContent = agencyName() || 'votre agence'; }
     window.scrollTo(0,0);
   }
 
   function validStep(n){
     if(n===1){
+      var ag=document.getElementById('agency').value.trim();
       var em=document.getElementById('email').value.trim();
       var wa=document.getElementById('wa_number').value.trim();
-      var ag=document.getElementById('agency').value.trim();
-      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return 'Un email valide est requis.';
-      if(wa.replace(/\D/g,'').length<8) return 'Le numéro WhatsApp semble incomplet.';
+      var aw=document.getElementById('agent_wa').value.trim();
       if(!ag) return 'Le nom de l\'agence est requis.';
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return 'Un email valide est requis.';
+      if(wa.replace(/\D/g,'').length<8) return 'Le numéro WhatsApp dédié semble incomplet.';
+      if(aw.replace(/\D/g,'').length<8) return 'Votre WhatsApp personnel (pour les alertes) est requis.';
     }
     if(n===2){
       if(!document.getElementById('zones').value.trim()) return 'Indiquez vos zones et types de biens.';
+      if(!document.getElementById('calendar').value.trim()) return 'Indiquez un agenda ou vos créneaux habituels.';
       if(!document.querySelector('input[name=exit]:checked')) return 'Choisissez une procédure de sortie.';
       if(!document.querySelector('input[name=hours]:checked')) return 'Choisissez les horaires de Sarah.';
     }
@@ -301,6 +388,10 @@
     clearErr(); state.completed=true; persist('submit'); show(4);
   });
   document.querySelectorAll('input[name=hours]').forEach(function(r){ r.addEventListener('change', toggleHours); });
+  // met à jour le titre personnalisé quand on tape le nom
+  document.getElementById('agency').addEventListener('input', function(){
+    var nm=this.value.trim(); document.getElementById('h1Step1').textContent = nm ? ('Configurons Sarah pour '+nm) : 'Configurons Sarah';
+  });
   // autosave leger a la frappe
   document.querySelectorAll('input,textarea,select').forEach(function(el){
     el.addEventListener('change', function(){ try{ collect(); localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} });
