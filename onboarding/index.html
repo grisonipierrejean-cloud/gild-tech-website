@@ -337,10 +337,11 @@
   function persist(kind){
     collect();
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
-    if (!token) { flash('Sauvegarde locale (lien de test sans jeton)'); return; }
+    // Envoi serveur SYSTÉMATIQUE (avec ou sans token). Sans token, l'agence est identifiée
+    // par son nom/email : on ne perd jamais une soumission réelle.
     fetch(WEBHOOK, {
       method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
-      body: JSON.stringify({ action:kind, token:token, offer:offerKey, agency_url:state.agency_url,
+      body: JSON.stringify({ action:kind, token:token||'', offer:offerKey, agency_url:state.agency_url,
         step:state.step, completed:state.completed, data:state.data })
     }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegardé'); })
       .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
