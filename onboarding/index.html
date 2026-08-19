@@ -343,11 +343,16 @@
       method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
       body: JSON.stringify({ action:kind, token:token||'', offer:offerKey, agency_url:state.agency_url,
         step:state.step, completed:state.completed, data:state.data })
-    }).then(function(){ flash(kind==='submit' ? '' : 'Sauvegardé'); })
-      .catch(function(){ flash('Sauvegarde locale, la synchro se fera au prochain envoi'); });
+    }).then(function(){ var t=new Date().toTimeString().slice(0,5); flash('✓ Enregistré sur le serveur · '+t, 'ok'); })
+      .catch(function(){ flash('⚠ Réseau indisponible : sauvegardé en local, renvoi au prochain envoi', 'warn'); });
   }
   var flashT;
-  function flash(m){ savedMsg.textContent=m; clearTimeout(flashT); if(m) flashT=setTimeout(function(){savedMsg.textContent='';},2200); }
+  function flash(m, type){ savedMsg.textContent=m;
+    savedMsg.style.color = type==='ok' ? '#16a34a' : (type==='warn' ? '#b45309' : '');
+    savedMsg.style.fontWeight = type ? '600' : '';
+    clearTimeout(flashT);
+    // la confirmation verte reste visible (le client sait que c'est enregistré) ; l'alerte disparaît
+    if(m && type!=='ok') flashT=setTimeout(function(){savedMsg.textContent='';savedMsg.style.color='';savedMsg.style.fontWeight='';},2800); }
 
   function show(n){
     state.step=n;
