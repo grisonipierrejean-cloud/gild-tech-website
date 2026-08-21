@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agence · Dashboard Sarah</title>
+<style>
+  :root{
+    --bg:#0f1417; --panel:#161d21; --panel-2:#1c2429; --line:#252f35;
+    --txt:#e6ebe9; --txt-dim:#8a9a99; --accent:#4fb3a3; --warm:#d9a05b; --hot:#e0705c;
+    --blue:#5b8fd9; --shadow:0 8px 30px -14px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f7f6; --panel:#ffffff; --panel-2:#eef3f2; --line:#e2e9e7;
+    --txt:#12201d; --txt-dim:#5f726e; --accent:#2f8d7e; --warm:#b9792f; --hot:#c9503c;
+    --blue:#3f6fbf; --shadow:0 10px 30px -16px rgba(18,32,29,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+    padding:22px 18px 48px;line-height:1.5;max-width:1080px;margin:0 auto;
+    transition:background .3s ease,color .3s ease}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+  .brand{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .brand span{color:var(--accent)}
+  .theme{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:var(--shadow)}
+  .theme button{border:0;background:none;color:var(--txt-dim);font:inherit;font-size:13px;font-weight:600;
+    padding:6px 13px;border-radius:999px;cursor:pointer;transition:.15s}
+  .theme button[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:14px}
+  .agency{display:flex;align-items:center;gap:13px}
+  .agency img{height:38px;width:auto;border-radius:7px;background:#fff;padding:4px}
+  .agency h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .agency .sub{font-size:12.5px;color:var(--txt-dim)}
+  .status{font-size:13px;color:var(--accent);display:flex;align-items:center;gap:7px;font-weight:600}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  .tabs{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px;margin-bottom:18px}
+  .tabs button{border:0;background:none;color:var(--txt-dim);font:inherit;font-size:13.5px;font-weight:600;
+    padding:8px 18px;border-radius:8px;cursor:pointer;transition:.15s}
+  .tabs button[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;box-shadow:var(--shadow)}
+  .kpi .label{font-size:11.5px;color:var(--txt-dim);letter-spacing:.03em;margin-bottom:7px}
+  .kpi .value{font-size:26px;font-weight:600;letter-spacing:-.02em}
+  .kpi .sub{font-size:11.5px;color:var(--txt-dim);margin-top:4px}
+
+  .toolbar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .search{flex:1;min-width:160px;background:var(--panel);color:var(--txt);border:1px solid var(--line);
+    border-radius:10px;padding:10px 13px;font:inherit;font-size:14px}
+  .count{font-size:12.5px;color:var(--txt-dim)}
+
+  /* LEADS table */
+  .tablewrap{background:var(--panel);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{text-align:left;font-size:11px;font-weight:600;color:var(--txt-dim);letter-spacing:.03em;
+    padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  tbody td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:var(--panel-2)}
+  tbody tr:last-child td{border-bottom:none}
+  .who{font-weight:600}
+  .muted{color:var(--txt-dim);font-size:12px}
+  .msg{color:var(--txt-dim);font-size:12px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .badge{display:inline-block;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .b-fb{background:rgba(91,143,217,.16);color:var(--blue);border:1px solid rgba(91,143,217,.32)}
+  .b-wa{background:rgba(79,179,163,.14);color:var(--accent);border:1px solid rgba(79,179,163,.3)}
+  .b-em{background:rgba(217,160,91,.14);color:var(--warm);border:1px solid rgba(217,160,91,.32)}
+  .b-di{background:var(--panel-2);color:var(--txt-dim);border:1px solid var(--line)}
+  .st-hot{color:var(--hot);font-weight:600}
+  .st-rdv{color:var(--accent);font-weight:600}
+  .linkchip{font-size:10px;padding:2px 7px;border-radius:6px;border:1px dashed var(--line);color:var(--txt-dim);margin-left:6px}
+  .dupbar{display:inline-block;width:3px;height:13px;border-radius:2px;margin-right:7px;vertical-align:-2px}
+
+  /* BIENS grid */
+  .biens{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .bien{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .bien .ph{height:150px;background:var(--panel-2) center/cover no-repeat;position:relative}
+  .bien .code{position:absolute;top:9px;left:9px;background:rgba(0,0,0,.62);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:7px;letter-spacing:.02em}
+  .bien .stt{position:absolute;top:9px;right:9px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px}
+  .stt-actif{background:rgba(79,179,163,.9);color:#fff}
+  .stt-vendu{background:rgba(224,112,92,.92);color:#fff}
+  .bien .body{padding:13px 14px;flex:1;display:flex;flex-direction:column;gap:5px}
+  .bien .ti{font-size:13.5px;font-weight:600;line-height:1.35}
+  .bien .meta{font-size:12px;color:var(--txt-dim)}
+  .bien .price{font-size:15px;font-weight:700;color:var(--accent);margin-top:2px}
+  .bien .actions{display:flex;gap:7px;padding:0 14px 14px}
+  .btn{flex:1;border:1px solid var(--line);background:var(--panel-2);color:var(--txt);font:inherit;font-size:12px;font-weight:600;
+    padding:9px 8px;border-radius:9px;cursor:pointer;transition:.15s;text-align:center}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.done{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  /* detail drawer */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+  .overlay.on{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,94vw);background:var(--bg);border-left:1px solid var(--line);
+    box-shadow:-14px 0 40px -20px rgba(0,0,0,.7);transform:translateX(100%);transition:transform .25s ease;z-index:41;overflow-y:auto;padding:22px 20px 40px}
+  .drawer.on{transform:translateX(0)}
+  .drawer .x{position:absolute;top:16px;right:16px;border:1px solid var(--line);background:var(--panel);color:var(--txt-dim);
+    width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px}
+  .drawer h3{font-size:18px;font-weight:600;margin-bottom:3px;padding-right:40px}
+  .drawer .dsub{font-size:12.5px;color:var(--txt-dim);margin-bottom:16px}
+  .frow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .frow .k{color:var(--txt-dim);flex:none}
+  .frow .v{text-align:right;font-weight:500}
+  .sect{font-size:11px;font-weight:600;color:var(--txt-dim);letter-spacing:.04em;margin:18px 0 8px}
+  .bubble{border-radius:11px;padding:10px 13px;font-size:13px;margin-bottom:8px;border:1px solid var(--line)}
+  .bubble.in{background:var(--panel-2)}
+  .bubble.out{background:rgba(79,179,163,.1);border-color:rgba(79,179,163,.25)}
+  .bubble .bh{font-size:10.5px;color:var(--txt-dim);margin-bottom:4px;letter-spacing:.02em}
+  .note{font-size:12px;color:var(--txt-dim);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:6px}
+
+  .banner{background:rgba(217,160,91,.1);border:1px solid rgba(217,160,91,.3);color:var(--warm);
+    padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:16px}
+  .center{text-align:center;color:var(--txt-dim);padding:60px 20px}
+  footer{margin-top:26px;font-size:11.5px;color:var(--txt-dim);text-align:center;line-height:1.7}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--accent);color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:10px;transition:.2s;z-index:50}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(max-width:640px){
+    .msg{max-width:120px}
+    thead th.hide,tbody td.hide{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">GILD<span>-TECH</span></div>
+  <div class="theme" role="group" aria-label="Thème">
+    <button data-theme-btn="light" aria-pressed="false">☀︎ Clair</button>
+    <button data-theme-btn="dark" aria-pressed="true">☾ Sombre</button>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header>
+    <div class="agency">
+      <img id="logo" src="" alt="" onerror="this.style.display='none'">
+      <div>
+        <h1 id="agencyName">Agence</h1>
+        <div class="sub">Koh Samui · dashboard privé</div>
+      </div>
+    </div>
+    <div class="status"><span class="dot"></span>Sarah active · 24/7</div>
+  </header>
+
+  <div class="tabs" role="group" aria-label="Vue">
+    <button data-tab="leads" aria-pressed="true">Contacts</button>
+    <button data-tab="biens" aria-pressed="false">Mes biens</button>
+  </div>
+
+  <!-- KPIs -->
+  <div class="grid" id="kpis"></div>
+
+  <!-- LEADS -->
+  <section id="view-leads">
+    <div class="toolbar">
+      <input class="search" id="searchLeads" placeholder="Rechercher un contact (nom, numéro, bien, langue…)">
+      <span class="count" id="countLeads"></span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Reçu</th><th>Contact</th><th class="hide">Langue</th><th>Source</th>
+          <th class="hide">Bien</th><th class="hide">Budget</th><th>Statut</th><th class="hide">Dernier message</th>
+        </tr></thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BIENS -->
+  <section id="view-biens" hidden>
+    <div class="toolbar">
+      <input class="search" id="searchBiens" placeholder="Rechercher un bien (code, zone, type…)">
+      <span class="count" id="countBiens"></span>
+    </div>
+    <div class="biens" id="biensGrid"></div>
+  </section>
+
+  <footer>
+    Dashboard privé · lecture seule · accès réservé à Agence.<br>
+    Données personnelles des contacts traitées selon le RGPD (UE) et le PDPA (Thaïlande) — usage strictement interne à l’agence.<br>
+    <span id="genAt"></span> · GILD-TECH
+  </footer>
+</div>
+
+<div id="gate" class="center" hidden>
+  <h1 style="font-size:19px;font-weight:600;margin-bottom:10px">Accès protégé</h1>
+  <p>Ce dashboard nécessite un lien d’accès valide.<br>Contactez GILD-TECH si votre lien ne fonctionne plus.</p>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer"><button class="x" id="drawerX">✕</button><div id="drawerBody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s)};
+  var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+  var LS="gt_dl_dash";
+  var theme=(function(){ try{return JSON.parse(localStorage.getItem(LS)||'{}').theme||'dark'}catch(e){return 'dark'} })();
+
+  function applyTheme(){
+    document.documentElement.setAttribute("data-theme", theme);
+    $$("[data-theme-btn]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-theme-btn")===theme); });
+  }
+  $$("[data-theme-btn]").forEach(function(b){ b.addEventListener("click", function(){
+    theme=b.getAttribute("data-theme-btn"); try{localStorage.setItem(LS,JSON.stringify({theme:theme}))}catch(e){} applyTheme();
+  }); });
+  applyTheme();
+
+  var esc=function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var toast=function(m){ var t=$("#toast"); t.textContent=m; t.classList.add("on"); setTimeout(function(){t.classList.remove("on")},1600); };
+
+  // formatage
+  function fmtPrice(v){ var n=Number(String(v).replace(/[^\d]/g,'')); if(!n) return '—';
+    if(n>=1e6) return (n/1e6).toFixed(n%1e6?1:0).replace('.',',')+' M ฿';
+    return n.toLocaleString('fr-FR')+' ฿'; }
+  function fmtWhen(iso){ if(!iso) return '—'; var d=new Date(iso); if(isNaN(d)) return '—';
+    try{ return new Intl.DateTimeFormat('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'}).format(d); }
+    catch(e){ return d.toISOString().slice(0,16).replace('T',' '); } }
+  function langLabel(l){ var m={fr:'Français',french:'Français',en:'Anglais',english:'Anglais',ru:'Russe',russian:'Russe',
+    th:'Thaï',thai:'Thaï',de:'Allemand',german:'Allemand',zh:'Chinois',chinese:'Chinois',it:'Italien',es:'Espagnol',nl:'Néerlandais'};
+    var k=String(l||'').toLowerCase().trim(); return m[k]||(l? (l[0].toUpperCase()+l.slice(1)) : '—'); }
+  function srcBadge(s){ var map={'Facebook':['b-fb','Facebook'],'WhatsApp direct':['b-wa','WhatsApp'],'Email':['b-em','Email'],'Direct':['b-di','Direct']};
+    var m=map[s]||['b-di',s||'—']; return '<span class="badge '+m[0]+'">'+esc(m[1])+'</span>'; }
+  var DUP_COLORS=['#e0705c','#5b8fd9','#d9a05b','#9b7ede','#4fb3a3','#c98fb0'];
+  function dupColor(g){ return DUP_COLORS[(g-1)%DUP_COLORS.length]; }
+
+  // état
+  var DATA=null, curTab='leads';
+
+  function renderKpis(k){
+    $("#kpis").innerHTML=[
+      ['CONTACTS 30 JOURS',k.leads_30j,'reçus et traités'],
+      ['LEADS CHAUDS',k.hot_30j,'signalés (30 j)'],
+      ['RENDEZ-VOUS POSÉS',k.rdv_30j,'visites et visios (30 j)'],
+      ['BIENS ACTIFS',k.biens_actifs,'sur '+k.total_biens+' au catalogue']
+    ].map(function(c){ return '<div class="card kpi"><div class="label">'+c[0]+'</div><div class="value">'+(c[1]!=null?c[1]:'0')+'</div><div class="sub">'+c[2]+'</div></div>'; }).join('');
+  }
+
+  function leadRow(l,idx){
+    var who = l.name ? esc(l.name) : (l.phone?esc(l.phone):(l.email?esc(l.email):'(anonyme)'));
+    var contact = l.phone? esc(l.phone) : esc(l.email||'');
+    var stat = l.hot_lead? '<span class="st-hot">● Chaud</span>' : (l.rdv? '<span class="st-rdv">RDV posé</span>' : esc(l.status||'nouveau'));
+    var dupbar = l.dup_group? '<span class="dupbar" style="background:'+dupColor(l.dup_group)+'"></span>' : '';
+    var duplink = l.dup_group? '<span class="linkchip" title="Contact potentiellement lié">lié</span>' : '';
+    var bien = l.code_bien? esc(l.code_bien) : (l.property_type||l.zone? esc([l.property_type,l.zone].filter(Boolean).join(' · ')):'—');
+    return '<tr data-i="'+idx+'">'
+      +'<td class="muted">'+fmtWhen(l.created_at)+'</td>'
+      +'<td>'+dupbar+'<span class="who">'+who+'</span>'+duplink+'<div class="muted">'+contact+'</div></td>'
+      +'<td class="hide muted">'+esc(langLabel(l.langue))+'</td>'
+      +'<td>'+srcBadge(l.source)+'</td>'
+      +'<td class="hide">'+bien+'</td>'
+      +'<td class="hide">'+ (l.budget? esc(l.budget):'—') +'</td>'
+      +'<td>'+stat+ (l.opted_out?' <span class="linkchip">STOP</span>':'') +'</td>'
+      +'<td class="hide msg">'+esc(l.last_inbound||'')+'</td></tr>';
+  }
+
+  function renderLeads(filter){
+    var q=(filter||'').toLowerCase().trim();
+    var rows=DATA.leads.map(function(l,i){return {l:l,i:i};});
+    if(q) rows=rows.filter(function(o){ var l=o.l; return [l.name,l.phone,l.email,l.code_bien,l.property,l.zone,l.property_type,langLabel(l.langue),l.source,l.budget,l.status].join(' ').toLowerCase().indexOf(q)>=0; });
+    $("#leadsBody").innerHTML = rows.length? rows.map(function(o){return leadRow(o.l,o.i);}).join('')
+      : '<tr><td colspan="8" class="muted" style="padding:26px;text-align:center">Aucun contact.</td></tr>';
+    $("#countLeads").textContent = rows.length+' contact'+(rows.length>1?'s':'');
+    $$("#leadsBody tr[data-i]").forEach(function(tr){ tr.addEventListener('click',function(){ openLead(DATA.leads[+tr.getAttribute('data-i')]); }); });
+  }
+
+  function openLead(l){
+    var conv='';
+    if(l.last_inbound) conv+='<div class="bubble in"><div class="bh">Contact'+(l.last_inbound_at?' · '+fmtWhen(l.last_inbound_at):'')+'</div>'+esc(l.last_inbound)+'</div>';
+    if(l.last_outbound) conv+='<div class="bubble out"><div class="bh">Sarah'+(l.last_contacted_at?' · '+fmtWhen(l.last_contacted_at):'')+'</div>'+esc(l.last_outbound)+'</div>';
+    var rows=[
+      ['Reçu',fmtWhen(l.created_at)],['Nom',l.name||'—'],['Numéro',l.phone||'—'],['Email',l.email||'—'],
+      ['Langue',langLabel(l.langue)],['Source',l.source+(l.source_raw?' ('+l.source_raw+')':'')],
+      ['Bien demandé',l.code_bien||l.property||'—'],['Type / zone',[l.property_type,l.zone].filter(Boolean).join(' · ')||'—'],
+      ['Budget',l.budget||'—'],['Intention',l.intent||'—'],['Échéance',l.timeline||'—'],
+      ['Statut',l.status||'—'],['Rendez-vous',l.appointment_at?fmtWhen(l.appointment_at):'—'],
+      ['Relances',l.relance_count||'0'],['Désinscrit',l.opted_out?'oui (STOP)':'non']
+    ];
+    var body='<h3>'+esc(l.name||l.phone||'Contact')+ (l.hot_lead?' <span class="st-hot" style="font-size:13px">● chaud</span>':'') +'</h3>'
+      +'<div class="dsub">'+srcBadge(l.source)+ (l.dup_group?' <span class="linkchip" style="border-color:'+dupColor(l.dup_group)+';color:'+dupColor(l.dup_group)+'">contact lié</span>':'') +'</div>'
+      +'<div class="sect">QUALIFICATION</div>'
+      + rows.map(function(r){return '<div class="frow"><span class="k">'+r[0]+'</span><span class="v">'+esc(r[1])+'</span></div>';}).join('');
+    if(conv) body+='<div class="sect">CONVERSATION</div>'+conv;
+    if(l.brief) body+='<div class="sect">BRIEF SARAH</div><div class="note">'+esc(l.brief)+'</div>';
+    if(l.dup_group) body+='<div class="note" style="margin-top:14px">Ce contact partage un nom, un numéro ou un email avec un autre contact. Aucune fusion automatique — à vérifier manuellement.</div>';
+    $("#drawerBody").innerHTML=body;
+    $("#overlay").classList.add("on"); $("#drawer").classList.add("on");
+  }
+  function closeDrawer(){ $("#overlay").classList.remove("on"); $("#drawer").classList.remove("on"); }
+  $("#drawerX").addEventListener('click',closeDrawer); $("#overlay").addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDrawer(); });
+
+  function bienCard(b){
+    var ph=b.photo? 'style="background-image:url('+esc(b.photo)+')"':'';
+    var stt=String(b.statut||'actif').toLowerCase();
+    var sttCls=stt==='vendu'||stt==='retiré'||stt==='retire'?'stt-vendu':'stt-actif';
+    var meta=[b.type,b.zone,(b.chambres?b.chambres+' ch':'')].filter(Boolean).join(' · ');
+    return '<div class="bien">'
+      +'<div class="ph" '+ph+'><span class="code">'+esc(b.code)+'</span><span class="stt '+sttCls+'">'+esc(b.statut||'actif')+'</span></div>'
+      +'<div class="body"><div class="ti">'+esc(b.titre||'Bien')+'</div><div class="meta">'+esc(meta||'—')+'</div><div class="price">'+fmtPrice(b.prix_thb)+'</div></div>'
+      +'<div class="actions"><button class="btn" data-bloc="'+encodeURIComponent(b.bloc_marketplace)+'">📋 Bloc annonce</button>'
+      +'<button class="btn" data-link="'+encodeURIComponent(b.lien_whatsapp)+'">🔗 Lien</button></div></div>';
+  }
+  function renderBiens(filter){
+    var q=(filter||'').toLowerCase().trim();
+    var list=DATA.biens.slice();
+    if(q) list=list.filter(function(b){ return [b.code,b.titre,b.zone,b.type,b.statut].join(' ').toLowerCase().indexOf(q)>=0; });
+    $("#biensGrid").innerHTML = list.length? list.map(bienCard).join('') : '<div class="muted" style="padding:26px">Aucun bien.</div>';
+    $("#countBiens").textContent = list.length+' bien'+(list.length>1?'s':'');
+    $$("#biensGrid [data-bloc]").forEach(function(btn){ btn.addEventListener('click',function(){
+      copy(decodeURIComponent(btn.getAttribute('data-bloc')),btn,'Bloc copié'); }); });
+    $$("#biensGrid [data-link]").forEach(function(btn){ btn.addEventListener('click',function(){
+      copy(decodeURIComponent(btn.getAttribute('data-link')),btn,'Lien copié'); }); });
+  }
+  function copy(text,btn,msg){
+    var done=function(){ toast(msg); if(btn){ var o=btn.textContent; btn.classList.add('done'); btn.textContent='✓ Copié'; setTimeout(function(){btn.classList.remove('done');btn.textContent=o;},1400);} };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,function(){fallback(text);done();}); }
+    else { fallback(text); done(); }
+  }
+  function fallback(text){ var t=document.createElement('textarea'); t.value=text; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(t); }
+
+  // tabs
+  $$("[data-tab]").forEach(function(b){ b.addEventListener('click',function(){
+    curTab=b.getAttribute('data-tab');
+    $$("[data-tab]").forEach(function(x){ x.setAttribute('aria-pressed', x===b); });
+    $("#view-leads").hidden = curTab!=='leads';
+    $("#view-biens").hidden = curTab!=='biens';
+  }); });
+  $("#searchLeads").addEventListener('input',function(){ renderLeads(this.value); });
+  $("#searchBiens").addEventListener('input',function(){ renderBiens(this.value); });
+
+  // chargement
+  var q=new URLSearchParams(location.search);
+  var tok=q.get('k')||q.get('token')||q.get('t');
+  if(!tok){ $("#gate").hidden=false; return; }
+  var API='https://peejay.app.n8n.cloud/webhook/sarah/dl-dashboard?k='+encodeURIComponent(tok);
+  fetch(API,{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(j){
+    if(!j || j.error || !j.leads){ $("#gate").hidden=false; return; }
+    DATA=j;
+    $("#agencyName").textContent=j.agency||'Agence';
+    if(j.generated_at) $("#genAt").textContent='Mis à jour : '+fmtWhen(j.generated_at);
+    renderKpis(j.kpis||{});
+    renderLeads(''); renderBiens('');
+    $("#app").hidden=false;
+  }).catch(function(){ $("#gate").hidden=false; });
+})();
+</script>
+</body>
+</html>
