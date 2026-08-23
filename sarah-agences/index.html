@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarah, l'assistante immobilière qui ne dort jamais | GILD-TECH</title>
+<meta name="description" content="Sarah répond à chaque demande immobilière en moins de 3 minutes, 24h/24, en 8 langues. WhatsApp et email. Qualifie, positionne la visite, alerte votre agent.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sarah, l'assistante immobilière qui ne dort jamais">
+<meta property="og:description" content="Un lead qui attend est un lead perdu. Sarah ne fait jamais attendre : réponse en moins de 3 minutes, 24/7, en 8 langues.">
+<meta property="og:site_name" content="GILD-TECH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --noir:#0A0A0A; --blanc:#FFFFFF; --ardoise:#94A3B8; --bleu-nuit:#0B1D33;
+    --trait:#1E3A5F; --cta:#2563EB; --cta-hover:#1D4ED8;
+    --gris-clair:#F8FAFC; --bord:#E2E8F0; --slate:#475569; --slate-soft:#64748B;
+    --bleu-clair:#5b8fd9;
+    --font:"Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
+    --wrap:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--blanc);color:var(--noir);font-family:var(--font);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;letter-spacing:-.011em;overflow-x:hidden}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cta)}
+  .eyebrow.on-dark{color:var(--bleu-clair)}
+
+  /* top bar */
+  .top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+  .top .logo{font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--blanc)}
+  .top .logo b{color:var(--bleu-clair);font-weight:800}
+  .top .by{font-size:12.5px;color:var(--ardoise);font-weight:500}
+
+  /* HERO (bleu nuit) */
+  .hero-band{background:var(--bleu-nuit);color:var(--blanc);position:relative;overflow:hidden}
+  .hero-band::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(70% 55% at 82% 0%,rgba(37,107,255,.28),transparent 62%),
+               radial-gradient(50% 40% at 4% 100%,rgba(37,107,255,.12),transparent 60%)}
+  .hero{position:relative;display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:center;padding:44px 0 72px}
+  .hero h1{font-weight:900;font-size:clamp(38px,5.6vw,62px);line-height:1.03;letter-spacing:-.035em;text-wrap:balance;margin:20px 0 20px}
+  .hero h1 .accent{color:var(--bleu-clair)}
+  .hero .lead{font-size:19px;line-height:1.55;color:#cdd7e6;max-width:33ch;margin-bottom:28px;font-weight:400}
+  .hero .lead b{color:var(--blanc);font-weight:600}
+  .metrics{display:flex;gap:14px;flex-wrap:wrap}
+  .metric{background:rgba(255,255,255,.04);border:1px solid var(--trait);border-radius:12px;padding:13px 17px;min-width:104px}
+  .metric .n{font-size:23px;font-weight:800;letter-spacing:-.02em}
+  .metric .l{font-size:11.5px;color:var(--ardoise);margin-top:2px;font-weight:500}
+
+  /* chat */
+  .chat{background:rgba(9,20,36,.72);border:1px solid var(--trait);border-radius:20px;padding:18px 16px 18px;
+    box-shadow:0 40px 90px -46px rgba(0,0,0,.85);backdrop-filter:blur(4px)}
+  .chat-head{display:flex;align-items:center;gap:11px;padding:2px 4px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cta),#0b2a78);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:16px}
+  .cname{font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:7px;color:#fff}
+  .cname .live{width:7px;height:7px;border-radius:50%;background:#37d39b}
+  .csub{font-size:11.5px;color:var(--ardoise)}
+  .thread{display:flex;flex-direction:column;gap:8px;padding:15px 2px 2px}
+  .msg{max-width:84%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.42}
+  .msg .tm{font-size:10px;color:var(--ardoise);margin-top:5px;letter-spacing:.02em}
+  .msg.in{align-self:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-bottom-left-radius:5px;color:#e8eef7}
+  .msg.out{align-self:flex-end;background:linear-gradient(135deg,var(--cta),#1740a8);border-bottom-right-radius:5px;color:#fff}
+  .msg.out .tm{color:rgba(255,255,255,.62);text-align:right}
+  .chat-foot{margin-top:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:11px;color:var(--ardoise)}
+  .chat-foot b{color:#fff;font-weight:600}
+
+  /* generic section */
+  section{padding:70px 0}
+  .sec-head{max-width:36ch;margin-bottom:42px}
+  .sec-head h2{font-weight:800;font-size:clamp(28px,3.8vw,42px);line-height:1.08;letter-spacing:-.03em;text-wrap:balance;margin-top:14px}
+  .sec-head p.intro{font-size:17px;color:var(--slate);margin-top:14px}
+
+  /* STAKES */
+  .stakes{background:var(--noir);color:var(--blanc)}
+  .stakes .sec-head h2{color:var(--blanc)}
+  .stake-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .stake{background:#111826;border:1px solid #1d2636;border-radius:18px;padding:30px 28px}
+  .stake .big{font-size:clamp(52px,8vw,76px);font-weight:900;letter-spacing:-.04em;line-height:.9;color:var(--bleu-clair)}
+  .stake .cap{font-size:16.5px;color:#dbe3ee;margin:14px 0 16px;max-width:30ch;line-height:1.5}
+  .stake .cap b{color:#fff;font-weight:700}
+  .stake .src{font-size:12px;color:var(--slate-soft)}
+  .stake .src a{color:var(--bleu-clair);text-decoration:none;border-bottom:1px solid rgba(91,143,217,.35)}
+  .stake .src a:hover{border-bottom-color:var(--bleu-clair)}
+  .kicker{margin-top:30px;font-size:clamp(19px,2.4vw,25px);font-weight:700;letter-spacing:-.02em;max-width:40ch;line-height:1.35}
+  .kicker .accent{color:var(--bleu-clair)}
+  .src-note{margin-top:20px;font-size:12.5px;color:var(--slate-soft)}
+  .src-note a{color:var(--bleu-clair);text-decoration:none;border-bottom:1px solid rgba(91,143,217,.35)}
+
+  /* ADVANTAGES */
+  .adv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bord);border:1px solid var(--bord);border-radius:18px;overflow:hidden}
+  .adv{background:var(--blanc);padding:26px 26px;display:flex;flex-direction:column;gap:8px;transition:background .2s}
+  .adv:hover{background:var(--gris-clair)}
+  .adv .head{display:flex;align-items:baseline;gap:11px}
+  .adv .idx{font-size:13px;font-weight:800;color:var(--cta);letter-spacing:.02em;min-width:22px}
+  .adv h3{font-size:16.5px;font-weight:700;letter-spacing:-.02em}
+  .adv p{font-size:14.5px;color:var(--slate);padding-left:33px;line-height:1.5}
+  .adv p b{color:var(--noir);font-weight:600}
+
+  /* SERENITY */
+  .serenity{background:var(--gris-clair)}
+  .ser-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
+  .ser{display:flex;gap:13px;align-items:flex-start}
+  .ser .tick{margin-top:5px;width:20px;height:20px;border-radius:6px;background:var(--cta);flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
+  .ser h4{font-size:16px;font-weight:700;margin-bottom:2px}
+  .ser p{font-size:14px;color:var(--slate)}
+  .guarantee{margin-top:40px;display:flex;align-items:center;gap:22px;background:var(--bleu-nuit);color:#fff;border-radius:16px;padding:24px 28px}
+  .guarantee .gn{font-size:52px;font-weight:900;letter-spacing:-.04em;color:var(--bleu-clair);flex:none;line-height:1}
+  .guarantee h4{font-size:17px;font-weight:700}
+  .guarantee p{font-size:14px;color:#cdd7e6;margin-top:2px}
+
+  /* FORMULAS */
+  .forms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .form{border:1px solid var(--bord);border-radius:16px;padding:26px 24px;display:flex;flex-direction:column;gap:7px;background:var(--blanc)}
+  .form.mid{border:2px solid var(--cta);box-shadow:0 24px 50px -30px rgba(37,99,235,.5)}
+  .form .tag{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-soft);font-weight:600}
+  .form .name{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .form p{font-size:14px;color:var(--slate);line-height:1.5}
+  .form .rec{font-size:11.5px;color:var(--cta);font-weight:700;letter-spacing:.03em}
+  .forms-foot{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--bord);background:var(--gris-clair);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:500}
+  .pill b{color:var(--cta);font-weight:700}
+  .forms-foot .fine{font-size:13.5px;color:var(--slate-soft)}
+
+  /* CTA */
+  .cta-band{background:var(--cta);color:#fff;text-align:center}
+  .cta-band .wrap{padding-top:66px;padding-bottom:66px}
+  .cta-band h2{font-size:clamp(30px,4.4vw,46px);font-weight:900;letter-spacing:-.03em;line-height:1.06;text-wrap:balance;max-width:19ch;margin:0 auto 16px}
+  .cta-band p{color:#dbe6ff;max-width:44ch;margin:0 auto 28px;font-size:17px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--cta);font-weight:700;font-size:16px;padding:15px 30px;border-radius:12px;text-decoration:none;transition:transform .18s,box-shadow .18s;box-shadow:0 16px 36px -18px rgba(0,0,0,.5)}
+  .btn:hover{transform:translateY(-2px)}
+
+  footer{background:var(--noir);color:var(--ardoise);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:26px;padding-bottom:40px}
+  footer .logo{font-weight:800;color:#fff;font-size:15px}
+  footer .logo b{color:var(--bleu-clair)}
+  footer a{color:var(--bleu-clair);text-decoration:none}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;gap:34px;padding:26px 0 52px}
+    .hero .lead{max-width:none}
+    .stake-grid,.adv-grid,.ser-grid,.forms{grid-template-columns:1fr}
+    .guarantee{flex-direction:column;text-align:center}
+    section{padding:52px 0}
+    body{font-size:16px}
+  }
+</style>
+</head>
+<body>
+<!-- HERO -->
+<div class="hero-band">
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">GILD<b>-TECH</b></div>
+      <div class="by">Girlden LTD · automatisation pour l'immobilier</div>
+    </div>
+    <header class="hero">
+      <div>
+        <div class="eyebrow on-dark">Sarah · l'assistante qui ne dort jamais</div>
+        <h1>Un lead qui attend est un lead <span class="accent">perdu</span>.<br>Sarah ne fait jamais attendre.</h1>
+        <p class="lead">Chaque demande entrante, sur WhatsApp comme par email, reçoit une réponse en <b>moins de trois minutes</b>, jour et nuit, dans la langue du client. Qualifiée, prête pour la visite, transmise à votre agent.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">&lt; 3 min</div><div class="l">de réponse, 24h/24</div></div>
+          <div class="metric"><div class="n">24 / 7</div><div class="l">nuits, week-ends, fériés</div></div>
+          <div class="metric"><div class="n">8 langues</div><div class="l">thaï inclus</div></div>
+        </div>
+      </div>
+      <div class="chat reveal">
+        <div class="chat-head">
+          <div class="avatar">S</div>
+          <div><div class="cname">Sarah <span class="live"></span></div><div class="csub">en ligne · répond en quelques secondes</div></div>
+        </div>
+        <div class="thread">
+          <div class="msg in">Hi, is the sea view villa still available? Looking for 3 bedrooms in Bophut.<div class="tm">03 h 14</div></div>
+          <div class="msg out">Hello! Yes, a few homes fit your brief. Are you on Koh Samui right now, or reaching out from abroad? I can set up a viewing, or a video tour if you are away.<div class="tm">03 h 14 · réponse instantanée</div></div>
+          <div class="msg in">From Moscow, planning to buy within 2 months.<div class="tm">03 h 15</div></div>
+          <div class="msg out">Отлично! Я подберу видео и детали под ваш бюджет и передам агенту для звонка. Когда вам удобно?<div class="tm">03 h 15</div></div>
+        </div>
+        <div class="chat-foot">
+          <span><b>La nuit</b>, pendant que l'agence dort</span>
+          <span><b>2 langues</b> en une conversation</span>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<!-- STAKES -->
+<section class="stakes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow on-dark">Le coût des minutes perdues</div>
+      <h2>La vitesse ne fait pas la différence. Elle EST la différence.</h2>
+    </div>
+    <div class="stake-grid">
+      <div class="stake reveal">
+        <div class="big">21×</div>
+        <div class="cap">plus de chances de <b>qualifier un contact</b> en le rappelant dans les cinq minutes plutôt qu'après trente.</div>
+        <div class="src">Étude MIT, Lead Response Management (Dr. James Oldroyd), 15 000 leads. <a href="https://www.leadresponsemanagement.org/lrm_study/" target="_blank" rel="noopener">Voir l'étude</a></div>
+      </div>
+      <div class="stake reveal">
+        <div class="big">88 %</div>
+        <div class="cap">des acheteurs <b>passent par un agent</b> pour acheter. Reste à être celui qui décroche le premier.</div>
+        <div class="src">NAR, Profile of Home Buyers and Sellers 2025. <a href="https://www.nar.realtor/news/real-estate-news/nar-2025-profile-of-home-buyers-sellers-reveals-market-extremes" target="_blank" rel="noopener">Voir le rapport</a></div>
+      </div>
+    </div>
+    <p class="kicker">La nuit, le week-end, en pleine visite, le contact qui attend file chez le concurrent. <span class="accent">Sarah répond avant lui.</span></p>
+    <p class="src-note">Passé une heure sans réponse, les chances de qualifier un contact s'effondrent (Harvard Business Review, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener">The Short Life of Online Sales Leads</a>, 2011).</p>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Ce que Sarah fait pour vous</div>
+      <h2>Une réceptionniste qui ne rate aucune demande.</h2>
+    </div>
+    <div class="adv-grid">
+      <div class="adv reveal"><div class="head"><span class="idx">01</span><h3>Répond en moins de 3 minutes, 24/7</h3></div><p>Nuits, week-ends, jours fériés. <b>Aucune demande</b> ne reste sans réponse jusqu'au lendemain.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">02</span><h3>WhatsApp et email, un seul assistant</h3></div><p>Vos deux canaux d'entrée réunis. Le contact reçu par email est invité à poursuivre sur WhatsApp, plus rapide.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">03</span><h3>8 langues, dont le thaï</h3></div><p>Sarah répond dans la langue du client, à l'identique. Indispensable pour une clientèle internationale.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">04</span><h3>Qualifie et positionne la visite</h3></div><p>Budget, zone, projet, sur place ou à distance. Elle propose une visite, ou une visio si le client est à l'étranger.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">05</span><h3>Reconnaît le bien concerné</h3></div><p>Un code discret sur vos annonces et Sarah sait exactement de quel bien le client parle.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">06</span><h3>Relance, sans jamais harceler</h3></div><p>Trois relances espacées, qui s'arrêtent net dès que le client répond. <b>Le suivi</b> que personne n'a le temps de faire.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">07</span><h3>Signale le contact chaud</h3></div><p>Bien précis, budget clair, échéance courte : votre agent est prévenu à l'instant, pendant que le contact est encore brûlant.</p></div>
+      <div class="adv reveal"><div class="head"><span class="idx">08</span><h3>Le tableau « qui rappeler »</h3></div><p>Sur votre téléphone : les contacts chauds en tête, la phrase exacte du client, un bouton pour appeler. Votre journée d'un coup d'œil.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERENITY -->
+<section class="serenity">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">En toute sérénité</div>
+      <h2>Puissante, et sous votre contrôle.</h2>
+    </div>
+    <div class="ser-grid">
+      <div class="ser reveal"><span class="tick">✓</span><div><h4>Elle assiste, elle ne remplace pas</h4><p>Sarah accueille et qualifie sous l'autorité de votre agent, et lui relaie tout cas sensible.</p></div></div>
+      <div class="ser reveal"><span class="tick">✓</span><div><h4>Jamais de promesse en l'air</h4><p>Elle n'invente aucun prix, aucune règle, aucun chiffre. Ce qu'elle ignore, elle le passe à l'agent.</p></div></div>
+      <div class="ser reveal"><span class="tick">✓</span><div><h4>Vos données protégées</h4><p>Conforme au RGPD (Union européenne) et au PDPA (Thaïlande). Usage strictement interne à l'agence.</p></div></div>
+      <div class="ser reveal"><span class="tick">✓</span><div><h4>Vous gardez la main</h4><p>Activez, mettez en pause, réglez les horaires de travail à tout moment, depuis votre tableau de bord.</p></div></div>
+    </div>
+    <div class="guarantee reveal">
+      <div class="gn">30</div>
+      <div><h4>Jours satisfait ou remboursé</h4><p>Si Sarah ne vous convainc pas sur les trente premiers jours de service, vous êtes remboursé, sans condition.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Trois formules</div>
+      <h2>Selon votre volume de demandes.</h2>
+    </div>
+    <div class="forms">
+      <div class="form reveal"><span class="tag">Formule 1</span><div class="name">Capter</div><p>Sarah répond, qualifie et positionne la visite, sur WhatsApp et email.</p></div>
+      <div class="form mid reveal"><span class="tag">Formule 2</span><div class="name">Convertir</div><p>On ajoute les relances, l'alerte contact chaud et le tableau de bord.</p><div class="rec">Le choix le plus courant</div></div>
+      <div class="form reveal"><span class="tag">Formule 3</span><div class="name">Développer</div><p>Multilingue avancé, reconnaissance des biens par code, accompagnement prioritaire.</p></div>
+    </div>
+    <div class="forms-foot">
+      <span class="pill"><b>Installation offerte</b> cet été</span>
+      <span class="pill"><b>30 jours</b> satisfait ou remboursé</span>
+      <span class="fine">Tarif détaillé au moment de la démonstration, selon votre marché.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="wrap reveal">
+    <h2>Voyez Sarah répondre à vos propres demandes.</h2>
+    <p>Une démonstration en direct, sur le nom et les biens de votre agence. Une conversation, et la différence saute aux yeux.</p>
+    <a class="btn" href="#">Demander une démonstration</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">GILD<b>-TECH</b> · Sarah</div>
+    <div>Girlden LTD · l'agence qui ne dort jamais</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  })();
+</script>
+</body>
+</html>
