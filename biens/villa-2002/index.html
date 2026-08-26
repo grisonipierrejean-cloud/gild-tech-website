@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Villa 360° · Bangrak — Agence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  :root{
+    --ink:#0C0F0D; --ink-2:#121815; --panel:#101613;
+    --bone:#EFE9DC; --sand:#C9BBA0; --dim:#8B8577;
+    --brass:#C08B4C; --brass-2:#d8a866;
+    --line:rgba(239,233,220,.14); --line-soft:rgba(239,233,220,.08);
+    --disp:"Fraunces",Georgia,serif; --body:"Manrope",system-ui,sans-serif; --mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;background:var(--ink);scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--bone);font-family:var(--body);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brass);color:var(--ink)}
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand)}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+  .eyebrow-row{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+  .eyebrow-row .tick{width:34px;height:1px;background:var(--brass)}
+  .lede{font-family:var(--disp);font-weight:300;font-size:clamp(28px,4.4vw,60px);line-height:1.12;letter-spacing:-.015em;max-width:22ch}
+  .lede em{font-style:italic;color:var(--brass-2)}
+
+  .bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,5vw,72px)}
+  .bar .barlogo{height:26px;width:auto;opacity:.95}
+  .bar-right{display:flex;align-items:center;gap:18px}
+  .langsel{display:flex;align-items:center;gap:2px}
+  .langsel button{background:none;border:0;color:var(--sand);cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.14em;padding:4px 5px}
+  .langsel button.on{color:#fff}
+  .langsel button[disabled]{opacity:.32;cursor:default}
+  .langsel .sep{color:var(--dim);opacity:.5;font-size:10px}
+  .bar .ref{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#fff;opacity:.85}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:#050706}
+  .hero-stage{position:absolute;inset:0}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease;will-change:opacity,transform}
+  .slide.is-active{opacity:1}
+  .slide.kb{animation:kenburns 8s ease-out forwards}
+  @keyframes kenburns{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.16) translate3d(-1.5%,-1.5%,0)}}
+  .hero-veil{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 8%,rgba(5,7,6,0) 34%,rgba(5,7,6,.35) 78%),linear-gradient(180deg,rgba(5,7,6,.55) 0%,rgba(5,7,6,.08) 26%,rgba(5,7,6,.15) 52%,rgba(5,7,6,.82) 100%)}
+  .hero-grain{position:absolute;inset:0;opacity:.06;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  .hero-inner{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 6vw}
+  .hero-logo{height:clamp(46px,7vw,82px);width:auto;margin-bottom:clamp(24px,4vw,40px)}
+  .hero-tag{font-family:var(--disp);font-weight:300;line-height:.9;letter-spacing:-.02em;font-size:clamp(58px,13vw,190px);color:var(--bone);text-shadow:0 2px 60px rgba(0,0,0,.4)}
+  .hero-tag .l{display:block;overflow:hidden}
+  .hero-tag .l span{display:block}
+  .hero-tag em{font-style:italic;font-weight:400;color:var(--brass-2)}
+  .hero-sub{margin-top:clamp(20px,3vw,30px);color:#e9e2d3}
+  .hero-scroll{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:6}
+  .hero-dots{position:absolute;right:clamp(20px,5vw,54px);bottom:34px;z-index:6;display:flex;gap:9px}
+  .hero-dots i{width:22px;height:2px;background:rgba(239,233,220,.3);display:block;transition:background .4s}
+  .hero-dots i.on{background:var(--brass)}
+
+  .statement{padding:clamp(90px,15vh,180px) 0}
+  .statement p{margin-top:38px;max-width:58ch;color:var(--sand);font-size:clamp(15px,1.4vw,18px);line-height:1.85}
+
+  .facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(44px,6vw,78px) 0}
+  .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(22px,3vw,50px)}
+  @media(max-width:760px){.facts-grid{grid-template-columns:repeat(2,1fr);gap:32px 22px}}
+  .fact .k{margin-bottom:12px}
+  .fact .v{font-family:var(--disp);font-weight:300;font-size:clamp(30px,3.8vw,52px);line-height:1;letter-spacing:-.01em}
+  .fact .v small{font-size:.42em;letter-spacing:.04em;color:var(--sand);margin-left:5px}
+  .specrow{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:clamp(30px,4vw,46px)}
+  .chip{border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-size:13px;color:var(--sand)}
+  .chip b{color:var(--bone);font-weight:600}
+
+  .levels{padding:clamp(90px,13vh,170px) 0}
+  .levels-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,5vw,56px)}
+  .levels-head h2{font-family:var(--disp);font-weight:300;font-size:clamp(32px,5vw,70px);line-height:1;letter-spacing:-.02em}
+  .lvl{display:grid;grid-template-columns:88px 1fr 1fr;gap:clamp(20px,3.5vw,54px);align-items:center;padding:clamp(30px,4.5vw,58px) 0;border-top:1px solid var(--line)}
+  .lvl:last-child{border-bottom:1px solid var(--line)}
+  @media(max-width:860px){.lvl{grid-template-columns:1fr;gap:20px}}
+  .lvl-rail{align-self:stretch;display:flex;flex-direction:column;align-items:center;gap:10px}
+  .lvl-rail .num{font-family:var(--disp);font-weight:300;font-size:clamp(26px,3.4vw,42px);line-height:1;color:var(--brass-2);text-align:center}
+  .lvl-rail .bar-v{flex:1;width:1px;background:var(--line);min-height:24px}
+  @media(max-width:860px){.lvl-rail{flex-direction:row;gap:14px}.lvl-rail .bar-v{flex:none;width:40px;height:1px;min-height:0}}
+  .lvl-body .name{font-family:var(--disp);font-weight:400;font-size:clamp(23px,2.6vw,32px);margin-bottom:14px;letter-spacing:-.01em}
+  .lvl-body ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .lvl-body li{color:var(--sand);font-size:clamp(14px,1.3vw,16px);padding-left:18px;position:relative}
+  .lvl-body li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border:1px solid var(--brass);border-radius:50%}
+  .lvl-media{overflow:hidden;border-radius:8px;aspect-ratio:16/11;background:var(--ink-2)}
+  .lvl-media img{width:100%;height:100%;object-fit:cover}
+
+  .gallery{padding:clamp(80px,13vh,170px) 0}
+  .gallery-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(36px,5vw,64px);flex-wrap:wrap}
+  .gallery-head h2{font-family:var(--disp);font-weight:300;font-size:clamp(30px,5vw,68px);line-height:1;letter-spacing:-.02em}
+  .g-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1.4vw,18px)}
+  .g-item{position:relative;overflow:hidden;border-radius:6px;background:var(--ink-2);cursor:pointer}
+  .g-item img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .g-item:hover img{transform:scale(1)}
+  .g-item .clip{position:absolute;inset:0;background:var(--ink)}
+  .span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-8{grid-column:span 8}.span-3{grid-column:span 3}.span-12{grid-column:span 12}
+  .ar-l{aspect-ratio:16/10}.ar-t{aspect-ratio:4/5}.ar-w{aspect-ratio:21/9}.ar-s{aspect-ratio:1/1}
+  @media(max-width:760px){.g-grid{grid-template-columns:repeat(2,1fr)}.span-8,.span-12{grid-column:span 2}.span-6,.span-4,.span-3{grid-column:span 1}.ar-w{aspect-ratio:16/10}}
+
+  .amen{padding:clamp(70px,11vh,150px) 0;border-top:1px solid var(--line)}
+  .amen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line-soft)}
+  @media(max-width:680px){.amen-grid{grid-template-columns:1fr}}
+  .amen-item{padding:24px 0;border-bottom:1px solid var(--line-soft)}
+  .amen-item:not(:nth-child(3n)){border-right:1px solid var(--line-soft)}
+  @media(max-width:680px){.amen-item{border-right:none!important}}
+  .amen-item .n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--brass);margin-bottom:10px}
+  .amen-item .t{font-family:var(--disp);font-weight:300;font-size:clamp(19px,2vw,25px);line-height:1.2;padding-right:18px}
+
+  .loc{padding:clamp(90px,14vh,180px) 0;text-align:center;border-top:1px solid var(--line)}
+  .loc h2{font-family:var(--disp);font-weight:300;font-size:clamp(40px,8vw,120px);line-height:.98;letter-spacing:-.02em}
+  .loc h2 em{font-style:italic;color:var(--brass-2)}
+  .loc .coord{margin-top:26px}
+  .loc-near{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;margin-top:34px}
+  .loc-near span{border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-size:13px;color:var(--sand)}
+  .loc p{margin:30px auto 0;max-width:54ch;color:var(--sand);font-size:clamp(15px,1.4vw,18px)}
+
+  .own{padding:clamp(60px,9vh,110px) 0;border-top:1px solid var(--line);text-align:center}
+  .own .t{font-family:var(--disp);font-weight:300;font-size:clamp(22px,3vw,38px);line-height:1.2;max-width:26ch;margin:14px auto 0}
+  .close{padding:clamp(80px,14vh,180px) 0 clamp(150px,22vh,240px);text-align:center}
+  .close h2{font-family:var(--disp);font-weight:300;font-size:clamp(34px,6vw,88px);line-height:1.02;letter-spacing:-.02em;max-width:17ch;margin:0 auto}
+  .close .price{font-family:var(--disp);font-weight:300;font-size:clamp(30px,4vw,52px);color:var(--brass-2);margin-bottom:8px}
+  .close .sub{margin:22px auto 0;max-width:44ch;color:var(--sand)}
+  .btn{display:inline-flex;align-items:center;gap:12px;margin-top:40px;background:var(--brass);color:#1a1206;font-family:var(--body);font-weight:600;font-size:15px;padding:17px 30px;border-radius:100px;transition:background .25s,transform .25s}
+  .btn:hover{background:var(--brass-2);transform:translateY(-2px)}
+  .btn svg{width:19px;height:19px}
+
+  /* Floating WhatsApp — bas à droite, visible tout le scroll après le hero */
+  .cta-float{position:fixed;right:clamp(18px,4vw,34px);bottom:clamp(18px,4vw,30px);z-index:50;opacity:0;pointer-events:none;transform:translateY(18px);display:inline-flex;align-items:center;gap:11px;background:var(--brass);color:#1a1206;font-weight:600;font-size:14px;padding:14px 22px;border-radius:100px;box-shadow:0 18px 50px -18px rgba(0,0,0,.9);transition:opacity .4s,transform .4s,background .25s}
+  .cta-float.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .cta-float:hover{background:var(--brass-2)}
+  .cta-float svg{width:19px;height:19px;flex:none}
+  @media(max-width:560px){.cta-float .lbl{display:none}.cta-float{padding:15px}}
+
+  footer{border-top:1px solid var(--line);padding:44px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .sig{color:var(--dim);font-size:12px}
+  footer .sig b{color:var(--sand);font-weight:600}
+
+  .lb{position:fixed;inset:0;z-index:80;background:rgba(6,8,7,.94);display:none;align-items:center;justify-content:center;padding:4vw}
+  .lb.open{display:flex}
+  .lb img{max-width:94vw;max-height:90vh;width:auto;height:auto;border-radius:6px}
+  .lb .x{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:#fff;cursor:pointer;border:1px solid var(--line);border-radius:100px;padding:8px 14px}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:34px;color:#fff;cursor:pointer;user-select:none;padding:10px 18px;opacity:.7}
+  .lb .nav:hover{opacity:1}.lb .prev{left:10px}.lb .next{right:10px}
+  .lb .count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--sand)}
+
+  [data-reveal]{will-change:transform,opacity}
+</style>
+</head>
+<body>
+
+  <div class="bar">
+    <img class="barlogo" src="assets/logo-white.png" alt="Agence">
+    <div class="bar-right">
+      <div class="langsel" id="langsel">
+        <button data-l="en" class="on">EN</button><span class="sep">·</span>
+        <button data-l="fr">FR</button><span class="sep">·</span>
+        <button data-l="ru" disabled title="Coming soon">RU</button><span class="sep">·</span>
+        <button data-l="th" disabled title="Coming soon">TH</button>
+      </div>
+      <div class="ref" data-i18n="ref">REF. 2002</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-stage" id="stage">
+      <video class="hero-video" autoplay muted loop playsinline poster="poster.jpg">
+        <source src="villa-2002-9x16.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-veil"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-inner">
+      <img class="hero-logo" id="hLogo" src="assets/logo-white.png" alt="Agence">
+      <h1 class="hero-tag">
+        <span class="l"><span>Panorama</span></span>
+        <span class="l"><span><em>360°</em></span></span>
+      </h1>
+      <div class="hero-sub mono" id="hSub" data-i18n="heroSub">Bangrak · Koh Samui · 7 bedrooms · 5 levels</div>
+    </div>
+    <div class="hero-scroll mono" id="hScroll" data-i18n="scroll">Scroll</div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement wrap">
+    <div class="eyebrow-row"><span class="tick"></span><span class="mono" data-i18n="stEyebrow">The villa · Bangrak</span></div>
+    <h2 class="lede" data-reveal data-i18n="stLede">Five levels linked by a <em>private elevator</em>, opening 360° onto the sea, the mountains and the tropical landscape.</h2>
+    <p data-reveal data-i18n="stP">A hillside residence built to live the view. 1,020 m² of indoor and outdoor living, 700 m² of landscaped gardens, a 10 × 6-metre infinity pool facing the sea, and room to host as much as to live. The view never stops.</p>
+  </section>
+
+  <!-- FACTS -->
+  <section class="facts">
+    <div class="wrap">
+      <div class="facts-grid">
+        <div class="fact" data-reveal><div class="k mono" data-i18n="fBed">Bedrooms</div><div class="v">7</div></div>
+        <div class="fact" data-reveal><div class="k mono" data-i18n="fBath">Bathrooms</div><div class="v">8</div></div>
+        <div class="fact" data-reveal><div class="k mono" data-i18n="fLiving">Living area</div><div class="v" data-i18n="vLiving">1,020<small>m²</small></div></div>
+        <div class="fact" data-reveal><div class="k mono" data-i18n="fLand">Land</div><div class="v" data-i18n="vLand">1,600<small>m²</small></div></div>
+      </div>
+      <div class="specrow" data-reveal data-i18n="specs">
+        <span class="chip"><span data-t>Garden</span> <b>700 m²</b></span>
+        <span class="chip"><span data-t>Infinity pool</span> <b>10 × 6 m</b></span>
+        <span class="chip"><b data-t>Private elevator</b></span>
+        <span class="chip"><b data-t>5 levels</b></span>
+        <span class="chip"><b data-t>Two entrances</b></span>
+        <span class="chip"><span data-t>Parking</span> <b data-t2>6 vehicles</b></span>
+        <span class="chip"><b data-t>360° sea view</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVELS -->
+  <section class="levels wrap">
+    <div class="levels-head">
+      <h2 data-reveal data-i18n="lvHead">Five levels,<br>one elevator.</h2>
+      <div class="mono" data-reveal data-i18n="lvSub">The villa, floor by floor</div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num" data-i18n="lvGf">Ground</span><span class="bar-v"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l0name">Arrival</div>
+        <ul data-i18n="l0"><li>Parking for up to 4 vehicles</li><li>Children's play area</li><li>Pétanque court</li><li>Private elevator access</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g09.avif" alt="Garden and play area"></div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num">1</span><span class="bar-v"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l1name">Wellbeing</div>
+        <ul data-i18n="l1"><li>Dedicated wellness area</li><li>Sauna</li><li>Massage area</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g43.avif" alt="Sauna, wellness area"></div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num">2</span><span class="bar-v"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l2name">Guests &amp; cinema</div>
+        <ul data-i18n="l2"><li>Two independent one-bedroom apartments</li><li>Each with living room, kitchen and bathroom</li><li>Large private cinema room</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g45.avif" alt="Private cinema room"></div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num">3</span><span class="bar-v"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l3name">The living level</div>
+        <ul data-i18n="l3"><li>Spacious living room and open kitchen</li><li>2 bedrooms with bathrooms</li><li>10 × 6 m infinity pool facing the sea</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g04.avif" alt="Infinity pool facing the sea"></div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num">4</span><span class="bar-v"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l4name">The bedrooms</div>
+        <ul data-i18n="l4"><li>3 bedrooms with bathrooms</li><li>Master suite with private terrace of approx. 100 m²</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g24.avif" alt="Master suite, sea-view bathroom"></div>
+    </div>
+
+    <div class="lvl" data-reveal>
+      <div class="lvl-rail"><span class="num">5</span><span class="bar-v" style="opacity:0"></span></div>
+      <div class="lvl-body">
+        <div class="name" data-i18n="l5name">The rooftop</div>
+        <ul data-i18n="l5"><li>Large rooftop with barbecue</li><li>360° panoramic sea and mountain views</li></ul>
+      </div>
+      <div class="lvl-media"><img loading="lazy" src="assets/gallery/g15.avif" alt="Rooftop, barbecue, 360° view"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery wrap">
+    <div class="gallery-head">
+      <h2 data-reveal data-i18n="galHead">The villa<br>at large</h2>
+      <div class="mono" data-reveal data-i18n="galSub">46 photos — click to enlarge</div>
+    </div>
+    <div class="g-grid" id="grid">
+      <div class="g-item span-8 ar-l" data-i="0"><img loading="lazy" src="assets/gallery/g02.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-4 ar-l" data-i="1"><img loading="lazy" src="assets/gallery/g19.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-4 ar-t" data-i="2"><img loading="lazy" src="assets/gallery/g24.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-4 ar-t" data-i="3"><img loading="lazy" src="assets/gallery/g17.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-4 ar-t" data-i="4"><img loading="lazy" src="assets/gallery/g18.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-6 ar-l" data-i="5"><img loading="lazy" src="assets/gallery/g16.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-6 ar-l" data-i="6"><img loading="lazy" src="assets/gallery/g20.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-12 ar-w" data-i="7"><img loading="lazy" src="assets/gallery/g05.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-3 ar-s" data-i="8"><img loading="lazy" src="assets/gallery/g11.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-3 ar-s" data-i="9"><img loading="lazy" src="assets/gallery/g44.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-3 ar-s" data-i="10"><img loading="lazy" src="assets/gallery/g23.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-3 ar-s" data-i="11"><img loading="lazy" src="assets/gallery/g33.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-6 ar-l" data-i="12"><img loading="lazy" src="assets/gallery/g40.avif" alt=""><span class="clip"></span></div>
+      <div class="g-item span-6 ar-l" data-i="13"><img loading="lazy" src="assets/gallery/g08.avif" alt=""><span class="clip"></span></div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amen wrap">
+    <div class="eyebrow-row" data-reveal><span class="tick"></span><span class="mono" data-i18n="amEyebrow">Amenities</span></div>
+    <h2 class="lede" data-reveal data-i18n="amLede">Everything you need to never leave the hill.</h2>
+    <div class="amen-grid" data-i18n="amGrid">
+      <div class="amen-item"><div class="n">01</div><div class="t">Fully equipped fitness room</div></div>
+      <div class="amen-item"><div class="n">02</div><div class="t">Ice bath</div></div>
+      <div class="amen-item"><div class="n">03</div><div class="t">Games room — pool table &amp; table football</div></div>
+      <div class="amen-item"><div class="n">04</div><div class="t">Landscaped interior patio</div></div>
+      <div class="amen-item"><div class="n">05</div><div class="t">Air conditioning throughout</div></div>
+      <div class="amen-item"><div class="n">06</div><div class="t">High-speed Wi-Fi &amp; audio system</div></div>
+      <div class="amen-item"><div class="n">07</div><div class="t">CCTV security</div></div>
+      <div class="amen-item"><div class="n">08</div><div class="t">Children's playground &amp; pétanque</div></div>
+      <div class="amen-item"><div class="n">09</div><div class="t">Western kitchen</div></div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="loc wrap">
+    <div class="mono" data-reveal data-i18n="locEyebrow">Location</div>
+    <h2 data-reveal data-i18n="locH2">Bangrak,<br><em>north-east</em></h2>
+    <div class="coord mono" data-reveal data-i18n="locCoord">Koh Samui · north-east coast</div>
+    <div class="loc-near" data-reveal data-i18n="locNear">
+      <span>Bangrak Beach</span><span>Big Buddha</span><span>Fisherman's Village</span><span>Chaweng</span><span>Central Samui</span><span>International airport</span>
+    </div>
+    <p data-reveal data-i18n="locP">A hilltop that embraces the sea on three sides, minutes from the beaches, the restaurants and Koh Samui airport.</p>
+  </section>
+
+  <!-- OWNERSHIP -->
+  <section class="own wrap">
+    <div class="mono" data-reveal data-i18n="ownEyebrow">Ownership</div>
+    <div class="t" data-reveal data-i18n="ownT">Freehold through a Thai company, or a 30-year long-term lease. Agence will walk you through the option that fits your situation.</div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close wrap">
+    <div class="price" data-reveal>70,000,000 ฿</div>
+    <div class="mono" data-reveal data-i18n="closeRef">Available · ref. 2002</div>
+    <h2 data-reveal data-i18n="closeH2" style="margin-top:22px">A viewing, a video call, or simply your questions.</h2>
+    <p class="sub" data-reveal data-i18n="closeSub">Sarah, Agence's assistant, replies within minutes on WhatsApp, in your language, 24/7.</p>
+    <a class="btn" id="ctaMain" href="#" target="_blank" rel="noopener" data-reveal>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2A9.9 9.9 0 0 0 2.13 11.9a9.8 9.8 0 0 0 1.35 4.96L2 22l5.3-1.39a9.9 9.9 0 0 0 4.74 1.2h.01a9.9 9.9 0 0 0 9.9-9.9A9.9 9.9 0 0 0 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.34-.5.05-.97.24-3.26-.68-2.75-1.08-4.5-3.9-4.64-4.08-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.28c.24-.27.53-.34.7-.34l.5.01c.16 0 .38-.06.59.45.24.58.8 2 .87 2.14.07.14.12.31.02.5-.1.18-.15.3-.29.46l-.44.5c-.14.14-.29.3-.12.58.16.28.72 1.18 1.55 1.92 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.18.7-.8.88-1.08.18-.28.36-.23.6-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.11.07.65-.17 1.33Z"/></svg>
+      <span data-i18n="ctaMain">Chat with Sarah on WhatsApp</span>
+    </a>
+  </section>
+
+  <footer class="wrap">
+    <div class="sig">Agence · Agence · <b>[redacted]</b></div>
+    <div class="sig mono">Experience by GILD-TECH</div>
+  </footer>
+
+  <a class="cta-float" id="ctaFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2A9.9 9.9 0 0 0 2.13 11.9a9.8 9.8 0 0 0 1.35 4.96L2 22l5.3-1.39a9.9 9.9 0 0 0 4.74 1.2h.01a9.9 9.9 0 0 0 9.9-9.9A9.9 9.9 0 0 0 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.34-.5.05-.97.24-3.26-.68-2.75-1.08-4.5-3.9-4.64-4.08-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.28c.24-.27.53-.34.7-.34l.5.01c.16 0 .38-.06.59.45.24.58.8 2 .87 2.14.07.14.12.31.02.5-.1.18-.15.3-.29.46l-.44.5c-.14.14-.29.3-.12.58.16.28.72 1.18 1.55 1.92 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.18.7-.8.88-1.08.18-.28.36-.23.6-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.11.07.65-.17 1.33Z"/></svg>
+    <span class="lbl" data-i18n="floatLbl">WhatsApp · ref. 2002</span>
+  </a>
+
+  <div class="lb" id="lb">
+    <span class="x" id="lbx" data-i18n="lbClose">Close ✕</span>
+    <span class="nav prev" id="lbprev">‹</span>
+    <img id="lbimg" src="" alt="">
+    <span class="nav next" id="lbnext">›</span>
+    <span class="count mono" id="lbcount"></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+  (function(){
+    "use strict";
+    var NUM="[redacted]";
+    var MSG={
+      en:"Hello, I'm interested in the Villa 360° (ref. 2002) in Bangrak, Koh Samui. Is it still available?",
+      fr:"Bonjour, je suis intéressé par la villa 360° (réf. 2002) à Bangrak, Koh Samui. Est-elle toujours disponible ?"
+    };
+    var main=document.getElementById('ctaMain'), floatb=document.getElementById('ctaFloat');
+
+    // ---------- i18n : EN livré, FR prêt, RU/TH réservés ----------
+    var I18N={ fr:{
+      ref:"RÉF. 2002",
+      heroSub:"Bangrak · Koh Samui · 7 chambres · 5 niveaux",
+      scroll:"Défiler",
+      stEyebrow:"La villa · Bangrak",
+      stLede:"Cinq niveaux reliés par un <em>ascenseur privé</em>, ouverts à 360° sur la mer, les montagnes et la nature tropicale.",
+      stP:"Une résidence de colline conçue pour habiter la vue. 1 020 m² de vie intérieure et extérieure, 700 m² de jardins paysagers, une piscine à débordement de 10 × 6 mètres face à la mer, et l'espace de recevoir comme de vivre. La vue ne s'arrête jamais.",
+      fBed:"Chambres", fBath:"Salles de bain", fLiving:"Surface", fLand:"Terrain",
+      vLiving:"1 020<small>m²</small>", vLand:"1 600<small>m²</small>",
+      specs:'<span class="chip">Jardin <b>700 m²</b></span><span class="chip">Piscine à débordement <b>10 × 6 m</b></span><span class="chip"><b>Ascenseur privé</b></span><span class="chip"><b>5 niveaux</b></span><span class="chip"><b>2 entrées</b></span><span class="chip">Parking <b>6 véhicules</b></span><span class="chip"><b>Vue mer 360°</b></span>',
+      lvHead:"Cinq niveaux,<br>un ascenseur.", lvSub:"La villa, étage par étage", lvGf:"RDC",
+      l0name:"L'arrivée", l0:"<li>Parking jusqu'à 4 véhicules</li><li>Aire de jeux pour enfants</li><li>Terrain de pétanque</li><li>Accès à l'ascenseur privé</li>",
+      l1name:"Bien-être", l1:"<li>Espace bien-être dédié</li><li>Sauna</li><li>Zone de massage</li>",
+      l2name:"Invités &amp; cinéma", l2:"<li>Deux appartements indépendants d'une chambre</li><li>Chacun : salon, cuisine, salle de bain</li><li>Grande salle de cinéma privée</li>",
+      l3name:"Le niveau de vie", l3:"<li>Vaste salon et cuisine ouverte</li><li>2 chambres avec salles de bain</li><li>Piscine à débordement 10 × 6 m face à la mer</li>",
+      l4name:"Les chambres", l4:"<li>3 chambres avec salles de bain</li><li>Master suite avec terrasse privée d'environ 100 m²</li>",
+      l5name:"Le rooftop", l5:"<li>Grand rooftop avec barbecue</li><li>Vue panoramique 360° mer et montagnes</li>",
+      galHead:"La villa<br>en grand", galSub:"46 photos — cliquez pour agrandir",
+      amEyebrow:"Équipements", amLede:"De quoi ne jamais quitter la colline.",
+      amGrid:'<div class="amen-item"><div class="n">01</div><div class="t">Salle de fitness équipée</div></div><div class="amen-item"><div class="n">02</div><div class="t">Bain de glace</div></div><div class="amen-item"><div class="n">03</div><div class="t">Salle de jeux — billard &amp; baby-foot</div></div><div class="amen-item"><div class="n">04</div><div class="t">Patio paysager intérieur</div></div><div class="amen-item"><div class="n">05</div><div class="t">Climatisation dans toute la villa</div></div><div class="amen-item"><div class="n">06</div><div class="t">Wi-Fi haut débit &amp; système audio</div></div><div class="amen-item"><div class="n">07</div><div class="t">Vidéosurveillance</div></div><div class="amen-item"><div class="n">08</div><div class="t">Aire de jeux enfants &amp; pétanque</div></div><div class="amen-item"><div class="n">09</div><div class="t">Cuisine occidentale</div></div>',
+      locEyebrow:"Situation", locH2:"Bangrak,<br><em>nord-est</em>", locCoord:"Koh Samui · côte nord-est",
+      locNear:'<span>Bangrak Beach</span><span>Big Buddha</span><span>Fisherman’s Village</span><span>Chaweng</span><span>Central Samui</span><span>Aéroport international</span>',
+      locP:"Une colline qui embrasse la mer sur trois côtés, à quelques minutes des plages, des restaurants et de l'aéroport de Koh Samui.",
+      ownEyebrow:"Acquisition", ownT:"Freehold via société thaïe, ou bail long terme de 30 ans. Agence vous explique l'option adaptée à votre situation.",
+      closeRef:"Disponible · réf. 2002", closeH2:"Une visite, une visio, ou simplement vos questions.",
+      closeSub:"Sarah, l'assistante de Agence, répond en quelques minutes sur WhatsApp, dans votre langue, 24/7.",
+      ctaMain:"Parler à Sarah sur WhatsApp", floatLbl:"WhatsApp · réf. 2002", lbClose:"Fermer ✕"
+    }};
+
+    function applyLang(l){
+      document.documentElement.lang=l;
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var k=el.getAttribute('data-i18n');
+        if(el.dataset.en==null) el.dataset.en=el.innerHTML;
+        el.innerHTML=(l!=='en' && I18N[l] && I18N[l][k]!=null) ? I18N[l][k] : el.dataset.en;
+      });
+      var msg=MSG[l]||MSG.en, href="https://wa.me/"+NUM+"?text="+encodeURIComponent(msg);
+      if(main) main.href=href; if(floatb) floatb.href=href;
+      document.querySelectorAll('#langsel button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-l')===l); });
+      try{ localStorage.setItem('villa2002_lang', l); }catch(e){}
+    }
+    document.getElementById('langsel').addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b || b.disabled) return; applyLang(b.getAttribute('data-l'));
+    });
+    var saved; try{ saved=localStorage.getItem('villa2002_lang'); }catch(e){}
+    applyLang(saved==='fr'?'fr':'en');
+
+    // ---------- Lightbox ----------
+    var GAL=[]; for(var k=1;k<=46;k++){ GAL.push('assets/gallery/g'+(k<10?'0':'')+k+'.avif'); }
+    var order=[2,19,24,17,18,16,20,5,11,44,23,33,40,8];
+    var lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg'), lbc=document.getElementById('lbcount'), cur=0;
+    function show(i){ cur=(i+GAL.length)%GAL.length; lbimg.src=GAL[cur]; lbc.textContent=(cur+1)+' / '+GAL.length; }
+    document.getElementById('grid').addEventListener('click',function(e){
+      var it=e.target.closest('.g-item'); if(!it) return; show(order[+it.getAttribute('data-i')]-1); lb.classList.add('open');
+    });
+    document.getElementById('lbx').onclick=function(){ lb.classList.remove('open'); };
+    document.getElementById('lbnext').onclick=function(e){ e.stopPropagation(); show(cur+1); };
+    document.getElementById('lbprev').onclick=function(e){ e.stopPropagation(); show(cur-1); };
+    lb.addEventListener('click',function(e){ if(e.target===lb) lb.classList.remove('open'); });
+    document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open'))return; if(e.key==='Escape')lb.classList.remove('open'); if(e.key==='ArrowRight')show(cur+1); if(e.key==='ArrowLeft')show(cur-1); });
+
+    // ---------- Hero crossfade + ken-burns ----------
+    var slides=[].slice.call(document.querySelectorAll('.slide')), dots=[].slice.call(document.querySelectorAll('#dots i')), idx=0;
+    function go(n){ slides[idx].classList.remove('is-active','kb'); if(dots[idx])dots[idx].classList.remove('on'); idx=n; var s=slides[idx]; s.classList.add('is-active'); void s.offsetWidth; s.classList.add('kb'); if(dots[idx])dots[idx].classList.add('on'); }
+    if(slides.length>1) setInterval(function(){ go((idx+1)%slides.length); }, 5200);
+
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || !window.gsap){
+      document.querySelectorAll('[data-reveal]').forEach(function(e){e.style.opacity='1';e.style.transform='none';});
+      document.querySelectorAll('.g-item .clip').forEach(function(e){e.style.display='none';});
+      floatb.classList.add('show');
+      return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+    var lenis=new Lenis({lerp:.09,wheelMultiplier:1});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); }); gsap.ticker.lagSmoothing(0);
+
+    var intro=gsap.timeline({delay:.15});
+    intro.from('#hLogo',{autoAlpha:0,y:16,duration:1,ease:'power3.out'})
+         .from('.hero-tag .l span',{yPercent:115,duration:1.1,ease:'power4.out',stagger:.12},'-=.55')
+         .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.5')
+         .from('#hScroll',{autoAlpha:0,duration:.6},'-=.3');
+
+    gsap.to('.hero-stage',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.5}});
+    gsap.to('.hero-inner',{yPercent:-24,autoAlpha:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.5}});
+
+    gsap.utils.toArray('[data-reveal]').forEach(function(el){
+      gsap.from(el,{yPercent:12,autoAlpha:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+    });
+    gsap.utils.toArray('.g-item').forEach(function(it){
+      var clip=it.querySelector('.clip'), img=it.querySelector('img');
+      gsap.timeline({scrollTrigger:{trigger:it,start:'top 92%'}})
+        .to(clip,{yPercent:-101,duration:1,ease:'power4.inOut'})
+        .from(img,{scale:1.2,duration:1.1,ease:'power3.out'},0);
+    });
+    // Bouton WhatsApp flottant : apparaît après le hero et reste toute la page
+    ScrollTrigger.create({trigger:'.hero',start:'bottom 80%',
+      onEnter:function(){ floatb.classList.add('show'); },
+      onLeaveBack:function(){ floatb.classList.remove('show'); }});
+    window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  })();
+  </script>
+</body>
+</html>
