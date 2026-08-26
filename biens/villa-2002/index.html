@@ -58,7 +58,7 @@
   .hero-grain{position:absolute;inset:0;opacity:.06;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
   .hero-inner{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 6vw}
   .hero-logo{height:clamp(46px,7vw,82px);width:auto;margin-bottom:clamp(24px,4vw,40px)}
-  .hero-tag{font-family:var(--disp);font-weight:300;line-height:.9;letter-spacing:-.02em;font-size:clamp(58px,13vw,190px);color:var(--bone);text-shadow:0 2px 60px rgba(0,0,0,.4)}
+  .hero-tag{font-family:var(--disp);font-weight:300;line-height:.94;letter-spacing:-.02em;font-size:clamp(38px,7.4vw,104px);color:var(--bone);text-shadow:0 2px 60px rgba(0,0,0,.4)}
   .hero-tag .l{display:block;overflow:hidden}
   .hero-tag .l span{display:block}
   .hero-tag em{font-style:italic;font-weight:400;color:var(--brass-2)}
@@ -184,7 +184,7 @@
     <div class="hero-inner">
       <img class="hero-logo" id="hLogo" src="assets/logo-white.png" alt="Agence">
       <h1 class="hero-tag">
-        <span class="l"><span>Panorama</span></span>
+        <span class="l"><span data-i18n="title1">Exceptional villa</span></span>
         <span class="l"><span><em>360°</em></span></span>
       </h1>
       <div class="hero-sub mono" id="hSub" data-i18n="heroSub">Bangrak · Koh Samui · 7 bedrooms · 5 levels</div>
@@ -393,6 +393,7 @@
     // ---------- i18n : EN livré, FR prêt, RU/TH réservés ----------
     var I18N={ fr:{
       ref:"RÉF. 2002",
+      title1:"Villa d'exception",
       heroSub:"Bangrak · Koh Samui · 7 chambres · 5 niveaux",
       scroll:"Défiler",
       stEyebrow:"La villa · Bangrak",
@@ -421,6 +422,7 @@
     },
     ru:{
       ref:"РЕФ. 2002",
+      title1:"Исключительная вилла",
       heroSub:"Банграк · Ко Самуи · 7 спален · 5 уровней",
       scroll:"Листайте",
       stEyebrow:"Вилла · Банграк",
@@ -449,6 +451,7 @@
     },
     th:{
       ref:"รหัส 2002",
+      title1:"วิลล่าสุดพิเศษ",
       heroSub:"บางรัก · เกาะสมุย · 7 ห้องนอน · 5 ชั้น",
       scroll:"เลื่อนลง",
       stEyebrow:"วิลล่า · บางรัก",
