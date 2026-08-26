@@ -43,6 +43,7 @@
   .hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:#050706}
   .hero-stage{position:absolute;inset:0}
   .hero-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateZ(0)}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0)}
   .hero-film{margin-top:26px;display:inline-flex;align-items:center;gap:9px;background:rgba(239,233,220,.1);border:1px solid rgba(239,233,220,.32);color:var(--bone);font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:.02em;padding:11px 20px;border-radius:100px;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background .25s,border-color .25s}
   .hero-film:hover{background:rgba(239,233,220,.18);border-color:var(--brass)}
   .hero-film .pl{color:var(--brass-2);font-size:11px}
@@ -177,7 +178,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-stage" id="stage">
-      <div class="hero-photo" style="background-image:url('assets/gallery/g04.avif')"></div>
+      <video class="hero-video" autoplay muted loop playsinline poster="hero-source.jpg">
+        <source src="hero-16x9.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-veil"></div>
     <div class="hero-grain"></div>
