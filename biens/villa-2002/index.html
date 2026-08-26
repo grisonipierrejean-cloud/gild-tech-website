@@ -42,7 +42,14 @@
   /* HERO */
   .hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:#050706}
   .hero-stage{position:absolute;inset:0}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
+  .hero-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateZ(0)}
+  .hero-film{margin-top:26px;display:inline-flex;align-items:center;gap:9px;background:rgba(239,233,220,.1);border:1px solid rgba(239,233,220,.32);color:var(--bone);font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:.02em;padding:11px 20px;border-radius:100px;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background .25s,border-color .25s}
+  .hero-film:hover{background:rgba(239,233,220,.18);border-color:var(--brass)}
+  .hero-film .pl{color:var(--brass-2);font-size:11px}
+  .filmwrap{position:fixed;inset:0;z-index:90;background:rgba(6,8,7,.96);display:none;align-items:center;justify-content:center;padding:3vw}
+  .filmwrap.open{display:flex}
+  .filmwrap video{max-height:92vh;max-width:96vw;width:auto;border-radius:8px;box-shadow:0 30px 90px -30px #000}
+  .filmwrap .x{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:#fff;cursor:pointer;border:1px solid var(--line);border-radius:100px;padding:8px 14px}
   .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease;will-change:opacity,transform}
   .slide.is-active{opacity:1}
   .slide.kb{animation:kenburns 8s ease-out forwards}
@@ -170,9 +177,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-stage" id="stage">
-      <video class="hero-video" autoplay muted loop playsinline poster="poster.jpg">
-        <source src="villa-2002-9x16.mp4" type="video/mp4">
-      </video>
+      <div class="hero-photo" style="background-image:url('assets/gallery/g04.avif')"></div>
     </div>
     <div class="hero-veil"></div>
     <div class="hero-grain"></div>
@@ -183,6 +188,7 @@
         <span class="l"><span><em>360°</em></span></span>
       </h1>
       <div class="hero-sub mono" id="hSub" data-i18n="heroSub">Bangrak · Koh Samui · 7 bedrooms · 5 levels</div>
+      <button class="hero-film" id="filmBtn"><span class="pl">▶</span><span data-i18n="watchFilm">Watch the film</span></button>
     </div>
     <div class="hero-scroll mono" id="hScroll" data-i18n="scroll">Scroll</div>
   </section>
@@ -365,6 +371,11 @@
     <span class="count mono" id="lbcount"></span>
   </div>
 
+  <div class="filmwrap" id="filmwrap">
+    <span class="x" id="filmx" data-i18n="lbClose">Close ✕</span>
+    <video id="filmvid" controls playsinline preload="none" poster="poster.jpg" src="villa-2002-9x16.mp4"></video>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script>
@@ -406,7 +417,7 @@
       ownEyebrow:"Acquisition", ownT:"Freehold via société thaïe, ou bail long terme de 30 ans. Agence vous explique l'option adaptée à votre situation.",
       closeRef:"Disponible · réf. 2002", closeH2:"Une visite, une visio, ou simplement vos questions.",
       closeSub:"Sarah, l'assistante de Agence, répond en quelques minutes sur WhatsApp, dans votre langue, 24/7.",
-      ctaMain:"Parler à Sarah sur WhatsApp", floatLbl:"WhatsApp · réf. 2002", lbClose:"Fermer ✕"
+      ctaMain:"Parler à Sarah sur WhatsApp", floatLbl:"WhatsApp · réf. 2002", lbClose:"Fermer ✕", watchFilm:"Voir le film"
     },
     ru:{
       ref:"РЕФ. 2002",
@@ -434,7 +445,7 @@
       ownEyebrow:"Владение", ownT:"Freehold через тайскую компанию или долгосрочная аренда на 30 лет. Агентство подскажет вариант, подходящий вашей ситуации.",
       closeRef:"Доступно · реф. 2002", closeH2:"Просмотр, видеозвонок или просто ваши вопросы.",
       closeSub:"Сара, ассистент Агентства, отвечает за считанные минуты в WhatsApp, на вашем языке, 24/7.",
-      ctaMain:"Написать Саре в WhatsApp", floatLbl:"WhatsApp · реф. 2002", lbClose:"Закрыть ✕"
+      ctaMain:"Написать Саре в WhatsApp", floatLbl:"WhatsApp · реф. 2002", lbClose:"Закрыть ✕", watchFilm:"Смотреть фильм"
     },
     th:{
       ref:"รหัส 2002",
@@ -462,7 +473,7 @@
       ownEyebrow:"กรรมสิทธิ์", ownT:"กรรมสิทธิ์ขาด (Freehold) ผ่านบริษัทไทย หรือสัญญาเช่าระยะยาว 30 ปี เอเจนซี่จะช่วยแนะนำทางเลือกที่เหมาะกับสถานการณ์ของคุณ",
       closeRef:"พร้อมขาย · รหัส 2002", closeH2:"นัดชม วิดีโอคอล หรือเพียงสอบถามข้อมูล",
       closeSub:"ซาร่า ผู้ช่วยของเอเจนซี่ ตอบกลับภายในไม่กี่นาทีทาง WhatsApp ในภาษาของคุณ ตลอด 24 ชม.",
-      ctaMain:"แชทกับซาร่าทาง WhatsApp", floatLbl:"WhatsApp · รหัส 2002", lbClose:"ปิด ✕"
+      ctaMain:"แชทกับซาร่าทาง WhatsApp", floatLbl:"WhatsApp · รหัส 2002", lbClose:"ปิด ✕", watchFilm:"ดูวิดีโอ"
     }};
 
     function applyLang(l){
@@ -497,7 +508,14 @@
     lb.addEventListener('click',function(e){ if(e.target===lb) lb.classList.remove('open'); });
     document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open'))return; if(e.key==='Escape')lb.classList.remove('open'); if(e.key==='ArrowRight')show(cur+1); if(e.key==='ArrowLeft')show(cur-1); });
 
-    // ---------- Hero crossfade + ken-burns ----------
+    // ---------- Film à la demande (clic) : ne joue que si demandé → aucun tremblement passif ----------
+    var fw=document.getElementById('filmwrap'), fv=document.getElementById('filmvid'), fb=document.getElementById('filmBtn');
+    if(fb){ fb.onclick=function(){ fw.classList.add('open'); try{fv.play();}catch(e){} }; }
+    document.getElementById('filmx').onclick=function(){ fw.classList.remove('open'); fv.pause(); };
+    fw.addEventListener('click',function(e){ if(e.target===fw){ fw.classList.remove('open'); fv.pause(); } });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && fw.classList.contains('open')){ fw.classList.remove('open'); fv.pause(); } });
+
+    // ---------- (ancien carrousel : inerte, plus de slides) ----------
     var slides=[].slice.call(document.querySelectorAll('.slide')), dots=[].slice.call(document.querySelectorAll('#dots i')), idx=0;
     function go(n){ slides[idx].classList.remove('is-active','kb'); if(dots[idx])dots[idx].classList.remove('on'); idx=n; var s=slides[idx]; s.classList.add('is-active'); void s.offsetWidth; s.classList.add('kb'); if(dots[idx])dots[idx].classList.add('on'); }
     if(slides.length>1) setInterval(function(){ go((idx+1)%slides.length); }, 5200);
