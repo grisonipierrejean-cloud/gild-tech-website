@@ -539,6 +539,12 @@
          .from('.hero-tag .l span',{yPercent:115,duration:1.1,ease:'power4.out',stagger:.12},'-=.55')
          .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.5')
          .from('#hScroll',{autoAlpha:0,duration:.6},'-=.3');
+    // Filet de sécurité : si l'animation est interrompue (onglet en arrière-plan, appareil lent),
+    // on force l'état final visible. Le titre/logo/sous-titre ne restent JAMAIS cachés.
+    setTimeout(function(){
+      gsap.set(['#hLogo','#hSub','#hScroll'],{autoAlpha:1,x:0,y:0,clearProps:'transform'});
+      gsap.set('.hero-tag .l span',{yPercent:0});
+    }, 2800);
 
     // Aucun tween au scroll sur le hero (ni parallaxe ni fade scrub) : vidéo fixe, zéro tremblement.
     gsap.utils.toArray('[data-reveal]').forEach(function(el){
