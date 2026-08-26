@@ -42,7 +42,7 @@
   /* HERO */
   .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:#050706}
   .hero-stage{position:absolute;inset:0}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
   .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease;will-change:opacity,transform}
   .slide.is-active{opacity:1}
   .slide.kb{animation:kenburns 8s ease-out forwards}
@@ -160,8 +160,8 @@
       <div class="langsel" id="langsel">
         <button data-l="en" class="on">EN</button><span class="sep">·</span>
         <button data-l="fr">FR</button><span class="sep">·</span>
-        <button data-l="ru" disabled title="Coming soon">RU</button><span class="sep">·</span>
-        <button data-l="th" disabled title="Coming soon">TH</button>
+        <button data-l="ru">RU</button><span class="sep">·</span>
+        <button data-l="th">TH</button>
       </div>
       <div class="ref" data-i18n="ref">REF. 2002</div>
     </div>
@@ -374,7 +374,9 @@
     var NUM="[redacted]";
     var MSG={
       en:"Hello, I'm interested in the Villa 360° (ref. 2002) in Bangrak, Koh Samui. Is it still available?",
-      fr:"Bonjour, je suis intéressé par la villa 360° (réf. 2002) à Bangrak, Koh Samui. Est-elle toujours disponible ?"
+      fr:"Bonjour, je suis intéressé par la villa 360° (réf. 2002) à Bangrak, Koh Samui. Est-elle toujours disponible ?",
+      ru:"Здравствуйте, меня интересует Villa 360° (реф. 2002) в Банграке, Ко Самуи. Она ещё доступна?",
+      th:"สวัสดีครับ/ค่ะ สนใจ Villa 360° (รหัส 2002) ที่บางรัก เกาะสมุย ยังว่างอยู่ไหมครับ/คะ"
     };
     var main=document.getElementById('ctaMain'), floatb=document.getElementById('ctaFloat');
 
@@ -406,6 +408,62 @@
       closeRef:"Disponible · réf. 2002", closeH2:"Une visite, une visio, ou simplement vos questions.",
       closeSub:"Sarah, l'assistante de Agence, répond en quelques minutes sur WhatsApp, dans votre langue, 24/7.",
       ctaMain:"Parler à Sarah sur WhatsApp", floatLbl:"WhatsApp · réf. 2002", lbClose:"Fermer ✕"
+    },
+    ru:{
+      ref:"РЕФ. 2002",
+      heroSub:"Банграк · Ко Самуи · 7 спален · 5 уровней",
+      scroll:"Листайте",
+      stEyebrow:"Вилла · Банграк",
+      stLede:"Пять уровней, соединённых <em>частным лифтом</em>, с обзором 360° на море, горы и тропическую природу.",
+      stP:"Резиденция на склоне холма, созданная, чтобы жить видом. 1 020 м² внутренних и внешних пространств, 700 м² ландшафтных садов, инфинити-бассейн 10 × 6 метров с видом на море, и место как для приёма гостей, так и для жизни. Вид не заканчивается никогда.",
+      fBed:"Спальни", fBath:"Ванные", fLiving:"Площадь", fLand:"Участок",
+      vLiving:"1 020<small>м²</small>", vLand:"1 600<small>м²</small>",
+      specs:'<span class="chip">Сад <b>700 м²</b></span><span class="chip">Инфинити-бассейн <b>10 × 6 м</b></span><span class="chip"><b>Частный лифт</b></span><span class="chip"><b>5 уровней</b></span><span class="chip"><b>Два входа</b></span><span class="chip">Парковка <b>6 машин</b></span><span class="chip"><b>Вид на море 360°</b></span>',
+      lvHead:"Пять уровней,<br>один лифт.", lvSub:"Вилла, этаж за этажом", lvGf:"Цоколь",
+      l0name:"Прибытие", l0:"<li>Парковка до 4 машин</li><li>Детская игровая зона</li><li>Площадка для петанка</li><li>Доступ к частному лифту</li>",
+      l1name:"Велнес", l1:"<li>Отдельная велнес-зона</li><li>Сауна</li><li>Зона массажа</li>",
+      l2name:"Гости и кинозал", l2:"<li>Две независимые квартиры с одной спальней</li><li>В каждой — гостиная, кухня и ванная</li><li>Большой частный кинозал</li>",
+      l3name:"Жилой уровень", l3:"<li>Просторная гостиная и открытая кухня</li><li>2 спальни с ванными</li><li>Инфинити-бассейн 10 × 6 м с видом на море</li>",
+      l4name:"Спальни", l4:"<li>3 спальни с ванными</li><li>Мастер-сьют с частной террасой около 100 м²</li>",
+      l5name:"Крыша-терраса", l5:"<li>Большая крыша-терраса с барбекю</li><li>Панорамный вид 360° на море и горы</li>",
+      galHead:"Вилла<br>крупным планом", galSub:"46 фото — нажмите, чтобы увеличить",
+      amEyebrow:"Удобства", amLede:"Всё, чтобы никогда не покидать холм.",
+      amGrid:'<div class="amen-item"><div class="n">01</div><div class="t">Полностью оборудованный фитнес-зал</div></div><div class="amen-item"><div class="n">02</div><div class="t">Ледяная ванна</div></div><div class="amen-item"><div class="n">03</div><div class="t">Игровая — бильярд и настольный футбол</div></div><div class="amen-item"><div class="n">04</div><div class="t">Ландшафтный внутренний дворик</div></div><div class="amen-item"><div class="n">05</div><div class="t">Кондиционирование во всём доме</div></div><div class="amen-item"><div class="n">06</div><div class="t">Скоростной Wi-Fi и аудиосистема</div></div><div class="amen-item"><div class="n">07</div><div class="t">Видеонаблюдение</div></div><div class="amen-item"><div class="n">08</div><div class="t">Детская площадка и петанк</div></div><div class="amen-item"><div class="n">09</div><div class="t">Европейская кухня</div></div>',
+      locEyebrow:"Расположение", locH2:"Банграк,<br><em>северо-восток</em>", locCoord:"Ко Самуи · северо-восточное побережье",
+      locNear:'<span>Bangrak Beach</span><span>Big Buddha</span><span>Fisherman’s Village</span><span>Chaweng</span><span>Central Samui</span><span>Аэропорт</span>',
+      locP:"Вершина холма, обнимающая море с трёх сторон, в нескольких минутах от пляжей, ресторанов и аэропорта Ко Самуи.",
+      ownEyebrow:"Владение", ownT:"Freehold через тайскую компанию или долгосрочная аренда на 30 лет. Агентство подскажет вариант, подходящий вашей ситуации.",
+      closeRef:"Доступно · реф. 2002", closeH2:"Просмотр, видеозвонок или просто ваши вопросы.",
+      closeSub:"Сара, ассистент Агентства, отвечает за считанные минуты в WhatsApp, на вашем языке, 24/7.",
+      ctaMain:"Написать Саре в WhatsApp", floatLbl:"WhatsApp · реф. 2002", lbClose:"Закрыть ✕"
+    },
+    th:{
+      ref:"รหัส 2002",
+      heroSub:"บางรัก · เกาะสมุย · 7 ห้องนอน · 5 ชั้น",
+      scroll:"เลื่อนลง",
+      stEyebrow:"วิลล่า · บางรัก",
+      stLede:"ห้าชั้นเชื่อมต่อด้วย<em>ลิฟต์ส่วนตัว</em> เปิดมุมมอง 360° สู่ทะเล ภูเขา และธรรมชาติเขตร้อน",
+      stP:"เรสซิเดนซ์บนเนินเขาที่สร้างขึ้นเพื่อใช้ชีวิตไปกับวิว พื้นที่ใช้สอยทั้งภายในและภายนอก 1,020 ตร.ม. สวนจัดภูมิทัศน์ 700 ตร.ม. สระว่ายน้ำอินฟินิตี้ขนาด 10 × 6 เมตร หันหน้าออกสู่ทะเล พร้อมพื้นที่สำหรับต้อนรับและพักอาศัย วิวที่ไม่มีวันสิ้นสุด",
+      fBed:"ห้องนอน", fBath:"ห้องน้ำ", fLiving:"พื้นที่ใช้สอย", fLand:"ที่ดิน",
+      vLiving:"1,020<small>ตร.ม.</small>", vLand:"1,600<small>ตร.ม.</small>",
+      specs:'<span class="chip">สวน <b>700 ตร.ม.</b></span><span class="chip">สระอินฟินิตี้ <b>10 × 6 ม.</b></span><span class="chip"><b>ลิฟต์ส่วนตัว</b></span><span class="chip"><b>5 ชั้น</b></span><span class="chip"><b>สองทางเข้า</b></span><span class="chip">ที่จอดรถ <b>6 คัน</b></span><span class="chip"><b>วิวทะเล 360°</b></span>',
+      lvHead:"ห้าชั้น<br>หนึ่งลิฟต์", lvSub:"ชมวิลล่าทีละชั้น", lvGf:"ล่าง",
+      l0name:"การมาถึง", l0:"<li>ที่จอดรถสูงสุด 4 คัน</li><li>พื้นที่เล่นสำหรับเด็ก</li><li>สนามเปตอง</li><li>ทางเข้าลิฟต์ส่วนตัว</li>",
+      l1name:"สุขภาพและการพักผ่อน", l1:"<li>โซนสุขภาพโดยเฉพาะ</li><li>ซาวน่า</li><li>โซนนวด</li>",
+      l2name:"แขกและโรงภาพยนตร์", l2:"<li>อพาร์ตเมนต์อิสระสองยูนิต หนึ่งห้องนอนต่อยูนิต</li><li>แต่ละยูนิตมีห้องนั่งเล่น ครัว และห้องน้ำ</li><li>โรงภาพยนตร์ส่วนตัวขนาดใหญ่</li>",
+      l3name:"ชั้นพักอาศัยหลัก", l3:"<li>ห้องนั่งเล่นกว้างขวางและครัวแบบเปิด</li><li>2 ห้องนอนพร้อมห้องน้ำ</li><li>สระอินฟินิตี้ 10 × 6 ม. หันหน้าสู่ทะเล</li>",
+      l4name:"ห้องนอน", l4:"<li>3 ห้องนอนพร้อมห้องน้ำ</li><li>มาสเตอร์สวีทพร้อมระเบียงส่วนตัวประมาณ 100 ตร.ม.</li>",
+      l5name:"ดาดฟ้า", l5:"<li>ดาดฟ้าขนาดใหญ่พร้อมบาร์บีคิว</li><li>วิวพาโนรามา 360° ทะเลและภูเขา</li>",
+      galHead:"ชมวิลล่า<br>เต็มพื้นที่", galSub:"46 ภาพ — คลิกเพื่อขยาย",
+      amEyebrow:"สิ่งอำนวยความสะดวก", amLede:"ครบทุกสิ่งจนไม่อยากลงจากเนินเขา",
+      amGrid:'<div class="amen-item"><div class="n">01</div><div class="t">ห้องฟิตเนสครบครัน</div></div><div class="amen-item"><div class="n">02</div><div class="t">อ่างแช่น้ำแข็ง</div></div><div class="amen-item"><div class="n">03</div><div class="t">ห้องเกม — โต๊ะพูลและโต๊ะฟุตบอล</div></div><div class="amen-item"><div class="n">04</div><div class="t">คอร์ตยาร์ดจัดสวนภายใน</div></div><div class="amen-item"><div class="n">05</div><div class="t">เครื่องปรับอากาศทั่วทั้งหลัง</div></div><div class="amen-item"><div class="n">06</div><div class="t">Wi-Fi ความเร็วสูงและระบบเสียง</div></div><div class="amen-item"><div class="n">07</div><div class="t">ระบบกล้องวงจรปิด</div></div><div class="amen-item"><div class="n">08</div><div class="t">สนามเด็กเล่นและเปตอง</div></div><div class="amen-item"><div class="n">09</div><div class="t">ครัวแบบตะวันตก</div></div>',
+      locEyebrow:"ทำเลที่ตั้ง", locH2:"บางรัก<br><em>ตะวันออกเฉียงเหนือ</em>", locCoord:"เกาะสมุย · ชายฝั่งตะวันออกเฉียงเหนือ",
+      locNear:'<span>Bangrak Beach</span><span>Big Buddha</span><span>Fisherman’s Village</span><span>Chaweng</span><span>Central Samui</span><span>สนามบินนานาชาติ</span>',
+      locP:"ยอดเนินเขาที่โอบล้อมทะเลสามด้าน ห่างเพียงไม่กี่นาทีจากชายหาด ร้านอาหาร และสนามบินเกาะสมุย",
+      ownEyebrow:"กรรมสิทธิ์", ownT:"กรรมสิทธิ์ขาด (Freehold) ผ่านบริษัทไทย หรือสัญญาเช่าระยะยาว 30 ปี เอเจนซี่จะช่วยแนะนำทางเลือกที่เหมาะกับสถานการณ์ของคุณ",
+      closeRef:"พร้อมขาย · รหัส 2002", closeH2:"นัดชม วิดีโอคอล หรือเพียงสอบถามข้อมูล",
+      closeSub:"ซาร่า ผู้ช่วยของเอเจนซี่ ตอบกลับภายในไม่กี่นาทีทาง WhatsApp ในภาษาของคุณ ตลอด 24 ชม.",
+      ctaMain:"แชทกับซาร่าทาง WhatsApp", floatLbl:"WhatsApp · รหัส 2002", lbClose:"ปิด ✕"
     }};
 
     function applyLang(l){
@@ -463,8 +521,8 @@
          .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.5')
          .from('#hScroll',{autoAlpha:0,duration:.6},'-=.3');
 
-    gsap.to('.hero-stage',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.5}});
-    gsap.to('.hero-inner',{yPercent:-24,autoAlpha:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.5}});
+    // Pas de parallaxe transform sur la vidéo (source du tremblement) : elle reste fixe et nette.
+    gsap.to('.hero-inner',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 60%',scrub:.5}});
 
     gsap.utils.toArray('[data-reveal]').forEach(function(el){
       gsap.from(el,{yPercent:12,autoAlpha:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
