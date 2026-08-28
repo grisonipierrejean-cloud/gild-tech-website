@@ -90,6 +90,9 @@
   .e-cold{background:var(--panel-2);color:var(--txt-dim);border:1px solid var(--line)}
   .verbatim{font-size:13.5px;line-height:1.4;margin:9px 0;padding:9px 12px;background:var(--panel-2);border-left:3px solid var(--accent);border-radius:8px}
   .verbatim.empty{color:var(--txt-dim);font-style:italic;border-left-color:var(--line)}
+  .verb-fr{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--txt-dim);font-style:italic;font-size:12.5px;line-height:1.4}
+  .verb-fr b{color:var(--txt);font-style:normal;font-weight:600;font-size:10.5px;letter-spacing:.04em;display:block;margin-bottom:3px}
+  .lang-badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:4px 11px;border-radius:20px;background:rgba(37,99,235,.16);color:var(--accent);border:1px solid rgba(37,99,235,.4)}
   .meta-row{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
   .badge{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px}
   .b-fb{background:var(--panel-2);color:var(--txt-dim);border:1px solid var(--line)}
@@ -273,6 +276,18 @@
   function fmtWhen(iso){if(!iso)return '—';var d=new Date(iso);if(isNaN(d))return '—';try{return new Intl.DateTimeFormat('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'}).format(d)}catch(e){return d.toISOString().slice(0,16).replace('T',' ')}}
   function langLabel(l){var m={fr:'Français',french:'Français',en:'Anglais',english:'Anglais',ru:'Russe',russian:'Russe',th:'Thaï',thai:'Thaï',de:'Allemand',german:'Allemand',zh:'Chinois',chinese:'Chinois'};var k=String(l||'').toLowerCase().trim();return m[k]||(l?l[0].toUpperCase()+l.slice(1):'—')}
   function srcBadge(s){var m={'Facebook':['b-fb','Facebook'],'WhatsApp direct':['b-wa','WhatsApp'],'Email':['b-em','Email'],'Direct':['b-di','Direct']}[s]||['b-di',s||'—'];return '<span class="badge '+m[0]+'">'+esc(m[1])+'</span>'}
+  function langFlag(l){var f={fr:'🇫🇷',french:'🇫🇷',en:'🇬🇧',english:'🇬🇧',ru:'🇷🇺',russian:'🇷🇺',th:'🇹🇭',thai:'🇹🇭',de:'🇩🇪',german:'🇩🇪',zh:'🇨🇳',chinese:'🇨🇳'};return f[String(l||'').toLowerCase().trim()]||'🌐'}
+  function langBadge(l){return '<span class="lang-badge">'+langFlag(l)+' '+esc(langLabel(l))+'</span>'}
+  function isFr(l){return /^fr/i.test(String(l||''))}
+  // nom = pushName WhatsApp si dispo, sinon numéro, sinon email — jamais inventé
+  function who(l){return l.name?esc(l.name):(l.phone?esc(l.phone):(l.email?esc(l.email):'(anonyme)'))}
+  // verbatim original + traduction FR sous le texte (l'agent est francophone) ; jamais pour le FR
+  function verbatimHtml(l){
+    if(!l.last_inbound) return '<div class="verbatim empty">Pas encore de message écrit.</div>';
+    var h='<div class="verbatim">« '+esc(l.last_inbound)+' »';
+    if(!isFr(l.langue) && l.last_inbound_fr) h+='<div class="verb-fr"><b>Traduction FR</b>'+esc(l.last_inbound_fr)+'</div>';
+    return h+'</div>';
+  }
 
   var DATA=null, TOK=null, curTab='calls';
 
@@ -280,11 +295,8 @@
   function waLink(l){var d=digits(l.phone);return d?('https://wa.me/'+d):''}
   function telLink(l){var d=digits(l.phone);return d?('tel:+'+d):''}
   function leadCard(l,idx,urgent){
-    var who=l.name?esc(l.name):(l.phone?esc(l.phone):(l.email?esc(l.email):'(anonyme)'));
     var e=elapsed(l.activity_at||l.created_at);
-    var verb=l.last_inbound?('<div class="verbatim">« '+esc(l.last_inbound)+' »</div>')
-      :'<div class="verbatim empty">Pas encore de message écrit.</div>';
-    var badges=srcBadge(l.source)
+    var badges=langBadge(l.langue)+' '+srcBadge(l.source)
       + (l.hot_lead?' <span class="badge b-hot">chaud</span>':'')
       + (l.code_bien?' <span class="badge b-link">'+esc(l.code_bien)+'</span>':'')
       + (l.dup_group?' <span class="badge b-link">lié</span>':'')
@@ -295,10 +307,10 @@
       + (wl?'<a class="act wa" href="'+wl+'" target="_blank" rel="noopener">💬 WhatsApp</a>':'')
       + '</div>';
     return '<div class="lead'+(urgent?' urgent':'')+'">'
-      +'<div class="l1"><div><div class="who">'+who+'</div><div class="num">'+esc(l.phone||l.email||'')+'</div></div>'
+      +'<div class="l1"><div><div class="who">'+who(l)+'</div><div class="num">'+esc(l.phone||l.email||'')+'</div></div>'
       +'<span class="elapsed '+e.c+'">'+e.t+'</span></div>'
       +'<div class="meta-row" style="margin-top:8px">'+badges+'</div>'
-      +verb+acts
+      +verbatimHtml(l)+acts
       +'<button class="detailbtn" data-i="'+idx+'">Voir la fiche complète</button></div>';
   }
 
@@ -336,9 +348,9 @@
       ['Rendez-vous',l.appointment_at?fmtWhen(l.appointment_at):'—'],['Relances',l.relance_count||'0']];
     var wl=waLink(l),tl=telLink(l);
     var body='<h3>'+esc(l.name||l.phone||'Contact')+'</h3>'
-      +'<div class="dsub">'+srcBadge(l.source)+(l.hot_lead?' <span class="badge b-hot">chaud</span>':'')+(l.dormant?' <span class="badge b-link">dormant</span>':'')+'</div>'
+      +'<div class="dsub">'+langBadge(l.langue)+' '+srcBadge(l.source)+(l.hot_lead?' <span class="badge b-hot">chaud</span>':'')+(l.dormant?' <span class="badge b-link">dormant</span>':'')+'</div>'
       +'<div class="dact">'+(tl?'<a class="act call" href="'+tl+'">📞 Appeler</a>':'')+(wl?'<a class="act wa" href="'+wl+'" target="_blank" rel="noopener">💬 WhatsApp</a>':'')+'</div>';
-    if(l.last_inbound) body+='<div class="sect">CE QU’IL A DIT</div><div class="verbatim">« '+esc(l.last_inbound)+' »</div>';
+    if(l.last_inbound) body+='<div class="sect">CE QU’IL A DIT</div>'+verbatimHtml(l);
     body+='<div class="sect">QUALIFICATION</div>'+rows.map(function(r){return '<div class="frow"><span class="k">'+r[0]+'</span><span class="v">'+esc(r[1])+'</span></div>'}).join('');
     if(conv) body+='<div class="sect">CONVERSATION</div>'+conv;
     if(l.brief) body+='<div class="sect">BRIEF SARAH</div><div class="note">'+esc(l.brief)+'</div>';
@@ -439,8 +451,61 @@
   $$("[data-tab]").forEach(function(b){b.addEventListener('click',function(){curTab=b.getAttribute('data-tab');$$("[data-tab]").forEach(function(x){x.setAttribute('aria-pressed',x===b)});$("#view-calls").hidden=curTab!=='calls';$("#view-biens").hidden=curTab!=='biens'})});
   $("#searchBiens").addEventListener('input',function(){renderBiens(this.value)});
 
+  // ---- jeu de démonstration : 5 cas types, un par capacité · numéros manifestement fictifs, aucune donnée réelle ----
+  function DEMO(){
+    var ago=function(m){return new Date(Date.now()-m*60000).toISOString()};
+    return {
+      agency:'Agence', generated_at:new Date().toISOString(), sarah_active:true, sarah_hours:'24/7', biens:[],
+      value:{ avg_response_min:0.6, week_under_2min:3, m30_under_2min:5 },
+      top_biens:[{code:'#2011',contacts:3,photo:''},{code:'#2007',contacts:2,photo:''}],
+      leads:[
+        { name:'Marie L.', phone:'+66999999901', langue:'fr', source:'WhatsApp direct', hot_lead:true, to_call:true, relance_count:0,
+          activity_at:ago(22), created_at:ago(22), last_inbound_at:ago(22), last_contacted_at:ago(20),
+          budget:'15 000 000 ฿', zone:'Bophut', property_type:'Villa', intent:'Résidence principale', timeline:'Cette semaine',
+          last_inbound:"Bonjour, je cherche une villa 3 chambres avec piscine à Bophut, budget autour de 15 millions. Je peux visiter demain à 14h ou jeudi matin.",
+          last_inbound_fr:'',
+          last_outbound:"Bonjour Marie, avec plaisir ! Je note villa 3 ch + piscine à Bophut, ~15M ฿. Préférez-vous demain 14h ou jeudi matin pour la visite ?",
+          brief:"Prospect chaud, francophone. Villa 3 ch + piscine à Bophut, ~15M ฿. Créneau souhaité : demain 14h ou jeudi matin. À rappeler en priorité pour confirmer le créneau." },
+        { name:'Дмитрий', phone:'+66999999902', langue:'ru', source:'WhatsApp direct', hot_lead:true, to_call:true, relance_count:0,
+          activity_at:ago(41), created_at:ago(41), last_inbound_at:ago(41), last_contacted_at:ago(39),
+          budget:'25 000 000 ฿', zone:'Vue mer', property_type:'Villa', intent:'Achat', timeline:'À préciser',
+          last_inbound:"Здравствуйте! Ищу виллу с видом на море, бюджет до 25 миллионов бат. Когда можно посмотреть?",
+          last_inbound_fr:"Bonjour ! Je cherche une villa avec vue sur mer, budget jusqu'à 25 millions de bahts. Quand peut-on visiter ?",
+          last_outbound:"Здравствуйте, Дмитрий! С удовольствием подберу виллу с видом на море до 25M ฿. Вам удобнее визит или видеозвонок?",
+          brief:"Prospect russophone (écrit en russe). Villa vue mer, budget jusqu'à 25M ฿. Demande à visiter. Répondre en russe côté prospect ; alertes et briefing en français. À rappeler pour proposer des créneaux." },
+        { name:'Alex T.', phone:'+66999999903', langue:'en', source:'Facebook', code_bien:'#2011', hot_lead:false, to_call:true, relance_count:0,
+          activity_at:ago(185), created_at:ago(185), last_inbound_at:ago(185), last_contacted_at:ago(183),
+          budget:'—', zone:'—', property_type:'Villa', intent:'Renseignement', timeline:'À préciser',
+          last_inbound:"Hi, I saw your villa #2011 on Facebook, is it still available? What's the price?",
+          last_inbound_fr:"Bonjour, j'ai vu votre villa #2011 sur Facebook, est-elle toujours disponible ? Quel est le prix ?",
+          last_outbound:"Hi Alex! Thanks for your interest in villa #2011. Are you currently in Koh Samui or contacting from abroad?",
+          brief:"Lead Facebook sur le bien #2011 (anglophone). Demande disponibilité + prix. Envoyer le bloc annonce du #2011 ; répondre en anglais côté prospect, briefing en français." },
+        { phone:'+66999999904', langue:'fr', source:'WhatsApp direct', hot_lead:false, to_call:false, dormant:true, relance_count:3,
+          activity_at:ago(17280), created_at:ago(18720), last_inbound_at:ago(17280),
+          budget:'—', zone:'Lamai', property_type:'Condo', intent:'Exploration', timeline:'Pas pressé',
+          last_inbound:"Je vais réfléchir, merci.", last_inbound_fr:'',
+          brief:"Contact dormant, francophone, sans nom de profil (numéro seul). 3 relances J+1/J+3/J+7 sans réponse. À recycler avec une annonce pertinente ou clôturer." },
+        { email:'d.miller@example.com', langue:'en', source:'Email', hot_lead:false, to_call:false, relance_count:0,
+          activity_at:ago(300), created_at:ago(300), last_inbound_at:ago(300), last_contacted_at:ago(298),
+          budget:'8 000 000 ฿', zone:'Chaweng', property_type:'Condo', intent:'Achat', timeline:'À préciser',
+          last_inbound:"Hello, I'm interested in buying a sea-view condo in Chaweng, budget around 8 million THB. Could you send options?",
+          last_inbound_fr:"Bonjour, je souhaite acheter un condo vue mer à Chaweng, budget environ 8 millions THB. Pourriez-vous m'envoyer des options ?",
+          last_outbound:"Hello, thank you for your enquiry about a sea-view condo in Chaweng (~8M THB). For a faster reply, feel free to continue with us on WhatsApp.",
+          brief:"Lead entré par email (anglophone), sans numéro (identité = email). Cherche condo vue mer Chaweng, ~8M ฿. Sarah a répondu par email + invité à basculer sur WhatsApp. Relancer par email ; briefing en français." }
+      ]
+    };
+  }
+
   // ---- load ----
   var q=new URLSearchParams(location.search); TOK=q.get('k')||q.get('token')||q.get('t');
+  if(q.has('demo')){
+    DATA=DEMO();
+    $("#agencyName").textContent=DATA.agency;
+    $("#genAt").textContent='Aperçu démonstration';
+    applyStatus(true); initHours(DATA.sarah_hours);
+    renderValue(DATA.value); renderCalls(); renderTop(); renderBiens('');
+    $("#app").hidden=false; return;
+  }
   if(!TOK){$("#gate").hidden=false;return}
   fetch('https://peejay.app.n8n.cloud/webhook/sarah/dl-dashboard?k='+encodeURIComponent(TOK),{cache:'no-store'})
     .then(function(r){return r.json()}).then(function(j){
