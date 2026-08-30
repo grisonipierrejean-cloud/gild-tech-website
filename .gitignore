@@ -1,0 +1,9 @@
+# Repo PUBLIC + GitHub Pages (.nojekyll = tout servi brut).
+# Fichiers INTERNES : jamais commités, jamais servis. Copies gardées en local.
+docs/STATUS.md
+docs/
+DEPLOIEMENT.md
+biens/PROCESS.md
+biens/villa-samui-01/VIDEO-PLAN.md
+scripts/README-visuals.md
+assets/intro/README.md
