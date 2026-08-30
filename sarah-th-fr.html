@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah · Votre agence répond à 23h · Immobilier Koh Samui · GILD-TECH</title>
-<meta name="description" content="À 23h, un acheteur écrit à votre agence. Celle qui répond gagne la vente. Sarah répond à chaque acheteur en moins de 5 minutes, jour et nuit, en 8 langues, sur un numéro dédié. Dès 290 €/mois pour les agences immobilières de Koh Samui.">
+<title>Sarah · Votre bureau ne dort jamais · Immobilier Koh Samui · GILD-TECH</title>
+<meta name="description" content="À 23h, un acheteur écrit à votre agence de Koh Samui. Celle qui répond gagne la vente. Sarah répond à chaque acheteur en moins de 5 minutes, jour et nuit, dans sa langue, sur un WhatsApp dédié. Dès £290/mois.">
 <link rel="canonical" href="https://gild-tech.com/sarah-th-fr">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Votre bureau est ouvert 24h/24. Il n'y a juste personne dedans après 18h. · Sarah · Samui">
-<meta property="og:description" content="À 23h, un acheteur écrit. L'agence qui répond gagne la vente. Sarah répond en moins de 5 minutes, jour et nuit, en 8 langues. Dès 290 €/mois.">
+<meta property="og:title" content="Votre bureau est ouvert 24h/24. Il n'y a juste personne dedans après 18h.">
+<meta property="og:description" content="Sur cette île, un acheteur écrit la nuit et personne ne répond. Sarah accueille, trie, relance et pose les rendez-vous, dans la langue de l'acheteur. Dès £290/mois.">
 <meta property="og:url" content="https://gild-tech.com/sarah-th-fr">
 <meta property="og:image" content="https://gild-tech.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Votre bureau est ouvert 24h/24. Il n'y a juste personne dedans après 18h. · Sarah · Samui">
-<meta name="twitter:description" content="À 23h, un acheteur écrit. L'agence qui répond gagne la vente. Sarah répond en moins de 5 minutes. Dès 290 €/mois pour les agences de Koh Samui.">
+<meta name="twitter:title" content="Votre bureau est ouvert 24h/24. Il n'y a juste personne dedans après 18h.">
+<meta name="twitter:description" content="L'agence qui répond la nuit gagne la vente. Sarah répond en moins de 5 minutes, jour et nuit, dans la langue de l'acheteur. Dès £290/mois pour les agences de Koh Samui.">
 <meta name="twitter:image" content="https://gild-tech.com/og-image.png">
 <link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-th">
 <link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-th-fr">
@@ -61,101 +61,144 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .lang-select a.lang { text-decoration: none; }
 .lang-select a.lang:hover { color: var(--cta); }
 .lang-select .lang.active { color: var(--cta); }
-.lang-select .lang.off { color: var(--g400); opacity: .7; cursor: not-allowed; }
 .lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g400); }
 
 .page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
 
-.hero { padding: 4rem 0 5rem; }
-.hero .badge-new { display: inline-block; background: var(--bleu-nuit-bg); color: var(--bleu-nuit); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1.5rem; border: 1px solid var(--bleu-nuit-soft); }
-.hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.2rem; max-width: 940px; color: var(--noir); }
+/* HERO */
+.hero { padding: 4rem 0 4.5rem; }
+.hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: 960px; color: var(--noir); }
 .hero h1 .accent { color: var(--cta); }
-.hero .subtitle { font-size: 1.15rem; color: var(--g600); max-width: 760px; line-height: 1.6; margin-bottom: 2rem; }
-.hero .subtitle strong { color: var(--noir); }
-.hero .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
-.cta-sub { font-size: 0.82rem; color: var(--g500); margin-top: 0.8rem; }
-.btn-primary { display: inline-block; background: var(--cta); color: var(--blanc); padding: 0.9rem 1.7rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.98rem; transition: all 0.2s; }
+.hero-prose { font-size: 1.14rem; color: var(--g700); line-height: 1.75; max-width: 800px; }
+.hero-prose p { margin-bottom: 1.15rem; }
+.hero-prose p strong { color: var(--noir); font-weight: 700; }
+.lead-punch { font-size: 1.35rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin: 1.6rem 0 0; }
+.setclose { margin-top: 1.8rem; padding: 1.6rem 1.9rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; }
+.sc-head { font-size: 1.3rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin-bottom: .55rem; }
+.sc-def { font-size: 1rem; color: var(--g700); line-height: 1.72; }
+.offers-band { max-width: 900px; margin: 0 auto 2.6rem; padding: 2.2rem 2.4rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); text-align: center; }
+.offers-band p { font-size: 1.4rem; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; }
+
+.ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-top: 2rem; }
+.btn-primary { display: inline-block; background: var(--cta); color: var(--blanc); padding: 0.95rem 1.8rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.98rem; transition: all 0.2s; border: none; cursor: pointer; }
 .btn-primary:hover { background: var(--cta-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(46,107,230,0.28); }
-.btn-secondary { display: inline-block; background: var(--blanc); color: var(--noir); padding: 0.9rem 1.7rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.98rem; border: 1.5px solid var(--g200); transition: all 0.2s; }
+.btn-secondary { display: inline-block; background: var(--blanc); color: var(--noir); padding: 0.95rem 1.8rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.98rem; border: 1.5px solid var(--g200); transition: all 0.2s; }
 .btn-secondary:hover { border-color: var(--bleu-nuit); color: var(--bleu-nuit); }
 
-.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.4rem; padding: 1.6rem; background: var(--g100); border-radius: var(--r); }
-.stat-item { text-align: center; }
-.stat-num { font-size: 2rem; font-weight: 800; color: var(--bleu-nuit); letter-spacing: -0.02em; }
-.stat-label { font-size: 0.82rem; color: var(--g600); margin-top: 0.3rem; line-height: 1.5; }
-.stat-label em { color: var(--g500); font-size: 0.75rem; }
+/* PROOF BAND (texte figé mis en emphase) */
+.proof-band { margin: 2rem 0 0; padding: 1.8rem 2rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); }
+.proof-band p { font-size: 1.14rem; font-weight: 600; line-height: 1.6; }
+.proof-band b { font-size: 1.55rem; font-weight: 900; color: #fff; }
+
+/* STAT CALLOUT (le 21x / 5 min, figé) */
+.stat-callout { margin: 1.5rem 0; padding: 1.4rem 1.6rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; }
+.stat-callout p { font-size: 1.08rem; color: var(--g800); line-height: 1.6; }
+.stat-callout .x21 { font-weight: 900; color: var(--cta); }
 
 section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
-.section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; line-height: 1.15; color: var(--noir); }
+.section-title { font-size: 2.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.6rem; line-height: 1.15; color: var(--noir); max-width: 900px; }
 .section-title .accent { color: var(--cta); }
-.section-subtitle { font-size: 1.05rem; color: var(--g600); max-width: 780px; line-height: 1.6; margin-bottom: 2.5rem; }
+.section-lead { font-size: 1.05rem; color: var(--g600); max-width: 800px; line-height: 1.6; margin-bottom: 2.4rem; }
 
+.prose-lead { font-size: 1.12rem; color: var(--g700); line-height: 1.78; max-width: 820px; }
+.prose-lead p { margin-bottom: 1.15rem; }
+.prose-lead p:last-child { margin-bottom: 0; }
+.prose-lead p strong { color: var(--noir); }
+.prose-lead .punch { font-size: 1.28rem; font-weight: 800; color: var(--noir); }
+
+/* CHALLENGE (les CTA "testez-vous", figé) */
+.challenge { max-width: 820px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: var(--r); }
+.challenge p { font-size: 1.08rem; color: var(--g900); line-height: 1.6; font-weight: 600; }
+.challenge strong { color: var(--noir); font-weight: 800; }
+
+/* S2 chiffre isolé */
+.silence-line { font-size: 1.5rem; font-weight: 900; color: var(--noir); letter-spacing: -0.02em; margin-top: 1.5rem; }
+
+/* S4 TIMELINE journée type */
+.timeline { max-width: 860px; margin: 0 0 2.2rem; }
+.tl-item { position: relative; padding: 0 0 1.8rem 2.6rem; border-left: 2px solid var(--g200); }
+.tl-item:last-child { border-left-color: transparent; padding-bottom: 0.2rem; }
+.tl-item::before { content:""; position:absolute; left:-9px; top:3px; width:16px; height:16px; border-radius:50%; background:var(--cta); border:3px solid var(--blanc); box-shadow:0 0 0 1.5px var(--cta); }
+.tl-time { font-size: 1.1rem; font-weight: 800; color: var(--cta); margin-bottom: .35rem; letter-spacing: -0.01em; }
+.tl-body { font-size: 1.02rem; color: var(--g700); line-height: 1.68; }
+.tl-body strong { color: var(--noir); }
+
+/* S5 GARDE-FOUS */
+.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+.guard-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.7rem 1.8rem; }
+.guard-card h3 { font-size: 1.08rem; font-weight: 800; color: var(--noir); margin-bottom: .55rem; line-height: 1.3; }
+.guard-card p { font-size: 0.95rem; color: var(--g600); line-height: 1.62; }
+
+/* S6 PRICING */
 .pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
-.price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
-.price-card.featured::before { content: "★ LE CŒUR"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
-.price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .6rem; }
-.price-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--noir); }
-.price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; color: var(--noir); }
+.price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); }
+.price-card.heart { box-shadow: 0 28px 60px rgba(37,99,235,0.24); z-index: 2; padding: 2rem 2.2rem; }
+.price-card.featured::before { content: "★ LE PLUS CHOISI"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.85rem; border-radius: 16px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; }
+.price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .7rem; }
+.price-card .price { font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.15rem; color: var(--noir); }
+.price-card.heart .price { font-size: 2.6rem; }
 .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.price-card ul { list-style: none; padding-top: 1.2rem; border-top: 1px solid var(--g100); flex: 1; }
-.price-card li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; font-size: 0.9rem; color: var(--g700); line-height: 1.55; }
-.price-card li::before { content: "✓"; color: var(--cta); font-weight: 800; position: absolute; left: 0; }
+.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--g500); margin-bottom: .7rem; }
+.card-tag { font-size: 1rem; font-weight: 800; color: var(--noir); line-height: 1.4; margin: .3rem 0 .2rem; }
+.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--cta); padding: 4px 10px; border-radius: 999px; margin: .5rem 0 .55rem; }
+.promo-box { border: 1px solid #DBEAFE; background: #EFF6FF; border-radius: 9px; padding: .6rem .8rem; margin: 0 0 .5rem; }
+.promo-box .ps1 { display: block; font-size: 0.82rem; font-weight: 800; color: var(--cta); line-height: 1.35; }
+.promo-box .ps2 { display: block; font-size: 0.76rem; font-weight: 400; color: var(--g600); line-height: 1.45; margin-top: .2rem; }
+.incl-prev { font-size: 0.84rem; font-weight: 800; color: var(--g700); margin: .2rem 0 0; }
+.price-card ul { list-style: none; padding-top: 1.1rem; margin-top: .8rem; border-top: 1px solid var(--g100); flex: 1; }
+.price-card li { padding: 0.6rem 0 0.6rem 1.6rem; position: relative; font-size: 0.92rem; color: var(--g800); line-height: 1.5; }
+.price-card li::before { content: "✓"; color: var(--cta); font-weight: 800; position: absolute; left: 0; top: 0.55rem; }
 .price-card li strong { color: var(--noir); font-weight: 700; }
+.deliv-exp { display: block; font-size: 0.82rem; color: var(--g500); line-height: 1.55; margin-top: .2rem; font-weight: 400; }
+.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--g600); margin-top: 1rem; padding-top: .9rem; border-top: 1px dashed var(--g200); }
+.card-cta-wrap { margin-top: 1.3rem; }
+.card-cta { display: block; text-align: center; background: var(--cta); color: var(--blanc); padding: .9rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; }
+.card-cta:hover { background: var(--cta-hover); box-shadow: 0 8px 24px rgba(37,99,235,.28); transform: translateY(-1px); }
 
-.cta-final { background: #F8FAFC; color: var(--g900); border-radius: var(--r); padding: 3.5rem 2rem; text-align: center; margin: 4rem 0; border: 1px solid var(--g200); }
-.cta-final h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; color: var(--noir); }
-.cta-final p { font-size: 1.05rem; color: var(--g700); max-width: 640px; margin: 0 auto 1.8rem; line-height: 1.6; }
-.cta-final .btn-primary { background: var(--cta); }
-.cta-final .btn-primary:hover { background: var(--cta-hover); }
+/* Pourquoi ce prix */
+.why-price { max-width: 900px; margin: 2.4rem auto 0; padding: 2rem 2.2rem; background: var(--g100); border-radius: var(--r); }
+.why-price h3 { font-size: 1.15rem; font-weight: 800; color: var(--noir); margin-bottom: .8rem; }
+.why-price p { font-size: 0.98rem; color: var(--g700); line-height: 1.72; }
+.why-price p strong { color: var(--noir); }
+.annual-box { max-width: 900px; margin: 1.4rem auto 0; text-align: center; padding: 1.4rem 1.6rem; border: 1px solid var(--g200); border-radius: var(--r); }
+.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; color: var(--cta); text-transform: uppercase; margin-bottom: .5rem; }
+.annual-box p { font-size: 0.95rem; color: var(--g700); line-height: 1.6; }
+
+/* S7 DEVIS */
+.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 900px; }
+.devis-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem 1.7rem; }
+.devis-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: .4rem; }
+.devis-card p { font-size: 0.93rem; color: var(--g600); line-height: 1.6; }
+
+/* S8 QUI + DÉCISION */
+.bio-card { display: grid; grid-template-columns: 150px 1fr; gap: 1.8rem; align-items: start; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: 18px; padding: 2.4rem 2.5rem; max-width: 960px; }
+.bio-photo { width: 150px; height: 180px; border-radius: 12px; object-fit: cover; object-position: top center; display: block; background: #1c1c1e; }
+.bio-body p { font-size: 1.06rem; color: var(--g700); line-height: 1.7; margin-bottom: .9rem; }
+.bio-body p:last-child { margin-bottom: 0; }
+.bio-body p strong { color: var(--noir); }
+.bio-name { font-size: 1.1rem; font-weight: 800; color: var(--noir); }
+.decision { max-width: 820px; margin: 2.4rem 0 0; }
+.decision .prose-lead { max-width: none; }
+.places-line { margin-top: 1.4rem; padding: 1.4rem 1.6rem; background: var(--g100); border-radius: var(--r); font-size: 1.02rem; color: var(--g800); line-height: 1.62; }
+.places-line strong { color: var(--noir); }
+.decision-final { font-size: 1.4rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin-top: 1.6rem; }
+
+/* CTA FINAL */
+.cta-final { background: #F8FAFC; border-radius: var(--r); padding: 3.5rem 2rem; text-align: center; margin: 4rem 0 0; border: 1px solid var(--g200); }
+.cta-final h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: var(--noir); max-width: 720px; margin-left: auto; margin-right: auto; }
 
 footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
 .footer-brand { font-weight: 800; font-size: 0.9rem; }
 .footer-brand .gild { color: var(--noir); }
 .footer-brand .tech { color: var(--bleu-nuit); }
-.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
 .footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
 .footer-links a:hover { color: var(--cta); }
 .footer-mention { font-size: 0.72rem; color: var(--g500); }
 
-/* SAMUI v4 refonte */
-.proof-band { margin-top: 2.5rem; padding: 1.8rem 2rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); text-align: center; }
-.proof-band .big { font-size: 1.2rem; font-weight: 700; line-height: 1.5; }
-.proof-band .big b { font-size: 1.7rem; font-weight: 900; color: #fff; }
-.challenge { max-width: 820px; margin: 2.2rem auto 0; padding: 1.5rem 1.8rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; }
-.challenge p { font-size: 1.05rem; color: var(--g900); line-height: 1.6; }
-.challenge strong { color: var(--noir); }
-.prose-lead { font-size: 1.12rem; color: var(--g700); line-height: 1.75; max-width: 760px; }
-.prose-lead p { margin-bottom: 1.1rem; }
-.prose-lead p.punch { font-weight: 800; color: var(--noir); font-size: 1.2rem; }
-.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-.guard-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem 1.7rem; }
-.guard-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: .5rem; line-height: 1.3; }
-.guard-card p { font-size: 0.93rem; color: var(--g600); line-height: 1.6; }
-.thb-note { font-size: 0.78rem; color: var(--g500); font-weight: 600; margin: -.05rem 0 1rem; }
-.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: #2563EB; padding: 4px 10px; border-radius: 999px; margin: .1rem 0 .55rem; }
-.price-old { font-size: 1.2rem; color: var(--g500); text-decoration: line-through; font-weight: 600; margin-right: 1.2rem; }
-.promo-box { border: 1px solid #E2E8F0; background: #F8FAFC; border-radius: 9px; padding: .55rem .75rem; margin: .15rem 0 .95rem; }
-.promo-box .ps1 { display: block; font-size: 0.82rem; font-weight: 800; color: var(--cta); line-height: 1.35; }
-.promo-box .ps2 { display: block; font-size: 0.76rem; font-weight: 400; color: var(--g600); line-height: 1.45; margin-top: .2rem; }
-.incl-prev { font-size: 0.82rem; font-weight: 700; color: var(--g600); margin: .1rem 0 .1rem; }
-.deliv-exp { display: block; font-size: 0.78rem; color: var(--g500); line-height: 1.5; margin-top: .15rem; font-weight: 400; }
-.annual-note { text-align: center; font-size: 0.98rem; color: var(--g700); font-weight: 600; margin-top: 1.8rem; }
-.config-note { text-align: center; font-size: 0.9rem; color: var(--g600); font-weight: 600; max-width: 660px; margin: 1.4rem auto 0; line-height: 1.5; }
-.devis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.devis-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem; }
-.devis-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: .4rem; }
-.devis-card p { font-size: 0.93rem; color: var(--g600); line-height: 1.6; }
-.bio-card { background: #EFF6FF; color: var(--noir); border-radius: 18px; padding: 3rem 2.5rem; border: 1px solid #DBEAFE; max-width: 900px; }
-.bio-card p { font-size: 1.08rem; color: var(--g700); line-height: 1.7; margin-bottom: 1rem; }
-.bio-card p strong { color: var(--noir); }
-
-.card-cta-wrap { margin-top: 1.2rem; }
-.card-cta { display: block; text-align: center; background: var(--cta); color: var(--blanc); padding: .85rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; }
-.card-cta:hover { background: var(--cta-hover); box-shadow: 0 8px 24px rgba(37,99,235,.28); transform: translateY(-1px); }
-.price-card.heart { border-color: var(--cta); border-width: 2px; box-shadow: 0 28px 60px rgba(37,99,235,0.28); z-index: 2; padding: 2rem 2.2rem; }
-.price-card.heart .price { font-size: 2.6rem; }
+.sticky-cta-mobile { display: none; }
 
 @media (min-width:1101px) {
   .pricing-grid { grid-template-rows: auto auto auto; align-items: stretch; row-gap: 0; }
@@ -168,19 +211,16 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 }
 @media (max-width: 880px) {
   .hero h1 { font-size: 2.05rem; }
-  .stat-bar, .guard-grid, .devis-grid { grid-template-columns: 1fr; }
+  .guard-grid, .devis-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .bio-card { padding: 2rem 1.5rem; }
-}
-
-.sticky-cta-mobile { display: none; }
-@media (max-width: 880px) {
+  .bio-card { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+  .bio-photo { width: 130px; height: 156px; }
   .sticky-cta-mobile {
     display: block; position: fixed; bottom: 1rem; left: 1rem; right: 1rem;
     background: var(--cta); color: var(--blanc); text-align: center;
     padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700;
     text-decoration: none; font-size: 0.95rem;
-    box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99; letter-spacing: 0.01em;
+    box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99;
   }
 }
 </style>
@@ -208,158 +248,202 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- 1 · HERO -->
   <section class="hero">
-    <span class="badge-new">🇹🇭 Pour les agences immobilières de Koh Samui</span>
-    <h1>Votre bureau est ouvert 24 heures sur 24. <span class="accent">Il n'y a juste personne dedans après 18h.</span></h1>
-    <p class="subtitle">Un acheteur écrit à votre agence à 23h, budget 15 millions de bahts. Personne ne répond. Il n'attend pas le matin. <strong>Il écrit à l'agence suivante.</strong></p>
-    <div class="ctas">
-      <a href="#perte" class="btn-primary">Testez votre propre agence</a>
-      <a href="https://calendly.com/ops-gild-tech/30min" class="btn-secondary">Réserver 30 min</a>
+    <h1>Votre bureau est ouvert 24h/24. <span class="accent">Il n'y a juste personne dedans après 18h.</span></h1>
+    <div class="hero-prose">
+      <p>Un acheteur qui écrit et ne reçoit rien fait ce que vous feriez devant un restaurant fermé : vous entrez dans celui d'à côté. Personne n'attend devant une porte close. Surtout pas avec 15 millions de bahts en poche.</p>
     </div>
-    <div class="cta-sub">Écrivez-vous à vous-même ce soir à 23h. Regardez l'heure de la réponse.</div>
 
     <div class="proof-band">
-      <div class="big">Étude de réactivité menée sur <b>17</b> agences de Koh Samui, un mardi soir à 23h.<br><b>2</b> ont répondu dans la nuit.</div>
+      <p>Sur cette île, la porte close, c'est la norme : <b>17</b> agences testées un mardi soir à 23h. <b>2</b> ont répondu. Et les leads restés muets ? Zéro relance. Personne. Jamais.</p>
     </div>
 
-    <div class="stat-bar">
-      <div class="stat-item"><div class="stat-num">moins de 5 min</div><div class="stat-label">le temps de réponse de Sarah, jour et nuit</div></div>
-      <div class="stat-item"><div class="stat-num">8 langues</div><div class="stat-label">vos acheteurs écrivent depuis l'Europe, le Golfe, l'Asie. Sarah répond à chacun dans sa langue</div></div>
-      <div class="stat-item"><div class="stat-num">290 €<small style="font-size:1rem;color:var(--g500);font-weight:500;">/mois</small></div><div class="stat-label">Sarah · sans engagement · numéro dédié</div></div>
+    <!-- source_verifiee=OUI (PJ 2026-08-30) : 17/2 = étude terrain GILD-TECH ; 21x en 5 min = étude de réactivité (recherche interne). Assumés publiquement. -->
+    <div class="stat-callout">
+      <p>Les chiffres du métier enfoncent le clou : répondre dans les 5 premières minutes multiplie par <span class="x21">21</span> les chances de qualifier un acheteur. Après 30 minutes, la conversation est presque toujours perdue.</p>
+    </div>
+
+    <div class="hero-prose">
+      <p>Imaginez plutôt demain matin. Vous ouvrez votre téléphone : trois acheteurs qualifiés pendant la nuit, budget confirmé, deux visites déjà posées dans votre agenda. Sarah a accueilli, trié, relancé. Il ne reste que ce que personne ne peut faire à votre place : la visite, la négociation, la signature.</p>
+    </div>
+    <p class="lead-punch">Elle prépare le terrain. Vous concluez.</p>
+
+    <div class="setclose">
+      <p class="sc-head">Sarah fait le setting. Vous, vous closez.</p>
+      <p class="sc-def">Le setting, c'est tout le travail avant la vente : accueillir chaque acheteur, trier les curieux des vrais acheteurs, et amener les sérieux jusqu'au rendez-vous. Le closing, c'est votre métier : la visite, la négociation, la signature. Sarah prend le premier. Vous gardez le second, le seul qui vous paie.</p>
+    </div>
+
+    <div class="ctas">
+      <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Écrivez-lui maintenant. Chronométrez-la.</a>
     </div>
   </section>
 
   <!-- 2 · LE MÉCANISME DE LA PERTE -->
   <section class="block" id="perte">
-    <h2 class="section-title">Un acheteur à 15 millions de bahts écrit à 23h. <span class="accent">Ensuite ?</span></h2>
+    <h2 class="section-title">L'argent n'a pas disparu. <span class="accent">Il a changé d'agence.</span></h2>
     <div class="prose-lead">
-      <p>Il vous a trouvé sur Facebook. Ou sur Marketplace, le canal numéro un à Samui. Ou par le formulaire de votre site, un appel manqué, un ami qui a donné votre numéro. Il écrit. Il est 23h.</p>
-      <p>Votre téléphone est sur la table de nuit, en silencieux. Demain vous verrez le message. Mais demain, il a déjà visité deux biens avec l'agence qui, elle, a répondu cette nuit.</p>
-      <p class="punch">L'argent n'a pas disparu. Il a changé d'agence.</p>
-      <p>Le décideur ne sait même pas que ça arrive. Il ne voit pas les messages qui ne viendront plus, parce que la personne a eu sa réponse ailleurs. Le trou est invisible. C'est ce qui le rend cher.</p>
+      <p>Le lead perdu ne laisse aucune trace. Pas de case « ventes manquées » dans vos comptes. L'acheteur resté sans réponse ne se plaint pas, ne rappelle pas. Il visite avec un confrère, signe chez lui, et vous ne l'apprenez jamais.</p>
+      <p>C'est la seule fuite d'argent de votre agence qui soit parfaitement silencieuse. C'est pour ça qu'elle dure depuis des années.</p>
+      <p>Posons les chiffres de cette île. Une villa à 20 millions de bahts, 5 % de commission : un million de bahts par vente. Cinq demandes par semaine, dont une qui arrive la nuit, le week-end, ou pendant que vous êtes en visite. Si une seule de ces demandes ratées par an était un vrai acheteur, la porte close vous coûte un million.</p>
     </div>
+    <p class="silence-line">Un million de bahts. Par an. En silence.</p>
     <div class="challenge">
-      <p><strong>Testez votre propre agence.</strong> Écrivez-vous à vous-même ce soir à 23h. Regardez l'heure de la réponse.</p>
+      <p><strong>Testez votre propre agence.</strong> Écrivez-vous ce soir à 23h. Regardez l'heure de la réponse.</p>
     </div>
   </section>
 
   <!-- 3 · LE MÉCANISME DU MARCHÉ -->
   <section class="block" id="marche">
-    <h2 class="section-title">Pourquoi vous, seul, vous ne pouvez pas gagner ça <span class="accent">à la main</span>.</h2>
+    <h2 class="section-title">Ce n'est pas une question de talent. <span class="accent">C'est une question d'infrastructure.</span></h2>
     <div class="prose-lead">
-      <p>Les portails où vos acheteurs cherchent ne sont pas neutres. Ils captent l'acheteur et le redirigent vers leurs propres agents, ceux qui paient pour ça. Derrière, des équipes relancent chaque contact, payées pour le faire, toute la journée.</p>
-      <p>L'indépendant, lui, est seul. Il n'a ni la machine ni l'équipe. Il répond quand il peut, entre deux visites, et la nuit il dort.</p>
-      <p class="punch">Sarah lui donne la même infrastructure que les gros. Sauf qu'elle travaille pour vous, pas pour le portail.</p>
+      <p>Les grands portails où vos acheteurs cherchent ne sont pas neutres. Ils captent la demande et la redirigent vers leurs propres agents. Derrière chaque lead, une équipe entière : des relanceurs payés pour ça, un système qui ne laisse rien s'échapper, un manager qui vérifie.</p>
+      <p>Vous, vous êtes seul. Entre deux visites, un propriétaire à rassurer, un dossier à monter. Vous répondez quand vous pouvez. La nuit, vous dormez. Vos acheteurs, eux, écrivent depuis Moscou, Londres et Dubaï, à l'heure de leur fuseau, pas du vôtre.</p>
+      <p>Le match était perdu d'avance. Pas parce qu'ils sont meilleurs. Parce qu'ils ont la machine, et pas vous.</p>
+      <p class="punch">Sarah, c'est la machine des gros, au service d'un indépendant : la vôtre.</p>
     </div>
   </section>
 
-  <!-- 4 · LES GARDE-FOUS -->
+  <!-- 4 · SARAH, CONCRÈTEMENT -->
+  <section class="block" id="journee">
+    <h2 class="section-title">Votre journée, <span class="accent">avec Sarah.</span></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">7h00</div>
+        <div class="tl-body">Vous ouvrez votre téléphone. Trois conversations ont eu lieu cette nuit : un couple de Londres, budget 18 millions, visite calée jeudi 14h. Un investisseur russe, questions sur le leasehold, dossier transmis avec ses coordonnées. Un curieux sans budget, écarté poliment. <strong>Vous n'avez rien fait. Tout est dans votre tableau de bord.</strong></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11h30</div>
+        <div class="tl-body">En pleine visite, votre téléphone vibre une fois : lead chaud. Une acheteuse française, déjà sur l'île, veut voir deux villas cette semaine. Budget confirmé : 25 millions. Sarah lui a proposé vendredi 10h, elle a dit oui. Vous continuez votre visite. <strong>Le rendez-vous est pris.</strong></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18h00</div>
+        <div class="tl-body">Le lead silencieux de lundi vient de répondre à la relance de Sarah. Il était en déplacement. Il visite samedi. <strong>Sans la relance, il aurait signé ailleurs, et vous ne l'auriez jamais su.</strong></div>
+      </div>
+    </div>
+    <div class="prose-lead">
+      <p>La veille de chaque visite, vous recevez le portrait complet : qui vient, son budget, ses questions, sa langue. Vous arrivez en connaissant la personne. Il ne reste que votre métier : la visite, la négociation, la signature.</p>
+      <p>Elle répond en moins de 5 minutes, jour et nuit, dans la langue de l'acheteur. Elle trie. Elle relance à J+1, J+3, J+7. Elle pose les rendez-vous. Elle vous alerte. Et elle ne dira jamais une bêtise juridique à votre client : sur le freehold, le leasehold, les quotas, elle donne les bases et vous passe la main. <strong>L'expertise, c'est vous. Le reste, c'est elle.</strong></p>
+    </div>
+  </section>
+
+  <!-- 5 · LES GARDE-FOUS -->
   <section class="block" id="garde-fous">
-    <h2 class="section-title">Ce que Sarah <span class="accent">ne fera jamais</span>.</h2>
-    <p class="section-subtitle">Une machine qui répond à vos acheteurs doit d'abord être une machine en qui vous avez confiance.</p>
+    <h2 class="section-title">Ce que Sarah <span class="accent">ne fera jamais.</span></h2>
     <div class="guard-grid">
       <div class="guard-card">
-        <h3>Elle ne donnera jamais de conseil juridique thaï.</h3>
-        <p>Freehold, leasehold, quota étranger : elle donne les bases publiques et passe la main. Sur le reste, elle vous escalade. Votre responsabilité est protégée.</p>
+        <h3>Donner un conseil juridique thaï.</h3>
+        <p>Freehold, leasehold, quota étranger : elle connaît les bases, elle ne tranche jamais un cas. Elle escalade, vous décidez. Votre responsabilité est protégée.</p>
       </div>
       <div class="guard-card">
-        <h3>Elle vit sur un numéro dédié, jamais le vôtre.</h3>
-        <p>Sarah a sa propre ligne WhatsApp. Votre numéro personnel reste le vôtre, vos contacts privés ne la croisent jamais, et le jour où vous l'arrêtez, votre ligne continue de tourner. C'est non négociable, et c'est pour vous protéger.</p>
+        <h3>Toucher à votre vie privée.</h3>
+        <p>Sarah vit sur sa propre ligne. Vos conversations personnelles ne la croisent jamais.</p>
       </div>
       <div class="guard-card">
-        <h3>Vous la coupez quand vous voulez.</h3>
+        <h3>Vous enfermer.</h3>
         <p>Un message, elle s'arrête. Pas de préavis, pas de reconduction cachée.</p>
       </div>
       <div class="guard-card">
-        <h3>Vos données vous appartiennent.</h3>
-        <p>Vos conversations, vos contacts, vos rendez-vous : vous les exportez ou vous les faites effacer quand vous voulez. RGPD. Jamais revendues, jamais utilisées ailleurs.</p>
+        <h3>Garder vos données.</h3>
+        <p>Conversations, contacts, rendez-vous : tout vous appartient. Export ou effacement sur demande. RGPD.</p>
       </div>
     </div>
   </section>
 
-  <!-- 5 · LES TROIS OFFRES -->
+  <!-- 6 · LES TROIS OFFRES -->
   <section class="block" id="offres">
-    <h2 class="section-title">Trois niveaux. <span class="accent">Vous montez quand vous voulez.</span></h2>
-    <p class="section-subtitle">Mensuel. Sans engagement. Pas de reconduction tacite.</p>
+    <div class="offers-band">
+      <p>Vous n'êtes pas payé pour répondre à des messages à 23h. Vous êtes payé pour signer. Sarah prend tout l'avant-vente. Vous récupérez votre métier.</p>
+    </div>
+    <h2 class="section-title">Trois niveaux. <span class="accent">Un problème résolu à chaque étage.</span></h2>
 
     <div class="pricing-grid">
 
+      <!-- RESPOND -->
       <div class="price-card">
         <div class="pc-top">
-        <span class="kicker">RESPOND</span>
-        <h3>Vous arrêtez de perdre</h3>
-        <div class="price">290 €<small> / mois</small></div>
-        <div class="thb-note">฿11 200 indicatif</div>
+          <span class="kicker">RESPOND</span>
+          <div class="price">£290<small> / mois</small></div>
+          <div class="setup-line">Mise en service : £490</div>
+          <div class="card-tag">Pendant que vous dormez, elle vend.</div>
         </div>
         <div class="receive">
           <ul>
-          <li><strong>Sarah répond à chaque acheteur, jour et nuit.</strong><span class="deliv-exp">Quelqu'un écrit à 3h du matin, elle répond en moins de 5 minutes, dans sa langue. Huit langues.</span></li>
-          <li><strong>Elle trie les curieux des vrais acheteurs.</strong><span class="deliv-exp">Budget, type de bien, délai. Vous ouvrez le matin sur une liste déjà triée.</span></li>
-          <li><strong>Elle pose le rendez-vous dans votre agenda.</strong><span class="deliv-exp">Deux créneaux, confirmé, noté avec tout le contexte.</span></li>
-          <li><strong>Elle vous prévient quand c'est chaud.</strong><span class="deliv-exp">Le résumé complet sur votre WhatsApp, où que vous soyez.</span></li>
-          <li><strong>Elle ne dira jamais de bêtise juridique à votre client.</strong><span class="deliv-exp">Freehold, leasehold, quota étranger : elle donne les bases et vous passe la main. Votre responsabilité est protégée.</span></li>
+            <li><strong>3h du matin. Un Russe écrit, budget 20 millions. Sarah a déjà répondu.</strong><span class="deliv-exp">Réponse en moins de 5 minutes, 24h/24, WhatsApp dédié agence, langue détectée automatiquement.</span></li>
+            <li><strong>Fini de perdre 20 minutes avec un curieux qui « regarde juste ».</strong><span class="deliv-exp">Qualification systématique : budget, type de bien, délai, présence sur l'île. Tout loggé dans votre CRM Sarah. Les sérieux en haut, les touristes dehors.</span></li>
+            <li><strong>Vous ne courez plus après les rendez-vous. Ils vous attendent.</strong><span class="deliv-exp">Deux créneaux proposés sur vos disponibilités, confirmation, fiche prospect complète dans votre agenda.</span></li>
+            <li><strong>Un acheteur chaud ne patiente jamais. Vous non plus.</strong><span class="deliv-exp">Alerte instantanée sur votre WhatsApp perso : nom, budget, bien visé, créneau. Une vibration, vous savez tout.</span></li>
+            <li><strong>Elle ne dira jamais la connerie qui vous coûte une vente.</strong><span class="deliv-exp">Garde-fou juridique : freehold, leasehold, quotas. Les bases publiques, puis elle vous passe la main. Jamais un cas tranché sans vous.</span></li>
           </ul>
         </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://calendly.com/ops-gild-tech/30min">Réserver 30 min</a></div>
+        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20RESPOND" target="_blank" rel="noopener">Testez RESPOND avec Sarah</a></div>
       </div>
 
+      <!-- CONVERT -->
       <div class="price-card featured heart">
         <div class="pc-top">
-        <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">CONVERT</span>
-        <h3>Vous commencez à prendre</h3>
-        <div class="launch-badge">★ Lancement Samui ★</div>
-        <div class="price"><span class="price-old">490 €</span>290 €<small> / mois</small></div>
-        <div class="promo-box"><span class="ps1">CONVERT au prix de RESPOND.</span><span class="ps2">290 € / mois pendant vos 2 premiers mois, puis 490 €. Le temps que Sarah fasse ses preuves chez vous, vous payez le prix de l'offre en dessous.</span></div>
-        <div class="thb-note">฿11 200 pendant le lancement, puis ฿18 900 indicatif</div>
+          <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">CONVERT</span>
+          <div class="price">£490<small> / mois</small></div>
+          <div class="setup-line">Mise en service : £990</div>
+          <div class="launch-badge">★ Lancement Samui</div>
+          <div class="promo-box"><span class="ps1">£290/mois les 2 premiers mois, puis £490.</span><span class="ps2">Le temps qu'elle fasse ses preuves chez vous, vous payez le prix de l'offre du dessous.</span></div>
+          <div class="card-tag">Le lead qui ne répond plus n'est pas perdu. Il est juste mal relancé.</div>
         </div>
         <div class="receive">
           <p class="incl-prev">Tout RESPOND, plus :</p>
           <ul>
-          <li><strong>Elle relance ceux qui ne répondent plus.</strong><span class="deliv-exp">Une fois à J+1, une fois à J+3. Puis elle s'arrête. Sur cette île, personne ne relance.</span></li>
-          <li><strong>Elle traite aussi vos emails.</strong><span class="deliv-exp">Formulaire, boîte mail : même réponse, même tri, même rendez-vous.</span></li>
-          <li><strong>Votre briefing avant chaque visite.</strong><span class="deliv-exp">La veille, vous recevez le portrait complet de la personne que vous allez rencontrer. Vous arrivez en la connaissant.</span></li>
-          <li><strong>Vos leads atterrissent dans votre CRM.</strong><span class="deliv-exp">Chaque contact qualifié déposé là où vous travaillez déjà.</span></li>
-          <li><strong>Vos annonces Facebook enfin exploitées.</strong><span class="deliv-exp">On réécrit vos annonces avec le numéro de Sarah dans les deux premières lignes, là où le texte n'est pas encore coupé. Ce qui dormait se met à répondre.</span></li>
-          <li><strong>Chaque bien a sa référence.</strong><span class="deliv-exp">L'acheteur écrit avec le code de l'annonce, Sarah sait immédiatement de quelle villa il parle : prix, chambres, zone. Elle répond juste, du premier message. Et vous savez enfin quelle annonce vous rapporte des acheteurs.</span></li>
-          <li><strong>Votre tableau de bord.</strong><span class="deliv-exp">Qui a écrit, ce qui a été dit, où en est chaque dossier.</span></li>
-          <li><strong>Plusieurs agents ? Chacun reçoit ses leads.</strong><span class="deliv-exp">Vous dites qui s'occupe de quoi, Sarah dispatche.</span></li>
-          <li><strong>1 vidéo Coup de Cœur par mois.</strong><span class="deliv-exp">Vos vraies photos, mises en mouvement. L'acheteur qui scrolle à minuit à 8000 km s'arrête.</span></li>
+            <li><strong>Sur cette île, personne ne relance. Vous serez le seul.</strong><span class="deliv-exp">Relance automatique J+1 (rappel), J+3 (nouvelle proposition), J+7 (question de sortie). Puis le dossier se ferme seul. La moitié des ventes se joue là.</span></li>
+            <li><strong>Vous arrivez en visite en connaissant déjà l'acheteur.</strong><span class="deliv-exp">Briefing automatique la veille de chaque rendez-vous, sur votre WhatsApp : profil, budget, questions posées, points sensibles, langue.</span></li>
+            <li><strong>Les demandes par email ne moisissent plus dans la boîte.</strong><span class="deliv-exp">Sarah lit la boîte de l'agence et le formulaire du site, répond aux leads, bascule la conversation vers WhatsApp. Factures et administratif : jamais touchés.</span></li>
+            <li><strong>Vous savez enfin quelle annonce vous rapporte de l'argent.</strong><span class="deliv-exp">Un code par bien (Réf. 2045) intégré à vos annonces Facebook et Marketplace, réécrites par nous : numéro et référence dans les deux premières lignes, avant la coupure. Sarah identifie le bien dès le premier message, et chaque lead est tracé jusqu'à sa source.</span></li>
+            <li><strong>Votre CRM se remplit tout seul.</strong><span class="deliv-exp">Chaque lead qualifié déposé automatiquement : contact, budget, bien, statut, prochaine action. Pas de CRM ? On vous le crée et on vous le donne.</span></li>
+            <li><strong>Toute votre activité, sur un seul écran.</strong><span class="deliv-exp">Tableau de bord temps réel : qui a écrit cette nuit, ce qui a été répondu, où en est chaque dossier, quels rendez-vous arrivent.</span></li>
+            <li><strong>Chaque mois, votre plus belle carte se joue en vidéo.</strong><span class="deliv-exp">1 vidéo Coup de Cœur + sa page de vente dédiée, sur le bien de votre choix. Vos vraies photos mises en mouvement, un lien propre à poster partout, Sarah au bout.</span></li>
           </ul>
+          <p class="serve-note">Jusqu'à 2 agents servis (chacun reçoit ses leads).</p>
         </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://calendly.com/ops-gild-tech/30min">Réserver 30 min</a></div>
+        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20CONVERT" target="_blank" rel="noopener">Testez CONVERT avec Sarah</a></div>
       </div>
 
+      <!-- DOMINATE -->
       <div class="price-card">
         <div class="pc-top">
-        <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">DOMINATE</span>
-        <h3>Vous devenez intouchable</h3>
-        <div class="price">790 €<small> / mois</small></div>
-        <div class="thb-note">฿30 500 indicatif</div>
+          <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">DOMINATE</span>
+          <div class="price">£790<small> / mois</small></div>
+          <div class="setup-line">Mise en service : £1 490</div>
+          <div class="card-tag">Votre agence devient impossible à ignorer.</div>
         </div>
         <div class="receive">
           <p class="incl-prev">Tout CONVERT, plus :</p>
           <ul>
-          <li><strong>Vidéos Coup de Cœur illimitées.</strong><span class="deliv-exp">Chaque bien de votre portefeuille, mis en mouvement.</span></li>
-          <li><strong>Une page de vente pour chaque bien.</strong><span class="deliv-exp">Un lien unique à envoyer ou à poster. Fini le PDF et les 40 photos WhatsApp.</span></li>
-          <li><strong>Le site vitrine de votre bien d'exception.</strong><span class="deliv-exp">Votre plus belle propriété a son propre site : photos, vidéo, contact direct. L'arme qui impressionne le vendeur autant que l'acheteur.</span></li>
-          <li><strong>Votre dossier de présentation vendeur.</strong><span class="deliv-exp">Vous arrivez chez le propriétaire avec un dossier à votre marque : comment son bien sera présenté, qui le verra. Vous ne pitchez plus, vous montrez.</span></li>
-          <li><strong>Sarah qualifie aussi les demandes d'estimation.</strong><span class="deliv-exp">Le propriétaire qui écrit pour faire estimer son bien est qualifié et vous arrive prêt. La relation avec lui reste entièrement la vôtre.</span></li>
-          <li><strong>Votre marché, chaque mois.</strong><span class="deliv-exp">D'où viennent vos acheteurs, ce qu'ils cherchent, ce qui les fait décrocher. Vous devenez celui qui connaît sa zone.</span></li>
-          <li><strong>Toute votre équipe couverte.</strong><span class="deliv-exp">Chaque agent reçoit ses leads, sans surcoût.</span></li>
+            <li><strong>Les vendeurs aussi reçoivent une réponse en 5 minutes. Avant vos concurrents.</strong><span class="deliv-exp">Un propriétaire écrit « combien vaut ma villa ? » : Sarah répond immédiatement, prend les infos (bien, zone, surface, délai, prix espéré) et vous transmet le dossier complet. L'estimation et la relation restent à vous.</span></li>
+            <li><strong>Tout votre portefeuille prend vie.</strong><span class="deliv-exp">Une vidéo Coup de Cœur par bien, sans limite, montée sur vos photos. La qualité de vos photos fait la vidéo. Prête à poster partout.</span></li>
+            <li><strong>Chaque bien mis en avant reçoit sa page premium.</strong><span class="deliv-exp">Film, galerie, 4 langues, bouton Sarah. Un lien unique à envoyer au lieu de 40 photos en vrac. Le vendeur la montre à ses amis, l'acheteur la garde ouverte.</span></li>
+            <li><strong>Face au propriétaire ou au promoteur, vous montrez, vous ne promettez plus.</strong><span class="deliv-exp">Votre dossier de présentation à votre marque : les vidéos, les pages, la réponse 24/7, vos chiffres. Le mandat se gagne à la préparation.</span></li>
+            <li><strong>Vos réseaux vivent sans que vous y touchiez. Et sans budget pub.</strong><span class="deliv-exp">2 publications organiques par semaine sur Facebook, Instagram et TikTok : vos biens, vos vidéos, votre actualité. Zéro dépense publicitaire, votre contenu travaille seul.</span></li>
+            <li><strong>Votre fiche Google travaille pour vous.</strong><span class="deliv-exp">Optimisée et tenue : photos, informations, publications, réponses aux avis en votre nom.</span></li>
+            <li><strong>Vous connaissez votre zone. Maintenant vous pouvez le prouver, chiffres en main.</strong><span class="deliv-exp">Rapport mensuel tiré de vos données : d'où viennent vos acheteurs, ce qu'ils cherchent, quand ils écrivent. À poser sur la table en rendez-vous vendeur.</span></li>
+            <li><strong>Toute l'équipe est servie.</strong><span class="deliv-exp">Chaque agent reçoit ses leads selon vos règles, sur son WhatsApp. Sans limite.</span></li>
           </ul>
         </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://calendly.com/ops-gild-tech/30min">Réserver 30 min</a></div>
+        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20DOMINATE" target="_blank" rel="noopener">Testez DOMINATE avec Sarah</a></div>
       </div>
 
     </div>
 
-    <p class="annual-note">Annuel : 2 mois offerts. Sans engagement. Pas de reconduction tacite.</p>
-    <p class="config-note">Chaque agence est installée à la main, une par une. C'est la seule raison pour laquelle les premières entrent au prix de lancement.</p>
+    <div class="why-price">
+      <h3>Pourquoi ce prix.</h3>
+      <p>Six fonctions à temps plein : accueil 24/7, relance, vidéo, pages premium, réseaux, réputation. À l'embauche, une seule coûte déjà plus cher, et elle dort la nuit. L'installation (£1 490, une fois) : votre agence entière calibrée à la main, portefeuille, annonces, codes, CRM, Google, testée en 4 langues avant remise des clés. <strong>Maintenant, votre calcul.</strong> Une vente sur votre île, c'est 750 000 à plus d'un million de bahts de commission. La machine complète coûte moins de 500 000 ฿ par an. Combien d'acheteurs et de mandats devez-vous rater, chaque année, pour qu'elle ne soit pas rentable ? Un seul suffit à tout rembourser. Et vous en ratez déjà plus d'un.</p>
+    </div>
+
+    <div class="annual-box">
+      <div class="an-title">L'annuel</div>
+      <p>2 mois offerts + mise en service offerte. Un paiement, couvert douze mois. Jamais de reconduction tacite. En mensuel : sans engagement. Vous arrêtez quand vous voulez. Facturation en GBP par Girlden LTD. Prix en bahts indicatifs, revus chaque trimestre.</p>
+    </div>
   </section>
 
-  <!-- 6 · SUR DEVIS -->
+  <!-- 7 · SUR DEVIS -->
   <section class="block" id="devis">
-    <h2 class="section-title">Quand répondre ne suffit plus, <span class="accent">on construit</span>.</h2>
-    <p class="section-subtitle">Sur devis. Marketing &amp; Création.</p>
+    <h2 class="section-title">Quand répondre ne suffit plus, <span class="accent">on construit.</span></h2>
+    <p class="section-lead">Sur devis · Marketing &amp; Création.</p>
     <div class="devis-grid">
       <div class="devis-card">
         <h3>Site web premium</h3>
@@ -367,29 +451,48 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div class="devis-card">
         <h3>SEO</h3>
-        <p>Vous apparaissez quand quelqu'un cherche un bien à Samui.</p>
+        <p>Vous apparaissez quand on cherche un bien à Samui.</p>
       </div>
       <div class="devis-card">
         <h3>Référencement local</h3>
-        <p>Vous sortez en premier sur Google Maps et sur « agence immobilière Koh Samui ».</p>
+        <p>Vous sortez en premier sur Google Maps.</p>
+      </div>
+      <div class="devis-card">
+        <h3>Créations sur mesure</h3>
+        <p>Au-delà des pages premium : site d'agence complet, programme promoteur, projet dédié.</p>
       </div>
     </div>
   </section>
 
-  <!-- 7 · QUI EST DERRIÈRE -->
+  <!-- 8 · QUI EST DERRIÈRE + LA DÉCISION -->
   <section class="block" id="qui">
-    <h2 class="section-title">Ce n'est pas un logiciel qui vous appelle. <span class="accent">C'est quelqu'un.</span></h2>
+    <h2 class="section-title">Derrière Sarah, il y a quelqu'un. <span class="accent">Et il connaît votre île.</span></h2>
     <div class="bio-card">
-      <p><strong>Pierre-Jean Grisoni, fondateur de GILD-TECH (Girlden LTD).</strong> Il a mené sa propre étude de réactivité sur 17 agences de l'île, un mardi soir à 23h. Deux ont répondu dans la nuit. Sarah, c'est la réponse que personne n'a envoyée cette nuit-là.</p>
-      <p>Chaque agence est installée à la main, une par une. C'est la seule raison pour laquelle les premières entrent au prix de lancement.</p>
+      <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="150" height="180">
+      <div class="bio-body">
+        <p class="bio-name">Pierre-Jean Deàk Grisoni — fondateur de GILD-TECH (Girlden LTD).</p>
+        <p>Il a testé ce marché sur place, agence par agence : 17 agences de Koh Samui, un mardi soir à 23h. Deux réponses. Zéro relance. Sarah, c'est la réponse que personne n'a envoyée cette nuit-là.</p>
+        <p>Pas de plateforme anonyme, pas de support à l'étranger, pas d'avatar généré. Un interlocuteur, un numéro, quelqu'un qui répond.</p>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="prose-lead">
+        <p>Ce soir, un acheteur va écrire. Comme hier soir. Comme demain soir.</p>
+        <p>Ça n'a rien d'exceptionnel. C'est juste votre marché, qui vit la nuit, pendant que votre téléphone est en silencieux.</p>
+        <p>La question n'est pas de savoir si vous perdez des acheteurs. Vous en perdez depuis des années, tout le monde ici en perd, personne ne le mesure. La question est de savoir combien de temps encore vous acceptez de ne pas le savoir.</p>
+      </div>
+      <div class="places-line">
+        Chaque agence est installée à la main, une par une. C'est pour ça qu'il n'y a que des places limitées : les <strong>5 premières agences de l'île</strong> entrent sur CONVERT à <strong>£290 par mois les deux premiers mois</strong>, au lieu de £490. La première place est déjà prise.
+      </div>
+      <p class="decision-final">Sur une île, il n'y a qu'une agence la plus réactive. La seule vraie décision, c'est laquelle.</p>
     </div>
   </section>
 
-  <!-- 8 · CTA FINAL -->
+  <!-- CTA FINAL -->
   <div class="cta-final">
-    <h2>Le prochain acheteur écrira ce soir. À 23h.</h2>
-    <p>La seule question, c'est si quelqu'un répond.</p>
-    <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary" style="font-size:1.05rem;padding:1rem 2rem;">Réserver 30 min</a>
+    <h2>Sur une île, il n'y a qu'une agence la plus réactive.</h2>
+    <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener" style="font-size:1.05rem;padding:1rem 2rem;">Écrivez à Sarah maintenant. Chronométrez-la.</a>
   </div>
 
 </div>
@@ -404,11 +507,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <li><a href="/mentions-legales">Mentions légales</a></li>
       <li><a href="/confidentialite">Confidentialité</a></li>
     </ul>
-    <div class="footer-mention">© 2026 GILD-TECH · Girlden LTD · facturation en EUR · ops@gild-tech.com</div>
+    <div class="footer-mention">© 2026 GILD-TECH · Girlden LTD · facturation en GBP · ops@gild-tech.com</div>
   </div>
 </footer>
 
-<a href="https://calendly.com/ops-gild-tech/30min" class="sticky-cta-mobile" aria-label="Réserver 30 min">Réserver 30 min</a>
+<a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Écrivez à Sarah">Écrivez à Sarah. Chronométrez-la.</a>
 
 </body>
 </html>
