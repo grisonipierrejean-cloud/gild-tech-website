@@ -44,7 +44,7 @@
   .hero-stage{position:absolute;inset:0}
   .hero-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:translateZ(0)}
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0)}
-  .hero-film{margin-top:26px;display:inline-flex;align-items:center;gap:9px;background:rgba(239,233,220,.1);border:1px solid rgba(239,233,220,.32);color:var(--bone);font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:.02em;padding:11px 20px;border-radius:100px;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background .25s,border-color .25s}
+  .hero-film{display:inline-flex;align-items:center;gap:9px;background:rgba(239,233,220,.1);border:1px solid rgba(239,233,220,.32);color:var(--bone);font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:.02em;padding:11px 20px;border-radius:100px;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background .25s,border-color .25s}
   .hero-film:hover{background:rgba(239,233,220,.18);border-color:var(--brass)}
   .hero-film .pl{color:var(--brass-2);font-size:11px}
   .filmwrap{position:fixed;inset:0;z-index:90;background:rgba(6,8,7,.96);display:none;align-items:center;justify-content:center;padding:3vw}
@@ -185,8 +185,6 @@
     <div class="hero-veil"></div>
     <div class="hero-grain"></div>
     <div class="hero-inner">
-      <div class="mono" id="hLogo" style="color:var(--sand);letter-spacing:.28em;margin-bottom:clamp(20px,3vw,34px)">Private collection</div>
-      <div class="hero-sub mono" id="hSub" data-i18n="heroSub">Koh Samui · 7 bedrooms · 5 levels</div>
       <button class="hero-film" id="filmBtn"><span class="pl">▶</span><span data-i18n="watchFilm">Watch the film</span></button>
     </div>
     <div class="hero-scroll mono" id="hScroll" data-i18n="scroll">Scroll</div>
@@ -534,13 +532,12 @@
     // aucun re-rendu par frame = zéro tremblement du hero.
 
     var intro=gsap.timeline({delay:.15});
-    intro.from('#hLogo',{autoAlpha:0,y:16,duration:1,ease:'power3.out'})
-         .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.55')
+    intro.from('#filmBtn',{autoAlpha:0,y:14,duration:1,ease:'power3.out'})
          .from('#hScroll',{autoAlpha:0,duration:.6},'-=.3');
     // Filet de sécurité : si l'animation est interrompue (onglet en arrière-plan, appareil lent),
     // on force l'état final visible. Le titre/logo/sous-titre ne restent JAMAIS cachés.
     setTimeout(function(){
-      gsap.set(['#hLogo','#hSub','#hScroll'],{autoAlpha:1,x:0,y:0,clearProps:'transform'});
+      gsap.set(['#filmBtn','#hScroll'],{autoAlpha:1,x:0,y:0,clearProps:'transform'});
     }, 2800);
 
     // Aucun tween au scroll sur le hero (ni parallaxe ni fade scrub) : vidéo fixe, zéro tremblement.
