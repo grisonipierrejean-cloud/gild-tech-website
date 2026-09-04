@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah · Votre bureau ne dort jamais · Immobilier Koh Samui · GILD-TECH</title>
+<title>Sarah · Immobilier Koh Samui · GILD-TECH</title>
 <meta name="description" content="À 23h, un acheteur écrit à votre agence de Koh Samui. Celle qui répond gagne la vente. Sarah répond à chaque acheteur en moins de 5 minutes, jour et nuit, dans sa langue, sur un WhatsApp dédié. Dès £290/mois.">
 <link rel="canonical" href="https://gild-tech.com/sarah-th-fr">
 <meta name="robots" content="index, follow">
@@ -23,427 +23,519 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#FFFFFF">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0B1D33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --noir: #0A0A0A;
-  --blanc: #FFFFFF;
-  --bleu-nuit: #0B1D33;
-  --bleu-nuit-soft: #E5E7EB;
-  --bleu-nuit-bg: #F1F5F9;
-  --cta: #2563EB;
-  --cta-hover: #1D4ED8;
-  --g900: #0A0A0A; --g800: #1F2328; --g700: #2A2F36; --g600: #4A4F57;
-  --g500: #6B6F76; --g400: #9AA0AA; --g300: #C8CBD0; --g200: #E2E4E7;
-  --g100: #F5F5F7; --g50: #FBFBFC;
+  --ink: #0A0A0A;
+  --nuit: #0B1D33;
+  --nuit-2: #071726;
+  --nuit-card: #122C46;
+  --nuit-line: rgba(148,163,184,0.18);
+  --blue: #2563EB;
+  --blue-600: #1D4ED8;
+  --blue-050: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --ink-body: #26313D;
+  --slate: #5B6673;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --line: #E6EAF0;
+  --paper: #FFFFFF;
+  --paper-2: #F6F8FC;
+  --paper-3: #EDF1F8;
   --vert: #16a34a; --rouge: #dc2626;
-  --font: 'Inter', -apple-system, sans-serif;
-  --max-w: 1200px; --r: 14px;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --maxw: 1140px;
+  --measure: 720px;
+  --r: 16px; --r-lg: 22px;
 }
-body { background: var(--blanc); color: var(--noir); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink-body); font-family: var(--sans); line-height: 1.68; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--blue); color: #fff; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
 
-nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
-.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-.brand { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: var(--noir); }
-.brand .gild { color: var(--noir); }
-.brand .tech { color: var(--bleu-nuit); }
-.nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
-.nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--noir); }
-.btn-nav { background: var(--cta); color: var(--blanc) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
-.btn-nav:hover { background: var(--cta-hover); box-shadow: 0 6px 20px rgba(46,107,230,0.25); transform: translateY(-1px); }
-.nav-right { display: flex; align-items: center; gap: 1.3rem; }
-.lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
-.lang-select .lang { color: var(--g500); }
-.lang-select a.lang { text-decoration: none; }
-.lang-select a.lang:hover { color: var(--cta); }
-.lang-select .lang.active { color: var(--cta); }
-.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g400); }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
-.page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
+/* ---------- TYPE PRIMITIVES ---------- */
+.serif { font-family: var(--serif); font-weight: 600; letter-spacing: -0.015em; }
+.eyebrow { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); display: inline-flex; align-items: center; gap: .6rem; }
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--blue); display: inline-block; }
+.eyebrow--light { color: var(--blue-200); }
+.eyebrow--light::before { background: var(--blue-200); }
 
-/* HERO */
-.hero { padding: 4rem 0 4.5rem; }
-.hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: 960px; color: var(--noir); }
-.hero h1 .accent { color: var(--cta); }
-.hero-prose { font-size: 1.14rem; color: var(--g700); line-height: 1.75; max-width: 800px; }
-.hero-prose p { margin-bottom: 1.15rem; }
-.hero-prose p strong { color: var(--noir); font-weight: 700; }
-.lead-punch { font-size: 1.35rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin: 1.6rem 0 0; }
-.setclose { margin-top: 1.8rem; padding: 1.6rem 1.9rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; }
-.sc-head { font-size: 1.3rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin-bottom: .55rem; }
-.sc-def { font-size: 1rem; color: var(--g700); line-height: 1.72; }
-.offers-band { max-width: 900px; margin: 0 auto 2.6rem; padding: 2.2rem 2.4rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); text-align: center; }
-.offers-band p { font-size: 1.4rem; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; }
+/* ---------- NAV ---------- */
+nav.nav { position: sticky; top: 0; z-index: 100; background: rgba(11,29,51,0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--nuit-line); }
+.nav__in { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); height: 62px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-family: var(--sans); font-weight: 800; font-size: 1.16rem; letter-spacing: 0.01em; text-decoration: none; color: #fff; }
+.brand .t { color: var(--blue-200); }
+.nav__right { display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.5rem); }
+.nav__link { color: var(--slate-300); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color .2s; }
+.nav__link:hover { color: #fff; }
+.nav__cta { background: var(--blue); color: #fff; text-decoration: none; padding: 0.5rem 1.05rem; border-radius: 9px; font-size: 0.83rem; font-weight: 700; transition: all .2s; white-space: nowrap; }
+.nav__cta:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(37,99,235,0.4); }
+.lang { display: inline-flex; gap: .45rem; font-size: .78rem; font-weight: 700; letter-spacing: .02em; align-items: center; }
+.lang a, .lang span { text-decoration: none; color: var(--slate-400); }
+.lang a:hover { color: #fff; }
+.lang .active { color: var(--blue-200); }
+.lang .soon { color: var(--slate-400); opacity: .45; cursor: default; }
+.lang .sep { color: rgba(148,163,184,0.4); }
 
-.ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-top: 2rem; }
-.btn-primary { display: inline-block; background: var(--cta); color: var(--blanc); padding: 0.95rem 1.8rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.98rem; transition: all 0.2s; border: none; cursor: pointer; }
-.btn-primary:hover { background: var(--cta-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(46,107,230,0.28); }
-.btn-secondary { display: inline-block; background: var(--blanc); color: var(--noir); padding: 0.95rem 1.8rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.98rem; border: 1.5px solid var(--g200); transition: all 0.2s; }
-.btn-secondary:hover { border-color: var(--bleu-nuit); color: var(--bleu-nuit); }
+/* ---------- BANDS ---------- */
+.band { padding: clamp(3.4rem, 7vw, 6.4rem) 0; }
+.band--tint { background: var(--paper-2); }
+.band--night { background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; position: relative; overflow: hidden; }
+.band--night::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 72% -5%, rgba(37,99,235,0.28), transparent 60%); pointer-events: none; }
+.band--night .wrap { position: relative; z-index: 1; }
 
-/* PROOF BAND (texte figé mis en emphase) */
-.proof-band { margin: 2rem 0 0; padding: 1.8rem 2rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); }
-.proof-band p { font-size: 1.14rem; font-weight: 600; line-height: 1.6; }
-.proof-band b { font-size: 1.55rem; font-weight: 900; color: #fff; }
+/* ---------- HERO ---------- */
+.hero { padding-top: clamp(3rem, 6vw, 5rem); }
+.hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.4rem, 5.4vw, 4.35rem); line-height: 1.02; letter-spacing: -0.025em; color: #fff; max-width: 16ch; margin: 1.5rem 0 0; }
+.hero h1 .accent { color: var(--blue-200); }
+.hero__lede { font-size: clamp(1.05rem, 1.6vw, 1.22rem); line-height: 1.7; color: var(--slate-300); max-width: 44ch; margin-top: 1.7rem; }
+.hero__cta-row { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.hero__hint { font-size: 0.9rem; color: var(--slate-400); }
 
-/* STAT CALLOUT (le 21x / 5 min, figé) */
-.stat-callout { margin: 1.5rem 0; padding: 1.4rem 1.6rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; }
-.stat-callout p { font-size: 1.08rem; color: var(--g800); line-height: 1.6; }
-.stat-callout .x21 { font-weight: 900; color: var(--cta); }
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; border-radius: 12px; transition: all .2s; cursor: pointer; border: none; font-family: var(--sans); }
+.btn--wa { background: var(--blue); color: #fff; padding: 1rem 1.9rem; font-size: 1rem; box-shadow: 0 10px 30px rgba(37,99,235,0.35); }
+.btn--wa:hover { background: var(--blue-600); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(37,99,235,0.45); }
+.btn--wa svg { width: 19px; height: 19px; fill: currentColor; }
+.btn--ghost-light { background: rgba(255,255,255,0.06); color: #fff; padding: 1rem 1.7rem; font-size: 0.98rem; border: 1px solid rgba(255,255,255,0.18); font-weight: 600; }
+.btn--ghost-light:hover { background: rgba(255,255,255,0.12); }
 
-section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
-.section-title { font-size: 2.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.6rem; line-height: 1.15; color: var(--noir); max-width: 900px; }
-.section-title .accent { color: var(--cta); }
-.section-lead { font-size: 1.05rem; color: var(--g600); max-width: 800px; line-height: 1.6; margin-bottom: 2.4rem; }
+/* ---------- EVIDENCE (stat monuments) ---------- */
+.evidence { margin-top: clamp(2.8rem, 5vw, 4rem); border-top: 1px solid var(--nuit-line); padding-top: clamp(2.4rem, 4vw, 3.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.2rem); }
+.stat__num { font-family: var(--serif); font-weight: 600; font-size: clamp(3.6rem, 8vw, 6.2rem); line-height: 0.86; letter-spacing: -0.03em; color: #fff; display: flex; align-items: baseline; gap: .1em; font-variant-numeric: tabular-nums lining-nums; }
+.stat__num .arrow { color: var(--blue-200); font-size: 0.42em; font-family: var(--sans); font-weight: 700; align-self: center; margin: 0 .12em; letter-spacing: 0; }
+.stat__num .x { color: var(--blue-200); }
+.stat__cap { font-size: 1rem; line-height: 1.62; color: var(--slate-300); margin-top: 1.05rem; max-width: 46ch; }
+.stat__cap b { color: #fff; font-weight: 600; }
+.stat__src { font-size: 0.74rem; color: var(--slate-400); margin-top: 1.4rem; grid-column: 1 / -1; opacity: .75; }
 
-.prose-lead { font-size: 1.12rem; color: var(--g700); line-height: 1.78; max-width: 820px; }
-.prose-lead p { margin-bottom: 1.15rem; }
-.prose-lead p:last-child { margin-bottom: 0; }
-.prose-lead p strong { color: var(--noir); }
-.prose-lead .punch { font-size: 1.28rem; font-weight: 800; color: var(--noir); }
+/* ---------- SECTION HEADINGS ---------- */
+.sec-head { max-width: 28ch; margin-bottom: clamp(1.8rem, 3vw, 2.6rem); }
+.sec-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.85rem, 3.4vw, 2.85rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 0.9rem; }
+.sec-title .accent { color: var(--blue); }
+.band--night .sec-title { color: #fff; }
 
-/* CHALLENGE (les CTA "testez-vous", figé) */
-.challenge { max-width: 820px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: var(--r); }
-.challenge p { font-size: 1.08rem; color: var(--g900); line-height: 1.6; font-weight: 600; }
-.challenge strong { color: var(--noir); font-weight: 800; }
+/* ---------- PROSE ---------- */
+.prose { max-width: var(--measure); font-size: 1.075rem; line-height: 1.78; color: var(--ink-body); }
+.prose p { margin-bottom: 1.15rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 700; }
+.prose .punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 1.28; color: var(--ink); letter-spacing: -0.015em; margin-top: 1.4rem; }
 
-/* S2 chiffre isolé */
-.silence-line { font-size: 1.5rem; font-weight: 900; color: var(--noir); letter-spacing: -0.02em; margin-top: 1.5rem; }
+/* Lead punch under hero-morning */
+.lead-punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.22; letter-spacing: -0.02em; color: var(--ink); margin-top: 1.6rem; }
 
-/* S4 TIMELINE journée type */
-.timeline { max-width: 860px; margin: 0 0 2.2rem; }
-.tl-item { position: relative; padding: 0 0 1.8rem 2.6rem; border-left: 2px solid var(--g200); }
-.tl-item:last-child { border-left-color: transparent; padding-bottom: 0.2rem; }
-.tl-item::before { content:""; position:absolute; left:-9px; top:3px; width:16px; height:16px; border-radius:50%; background:var(--cta); border:3px solid var(--blanc); box-shadow:0 0 0 1.5px var(--cta); }
-.tl-time { font-size: 1.1rem; font-weight: 800; color: var(--cta); margin-bottom: .35rem; letter-spacing: -0.01em; }
-.tl-body { font-size: 1.02rem; color: var(--g700); line-height: 1.68; }
-.tl-body strong { color: var(--noir); }
+/* set/close explainer */
+.setclose { margin-top: 2rem; padding: 1.9rem 2.1rem; background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; box-shadow: 0 20px 50px -30px rgba(11,29,51,0.28); }
+.sc-head { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--ink); letter-spacing: -0.01em; margin-bottom: .6rem; }
+.sc-def { font-size: 1.0rem; color: var(--slate); line-height: 1.72; }
 
-/* S5 GARDE-FOUS */
-.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-.guard-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.7rem 1.8rem; }
-.guard-card h3 { font-size: 1.08rem; font-weight: 800; color: var(--noir); margin-bottom: .55rem; line-height: 1.3; }
-.guard-card p { font-size: 0.95rem; color: var(--g600); line-height: 1.62; }
+/* Big pull quote (S2 silence) */
+.pull { font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.14; letter-spacing: -0.025em; color: var(--ink); margin: 2rem 0 0; max-width: 20ch; }
+.pull .accent { color: var(--blue); }
 
-/* S6 PRICING */
-.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
-.price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
-.price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); }
-.price-card.heart { box-shadow: 0 28px 60px rgba(37,99,235,0.24); z-index: 2; padding: 2rem 2.2rem; }
-.price-card.featured::before { content: "★ LE PLUS CHOISI"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.85rem; border-radius: 16px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; }
-.price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .7rem; }
-.price-card .price { font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.15rem; color: var(--noir); }
-.price-card.heart .price { font-size: 2.6rem; }
-.price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--g500); margin-bottom: .7rem; }
-.card-tag { font-size: 1rem; font-weight: 800; color: var(--noir); line-height: 1.4; margin: .3rem 0 .2rem; }
-.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--cta); padding: 4px 10px; border-radius: 999px; margin: .5rem 0 .55rem; }
-.promo-box { border: 1px solid #DBEAFE; background: #EFF6FF; border-radius: 9px; padding: .6rem .8rem; margin: 0 0 .5rem; }
-.promo-box .ps1 { display: block; font-size: 0.82rem; font-weight: 800; color: var(--cta); line-height: 1.35; }
-.promo-box .ps2 { display: block; font-size: 0.76rem; font-weight: 400; color: var(--g600); line-height: 1.45; margin-top: .2rem; }
-.incl-prev { font-size: 0.84rem; font-weight: 800; color: var(--g700); margin: .2rem 0 0; }
-.price-card ul { list-style: none; padding-top: 1.1rem; margin-top: .8rem; border-top: 1px solid var(--g100); flex: 1; }
-.price-card li { padding: 0.6rem 0 0.6rem 1.6rem; position: relative; font-size: 0.92rem; color: var(--g800); line-height: 1.5; }
-.price-card li::before { content: "✓"; color: var(--cta); font-weight: 800; position: absolute; left: 0; top: 0.55rem; }
-.price-card li strong { color: var(--noir); font-weight: 700; }
-.deliv-exp { display: block; font-size: 0.82rem; color: var(--g500); line-height: 1.55; margin-top: .2rem; font-weight: 400; }
-.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--g600); margin-top: 1rem; padding-top: .9rem; border-top: 1px dashed var(--g200); }
-.card-cta-wrap { margin-top: 1.3rem; }
-.card-cta { display: block; text-align: center; background: var(--cta); color: var(--blanc); padding: .9rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; }
-.card-cta:hover { background: var(--cta-hover); box-shadow: 0 8px 24px rgba(37,99,235,.28); transform: translateY(-1px); }
+/* Challenge box */
+.challenge { max-width: 760px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); position: relative; }
+.challenge p { font-size: 1.06rem; color: var(--ink); line-height: 1.6; font-weight: 500; }
+.challenge strong { color: var(--ink); font-weight: 800; }
 
-/* Pourquoi ce prix */
-.why-price { max-width: 900px; margin: 2.4rem auto 0; padding: 2rem 2.2rem; background: var(--g100); border-radius: var(--r); }
-.why-price h3 { font-size: 1.15rem; font-weight: 800; color: var(--noir); margin-bottom: .8rem; }
-.why-price p { font-size: 0.98rem; color: var(--g700); line-height: 1.72; }
-.why-price p strong { color: var(--noir); }
-.annual-box { max-width: 900px; margin: 1.4rem auto 0; text-align: center; padding: 1.4rem 1.6rem; border: 1px solid var(--g200); border-radius: var(--r); }
-.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; color: var(--cta); text-transform: uppercase; margin-bottom: .5rem; }
-.annual-box p { font-size: 0.95rem; color: var(--g700); line-height: 1.6; }
+/* offers band */
+.offers-band { max-width: 900px; margin: 0 auto clamp(2.4rem,4vw,3.2rem); padding: 2.2rem 2.4rem; background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #fff; border-radius: var(--r-lg); text-align: center; box-shadow: 0 30px 70px -40px rgba(11,29,51,0.6); }
+.offers-band p { font-family: var(--serif); font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.4; letter-spacing: -0.01em; }
 
-/* S7 DEVIS */
-.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 900px; }
-.devis-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem 1.7rem; }
-.devis-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: .4rem; }
-.devis-card p { font-size: 0.93rem; color: var(--g600); line-height: 1.6; }
+/* ---------- TIMELINE ---------- */
+.tl { max-width: 840px; margin: 0; }
+.tl__row { position: relative; padding: 0 0 1.5rem 2.6rem; border-left: 2px solid var(--blue-100); }
+.tl__row:last-child { border-left-color: transparent; padding-bottom: 0; }
+.tl__row::before { content: ""; position: absolute; left: -9px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--paper-2), 0 0 0 5px var(--blue-100); }
+.tl__card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem 1.5rem; box-shadow: 0 14px 40px -28px rgba(11,29,51,0.35); }
+.tl__time { font-family: var(--serif); font-weight: 600; font-size: 1.55rem; color: var(--blue); line-height: 1; margin-bottom: .55rem; letter-spacing: -0.01em; }
+.tl__body { font-size: 1.0rem; color: var(--slate); line-height: 1.68; }
+.tl__body strong { color: var(--ink); font-weight: 700; }
+.tl-after { max-width: var(--measure); margin-top: 2.4rem; }
 
-/* S8 QUI + DÉCISION */
-.bio-card { display: grid; grid-template-columns: 150px 1fr; gap: 1.8rem; align-items: start; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: 18px; padding: 2.4rem 2.5rem; max-width: 960px; }
-.bio-photo { width: 150px; height: 180px; border-radius: 12px; object-fit: cover; object-position: top center; display: block; background: #1c1c1e; }
-.bio-body p { font-size: 1.06rem; color: var(--g700); line-height: 1.7; margin-bottom: .9rem; }
+/* ---------- GUARD GRID ---------- */
+.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+.guard-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
+.guard-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.35); }
+.guard-x { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-050); color: var(--blue); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 1rem; }
+.guard-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); margin-bottom: .5rem; line-height: 1.3; }
+.guard-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
+
+/* ---------- PRICING ---------- */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; align-items: stretch; gap: 1.1rem; }
+.price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 2rem 1.9rem; position: relative; display: flex; flex-direction: column; }
+.price-card.heart { border: 2px solid var(--blue); box-shadow: 0 40px 80px -40px rgba(37,99,235,0.55); z-index: 2; }
+.price-card.heart::before { content: "★ LE PLUS CHOISI"; position: absolute; top: -0.85rem; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em; white-space: nowrap; box-shadow: 0 8px 20px rgba(37,99,235,0.4); }
+.kicker { font-size: 0.7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); display: inline-block; margin-bottom: 1rem; }
+.price-card.heart .kicker { color: var(--blue); }
+.price { font-family: var(--serif); font-weight: 600; font-size: clamp(2.5rem, 3.6vw, 3.2rem); letter-spacing: -0.03em; color: var(--ink); line-height: 1; display: flex; align-items: baseline; gap: .3rem; }
+.price small { font-family: var(--sans); font-size: 0.9rem; font-weight: 500; color: var(--slate); letter-spacing: 0; }
+.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--slate); margin-top: .55rem; }
+.card-tag { font-family: var(--serif); font-weight: 500; font-size: 1.12rem; color: var(--ink); line-height: 1.35; margin: 1.1rem 0 0; }
+.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 5px 11px; border-radius: 999px; margin: 1.1rem 0 .6rem; }
+.promo-box { border: 1px solid var(--blue-100); background: var(--blue-050); border-radius: 11px; padding: .75rem .9rem; margin: 0 0 .2rem; }
+.promo-box .ps1 { display: block; font-size: 0.86rem; font-weight: 800; color: var(--blue-600); line-height: 1.35; }
+.promo-box .ps2 { display: block; font-size: 0.78rem; font-weight: 400; color: var(--slate); line-height: 1.45; margin-top: .25rem; }
+.incl-prev { font-size: 0.82rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--slate); margin: 1.4rem 0 0; }
+.feat { list-style: none; padding-top: 1.2rem; margin-top: .9rem; border-top: 1px solid var(--line); flex: 1; }
+.feat li { padding: 0.62rem 0 0.62rem 1.75rem; position: relative; font-size: 0.92rem; color: var(--ink-body); line-height: 1.5; }
+.feat li::before { content: ""; position: absolute; left: 0; top: 0.72rem; width: 15px; height: 15px; border-radius: 50%; background: var(--blue-050); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%232563EB' d='M6.4 11.2 3.2 8l1.1-1.1 2.1 2.1 5.3-5.3L12.8 4.8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 15px; }
+.feat li strong { color: var(--ink); font-weight: 700; }
+.feat .deliv-exp { display: block; font-size: 0.82rem; color: var(--slate); line-height: 1.55; margin-top: .25rem; font-weight: 400; }
+.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--slate); margin-top: 1.1rem; padding-top: .95rem; border-top: 1px dashed var(--line); }
+.card-cta { display: block; text-align: center; background: var(--ink); color: #fff; padding: .95rem 1rem; border-radius: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; margin-top: 1.4rem; }
+.card-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(10,10,10,.4); }
+.price-card.heart .card-cta { background: var(--blue); }
+.price-card.heart .card-cta:hover { background: var(--blue-600); box-shadow: 0 16px 36px -12px rgba(37,99,235,.55); }
+
+/* Pourquoi ce prix — premium detached */
+.why-price { max-width: 940px; margin: clamp(2.6rem,4vw,3.6rem) auto 0; padding: clamp(2rem,3.5vw,2.8rem) clamp(1.8rem,3.5vw,3rem); background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; border-radius: var(--r-lg); position: relative; overflow: hidden; box-shadow: 0 40px 90px -50px rgba(11,29,51,0.7); }
+.why-price::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 100% 0%, rgba(37,99,235,0.22), transparent 60%); pointer-events: none; }
+.why-price .in { position: relative; z-index: 1; }
+.why-price h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff; margin-bottom: 1rem; letter-spacing: -0.015em; }
+.why-price p { font-size: 1.02rem; color: var(--slate-300); line-height: 1.78; }
+.why-price p strong { color: #fff; font-weight: 600; }
+.annual-box { max-width: 940px; margin: 1.3rem auto 0; text-align: center; padding: 1.5rem 1.7rem; border: 1px solid var(--line); background: #fff; border-radius: var(--r); }
+.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; margin-bottom: .55rem; }
+.annual-box p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
+
+/* ---------- DEVIS ---------- */
+.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; max-width: 900px; }
+.devis-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
+.devis-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.32); }
+.devis-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin-bottom: .4rem; }
+.devis-card p { font-size: 0.94rem; color: var(--slate); line-height: 1.6; }
+
+/* ---------- BIO ---------- */
+.bio-card { display: grid; grid-template-columns: 210px 1fr; gap: 2.4rem; align-items: start; background: linear-gradient(180deg, #fff, var(--paper-2)); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.8rem,3vw,2.8rem); max-width: 980px; box-shadow: 0 30px 70px -45px rgba(11,29,51,0.4); }
+.bio-photo-col { display: flex; flex-direction: column; gap: 0.95rem; }
+.bio-photo { width: 210px; height: 250px; border-radius: var(--r); object-fit: cover; object-position: top center; display: block; background: var(--nuit); box-shadow: 0 20px 44px -20px rgba(11,29,51,0.5); }
+.bio-cta { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; text-align: center; border: 1.5px solid var(--ink); color: var(--ink); background: #fff; padding: .72rem .85rem; border-radius: 11px; font-weight: 700; font-size: .84rem; line-height: 1.25; text-decoration: none; transition: all .2s; }
+.bio-cta svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+.bio-cta:hover { background: var(--ink); color: #fff; transform: translateY(-1px); box-shadow: 0 12px 26px -12px rgba(10,10,10,.45); }
+.bio-name { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--ink); margin-bottom: .8rem; letter-spacing: -0.01em; }
+.bio-body p { font-size: 1.04rem; color: var(--slate); line-height: 1.72; margin-bottom: .85rem; }
 .bio-body p:last-child { margin-bottom: 0; }
-.bio-body p strong { color: var(--noir); }
-.bio-name { font-size: 1.1rem; font-weight: 800; color: var(--noir); }
-.decision { max-width: 820px; margin: 2.4rem 0 0; }
-.decision .prose-lead { max-width: none; }
-.places-line { margin-top: 1.4rem; padding: 1.4rem 1.6rem; background: var(--g100); border-radius: var(--r); font-size: 1.02rem; color: var(--g800); line-height: 1.62; }
-.places-line strong { color: var(--noir); }
-.decision-final { font-size: 1.4rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin-top: 1.6rem; }
+.bio-body p strong { color: var(--ink); }
 
-/* CTA FINAL */
-.cta-final { background: #F8FAFC; border-radius: var(--r); padding: 3.5rem 2rem; text-align: center; margin: 4rem 0 0; border: 1px solid var(--g200); }
-.cta-final h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: var(--noir); max-width: 720px; margin-left: auto; margin-right: auto; }
+.decision { max-width: var(--measure); margin: clamp(2.4rem,4vw,3.4rem) 0 0; }
+.places-line { margin-top: 1.5rem; padding: 1.6rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); font-size: 1.02rem; color: var(--ink-body); line-height: 1.64; }
+.places-line strong { color: var(--ink); font-weight: 700; }
+.decision-final { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); color: var(--ink); letter-spacing: -0.02em; line-height: 1.22; margin-top: 1.8rem; max-width: 24ch; }
 
-footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
-.footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-.footer-brand { font-weight: 800; font-size: 0.9rem; }
-.footer-brand .gild { color: var(--noir); }
-.footer-brand .tech { color: var(--bleu-nuit); }
-.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
-.footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
-.footer-links a:hover { color: var(--cta); }
-.footer-mention { font-size: 0.72rem; color: var(--g500); }
+/* ---------- CTA FINAL ---------- */
+.cta-final { text-align: center; }
+.cta-final h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -0.025em; color: #fff; max-width: 20ch; margin: 0 auto 2rem; }
+.cta-final .btn--wa { font-size: 1.05rem; padding: 1.1rem 2.2rem; }
 
-.sticky-cta-mobile { display: none; }
+/* ---------- FOOTER ---------- */
+footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem,4vw,2.5rem); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.4rem; }
+.footer-brand { font-family: var(--sans); font-weight: 800; font-size: 0.95rem; color: #fff; }
+.footer-brand .t { color: var(--blue-200); }
+.footer-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { color: var(--slate-400); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-mention { font-size: 0.74rem; color: var(--slate-400); width: 100%; padding-top: 1rem; border-top: 1px solid var(--nuit-line); }
 
-@media (min-width:1101px) {
-  .pricing-grid { grid-template-rows: auto auto auto; align-items: stretch; row-gap: 0; }
-  .price-card { display: grid; grid-row: 1 / span 3; grid-template-rows: subgrid; row-gap: 0; }
-  .price-card > .pc-top { display: flex; flex-direction: column; }
-}
-@media (max-width: 1100px) {
-  .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
+/* ---------- STICKY MOBILE CTA ---------- */
+.sticky-cta { display: none; }
+
+/* ---------- LOAD ANIMATION ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.hero h1, .hero__lede, .hero__cta-row, .evidence { animation: rise .7s cubic-bezier(.22,.61,.36,1) both; }
+.hero__lede { animation-delay: .08s; }
+.hero__cta-row { animation-delay: .16s; }
+.evidence { animation-delay: .24s; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 980px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
   .price-card.heart { order: -1; }
+  .price-card.heart::before { top: -0.8rem; }
 }
-@media (max-width: 880px) {
-  .hero h1 { font-size: 2.05rem; }
+@media (max-width: 760px) {
+  .nav__link { display: none; }
+  .evidence { grid-template-columns: 1fr; gap: 2.2rem; }
   .guard-grid, .devis-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .bio-card { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
-  .bio-photo { width: 130px; height: 156px; }
-  .sticky-cta-mobile {
-    display: block; position: fixed; bottom: 1rem; left: 1rem; right: 1rem;
-    background: var(--cta); color: var(--blanc); text-align: center;
-    padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700;
+  .bio-card { grid-template-columns: 1fr; text-align: center; gap: 1.6rem; padding: 2rem 1.5rem; }
+  .bio-photo-col { align-items: center; }
+  .bio-photo { width: 168px; height: 200px; }
+  .hero h1 { max-width: 100%; }
+  .sticky-cta {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    position: fixed; bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
+    background: var(--blue); color: #fff; text-align: center;
+    padding: 0.95rem 1rem; border-radius: 14px; font-weight: 700;
     text-decoration: none; font-size: 0.95rem;
-    box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99;
+    box-shadow: 0 12px 34px rgba(37,99,235,.5); z-index: 99;
   }
+  .sticky-cta svg { width: 18px; height: 18px; fill: currentColor; }
+  body { padding-bottom: 4.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero h1, .hero__lede, .hero__cta-row, .evidence { animation: none; }
 }
 </style>
 </head>
 <body>
 
-<nav class="top">
-  <div class="nav-inner">
-    <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="/comment-on-travaille">Comment on travaille</a></li>
-        <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Réserver 30 min</a></li>
-      </ul>
-      <div class="lang-select" role="group" aria-label="Langue">
-        <a class="lang" href="/sarah-th.html" hreflang="en">EN</a>
-        <span class="lang active" aria-current="true">FR</span>
-        <a class="lang" href="/sarah-th-ru.html" hreflang="ru">RU</a>
+<nav class="nav">
+  <div class="nav__in">
+    <a href="/" class="brand">GILD<span class="t">-TECH</span></a>
+    <div class="nav__right">
+      <a href="/comment-on-travaille" class="nav__link">Comment on travaille</a>
+      <a href="https://wa.me/447378992318" class="nav__cta" target="_blank" rel="noopener">Écrivez à Sarah</a>
+      <div class="lang" role="group" aria-label="Langue">
+        <a href="/sarah-th.html" hreflang="en">EN</a><span class="sep">·</span><span class="active" aria-current="true">FR</span><span class="sep">·</span><a href="/sarah-th-ru.html" hreflang="ru">RU</a><span class="sep">·</span><span class="soon">TH</span>
       </div>
     </div>
   </div>
 </nav>
 
-<div class="page">
-
-  <!-- 1 · HERO -->
-  <section class="hero">
+<!-- ============ HERO + EVIDENCE (nuit) ============ -->
+<section class="band band--night hero">
+  <div class="wrap">
     <h1>Votre bureau est ouvert 24h/24. <span class="accent">Il n'y a juste personne dedans après 18h.</span></h1>
-    <div class="hero-prose">
-      <p>Un acheteur qui écrit et ne reçoit rien fait ce que vous feriez devant un restaurant fermé : vous entrez dans celui d'à côté. Personne n'attend devant une porte close. Surtout pas avec 15 millions de bahts en poche.</p>
-    </div>
-
-    <div class="proof-band">
-      <p>Sur cette île, la porte close, c'est la norme : <b>17</b> agences testées un mardi soir à 23h. <b>2</b> ont répondu. Et les leads restés muets ? Zéro relance. Personne. Jamais.</p>
+    <p class="hero__lede">Un acheteur qui écrit et ne reçoit rien fait ce que vous feriez devant un restaurant fermé : vous entrez dans celui d'à côté. Personne n'attend devant une porte close. Surtout pas avec 15 millions de bahts en poche.</p>
+    <div class="hero__cta-row">
+      <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+        Écrivez-lui maintenant. Chronométrez-la.
+      </a>
     </div>
 
     <!-- source_verifiee=OUI (PJ 2026-08-30) : 17/2 = étude terrain GILD-TECH ; 21x en 5 min = étude de réactivité (recherche interne). Assumés publiquement. -->
-    <div class="stat-callout">
-      <p>Les chiffres du métier enfoncent le clou : répondre dans les 5 premières minutes multiplie par <span class="x21">21</span> les chances de qualifier un acheteur. Après 30 minutes, la conversation est presque toujours perdue.</p>
+    <div class="evidence">
+      <div class="stat">
+        <div class="stat__num">17<span class="arrow">→</span>2</div>
+        <p class="stat__cap">Sur cette île, la porte close, c'est la norme : <b>17</b> agences testées un mardi soir à 23h. <b>2</b> ont répondu. Et les leads restés muets ? Zéro relance. Personne. Jamais.</p>
+      </div>
+      <div class="stat">
+        <div class="stat__num">21<span class="x">×</span></div>
+        <p class="stat__cap">Les chiffres du métier enfoncent le clou : répondre dans les 5 premières minutes multiplie par <b>21</b> les chances de qualifier un acheteur. Après 30 minutes, la conversation est presque toujours perdue.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="hero-prose">
+<!-- ============ DEMAIN MATIN (S1 suite, lumière) ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="prose">
       <p>Imaginez plutôt demain matin. Vous ouvrez votre téléphone : trois acheteurs qualifiés pendant la nuit, budget confirmé, deux visites déjà posées dans votre agenda. Sarah a accueilli, trié, relancé. Il ne reste que ce que personne ne peut faire à votre place : la visite, la négociation, la signature.</p>
     </div>
     <p class="lead-punch">Elle prépare le terrain. Vous concluez.</p>
-
     <div class="setclose">
       <p class="sc-head">Sarah fait le setting. Vous, vous closez.</p>
       <p class="sc-def">Le setting, c'est tout le travail avant la vente : accueillir chaque acheteur, trier les curieux des vrais acheteurs, et amener les sérieux jusqu'au rendez-vous. Le closing, c'est votre métier : la visite, la négociation, la signature. Sarah prend le premier. Vous gardez le second, le seul qui vous paie.</p>
     </div>
+  </div>
+</section>
 
-    <div class="ctas">
-      <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Écrivez-lui maintenant. Chronométrez-la.</a>
+<!-- ============ 2 · LE MÉCANISME DE LA PERTE ============ -->
+<section class="band band--tint" id="perte">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">L'argent n'a pas disparu. <span class="accent">Il a changé d'agence.</span></h2>
     </div>
-  </section>
-
-  <!-- 2 · LE MÉCANISME DE LA PERTE -->
-  <section class="block" id="perte">
-    <h2 class="section-title">L'argent n'a pas disparu. <span class="accent">Il a changé d'agence.</span></h2>
-    <div class="prose-lead">
+    <div class="prose">
       <p>Le lead perdu ne laisse aucune trace. Pas de case « ventes manquées » dans vos comptes. L'acheteur resté sans réponse ne se plaint pas, ne rappelle pas. Il visite avec un confrère, signe chez lui, et vous ne l'apprenez jamais.</p>
       <p>C'est la seule fuite d'argent de votre agence qui soit parfaitement silencieuse. C'est pour ça qu'elle dure depuis des années.</p>
       <p>Posons les chiffres de cette île. Une villa à 20 millions de bahts, 5 % de commission : un million de bahts par vente. Cinq demandes par semaine, dont une qui arrive la nuit, le week-end, ou pendant que vous êtes en visite. Si une seule de ces demandes ratées par an était un vrai acheteur, la porte close vous coûte un million.</p>
     </div>
-    <p class="silence-line">Un million de bahts. Par an. En silence.</p>
+    <p class="pull">Un million de bahts. <span class="accent">Par an. En silence.</span></p>
     <div class="challenge">
       <p><strong>Testez votre propre agence.</strong> Écrivez-vous ce soir à 23h. Regardez l'heure de la réponse.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 3 · LE MÉCANISME DU MARCHÉ -->
-  <section class="block" id="marche">
-    <h2 class="section-title">Ce n'est pas une question de talent. <span class="accent">C'est une question d'infrastructure.</span></h2>
-    <div class="prose-lead">
+<!-- ============ 3 · LE MÉCANISME DU MARCHÉ ============ -->
+<section class="band" id="marche">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Ce n'est pas une question de talent. <span class="accent">C'est une question d'infrastructure.</span></h2>
+    </div>
+    <div class="prose">
       <p>Les grands portails où vos acheteurs cherchent ne sont pas neutres. Ils captent la demande et la redirigent vers leurs propres agents. Derrière chaque lead, une équipe entière : des relanceurs payés pour ça, un système qui ne laisse rien s'échapper, un manager qui vérifie.</p>
       <p>Vous, vous êtes seul. Entre deux visites, un propriétaire à rassurer, un dossier à monter. Vous répondez quand vous pouvez. La nuit, vous dormez. Vos acheteurs, eux, écrivent depuis Moscou, Londres et Dubaï, à l'heure de leur fuseau, pas du vôtre.</p>
       <p>Le match était perdu d'avance. Pas parce qu'ils sont meilleurs. Parce qu'ils ont la machine, et pas vous.</p>
       <p class="punch">Sarah, c'est la machine des gros, au service d'un indépendant : la vôtre.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 4 · SARAH, CONCRÈTEMENT -->
-  <section class="block" id="journee">
-    <h2 class="section-title">Votre journée, <span class="accent">avec Sarah.</span></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-time">7h00</div>
-        <div class="tl-body">Vous ouvrez votre téléphone. Trois conversations ont eu lieu cette nuit : un couple de Londres, budget 18 millions, visite calée jeudi 14h. Un investisseur russe, questions sur le leasehold, dossier transmis avec ses coordonnées. Un curieux sans budget, écarté poliment. <strong>Vous n'avez rien fait. Tout est dans votre tableau de bord.</strong></div>
+<!-- ============ 4 · SARAH, CONCRÈTEMENT — TIMELINE ============ -->
+<section class="band band--tint" id="journee">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Votre journée, <span class="accent">avec Sarah.</span></h2>
+    </div>
+    <div class="tl">
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">7h00</div>
+          <div class="tl__body">Vous ouvrez votre téléphone. Trois conversations ont eu lieu cette nuit : un couple de Londres, budget 18 millions, visite calée jeudi 14h. Un investisseur russe, questions sur le leasehold, dossier transmis avec ses coordonnées. Un curieux sans budget, écarté poliment. <strong>Vous n'avez rien fait. Tout est dans votre tableau de bord.</strong></div>
+        </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">11h30</div>
-        <div class="tl-body">En pleine visite, votre téléphone vibre une fois : lead chaud. Une acheteuse française, déjà sur l'île, veut voir deux villas cette semaine. Budget confirmé : 25 millions. Sarah lui a proposé vendredi 10h, elle a dit oui. Vous continuez votre visite. <strong>Le rendez-vous est pris.</strong></div>
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">11h30</div>
+          <div class="tl__body">En pleine visite, votre téléphone vibre une fois : lead chaud. Une acheteuse française, déjà sur l'île, veut voir deux villas cette semaine. Budget confirmé : 25 millions. Sarah lui a proposé vendredi 10h, elle a dit oui. Vous continuez votre visite. <strong>Le rendez-vous est pris.</strong></div>
+        </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">18h00</div>
-        <div class="tl-body">Le lead silencieux de lundi vient de répondre à la relance de Sarah. Il était en déplacement. Il visite samedi. <strong>Sans la relance, il aurait signé ailleurs, et vous ne l'auriez jamais su.</strong></div>
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">18h00</div>
+          <div class="tl__body">Le lead silencieux de lundi vient de répondre à la relance de Sarah. Il était en déplacement. Il visite samedi. <strong>Sans la relance, il aurait signé ailleurs, et vous ne l'auriez jamais su.</strong></div>
+        </div>
       </div>
     </div>
-    <div class="prose-lead">
+    <div class="prose tl-after">
       <p>La veille de chaque visite, vous recevez le portrait complet : qui vient, son budget, ses questions, sa langue. Vous arrivez en connaissant la personne. Il ne reste que votre métier : la visite, la négociation, la signature.</p>
       <p>Elle répond en moins de 5 minutes, jour et nuit, dans la langue de l'acheteur. Elle trie. Elle relance à J+1, J+3, J+7. Elle pose les rendez-vous. Elle vous alerte. Et elle ne dira jamais une bêtise juridique à votre client : sur le freehold, le leasehold, les quotas, elle donne les bases et vous passe la main. <strong>L'expertise, c'est vous. Le reste, c'est elle.</strong></p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 5 · LES GARDE-FOUS -->
-  <section class="block" id="garde-fous">
-    <h2 class="section-title">Ce que Sarah <span class="accent">ne fera jamais.</span></h2>
+<!-- ============ 5 · LES GARDE-FOUS ============ -->
+<section class="band" id="garde-fous">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Ce que Sarah <span class="accent">ne fera jamais.</span></h2>
+    </div>
     <div class="guard-grid">
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Donner un conseil juridique thaï.</h3>
         <p>Freehold, leasehold, quota étranger : elle connaît les bases, elle ne tranche jamais un cas. Elle escalade, vous décidez. Votre responsabilité est protégée.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Toucher à votre vie privée.</h3>
         <p>Sarah vit sur sa propre ligne. Vos conversations personnelles ne la croisent jamais.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Vous enfermer.</h3>
         <p>Un message, elle s'arrête. Pas de préavis, pas de reconduction cachée.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Garder vos données.</h3>
         <p>Conversations, contacts, rendez-vous : tout vous appartient. Export ou effacement sur demande. RGPD.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 6 · LES TROIS OFFRES -->
-  <section class="block" id="offres">
+<!-- ============ 6 · LES TROIS OFFRES ============ -->
+<section class="band band--tint" id="offres">
+  <div class="wrap">
     <div class="offers-band">
       <p>Vous n'êtes pas payé pour répondre à des messages à 23h. Vous êtes payé pour signer. Sarah prend tout l'avant-vente. Vous récupérez votre métier.</p>
     </div>
-    <h2 class="section-title">Trois niveaux. <span class="accent">Un problème résolu à chaque étage.</span></h2>
+    <div class="sec-head" style="max-width:32ch;">
+      <h2 class="sec-title">Trois niveaux. <span class="accent">Un problème résolu à chaque étage.</span></h2>
+    </div>
 
     <div class="pricing-grid">
 
       <!-- RESPOND -->
       <div class="price-card">
-        <div class="pc-top">
-          <span class="kicker">RESPOND</span>
-          <div class="price">£290<small> / mois</small></div>
-          <div class="setup-line">Mise en service : £490</div>
-          <div class="card-tag">Pendant que vous dormez, elle vend.</div>
-        </div>
-        <div class="receive">
-          <ul>
-            <li><strong>3h du matin. Un Russe écrit, budget 20 millions. Sarah a déjà répondu.</strong><span class="deliv-exp">Réponse en moins de 5 minutes, 24h/24, WhatsApp dédié agence, langue détectée automatiquement.</span></li>
-            <li><strong>Fini de perdre 20 minutes avec un curieux qui « regarde juste ».</strong><span class="deliv-exp">Qualification systématique : budget, type de bien, délai, présence sur l'île. Tout loggé dans votre CRM Sarah. Les sérieux en haut, les touristes dehors.</span></li>
-            <li><strong>Vous ne courez plus après les rendez-vous. Ils vous attendent.</strong><span class="deliv-exp">Deux créneaux proposés sur vos disponibilités, confirmation, fiche prospect complète dans votre agenda.</span></li>
-            <li><strong>Un acheteur chaud ne patiente jamais. Vous non plus.</strong><span class="deliv-exp">Alerte instantanée sur votre WhatsApp perso : nom, budget, bien visé, créneau. Une vibration, vous savez tout.</span></li>
-            <li><strong>Elle ne dira jamais la connerie qui vous coûte une vente.</strong><span class="deliv-exp">Garde-fou juridique : freehold, leasehold, quotas. Les bases publiques, puis elle vous passe la main. Jamais un cas tranché sans vous.</span></li>
-          </ul>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20RESPOND" target="_blank" rel="noopener">Testez RESPOND avec Sarah</a></div>
+        <span class="kicker">RESPOND</span>
+        <div class="price">£290<small>/ mois</small></div>
+        <div class="setup-line">Mise en service : £490</div>
+        <div class="card-tag">Pendant que vous dormez, elle vend.</div>
+        <ul class="feat">
+          <li><strong>3h du matin. Un Russe écrit, budget 20 millions. Sarah a déjà répondu.</strong><span class="deliv-exp">Réponse en moins de 5 minutes, 24h/24, WhatsApp dédié agence, langue détectée automatiquement.</span></li>
+          <li><strong>Fini de perdre 20 minutes avec un curieux qui « regarde juste ».</strong><span class="deliv-exp">Qualification systématique : budget, type de bien, délai, présence sur l'île. Tout loggé dans votre CRM Sarah. Les sérieux en haut, les touristes dehors.</span></li>
+          <li><strong>Vous ne courez plus après les rendez-vous. Ils vous attendent.</strong><span class="deliv-exp">Deux créneaux proposés sur vos disponibilités, confirmation, fiche prospect complète dans votre agenda.</span></li>
+          <li><strong>Un acheteur chaud ne patiente jamais. Vous non plus.</strong><span class="deliv-exp">Alerte instantanée sur votre WhatsApp perso : nom, budget, bien visé, créneau. Une vibration, vous savez tout.</span></li>
+          <li><strong>Elle ne dira jamais la connerie qui vous coûte une vente.</strong><span class="deliv-exp">Garde-fou juridique : freehold, leasehold, quotas. Les bases publiques, puis elle vous passe la main. Jamais un cas tranché sans vous.</span></li>
+        </ul>
+        <a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20RESPOND" target="_blank" rel="noopener">Testez RESPOND avec Sarah</a>
       </div>
 
       <!-- CONVERT -->
-      <div class="price-card featured heart">
-        <div class="pc-top">
-          <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">CONVERT</span>
-          <div class="price">£490<small> / mois</small></div>
-          <div class="setup-line">Mise en service : £990</div>
-          <div class="launch-badge">★ Lancement Samui</div>
-          <div class="promo-box"><span class="ps1">£290/mois les 2 premiers mois, puis £490.</span><span class="ps2">Le temps qu'elle fasse ses preuves chez vous, vous payez le prix de l'offre du dessous.</span></div>
-          <div class="card-tag">Le lead qui ne répond plus n'est pas perdu. Il est juste mal relancé.</div>
-        </div>
-        <div class="receive">
-          <p class="incl-prev">Tout RESPOND, plus :</p>
-          <ul>
-            <li><strong>Sur cette île, personne ne relance. Vous serez le seul.</strong><span class="deliv-exp">Relance automatique J+1 (rappel), J+3 (nouvelle proposition), J+7 (question de sortie). Puis le dossier se ferme seul. La moitié des ventes se joue là.</span></li>
-            <li><strong>Vous arrivez en visite en connaissant déjà l'acheteur.</strong><span class="deliv-exp">Briefing automatique la veille de chaque rendez-vous, sur votre WhatsApp : profil, budget, questions posées, points sensibles, langue.</span></li>
-            <li><strong>Les demandes par email ne moisissent plus dans la boîte.</strong><span class="deliv-exp">Sarah lit la boîte de l'agence et le formulaire du site, répond aux leads, bascule la conversation vers WhatsApp. Factures et administratif : jamais touchés.</span></li>
-            <li><strong>Vous savez enfin quelle annonce vous rapporte de l'argent.</strong><span class="deliv-exp">Un code par bien (Réf. 2045) intégré à vos annonces Facebook et Marketplace, réécrites par nous : numéro et référence dans les deux premières lignes, avant la coupure. Sarah identifie le bien dès le premier message, et chaque lead est tracé jusqu'à sa source.</span></li>
-            <li><strong>Votre CRM se remplit tout seul.</strong><span class="deliv-exp">Chaque lead qualifié déposé automatiquement : contact, budget, bien, statut, prochaine action. Pas de CRM ? On vous le crée et on vous le donne.</span></li>
-            <li><strong>Toute votre activité, sur un seul écran.</strong><span class="deliv-exp">Tableau de bord temps réel : qui a écrit cette nuit, ce qui a été répondu, où en est chaque dossier, quels rendez-vous arrivent.</span></li>
-            <li><strong>Chaque mois, votre plus belle carte se joue en vidéo.</strong><span class="deliv-exp">1 vidéo Coup de Cœur + sa page de vente dédiée, sur le bien de votre choix. Vos vraies photos mises en mouvement, un lien propre à poster partout, Sarah au bout.</span></li>
-          </ul>
-          <p class="serve-note">Jusqu'à 2 agents servis (chacun reçoit ses leads).</p>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20CONVERT" target="_blank" rel="noopener">Testez CONVERT avec Sarah</a></div>
+      <div class="price-card heart">
+        <span class="kicker">CONVERT</span>
+        <div class="price">£490<small>/ mois</small></div>
+        <div class="setup-line">Mise en service : £990</div>
+        <div class="launch-badge">★ Lancement Samui</div>
+        <div class="promo-box"><span class="ps1">£290/mois les 2 premiers mois, puis £490.</span><span class="ps2">Le temps qu'elle fasse ses preuves chez vous, vous payez le prix de l'offre du dessous.</span></div>
+        <div class="card-tag">Le lead qui ne répond plus n'est pas perdu. Il est juste mal relancé.</div>
+        <p class="incl-prev">Tout RESPOND, plus :</p>
+        <ul class="feat">
+          <li><strong>Sur cette île, personne ne relance. Vous serez le seul.</strong><span class="deliv-exp">Relance automatique J+1 (rappel), J+3 (nouvelle proposition), J+7 (question de sortie). Puis le dossier se ferme seul. La moitié des ventes se joue là.</span></li>
+          <li><strong>Vous arrivez en visite en connaissant déjà l'acheteur.</strong><span class="deliv-exp">Briefing automatique la veille de chaque rendez-vous, sur votre WhatsApp : profil, budget, questions posées, points sensibles, langue.</span></li>
+          <li><strong>Les demandes par email ne moisissent plus dans la boîte.</strong><span class="deliv-exp">Sarah lit la boîte de l'agence et le formulaire du site, répond aux leads, bascule la conversation vers WhatsApp. Factures et administratif : jamais touchés.</span></li>
+          <li><strong>Vous savez enfin quelle annonce vous rapporte de l'argent.</strong><span class="deliv-exp">Un code par bien (Réf. 2045) intégré à vos annonces Facebook et Marketplace, réécrites par nous : numéro et référence dans les deux premières lignes, avant la coupure. Sarah identifie le bien dès le premier message, et chaque lead est tracé jusqu'à sa source.</span></li>
+          <li><strong>Votre CRM se remplit tout seul.</strong><span class="deliv-exp">Chaque lead qualifié déposé automatiquement : contact, budget, bien, statut, prochaine action. Pas de CRM ? On vous le crée et on vous le donne.</span></li>
+          <li><strong>Toute votre activité, sur un seul écran.</strong><span class="deliv-exp">Tableau de bord temps réel : qui a écrit cette nuit, ce qui a été répondu, où en est chaque dossier, quels rendez-vous arrivent.</span></li>
+          <li><strong>Chaque mois, votre plus belle carte se joue en vidéo.</strong><span class="deliv-exp">1 vidéo Coup de Cœur + sa page de vente dédiée, sur le bien de votre choix. Vos vraies photos mises en mouvement, un lien propre à poster partout, Sarah au bout.</span></li>
+        </ul>
+        <p class="serve-note">Jusqu'à 2 agents servis (chacun reçoit ses leads).</p>
+        <a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20CONVERT" target="_blank" rel="noopener">Testez CONVERT avec Sarah</a>
       </div>
 
       <!-- DOMINATE -->
       <div class="price-card">
-        <div class="pc-top">
-          <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">DOMINATE</span>
-          <div class="price">£790<small> / mois</small></div>
-          <div class="setup-line">Mise en service : £1 490</div>
-          <div class="card-tag">Votre agence devient impossible à ignorer.</div>
-        </div>
-        <div class="receive">
-          <p class="incl-prev">Tout CONVERT, plus :</p>
-          <ul>
-            <li><strong>Les vendeurs aussi reçoivent une réponse en 5 minutes. Avant vos concurrents.</strong><span class="deliv-exp">Un propriétaire écrit « combien vaut ma villa ? » : Sarah répond immédiatement, prend les infos (bien, zone, surface, délai, prix espéré) et vous transmet le dossier complet. L'estimation et la relation restent à vous.</span></li>
-            <li><strong>Tout votre portefeuille prend vie.</strong><span class="deliv-exp">Une vidéo Coup de Cœur par bien, sans limite, montée sur vos photos. La qualité de vos photos fait la vidéo. Prête à poster partout.</span></li>
-            <li><strong>Chaque bien mis en avant reçoit sa page premium.</strong><span class="deliv-exp">Film, galerie, 4 langues, bouton Sarah. Un lien unique à envoyer au lieu de 40 photos en vrac. Le vendeur la montre à ses amis, l'acheteur la garde ouverte.</span></li>
-            <li><strong>Face au propriétaire ou au promoteur, vous montrez, vous ne promettez plus.</strong><span class="deliv-exp">Votre dossier de présentation à votre marque : les vidéos, les pages, la réponse 24/7, vos chiffres. Le mandat se gagne à la préparation.</span></li>
-            <li><strong>Vos réseaux vivent sans que vous y touchiez. Et sans budget pub.</strong><span class="deliv-exp">2 publications organiques par semaine sur Facebook, Instagram et TikTok : vos biens, vos vidéos, votre actualité. Zéro dépense publicitaire, votre contenu travaille seul.</span></li>
-            <li><strong>Votre fiche Google travaille pour vous.</strong><span class="deliv-exp">Optimisée et tenue : photos, informations, publications, réponses aux avis en votre nom.</span></li>
-            <li><strong>Vous connaissez votre zone. Maintenant vous pouvez le prouver, chiffres en main.</strong><span class="deliv-exp">Rapport mensuel tiré de vos données : d'où viennent vos acheteurs, ce qu'ils cherchent, quand ils écrivent. À poser sur la table en rendez-vous vendeur.</span></li>
-            <li><strong>Toute l'équipe est servie.</strong><span class="deliv-exp">Chaque agent reçoit ses leads selon vos règles, sur son WhatsApp. Sans limite.</span></li>
-          </ul>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20DOMINATE" target="_blank" rel="noopener">Testez DOMINATE avec Sarah</a></div>
+        <span class="kicker">DOMINATE</span>
+        <div class="price">£790<small>/ mois</small></div>
+        <div class="setup-line">Mise en service : £1 490</div>
+        <div class="card-tag">Votre agence devient impossible à ignorer.</div>
+        <p class="incl-prev">Tout CONVERT, plus :</p>
+        <ul class="feat">
+          <li><strong>Les vendeurs aussi reçoivent une réponse en 5 minutes. Avant vos concurrents.</strong><span class="deliv-exp">Un propriétaire écrit « combien vaut ma villa ? » : Sarah répond immédiatement, prend les infos (bien, zone, surface, délai, prix espéré) et vous transmet le dossier complet. L'estimation et la relation restent à vous.</span></li>
+          <li><strong>Tout votre portefeuille prend vie.</strong><span class="deliv-exp">Une vidéo Coup de Cœur par bien, sans limite, montée sur vos photos. La qualité de vos photos fait la vidéo. Prête à poster partout.</span></li>
+          <li><strong>Chaque bien mis en avant reçoit sa page premium.</strong><span class="deliv-exp">Film, galerie, 4 langues, bouton Sarah. Un lien unique à envoyer au lieu de 40 photos en vrac. Le vendeur la montre à ses amis, l'acheteur la garde ouverte.</span></li>
+          <li><strong>Face au propriétaire ou au promoteur, vous montrez, vous ne promettez plus.</strong><span class="deliv-exp">Votre dossier de présentation à votre marque : les vidéos, les pages, la réponse 24/7, vos chiffres. Le mandat se gagne à la préparation.</span></li>
+          <li><strong>Vos réseaux vivent sans que vous y touchiez. Et sans budget pub.</strong><span class="deliv-exp">2 publications organiques par semaine sur Facebook, Instagram et TikTok : vos biens, vos vidéos, votre actualité. Zéro dépense publicitaire, votre contenu travaille seul.</span></li>
+          <li><strong>Votre fiche Google travaille pour vous.</strong><span class="deliv-exp">Optimisée et tenue : photos, informations, publications, réponses aux avis en votre nom.</span></li>
+          <li><strong>Vous connaissez votre zone. Maintenant vous pouvez le prouver, chiffres en main.</strong><span class="deliv-exp">Rapport mensuel tiré de vos données : d'où viennent vos acheteurs, ce qu'ils cherchent, quand ils écrivent. À poser sur la table en rendez-vous vendeur.</span></li>
+          <li><strong>Toute l'équipe est servie.</strong><span class="deliv-exp">Chaque agent reçoit ses leads selon vos règles, sur son WhatsApp. Sans limite.</span></li>
+        </ul>
+        <a class="card-cta" href="https://wa.me/447378992318?text=Je%20veux%20voir%20ce%20que%20fait%20DOMINATE" target="_blank" rel="noopener">Testez DOMINATE avec Sarah</a>
       </div>
 
     </div>
 
     <div class="why-price">
-      <h3>Pourquoi ce prix.</h3>
-      <p>Six fonctions à temps plein : accueil 24/7, relance, vidéo, pages premium, réseaux, réputation. À l'embauche, une seule coûte déjà plus cher, et elle dort la nuit. L'installation (£1 490, une fois) : votre agence entière calibrée à la main, portefeuille, annonces, codes, CRM, Google, testée en 4 langues avant remise des clés. <strong>Maintenant, votre calcul.</strong> Une vente sur votre île, c'est 750 000 à plus d'un million de bahts de commission. La machine complète coûte moins de 500 000 ฿ par an. Combien d'acheteurs et de mandats devez-vous rater, chaque année, pour qu'elle ne soit pas rentable ? Un seul suffit à tout rembourser. Et vous en ratez déjà plus d'un.</p>
+      <div class="in">
+        <h3>Pourquoi ce prix.</h3>
+        <p>Six fonctions à temps plein : accueil 24/7, relance, vidéo, pages premium, réseaux, réputation. À l'embauche, une seule coûte déjà plus cher, et elle dort la nuit. L'installation (£1 490, une fois) : votre agence entière calibrée à la main, portefeuille, annonces, codes, CRM, Google, testée en 4 langues avant remise des clés. <strong>Maintenant, votre calcul.</strong> Une vente sur votre île, c'est 750 000 à plus d'un million de bahts de commission. La machine complète coûte moins de 500 000 ฿ par an. Combien d'acheteurs et de mandats devez-vous rater, chaque année, pour qu'elle ne soit pas rentable ? Un seul suffit à tout rembourser. Et vous en ratez déjà plus d'un.</p>
+      </div>
     </div>
 
     <div class="annual-box">
       <div class="an-title">L'annuel</div>
       <p>2 mois offerts + mise en service offerte. Un paiement, couvert douze mois. Jamais de reconduction tacite. En mensuel : sans engagement. Vous arrêtez quand vous voulez. Facturation en GBP par Girlden LTD. Prix en bahts indicatifs, revus chaque trimestre.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 7 · SUR DEVIS -->
-  <section class="block" id="devis">
-    <h2 class="section-title">Quand répondre ne suffit plus, <span class="accent">on construit.</span></h2>
-    <p class="section-lead">Sur devis · Marketing &amp; Création.</p>
+<!-- ============ 7 · SUR DEVIS ============ -->
+<section class="band" id="devis">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Sur devis · Marketing &amp; Création</span>
+      <h2 class="sec-title">Quand répondre ne suffit plus, <span class="accent">on construit.</span></h2>
+    </div>
     <div class="devis-grid">
       <div class="devis-card">
         <h3>Site web premium</h3>
@@ -462,13 +554,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <p>Au-delà des pages premium : site d'agence complet, programme promoteur, projet dédié.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 8 · QUI EST DERRIÈRE + LA DÉCISION -->
-  <section class="block" id="qui">
-    <h2 class="section-title">Derrière Sarah, il y a quelqu'un. <span class="accent">Et il connaît votre île.</span></h2>
+<!-- ============ 8 · QUI EST DERRIÈRE + LA DÉCISION ============ -->
+<section class="band band--tint" id="qui">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Derrière Sarah, il y a quelqu'un. <span class="accent">Et il connaît votre île.</span></h2>
+    </div>
     <div class="bio-card">
-      <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="150" height="180">
+      <div class="bio-photo-col">
+        <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="200" height="240">
+        <a class="bio-cta" href="https://calendly.com/ops-gild-tech/30min" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 7v10H5V9h14z"/></svg>
+          Réserver 30 min avec Pierre-Jean
+        </a>
+      </div>
       <div class="bio-body">
         <p class="bio-name">Pierre-Jean Deàk Grisoni — fondateur de GILD-TECH (Girlden LTD).</p>
         <p>Il a testé ce marché sur place, agence par agence : 17 agences de Koh Samui, un mardi soir à 23h. Deux réponses. Zéro relance. Sarah, c'est la réponse que personne n'a envoyée cette nuit-là.</p>
@@ -477,7 +579,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
 
     <div class="decision">
-      <div class="prose-lead">
+      <div class="prose">
         <p>Ce soir, un acheteur va écrire. Comme hier soir. Comme demain soir.</p>
         <p>Ça n'a rien d'exceptionnel. C'est juste votre marché, qui vit la nuit, pendant que votre téléphone est en silencieux.</p>
         <p>La question n'est pas de savoir si vous perdez des acheteurs. Vous en perdez depuis des années, tout le monde ici en perd, personne ne le mesure. La question est de savoir combien de temps encore vous acceptez de ne pas le savoir.</p>
@@ -487,19 +589,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <p class="decision-final">Sur une île, il n'y a qu'une agence la plus réactive. La seule vraie décision, c'est laquelle.</p>
     </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <div class="cta-final">
-    <h2>Sur une île, il n'y a qu'une agence la plus réactive.</h2>
-    <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener" style="font-size:1.05rem;padding:1rem 2rem;">Écrivez à Sarah maintenant. Chronométrez-la.</a>
   </div>
+</section>
 
-</div>
+<!-- ============ CTA FINAL (nuit) ============ -->
+<section class="band band--night">
+  <div class="wrap cta-final">
+    <h2>Sur une île, il n'y a qu'une agence la plus réactive.</h2>
+    <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+      Écrivez à Sarah maintenant. Chronométrez-la.
+    </a>
+  </div>
+</section>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+    <div class="footer-brand">GILD<span class="t">-TECH</span></div>
     <ul class="footer-links">
       <li><a href="/sarah-th-fr.html">Sarah · Samui</a></li>
       <li><a href="/comment-on-travaille">Comment on travaille</a></li>
@@ -511,7 +617,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   </div>
 </footer>
 
-<a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Écrivez à Sarah">Écrivez à Sarah. Chronométrez-la.</a>
+<a href="https://wa.me/447378992318" class="sticky-cta" target="_blank" rel="noopener" aria-label="Écrivez à Sarah">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+  Écrivez à Sarah. Chronométrez-la.
+</a>
 
 </body>
 </html>

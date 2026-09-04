@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah · Your office never sleeps · Koh Samui real estate · GILD-TECH</title>
+<title>Sarah · Koh Samui Real Estate · GILD-TECH</title>
 <meta name="description" content="At 11pm, a buyer messages your Koh Samui agency. The one who answers wins the sale. Sarah replies to every buyer in under 5 minutes, day and night, in their language, on a dedicated WhatsApp. From £290/month.">
 <link rel="canonical" href="https://gild-tech.com/sarah-th">
 <meta name="robots" content="index, follow">
@@ -23,417 +23,519 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#FFFFFF">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0B1D33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --noir: #0A0A0A;
-  --blanc: #FFFFFF;
-  --bleu-nuit: #0B1D33;
-  --bleu-nuit-soft: #E5E7EB;
-  --bleu-nuit-bg: #F1F5F9;
-  --cta: #2563EB;
-  --cta-hover: #1D4ED8;
-  --g900: #0A0A0A; --g800: #1F2328; --g700: #2A2F36; --g600: #4A4F57;
-  --g500: #6B6F76; --g400: #9AA0AA; --g300: #C8CBD0; --g200: #E2E4E7;
-  --g100: #F5F5F7; --g50: #FBFBFC;
+  --ink: #0A0A0A;
+  --nuit: #0B1D33;
+  --nuit-2: #071726;
+  --nuit-card: #122C46;
+  --nuit-line: rgba(148,163,184,0.18);
+  --blue: #2563EB;
+  --blue-600: #1D4ED8;
+  --blue-050: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --ink-body: #26313D;
+  --slate: #5B6673;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --line: #E6EAF0;
+  --paper: #FFFFFF;
+  --paper-2: #F6F8FC;
+  --paper-3: #EDF1F8;
   --vert: #16a34a; --rouge: #dc2626;
-  --font: 'Inter', -apple-system, sans-serif;
-  --max-w: 1200px; --r: 14px;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --maxw: 1140px;
+  --measure: 720px;
+  --r: 16px; --r-lg: 22px;
 }
-body { background: var(--blanc); color: var(--noir); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink-body); font-family: var(--sans); line-height: 1.68; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--blue); color: #fff; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
 
-nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
-.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-.brand { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: var(--noir); }
-.brand .gild { color: var(--noir); }
-.brand .tech { color: var(--bleu-nuit); }
-.nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
-.nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--noir); }
-.btn-nav { background: var(--cta); color: var(--blanc) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
-.btn-nav:hover { background: var(--cta-hover); box-shadow: 0 6px 20px rgba(46,107,230,0.25); transform: translateY(-1px); }
-.nav-right { display: flex; align-items: center; gap: 1.3rem; }
-.lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
-.lang-select .lang { color: var(--g500); }
-.lang-select a.lang { text-decoration: none; }
-.lang-select a.lang:hover { color: var(--cta); }
-.lang-select .lang.active { color: var(--cta); }
-.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g400); }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
-.page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
+/* ---------- TYPE PRIMITIVES ---------- */
+.serif { font-family: var(--serif); font-weight: 600; letter-spacing: -0.015em; }
+.eyebrow { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); display: inline-flex; align-items: center; gap: .6rem; }
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--blue); display: inline-block; }
+.eyebrow--light { color: var(--blue-200); }
+.eyebrow--light::before { background: var(--blue-200); }
 
-/* HERO */
-.hero { padding: 4rem 0 4.5rem; }
-.hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: 960px; color: var(--noir); }
-.hero h1 .accent { color: var(--cta); }
-.hero-prose { font-size: 1.14rem; color: var(--g700); line-height: 1.75; max-width: 800px; }
-.hero-prose p { margin-bottom: 1.15rem; }
-.hero-prose p strong { color: var(--noir); font-weight: 700; }
-.lead-punch { font-size: 1.35rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin: 1.6rem 0 0; }
-.setclose { margin-top: 1.8rem; padding: 1.6rem 1.9rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; }
-.sc-head { font-size: 1.3rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; }
-.offers-band { max-width: 900px; margin: 0 auto 2.6rem; padding: 2.2rem 2.4rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); text-align: center; }
-.offers-band p { font-size: 1.4rem; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; }
+/* ---------- NAV ---------- */
+nav.nav { position: sticky; top: 0; z-index: 100; background: rgba(11,29,51,0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--nuit-line); }
+.nav__in { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); height: 62px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-family: var(--sans); font-weight: 800; font-size: 1.16rem; letter-spacing: 0.01em; text-decoration: none; color: #fff; }
+.brand .t { color: var(--blue-200); }
+.nav__right { display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.5rem); }
+.nav__link { color: var(--slate-300); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color .2s; }
+.nav__link:hover { color: #fff; }
+.nav__cta { background: var(--blue); color: #fff; text-decoration: none; padding: 0.5rem 1.05rem; border-radius: 9px; font-size: 0.83rem; font-weight: 700; transition: all .2s; white-space: nowrap; }
+.nav__cta:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(37,99,235,0.4); }
+.lang { display: inline-flex; gap: .45rem; font-size: .78rem; font-weight: 700; letter-spacing: .02em; align-items: center; }
+.lang a, .lang span { text-decoration: none; color: var(--slate-400); }
+.lang a:hover { color: #fff; }
+.lang .active { color: var(--blue-200); }
+.lang .soon { color: var(--slate-400); opacity: .45; cursor: default; }
+.lang .sep { color: rgba(148,163,184,0.4); }
 
-.ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-top: 2rem; }
-.btn-primary { display: inline-block; background: var(--cta); color: var(--blanc); padding: 0.95rem 1.8rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.98rem; transition: all 0.2s; border: none; cursor: pointer; }
-.btn-primary:hover { background: var(--cta-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(46,107,230,0.28); }
+/* ---------- BANDS ---------- */
+.band { padding: clamp(3.4rem, 7vw, 6.4rem) 0; }
+.band--tint { background: var(--paper-2); }
+.band--night { background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; position: relative; overflow: hidden; }
+.band--night::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 72% -5%, rgba(37,99,235,0.28), transparent 60%); pointer-events: none; }
+.band--night .wrap { position: relative; z-index: 1; }
 
-/* PROOF BAND */
-.proof-band { margin: 2rem 0 0; padding: 1.8rem 2rem; background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); }
-.proof-band p { font-size: 1.14rem; font-weight: 600; line-height: 1.6; }
-.proof-band b { font-size: 1.55rem; font-weight: 900; color: #fff; }
+/* ---------- HERO ---------- */
+.hero { padding-top: clamp(3rem, 6vw, 5rem); }
+.hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.4rem, 5.4vw, 4.35rem); line-height: 1.02; letter-spacing: -0.025em; color: #fff; max-width: 16ch; margin: 1.5rem 0 0; }
+.hero h1 .accent { color: var(--blue-200); }
+.hero__lede { font-size: clamp(1.05rem, 1.6vw, 1.22rem); line-height: 1.7; color: var(--slate-300); max-width: 44ch; margin-top: 1.7rem; }
+.hero__cta-row { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.hero__hint { font-size: 0.9rem; color: var(--slate-400); }
 
-/* STAT CALLOUT */
-.stat-callout { margin: 1.5rem 0; padding: 1.4rem 1.6rem; background: var(--g100); border-left: 4px solid var(--cta); border-radius: 0 var(--r) var(--r) 0; }
-.stat-callout p { font-size: 1.08rem; color: var(--g800); line-height: 1.6; }
-.stat-callout .x21 { font-weight: 900; color: var(--cta); }
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; border-radius: 12px; transition: all .2s; cursor: pointer; border: none; font-family: var(--sans); }
+.btn--wa { background: var(--blue); color: #fff; padding: 1rem 1.9rem; font-size: 1rem; box-shadow: 0 10px 30px rgba(37,99,235,0.35); }
+.btn--wa:hover { background: var(--blue-600); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(37,99,235,0.45); }
+.btn--wa svg { width: 19px; height: 19px; fill: currentColor; }
+.btn--ghost-light { background: rgba(255,255,255,0.06); color: #fff; padding: 1rem 1.7rem; font-size: 0.98rem; border: 1px solid rgba(255,255,255,0.18); font-weight: 600; }
+.btn--ghost-light:hover { background: rgba(255,255,255,0.12); }
 
-section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
-.section-title { font-size: 2.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.6rem; line-height: 1.15; color: var(--noir); max-width: 900px; }
-.section-title .accent { color: var(--cta); }
-.section-lead { font-size: 1.05rem; color: var(--g600); max-width: 800px; line-height: 1.6; margin-bottom: 2.4rem; }
+/* ---------- EVIDENCE (stat monuments) ---------- */
+.evidence { margin-top: clamp(2.8rem, 5vw, 4rem); border-top: 1px solid var(--nuit-line); padding-top: clamp(2.4rem, 4vw, 3.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.2rem); }
+.stat__num { font-family: var(--serif); font-weight: 600; font-size: clamp(3.6rem, 8vw, 6.2rem); line-height: 0.86; letter-spacing: -0.03em; color: #fff; display: flex; align-items: baseline; gap: .1em; font-variant-numeric: tabular-nums lining-nums; }
+.stat__num .arrow { color: var(--blue-200); font-size: 0.42em; font-family: var(--sans); font-weight: 700; align-self: center; margin: 0 .12em; letter-spacing: 0; }
+.stat__num .x { color: var(--blue-200); }
+.stat__cap { font-size: 1rem; line-height: 1.62; color: var(--slate-300); margin-top: 1.05rem; max-width: 46ch; }
+.stat__cap b { color: #fff; font-weight: 600; }
+.stat__src { font-size: 0.74rem; color: var(--slate-400); margin-top: 1.4rem; grid-column: 1 / -1; opacity: .75; }
 
-.prose-lead { font-size: 1.12rem; color: var(--g700); line-height: 1.78; max-width: 820px; }
-.prose-lead p { margin-bottom: 1.15rem; }
-.prose-lead p:last-child { margin-bottom: 0; }
-.prose-lead p strong { color: var(--noir); }
-.prose-lead .punch { font-size: 1.28rem; font-weight: 800; color: var(--noir); }
+/* ---------- SECTION HEADINGS ---------- */
+.sec-head { max-width: 28ch; margin-bottom: clamp(1.8rem, 3vw, 2.6rem); }
+.sec-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.85rem, 3.4vw, 2.85rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 0.9rem; }
+.sec-title .accent { color: var(--blue); }
+.band--night .sec-title { color: #fff; }
 
-/* CHALLENGE */
-.challenge { max-width: 820px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: var(--r); }
-.challenge p { font-size: 1.08rem; color: var(--g900); line-height: 1.6; font-weight: 600; }
-.challenge strong { color: var(--noir); font-weight: 800; }
+/* ---------- PROSE ---------- */
+.prose { max-width: var(--measure); font-size: 1.075rem; line-height: 1.78; color: var(--ink-body); }
+.prose p { margin-bottom: 1.15rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 700; }
+.prose .punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 1.28; color: var(--ink); letter-spacing: -0.015em; margin-top: 1.4rem; }
 
-.silence-line { font-size: 1.5rem; font-weight: 900; color: var(--noir); letter-spacing: -0.02em; margin-top: 1.5rem; }
+/* Lead punch under hero-morning */
+.lead-punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.22; letter-spacing: -0.02em; color: var(--ink); margin-top: 1.6rem; }
 
-/* TIMELINE */
-.timeline { max-width: 860px; margin: 0 0 2.2rem; }
-.tl-item { position: relative; padding: 0 0 1.8rem 2.6rem; border-left: 2px solid var(--g200); }
-.tl-item:last-child { border-left-color: transparent; padding-bottom: 0.2rem; }
-.tl-item::before { content:""; position:absolute; left:-9px; top:3px; width:16px; height:16px; border-radius:50%; background:var(--cta); border:3px solid var(--blanc); box-shadow:0 0 0 1.5px var(--cta); }
-.tl-time { font-size: 1.1rem; font-weight: 800; color: var(--cta); margin-bottom: .35rem; letter-spacing: -0.01em; }
-.tl-body { font-size: 1.02rem; color: var(--g700); line-height: 1.68; }
-.tl-body strong { color: var(--noir); }
+/* set/close explainer */
+.setclose { margin-top: 2rem; padding: 1.9rem 2.1rem; background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; box-shadow: 0 20px 50px -30px rgba(11,29,51,0.28); }
+.sc-head { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--ink); letter-spacing: -0.01em; margin-bottom: .6rem; }
+.sc-def { font-size: 1.0rem; color: var(--slate); line-height: 1.72; }
 
-/* GUARDS */
-.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-.guard-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.7rem 1.8rem; }
-.guard-card h3 { font-size: 1.08rem; font-weight: 800; color: var(--noir); margin-bottom: .55rem; line-height: 1.3; }
-.guard-card p { font-size: 0.95rem; color: var(--g600); line-height: 1.62; }
+/* Big pull quote (S2 silence) */
+.pull { font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.14; letter-spacing: -0.025em; color: var(--ink); margin: 2rem 0 0; max-width: 20ch; }
+.pull .accent { color: var(--blue); }
 
-/* PRICING */
-.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: start; gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
-.price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
-.price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); }
-.price-card.heart { box-shadow: 0 28px 60px rgba(37,99,235,0.24); z-index: 2; padding: 2rem 2.2rem; }
-.price-card.featured::before { content: "★ MOST CHOSEN"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.85rem; border-radius: 16px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; }
-.price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .7rem; }
-.price-card .price { font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.15rem; color: var(--noir); }
-.price-card.heart .price { font-size: 2.6rem; }
-.price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
-.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--g500); margin-bottom: .7rem; }
-.card-tag { font-size: 1rem; font-weight: 800; color: var(--noir); line-height: 1.4; margin: .3rem 0 .2rem; }
-.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--cta); padding: 4px 10px; border-radius: 999px; margin: .5rem 0 .55rem; }
-.promo-box { border: 1px solid #DBEAFE; background: #EFF6FF; border-radius: 9px; padding: .6rem .8rem; margin: 0 0 .5rem; }
-.promo-box .ps1 { display: block; font-size: 0.82rem; font-weight: 800; color: var(--cta); line-height: 1.35; }
-.promo-box .ps2 { display: block; font-size: 0.76rem; font-weight: 400; color: var(--g600); line-height: 1.45; margin-top: .2rem; }
-.incl-prev { font-size: 0.84rem; font-weight: 800; color: var(--g700); margin: .2rem 0 0; }
-.price-card ul { list-style: none; padding-top: 1.1rem; margin-top: .8rem; border-top: 1px solid var(--g100); flex: 1; }
-.price-card li { padding: 0.6rem 0 0.6rem 1.6rem; position: relative; font-size: 0.92rem; color: var(--g800); line-height: 1.5; }
-.price-card li::before { content: "✓"; color: var(--cta); font-weight: 800; position: absolute; left: 0; top: 0.55rem; }
-.price-card li strong { color: var(--noir); font-weight: 700; }
-.deliv-exp { display: block; font-size: 0.82rem; color: var(--g500); line-height: 1.55; margin-top: .2rem; font-weight: 400; }
-.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--g600); margin-top: 1rem; padding-top: .9rem; border-top: 1px dashed var(--g200); }
-.card-cta-wrap { margin-top: 1.3rem; }
-.card-cta { display: block; text-align: center; background: var(--cta); color: var(--blanc); padding: .9rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; }
-.card-cta:hover { background: var(--cta-hover); box-shadow: 0 8px 24px rgba(37,99,235,.28); transform: translateY(-1px); }
+/* Challenge box */
+.challenge { max-width: 760px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); position: relative; }
+.challenge p { font-size: 1.06rem; color: var(--ink); line-height: 1.6; font-weight: 500; }
+.challenge strong { color: var(--ink); font-weight: 800; }
 
-.why-price { max-width: 900px; margin: 2.4rem auto 0; padding: 2rem 2.2rem; background: var(--g100); border-radius: var(--r); }
-.why-price h3 { font-size: 1.15rem; font-weight: 800; color: var(--noir); margin-bottom: .8rem; }
-.why-price p { font-size: 0.98rem; color: var(--g700); line-height: 1.72; }
-.why-price p strong { color: var(--noir); }
-.annual-box { max-width: 900px; margin: 1.4rem auto 0; text-align: center; padding: 1.4rem 1.6rem; border: 1px solid var(--g200); border-radius: var(--r); }
-.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; color: var(--cta); text-transform: uppercase; margin-bottom: .5rem; }
-.annual-box p { font-size: 0.95rem; color: var(--g700); line-height: 1.6; }
+/* offers band */
+.offers-band { max-width: 900px; margin: 0 auto clamp(2.4rem,4vw,3.2rem); padding: 2.2rem 2.4rem; background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #fff; border-radius: var(--r-lg); text-align: center; box-shadow: 0 30px 70px -40px rgba(11,29,51,0.6); }
+.offers-band p { font-family: var(--serif); font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.4; letter-spacing: -0.01em; }
 
-.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 900px; }
-.devis-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem 1.7rem; }
-.devis-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: .4rem; }
-.devis-card p { font-size: 0.93rem; color: var(--g600); line-height: 1.6; }
+/* ---------- TIMELINE ---------- */
+.tl { max-width: 840px; margin: 0; }
+.tl__row { position: relative; padding: 0 0 1.5rem 2.6rem; border-left: 2px solid var(--blue-100); }
+.tl__row:last-child { border-left-color: transparent; padding-bottom: 0; }
+.tl__row::before { content: ""; position: absolute; left: -9px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--paper-2), 0 0 0 5px var(--blue-100); }
+.tl__card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem 1.5rem; box-shadow: 0 14px 40px -28px rgba(11,29,51,0.35); }
+.tl__time { font-family: var(--serif); font-weight: 600; font-size: 1.55rem; color: var(--blue); line-height: 1; margin-bottom: .55rem; letter-spacing: -0.01em; }
+.tl__body { font-size: 1.0rem; color: var(--slate); line-height: 1.68; }
+.tl__body strong { color: var(--ink); font-weight: 700; }
+.tl-after { max-width: var(--measure); margin-top: 2.4rem; }
 
-.bio-card { display: grid; grid-template-columns: 150px 1fr; gap: 1.8rem; align-items: start; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: 18px; padding: 2.4rem 2.5rem; max-width: 960px; }
-.bio-photo { width: 150px; height: 180px; border-radius: 12px; object-fit: cover; object-position: top center; display: block; background: #1c1c1e; }
-.bio-body p { font-size: 1.06rem; color: var(--g700); line-height: 1.7; margin-bottom: .9rem; }
+/* ---------- GUARD GRID ---------- */
+.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+.guard-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
+.guard-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.35); }
+.guard-x { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-050); color: var(--blue); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 1rem; }
+.guard-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); margin-bottom: .5rem; line-height: 1.3; }
+.guard-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
+
+/* ---------- PRICING ---------- */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; align-items: stretch; gap: 1.1rem; }
+.price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 2rem 1.9rem; position: relative; display: flex; flex-direction: column; }
+.price-card.heart { border: 2px solid var(--blue); box-shadow: 0 40px 80px -40px rgba(37,99,235,0.55); z-index: 2; }
+.price-card.heart::before { content: "★ LE PLUS CHOISI"; position: absolute; top: -0.85rem; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em; white-space: nowrap; box-shadow: 0 8px 20px rgba(37,99,235,0.4); }
+.kicker { font-size: 0.7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); display: inline-block; margin-bottom: 1rem; }
+.price-card.heart .kicker { color: var(--blue); }
+.price { font-family: var(--serif); font-weight: 600; font-size: clamp(2.5rem, 3.6vw, 3.2rem); letter-spacing: -0.03em; color: var(--ink); line-height: 1; display: flex; align-items: baseline; gap: .3rem; }
+.price small { font-family: var(--sans); font-size: 0.9rem; font-weight: 500; color: var(--slate); letter-spacing: 0; }
+.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--slate); margin-top: .55rem; }
+.card-tag { font-family: var(--serif); font-weight: 500; font-size: 1.12rem; color: var(--ink); line-height: 1.35; margin: 1.1rem 0 0; }
+.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 5px 11px; border-radius: 999px; margin: 1.1rem 0 .6rem; }
+.promo-box { border: 1px solid var(--blue-100); background: var(--blue-050); border-radius: 11px; padding: .75rem .9rem; margin: 0 0 .2rem; }
+.promo-box .ps1 { display: block; font-size: 0.86rem; font-weight: 800; color: var(--blue-600); line-height: 1.35; }
+.promo-box .ps2 { display: block; font-size: 0.78rem; font-weight: 400; color: var(--slate); line-height: 1.45; margin-top: .25rem; }
+.incl-prev { font-size: 0.82rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--slate); margin: 1.4rem 0 0; }
+.feat { list-style: none; padding-top: 1.2rem; margin-top: .9rem; border-top: 1px solid var(--line); flex: 1; }
+.feat li { padding: 0.62rem 0 0.62rem 1.75rem; position: relative; font-size: 0.92rem; color: var(--ink-body); line-height: 1.5; }
+.feat li::before { content: ""; position: absolute; left: 0; top: 0.72rem; width: 15px; height: 15px; border-radius: 50%; background: var(--blue-050); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%232563EB' d='M6.4 11.2 3.2 8l1.1-1.1 2.1 2.1 5.3-5.3L12.8 4.8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 15px; }
+.feat li strong { color: var(--ink); font-weight: 700; }
+.feat .deliv-exp { display: block; font-size: 0.82rem; color: var(--slate); line-height: 1.55; margin-top: .25rem; font-weight: 400; }
+.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--slate); margin-top: 1.1rem; padding-top: .95rem; border-top: 1px dashed var(--line); }
+.card-cta { display: block; text-align: center; background: var(--ink); color: #fff; padding: .95rem 1rem; border-radius: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; margin-top: 1.4rem; }
+.card-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(10,10,10,.4); }
+.price-card.heart .card-cta { background: var(--blue); }
+.price-card.heart .card-cta:hover { background: var(--blue-600); box-shadow: 0 16px 36px -12px rgba(37,99,235,.55); }
+
+/* Pourquoi ce prix — premium detached */
+.why-price { max-width: 940px; margin: clamp(2.6rem,4vw,3.6rem) auto 0; padding: clamp(2rem,3.5vw,2.8rem) clamp(1.8rem,3.5vw,3rem); background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; border-radius: var(--r-lg); position: relative; overflow: hidden; box-shadow: 0 40px 90px -50px rgba(11,29,51,0.7); }
+.why-price::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 100% 0%, rgba(37,99,235,0.22), transparent 60%); pointer-events: none; }
+.why-price .in { position: relative; z-index: 1; }
+.why-price h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff; margin-bottom: 1rem; letter-spacing: -0.015em; }
+.why-price p { font-size: 1.02rem; color: var(--slate-300); line-height: 1.78; }
+.why-price p strong { color: #fff; font-weight: 600; }
+.annual-box { max-width: 940px; margin: 1.3rem auto 0; text-align: center; padding: 1.5rem 1.7rem; border: 1px solid var(--line); background: #fff; border-radius: var(--r); }
+.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; margin-bottom: .55rem; }
+.annual-box p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
+
+/* ---------- DEVIS ---------- */
+.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; max-width: 900px; }
+.devis-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
+.devis-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.32); }
+.devis-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin-bottom: .4rem; }
+.devis-card p { font-size: 0.94rem; color: var(--slate); line-height: 1.6; }
+
+/* ---------- BIO ---------- */
+.bio-card { display: grid; grid-template-columns: 210px 1fr; gap: 2.4rem; align-items: start; background: linear-gradient(180deg, #fff, var(--paper-2)); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.8rem,3vw,2.8rem); max-width: 980px; box-shadow: 0 30px 70px -45px rgba(11,29,51,0.4); }
+.bio-photo-col { display: flex; flex-direction: column; gap: 0.95rem; }
+.bio-photo { width: 210px; height: 250px; border-radius: var(--r); object-fit: cover; object-position: top center; display: block; background: var(--nuit); box-shadow: 0 20px 44px -20px rgba(11,29,51,0.5); }
+.bio-cta { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; text-align: center; border: 1.5px solid var(--ink); color: var(--ink); background: #fff; padding: .72rem .85rem; border-radius: 11px; font-weight: 700; font-size: .84rem; line-height: 1.25; text-decoration: none; transition: all .2s; }
+.bio-cta svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+.bio-cta:hover { background: var(--ink); color: #fff; transform: translateY(-1px); box-shadow: 0 12px 26px -12px rgba(10,10,10,.45); }
+.bio-name { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--ink); margin-bottom: .8rem; letter-spacing: -0.01em; }
+.bio-body p { font-size: 1.04rem; color: var(--slate); line-height: 1.72; margin-bottom: .85rem; }
 .bio-body p:last-child { margin-bottom: 0; }
-.bio-body p strong { color: var(--noir); }
-.bio-name { font-size: 1.1rem; font-weight: 800; color: var(--noir); }
-.decision { max-width: 820px; margin: 2.4rem 0 0; }
-.decision .prose-lead { max-width: none; }
-.places-line { margin-top: 1.4rem; padding: 1.4rem 1.6rem; background: var(--g100); border-radius: var(--r); font-size: 1.02rem; color: var(--g800); line-height: 1.62; }
-.places-line strong { color: var(--noir); }
-.decision-final { font-size: 1.4rem; font-weight: 800; color: var(--noir); letter-spacing: -0.01em; margin-top: 1.6rem; }
+.bio-body p strong { color: var(--ink); }
 
-.cta-final { background: #F8FAFC; border-radius: var(--r); padding: 3.5rem 2rem; text-align: center; margin: 4rem 0 0; border: 1px solid var(--g200); }
-.cta-final h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: var(--noir); max-width: 720px; margin-left: auto; margin-right: auto; }
+.decision { max-width: var(--measure); margin: clamp(2.4rem,4vw,3.4rem) 0 0; }
+.places-line { margin-top: 1.5rem; padding: 1.6rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); font-size: 1.02rem; color: var(--ink-body); line-height: 1.64; }
+.places-line strong { color: var(--ink); font-weight: 700; }
+.decision-final { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); color: var(--ink); letter-spacing: -0.02em; line-height: 1.22; margin-top: 1.8rem; max-width: 24ch; }
 
-footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
-.footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-.footer-brand { font-weight: 800; font-size: 0.9rem; }
-.footer-brand .gild { color: var(--noir); }
-.footer-brand .tech { color: var(--bleu-nuit); }
-.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
-.footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
-.footer-links a:hover { color: var(--cta); }
-.footer-mention { font-size: 0.72rem; color: var(--g500); }
+/* ---------- CTA FINAL ---------- */
+.cta-final { text-align: center; }
+.cta-final h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -0.025em; color: #fff; max-width: 20ch; margin: 0 auto 2rem; }
+.cta-final .btn--wa { font-size: 1.05rem; padding: 1.1rem 2.2rem; }
 
-.sticky-cta-mobile { display: none; }
+/* ---------- FOOTER ---------- */
+footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem,4vw,2.5rem); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.4rem; }
+.footer-brand { font-family: var(--sans); font-weight: 800; font-size: 0.95rem; color: #fff; }
+.footer-brand .t { color: var(--blue-200); }
+.footer-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { color: var(--slate-400); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-mention { font-size: 0.74rem; color: var(--slate-400); width: 100%; padding-top: 1rem; border-top: 1px solid var(--nuit-line); }
 
-@media (min-width:1101px) {
-  .pricing-grid { grid-template-rows: auto auto auto; align-items: stretch; row-gap: 0; }
-  .price-card { display: grid; grid-row: 1 / span 3; grid-template-rows: subgrid; row-gap: 0; }
-  .price-card > .pc-top { display: flex; flex-direction: column; }
-}
-@media (max-width: 1100px) {
-  .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
+/* ---------- STICKY MOBILE CTA ---------- */
+.sticky-cta { display: none; }
+
+/* ---------- LOAD ANIMATION ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.hero h1, .hero__lede, .hero__cta-row, .evidence { animation: rise .7s cubic-bezier(.22,.61,.36,1) both; }
+.hero__lede { animation-delay: .08s; }
+.hero__cta-row { animation-delay: .16s; }
+.evidence { animation-delay: .24s; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 980px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
   .price-card.heart { order: -1; }
+  .price-card.heart::before { top: -0.8rem; }
 }
-@media (max-width: 880px) {
-  .hero h1 { font-size: 2.05rem; }
+@media (max-width: 760px) {
+  .nav__link { display: none; }
+  .evidence { grid-template-columns: 1fr; gap: 2.2rem; }
   .guard-grid, .devis-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .bio-card { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
-  .bio-photo { width: 130px; height: 156px; }
-  .sticky-cta-mobile {
-    display: block; position: fixed; bottom: 1rem; left: 1rem; right: 1rem;
-    background: var(--cta); color: var(--blanc); text-align: center;
-    padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700;
+  .bio-card { grid-template-columns: 1fr; text-align: center; gap: 1.6rem; padding: 2rem 1.5rem; }
+  .bio-photo-col { align-items: center; }
+  .bio-photo { width: 168px; height: 200px; }
+  .hero h1 { max-width: 100%; }
+  .sticky-cta {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    position: fixed; bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
+    background: var(--blue); color: #fff; text-align: center;
+    padding: 0.95rem 1rem; border-radius: 14px; font-weight: 700;
     text-decoration: none; font-size: 0.95rem;
-    box-shadow: 0 8px 24px rgba(46,107,230,.35); z-index: 99;
+    box-shadow: 0 12px 34px rgba(37,99,235,.5); z-index: 99;
   }
+  .sticky-cta svg { width: 18px; height: 18px; fill: currentColor; }
+  body { padding-bottom: 4.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero h1, .hero__lede, .hero__cta-row, .evidence { animation: none; }
 }
 </style>
 </head>
 <body>
 
-<nav class="top">
-  <div class="nav-inner">
-    <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="https://calendly.com/ops-gild-tech/30min" class="btn-nav">Book 30 min</a></li>
-      </ul>
-      <div class="lang-select" role="group" aria-label="Language">
-        <span class="lang active" aria-current="true">EN</span>
-        <a class="lang" href="/sarah-th-fr.html" hreflang="fr">FR</a>
-        <a class="lang" href="/sarah-th-ru.html" hreflang="ru">RU</a>
+<nav class="nav">
+  <div class="nav__in">
+    <a href="/" class="brand">GILD<span class="t">-TECH</span></a>
+    <div class="nav__right">
+      
+      <a href="https://wa.me/447378992318" class="nav__cta" target="_blank" rel="noopener">Message Sarah</a>
+      <div class="lang" role="group" aria-label="Language">
+        <span class="active" aria-current="true">EN</span><span class="sep">·</span><a href="/sarah-th-fr.html" hreflang="fr">FR</a><span class="sep">·</span><a href="/sarah-th-ru.html" hreflang="ru">RU</a><span class="sep">·</span><span class="soon">TH</span>
       </div>
     </div>
   </div>
 </nav>
 
-<div class="page">
-
-  <!-- 1 · HERO -->
-  <section class="hero">
+<!-- ============ HERO + EVIDENCE (nuit) ============ -->
+<section class="band band--night hero">
+  <div class="wrap">
     <h1>Your office is open 24/7. <span class="accent">There's just nobody in it after 6pm.</span></h1>
-    <div class="hero-prose">
-      <p>A buyer who messages and hears nothing does exactly what you'd do at a locked restaurant: you walk into the one next door. Nobody waits outside a closed door. Least of all with 15 million baht in their pocket.</p>
+    <p class="hero__lede">A buyer who messages and hears nothing does exactly what you'd do at a locked restaurant: you walk into the one next door. Nobody waits outside a closed door. Least of all with 15 million baht in their pocket.</p>
+    <div class="hero__cta-row">
+      <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+        Message her now. Time her.
+      </a>
     </div>
 
-    <div class="proof-band">
-      <p>On this island, the closed door is the norm: <b>17</b> agencies tested one Tuesday night at 11pm. <b>2</b> replied. And the leads left on read? Zero follow-up. Nobody. Ever.</p>
+    <!-- source_verifiee=OUI (PJ 2026-08-30) : 17/2 = étude terrain GILD-TECH ; 21x en 5 min = étude de réactivité (recherche interne). Assumés publiquement. -->
+    <div class="evidence">
+      <div class="stat">
+        <div class="stat__num">17<span class="arrow">→</span>2</div>
+        <p class="stat__cap">On this island, the closed door is the norm: <b>17</b> agencies tested one Tuesday night at 11pm. <b>2</b> replied. And the leads left on read? Zero follow-up. Nobody. Ever.</p>
+      </div>
+      <div class="stat">
+        <div class="stat__num">21<span class="x">×</span></div>
+        <p class="stat__cap">The numbers of the trade drive it home: replying within the first 5 minutes multiplies your odds of qualifying a buyer by <b>21</b>. After 30 minutes, the conversation is almost always lost.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- source_verifiee=OUI (PJ 2026-08-30): 17/2 = GILD-TECH field study; 21x in 5 min = response-time study (internal research). Publicly owned. -->
-    <div class="stat-callout">
-      <p>The numbers of the trade drive it home: replying within the first 5 minutes multiplies your odds of qualifying a buyer by <span class="x21">21</span>. After 30 minutes, the conversation is almost always lost.</p>
-    </div>
-
-    <div class="hero-prose">
+<!-- ============ DEMAIN MATIN (S1 suite, lumière) ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="prose">
       <p>Picture tomorrow morning instead. You open your phone: three qualified buyers during the night, budget confirmed, two viewings already in your calendar. Sarah greeted, sorted, followed up. All that's left is what nobody can do in your place: the viewing, the negotiation, the signature.</p>
     </div>
     <p class="lead-punch">She sets the stage. You close.</p>
-
     <div class="setclose">
       <p class="sc-head">Sarah does the setting. You do the closing.</p>
+      <p class="sc-def">Setting is all the work before the sale: greeting every buyer, sorting the curious from the real buyers, and bringing the serious ones through to the appointment. Closing is your craft: the viewing, the negotiation, the signature. Sarah takes the first. You keep the second, the only one that pays you.</p>
     </div>
+  </div>
+</section>
 
-    <div class="ctas">
-      <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Message her now. Time her.</a>
+<!-- ============ 2 · LE MÉCANISME DE LA PERTE ============ -->
+<section class="band band--tint" id="perte">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">The money didn't vanish. <span class="accent">It changed agency.</span></h2>
     </div>
-  </section>
-
-  <!-- 2 · THE MECHANICS OF THE LOSS -->
-  <section class="block" id="loss">
-    <h2 class="section-title">The money didn't vanish. <span class="accent">It changed agency.</span></h2>
-    <div class="prose-lead">
+    <div class="prose">
       <p>The lost lead leaves no trace. No "missed sales" line in your books. The buyer left without a reply doesn't complain, doesn't call back. They view with a competitor, sign with them, and you never find out.</p>
       <p>It's the only money leak in your agency that is perfectly silent. That's why it has lasted for years.</p>
       <p>Let's put the island's numbers down. A villa at 20 million baht, 5% commission: one million baht per sale. Five enquiries a week, one of them arriving at night, on the weekend, or while you're out on a viewing. If just one of those missed enquiries a year was a real buyer, the closed door costs you a million.</p>
     </div>
-    <p class="silence-line">One million baht. A year. In silence.</p>
+    <p class="pull">One million baht. <span class="accent">A year. In silence.</span></p>
     <div class="challenge">
       <p><strong>Test your own agency.</strong> Message yourself tonight at 11pm. Check the time on the reply.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 3 · THE MECHANICS OF THE MARKET -->
-  <section class="block" id="market">
-    <h2 class="section-title">It's not a question of talent. <span class="accent">It's a question of infrastructure.</span></h2>
-    <div class="prose-lead">
+<!-- ============ 3 · LE MÉCANISME DU MARCHÉ ============ -->
+<section class="band" id="marche">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">It's not a question of talent. <span class="accent">It's a question of infrastructure.</span></h2>
+    </div>
+    <div class="prose">
       <p>The big portals where your buyers search are not neutral. They capture the demand and redirect it to their own agents. Behind every lead, a whole team: chasers paid to do it, a system that lets nothing slip, a manager who checks.</p>
       <p>You, you're alone. Between two viewings, an owner to reassure, a file to build. You reply when you can. At night, you sleep. Your buyers, though, message from Moscow, London and Dubai, on their time zone, not yours.</p>
       <p>The match was lost before it started. Not because they're better. Because they have the machine, and you don't.</p>
       <p class="punch">Sarah is the big players' machine, working for an independent: yours.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 4 · SARAH, IN PRACTICE -->
-  <section class="block" id="day">
-    <h2 class="section-title">Your day, <span class="accent">with Sarah.</span></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-time">7:00 AM</div>
-        <div class="tl-body">You open your phone. Three conversations happened overnight: a couple from London, budget 18 million, viewing set Thursday 2pm. A Russian investor, questions on leasehold, file forwarded with their details. A curious one with no budget, politely set aside. <strong>You did nothing. It's all on your dashboard.</strong></div>
+<!-- ============ 4 · SARAH, CONCRÈTEMENT — TIMELINE ============ -->
+<section class="band band--tint" id="journee">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Your day, <span class="accent">with Sarah.</span></h2>
+    </div>
+    <div class="tl">
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">7:00 AM</div>
+          <div class="tl__body">You open your phone. Three conversations happened overnight: a couple from London, budget 18 million, viewing set Thursday 2pm. A Russian investor, questions on leasehold, file forwarded with their details. A curious one with no budget, politely set aside. <strong>You did nothing. It's all on your dashboard.</strong></div>
+        </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">11:30 AM</div>
-        <div class="tl-body">Mid-viewing, your phone buzzes once: hot lead. A French buyer, already on the island, wants to see two villas this week. Budget confirmed: 25 million. Sarah offered her Friday 10am, she said yes. You carry on with your viewing. <strong>The appointment is booked.</strong></div>
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">11:30 AM</div>
+          <div class="tl__body">Mid-viewing, your phone buzzes once: hot lead. A French buyer, already on the island, wants to see two villas this week. Budget confirmed: 25 million. Sarah offered her Friday 10am, she said yes. You carry on with your viewing. <strong>The appointment is booked.</strong></div>
+        </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">6:00 PM</div>
-        <div class="tl-body">Monday's silent lead just replied to Sarah's follow-up. He was travelling. He views on Saturday. <strong>Without the follow-up, he'd have signed elsewhere, and you'd never have known.</strong></div>
+      <div class="tl__row">
+        <div class="tl__card">
+          <div class="tl__time">6:00 PM</div>
+          <div class="tl__body">Monday's silent lead just replied to Sarah's follow-up. He was travelling. He views on Saturday. <strong>Without the follow-up, he'd have signed elsewhere, and you'd never have known.</strong></div>
+        </div>
       </div>
     </div>
-    <div class="prose-lead">
+    <div class="prose tl-after">
       <p>The day before each viewing, you get the full picture: who's coming, their budget, their questions, their language. You arrive knowing the person. All that's left is your craft: the viewing, the negotiation, the signature.</p>
       <p>She replies in under 5 minutes, day and night, in the buyer's language. She sorts. She follows up on D+1, D+3, D+7. She books the appointments. She alerts you. And she'll never tell your client a legal blunder: on freehold, leasehold, quotas, she gives the basics and hands over to you. <strong>The expertise is you. The rest is her.</strong></p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 5 · THE GUARDRAILS -->
-  <section class="block" id="guardrails">
-    <h2 class="section-title">What Sarah <span class="accent">will never do.</span></h2>
+<!-- ============ 5 · LES GARDE-FOUS ============ -->
+<section class="band" id="garde-fous">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">What Sarah <span class="accent">will never do.</span></h2>
+    </div>
     <div class="guard-grid">
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Give Thai legal advice.</h3>
         <p>Freehold, leasehold, foreign quota: she knows the basics, she never rules on a case. She escalates, you decide. Your liability is protected.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Touch your private life.</h3>
         <p>Sarah lives on her own line. Your personal conversations never cross her path.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Lock you in.</h3>
         <p>One message and she stops. No notice, no hidden renewal.</p>
       </div>
       <div class="guard-card">
+        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Keep your data.</h3>
         <p>Conversations, contacts, appointments: it's all yours. Export or erase on request. GDPR.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 6 · THE THREE OFFERS -->
-  <section class="block" id="offers">
+<!-- ============ 6 · LES TROIS OFFRES ============ -->
+<section class="band band--tint" id="offres">
+  <div class="wrap">
     <div class="offers-band">
       <p>You're not paid to reply to messages at 11pm. You're paid to sign. Sarah takes the entire pre-sale. You get your job back.</p>
     </div>
-    <h2 class="section-title">Three levels. <span class="accent">One problem solved on each floor.</span></h2>
+    <div class="sec-head" style="max-width:32ch;">
+      <h2 class="sec-title">Three levels. <span class="accent">One problem solved on each floor.</span></h2>
+    </div>
 
     <div class="pricing-grid">
 
       <!-- RESPOND -->
       <div class="price-card">
-        <div class="pc-top">
-          <span class="kicker">RESPOND</span>
-          <div class="price">£290<small> / month</small></div>
-          <div class="setup-line">Setup: £490</div>
-          <div class="card-tag">While you sleep, she sells.</div>
-        </div>
-        <div class="receive">
-          <ul>
-            <li><strong>3am. A Russian messages, budget 20 million. Sarah has already replied.</strong><span class="deliv-exp">Reply in under 5 minutes, 24/7, dedicated agency WhatsApp, language detected automatically.</span></li>
-            <li><strong>No more losing 20 minutes on a time-waster "just looking".</strong><span class="deliv-exp">Systematic qualification: budget, property type, timeline, presence on the island. All logged in your Sarah CRM. The serious ones up top, the tourists out.</span></li>
-            <li><strong>You no longer chase appointments. They wait for you.</strong><span class="deliv-exp">Two slots offered on your availability, confirmation, full prospect card in your calendar.</span></li>
-            <li><strong>A hot buyer never waits. Neither do you.</strong><span class="deliv-exp">Instant alert on your personal WhatsApp: name, budget, property, slot. One buzz, you know everything.</span></li>
-            <li><strong>She'll never say the blunder that costs you a sale.</strong><span class="deliv-exp">Legal guardrail: freehold, leasehold, quotas. The public basics, then she hands over to you. Never a case ruled without you.</span></li>
-          </ul>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20RESPOND%20does" target="_blank" rel="noopener">Test RESPOND with Sarah</a></div>
+        <span class="kicker">RESPOND</span>
+        <div class="price">£290<small>/ month</small></div>
+        <div class="setup-line">Setup: £490</div>
+        <div class="card-tag">While you sleep, she sells.</div>
+        <ul class="feat">
+          <li><strong>3am. A Russian messages, budget 20 million. Sarah has already replied.</strong><span class="deliv-exp">Reply in under 5 minutes, 24/7, dedicated agency WhatsApp, language detected automatically.</span></li>
+          <li><strong>No more losing 20 minutes on a time-waster "just looking".</strong><span class="deliv-exp">Systematic qualification: budget, property type, timeline, presence on the island. All logged in your Sarah CRM. The serious ones up top, the tourists out.</span></li>
+          <li><strong>You no longer chase appointments. They wait for you.</strong><span class="deliv-exp">Two slots offered on your availability, confirmation, full prospect card in your calendar.</span></li>
+          <li><strong>A hot buyer never waits. Neither do you.</strong><span class="deliv-exp">Instant alert on your personal WhatsApp: name, budget, property, slot. One buzz, you know everything.</span></li>
+          <li><strong>She'll never say the blunder that costs you a sale.</strong><span class="deliv-exp">Legal guardrail: freehold, leasehold, quotas. The public basics, then she hands over to you. Never a case ruled without you.</span></li>
+        </ul>
+        <a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20RESPOND%20does" target="_blank" rel="noopener">Test RESPOND with Sarah</a>
       </div>
 
       <!-- CONVERT -->
-      <div class="price-card featured heart">
-        <div class="pc-top">
-          <span class="kicker" style="color:var(--cta);background:#DBEAFE;border-color:#93C5FD;">CONVERT</span>
-          <div class="price">£490<small> / month</small></div>
-          <div class="setup-line">Setup: £990</div>
-          <div class="launch-badge">★ Samui Launch</div>
-          <div class="promo-box"><span class="ps1">£290/month for the first 2 months, then £490.</span><span class="ps2">While she proves herself at your agency, you pay the price of the tier below.</span></div>
-          <div class="card-tag">The lead that stopped replying isn't lost. It's just badly followed up.</div>
-        </div>
-        <div class="receive">
-          <p class="incl-prev">Everything in RESPOND, plus:</p>
-          <ul>
-            <li><strong>On this island, nobody follows up. You'll be the only one.</strong><span class="deliv-exp">Automatic follow-up D+1 (reminder), D+3 (new offer), D+7 (exit question). Then the file closes itself. Half the sales are won there.</span></li>
-            <li><strong>You arrive at a viewing already knowing the buyer.</strong><span class="deliv-exp">Automatic briefing the day before each appointment, on your WhatsApp: profile, budget, questions asked, sensitive points, language.</span></li>
-            <li><strong>Email enquiries no longer rot in the inbox.</strong><span class="deliv-exp">Sarah reads the agency inbox and the website form, replies to leads, moves the conversation to WhatsApp. Invoices and admin: never touched.</span></li>
-            <li><strong>You finally know which listing makes you money.</strong><span class="deliv-exp">A code per property (Ref. 2045) built into your Facebook and Marketplace ads, rewritten by us: number and reference in the first two lines, before the cut. Sarah identifies the property from the first message, and every lead is traced back to its source.</span></li>
-            <li><strong>Your CRM fills itself.</strong><span class="deliv-exp">Every qualified lead dropped in automatically: contact, budget, property, status, next action. No CRM? We build it and hand it to you.</span></li>
-            <li><strong>Your whole activity, on one screen.</strong><span class="deliv-exp">Real-time dashboard: who messaged overnight, what was answered, where each file stands, which appointments are coming.</span></li>
-            <li><strong>Every month, your best card plays out in video.</strong><span class="deliv-exp">1 Coup de Cœur video + its dedicated sales page, on the property of your choice. Your real photos set in motion, a clean link to post anywhere, Sarah at the end.</span></li>
-          </ul>
-          <p class="serve-note">Up to 2 agents served (each gets their own leads).</p>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20CONVERT%20does" target="_blank" rel="noopener">Test CONVERT with Sarah</a></div>
+      <div class="price-card heart">
+        <span class="kicker">CONVERT</span>
+        <div class="price">£490<small>/ month</small></div>
+        <div class="setup-line">Setup: £990</div>
+        <div class="launch-badge">★ Samui Launch</div>
+        <div class="promo-box"><span class="ps1">£290/month for the first 2 months, then £490.</span><span class="ps2">While she proves herself at your agency, you pay the price of the tier below.</span></div>
+        <div class="card-tag">The lead that stopped replying isn't lost. It's just badly followed up.</div>
+        <p class="incl-prev">Everything in RESPOND, plus:</p>
+        <ul class="feat">
+          <li><strong>On this island, nobody follows up. You'll be the only one.</strong><span class="deliv-exp">Automatic follow-up D+1 (reminder), D+3 (new offer), D+7 (exit question). Then the file closes itself. Half the sales are won there.</span></li>
+          <li><strong>You arrive at a viewing already knowing the buyer.</strong><span class="deliv-exp">Automatic briefing the day before each appointment, on your WhatsApp: profile, budget, questions asked, sensitive points, language.</span></li>
+          <li><strong>Email enquiries no longer rot in the inbox.</strong><span class="deliv-exp">Sarah reads the agency inbox and the website form, replies to leads, moves the conversation to WhatsApp. Invoices and admin: never touched.</span></li>
+          <li><strong>You finally know which listing makes you money.</strong><span class="deliv-exp">A code per property (Ref. 2045) built into your Facebook and Marketplace ads, rewritten by us: number and reference in the first two lines, before the cut. Sarah identifies the property from the first message, and every lead is traced back to its source.</span></li>
+          <li><strong>Your CRM fills itself.</strong><span class="deliv-exp">Every qualified lead dropped in automatically: contact, budget, property, status, next action. No CRM? We build it and hand it to you.</span></li>
+          <li><strong>Your whole activity, on one screen.</strong><span class="deliv-exp">Real-time dashboard: who messaged overnight, what was answered, where each file stands, which appointments are coming.</span></li>
+          <li><strong>Every month, your best card plays out in video.</strong><span class="deliv-exp">1 Coup de Cœur video + its dedicated sales page, on the property of your choice. Your real photos set in motion, a clean link to post anywhere, Sarah at the end.</span></li>
+        </ul>
+        <p class="serve-note">Up to 2 agents served (each gets their own leads).</p>
+        <a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20CONVERT%20does" target="_blank" rel="noopener">Test CONVERT with Sarah</a>
       </div>
 
       <!-- DOMINATE -->
       <div class="price-card">
-        <div class="pc-top">
-          <span class="kicker" style="color:var(--noir);background:var(--g100);border-color:var(--g200);">DOMINATE</span>
-          <div class="price">£790<small> / month</small></div>
-          <div class="setup-line">Setup: £1,490</div>
-          <div class="card-tag">Your agency becomes impossible to ignore.</div>
-        </div>
-        <div class="receive">
-          <p class="incl-prev">Everything in CONVERT, plus:</p>
-          <ul>
-            <li><strong>Sellers get a reply in 5 minutes too. Before your competitors.</strong><span class="deliv-exp">An owner messages "how much is my villa worth?": Sarah replies immediately, takes the details (property, area, size, timeline, target price) and forwards you the full file. The valuation and the relationship stay yours.</span></li>
-            <li><strong>Your whole portfolio comes to life.</strong><span class="deliv-exp">One Coup de Cœur video per property, no limit, cut on your photos. The quality of your photos makes the video. Ready to post anywhere.</span></li>
-            <li><strong>Every featured property gets its premium page.</strong><span class="deliv-exp">Film, gallery, 4 languages, Sarah button. One link to send instead of 40 photos in a mess. The seller shows it to their friends, the buyer keeps it open.</span></li>
-            <li><strong>Facing the owner or the developer, you show, you no longer promise.</strong><span class="deliv-exp">Your presentation deck under your brand: the videos, the pages, the 24/7 reply, your numbers. The mandate is won in the preparation.</span></li>
-            <li><strong>Your socials run without you touching them. And with no ad budget.</strong><span class="deliv-exp">2 organic posts a week on Facebook, Instagram and TikTok: your properties, your videos, your news. Zero ad spend, your content works on its own.</span></li>
-            <li><strong>Your Google listing works for you.</strong><span class="deliv-exp">Optimised and maintained: photos, information, posts, replies to reviews in your name.</span></li>
-            <li><strong>You know your area. Now you can prove it, numbers in hand.</strong><span class="deliv-exp">Monthly report drawn from your data: where your buyers come from, what they're looking for, when they message. To put on the table in a seller meeting.</span></li>
-            <li><strong>The whole team is served.</strong><span class="deliv-exp">Each agent gets their leads by your rules, on their WhatsApp. No limit.</span></li>
-          </ul>
-        </div>
-        <div class="card-cta-wrap"><a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20DOMINATE%20does" target="_blank" rel="noopener">Test DOMINATE with Sarah</a></div>
+        <span class="kicker">DOMINATE</span>
+        <div class="price">£790<small>/ month</small></div>
+        <div class="setup-line">Setup: £1,490</div>
+        <div class="card-tag">Your agency becomes impossible to ignore.</div>
+        <p class="incl-prev">Everything in CONVERT, plus:</p>
+        <ul class="feat">
+          <li><strong>Sellers get a reply in 5 minutes too. Before your competitors.</strong><span class="deliv-exp">An owner messages "how much is my villa worth?": Sarah replies immediately, takes the details (property, area, size, timeline, target price) and forwards you the full file. The valuation and the relationship stay yours.</span></li>
+          <li><strong>Your whole portfolio comes to life.</strong><span class="deliv-exp">One Coup de Cœur video per property, no limit, cut on your photos. The quality of your photos makes the video. Ready to post anywhere.</span></li>
+          <li><strong>Every featured property gets its premium page.</strong><span class="deliv-exp">Film, gallery, 4 languages, Sarah button. One link to send instead of 40 photos in a mess. The seller shows it to their friends, the buyer keeps it open.</span></li>
+          <li><strong>Facing the owner or the developer, you show, you no longer promise.</strong><span class="deliv-exp">Your presentation deck under your brand: the videos, the pages, the 24/7 reply, your numbers. The mandate is won in the preparation.</span></li>
+          <li><strong>Your socials run without you touching them. And with no ad budget.</strong><span class="deliv-exp">2 organic posts a week on Facebook, Instagram and TikTok: your properties, your videos, your news. Zero ad spend, your content works on its own.</span></li>
+          <li><strong>Your Google listing works for you.</strong><span class="deliv-exp">Optimised and maintained: photos, information, posts, replies to reviews in your name.</span></li>
+          <li><strong>You know your area. Now you can prove it, numbers in hand.</strong><span class="deliv-exp">Monthly report drawn from your data: where your buyers come from, what they're looking for, when they message. To put on the table in a seller meeting.</span></li>
+          <li><strong>The whole team is served.</strong><span class="deliv-exp">Each agent gets their leads by your rules, on their WhatsApp. No limit.</span></li>
+        </ul>
+        <a class="card-cta" href="https://wa.me/447378992318?text=I%20want%20to%20see%20what%20DOMINATE%20does" target="_blank" rel="noopener">Test DOMINATE with Sarah</a>
       </div>
 
     </div>
 
     <div class="why-price">
-      <h3>Why this price.</h3>
-      <p>Six full-time roles: 24/7 reception, follow-up, video, premium pages, socials, reputation. At hiring, just one already costs more, and it sleeps at night. The setup (£1,490, one-off): your entire agency calibrated by hand, portfolio, listings, codes, CRM, Google, tested in 4 languages before handover. <strong>Now, your maths.</strong> One sale on your island is 750,000 to over a million baht in commission. The full machine costs under 500,000 ฿ a year. How many buyers and mandates do you have to miss, every year, for it not to pay off? Just one covers it all. And you're already missing more than one.</p>
+      <div class="in">
+        <h3>Why this price.</h3>
+        <p>Six full-time roles: 24/7 reception, follow-up, video, premium pages, socials, reputation. At hiring, just one already costs more, and it sleeps at night. The setup (£1,490, one-off): your entire agency calibrated by hand, portfolio, listings, codes, CRM, Google, tested in 4 languages before handover. <strong>Now, your maths.</strong> One sale on your island is 750,000 to over a million baht in commission. The full machine costs under 500,000 ฿ a year. How many buyers and mandates do you have to miss, every year, for it not to pay off? Just one covers it all. And you're already missing more than one.</p>
+      </div>
     </div>
 
     <div class="annual-box">
       <div class="an-title">Annual</div>
       <p>2 months free + setup free. One payment, covering twelve months. Never a tacit renewal. Monthly: no commitment. You stop whenever you want. Billed in GBP by Girlden LTD. Baht prices indicative, reviewed each quarter.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 7 · ON QUOTE -->
-  <section class="block" id="quote">
-    <h2 class="section-title">When replying is no longer enough, <span class="accent">we build.</span></h2>
-    <p class="section-lead">On quote · Marketing &amp; Creative.</p>
+<!-- ============ 7 · SUR DEVIS ============ -->
+<section class="band" id="devis">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">On quote · Marketing &amp; Creative</span>
+      <h2 class="sec-title">When replying is no longer enough, <span class="accent">we build.</span></h2>
+    </div>
     <div class="devis-grid">
       <div class="devis-card">
         <h3>Premium website</h3>
@@ -452,13 +554,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <p>Beyond the premium pages: full agency site, developer programme, dedicated project.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 8 · WHO'S BEHIND IT + THE DECISION -->
-  <section class="block" id="who">
-    <h2 class="section-title">Behind Sarah, there's someone. <span class="accent">And he knows your island.</span></h2>
+<!-- ============ 8 · QUI EST DERRIÈRE + LA DÉCISION ============ -->
+<section class="band band--tint" id="qui">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Behind Sarah, there's someone. <span class="accent">And he knows your island.</span></h2>
+    </div>
     <div class="bio-card">
-      <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="150" height="180">
+      <div class="bio-photo-col">
+        <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="200" height="240">
+        <a class="bio-cta" href="https://calendly.com/ops-gild-tech/30min" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 7v10H5V9h14z"/></svg>
+          Book 30 min with Pierre-Jean
+        </a>
+      </div>
       <div class="bio-body">
         <p class="bio-name">Pierre-Jean Deàk Grisoni — founder of GILD-TECH (Girlden LTD).</p>
         <p>He tested this market on the ground, agency by agency: 17 Koh Samui agencies, one Tuesday night at 11pm. Two replies. Zero follow-up. Sarah is the reply nobody sent that night.</p>
@@ -467,7 +579,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
 
     <div class="decision">
-      <div class="prose-lead">
+      <div class="prose">
         <p>Tonight, a buyer will message. Like last night. Like tomorrow night.</p>
         <p>There's nothing remarkable about it. It's just your market, living at night, while your phone is on silent.</p>
         <p>The question isn't whether you're losing buyers. You've been losing them for years, everyone here does, nobody measures it. The question is how much longer you accept not knowing.</p>
@@ -477,21 +589,26 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <p class="decision-final">On an island, there's only one most-responsive agency. The only real decision is which one.</p>
     </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <div class="cta-final">
-    <h2>On an island, there's only one most-responsive agency.</h2>
-    <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener" style="font-size:1.05rem;padding:1rem 2rem;">Message Sarah now. Time her.</a>
   </div>
+</section>
 
-</div>
+<!-- ============ CTA FINAL (nuit) ============ -->
+<section class="band band--night">
+  <div class="wrap cta-final">
+    <h2>On an island, there's only one most-responsive agency.</h2>
+    <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+      Message Sarah now. Time her.
+    </a>
+  </div>
+</section>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
+    <div class="footer-brand">GILD<span class="t">-TECH</span></div>
     <ul class="footer-links">
       <li><a href="/sarah-th.html">Sarah · Samui</a></li>
+      
       <li><a href="/terms">Terms</a></li>
       <li><a href="/legal-notice">Legal Notice</a></li>
       <li><a href="/privacy">Privacy</a></li>
@@ -500,7 +617,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   </div>
 </footer>
 
-<a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Message Sarah">Message Sarah. Time her.</a>
+<a href="https://wa.me/447378992318" class="sticky-cta" target="_blank" rel="noopener" aria-label="Message Sarah">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+  Message Sarah. Time her.
+</a>
 
 </body>
 </html>
