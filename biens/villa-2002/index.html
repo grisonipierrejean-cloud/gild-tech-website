@@ -186,10 +186,6 @@
     <div class="hero-grain"></div>
     <div class="hero-inner">
       <div class="mono" id="hLogo" style="color:var(--sand);letter-spacing:.28em;margin-bottom:clamp(20px,3vw,34px)">Private collection</div>
-      <h1 class="hero-tag">
-        <span class="l"><span data-i18n="title1">Exceptional villa</span></span>
-        <span class="l"><span><em>360°</em></span></span>
-      </h1>
       <div class="hero-sub mono" id="hSub" data-i18n="heroSub">Koh Samui · 7 bedrooms · 5 levels</div>
       <button class="hero-film" id="filmBtn"><span class="pl">▶</span><span data-i18n="watchFilm">Watch the film</span></button>
     </div>
@@ -539,14 +535,12 @@
 
     var intro=gsap.timeline({delay:.15});
     intro.from('#hLogo',{autoAlpha:0,y:16,duration:1,ease:'power3.out'})
-         .from('.hero-tag .l span',{yPercent:115,duration:1.1,ease:'power4.out',stagger:.12},'-=.55')
-         .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.5')
+         .from('#hSub',{autoAlpha:0,y:12,duration:.9,ease:'power2.out'},'-=.55')
          .from('#hScroll',{autoAlpha:0,duration:.6},'-=.3');
     // Filet de sécurité : si l'animation est interrompue (onglet en arrière-plan, appareil lent),
     // on force l'état final visible. Le titre/logo/sous-titre ne restent JAMAIS cachés.
     setTimeout(function(){
       gsap.set(['#hLogo','#hSub','#hScroll'],{autoAlpha:1,x:0,y:0,clearProps:'transform'});
-      gsap.set('.hero-tag .l span',{yPercent:0});
     }, 2800);
 
     // Aucun tween au scroll sur le hero (ni parallaxe ni fade scrub) : vidéo fixe, zéro tremblement.
