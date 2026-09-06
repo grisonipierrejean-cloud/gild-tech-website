@@ -23,448 +23,334 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0B1D33">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FFFFFF">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --ink: #0A0A0A;
-  --nuit: #0B1D33;
-  --nuit-2: #071726;
-  --nuit-card: #122C46;
-  --nuit-line: rgba(148,163,184,0.18);
-  --blue: #2563EB;
-  --blue-600: #1D4ED8;
-  --blue-050: #EFF6FF;
-  --blue-100: #DBEAFE;
-  --blue-200: #BFDBFE;
-  --ink-body: #26313D;
-  --slate: #5B6673;
-  --slate-400: #94A3B8;
-  --slate-300: #CBD5E1;
-  --line: #E6EAF0;
-  --paper: #FFFFFF;
-  --paper-2: #F6F8FC;
-  --paper-3: #EDF1F8;
-  --vert: #16a34a; --rouge: #dc2626;
-  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --maxw: 1140px;
-  --measure: 720px;
-  --r: 16px; --r-lg: 22px;
+  --pink: #2563EB; --pink-light: #1D4ED8; --pink-soft: #E5E7EB; --pink-bg: #F1F5F9;
+  --green: #16a34a; --red: #dc2626;
+  --g900: #0A0A0A; --g700: #2A2F36; --g600: #4A4F57; --g500: #6B6F76;
+  --g300: #C8CBD0; --g200: #E2E4E7; --g100: #FBF9F3;
+  --white: #fff;
+  --font: 'Inter', -apple-system, sans-serif;
+  --max-w: 1200px; --r: 14px;
 }
-html { scroll-behavior: smooth; }
-body { background: var(--paper); color: var(--ink-body); font-family: var(--sans); line-height: 1.68; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-::selection { background: var(--blue); color: #fff; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+body { background: var(--white); color: var(--g900); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; }
+.brand .gild { color: var(--g900); }
+.brand .tech { color: var(--pink); }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--g900); }
+.btn-nav { background: var(--pink); color: var(--white) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
+.btn-nav:hover { background: var(--pink-light); box-shadow: 0 6px 20px rgba(11,29,51,0.25); transform: translateY(-1px); }
+.nav-right { display: flex; align-items: center; gap: 1.3rem; }
+.lang-select { display: inline-flex; align-items: center; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+.lang-select .lang { color: var(--g500); }
+.lang-select a.lang { text-decoration: none; }
+.lang-select a.lang:hover { color: var(--pink); }
+.lang-select .lang.active { color: var(--pink); }
+.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g300); }
+.src-link { color: var(--pink); text-decoration: underline; text-underline-offset: 3px; }
 
-/* ---------- TYPE PRIMITIVES ---------- */
-.serif { font-family: var(--serif); font-weight: 600; letter-spacing: -0.015em; }
-.eyebrow { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); display: inline-flex; align-items: center; gap: .6rem; }
-.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--blue); display: inline-block; }
-.eyebrow--light { color: var(--blue-200); }
-.eyebrow--light::before { background: var(--blue-200); }
+.page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
 
-/* ---------- NAV ---------- */
-nav.nav { position: sticky; top: 0; z-index: 100; background: rgba(11,29,51,0.82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--nuit-line); }
-.nav__in { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); height: 62px; display: flex; align-items: center; justify-content: space-between; }
-.brand { font-family: var(--sans); font-weight: 800; font-size: 1.16rem; letter-spacing: 0.01em; text-decoration: none; color: #fff; }
-.brand .t { color: var(--blue-200); }
-.nav__right { display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 1.5rem); }
-.nav__link { color: var(--slate-300); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color .2s; }
-.nav__link:hover { color: #fff; }
-.nav__cta { background: var(--blue); color: #fff; text-decoration: none; padding: 0.5rem 1.05rem; border-radius: 9px; font-size: 0.83rem; font-weight: 700; transition: all .2s; white-space: nowrap; }
-.nav__cta:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(37,99,235,0.4); }
-.lang { display: inline-flex; gap: .45rem; font-size: .78rem; font-weight: 700; letter-spacing: .02em; align-items: center; }
-.lang a, .lang span { text-decoration: none; color: var(--slate-400); }
-.lang a:hover { color: #fff; }
-.lang .active { color: var(--blue-200); }
-.lang .soon { color: var(--slate-400); opacity: .45; cursor: default; }
-.lang .sep { color: rgba(148,163,184,0.4); }
+.hero { padding: 4rem 0 5rem; }
+.hero .badge-new { display: inline-block; background: var(--pink-bg); color: var(--pink); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1.5rem; border: 1px solid var(--pink-soft); }
+.hero h1 { font-size: 3.4rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.2rem; max-width: 920px; }
+.hero h1 .accent { color: var(--pink); }
+.hero .subtitle { font-size: 1.15rem; color: var(--g600); max-width: 760px; line-height: 1.6; margin-bottom: 2rem; }
+.hero .subtitle strong { color: var(--g900); font-weight: 700; }
+.hero .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn-primary { display: inline-block; background: var(--pink); color: var(--white); padding: 0.85rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+.btn-primary:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(11,29,51,0.25); }
 
-/* ---------- BANDS ---------- */
-.band { padding: clamp(3.4rem, 7vw, 6.4rem) 0; }
-.band--tint { background: var(--paper-2); }
-.band--night { background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; position: relative; overflow: hidden; }
-.band--night::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 72% -5%, rgba(37,99,235,0.28), transparent 60%); pointer-events: none; }
-.band--night .wrap { position: relative; z-index: 1; }
+.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; padding: 1.6rem; background: var(--g100); border-radius: var(--r); }
+.stat-item { text-align: center; }
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--pink); letter-spacing: -0.02em; }
+.stat-label { font-size: 0.82rem; color: var(--g600); margin-top: 0.3rem; line-height: 1.45; }
+.stat-label em { font-style: normal; color: var(--g500); }
 
-/* ---------- HERO ---------- */
-.hero { padding-top: clamp(3rem, 6vw, 5rem); }
-.hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.4rem, 5.4vw, 4.35rem); line-height: 1.02; letter-spacing: -0.025em; color: #fff; max-width: 16ch; margin: 1.5rem 0 0; }
-.hero h1 .accent { color: var(--blue-200); }
-.hero__lede { font-size: clamp(1.05rem, 1.6vw, 1.22rem); line-height: 1.7; color: var(--slate-300); max-width: 44ch; margin-top: 1.7rem; }
-.hero__cta-row { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-.hero__hint { font-size: 0.9rem; color: var(--slate-400); }
+section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
+.section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; line-height: 1.15; }
+.section-title .accent { color: var(--pink); }
+.section-subtitle { font-size: 1.05rem; color: var(--g600); max-width: 760px; line-height: 1.6; margin-bottom: 2.5rem; }
 
-/* Buttons */
-.btn { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; border-radius: 12px; transition: all .2s; cursor: pointer; border: none; font-family: var(--sans); }
-.btn--wa { background: var(--blue); color: #fff; padding: 1rem 1.9rem; font-size: 1rem; box-shadow: 0 10px 30px rgba(37,99,235,0.35); }
-.btn--wa:hover { background: var(--blue-600); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(37,99,235,0.45); }
-.btn--wa svg { width: 19px; height: 19px; fill: currentColor; }
-.btn--ghost-light { background: rgba(255,255,255,0.06); color: #fff; padding: 1rem 1.7rem; font-size: 0.98rem; border: 1px solid rgba(255,255,255,0.18); font-weight: 600; }
-.btn--ghost-light:hover { background: rgba(255,255,255,0.12); }
+.prose-block { max-width: 760px; font-size: 1.05rem; color: var(--g700); line-height: 1.75; }
+.prose-block p { margin-bottom: 1.1rem; }
+.prose-block p:last-child { margin-bottom: 0; }
+.prose-block strong { color: var(--g900); }
+.prose-punch { font-size: 1.3rem; font-weight: 800; color: var(--g900); letter-spacing: -0.01em; margin-top: 1.4rem; }
 
-/* ---------- EVIDENCE (stat monuments) ---------- */
-.evidence { margin-top: clamp(2.8rem, 5vw, 4rem); border-top: 1px solid var(--nuit-line); padding-top: clamp(2.4rem, 4vw, 3.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.2rem); }
-.stat__num { font-family: var(--serif); font-weight: 600; font-size: clamp(3.6rem, 8vw, 6.2rem); line-height: 0.86; letter-spacing: -0.03em; color: #fff; display: flex; align-items: baseline; gap: .1em; font-variant-numeric: tabular-nums lining-nums; }
-.stat__num .arrow { color: var(--blue-200); font-size: 0.42em; font-family: var(--sans); font-weight: 700; align-self: center; margin: 0 .12em; letter-spacing: 0; }
-.stat__num .x { color: var(--blue-200); }
-.stat__cap { font-size: 1rem; line-height: 1.62; color: var(--slate-300); margin-top: 1.05rem; max-width: 46ch; }
-.stat__cap b { color: #fff; font-weight: 600; }
-.stat__src { font-size: 0.74rem; color: var(--slate-400); margin-top: 1.4rem; grid-column: 1 / -1; opacity: .75; }
+.setclose-box { margin-top: 2rem; max-width: 820px; padding: 1.6rem 1.9rem; background: #EFF6FF; border: 1px solid #DBEAFE; border-left: 4px solid var(--pink); border-radius: 0 var(--r) var(--r) 0; }
+.sc-head { font-size: 1.2rem; font-weight: 800; color: var(--g900); margin-bottom: .5rem; }
+.sc-def { font-size: 0.98rem; color: var(--g700); line-height: 1.7; }
 
-/* ---------- SECTION HEADINGS ---------- */
-.sec-head { max-width: 28ch; margin-bottom: clamp(1.8rem, 3vw, 2.6rem); }
-.sec-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.85rem, 3.4vw, 2.85rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin-top: 0.9rem; }
-.sec-title .accent { color: var(--blue); }
-.band--night .sec-title { color: #fff; }
+.problem-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: stretch; margin-top: 2.2rem; }
+.problem-list { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.5rem; list-style: none; }
+.problem-list li { padding: 0.9rem 0; border-bottom: 1px solid var(--g100); display: flex; gap: 0.8rem; font-size: 0.95rem; line-height: 1.5; color: var(--g700); }
+.problem-list li:last-child { border-bottom: none; }
+.problem-list li::before { content: "✕"; color: var(--red); font-weight: 800; flex-shrink: 0; }
+.problem-stat { background: var(--pink-bg); border: 1px solid var(--pink-soft); border-radius: var(--r); padding: 2rem; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.problem-stat .num { font-size: 2.8rem; font-weight: 900; color: var(--pink); letter-spacing: -0.03em; line-height: 1.05; }
+.problem-stat .desc { font-size: 0.95rem; color: var(--g700); margin-top: 0.8rem; line-height: 1.5; }
 
-/* ---------- PROSE ---------- */
-.prose { max-width: var(--measure); font-size: 1.075rem; line-height: 1.78; color: var(--ink-body); }
-.prose p { margin-bottom: 1.15rem; }
-.prose p:last-child { margin-bottom: 0; }
-.prose strong { color: var(--ink); font-weight: 700; }
-.prose .punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 1.28; color: var(--ink); letter-spacing: -0.015em; margin-top: 1.4rem; }
+.challenge { margin-top: 2rem; padding: 1.5rem 1.8rem; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: var(--r); max-width: 820px; font-size: 1.05rem; color: var(--g900); line-height: 1.6; font-weight: 500; }
+.challenge strong { font-weight: 800; }
 
-/* Lead punch under hero-morning */
-.lead-punch { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.22; letter-spacing: -0.02em; color: var(--ink); margin-top: 1.6rem; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.step { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem; }
+.step .time { display: inline-block; font-size: 0.9rem; color: var(--pink); font-weight: 800; background: var(--pink-bg); padding: 0.25rem 0.8rem; border-radius: 12px; letter-spacing: 0.02em; margin-bottom: 0.9rem; }
+.step p { font-size: 0.93rem; color: var(--g700); line-height: 1.6; }
+.step p strong { color: var(--g900); }
+.after-steps { max-width: 760px; margin-top: 2.2rem; }
 
-/* set/close explainer */
-.setclose { margin-top: 2rem; padding: 1.9rem 2.1rem; background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 0 var(--r) var(--r) 0; max-width: 820px; box-shadow: 0 20px 50px -30px rgba(11,29,51,0.28); }
-.sc-head { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--ink); letter-spacing: -0.01em; margin-bottom: .6rem; }
-.sc-def { font-size: 1.0rem; color: var(--slate); line-height: 1.72; }
+.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+.guard-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.7rem 1.8rem; }
+.guard-card h3 { font-size: 1.08rem; font-weight: 800; color: var(--g900); margin-bottom: .55rem; line-height: 1.3; display:flex; gap:.5rem; }
+.guard-card h3::before { content:"✕"; color:var(--red); font-weight:800; }
+.guard-card p { font-size: 0.95rem; color: var(--g600); line-height: 1.62; }
 
-/* Big pull quote (S2 silence) */
-.pull { font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.14; letter-spacing: -0.025em; color: var(--ink); margin: 2rem 0 0; max-width: 20ch; }
-.pull .accent { color: var(--blue); }
-
-/* Challenge box */
-.challenge { max-width: 760px; margin: 2rem 0 0; padding: 1.5rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); position: relative; }
-.challenge p { font-size: 1.06rem; color: var(--ink); line-height: 1.6; font-weight: 500; }
-.challenge strong { color: var(--ink); font-weight: 800; }
-
-/* offers band */
-.offers-band { max-width: 900px; margin: 0 auto clamp(2.4rem,4vw,3.2rem); padding: 2.2rem 2.4rem; background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #fff; border-radius: var(--r-lg); text-align: center; box-shadow: 0 30px 70px -40px rgba(11,29,51,0.6); }
-.offers-band p { font-family: var(--serif); font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.4; letter-spacing: -0.01em; }
-
-/* ---------- TIMELINE ---------- */
-.tl { max-width: 840px; margin: 0; }
-.tl__row { position: relative; padding: 0 0 1.5rem 2.6rem; border-left: 2px solid var(--blue-100); }
-.tl__row:last-child { border-left-color: transparent; padding-bottom: 0; }
-.tl__row::before { content: ""; position: absolute; left: -9px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--paper-2), 0 0 0 5px var(--blue-100); }
-.tl__card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem 1.5rem; box-shadow: 0 14px 40px -28px rgba(11,29,51,0.35); }
-.tl__time { font-family: var(--serif); font-weight: 600; font-size: 1.55rem; color: var(--blue); line-height: 1; margin-bottom: .55rem; letter-spacing: -0.01em; }
-.tl__body { font-size: 1.0rem; color: var(--slate); line-height: 1.68; }
-.tl__body strong { color: var(--ink); font-weight: 700; }
-.tl-after { max-width: var(--measure); margin-top: 2.4rem; }
-
-/* ---------- GUARD GRID ---------- */
-.guard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
-.guard-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
-.guard-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.35); }
-.guard-x { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-050); color: var(--blue); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 1rem; }
-.guard-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); margin-bottom: .5rem; line-height: 1.3; }
-.guard-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
-
-/* ---------- PRICING ---------- */
-.pricing-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; align-items: stretch; gap: 1.1rem; }
-.price-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 2rem 1.9rem; position: relative; display: flex; flex-direction: column; }
-.price-card.heart { border: 2px solid var(--blue); box-shadow: 0 40px 80px -40px rgba(37,99,235,0.55); z-index: 2; }
-.price-card.heart::before { content: "★ LE PLUS CHOISI"; position: absolute; top: -0.85rem; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em; white-space: nowrap; box-shadow: 0 8px 20px rgba(37,99,235,0.4); }
-.kicker { font-size: 0.7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); display: inline-block; margin-bottom: 1rem; }
-.price-card.heart .kicker { color: var(--blue); }
-.price { font-family: var(--serif); font-weight: 600; font-size: clamp(2.5rem, 3.6vw, 3.2rem); letter-spacing: -0.03em; color: var(--ink); line-height: 1; display: flex; align-items: baseline; gap: .3rem; }
-.price small { font-family: var(--sans); font-size: 0.9rem; font-weight: 500; color: var(--slate); letter-spacing: 0; }
-.setup-line { font-size: 0.85rem; font-weight: 600; color: var(--slate); margin-top: .55rem; }
-.card-tag { font-family: var(--serif); font-weight: 500; font-size: 1.12rem; color: var(--ink); line-height: 1.35; margin: 1.1rem 0 0; }
-.launch-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 5px 11px; border-radius: 999px; margin: 1.1rem 0 .6rem; }
-.promo-box { border: 1px solid var(--blue-100); background: var(--blue-050); border-radius: 11px; padding: .75rem .9rem; margin: 0 0 .2rem; }
-.promo-box .ps1 { display: block; font-size: 0.86rem; font-weight: 800; color: var(--blue-600); line-height: 1.35; }
-.promo-box .ps2 { display: block; font-size: 0.78rem; font-weight: 400; color: var(--slate); line-height: 1.45; margin-top: .25rem; }
-.incl-prev { font-size: 0.82rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--slate); margin: 1.4rem 0 0; }
-.feat { list-style: none; padding-top: 1.2rem; margin-top: .9rem; border-top: 1px solid var(--line); flex: 1; }
-.feat li { padding: 0.62rem 0 0.62rem 1.75rem; position: relative; font-size: 0.92rem; color: var(--ink-body); line-height: 1.5; }
-.feat li::before { content: ""; position: absolute; left: 0; top: 0.72rem; width: 15px; height: 15px; border-radius: 50%; background: var(--blue-050); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%232563EB' d='M6.4 11.2 3.2 8l1.1-1.1 2.1 2.1 5.3-5.3L12.8 4.8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 15px; }
-.feat li strong { color: var(--ink); font-weight: 700; }
-.feat .deliv-exp { display: block; font-size: 0.82rem; color: var(--slate); line-height: 1.55; margin-top: .25rem; font-weight: 400; }
-.serve-note { font-size: 0.85rem; font-weight: 700; color: var(--slate); margin-top: 1.1rem; padding-top: .95rem; border-top: 1px dashed var(--line); }
-.card-cta { display: block; text-align: center; background: var(--ink); color: #fff; padding: .95rem 1rem; border-radius: 12px; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all .2s; margin-top: 1.4rem; }
-.card-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(10,10,10,.4); }
-.price-card.heart .card-cta { background: var(--blue); }
-.price-card.heart .card-cta:hover { background: var(--blue-600); box-shadow: 0 16px 36px -12px rgba(37,99,235,.55); }
-
-/* Pourquoi ce prix — premium detached */
-.why-price { max-width: 940px; margin: clamp(2.6rem,4vw,3.6rem) auto 0; padding: clamp(2rem,3.5vw,2.8rem) clamp(1.8rem,3.5vw,3rem); background: linear-gradient(180deg, var(--nuit) 0%, var(--nuit-2) 100%); color: #E8EDF5; border-radius: var(--r-lg); position: relative; overflow: hidden; box-shadow: 0 40px 90px -50px rgba(11,29,51,0.7); }
-.why-price::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 100% 0%, rgba(37,99,235,0.22), transparent 60%); pointer-events: none; }
-.why-price .in { position: relative; z-index: 1; }
-.why-price h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff; margin-bottom: 1rem; letter-spacing: -0.015em; }
-.why-price p { font-size: 1.02rem; color: var(--slate-300); line-height: 1.78; }
-.why-price p strong { color: #fff; font-weight: 600; }
-.annual-box { max-width: 940px; margin: 1.3rem auto 0; text-align: center; padding: 1.5rem 1.7rem; border: 1px solid var(--line); background: #fff; border-radius: var(--r); }
-.annual-box .an-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; margin-bottom: .55rem; }
-.annual-box p { font-size: 0.95rem; color: var(--slate); line-height: 1.62; }
-
-/* ---------- DEVIS ---------- */
-.devis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; max-width: 900px; }
-.devis-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.7rem 1.8rem; transition: transform .2s, box-shadow .2s; }
-.devis-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -32px rgba(11,29,51,0.32); }
-.devis-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin-bottom: .4rem; }
-.devis-card p { font-size: 0.94rem; color: var(--slate); line-height: 1.6; }
-
-/* ---------- BIO ---------- */
-.bio-card { display: grid; grid-template-columns: 210px 1fr; gap: 2.4rem; align-items: start; background: linear-gradient(180deg, #fff, var(--paper-2)); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.8rem,3vw,2.8rem); max-width: 980px; box-shadow: 0 30px 70px -45px rgba(11,29,51,0.4); }
-.bio-photo-col { display: flex; flex-direction: column; gap: 0.95rem; }
-.bio-photo { width: 210px; height: 250px; border-radius: var(--r); object-fit: cover; object-position: top center; display: block; background: var(--nuit); box-shadow: 0 20px 44px -20px rgba(11,29,51,0.5); }
-.bio-cta { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; text-align: center; border: 1.5px solid var(--ink); color: var(--ink); background: #fff; padding: .72rem .85rem; border-radius: 11px; font-weight: 700; font-size: .84rem; line-height: 1.25; text-decoration: none; transition: all .2s; }
-.bio-cta svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-.bio-cta:hover { background: var(--ink); color: #fff; transform: translateY(-1px); box-shadow: 0 12px 26px -12px rgba(10,10,10,.45); }
-.bio-name { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--ink); margin-bottom: .8rem; letter-spacing: -0.01em; }
-.bio-body p { font-size: 1.04rem; color: var(--slate); line-height: 1.72; margin-bottom: .85rem; }
-.bio-body p:last-child { margin-bottom: 0; }
-.bio-body p strong { color: var(--ink); }
-
-.decision { max-width: var(--measure); margin: clamp(2.4rem,4vw,3.4rem) 0 0; }
-.places-line { margin-top: 1.5rem; padding: 1.6rem 1.8rem; background: var(--blue-050); border: 1px solid var(--blue-100); border-radius: var(--r); font-size: 1.02rem; color: var(--ink-body); line-height: 1.64; }
-.places-line strong { color: var(--ink); font-weight: 700; }
-.decision-final { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 2.1rem); color: var(--ink); letter-spacing: -0.02em; line-height: 1.22; margin-top: 1.8rem; max-width: 24ch; }
-
-/* ---------- CTA FINAL ---------- */
-.cta-final { text-align: center; }
-.cta-final h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -0.025em; color: #fff; max-width: 20ch; margin: 0 auto 2rem; }
-.cta-final .btn--wa { font-size: 1.05rem; padding: 1.1rem 2.2rem; }
-
-/* ---------- FOOTER ---------- */
-footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; }
-.footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem,4vw,2.5rem); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.4rem; }
-.footer-brand { font-family: var(--sans); font-weight: 800; font-size: 0.95rem; color: #fff; }
-.footer-brand .t { color: var(--blue-200); }
-.footer-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
-.footer-links a { color: var(--slate-400); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color .2s; }
-.footer-links a:hover { color: #fff; }
-.footer-mention { font-size: 0.74rem; color: var(--slate-400); width: 100%; padding-top: 1rem; border-top: 1px solid var(--nuit-line); }
-
-/* ---------- STICKY MOBILE CTA ---------- */
-.sticky-cta { display: none; }
-
-/* ---------- LOAD ANIMATION ---------- */
-@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.hero h1, .hero__lede, .hero__cta-row, .evidence { animation: rise .7s cubic-bezier(.22,.61,.36,1) both; }
-.hero__lede { animation-delay: .08s; }
-.hero__cta-row { animation-delay: .16s; }
-.evidence { animation-delay: .24s; }
-
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 980px) {
-  .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
-  .price-card.heart { order: -1; }
-  .price-card.heart::before { top: -0.8rem; }
+.offers-band { max-width: 900px; margin: 0 auto 2.6rem; padding: 1.8rem 2rem; background: #EFF6FF; color: var(--g900); border: 1px solid #DBEAFE; border-radius: var(--r); text-align: center; font-size: 1.2rem; font-weight: 800; line-height: 1.45; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: stretch; column-gap: 1.2rem; row-gap: 0; max-width: 1200px; margin: 0 auto; }
+.price-card { display:grid; background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
+.price-card .kicker { font-size:10px;font-weight:800;letter-spacing:.12em;color:#0B1D33;background:#F1F5F9;border:1px solid #E5E7EB;padding:4px 9px;border-radius:999px;display:inline-block;margin-bottom:.6rem; }
+.price-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+.price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.15rem; }
+.price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--g500); }
+.price-card .setup-line { font-size: 0.8rem; color: var(--g500); font-weight: 600; margin-bottom: 1rem; }
+.launch-badge { display:inline-block; font-size:0.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#fff; background:var(--pink); padding:4px 10px; border-radius:999px; margin:.1rem 0 .55rem; }
+.promo-box { border:1px solid #DBEAFE; background:#EFF6FF; border-radius:9px; padding:.6rem .8rem; margin:.15rem 0 .95rem; }
+.promo-box .ps1 { display:block; font-size:0.82rem; font-weight:800; color:var(--pink); line-height:1.35; }
+.promo-box .ps2 { display:block; font-size:0.76rem; font-weight:400; color:var(--g600); line-height:1.45; margin-top:.2rem; }
+.incl-prev { font-size:0.8rem; font-weight:700; color:var(--g600); margin:.1rem 0 .1rem; }
+.price-card ul { list-style: none; padding-top: 1.1rem; margin-top:.8rem; border-top: 1px solid var(--g100); }
+.price-card li { padding: 0.55rem 0 0.55rem 1.6rem; position: relative; font-size: 0.9rem; color: var(--g700); line-height: 1.5; }
+.price-card li::before { content: "✓"; color: var(--pink); font-weight: 800; position: absolute; left: 0; top:.55rem; }
+.price-card li strong { color: var(--g900); font-weight: 700; }
+.deliv-exp { display:block; font-size:0.8rem; color:var(--g500); line-height:1.5; margin-top:.2rem; font-weight:400; }
+.serve-note { font-size:0.85rem; font-weight:700; color:var(--g600); margin-top:1rem; padding-top:.9rem; border-top:1px dashed var(--g200); }
+.card-cta { display:block; text-align:center; background:var(--pink); color:#fff; padding:.9rem 1rem; border-radius:10px; font-weight:700; font-size:0.92rem; text-decoration:none; transition:all .2s; margin-top:1.3rem; }
+.card-cta:hover { background:var(--pink-light); box-shadow:0 8px 24px rgba(37,99,235,.28); transform:translateY(-1px); }
+.price-card.heart { border-color:var(--pink); border-width:2px; box-shadow:0 28px 60px rgba(37,99,235,0.20); z-index:2; padding:2rem 2.2rem; }
+.price-card.featured::before { content:"★ ВЫБИРАЮТ ЧАЩЕ"; position:absolute; top:-0.7rem; left:1.5rem; background:var(--pink); color:#fff; padding:0.3rem 0.85rem; border-radius:16px; font-size:0.68rem; font-weight:800; letter-spacing:0.08em; }
+@media (min-width:1101px){
+  .pricing-grid{grid-template-rows:auto;align-items:stretch;row-gap:0;}
+  .price-card{grid-row:1 / span 3;grid-template-rows:subgrid;row-gap:0;}
+  .price-card > .pc-top{display:flex;flex-direction:column;}
 }
-@media (max-width: 760px) {
-  .nav__link { display: none; }
-  .evidence { grid-template-columns: 1fr; gap: 2.2rem; }
-  .guard-grid, .devis-grid { grid-template-columns: 1fr; }
-  .bio-card { grid-template-columns: 1fr; text-align: center; gap: 1.6rem; padding: 2rem 1.5rem; }
-  .bio-photo-col { align-items: center; }
-  .bio-photo { width: 168px; height: 200px; }
-  .hero h1 { max-width: 100%; }
-  .sticky-cta {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-    position: fixed; bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
-    background: var(--blue); color: #fff; text-align: center;
-    padding: 0.95rem 1rem; border-radius: 14px; font-weight: 700;
-    text-decoration: none; font-size: 0.95rem;
-    box-shadow: 0 12px 34px rgba(37,99,235,.5); z-index: 99;
-  }
-  .sticky-cta svg { width: 18px; height: 18px; fill: currentColor; }
-  body { padding-bottom: 4.5rem; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .hero h1, .hero__lede, .hero__cta-row, .evidence { animation: none; }
+@media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
+
+.roi-card { background:#EFF6FF; color:var(--g900); padding:2.6rem; border-radius:var(--r); border:1px solid #DBEAFE; max-width:940px; margin:0 auto; }
+.roi-card h3 { font-size:1.4rem; font-weight:800; margin-bottom:1.1rem; }
+.roi-card p { font-size:1rem; line-height:1.75; color:var(--g700); }
+.roi-card p strong { color:var(--g900); font-weight:700; }
+.annual-box { max-width:940px; margin:1.3rem auto 0; text-align:center; padding:1.4rem 1.6rem; border:1px solid var(--g200); border-radius:var(--r); }
+.annual-box .an-title { font-size:0.72rem; font-weight:800; letter-spacing:.12em; color:var(--pink); text-transform:uppercase; margin-bottom:.5rem; }
+.annual-box p { font-size:0.95rem; color:var(--g600); line-height:1.6; }
+
+.devis-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; max-width:900px; }
+.devis-card { background:var(--white); border:1px solid var(--g200); border-radius:var(--r); padding:1.6rem 1.7rem; }
+.devis-card h3 { font-size:1.05rem; font-weight:800; color:var(--g900); margin-bottom:.4rem; }
+.devis-card p { font-size:0.93rem; color:var(--g600); line-height:1.6; }
+
+.bio-card { display:grid; grid-template-columns:180px 1fr; gap:2rem; align-items:start; background:#EFF6FF; border:1px solid #DBEAFE; border-radius:18px; padding:2.4rem 2.5rem; max-width:960px; }
+.bio-photo-col { display:flex; flex-direction:column; gap:1rem; }
+.bio-photo { width:180px; height:216px; border-radius:12px; object-fit:cover; object-position:top center; display:block; background:var(--g900); box-shadow:0 16px 36px -18px rgba(11,29,51,.5); }
+.bio-cta { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; text-align:center; background:var(--white); color:var(--g900); border:1.5px solid var(--g300); padding:.7rem .85rem; border-radius:10px; font-weight:700; font-size:.83rem; line-height:1.25; text-decoration:none; transition:all .2s; }
+.bio-cta:hover { border-color:var(--pink); color:var(--pink); }
+.bio-body p { font-size:1.04rem; color:var(--g700); line-height:1.7; margin-bottom:.85rem; }
+.bio-body p:last-child { margin-bottom:0; }
+.bio-body p strong { color:var(--g900); }
+.bio-name { font-size:1.1rem; font-weight:800; color:var(--g900); }
+.decision { max-width:820px; margin:2.4rem 0 0; }
+.decision .prose-block { max-width:none; }
+.places-line { margin-top:1.4rem; padding:1.4rem 1.6rem; background:var(--g100); border-radius:var(--r); font-size:1.02rem; color:var(--g700); line-height:1.62; }
+.places-line strong { color:var(--g900); }
+.decision-final { font-size:1.4rem; font-weight:800; color:var(--g900); letter-spacing:-0.01em; margin-top:1.6rem; }
+
+.cta-final { background: var(--g100); border-radius: var(--r); padding: 3rem 2rem; text-align: center; margin: 4rem 0 0; }
+.cta-final h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.4rem; letter-spacing: -0.02em; max-width:720px; margin-left:auto; margin-right:auto; }
+
+footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
+.footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-brand { font-weight: 800; font-size: 0.9rem; }
+.footer-brand .gild { color: var(--g900); }
+.footer-brand .tech { color: var(--pink); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap:wrap; }
+.footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--pink); }
+.footer-mention { font-size: 0.72rem; color: var(--g500); }
+
+.sticky-cta-mobile { display: none; }
+@media (max-width: 1100px) { .pricing-grid { grid-template-columns: 1fr; max-width: 540px; } }
+@media (max-width: 880px) {
+  .hero h1 { font-size: 2.2rem; }
+  .stat-bar { grid-template-columns: 1fr; }
+  .problem-grid, .steps, .guard-grid, .devis-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .bio-card { grid-template-columns: 1fr; padding: 2rem 1.5rem; text-align:center; }
+  .bio-photo-col { align-items:center; }
+  .sticky-cta-mobile { display:block; position:fixed; bottom:1rem; left:1rem; right:1rem; background:var(--pink); color:#fff; text-align:center; padding:0.95rem 1rem; border-radius:12px; font-weight:700; text-decoration:none; font-size:0.95rem; box-shadow:0 8px 24px rgba(11,29,51,.35); z-index:99; }
 }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav__in">
-    <a href="/" class="brand">GILD<span class="t">-TECH</span></a>
-    <div class="nav__right">
-      
-      <a href="https://wa.me/447378992318" class="nav__cta" target="_blank" rel="noopener">Написать Sarah</a>
-      <div class="lang" role="group" aria-label="Язык">
-        <a href="/sarah-th.html" hreflang="en">EN</a><span class="sep">·</span><a href="/sarah-th-fr.html" hreflang="fr">FR</a><span class="sep">·</span><span class="active" aria-current="true">RU</span>
+<nav class="top">
+  <div class="nav-inner">
+    <a href="/" class="brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#offres">Смотреть предложения</a></li>
+        <li><a href="https://wa.me/447378992318" class="btn-nav" target="_blank" rel="noopener">Написать Sarah</a></li>
+      </ul>
+      <div class="lang-select" role="group" aria-label="Язык">
+        <a class="lang" href="/sarah-th.html" hreflang="en">EN</a><a class="lang" href="/sarah-th-fr.html" hreflang="fr">FR</a><span class="lang active" aria-current="true">RU</span>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- ============ HERO + EVIDENCE (nuit) ============ -->
-<section class="band band--night hero">
-  <div class="wrap">
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="badge-new">🏝️ Для агентств недвижимости Ко Самуи</span>
     <h1>Ваш офис открыт 24/7. <span class="accent">Просто после 18:00 в нём никого нет.</span></h1>
-    <p class="hero__lede">Покупатель, который пишет и не получает ответа, делает то же, что сделали бы вы у закрытого ресторана: заходите в соседний. Никто не ждёт у закрытой двери. Тем более с 15 миллионами бат в кармане.</p>
-    <div class="hero__cta-row">
-      <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
-        Напишите ей прямо сейчас. Засеките время.
-      </a>
+    <p class="subtitle">Покупатель, который пишет и не получает ответа, делает то же, что сделали бы вы у закрытого ресторана: заходите в соседний. Никто не ждёт у закрытой двери. Тем более с 15 миллионами бат в кармане.</p>
+    <div class="ctas">
+      <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Напишите ей прямо сейчас. Засеките время.</a>
     </div>
 
-    <!-- source_verifiee=OUI (PJ 2026-08-30) : 17/2 = étude terrain GILD-TECH ; 21x en 5 min = étude de réactivité (recherche interne). Assumés publiquement. -->
-    <div class="evidence">
-      <div class="stat">
-        <div class="stat__num">17<span class="arrow">→</span>2</div>
-        <p class="stat__cap">На этом острове закрытая дверь — это норма: <b>17</b> агентств проверено во вторник вечером в 23:00. <b>2</b> ответили. А те, кто остался без ответа? Ноль повторных касаний. Никто. Никогда.</p>
-      </div>
-      <div class="stat">
-        <div class="stat__num">21<span class="x">×</span></div>
-        <p class="stat__cap">Цифры отрасли добивают: ответ в первые 5 минут повышает шансы квалифицировать покупателя в <b>21</b> раз. После 30 минут разговор почти всегда потерян.</p>
-      </div>
+    <div class="stat-bar">
+      <div class="stat-item"><div class="stat-num">17 → 2</div><div class="stat-label">агентств проверено во вторник в 23:00. Ответили 2.</div></div>
+      <div class="stat-item"><div class="stat-num">21×</div><div class="stat-label">выше шансы квалифицировать покупателя при ответе за 5 мин, а не за 30 <em>(MIT Sloan / Oldroyd, 15 000 лидов, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" class="src-link">HBR 2011</a>)</em></div></div>
+      <div class="stat-item"><div class="stat-num">£290<small style="font-size:1rem;color:var(--g500);font-weight:500;">/месяц</small></div><div class="stat-label">Sarah · от</div></div>
     </div>
-  </div>
-</section>
+    <div style="margin-top:1.6rem;font-size:0.8rem;color:var(--g500);letter-spacing:0.01em;line-height:1.8;">
+      ✓ Подключается к <strong style="color:var(--g700);">вашей CRM</strong> и инструментам, которые у вас уже есть &nbsp;·&nbsp; ✓ Выделенный WhatsApp агентства &nbsp;·&nbsp; ✓ На языке покупателя &nbsp;·&nbsp; ✓ GDPR
+    </div>
+  </section>
 
-<!-- ============ DEMAIN MATIN (S1 suite, lumière) ============ -->
-<section class="band">
-  <div class="wrap">
-    <div class="prose">
+  <!-- DEMAIN MATIN (S1 suite figée) -->
+  <section class="block" id="demain-matin">
+    <div class="prose-block">
       <p>Лучше представьте завтрашнее утро. Вы открываете телефон: три квалифицированных покупателя за ночь, бюджет подтверждён, два показа уже в вашем календаре. Sarah встретила, отсортировала, напомнила. Остаётся лишь то, что никто не сделает за вас: показ, переговоры, подпись.</p>
+      <p class="prose-punch">Она готовит почву. Вы закрываете сделку.</p>
     </div>
-    <p class="lead-punch">Она готовит почву. Вы закрываете сделку.</p>
-    <div class="setclose">
+    <div class="setclose-box">
       <p class="sc-head">Sarah делает сеттинг. Вы — клоузинг.</p>
       <p class="sc-def">Сеттинг — это вся работа до продажи: встретить каждого покупателя, отделить любопытных от настоящих и довести серьёзных до встречи. Клоузинг — это ваше ремесло: показ, переговоры, подпись. Sarah берёт первое. За вами остаётся второе — единственное, что вам платит.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 2 · LE MÉCANISME DE LA PERTE ============ -->
-<section class="band band--tint" id="perte">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec-title">Деньги не исчезли. <span class="accent">Они ушли в другое агентство.</span></h2>
-    </div>
-    <div class="prose">
+  <!-- 2 · LE MÉCANISME DE LA PERTE -->
+  <section class="block" id="perte">
+    <h2 class="section-title">Деньги не исчезли. <span class="accent">Они ушли в другое агентство.</span></h2>
+    <div class="prose-block">
       <p>Потерянный лид не оставляет следа. Нет строки «упущенные продажи» в ваших отчётах. Покупатель, оставшийся без ответа, не жалуется и не перезванивает. Он идёт на показ к коллеге, подписывает у него — и вы об этом никогда не узнаёте.</p>
       <p>Это единственная утечка денег в вашем агентстве, которая абсолютно бесшумна. Именно поэтому она длится годами.</p>
-      <p>Посчитаем на цифрах острова. Вилла за 20 миллионов бат, комиссия 5% — миллион бат за сделку. Пять обращений в неделю, одно из них приходит ночью, в выходные или пока вы на показе. Если хотя бы одно упущенное обращение в год было настоящим покупателем, закрытая дверь стоит вам миллион.</p>
     </div>
-    <p class="pull">Миллион бат. <span class="accent">В год. В тишине.</span></p>
+    <div class="problem-grid">
+      <ul class="problem-list">
+        <li>Посчитаем на цифрах острова. Вилла за 20 миллионов бат, комиссия 5% — миллион бат за сделку.</li>
+        <li>Пять обращений в неделю, одно из них приходит ночью, в выходные или пока вы на показе.</li>
+        <li>Если хотя бы одно упущенное обращение в год было настоящим покупателем, закрытая дверь стоит вам миллион.</li>
+      </ul>
+      <div class="problem-stat">
+        <div class="num">1 000 000 ฿</div>
+        <div class="desc">Миллион бат. В год. В тишине.</div>
+      </div>
+    </div>
     <div class="challenge">
-      <p><strong>Проверьте своё собственное агентство.</strong> Напишите себе сегодня в 23:00. Посмотрите на время ответа.</p>
+      <strong>Проверьте своё собственное агентство.</strong> Напишите себе сегодня в 23:00. Посмотрите на время ответа.
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 3 · LE MÉCANISME DU MARCHÉ ============ -->
-<section class="band" id="marche">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec-title">Дело не в таланте. <span class="accent">Дело в инфраструктуре.</span></h2>
-    </div>
-    <div class="prose">
+  <!-- 3 · LE MÉCANISME DU MARCHÉ -->
+  <section class="block" id="marche">
+    <h2 class="section-title">Дело не в таланте. <span class="accent">Дело в инфраструктуре.</span></h2>
+    <div class="prose-block">
       <p>Крупные порталы, где ищут ваши покупатели, не нейтральны. Они собирают спрос и направляют его к своим агентам. За каждым лидом — целая команда: люди, которым платят за повторные касания, система, из которой ничего не ускользает, менеджер, который проверяет.</p>
       <p>А вы — один. Между двумя показами, собственника надо успокоить, документы собрать. Вы отвечаете, когда можете. Ночью вы спите. А ваши покупатели пишут из Москвы, Лондона и Дубая — по своему часовому поясу, не по вашему.</p>
       <p>Матч был проигран заранее. Не потому что они лучше. Потому что у них есть машина, а у вас нет.</p>
-      <p class="punch">Sarah — это машина крупных игроков на службе у независимого агента: ваша.</p>
+      <p class="prose-punch">Sarah — это машина крупных игроков на службе у независимого агента: ваша.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 4 · SARAH, CONCRÈTEMENT — TIMELINE ============ -->
-<section class="band band--tint" id="journee">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec-title">Ваш день <span class="accent">с Sarah.</span></h2>
-    </div>
-    <div class="tl">
-      <div class="tl__row">
-        <div class="tl__card">
-          <div class="tl__time">7:00</div>
-          <div class="tl__body">Вы открываете телефон. За ночь прошли три разговора: пара из Лондона, бюджет 18 миллионов, показ назначен на четверг 14:00. Российский инвестор, вопросы по leasehold, досье передано с его контактами. Любопытный без бюджета — вежливо отсеян. <strong>Вы ничего не делали. Всё уже в вашей панели.</strong></div>
-        </div>
+  <!-- 4 · SARAH, CONCRÈTEMENT -->
+  <section class="block" id="journee">
+    <h2 class="section-title">Ваш день <span class="accent">с Sarah.</span></h2>
+    <div class="steps">
+      <div class="step">
+        <span class="time">⏱ 7:00</span>
+        <p>Вы открываете телефон. За ночь прошли три разговора: пара из Лондона, бюджет 18 миллионов, показ назначен на четверг 14:00. Российский инвестор, вопросы по leasehold, досье передано с его контактами. Любопытный без бюджета — вежливо отсеян. <strong>Вы ничего не делали. Всё уже в вашей панели.</strong></p>
       </div>
-      <div class="tl__row">
-        <div class="tl__card">
-          <div class="tl__time">11:30</div>
-          <div class="tl__body">Прямо на показе телефон вибрирует один раз: горячий лид. Француженка, уже на острове, хочет посмотреть две виллы на этой неделе. Бюджет подтверждён: 25 миллионов. Sarah предложила ей пятницу 10:00, она согласилась. Вы продолжаете показ. <strong>Встреча назначена.</strong></div>
-        </div>
+      <div class="step">
+        <span class="time">⏱ 11:30</span>
+        <p>Прямо на показе телефон вибрирует один раз: горячий лид. Француженка, уже на острове, хочет посмотреть две виллы на этой неделе. Бюджет подтверждён: 25 миллионов. Sarah предложила ей пятницу 10:00, она согласилась. Вы продолжаете показ. <strong>Встреча назначена.</strong></p>
       </div>
-      <div class="tl__row">
-        <div class="tl__card">
-          <div class="tl__time">18:00</div>
-          <div class="tl__body">Молчавший с понедельника лид только что ответил на напоминание Sarah. Он был в отъезде. Он придёт на показ в субботу. <strong>Без напоминания он подписал бы у другого, и вы бы никогда об этом не узнали.</strong></div>
-        </div>
+      <div class="step">
+        <span class="time">⏱ 18:00</span>
+        <p>Молчавший с понедельника лид только что ответил на напоминание Sarah. Он был в отъезде. Он придёт на показ в субботу. <strong>Без напоминания он подписал бы у другого, и вы бы никогда об этом не узнали.</strong></p>
       </div>
     </div>
-    <div class="prose tl-after">
+    <div class="prose-block after-steps">
       <p>Накануне каждого показа вы получаете полный портрет: кто придёт, его бюджет, его вопросы, его язык. Вы приходите, уже зная человека. Остаётся только ваше ремесло: показ, переговоры, подпись.</p>
       <p>Она отвечает менее чем за 5 минут, днём и ночью, на языке покупателя. Она сортирует. Она напоминает на Д+1, Д+3, Д+7. Она назначает встречи. Она предупреждает вас. И она никогда не скажет вашему клиенту юридическую глупость: про freehold, leasehold, квоты она даёт основы и передаёт слово вам. <strong>Экспертиза — это вы. Остальное — это она.</strong></p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 5 · LES GARDE-FOUS ============ -->
-<section class="band" id="garde-fous">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec-title">Чего Sarah <span class="accent">не сделает никогда.</span></h2>
-    </div>
+  <!-- 5 · LES GARDE-FOUS -->
+  <section class="block" id="garde-fous">
+    <h2 class="section-title">Чего Sarah <span class="accent">не сделает никогда.</span></h2>
     <div class="guard-grid">
       <div class="guard-card">
-        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Давать тайские юридические советы.</h3>
         <p>Freehold, leasehold, иностранная квота: она знает основы и никогда не выносит решения по конкретному случаю. Она эскалирует, вы решаете. Ваша ответственность защищена.</p>
       </div>
       <div class="guard-card">
-        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Трогать вашу личную жизнь.</h3>
         <p>Sarah живёт на собственной линии. Ваши личные переписки её никогда не пересекают.</p>
       </div>
       <div class="guard-card">
-        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Запирать вас.</h3>
         <p>Одно сообщение — и она останавливается. Без уведомления, без скрытого продления.</p>
       </div>
       <div class="guard-card">
-        <div class="guard-x" aria-hidden="true">✕</div>
         <h3>Хранить ваши данные.</h3>
         <p>Переписки, контакты, встречи — всё принадлежит вам. Экспорт или удаление по запросу. GDPR.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 6 · LES TROIS OFFRES ============ -->
-<section class="band band--tint" id="offres">
-  <div class="wrap">
-    <div class="offers-band">
-      <p>Вам платят не за ответы на сообщения в 23:00. Вам платят за подписанные сделки. Sarah берёт на себя всю предпродажу. Вы возвращаете себе своё ремесло.</p>
-    </div>
-    <div class="sec-head" style="max-width:32ch;">
-      <h2 class="sec-title">Три уровня. <span class="accent">На каждом — решённая задача.</span></h2>
-    </div>
+  <!-- 6 · LES TROIS OFFRES -->
+  <section class="block" id="offres">
+    <div class="offers-band">Вам платят не за ответы на сообщения в 23:00. Вам платят за подписанные сделки. Sarah берёт на себя всю предпродажу. Вы возвращаете себе своё ремесло.</div>
+    <h2 class="section-title">Три уровня. <span class="accent">На каждом — решённая задача.</span></h2>
+    <p class="section-subtitle">Оплата в GBP. Без обязательств, останавливаетесь когда захотите.</p>
 
     <div class="pricing-grid">
 
       <!-- RESPOND -->
       <div class="price-card">
-        <span class="kicker">RESPOND</span>
-        <div class="price">£290<small>/ месяц</small></div>
-        <div class="setup-line">Запуск: £490</div>
-        <div class="card-tag">Пока вы спите, она продаёт.</div>
-        <ul class="feat">
+        <div class="pc-top">
+          <span class="kicker">RESPOND</span>
+          <h3>Пока вы спите, она продаёт.</h3>
+          <div class="price">£290<small> / месяц</small></div>
+          <div class="setup-line">Запуск: £490</div>
+        </div>
+        <ul>
           <li><strong>3 часа ночи. Пишет россиянин, бюджет 20 миллионов. Sarah уже ответила.</strong><span class="deliv-exp">Ответ менее чем за 5 минут, 24/7, выделенный WhatsApp агентства, язык определяется автоматически.</span></li>
           <li><strong>Больше не теряете 20 минут на любопытного, который «просто смотрит».</strong><span class="deliv-exp">Систематическая квалификация: бюджет, тип объекта, сроки, присутствие на острове. Всё записано в вашу CRM Sarah. Серьёзные — наверх, туристы — за дверь.</span></li>
           <li><strong>Вы больше не бегаете за встречами. Они ждут вас.</strong><span class="deliv-exp">Два слота предложены под вашу занятость, подтверждение, полная карточка клиента в вашем календаре.</span></li>
+          <li><strong>Sarah подключается к вашей существующей CRM. Вы ничего не меняете в своих инструментах.</strong><span class="deliv-exp">Она надстраивается над тем, что вы уже используете. Ничего не устанавливать, не мигрировать, не изучать.</span></li>
           <li><strong>Горячий покупатель не ждёт. Вы тоже.</strong><span class="deliv-exp">Мгновенное уведомление на ваш личный WhatsApp: имя, бюджет, интересующий объект, слот. Одна вибрация — и вы знаете всё.</span></li>
           <li><strong>Она никогда не ляпнет то, что стоит вам сделки.</strong><span class="deliv-exp">Юридический барьер: freehold, leasehold, квоты. Публичные основы, дальше она передаёт слово вам. Никогда не выносит решение без вас.</span></li>
         </ul>
@@ -472,19 +358,21 @@ footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; 
       </div>
 
       <!-- CONVERT -->
-      <div class="price-card heart">
-        <span class="kicker">CONVERT</span>
-        <div class="price">£490<small>/ месяц</small></div>
-        <div class="setup-line">Запуск: £990</div>
-        <div class="launch-badge">★ Запуск Самуи</div>
-        <div class="promo-box"><span class="ps1">£290/месяц первые 2 месяца, затем £490.</span><span class="ps2">Пока она доказывает себя в вашем агентстве, вы платите цену уровня ниже.</span></div>
-        <div class="card-tag">Лид, который перестал отвечать, не потерян. Просто с ним плохо работают дальше.</div>
+      <div class="price-card featured heart">
+        <div class="pc-top">
+          <span class="kicker" style="color:var(--pink);background:#DBEAFE;border-color:#93C5FD;">CONVERT</span>
+          <h3>Лид, который перестал отвечать, не потерян. Просто с ним плохо работают дальше.</h3>
+          <div class="launch-badge">★ Запуск Самуи</div>
+          <div class="price">£490<small> / месяц</small></div>
+          <div class="setup-line">Запуск: £990</div>
+          <div class="promo-box"><span class="ps1">£290/месяц первые 2 месяца, затем £490.</span><span class="ps2">Пока она доказывает себя в вашем агентстве, вы платите цену уровня ниже.</span></div>
+        </div>
         <p class="incl-prev">Всё из RESPOND, плюс:</p>
-        <ul class="feat">
+        <ul>
           <li><strong>На этом острове никто не напоминает. Вы будете единственным.</strong><span class="deliv-exp">Автоматические напоминания: Д+1 (напоминание), Д+3 (новое предложение), Д+7 (закрывающий вопрос). Затем досье закрывается само. Половина сделок решается именно здесь.</span></li>
           <li><strong>Вы приходите на показ, уже зная покупателя.</strong><span class="deliv-exp">Автоматический бриф накануне каждой встречи, на ваш WhatsApp: профиль, бюджет, заданные вопросы, чувствительные моменты, язык.</span></li>
           <li><strong>Заявки по email больше не гниют в почте.</strong><span class="deliv-exp">Sarah читает почту агентства и форму на сайте, отвечает лидам, переводит разговор в WhatsApp. Счета и администрирование — не трогает никогда.</span></li>
-          <li><strong>Вы наконец знаете, какое объявление приносит вам деньги.</strong><span class="deliv-exp">Код на каждый объект (Реф. 2045), встроенный в ваши объявления Facebook и Marketplace, переписанные нами: номер и референс в первых двух строках, до обрезки. Sarah определяет объект с первого сообщения, и каждый лид прослеживается до источника.</span></li>
+          <li><strong>Вы наконец знаете, какое объявление приносит вам деньги.</strong><span class="deliv-exp">Код на каждый объект (Реф. 2045), настроенный при запуске и встроенный в ваши объявления. Sarah определяет объект с первого сообщения, и каждый лид прослеживается до источника.</span></li>
           <li><strong>Ваша CRM заполняется сама.</strong><span class="deliv-exp">Каждый квалифицированный лид добавляется автоматически: контакт, бюджет, объект, статус, следующее действие. Нет CRM? Мы создадим её и отдадим вам.</span></li>
           <li><strong>Вся ваша работа — на одном экране.</strong><span class="deliv-exp">Панель в реальном времени: кто написал ночью, что ответили, на каком этапе каждое досье, какие встречи предстоят.</span></li>
           <li><strong>Каждый месяц ваша лучшая карта разыгрывается в видео.</strong><span class="deliv-exp">1 видео Coup de Cœur + его отдельная страница продажи, на объект по вашему выбору. Ваши реальные фото в движении, чистая ссылка для публикации где угодно, Sarah в конце.</span></li>
@@ -495,12 +383,14 @@ footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; 
 
       <!-- DOMINATE -->
       <div class="price-card">
-        <span class="kicker">DOMINATE</span>
-        <div class="price">£790<small>/ месяц</small></div>
-        <div class="setup-line">Запуск: £1 490</div>
-        <div class="card-tag">Ваше агентство становится невозможно игнорировать.</div>
+        <div class="pc-top">
+          <span class="kicker" style="color:#0A0A0A;background:var(--g100);border-color:var(--g200);">DOMINATE</span>
+          <h3>Ваше агентство становится невозможно игнорировать.</h3>
+          <div class="price">£790<small> / месяц</small></div>
+          <div class="setup-line">Запуск: £1 490</div>
+        </div>
         <p class="incl-prev">Всё из CONVERT, плюс:</p>
-        <ul class="feat">
+        <ul>
           <li><strong>Продавцы тоже получают ответ за 5 минут. Раньше конкурентов.</strong><span class="deliv-exp">Собственник пишет «сколько стоит моя вилла?»: Sarah отвечает сразу, собирает данные (объект, район, площадь, сроки, желаемая цена) и передаёт вам полное досье. Оценка и отношения остаются за вами.</span></li>
           <li><strong>Весь ваш портфель оживает.</strong><span class="deliv-exp">Одно видео Coup de Cœur на объект, без ограничений, смонтированное на ваших фото. Качество ваших фото делает видео. Готово к публикации где угодно.</span></li>
           <li><strong>Каждый выделенный объект получает премиум-страницу.</strong><span class="deliv-exp">Фильм, галерея, 4 языка, кнопка Sarah. Одна ссылка вместо 40 фото вразнобой. Продавец показывает её друзьям, покупатель держит её открытой.</span></li>
@@ -515,71 +405,46 @@ footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; 
 
     </div>
 
-    <div class="why-price">
-      <div class="in">
-        <h3>Почему такая цена.</h3>
-        <p>Шесть функций на полную ставку: приём 24/7, напоминания, видео, премиум-страницы, соцсети, репутация. При найме одна только уже стоит дороже — и та спит по ночам. Установка (£1 490, разово): всё ваше агентство настроено вручную — портфель, объявления, коды, CRM, Google — протестировано на 4 языках перед передачей ключей. <strong>Теперь ваш расчёт.</strong> Одна сделка на вашем острове — это от 750 000 до более чем миллиона бат комиссии. Вся машина стоит меньше 500 000 ฿ в год. Сколько покупателей и мандатов вы должны упустить за год, чтобы она не окупилась? Достаточно одного, чтобы всё вернуть. А вы уже упускаете больше одного.</p>
-      </div>
+    <div class="roi-card" style="margin-top:2.6rem;">
+      <h3>Почему такая цена.</h3>
+      <p>Шесть функций на полную ставку: приём 24/7, напоминания, видео, премиум-страницы, соцсети, репутация. При найме одна только уже стоит дороже — и та спит по ночам. Установка (£1 490, разово): всё ваше агентство настроено вручную — портфель, объявления, коды, CRM, Google — протестировано на 4 языках перед передачей ключей. <strong>Теперь ваш расчёт.</strong> Одна сделка на вашем острове — это от 750 000 до более чем миллиона бат комиссии. Вся машина стоит меньше 500 000 ฿ в год. Сколько покупателей и мандатов вы должны упустить за год, чтобы она не окупилась? Достаточно одного, чтобы всё вернуть. А вы уже упускаете больше одного.</p>
     </div>
 
     <div class="annual-box">
       <div class="an-title">Годовой</div>
       <p>2 месяца бесплатно + установка бесплатно. Один платёж, покрывает двенадцать месяцев. Никакого автоматического продления. Помесячно: без обязательств. Вы останавливаетесь когда захотите. Оплата в GBP через Girlden LTD. Цены в батах ориентировочные, пересматриваются ежеквартально.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 7 · SUR DEVIS ============ -->
-<section class="band" id="devis">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">По запросу · Маркетинг и креатив</span>
-      <h2 class="sec-title">Когда ответить уже недостаточно, <span class="accent">мы строим.</span></h2>
-    </div>
+  <!-- 7 · SUR DEVIS -->
+  <section class="block" id="devis">
+    <h2 class="section-title">Когда ответить уже недостаточно, <span class="accent">мы строим.</span></h2>
+    <p class="section-subtitle">По запросу · Маркетинг и креатив.</p>
     <div class="devis-grid">
-      <div class="devis-card">
-        <h3>Премиум-сайт</h3>
-        <p>Сайт, которого заслуживает ваше агентство.</p>
-      </div>
-      <div class="devis-card">
-        <h3>SEO</h3>
-        <p>Вы появляетесь, когда ищут недвижимость на Самуи.</p>
-      </div>
-      <div class="devis-card">
-        <h3>Локальное продвижение</h3>
-        <p>Вы выходите первыми на Google Maps.</p>
-      </div>
-      <div class="devis-card">
-        <h3>Индивидуальные решения</h3>
-        <p>Сверх премиум-страниц: полноценный сайт агентства, программа застройщика, отдельный проект.</p>
-      </div>
+      <div class="devis-card"><h3>Премиум-сайт</h3><p>Сайт, которого заслуживает ваше агентство.</p></div>
+      <div class="devis-card"><h3>SEO</h3><p>Вы появляетесь, когда ищут недвижимость на Самуи.</p></div>
+      <div class="devis-card"><h3>Локальное продвижение</h3><p>Вы выходите первыми на Google Maps.</p></div>
+      <div class="devis-card"><h3>Индивидуальные решения</h3><p>Сверх премиум-страниц: полноценный сайт агентства, программа застройщика, отдельный проект.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 8 · QUI EST DERRIÈRE + LA DÉCISION ============ -->
-<section class="band band--tint" id="qui">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="sec-title">За Sarah стоит человек. <span class="accent">И он знает ваш остров.</span></h2>
-    </div>
+  <!-- 8 · QUI EST DERRIÈRE + DÉCISION -->
+  <section class="block" id="qui">
+    <h2 class="section-title">За Sarah стоит человек. <span class="accent">И он знает ваш остров.</span></h2>
     <div class="bio-card">
       <div class="bio-photo-col">
-        <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="200" height="240">
-        <a class="bio-cta" href="https://calendly.com/ops-gild-tech/30min" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 7v10H5V9h14z"/></svg>
-          Записаться на 30 мин с Pierre-Jean
-        </a>
+        <img class="bio-photo" src="/assets/pj-grisoni.png" alt="Pierre-Jean Deàk Grisoni" width="180" height="216">
+        <a class="bio-cta" href="https://calendly.com/ops-gild-tech/30min" target="_blank" rel="noopener">📅 Записаться на 30 мин с Pierre-Jean</a>
       </div>
       <div class="bio-body">
-        <p class="bio-name">Pierre-Jean Deàk Grisoni — основатель GILD-TECH (Girlden LTD).</p>
+        <p class="bio-name">Pierre-Jean Deàk Grisoni, основатель GILD-TECH (Girlden LTD).</p>
         <p>Он проверил этот рынок на месте, агентство за агентством: 17 агентств Ко Самуи, во вторник вечером в 23:00. Два ответа. Ноль напоминаний. Sarah — это тот ответ, который никто не отправил той ночью.</p>
         <p>Никакой анонимной платформы, никакой поддержки за рубежом, никакого сгенерированного аватара. Один собеседник, один номер, человек, который отвечает.</p>
       </div>
     </div>
 
     <div class="decision">
-      <div class="prose">
+      <div class="prose-block">
         <p>Сегодня вечером покупатель напишет. Как вчера вечером. Как завтра вечером.</p>
         <p>В этом нет ничего исключительного. Это просто ваш рынок, который живёт ночью, пока ваш телефон стоит на беззвучном.</p>
         <p>Вопрос не в том, теряете ли вы покупателей. Вы теряете их годами — здесь их теряют все, никто это не измеряет. Вопрос в том, как долго вы ещё согласны этого не знать.</p>
@@ -589,26 +454,21 @@ footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; 
       </div>
       <p class="decision-final">На острове есть лишь одно самое отзывчивое агентство. Единственное настоящее решение — какое именно.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ CTA FINAL (nuit) ============ -->
-<section class="band band--night">
-  <div class="wrap cta-final">
+  <!-- CTA FINAL -->
+  <div class="cta-final">
     <h2>На острове есть лишь одно самое отзывчивое агентство.</h2>
-    <a href="https://wa.me/447378992318" class="btn btn--wa" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
-      Напишите Sarah прямо сейчас. Засеките время.
-    </a>
+    <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Напишите Sarah прямо сейчас. Засеките время.</a>
   </div>
-</section>
+
+</div>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">GILD<span class="t">-TECH</span></div>
+    <div class="footer-brand"><span class="gild">GILD</span>-<span class="tech">TECH</span></div>
     <ul class="footer-links">
       <li><a href="/sarah-th-ru.html">Sarah · Самуи</a></li>
-      
       <li><a href="/terms">Условия</a></li>
       <li><a href="/legal-notice">Правовая информация</a></li>
       <li><a href="/privacy">Конфиденциальность</a></li>
@@ -617,10 +477,7 @@ footer { background: var(--nuit-2); color: var(--slate-400); padding: 2.6rem 0; 
   </div>
 </footer>
 
-<a href="https://wa.me/447378992318" class="sticky-cta" target="_blank" rel="noopener" aria-label="Написать Sarah">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.6-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 2 3.4 1.9 2.6 3.9 3.2 5.3 3.6.9.2 1.8.2 2.4.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
-  Напишите Sarah. Засеките время.
-</a>
+<a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Написать Sarah">Напишите Sarah. Засеките время.</a>
 
 </body>
 </html>
