@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Contrat de service · GILD-TECH</title>
+<style>
+  :root{
+    --bg:#F5F7FB; --card:#ffffff; --line:rgba(11,29,51,.12); --line2:rgba(11,29,51,.20);
+    --txt:#0B1D33; --ink:#0A0A0A; --mut:#5b6b7f; --accent:#2563EB; --accent2:#1d4ed8;
+    --field:#fbfcfe; --tblhead:#E8EEF7; --docline:#CBD5E1;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 20px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:19px}
+  .logo .g{color:var(--accent)} .logo .i{color:var(--txt)}
+  .badge{font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+  .lead{color:var(--mut);font-size:14px;margin:0 0 20px}
+  .controls{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+  .toggle{display:inline-flex;background:var(--field);border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+  .toggle button{font-family:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:var(--mut);padding:9px 18px;cursor:pointer}
+  .toggle button.on{background:var(--accent);color:#fff}
+  .dl{display:flex;gap:8px;flex-wrap:wrap}
+  .dl a{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;text-decoration:none;
+    color:var(--txt);background:var(--field);border:1px solid var(--line2);border-radius:9px;padding:8px 13px}
+  .dl a:hover{border-color:var(--accent);color:var(--accent)}
+  .dl a .ext{font-size:11px;color:var(--mut);font-weight:700}
+  .tip{border:1px solid var(--line2);background:#fff8ee;border-color:#f0b463;border-radius:12px;padding:14px 16px;margin:0 0 20px;font-size:13.5px;color:#7a4f14}
+  .tip b{color:#0B1D33}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:34px 40px;
+    box-shadow:0 1px 2px rgba(11,29,51,.04),0 10px 30px -18px rgba(11,29,51,.20)}
+  @media(max-width:640px){ .paper{padding:24px 20px} .wrap{padding:24px 14px 64px} }
+
+  /* --- contract body (scoped under .doc) --- */
+  .doc{color:var(--ink);font-size:14px;line-height:1.55}
+  .doc .brand{font-size:24px;font-weight:800;letter-spacing:-.5px}
+  .doc .brand .g{color:var(--accent)} .doc .brand .i{color:var(--txt)}
+  .doc .subhead{font-size:11px;color:var(--mut);padding-bottom:8px;border-bottom:2.5px solid var(--accent);margin-bottom:18px}
+  .doc h1.title{font-size:26px;color:var(--txt);margin:8px 0 2px;font-weight:800}
+  .doc .lede{color:var(--mut);font-style:italic;margin:0 0 12px}
+  .doc h2{font-size:17px;color:var(--txt);margin:22px 0 7px;font-weight:700}
+  .doc h3{font-size:14px;color:var(--txt);margin:13px 0 5px;font-weight:700}
+  .doc p{margin:0 0 9px} .doc ul{margin:3px 0 10px;padding-left:20px} .doc li{margin:0 0 5px}
+  .doc li::marker{color:var(--accent)}
+  .doc .hr{border:0;border-top:1px solid var(--docline);margin:13px 0}
+  .doc .b{font-weight:700} .doc .f{color:var(--accent);font-weight:700}
+  .doc .note{color:var(--mut);font-style:italic;font-size:13px}
+  .doc table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px}
+  .doc th,.doc td{border:1px solid var(--docline);padding:8px 11px;text-align:left}
+  .doc th{background:var(--tblhead);color:var(--txt)} .doc td.r,.doc th.r{text-align:right}
+  .doc .amt{font-weight:700;color:var(--txt)}
+  .doc .sig{display:flex;gap:24px;margin-top:12px;flex-wrap:wrap}
+  .doc .sig>div{flex:1;min-width:220px;border:1px solid var(--docline);padding:12px 14px}
+  .doc .sig .h{font-weight:700;color:var(--txt);margin-bottom:6px} .doc .sig .l{margin:12px 0}
+  .doc .foot{margin-top:18px;padding-top:8px;border-top:1px solid var(--docline);text-align:center;color:var(--mut);font-size:11px}
+  .rgpd{font-size:11.5px;color:var(--mut);line-height:1.5;margin-top:22px;text-align:center}
+  @media print{ body{background:#fff} .controls,.tip,.lead,header .badge,.rgpd{display:none!important} .paper{border:0;box-shadow:none;padding:0} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="g">GILD-TECH</span> <span class="i">Immo</span></div>
+    <div class="badge">Contrat de service</div>
+  </header>
+
+  <p class="lead">Modèle de contrat prêt à signer — Girlden LTD (GILD-TECH Immo). Deux versions : française et anglaise (UK / Belgique).</p>
+
+  <div class="controls">
+    <div class="toggle">
+      <button id="btnFR" class="on" onclick="show('FR')">Français</button>
+      <button id="btnEN" onclick="show('EN')">English</button>
+    </div>
+    <div class="dl" id="dlFR">
+      <a href="CONTRAT-SERVICE-GILD-TECH-TEMPLATE-FR.docx" download>⬇ Word <span class="ext">.docx</span></a>
+      <a href="CONTRAT-SERVICE-GILD-TECH-TEMPLATE-FR.pdf" target="_blank" rel="noopener">⬇ PDF <span class="ext">.pdf</span></a>
+      <a href="#" onclick="window.print();return false">🖨 Imprimer</a>
+    </div>
+    <div class="dl" id="dlEN" hidden>
+      <a href="SERVICE-AGREEMENT-GILD-TECH-TEMPLATE-EN.docx" download>⬇ Word <span class="ext">.docx</span></a>
+      <a href="SERVICE-AGREEMENT-GILD-TECH-TEMPLATE-EN.pdf" target="_blank" rel="noopener">⬇ PDF <span class="ext">.pdf</span></a>
+      <a href="#" onclick="window.print();return false">🖨 Print</a>
+    </div>
+  </div>
+
+  <div class="tip" id="tipFR"><b>Modèle vierge.</b> Les champs <span style="color:#2563EB;font-weight:700">[entre crochets et en bleu]</span> se remplissent en closing avec le client. Téléchargez le <b>.docx</b> pour saisir par-dessus, ou le <b>.pdf</b> à faire signer.</div>
+  <div class="tip" id="tipEN" hidden><b>Blank template.</b> The <span style="color:#2563EB;font-weight:700">[bracketed, blue]</span> fields are filled in at closing with the client. Download the <b>.docx</b> to type over them, or the <b>.pdf</b> to sign.</div>
+
+  <div class="paper">
+    <!-- ===================== FR ===================== -->
+    <div class="doc" id="docFR">
+<div class="brand"><span class="g">GILD-TECH</span> <span class="i">Immo</span></div>
+<div class="subhead">Girlden LTD&nbsp;·&nbsp;CRN 14837617&nbsp;·&nbsp;71–75 Shelton Street, Covent Garden, London WC2H 9JQ</div>
+<h1 class="title">CONTRAT DE SERVICE</h1>
+<p class="lede">Assistant IA « Sarah » — qualification et suivi de contacts entrants</p>
+<hr class="hr">
+<p class="b">ENTRE LES SOUSSIGNÉS</p>
+<p><span class="b">Le Prestataire</span><br>
+Girlden LTD, société de droit anglais (Private Limited Company). Numéro d’immatriculation (CRN) : 14837617.<br>
+Siège social : 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ, Royaume-Uni.<br>
+Exerçant sous la marque GILD-TECH Immo. Ci-après « le Prestataire ».</p>
+<p><span class="b">Le Client</span><br>
+Raison sociale : <span class="f">[Raison sociale du client]</span><br>
+Forme / immatriculation : <span class="f">[Forme juridique / n° d’immatriculation]</span><br>
+Adresse : <span class="f">[Adresse du client]</span><br>
+Représenté par : <span class="f">[Nom du représentant]</span> (qualité : <span class="f">[Qualité]</span>)<br>
+Email / Téléphone : <span class="f">[Email]</span>&nbsp;·&nbsp;<span class="f">[Téléphone]</span><br>
+Ci-après « le Client ». Ensemble désignés « les Parties ».</p>
+<hr class="hr">
+<h2>1. Objet du contrat</h2>
+<p>Le Prestataire met à la disposition du Client « Sarah », un assistant conversationnel automatisé qui répond aux contacts entrants du Client sur WhatsApp, les qualifie (type de bien, zone, budget, échéance) et organise le suivi vers les négociateurs du Client.</p>
+<p><span class="b">Offre souscrite :</span> <span class="f">[Offre : RESPOND / CONVERT / DOMINATE]</span></p>
+<p class="note">RESPOND (palier Capter) · CONVERT (palier Convertir) · DOMINATE (palier Développer, périmètre défini en annexe). Le périmètre de l’offre retenue est décrit à l’article 2.</p>
+<h2>2. Périmètre de la prestation</h2>
+<p>Le Prestataire s’engage sur ce qui est décrit ci-dessous, et uniquement sur cela. Toute fonctionnalité non listée est hors périmètre.</p>
+<h3>2.1&nbsp;&nbsp;RESPOND — inclus et actif dès la mise en service</h3>
+<ul>
+<li>Réponse automatique aux contacts entrants sur WhatsApp, 24h/24 et 7j/7, dans un délai cible de quelques minutes.</li>
+<li>Conversation de qualification en langage naturel, en français, anglais et russe (le thaï est disponible en écrit ; la voix n’est pas incluse — voir 2.4).</li>
+<li>Recueil des éléments clés : type de bien, zone, budget indicatif, échéance.</li>
+<li>Proposition d’un créneau de rendez-vous via le lien de réservation du Client (configuré à l’onboarding).</li>
+<li>Enregistrement de chaque contact et de sa qualification dans un tableur (CRM) mis à disposition.</li>
+<li>Transmission d’un récapitulatif au négociateur concerné sur WhatsApp.</li>
+<li>Garde-fous intégrés : Sarah ne s’invente jamais de chiffres (prix, surface), reste sur le canal WhatsApp, et rédige un récapitulatif avant tout passage de relais.</li>
+</ul>
+<h3>2.2&nbsp;&nbsp;CONVERT — inclus en complément de RESPOND</h3>
+<ul>
+<li>Relances automatiques des contacts restés sans réponse (séquence multi-touches, anti-rendez-vous manqué).</li>
+<li>Distribution automatique des contacts au bon négociateur selon la zone (routage / rotation).</li>
+<li>Rattachement d’un contact à un bien du portefeuille et notifications par email à l’agence : ces deux briques sont paramétrées et activées pendant l’onboarding, au rythme de la configuration du Client (elles ne sont pas actives à la première minute).</li>
+</ul>
+<h3>2.3&nbsp;&nbsp;Configuré à l’onboarding (toutes offres)</h3>
+<p>Ces éléments ne sont pas « prêts à l’emploi » : ils sont mis en place ensemble pendant la mise en service (article 5).</p>
+<ul>
+<li>Raccordement d’un canal WhatsApp dédié au Client.</li>
+<li>Lien de réservation de rendez-vous (agenda du Client).</li>
+<li>Nom et ton de l’agence, zones et affectation aux négociateurs.</li>
+<li>Tableur CRM. Calibrage des messages au ton du Client.</li>
+</ul>
+<h3>2.4&nbsp;&nbsp;Hors périmètre (non inclus)</h3>
+<p>Pour être transparent, les éléments suivants ne sont pas fournis au titre du présent contrat :</p>
+<ul>
+<li>Sarah vocale (réponse aux messages vocaux et appels) — en cours de mise au point, non garantie, non incluse.</li>
+<li>Réponse automatique aux commentaires Facebook / Instagram (comment-to-DM) — évolution future, non disponible.</li>
+<li>Toute intégration à un logiciel tiers du Client non expressément mentionnée en annexe.</li>
+<li>La production ou la vérification juridique des annonces, mandats ou documents du Client.</li>
+</ul>
+<p>Ces éléments pourront faire l’objet d’un avenant s’ils deviennent disponibles.</p>
+<h2>3. Prix et facturation</h2>
+<p>Montants exprimés en livres sterling (GBP), hors taxes applicables le cas échéant.</p>
+<table>
+<tr><th>Offre</th><th class="r">Abonnement</th><th class="r">Setup</th></tr>
+<tr><td>RESPOND (Capter)</td><td class="r amt">£290 / mois</td><td class="r amt">£990</td></tr>
+<tr><td>CONVERT (Convertir)</td><td class="r amt">£490 / mois</td><td class="r amt">£990</td></tr>
+<tr><td>DOMINATE (Développer)</td><td class="r amt">£790 / mois</td><td class="r amt">£990</td></tr>
+</table>
+<p><span class="b">Offre retenue :</span> <span class="f">[RESPOND / CONVERT / DOMINATE]</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="b">Abonnement mensuel :</span> <span class="f">[Prix mensuel]</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="b">Setup :</span> <span class="f">[Setup]</span></p>
+<p><span class="b">Prix de lancement le cas échéant :</span> <span class="f">[Prix de lancement + durée]</span></p>
+<p>L’abonnement est payable mensuellement et d’avance. Les frais de mise en service sont dus avant le démarrage de la configuration.</p>
+<h2>4. Durée et résiliation</h2>
+<ul>
+<li>Le contrat prend effet à sa signature et est conclu au mois, sans engagement de durée minimale.</li>
+<li>Il se renouvelle mois par mois par le paiement de la mensualité suivante. Il ne comporte aucune reconduction tacite dans un engagement ferme : le Client n’est jamais enfermé dans une durée.</li>
+<li>Chaque Partie peut résilier à tout moment, par simple écrit (email). La résiliation prend effet à la fin de la période mensuelle en cours ; aucune mensualité entamée n’est due au-delà.</li>
+<li><span class="b">Garantie 30 jours satisfait ou remboursé :</span> si le Client n’est pas satisfait durant les 30 premiers jours suivant la mise en service, il obtient sur simple demande le remboursement intégral des sommes versées (abonnement et setup), sans justification.</li>
+</ul>
+<h2>5. Mise en service</h2>
+<p><span class="b">Date de mise en service prévue :</span> <span class="f">[Date de mise en service]</span></p>
+<ul>
+<li>La configuration démarre à réception des accès nécessaires et du paiement des frais de mise en service.</li>
+<li>Délai indicatif : 3 à 5 jours ouvrés pour la configuration complète (canal WhatsApp, lien de rendez-vous, CRM, zones et affectations, calibrage des messages).</li>
+<li>Ce délai dépend de la fourniture par le Client des éléments demandés. Le Prestataire ne promet aucune mise en service immédiate.</li>
+</ul>
+<h2>6. Responsabilités et limitation</h2>
+<ul>
+<li><span class="b">Rôle de Sarah :</span> Sarah fournit des informations générales et organise le premier contact. Elle ne donne jamais de conseil juridique, fiscal ou financier tranché, ne s’engage sur aucun prix ferme et ne conclut aucune vente. La relation client, les visites, les négociations et toutes les décisions restent la responsabilité exclusive du Client.</li>
+<li><span class="b">Vérification :</span> l’assistant repose sur une intelligence artificielle qui peut se tromper. Le Client s’engage à vérifier toute information sensible avant de s’en prévaloir auprès d’un tiers.</li>
+<li><span class="b">Aucune obligation de résultat commercial :</span> le Prestataire met en œuvre les moyens décrits à l’article 2. Il ne garantit aucun nombre de contacts, de rendez-vous ou de ventes.</li>
+<li><span class="b">Dépendances tierces :</span> le service repose sur des fournisseurs tiers (WhatsApp / Meta, agenda de réservation, Google, hébergement d’automatisation, fournisseurs d’IA). Le Prestataire n’est pas responsable des interruptions, modifications de conditions ou suspensions de compte imputables à ces tiers, ni des cas de force majeure.</li>
+<li><span class="b">Limitation de responsabilité :</span> la responsabilité totale du Prestataire, tous préjudices confondus, est plafonnée au montant des sommes effectivement payées par le Client au cours des trois (3) derniers mois. Le Prestataire n’est en aucun cas responsable des dommages indirects (perte de chiffre d’affaires, de clientèle, de données, d’image).</li>
+</ul>
+<h2>7. Données et RGPD</h2>
+<ul>
+<li><span class="b">Propriété :</span> les données traitées (contacts, échanges, qualifications) appartiennent au Client.</li>
+<li><span class="b">Rôles :</span> le Client est responsable de traitement ; le Prestataire agit en sous-traitant au sens du RGPD, pour le seul compte du Client et selon ses instructions.</li>
+<li><span class="b">Base légale :</span> le Client garantit disposer d’une base légale valable pour être contacté par ses contacts entrants et pour leur traitement.</li>
+<li><span class="b">Sous-traitants ultérieurs :</span> le service s’appuie notamment sur WhatsApp / Meta, Google, un outil de prise de rendez-vous, un hébergeur d’automatisation et des fournisseurs d’IA. Le Client en est informé et les accepte.</li>
+<li><span class="b">Export et effacement :</span> le Client peut demander à tout moment l’export de ses données ou leur effacement. À la fin du contrat, les données sont supprimées dans un délai de 30 jours, sauf obligation légale de conservation.</li>
+</ul>
+<h2>8. Confidentialité</h2>
+<p>Chaque Partie s’engage à garder strictement confidentielles les informations non publiques de l’autre (données commerciales, contacts, méthodes, tarifs) et à ne les utiliser que pour l’exécution du présent contrat. Cet engagement survit deux (2) ans après la fin du contrat.</p>
+<h2>9. Paiement</h2>
+<ul>
+<li>Paiement par Stripe, en GBP, par prélèvement mensuel d’avance.</li>
+<li><span class="b">Défaut de paiement :</span> en cas d’impayé, le Prestataire adresse un rappel. Sans régularisation sous 7 jours, le service est suspendu jusqu’au paiement. Une suspension pour impayé n’ouvre droit à aucun remboursement.</li>
+<li>Les frais de mise en service ne sont pas remboursables, sous réserve de la garantie 30 jours (article 4).</li>
+</ul>
+<h2>10. Dispositions générales</h2>
+<ul>
+<li><span class="b">Droit applicable :</span> le présent contrat est régi par le droit anglais. Tout litige relève des tribunaux compétents d’Angleterre et du Pays de Galles.</li>
+<li>Intégralité : le contrat et ses annexes expriment l’intégralité de l’accord des Parties et remplacent tout échange antérieur.</li>
+<li>Avenants : toute modification fait l’objet d’un écrit signé des deux Parties.</li>
+<li>Indépendance des clauses : si une clause est jugée invalide, les autres demeurent applicables.</li>
+</ul>
+<h2>Signatures</h2>
+<p>Fait à <span class="f">[Lieu]</span>, le <span class="f">[Date]</span>, en deux exemplaires.</p>
+<div class="sig">
+<div><div class="h">Le Prestataire</div>Pour Girlden LTD (GILD-TECH Immo)<br>Nom : <span class="f">[Nom]</span><br>Qualité : <span class="f">[Qualité]</span><div class="l">Signature :</div></div>
+<div><div class="h">Le Client</div>Pour <span class="f">[Raison sociale du client]</span><br>Nom : <span class="f">[Nom]</span><br>Qualité : <span class="f">[Qualité]</span><div class="l">Signature :</div></div>
+</div>
+<div class="foot">Girlden LTD — Contrat de service GILD-TECH Immo — CRN 14837617 — 71–75 Shelton Street, London WC2H 9JQ.</div>
+    </div>
+
+    <!-- ===================== EN ===================== -->
+    <div class="doc" id="docEN" hidden>
+<div class="brand"><span class="g">GILD-TECH</span> <span class="i">Immo</span></div>
+<div class="subhead">Girlden LTD&nbsp;·&nbsp;CRN 14837617&nbsp;·&nbsp;71–75 Shelton Street, Covent Garden, London WC2H 9JQ</div>
+<h1 class="title">SERVICE AGREEMENT</h1>
+<p class="lede">"Sarah" AI assistant — inbound enquiry qualification and follow-up</p>
+<hr class="hr">
+<p class="b">BETWEEN</p>
+<p><span class="b">The Provider</span><br>
+Girlden LTD, a company incorporated in England (Private Limited Company). Company number (CRN): 14837617.<br>
+Registered office: 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom.<br>
+Trading as GILD-TECH Immo. Referred to as "the Provider".</p>
+<p><span class="b">The Client</span><br>
+Legal name: <span class="f">[Client legal name]</span><br>
+Legal form / registration: <span class="f">[Legal form / registration no.]</span><br>
+Address: <span class="f">[Client address]</span><br>
+Represented by: <span class="f">[Representative name]</span> (title: <span class="f">[Title]</span>)<br>
+Email / Phone: <span class="f">[Email]</span>&nbsp;·&nbsp;<span class="f">[Phone]</span><br>
+Referred to as "the Client". Together, "the Parties".</p>
+<hr class="hr">
+<h2>1. Purpose</h2>
+<p>The Provider makes available to the Client "Sarah", an automated conversational assistant that replies to the Client’s inbound enquiries on WhatsApp, qualifies them (property type, area, budget, timeline) and organises follow-up to the Client’s agents.</p>
+<p><span class="b">Selected plan:</span> <span class="f">[Plan: RESPOND / CONVERT / DOMINATE]</span></p>
+<p class="note">RESPOND (Capture tier) · CONVERT (Convert tier) · DOMINATE (Develop tier, scope set out in an appendix). The scope of the selected plan is set out in clause 2.</p>
+<h2>2. Scope of services</h2>
+<p>The Provider commits to what is described below, and only to that. Any feature not listed is out of scope.</p>
+<h3>2.1&nbsp;&nbsp;RESPOND — included and live from go-live</h3>
+<ul>
+<li>Automated replies to inbound enquiries on WhatsApp, 24/7, within a target of a few minutes.</li>
+<li>Qualification conversation in natural language, in French, English and Russian (Thai available in writing; voice is not included — see 2.4).</li>
+<li>Capture of the key details: property type sought, area, indicative budget, timeline.</li>
+<li>Proposal of an appointment slot via the Client’s booking link (configured at onboarding).</li>
+<li>Logging of each enquiry and its qualification into a spreadsheet (CRM) provided.</li>
+<li>Handover summary sent to the relevant agent on WhatsApp.</li>
+<li>Built-in safeguards: Sarah never invents figures (price, size), stays on the WhatsApp channel, and writes a recap before any handover.</li>
+</ul>
+<h3>2.2&nbsp;&nbsp;CONVERT — included in addition to RESPOND</h3>
+<ul>
+<li>Automated follow-ups of enquiries left unanswered (multi-touch sequence, no-show prevention).</li>
+<li>Automatic routing of enquiries to the right agent by area (routing / rotation).</li>
+<li>Linking an enquiry to a property in the portfolio and email notifications to the agency: these two items are set up and switched on during onboarding, at the pace of the Client’s configuration (they are not live in the first minute).</li>
+</ul>
+<h3>2.3&nbsp;&nbsp;Configured at onboarding (all plans)</h3>
+<p>These are not "off-the-shelf": they are set up together during go-live (clause 5).</p>
+<ul>
+<li>Connection of a WhatsApp channel dedicated to the Client.</li>
+<li>Appointment booking link (Client’s calendar).</li>
+<li>Agency name and tone, areas and agent assignment.</li>
+<li>CRM spreadsheet. Calibration of messages to the Client’s tone.</li>
+</ul>
+<h3>2.4&nbsp;&nbsp;Out of scope (not included)</h3>
+<p>For full transparency, the following are not provided under this agreement:</p>
+<ul>
+<li>Voice Sarah (replies to voice messages and calls) — under development, not guaranteed, not included.</li>
+<li>Automated replies to Facebook / Instagram comments (comment-to-DM) — future roadmap, not available.</li>
+<li>Any integration with third-party Client software not expressly listed in an appendix.</li>
+<li>The drafting or legal review of the Client’s listings, mandates or documents.</li>
+</ul>
+<p>These may be added by written amendment if and when they become available.</p>
+<h2>3. Fees and billing</h2>
+<p>Amounts in pounds sterling (GBP), excluding any applicable taxes.</p>
+<table>
+<tr><th>Plan</th><th class="r">Subscription</th><th class="r">Setup</th></tr>
+<tr><td>RESPOND (Capture)</td><td class="r amt">£290 / month</td><td class="r amt">£990</td></tr>
+<tr><td>CONVERT (Convert)</td><td class="r amt">£490 / month</td><td class="r amt">£990</td></tr>
+<tr><td>DOMINATE (Develop)</td><td class="r amt">£790 / month</td><td class="r amt">£990</td></tr>
+</table>
+<p><span class="b">Selected plan:</span> <span class="f">[RESPOND / CONVERT / DOMINATE]</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="b">Monthly subscription:</span> <span class="f">[Monthly price]</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="b">Setup:</span> <span class="f">[Setup]</span></p>
+<p><span class="b">Launch price (if any):</span> <span class="f">[Launch price + duration]</span></p>
+<p>The subscription is payable monthly in advance. The setup fee is due before configuration begins.</p>
+<h2>4. Term and termination</h2>
+<ul>
+<li>This agreement takes effect on signature and runs month to month, with no minimum term.</li>
+<li>It renews monthly upon payment of the next month’s fee. There is no tacit renewal into any fixed commitment: the Client is never locked in.</li>
+<li>Either Party may terminate at any time, by simple written notice (email). Termination takes effect at the end of the current paid month; no fee is owed beyond it.</li>
+<li><span class="b">30-day money-back guarantee:</span> if the Client is not satisfied during the first 30 days after go-live, the Provider refunds in full all amounts paid (subscription and setup) on simple request, no questions asked.</li>
+</ul>
+<h2>5. Go-live</h2>
+<p><span class="b">Planned go-live date:</span> <span class="f">[Go-live date]</span></p>
+<ul>
+<li>Configuration starts on receipt of the required access and payment of the setup fee.</li>
+<li>Indicative lead time: 3 to 5 business days for full configuration (WhatsApp channel, booking link, CRM, areas and assignment, message calibration).</li>
+<li>This lead time depends on the Client supplying the requested items. The Provider makes no promise of instant go-live.</li>
+</ul>
+<h2>6. Responsibilities and limitation</h2>
+<ul>
+<li><span class="b">Sarah’s role:</span> Sarah provides general information and organises the first contact. She never gives definitive legal, tax or financial advice, commits to no firm price and closes no sale. The client relationship, viewings, negotiations and all decisions remain the Client’s sole responsibility.</li>
+<li><span class="b">Verification:</span> the assistant relies on artificial intelligence, which can be wrong. The Client agrees to verify any sensitive information before relying on it with a third party.</li>
+<li><span class="b">No commercial results guaranteed:</span> the Provider deploys the means described in clause 2. It guarantees no number of enquiries, appointments or sales.</li>
+<li><span class="b">Third-party dependencies:</span> the service relies on third-party providers (WhatsApp / Meta, booking calendar, Google, automation hosting, AI providers). The Provider is not liable for outages, changes of terms or account suspensions attributable to those third parties, nor for events of force majeure.</li>
+<li><span class="b">Limitation of liability:</span> the Provider’s total liability, for all losses combined, is capped at the amounts actually paid by the Client over the last three (3) months. The Provider is in no case liable for indirect losses (loss of revenue, clientele, data or reputation).</li>
+</ul>
+<h2>7. Data and GDPR</h2>
+<ul>
+<li><span class="b">Ownership:</span> the data processed (contacts, exchanges, qualifications) belongs to the Client.</li>
+<li><span class="b">Roles:</span> the Client is the data controller; the Provider acts as processor under the UK GDPR, solely on the Client’s behalf and instructions.</li>
+<li><span class="b">Lawful basis:</span> the Client warrants that it has a valid lawful basis to be contacted by its inbound enquirers and to process their data.</li>
+<li><span class="b">Sub-processors:</span> the service relies notably on WhatsApp / Meta, Google, a booking tool, an automation host and AI providers. The Client is informed of and accepts this.</li>
+<li><span class="b">Export and erasure:</span> the Client may request at any time the export or erasure of its data. On termination, data is deleted within 30 days, save any legal retention obligation.</li>
+</ul>
+<h2>8. Confidentiality</h2>
+<p>Each Party undertakes to keep strictly confidential the other’s non-public information (commercial data, contacts, methods, pricing) and to use it solely to perform this agreement. This obligation survives two (2) years after termination.</p>
+<h2>9. Payment</h2>
+<ul>
+<li>Payment by Stripe, in GBP, by monthly advance charge.</li>
+<li><span class="b">Non-payment:</span> on a missed payment, the Provider sends a reminder. If not cured within 7 days, the service is suspended until payment. A suspension for non-payment gives no right to any refund.</li>
+<li>The setup fee is non-refundable, subject to the 30-day guarantee (clause 4).</li>
+</ul>
+<h2>10. General</h2>
+<ul>
+<li><span class="b">Governing law:</span> this agreement is governed by English law. Any dispute falls to the competent courts of England and Wales.</li>
+<li>Entire agreement: this agreement and its appendices constitute the entire agreement and supersede any prior exchange.</li>
+<li>Amendments: any change requires a writing signed by both Parties.</li>
+<li>Severability: if any clause is held invalid, the others remain in force.</li>
+</ul>
+<h2>Signatures</h2>
+<p>Executed in <span class="f">[Place]</span>, on <span class="f">[Date]</span>, in two counterparts.</p>
+<div class="sig">
+<div><div class="h">The Provider</div>For Girlden LTD (GILD-TECH Immo)<br>Name: <span class="f">[Name]</span><br>Title: <span class="f">[Title]</span><div class="l">Signature:</div></div>
+<div><div class="h">The Client</div>For <span class="f">[Client legal name]</span><br>Name: <span class="f">[Name]</span><br>Title: <span class="f">[Title]</span><div class="l">Signature:</div></div>
+</div>
+<div class="foot">Girlden LTD — GILD-TECH Immo Service Agreement — CRN 14837617 — 71–75 Shelton Street, London WC2H 9JQ.</div>
+    </div>
+  </div>
+
+  <p class="rgpd">Girlden LTD · CRN 14837617 · 71–75 Shelton Street, Covent Garden, London WC2H 9JQ · GILD-TECH Immo</p>
+</div>
+
+<script>
+  function show(lang){
+    var fr = lang==='FR';
+    document.getElementById('docFR').hidden = !fr;
+    document.getElementById('docEN').hidden = fr;
+    document.getElementById('dlFR').hidden = !fr;
+    document.getElementById('dlEN').hidden = fr;
+    document.getElementById('tipFR').hidden = !fr;
+    document.getElementById('tipEN').hidden = fr;
+    document.getElementById('btnFR').className = fr ? 'on' : '';
+    document.getElementById('btnEN').className = fr ? '' : 'on';
+    document.documentElement.lang = fr ? 'fr' : 'en';
+  }
+</script>
+</body>
+</html>
