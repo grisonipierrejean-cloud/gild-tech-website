@@ -4,526 +4,761 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#0E211C">
 <title>FRED&amp;CO — Immobilier à Koh Samui (maquette)</title>
 <!--
   MAQUETTE DE DÉMONSTRATION GILD-TECH pour Fred & Co. Lien secret, noindex, non liée depuis le site. Pas le site officiel de l'agence.
-  Données des biens : fiches publiques fredetco.com (réf. 1050, 1046, 1044, 1040), relevées le 26/09/2026.
-  Photos : galerie publique du CRM de l'agence (fredandco.eu1.qobrix.com), non modifiées.
+  Biens : fiches publiques fredetco.com (réf. 1050, 1046, 1044, 1040), relevées le 26/09/2026.
+  Photos : galerie publique du CRM de l'agence (fredandco.eu1.qobrix.com), non retouchées.
+  Aucun chiffre ni partenaire sans source.
 -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231F4D43'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23C8A063'%3EF%26amp;%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230E211C'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23C8A063'%3E%26amp;%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fredandco.eu1.qobrix.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.css">
 <style>
   :root{
-    --cream:#F7F4EE; --cream-2:#EFE9DF; --paper:#FCFBF8;
-    --forest:#1F4D43; --forest-2:#173B33; --forest-ink:#0F2621;
-    --gold:#C8A063; --gold-2:#B58A4C; --ink:#1C1B19; --mut:#6A665E; --line:rgba(28,27,25,.14);
-    --serif:'Instrument Serif', 'Times New Roman', serif;
-    --sans:'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    --ease:cubic-bezier(.2,.7,.1,1);
-    --step--1:clamp(.83rem,.78rem + .29vw,1rem);
-    --step-0:clamp(1rem,.93rem + .35vw,1.18rem);
-    --step-1:clamp(1.2rem,1.07rem + .63vw,1.56rem);
-    --step-2:clamp(1.5rem,1.25rem + 1.1vw,2.2rem);
-    --step-3:clamp(2rem,1.55rem + 2.2vw,3.4rem);
-    --step-4:clamp(2.6rem,1.8rem + 4vw,5.6rem);
-    --step-5:clamp(3.1rem,1.9rem + 6vw,8.2rem);
-    --pad:clamp(1.25rem,.8rem + 2.4vw,3.5rem);
+    --night:#0E211C; --forest:#1F4D43; --ink:#0A1613;
+    --cream:#F3EEE4; --sand:#E7DCC8; --paper:#FBF8F2;
+    --gold:#C8A063; --gold-soft:#D9BD8C;
+    --serif:'Cormorant Garamond','Times New Roman',serif;
+    --sans:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;
+    --ease:cubic-bezier(.23,1,.32,1);
+    --gut:clamp(1.1rem,.6rem + 2.6vw,3.2rem);
+    --bg:var(--night); --fg:var(--cream);
   }
-  *{box-sizing:border-box}
+  *,*::before,*::after{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
-  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:var(--step-0);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-  ::selection{background:var(--gold);color:var(--forest-ink)}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:clamp(1rem,.94rem + .3vw,1.15rem);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+  ::selection{background:var(--gold);color:var(--ink)}
   img{display:block;max-width:100%}
-  a{color:inherit}
-  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-  /* bilingue : une seule langue visible */
-  html[data-lang="fr"] [lang="en"], html[data-lang="en"] [lang="fr"]{display:none!important}
-  .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
-  .over{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:1.5px solid var(--gold);outline-offset:4px}
+  html[data-lang="fr"] [lang="en"],html[data-lang="en"] [lang="fr"]{display:none!important}
+  .over{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase}
+  .it{font-style:italic}
 
-  /* bandeau maquette */
-  .demo{background:var(--forest-ink);color:rgba(247,244,238,.7);font-size:.72rem;letter-spacing:.08em;text-align:center;padding:.45rem 1rem}
-  .demo b{color:var(--gold);font-weight:600}
+  /* ——— grain + lumière ——— */
+  .grain{position:fixed;inset:-100%;z-index:90;pointer-events:none;opacity:.085;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 1.2s steps(6) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
 
-  /* NAV */
-  .nav{position:absolute;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem var(--pad);color:var(--paper)}
-  .brand{font-family:var(--serif);font-size:1.7rem;letter-spacing:.02em;text-decoration:none;line-height:1}
-  .brand i{font-style:italic;color:var(--gold)}
-  .nav ul{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
-  .nav ul a{text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;position:relative;padding:.3rem 0}
-  .nav ul a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .4s var(--ease)}
-  @media (hover:hover){ .nav ul a:hover::after{right:0} }
-  .tools{display:flex;align-items:center;gap:.8rem}
-  .lang{display:inline-flex;border:1px solid rgba(252,251,248,.4);border-radius:999px;overflow:hidden}
-  .lang button{font:600 .72rem/1 var(--sans);letter-spacing:.12em;background:transparent;color:inherit;border:0;padding:.55rem .75rem;cursor:pointer}
-  .lang button[aria-pressed="true"]{background:var(--paper);color:var(--forest-ink)}
-  .wa-mini{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-size:.82rem;font-weight:600;background:var(--gold);color:var(--forest-ink);padding:.6rem 1rem;border-radius:999px;transition:background .3s}
-  @media (hover:hover){ .wa-mini:hover{background:var(--paper)} }
+  /* ——— chargement ——— */
+  .loader{position:fixed;inset:0;z-index:120;background:var(--night);display:grid;place-items:center;color:var(--cream)}
+  .loader .mark{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,1.6rem + 5vw,6rem);letter-spacing:.04em;line-height:1;overflow:hidden;padding:.1em 0}
+  .loader .mark i{color:var(--gold)}
+  .loader .rule{position:absolute;left:50%;bottom:34%;width:min(16rem,50vw);height:1px;background:rgba(243,238,228,.18);transform:translateX(-50%);overflow:hidden}
+  .loader .rule b{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+  .no-js .loader,.rm .loader{display:none}
 
-  /* HERO */
-  .hero{position:relative;min-height:calc(100svh - var(--demo-h,2rem));display:flex;align-items:flex-end;color:var(--paper);overflow:hidden;isolation:isolate}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.06);animation:settle 2.4s var(--ease) forwards}
-  @keyframes settle{to{transform:scale(1)}}
-  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
-      linear-gradient(180deg,rgba(15,38,33,.55) 0%,rgba(15,38,33,0) 24%),
-      linear-gradient(20deg,rgba(15,38,33,.92) 8%,rgba(15,38,33,.35) 48%,rgba(15,38,33,0) 70%)}
-  .hero-in{width:100%;padding:0 var(--pad) clamp(2rem,5vw,4.5rem);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
-  .hero .over{color:rgba(252,251,248,.92);margin-bottom:1.2rem;display:block;text-shadow:0 1px 12px rgba(15,38,33,.55)}
-  .hero .over::before{content:"";display:inline-block;width:1.8rem;height:1px;background:var(--gold);vertical-align:middle;margin-right:.8rem}
-  .hero h1{font-family:var(--serif);font-weight:400;font-size:var(--step-5);line-height:.92;letter-spacing:-.02em;margin:0;max-width:11ch}
-  .hero h1 em{color:var(--gold)}
-  .hero p.lede{font-size:var(--step-1);font-weight:300;max-width:34ch;margin:1.4rem 0 2rem;color:rgba(252,251,248,.88)}
-  .ctas{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+  /* ——— navigation ——— */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--gut);color:#fff;mix-blend-mode:difference;pointer-events:none}
+  .nav > *{pointer-events:auto}
+  .brand{font-family:var(--serif);font-size:1.75rem;font-weight:400;letter-spacing:.03em;line-height:1}
+  .brand i{font-weight:300}
+  .nav ul{display:flex;gap:2.2rem;list-style:none;margin:0;padding:0;font-size:.82rem;letter-spacing:.06em}
+  .nav ul a{position:relative;padding:.3rem 0}
+  .nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+  @media (hover:hover){.nav ul a:hover::after{transform:scaleX(1);transform-origin:left}}
+  .lang{display:flex;gap:.2rem;font-size:.72rem;letter-spacing:.18em}
+  .lang button{font:inherit;letter-spacing:inherit;color:inherit;background:none;border:0;padding:.5rem .45rem;cursor:pointer;opacity:.45;transition:opacity .3s}
+  .lang button[aria-pressed="true"]{opacity:1;text-decoration:underline;text-underline-offset:.35em}
 
-  /* bouton WhatsApp principal */
-  .wa{display:inline-flex;align-items:center;gap:.9rem;text-decoration:none;background:var(--paper);color:var(--forest-ink);border-radius:999px;padding:.6rem 1.4rem .6rem .6rem;transition:transform .35s var(--ease),background .35s}
-  .wa .ic{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--forest);display:grid;place-items:center;flex:none;position:relative}
-  .wa .ic svg{width:1.3rem;height:1.3rem;fill:var(--paper)}
-  .wa .ic::after{content:"";position:absolute;right:1px;top:1px;width:.65rem;height:.65rem;border-radius:50%;background:#3DDC84;border:2px solid var(--paper)}
-  @media (prefers-reduced-motion:no-preference){ .wa .ic::after{animation:live 2s infinite} }
-  @keyframes live{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
-  .wa b{display:block;font-size:.98rem;font-weight:700;line-height:1.2}
-  .wa small{display:block;font-size:.8rem;color:var(--mut);font-weight:500}
-  @media (hover:hover){ .wa:hover{transform:translateY(-2px);background:#fff} }
-  .wa:active{transform:translateY(0)}
-  .link-arrow{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:600;font-size:.95rem;padding:.4rem 0;border-bottom:1px solid currentColor}
-  .link-arrow span.a{transition:transform .35s var(--ease)}
-  @media (hover:hover){ .link-arrow:hover span.a{transform:translateX(5px)} }
+  /* ——— curseur ——— */
+  .cur,.cur-dot{position:fixed;top:0;left:0;z-index:110;pointer-events:none;border-radius:50%;display:none}
+  .cur-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--gold)}
+  .cur{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(200,160,99,.7);display:none;align-items:center;justify-content:center;
+       font:500 .66rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink);transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background .4s,border-color .4s}
+  .cur span{opacity:0;transition:opacity .3s}
+  .cur.is-view{width:118px;height:118px;margin:-59px 0 0 -59px;background:var(--gold);border-color:var(--gold)}
+  .cur.is-view span{opacity:1}
+  .cur.is-hide{width:0;height:0;margin:0;border-color:transparent}
+  @media (hover:hover) and (pointer:fine){ .has-cursor, .has-cursor a, .has-cursor button{cursor:none} .has-cursor .cur{display:flex} .has-cursor .cur-dot{display:block} }
+  .cur,.cur-dot{opacity:0;transition:opacity .4s} .cursor-on .cur,.cursor-on .cur-dot{opacity:1}
 
-  /* légende couverture : le hero EST un bien */
-  .cover{justify-self:end;text-decoration:none;display:block;min-width:15rem;max-width:19rem;border-top:1px solid rgba(252,251,248,.45);padding-top:.9rem}
-  .cover .n{font-family:var(--serif);font-size:3.2rem;line-height:.9;color:transparent;-webkit-text-stroke:1px var(--gold)}
-  .cover .t{font-size:.85rem;color:rgba(252,251,248,.85);margin-top:.35rem}
-  .cover .p{font-weight:700;margin-top:.2rem}
-  @media (hover:hover){ .cover:hover .n{color:var(--gold)} }
-  .cover .n{transition:color .4s var(--ease)}
+  /* ——— texte découpé ——— */
+  .w{display:inline-block;white-space:nowrap;overflow:hidden;vertical-align:top;padding:.02em .015em .14em;margin-bottom:-.14em}
+  .c{display:inline-block;will-change:transform}
+  .words .w{overflow:visible;padding:0;margin:0}
 
-  /* CHIFFRES */
-  .facts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
-  .facts > div{padding:clamp(1.4rem,3vw,2.4rem) var(--pad);border-right:1px solid var(--line)}
-  .facts > div:last-child{border-right:0}
-  .facts .k{font-family:var(--serif);font-size:var(--step-3);line-height:1;color:var(--forest)}
-  .facts .l{font-size:var(--step--1);color:var(--mut);margin-top:.4rem;max-width:18ch}
+  /* ——— 1. OUVERTURE ——— */
+  .hero{position:relative;height:100svh;min-height:34rem;overflow:hidden;color:var(--cream)}
+  .hero .mask{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 0 0 0)}
+  .hero .mask img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;transform-origin:50% 60%}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 20% 100%,rgba(10,22,19,.85) 0%,rgba(10,22,19,.35) 45%,rgba(10,22,19,0) 70%),
+               linear-gradient(180deg,rgba(10,22,19,.5) 0%,rgba(10,22,19,0) 22%)}
+  .hero .veil{position:absolute;inset:0;background:var(--ink);opacity:0;pointer-events:none}
+  .hero-copy{position:absolute;left:var(--gut);right:var(--gut);bottom:clamp(2rem,6vh,4.5rem);z-index:2}
+  .hero .over{display:flex;align-items:center;gap:.9rem;color:rgba(243,238,228,.85);margin-bottom:clamp(1rem,2.5vh,1.8rem)}
+  .hero .over::before{content:"";width:2.4rem;height:1px;background:var(--gold)}
+  .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3.4rem,1rem + 10.6vw,13.5rem);line-height:.84;letter-spacing:-.035em;margin:0}
+  .hero h1 .l2{display:block;padding-left:clamp(0rem,11vw,12rem)}
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-top:clamp(1.4rem,3.5vh,2.6rem);padding-right:8.5rem}
+  .hero-foot p{max-width:30ch;margin:0;font-size:clamp(1rem,.9rem + .35vw,1.2rem);color:rgba(243,238,228,.82)}
+  .cover{display:flex;align-items:flex-end;gap:1rem;text-align:right}
+  .cover .n{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(2.6rem,1.8rem + 3vw,5rem);line-height:.8;color:var(--gold-soft)}
+  .cover small{display:block;font-size:.78rem;color:rgba(243,238,228,.7);line-height:1.5}
+  .cover b{font-weight:500;color:var(--cream)}
+  .scroll-cue{position:absolute;right:var(--gut);top:50%;z-index:2;writing-mode:vertical-rl;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,238,228,.6);display:flex;align-items:center;gap:1rem}
+  .scroll-cue::after{content:"";width:1px;height:4.5rem;background:linear-gradient(var(--gold),transparent)}
 
-  /* SÉLECTION — signature : numéros de référence géants en creux */
-  section{position:relative}
-  .sel{padding:clamp(4rem,9vw,8rem) var(--pad) clamp(3rem,7vw,6rem)}
-  .head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,5vw,4rem)}
-  .head h2{font-family:var(--serif);font-weight:400;font-size:var(--step-4);line-height:.95;margin:.6rem 0 0;letter-spacing:-.02em;max-width:14ch}
-  .head h2 em{color:var(--forest)}
-  .head p{max-width:36ch;color:var(--mut);margin:0}
-  .head .over{color:var(--gold-2)}
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.5rem,3vw,3rem) clamp(1rem,2.5vw,2.5rem)}
-  .lot{grid-column:span 6;text-decoration:none;color:inherit;display:block;position:relative}
-  .lot.big{grid-column:1 / 8;grid-row:span 2}
-  .lot.r1{grid-column:8 / 13}
-  .lot.r2{grid-column:8 / 13}
-  .lot.wide{grid-column:3 / 13}
-  /* signature : étiquette de lot découpée dans l'angle de la photo, comme un catalogue de vente */
-  .lot .ph{position:relative}
-  .lot .ref{position:absolute;z-index:2;left:0;top:0;background:var(--cream);padding:.05em .28em .12em 0;font-family:var(--serif);font-style:italic;font-size:clamp(2.6rem,1.9rem + 2.6vw,4.6rem);line-height:.9;color:var(--forest);letter-spacing:-.02em;pointer-events:none;display:flex;align-items:flex-start;gap:.18em}
-  .lot .ref small{font-family:var(--sans);font-style:normal;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);margin-top:.9em}
-  .lot.big .ref{font-size:clamp(3.2rem,2.2rem + 4vw,6.8rem)}
-  .lot .ref::after{content:"";position:absolute;right:-14px;top:0;width:14px;height:14px;background:radial-gradient(circle at 100% 100%,transparent 13.5px,var(--cream) 14px)}
-  .lot .ref::before{content:"";position:absolute;left:0;bottom:-14px;width:14px;height:14px;background:radial-gradient(circle at 100% 100%,transparent 13.5px,var(--cream) 14px)}
-  .lot .ph{overflow:hidden;background:var(--cream-2);aspect-ratio:4/3}
-  .lot.big .ph{aspect-ratio:4/5}
-  .lot.wide .ph{aspect-ratio:21/9}
-  .lot .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-  @media (hover:hover){ .lot:hover .ph img{transform:scale(1.045)} .lot:hover .ref{color:var(--gold-2)} }
-  .lot .ref{transition:color .5s var(--ease)}
-  .lot .meta{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;border-top:1px solid var(--line);margin-top:1rem;padding-top:.9rem}
-  .lot .zone{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
-  .lot h3{font-family:var(--serif);font-weight:400;font-size:var(--step-2);line-height:1.08;margin:.35rem 0 .6rem;letter-spacing:-.01em}
-  .lot .specs{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;font-size:.9rem;color:var(--mut);margin:0;padding:0;list-style:none}
-  .lot .specs li::before{content:"— ";color:var(--gold)}
-  .lot .specs li:first-child::before{content:""}
-  .lot .price{font-weight:700;font-size:var(--step-1);white-space:nowrap;color:var(--forest)}
-  .lot .tenure{font-size:.8rem;color:var(--mut);text-align:right;text-wrap:balance;max-width:17rem;margin-left:auto}
-  .lot .go{display:inline-flex;gap:.5rem;align-items:center;font-weight:600;font-size:.88rem;margin-top:.9rem;border-bottom:1px solid var(--ink);padding-bottom:.15rem}
-  .lot .go span{transition:transform .35s var(--ease)}
-  @media (hover:hover){ .lot:hover .go span{transform:translateX(5px)} }
-  .all{margin-top:clamp(2.5rem,5vw,4rem);text-align:center}
+  /* ——— 2. MANIFESTE ——— */
+  .manifesto{position:relative;padding:clamp(7rem,18vh,13rem) var(--gut) clamp(5rem,12vh,9rem)}
+  .manifesto .over{color:var(--forest);opacity:.8}
+  .manifesto h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.5rem,1rem + 6.4vw,8.4rem);line-height:.94;letter-spacing:-.03em;margin:1.4rem 0 0;max-width:15ch}
+  .manifesto h2 em{font-style:italic;color:var(--forest)}
+  .manifesto .aside{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:clamp(2rem,6vw,7rem);align-items:end;margin-top:clamp(3.5rem,9vh,7rem)}
+  .manifesto .frame{position:relative;overflow:hidden;aspect-ratio:4/5;max-width:34rem;margin-left:clamp(0rem,8vw,9rem)}
+  .manifesto .frame img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover}
+  .manifesto .aside p{max-width:34ch;margin:0 0 1.2rem;font-size:clamp(1.05rem,.95rem + .45vw,1.35rem);line-height:1.55}
+  .manifesto .aside p:first-letter{font-family:var(--serif);font-size:3.4em;float:left;line-height:.8;padding:.06em .1em 0 0;color:var(--forest)}
+  .manifesto .sig{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--forest)}
 
-  /* BANDE WHATSAPP */
-  .band{background:var(--forest);color:var(--paper);padding:clamp(3.5rem,8vw,7rem) var(--pad);display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;overflow:hidden}
-  .band h2{font-family:var(--serif);font-weight:400;font-size:var(--step-4);line-height:.98;margin:0;letter-spacing:-.02em}
-  .band h2 em{color:var(--gold)}
-  .band p{color:rgba(252,251,248,.78);max-width:40ch;margin:1.2rem 0 0}
-  .band .clock{display:grid;gap:1.1rem}
-  .band .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(252,251,248,.2);padding-top:.8rem;font-size:.95rem}
-  .band .row b{font-family:var(--serif);font-weight:400;font-size:var(--step-2);color:var(--gold)}
-  .band .wa{margin-top:.6rem;justify-self:start}
+  /* ——— 3. SÉLECTION horizontale ——— */
+  .sel{position:relative;height:100svh;overflow:hidden}
+  .sel .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 70% at 70% 30%,rgba(200,160,99,.13),transparent 70%)}
+  .track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:stretch;will-change:transform}
+  .pan{position:relative;flex:none;height:100%;display:flex;align-items:center}
+  .pan-intro{width:min(62vw,54rem);padding:0 var(--gut);flex-direction:column;align-items:flex-start;justify-content:center}
+  .pan-intro h2{font-family:var(--serif);font-weight:300;font-size:clamp(3.4rem,1rem + 9vw,11.5rem);line-height:.82;letter-spacing:-.04em;margin:1.2rem 0 1.6rem}
+  .pan-intro h2 em{font-style:italic;color:var(--gold-soft)}
+  .pan-intro p{max-width:32ch;margin:0;color:rgba(243,238,228,.72)}
+  .pan-intro .hint{margin-top:2.4rem;display:flex;align-items:center;gap:1rem;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .pan-intro .hint::after{content:"";width:5rem;height:1px;background:var(--gold)}
+  .lot{position:relative;margin-right:clamp(3rem,8vw,9rem);display:block;color:var(--cream)}
+  .lot .num{position:absolute;z-index:3;font-family:var(--serif);font-style:italic;font-weight:300;line-height:.75;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(217,189,140,.75);pointer-events:none;white-space:nowrap}
+  .lot .mask{position:relative;overflow:hidden;clip-path:inset(0 100% 0 0)}
+  .lot .mask img{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
+  .lot .inset{position:absolute;z-index:2;overflow:hidden;box-shadow:0 2rem 4rem -1rem rgba(0,0,0,.45)}
+  .lot .inset img{width:100%;height:100%;object-fit:cover}
+  .lot .txt{position:absolute;z-index:4}
+  .lot .zone{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .lot h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,1.2rem + 1.9vw,3.3rem);line-height:.98;letter-spacing:-.02em;margin:.55rem 0 .8rem}
+  .lot h3 em{font-style:italic}
+  .lot .spec{font-size:.88rem;color:rgba(243,238,228,.7);margin:0;max-width:36ch}
+  .lot .price{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+  .lot .price b{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,1.2rem + .9vw,2.2rem);color:var(--gold-soft);letter-spacing:.01em}
+  .lot .price span{font-size:.78rem;color:rgba(243,238,228,.6)}
+  .lot .excl{display:inline-block;margin-left:.6rem;padding-left:.6rem;border-left:1px solid rgba(200,160,99,.5)}
+  @media (hover:hover){ .lot .mask img{transition:filter .8s var(--ease)} .lot:hover .mask img{filter:saturate(1.12) brightness(1.04)} }
+  /* compositions variées, positions calées sur la hauteur d'écran (galerie épinglée) */
+  .lot{position:relative;height:100%;flex:none;margin-right:6vw}
+  .lot .mask,.lot .inset,.lot .txt,.lot .num{position:absolute}
+  .lot.a{width:90vw}
+  .lot.a .mask{left:0;top:14vh;width:60vw;height:70vh}
+  .lot.a .num{left:31vw;top:3vh;font-size:clamp(8rem,4rem + 14vw,19rem)}
+  .lot.a .inset{left:-3vw;top:62vh;width:14vw;aspect-ratio:3/4}
+  .lot.a .txt{left:63vw;bottom:16vh;width:25vw}
+  .lot.b{width:54vw}
+  .lot.b .mask{left:0;top:9vh;width:38vw;height:52vh}
+  .lot.b .num{left:22vw;top:44vh;font-size:clamp(7rem,3rem + 11vw,15rem)}
+  .lot.b .inset{left:31vw;top:25vh;width:15vw;aspect-ratio:1/1}
+  .lot.b .txt{left:0;top:66vh;width:44vw}
+  .lot.c{width:58vw}
+  .lot.c .txt{left:0;top:10vh;width:36vw}
+  .lot.c .num{left:40vw;top:4vh;font-size:clamp(7rem,3rem + 11vw,15rem)}
+  .lot.c .mask{left:6vw;top:45vh;width:44vw;height:45vh}
+  .lot.c .inset{left:44vw;top:34vh;width:12vw;aspect-ratio:4/5}
+  .lot.d{width:86vw}
+  .lot.d .txt{left:0;bottom:16vh;width:24vw;text-align:right}
+  .lot.d .price{justify-content:flex-end}
+  .lot.d .mask{left:28vw;top:12vh;width:52vw;height:66vh}
+  .lot.d .num{left:21vw;top:1vh;font-size:clamp(8rem,3rem + 13vw,17rem)}
+  .lot.d .inset{left:74vw;top:58vh;width:13vw;aspect-ratio:3/4}
+  .pan-end{width:min(58vw,50rem);padding:0 var(--gut) 0 0;flex-direction:column;align-items:flex-start;justify-content:center}
+  .pan-end p{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,1rem + 4vw,5.4rem);line-height:.95;letter-spacing:-.02em;margin:0 0 2.4rem;max-width:12ch}
+  .pan-end p em{font-style:italic;color:var(--gold-soft)}
 
-  /* POURQUOI */
-  .why{display:grid;grid-template-columns:5fr 7fr;min-height:90vh}
-  .why .pic{position:relative;overflow:hidden}
-  .why .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .why .txt{padding:clamp(3.5rem,8vw,7rem) var(--pad)}
-  .why h2{font-family:var(--serif);font-weight:400;font-size:var(--step-4);line-height:.95;margin:.6rem 0 clamp(2rem,4vw,3.5rem);letter-spacing:-.02em;max-width:13ch}
-  .why .over{color:var(--gold-2)}
-  .why ol{list-style:none;margin:0;padding:0;counter-reset:w}
-  .why li{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;padding:1.6rem 0;border-top:1px solid var(--line)}
-  .why li:last-child{border-bottom:1px solid var(--line)}
-  .why li::before{counter-increment:w;content:"0" counter(w);font-family:var(--serif);font-style:italic;font-size:2.6rem;line-height:1;color:var(--gold)}
-  .why h3{margin:0 0 .35rem;font-size:var(--step-1);font-weight:600;color:var(--forest)}
-  .why li p{margin:0;color:var(--mut);max-width:48ch}
-  .why .partners{margin-top:2.2rem;font-size:.85rem;color:var(--mut)}
-  .why .partners b{color:var(--ink);font-weight:600}
+  /* boutons magnétiques */
+  .mag{position:relative;display:inline-grid;place-items:center;border-radius:999px;will-change:transform}
+  .mag .lbl{display:block;will-change:transform}
+  .ring-btn{width:clamp(8.5rem,6rem + 7vw,12rem);aspect-ratio:1;border:1px solid rgba(200,160,99,.65);color:var(--cream);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;text-align:center;line-height:1.5;overflow:hidden}
+  .ring-btn::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--gold);transform:translateY(101%);transition:transform .7s var(--ease)}
+  .ring-btn .lbl{position:relative;padding:0 1.4rem;transition:color .5s var(--ease)}
+  @media (hover:hover){ .ring-btn:hover::before{transform:translateY(0)} .ring-btn:hover .lbl{color:var(--ink)} }
+  .ring-btn:active{transform:scale(.97)}
 
-  /* FRANCHISE */
-  .fr-sec{background:var(--forest-ink);color:var(--paper);padding:clamp(4rem,9vw,8rem) var(--pad);overflow:hidden}
-  .fr-top{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:end}
-  .fr-sec .over{color:var(--gold)}
-  .fr-sec h2{font-family:var(--serif);font-weight:400;font-size:var(--step-5);line-height:.9;margin:.8rem 0 0;letter-spacing:-.025em}
-  .fr-sec h2 em{color:var(--gold)}
-  .fr-sec .intro{color:rgba(252,251,248,.78);font-size:var(--step-1);font-weight:300;margin:0}
-  .terr{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(3rem,6vw,5rem);border-top:1px solid rgba(252,251,248,.18)}
-  .terr > div{padding:1.6rem 1.4rem 1.6rem 0;border-right:1px solid rgba(252,251,248,.12)}
-  .terr > div + div{padding-left:1.4rem}
-  .terr > div:last-child{border-right:0}
-  .terr .c{font-family:var(--serif);font-size:var(--step-3);line-height:1}
-  .terr .d{font-size:.88rem;color:rgba(252,251,248,.65);margin-top:.5rem}
-  .terr .lv{font-size:.8rem;color:var(--gold);margin-top:.7rem;letter-spacing:.1em}
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(2.5rem,5vw,4rem)}
-  .pillars > div{padding:1.4rem 1.4rem 1.4rem 0;border-top:1px solid rgba(252,251,248,.12)}
-  .pillars b{display:block;font-weight:600;margin-bottom:.3rem}
-  .pillars span{color:rgba(252,251,248,.65);font-size:.92rem}
-  .fr-cta{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;margin-top:clamp(2.5rem,5vw,4rem)}
-  .btn-gold{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;background:var(--gold);color:var(--forest-ink);font-weight:700;padding:1rem 1.6rem;border-radius:999px;transition:background .3s,transform .35s var(--ease)}
-  @media (hover:hover){ .btn-gold:hover{background:var(--paper);transform:translateY(-2px)} }
-  .fr-sec .link-arrow{color:var(--paper)}
+  /* ——— 4. AÉRIEN ——— */
+  .aerial{position:relative;height:118svh;overflow:hidden;color:var(--cream)}
+  .aerial .mask{position:absolute;inset:0;overflow:hidden;clip-path:inset(12% 8% 12% 8%)}
+  .aerial .mask img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;object-position:50% 8%}
+  .aerial .mask::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,19,.15),rgba(10,22,19,.55))}
+  .aerial .marq{position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:2;white-space:nowrap;font-family:var(--serif);font-weight:300;font-size:clamp(4.5rem,2rem + 12vw,15rem);line-height:1;letter-spacing:-.03em}
+  .aerial .marq em{font-style:italic;color:transparent;-webkit-text-stroke:1px rgba(243,238,228,.8)}
+  .aerial .cap{position:absolute;z-index:2;left:var(--gut);bottom:9vh;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(243,238,228,.8)}
 
-  /* FOOTER */
-  footer{padding:clamp(3.5rem,8vw,6rem) var(--pad) 2rem;background:var(--cream)}
-  .foot-top{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:2rem;border-bottom:1px solid var(--line);padding-bottom:2.5rem}
-  .foot-top h4{margin:0 0 .6rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
-  .foot-top p{margin:0;font-size:.95rem;line-height:1.7}
-  .foot-top a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
-  @media (hover:hover){ .foot-top a:hover{border-color:currentColor} }
-  .wordmark{font-family:var(--serif);font-size:clamp(4rem,2rem + 13vw,15rem);line-height:.8;letter-spacing:-.03em;color:var(--forest);margin:2.5rem 0 1.5rem}
-  .wordmark i{color:var(--gold)}
-  .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--mut)}
+  /* ——— 5. RÉPONSE ——— */
+  .reply{position:relative;padding:clamp(7rem,20vh,14rem) var(--gut) clamp(6rem,16vh,11rem);overflow:hidden}
+  .reply .over{color:var(--forest)}
+  .reply h2{font-family:var(--serif);font-weight:300;font-size:clamp(3.2rem,1rem + 9.4vw,12.4rem);line-height:.84;letter-spacing:-.04em;margin:1.3rem 0 0}
+  .reply h2 .r2{display:block;padding-left:clamp(0rem,14vw,16rem)}
+  .reply h2 em{font-style:italic;color:var(--forest)}
+  .reply .ghost{position:absolute;right:-2vw;top:8%;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(9rem,4rem + 22vw,30rem);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(31,77,67,.28);pointer-events:none;letter-spacing:-.05em}
+  .reply .row{display:flex;align-items:center;gap:clamp(2rem,6vw,6rem);margin-top:clamp(3rem,8vh,5.5rem);flex-wrap:wrap}
+  .reply .row p{max-width:34ch;margin:0;font-size:clamp(1.05rem,.95rem + .45vw,1.3rem)}
+  .wa-big{width:clamp(10rem,7rem + 9vw,15rem);aspect-ratio:1;background:var(--forest);color:var(--cream);overflow:hidden;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;text-align:center;line-height:1.5;box-shadow:inset 0 .5px 0 rgba(255,255,255,.2),0 2rem 4rem -1.5rem rgba(14,33,28,.55)}
+  .wa-big svg{width:2rem;height:2rem;fill:var(--gold-soft);margin:0 auto .7rem;display:block}
+  .wa-big::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .7s var(--ease)}
+  .wa-big .lbl{position:relative}
+  @media (hover:hover){ .wa-big:hover::before{transform:scale(1)} }
 
-  /* WhatsApp collant mobile */
-  .wa-bar{display:none}
+  /* ——— 6. POURQUOI ——— */
+  .why{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2rem,6vw,7rem);padding:0 var(--gut) clamp(4rem,10vh,8rem)}
+  .why .stick{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+  .why figure{position:relative;margin:0;width:100%;height:78vh;overflow:hidden}
+  .why figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0)}
+  .why figure img:first-child{clip-path:inset(0 0 0 0)}
+  .why figure figcaption{position:absolute;left:1rem;bottom:1rem;z-index:3;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);mix-blend-mode:difference}
+  .why .head{padding-top:clamp(7rem,16vh,11rem)}
+  .why .head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,1rem + 5.6vw,7.4rem);line-height:.9;letter-spacing:-.03em;margin:1.2rem 0 0}
+  .why .head h2 em{font-style:italic;color:var(--forest)}
+  .why .item{min-height:62vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid rgba(14,33,28,.16);padding:4rem 0}
+  .why .item:nth-child(3){min-height:78vh;padding-left:clamp(0rem,5vw,6rem)}
+  .why .item:nth-child(4){min-height:56vh}
+  .why .roman{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(4rem,2.4rem + 5vw,8.5rem);line-height:.8;color:var(--gold)}
+  .why h3{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,1.3rem + 2.3vw,3.6rem);line-height:1;letter-spacing:-.015em;margin:1rem 0 1rem}
+  .why .item p{max-width:40ch;margin:0;font-size:clamp(1.02rem,.95rem + .35vw,1.25rem)}
+  .why .m-img{display:none}
 
-  /* reveals */
-  .rv{opacity:1;transform:none}
-  .js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-  .js .rv.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){ .js .rv{opacity:1;transform:none;transition:none} .hero img{animation:none;transform:none} }
+  /* ——— 7. FRANCHISE ——— */
+  .fr{position:relative;padding:clamp(7rem,18vh,12rem) var(--gut) clamp(6rem,14vh,10rem);overflow:hidden}
+  .fr .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 60% at 15% 20%,rgba(200,160,99,.12),transparent 70%),radial-gradient(40% 50% at 90% 90%,rgba(31,77,67,.55),transparent 70%)}
+  .fr .over{color:var(--gold)}
+  .fr h2{position:relative;font-family:var(--serif);font-weight:300;font-size:clamp(3.2rem,1rem + 9vw,12rem);line-height:.84;letter-spacing:-.04em;margin:1.3rem 0 0}
+  .fr h2 .f2{display:block;text-align:right}
+  .fr h2 em{font-style:italic;color:var(--gold-soft)}
+  .fr .lead{position:relative;max-width:40ch;margin:clamp(2.5rem,6vh,4rem) 0 0 auto;font-size:clamp(1.05rem,.95rem + .45vw,1.3rem);color:rgba(243,238,228,.78)}
+  .terr{position:relative;list-style:none;margin:clamp(4rem,10vh,7rem) 0 0;padding:0}
+  .terr li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,22rem);align-items:baseline;gap:2rem;border-top:1px solid rgba(243,238,228,.14);padding:1.3rem 0 1.1rem;overflow:hidden}
+  .terr li:last-child{border-bottom:1px solid rgba(243,238,228,.14)}
+  .terr .name{font-family:var(--serif);font-weight:300;font-size:clamp(2.8rem,1rem + 7vw,9rem);line-height:.9;letter-spacing:-.035em;transition:transform .8s var(--ease),color .6s}
+  .terr .name em{font-style:italic}
+  .terr .d{font-size:.95rem;color:rgba(243,238,228,.62);transition:color .6s}
+  .terr li::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(200,160,99,.16),rgba(200,160,99,0) 70%);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+  @media (hover:hover){ .terr li:hover::before{transform:scaleX(1)} .terr li:hover .name{transform:translateX(2.5vw);color:var(--gold-soft)} .terr li:hover .d{color:var(--cream)} }
+  .fr .pillars{position:relative;columns:2;column-gap:clamp(2rem,6vw,6rem);margin:clamp(4rem,9vh,6rem) 0 0;max-width:62rem;font-size:1rem;color:rgba(243,238,228,.75)}
+  .fr .pillars p{break-inside:avoid;margin:0 0 1.2rem}
+  .fr .pillars b{font-weight:500;color:var(--cream)}
+  .fr .cta{position:relative;display:flex;align-items:center;gap:clamp(2rem,5vw,5rem);margin-top:clamp(4rem,9vh,6rem);flex-wrap:wrap}
+  .pill{height:4.6rem;padding:0 2.4rem;background:var(--gold);color:var(--ink);font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;overflow:hidden}
+  .pill .lbl{position:relative;display:flex;flex-direction:column;height:1.2em;line-height:1.2;overflow:hidden}
+  .pill .lbl span{display:block;transition:transform .6s var(--ease)}
+  @media (hover:hover){ .pill:hover .lbl span{transform:translateY(-100%)} }
+  .line-link{position:relative;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 0}
+  .line-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform-origin:left;transition:transform .6s var(--ease)}
+  @media (hover:hover){ .line-link:hover::after{transform:scaleX(.3)} }
+
+  /* ——— 8. PIED ——— */
+  footer{position:relative;padding:clamp(5rem,12vh,8rem) var(--gut) 1.6rem;overflow:hidden}
+  footer .top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:2rem}
+  footer h4{margin:0 0 .7rem;font-size:.68rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--forest)}
+  footer .top p{margin:0;font-size:.95rem;line-height:1.75}
+  footer .top a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease)}
+  @media (hover:hover){ footer .top a:hover{background-size:100% 1px} }
+  footer .say{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,1.2rem + 1.8vw,3rem);line-height:1;letter-spacing:-.02em;margin:0}
+  footer .say em{font-style:italic;color:var(--forest)}
+  .wordmark{font-family:var(--serif);font-weight:300;font-size:clamp(5rem,1rem + 19.5vw,24rem);line-height:.78;letter-spacing:-.05em;margin:clamp(3rem,8vh,6rem) 0 1.4rem;white-space:nowrap;color:var(--night)}
+  .wordmark i{color:var(--gold);font-weight:300}
+  footer .legal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.74rem;color:rgba(14,33,28,.6)}
+
+  /* ——— WhatsApp flottant (texte circulaire) ——— */
+  .wa-float{position:fixed;right:clamp(.9rem,2vw,2rem);bottom:clamp(.9rem,2vw,2rem);z-index:70;width:7.2rem;height:7.2rem}
+  .wa-float .disc{position:absolute;inset:1.35rem;border-radius:50%;background:var(--forest);display:grid;place-items:center;box-shadow:0 1rem 2.4rem -.6rem rgba(10,22,19,.55),inset 0 .5px 0 rgba(255,255,255,.2)}
+  .wa-float .disc svg{width:1.55rem;height:1.55rem;fill:var(--cream)}
+  .wa-float .disc::after{content:"";position:absolute;top:.35rem;right:.35rem;width:.62rem;height:.62rem;border-radius:50%;background:#43D17E;box-shadow:0 0 0 2px var(--forest)}
+  .wa-float .ring{position:absolute;inset:0;animation:spin 16s linear infinite}
+  .wa-float .ring text{font:500 8.4px var(--sans);letter-spacing:2.1px;fill:var(--night);text-transform:uppercase}
+  .on-dark .wa-float .ring text{fill:var(--cream)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .demo-tag{position:fixed;left:clamp(.9rem,2vw,2rem);bottom:clamp(.9rem,2vw,1.6rem);z-index:70;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;mix-blend-mode:difference;opacity:.6;pointer-events:none}
+
+  /* ——— reduced motion ——— */
+  .rm .grain,.rm .wa-float .ring{animation:none}
+  .rm .lot .mask,.rm .aerial .mask{clip-path:none!important}
 
   /* ——— MOBILE ——— */
-  @media (max-width:1000px){
+  @media (max-width:900px){
     .nav ul{display:none}
-    .hero-in{grid-template-columns:1fr}
-    .cover{justify-self:start}
-    .facts{grid-template-columns:repeat(2,1fr)}
-    .facts > div:nth-child(2){border-right:0}
-    .facts > div:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    .grid{grid-template-columns:1fr}
-    .lot,.lot.big,.lot.r1,.lot.r2,.lot.wide{grid-column:1 / -1;grid-row:auto}
-    .lot.big .ph,.lot.wide .ph{aspect-ratio:4/3}
-    .band,.fr-top,.why{grid-template-columns:1fr}
-    .why .pic{min-height:60vw}
-    .terr{grid-template-columns:repeat(2,1fr)}
-    .terr > div{padding:1.4rem 1rem 1.4rem 0!important;border-right:0;border-bottom:1px solid rgba(252,251,248,.12)}
-    .pillars{grid-template-columns:1fr 1fr}
-    .foot-top{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:640px){
-    .wa-mini{display:none}
     .brand{font-size:1.45rem}
-    .hero h1{font-size:clamp(2.9rem,13vw,4.2rem)}
-    .hero p.lede{font-size:1.05rem}
-    .hero .ctas .wa{display:none}
-    .cover{min-width:0}
-    .cover .n{font-size:2.4rem}
-    .hero-in{padding-bottom:6.2rem;gap:1.4rem}
-    :root{--demo-h:2.9rem}
-    .hero img{object-position:58% 50%}
-    .cover{display:grid;grid-template-columns:auto 1fr;column-gap:.9rem;align-items:end;width:100%;max-width:none}
-    .cover > .over{grid-column:1 / -1}
-    .cover .n{grid-row:2 / 4}
-    .demo{font-size:.66rem;padding:.4rem .8rem}
-    .lot .ref,.lot.big .ref{font-size:2.8rem}
-    .lot .meta{flex-direction:column-reverse;gap:.5rem}
-    .lot .meta > div:last-child{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;width:100%}
-    .lot .tenure{text-align:right;max-width:13rem}
-    .pillars{grid-template-columns:1fr}
-    .foot-top{grid-template-columns:1fr}
-    body{padding-bottom:5.2rem}
-    .wa-bar{display:flex;position:fixed;left:.7rem;right:.7rem;bottom:calc(.7rem + env(safe-area-inset-bottom));z-index:50;align-items:center;gap:.8rem;text-decoration:none;background:var(--forest);color:var(--paper);border-radius:999px;padding:.55rem 1.1rem .55rem .55rem;box-shadow:0 10px 30px rgba(15,38,33,.35)}
-    .wa-bar .ic{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--gold);display:grid;place-items:center;flex:none}
-    .wa-bar .ic svg{width:1.3rem;height:1.3rem;fill:var(--forest-ink)}
-    .wa-bar b{display:block;font-size:.95rem;line-height:1.2}
-    .wa-bar small{display:block;font-size:.76rem;color:rgba(252,251,248,.75)}
-    .wa-bar .dot{margin-left:auto;width:.6rem;height:.6rem;border-radius:50%;background:#3DDC84;flex:none}
+    .scroll-cue{display:none}
+    .hero h1 .l2{padding-left:0}
+    .hero-foot{flex-direction:column;align-items:flex-start;gap:1.2rem;padding-right:6.5rem}
+    .cover{text-align:left;flex-direction:row-reverse}
+    .manifesto .aside{grid-template-columns:1fr}
+    .manifesto .frame{margin-left:0;max-width:none;aspect-ratio:4/3}
+    .pan-intro{width:88vw}
+    .lot,.lot.a,.lot.b,.lot.c,.lot.d{width:92vw!important;margin-right:4vw}
+    .lot .mask{left:4vw!important;top:17svh!important;width:84vw!important;height:42svh!important}
+    .lot .num{left:1vw!important;top:6svh!important;font-size:25vw!important}
+    .lot .inset{left:60vw!important;top:48svh!important;width:28vw!important;aspect-ratio:1/1!important}
+    .lot .txt{left:4vw!important;right:auto!important;top:63svh!important;bottom:auto!important;width:84vw!important;text-align:left!important}
+    .lot .price{justify-content:flex-start!important;margin-top:.6rem}
+    .lot h3{font-size:1.85rem;margin:.4rem 0 .5rem}
+    .lot .spec{font-size:.8rem;line-height:1.5}
+    .pan-end{width:88vw;padding-left:0}
+    .aerial{height:95svh}
+    .aerial .mask{clip-path:inset(8% 4% 8% 4%)}
+    .reply .ghost{top:auto;bottom:4%;right:-4vw}
+    .why{grid-template-columns:1fr;gap:0}
+    .why .stick{display:none}
+    .why .m-img{display:block;overflow:hidden;aspect-ratio:4/3;margin:0 0 1.8rem}
+    .why .m-img img{width:100%;height:118%;object-fit:cover}
+    .why .item,.why .item:nth-child(3),.why .item:nth-child(4){min-height:0;padding:3rem 0;padding-left:0}
+    .terr li{grid-template-columns:1fr;gap:.4rem}
+    .fr .pillars{columns:1}
+    footer .top{grid-template-columns:1fr 1fr}
+    footer .top > div:first-child{grid-column:1 / -1}
+    .wa-float{width:6rem;height:6rem}
+    .wa-float .disc{inset:1.1rem}
+  }
+  @media (max-width:520px){
+    .hero-foot p{font-size:1rem}
+    .reply .row{flex-direction:column;align-items:flex-start}
+    footer .top{grid-template-columns:1fr}
   }
 </style>
 </head>
-<body>
+<body class="no-js">
+<script>document.body.classList.remove('no-js'); if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('rm');</script>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="wa" viewBox="0 0 24 24"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16h.01c5.43 0 9.84-4.41 9.84-9.84A9.8 9.8 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.18.83.85-3.1-.2-.32a8.14 8.14 0 0 1-1.25-4.35c0-4.52 3.68-8.2 8.21-8.2a8.2 8.2 0 0 1 8.2 8.21c0 4.53-3.68 8.25-8.15 8.25zm4.5-6.15c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.17.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.66.31c-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></symbol>
 </svg>
 
-<div class="demo"><span lang="fr"><b>Maquette de démonstration</b> — préparée par GILD-TECH pour Fred &amp; Co</span><span lang="en"><b>Demo mock-up</b> — prepared by GILD-TECH for Fred &amp; Co</span></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur" aria-hidden="true"><span lang="fr">Voir</span><span lang="en">View</span></div>
+<div class="cur-dot" aria-hidden="true"></div>
+
+<div class="loader" aria-hidden="true">
+  <div class="mark split-l">FRED<i>&amp;</i>CO</div>
+  <div class="rule"><b></b></div>
+</div>
 
 <header class="nav">
-  <a class="brand" href="#top">FRED<i>&amp;</i>CO</a>
-  <nav aria-label="Principal">
-    <ul>
-      <li><a href="#selection"><span lang="fr">Acheter</span><span lang="en">Buy</span></a></li>
-      <li><a href="https://www.fredetco.com/villa-rentals/"><span lang="fr">Louer</span><span lang="en">Rent</span></a></li>
-      <li><a href="https://www.fredetco.com/sell-your-property/"><span lang="fr">Vendre</span><span lang="en">Sell</span></a></li>
-      <li><a href="#pourquoi"><span lang="fr">L'agence</span><span lang="en">The agency</span></a></li>
-      <li><a href="#franchise">Franchise</a></li>
-    </ul>
-  </nav>
-  <div class="tools">
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button type="button" data-set="fr" aria-pressed="true">FR</button>
-      <button type="button" data-set="en" aria-pressed="false">EN</button>
-    </div>
-    <a class="wa-mini" href="https://wa.me/66954254490" target="_blank" rel="noopener"><svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a>
+  <a class="brand" href="#top" aria-label="FRED&amp;CO">FRED<i>&amp;</i>CO</a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#selection"><span lang="fr">La sélection</span><span lang="en">Selection</span></a></li>
+    <li><a href="#agence"><span lang="fr">L'agence</span><span lang="en">The agency</span></a></li>
+    <li><a href="#franchise">Franchise</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul></nav>
+  <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-set="fr" aria-pressed="true">FR</button>
+    <button type="button" data-set="en" aria-pressed="false">EN</button>
   </div>
 </header>
 
 <main id="top">
-  <!-- HERO : un vrai bien de l'agence (réf. 1050), pas une image de banque -->
-  <section class="hero" aria-label="Accueil">
-    <img src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/847aaa6c-9b23-4996-ac01-e88794eed9ee"
-         alt="Piscine à débordement au coucher du soleil, villa réf. 1050 à Chaweng Noi, Koh Samui" fetchpriority="high">
-    <div class="hero-in">
-      <div>
-        <span class="over"><span lang="fr">Agence immobilière · Koh Samui · Thaïlande</span><span lang="en">Real estate agency · Koh Samui · Thailand</span></span>
-        <h1><span lang="fr">L'immobilier à Koh Samui, <em>autrement.</em></span><span lang="en">Real estate in Koh Samui, <em>differently.</em></span></h1>
-        <p class="lede"><span lang="fr">Villas d'exception, investissements sécurisés et un accompagnement sur mesure pour vivre ou investir l'esprit tranquille.</span><span lang="en">Dream villas, secure investments and tailor-made support to live or invest in complete peace of mind.</span></p>
-        <div class="ctas">
-          <a class="wa" href="https://wa.me/66954254490" target="_blank" rel="noopener">
-            <span class="ic"><svg aria-hidden="true"><use href="#wa"/></svg></span>
-            <span><b><span lang="fr">Écrivez-nous sur WhatsApp</span><span lang="en">Message us on WhatsApp</span></b>
-            <small><span lang="fr">Réponse en moins d'une minute, 7j/7</span><span lang="en">Reply in under a minute, 7 days a week</span></small></span>
-          </a>
-          <a class="link-arrow" href="#selection"><span lang="fr">Voir la sélection</span><span lang="en">See the selection</span> <span class="a">→</span></a>
-        </div>
+
+  <!-- 1. OUVERTURE -->
+  <section class="hero" data-bg="#0E211C" data-dark aria-label="Ouverture">
+    <div class="mask"><img src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/847aaa6c-9b23-4996-ac01-e88794eed9ee" alt="Piscine à débordement au coucher du soleil, villa réf. 1050, Chaweng Noi" fetchpriority="high"></div>
+    <div class="veil"></div>
+    <div class="scroll-cue"><span lang="fr">Défiler</span><span lang="en">Scroll</span></div>
+    <div class="hero-copy">
+      <div class="over hero-in"><span lang="fr">Agence immobilière · Koh Samui</span><span lang="en">Real estate agency · Koh Samui</span></div>
+      <h1 class="split">
+        <span lang="fr">L'immobilier <span class="l2">à Samui, <em>autrement.</em></span></span>
+        <span lang="en">Real estate <span class="l2">in Samui, <em>differently.</em></span></span>
+      </h1>
+      <div class="hero-foot hero-in">
+        <p><span lang="fr">Villas d'exception, investissements sécurisés et un accompagnement sur mesure, pour vivre ou investir l'esprit tranquille.</span><span lang="en">Exceptional villas, secure investments and tailor-made support, to live or invest with complete peace of mind.</span></p>
+        <a class="cover" href="https://www.fredetco.com/properties/luxury-villa-in-chaweng-noi-high-end-features-and-panoramic-180-sea-view-1050/" target="_blank" rel="noopener" data-cursor="view">
+          <span><small><span lang="fr">En couverture · Chaweng Noi</span><span lang="en">On the cover · Chaweng Noi</span></small><b>฿ 32 000 000</b></span>
+          <span class="n">N°1050</span>
+        </a>
       </div>
-      <a class="cover" href="https://www.fredetco.com/properties/luxury-villa-in-chaweng-noi-high-end-features-and-panoramic-180-sea-view-1050/" target="_blank" rel="noopener">
-        <div class="over" style="font-size:.66rem;color:rgba(252,251,248,.7)"><span lang="fr">En couverture</span><span lang="en">On the cover</span></div>
-        <div class="n">1050</div>
-        <div class="t"><span lang="fr">Chaweng Noi · vue mer panoramique 180°</span><span lang="en">Chaweng Noi · 180° panoramic sea view</span></div>
-        <div class="p">฿ 32 000 000 →</div>
-      </a>
     </div>
   </section>
 
-  <!-- CHIFFRES (repris de la page « About us » de l'agence) -->
-  <div class="facts rv" aria-label="L'agence en chiffres">
-    <div><div class="k">5+</div><div class="l"><span lang="fr">années d'expérience en Thaïlande</span><span lang="en">years of experience in Thailand</span></div></div>
-    <div><div class="k">100+</div><div class="l"><span lang="fr">biens vendus et loués</span><span lang="en">properties sold and rented</span></div></div>
-    <div><div class="k">30+</div><div class="l"><span lang="fr">nationalités accompagnées</span><span lang="en">nationalities accompanied</span></div></div>
-    <div><div class="k">3</div><div class="l"><span lang="fr">agences en Thaïlande</span><span lang="en">offices in Thailand</span></div></div>
-  </div>
-
-  <!-- SÉLECTION : 4 biens, données des fiches publiques -->
-  <section class="sel" id="selection" aria-labelledby="sel-h">
-    <div class="head rv">
-      <div>
-        <span class="over"><span lang="fr">La sélection</span><span lang="en">The selection</span></span>
-        <h2 id="sel-h"><span lang="fr">Quatre adresses, <em>quatre façons</em> de vivre Samui.</span><span lang="en">Four addresses, <em>four ways</em> to live Samui.</span></h2>
+  <!-- 2. MANIFESTE -->
+  <section class="manifesto" id="agence" data-bg="#F3EEE4" aria-labelledby="m-h">
+    <div class="over"><span lang="fr">Fred &amp; Co, la maison</span><span lang="en">Fred &amp; Co, the house</span></div>
+    <h2 id="m-h" class="words">
+      <span lang="fr">Plus qu'une agence, <em>une façon de vivre</em> la Thaïlande.</span>
+      <span lang="en">More than an agency, <em>a way of living</em> Thailand.</span>
+    </h2>
+    <div class="aside">
+      <div class="frame" data-parallax><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1c411a67-c86b-4474-a196-9b92b302d1a0" alt="Salon ouvert sur la terrasse et la piscine, villa réf. 1050"></div>
+      <div class="fade-up">
+        <p><span lang="fr">Fred &amp; Co est née en Thaïlande d'une conviction simple : l'immobilier doit être une expérience à part, fondée sur la confiance, l'expertise et une vraie compréhension de ce que vous cherchez.</span><span lang="en">Fred &amp; Co was born in Thailand from a simple belief: real estate should be a unique experience, built on trust, expertise and a real understanding of what you are looking for.</span></p>
+        <p style="font-size:1rem;opacity:.75"><span lang="fr">L'écoute, la transparence et l'exigence, du premier message à la remise des clés.</span><span lang="en">Listening, transparency and high standards, from the first message to the handover of the keys.</span></p>
+        <div class="sig">Fred &amp; Co</div>
       </div>
-      <p><span lang="fr">De la villa panoramique de Chaweng Noi à l'appartement meublé prêt à louer, chaque bien est présenté avec sa référence, ses surfaces et son régime de propriété.</span><span lang="en">From the panoramic villa in Chaweng Noi to the furnished apartment ready to rent, every property is shown with its reference, sizes and ownership type.</span></p>
-    </div>
-
-    <div class="grid">
-      <a class="lot big rv" href="https://www.fredetco.com/properties/luxury-villa-in-chaweng-noi-high-end-features-and-panoramic-180-sea-view-1050/" target="_blank" rel="noopener">
-        <div class="ph"><span class="ref" aria-hidden="true"><small>N°</small>1050</span><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/a4c910d5-c858-4b79-a2d3-ae03ab3d91f8" alt="Piscine à débordement face à la baie, villa réf. 1050"></div>
-        <div class="meta">
-          <div>
-            <div class="zone">Chaweng Noi · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1050</div>
-            <h3><span lang="fr">Villa contemporaine, vue mer panoramique à 180°</span><span lang="en">Contemporary villa, 180° panoramic sea view</span></h3>
-            <ul class="specs">
-              <li><span lang="fr">4 chambres</span><span lang="en">4 bedrooms</span></li>
-              <li><span lang="fr">4 salles de bain</span><span lang="en">4 bathrooms</span></li>
-              <li>285 m² <span lang="fr">construits</span><span lang="en">built</span></li>
-              <li><span lang="fr">Piscine à débordement</span><span lang="en">Infinity pool</span></li>
-              <li><span lang="fr">Appartement d'invités indépendant</span><span lang="en">Independent guest apartment</span></li>
-            </ul>
-            <span class="go"><span lang="fr">Voir la fiche</span><span lang="en">View the listing</span> <span>→</span></span>
-          </div>
-          <div><div class="price">฿ 32 000 000</div><div class="tenure"><span lang="fr">Pleine propriété (chanote) ou bail 30 ans</span><span lang="en">Freehold (Chanote) or 30-year leasehold</span></div></div>
-        </div>
-      </a>
-
-      <a class="lot r1 rv" href="https://www.fredetco.com/properties/tropical-3-bedroom-pool-villa-with-garden-in-the-heart-of-bo-phut-1046/" target="_blank" rel="noopener">
-        <div class="ph"><span class="ref" aria-hidden="true"><small>N°</small>1046</span><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1d8e7721-f2e3-49b8-9bef-1027e4bcf0d1" alt="Villa tropicale avec piscine et jardin, réf. 1046, Bophut"></div>
-        <div class="meta">
-          <div>
-            <div class="zone">Bophut · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1046</div>
-            <h3><span lang="fr">Villa tropicale 3 chambres, piscine et jardin</span><span lang="en">Tropical 3-bedroom pool villa with garden</span></h3>
-            <ul class="specs">
-              <li><span lang="fr">3 suites</span><span lang="en">3 en-suite bedrooms</span></li>
-              <li><span lang="fr">4 salles de bain</span><span lang="en">4 bathrooms</span></li>
-              <li><span lang="fr">Terrain</span><span lang="en">Land</span> 472 m²</li>
-              <li><span lang="fr">Piscine 8 × 4 m</span><span lang="en">8 × 4 m pool</span></li>
-            </ul>
-          </div>
-          <div><div class="price">฿ 10 500 000</div><div class="tenure"><span lang="fr">Bail, 28 ans restants</span><span lang="en">Leasehold, 28 years left</span></div></div>
-        </div>
-      </a>
-
-      <a class="lot r2 rv" href="https://www.fredetco.com/properties/2-bedrooms-apartment-fully-furnished-new-seahorse-residence-1044/" target="_blank" rel="noopener">
-        <div class="ph"><span class="ref" aria-hidden="true"><small>N°</small>1044</span><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/529261d4-effa-4638-aa10-711dd112c960" alt="Résidence Seahorse et sa piscine commune, réf. 1044, Chaweng Noi"></div>
-        <div class="meta">
-          <div>
-            <div class="zone">Chaweng Noi · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1044 · <span lang="fr">Exclusivité</span><span lang="en">Exclusive</span></div>
-            <h3><span lang="fr">Appartement 2 chambres meublé, résidence Seahorse</span><span lang="en">Furnished 2-bedroom apartment, Seahorse residence</span></h3>
-            <ul class="specs">
-              <li>55 m² + <span lang="fr">terrasse</span><span lang="en">terrace</span> 7 m²</li>
-              <li><span lang="fr">Rénové en 2023</span><span lang="en">Renovated in 2023</span></li>
-              <li><span lang="fr">Piscine commune</span><span lang="en">Shared pool</span></li>
-            </ul>
-          </div>
-          <div><div class="price">฿ 3 270 000</div><div class="tenure"><span lang="fr">Bail 30 ans</span><span lang="en">30-year leasehold</span></div></div>
-        </div>
-      </a>
-
-      <a class="lot wide rv" href="https://www.fredetco.com/properties/beautiful-2-bedrooms-villa-with-pool-lamai-area-high-roi-1040/" target="_blank" rel="noopener">
-        <div class="ph"><span class="ref" aria-hidden="true"><small>N°</small>1040</span><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/b7997de7-5ce3-49c5-9455-15b394e47e6e" alt="Terrasse et piscine avec vue sur les palmiers, villa réf. 1040, Lamai"></div>
-        <div class="meta">
-          <div>
-            <div class="zone">Lamai · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1040 · <span lang="fr">Exclusivité</span><span lang="en">Exclusive</span></div>
-            <h3><span lang="fr">Villa 2 chambres avec piscine, vue mer, entre Lamai et Hua Thanon</span><span lang="en">2-bedroom pool villa with sea view, between Lamai and Hua Thanon</span></h3>
-            <ul class="specs">
-              <li><span lang="fr">2 chambres</span><span lang="en">2 bedrooms</span></li>
-              <li><span lang="fr">2 salles de bain</span><span lang="en">2 bathrooms</span></li>
-              <li>65 m² <span lang="fr">construits</span><span lang="en">built</span></li>
-              <li><span lang="fr">Terrain</span><span lang="en">Land</span> 251 m²</li>
-              <li><span lang="fr">Meublée, licence de location incluse</span><span lang="en">Furnished, rental licence included</span></li>
-              <li><span lang="fr">Plage à 5 min</span><span lang="en">Beach 5 min away</span></li>
-            </ul>
-          </div>
-          <div><div class="price">฿ 7 900 000</div><div class="tenure"><span lang="fr">Pleine propriété · ou ฿ 6 900 000 en bail 30 ans</span><span lang="en">Freehold · or ฿6,900,000 on a 30-year lease</span></div></div>
-        </div>
-      </a>
-    </div>
-
-    <div class="all rv"><a class="link-arrow" href="https://www.fredetco.com/properties-for-sale/"><span lang="fr">Tous les biens à vendre</span><span lang="en">All properties for sale</span> <span class="a">→</span></a></div>
-  </section>
-
-  <!-- BANDE WHATSAPP -->
-  <section class="band" aria-label="WhatsApp">
-    <div class="rv">
-      <h2><span lang="fr">Une question sur un bien&nbsp;? <em>Réponse en moins d'une minute.</em></span><span lang="en">A question about a property? <em>Reply in under a minute.</em></span></h2>
-      <p><span lang="fr">Écrivez-nous sur WhatsApp, de jour comme de nuit : disponibilités, visites, visite vidéo à distance, questions juridiques. Un conseiller prend ensuite le relais.</span><span lang="en">Message us on WhatsApp, day or night: availability, viewings, remote video tours, legal questions. An advisor then takes over.</span></p>
-    </div>
-    <div class="clock rv">
-      <div class="row"><span lang="fr">Délai de réponse</span><span lang="en">Response time</span><b>&lt; 1 min</b></div>
-      <div class="row"><span lang="fr">Disponibilité</span><span lang="en">Availability</span><b><span lang="fr">7j/7</span><span lang="en">7 days</span></b></div>
-      <a class="wa" href="https://wa.me/66954254490" target="_blank" rel="noopener">
-        <span class="ic"><svg aria-hidden="true"><use href="#wa"/></svg></span>
-        <span><b><span lang="fr">Démarrer la conversation</span><span lang="en">Start the conversation</span></b>
-        <small><span lang="fr">Réponse en moins d'une minute, 7j/7</span><span lang="en">Reply in under a minute, 7 days a week</span></small></span>
-      </a>
     </div>
   </section>
 
-  <!-- POURQUOI FRED & CO (textes du site, réécrits) -->
-  <section class="why" id="pourquoi" aria-labelledby="why-h">
-    <div class="pic"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1c411a67-c86b-4474-a196-9b92b302d1a0" alt="Salon ouvert sur la terrasse et la piscine, villa réf. 1050"></div>
-    <div class="txt">
-      <span class="over rv"><span lang="fr">Pourquoi Fred &amp; Co</span><span lang="en">Why Fred &amp; Co</span></span>
-      <h2 id="why-h" class="rv"><span lang="fr">Plus qu'une agence, une façon de vivre la Thaïlande.</span><span lang="en">More than an agency, a way of living Thailand.</span></h2>
-      <ol>
-        <li class="rv"><div><h3><span lang="fr">L'expertise locale</span><span lang="en">Local expertise</span></h3>
-          <p><span lang="fr">Une équipe installée en Thaïlande depuis plus de cinq ans, avec des agences à Lamai et à Maenam, et un portefeuille de villas, d'appartements et de terrains sélectionnés un par un.</span><span lang="en">A team based in Thailand for more than five years, with offices in Lamai and Maenam, and a hand-picked portfolio of villas, apartments and land.</span></p></div></li>
-        <li class="rv"><div><h3><span lang="fr">Sécurité et transparence</span><span lang="en">Security &amp; transparency</span></h3>
-          <p><span lang="fr">Des transactions sécurisées, avec un accompagnement juridique et fiscal à chaque étape grâce à des professionnels thaïlandais de confiance.</span><span lang="en">Secure transactions, with legal and tax support at every step through trusted Thai professionals.</span></p></div></li>
-        <li class="rv"><div><h3><span lang="fr">Un accompagnement sur mesure</span><span lang="en">Tailor-made support</span></h3>
-          <p><span lang="fr">Un service complet avant, pendant et après votre achat, pensé autour de votre projet : y vivre, y investir ou y passer vos vacances.</span><span lang="en">A complete service before, during and after your purchase, built around your plan: to live, invest or holiday here.</span></p></div></li>
-      </ol>
-      <p class="partners rv"><span lang="fr">Ils nous font confiance :</span><span lang="en">Trusted by:</span> <b>Thai Property · Invest in Thailand · FFL Investissement · Invest Together Group</b></p>
-    </div>
-  </section>
-
-  <!-- FRANCHISE -->
-  <section class="fr-sec" id="franchise" aria-labelledby="fr-h">
-    <div class="fr-top">
-      <div class="rv">
-        <span class="over">Franchise FRED&amp;CO</span>
-        <h2 id="fr-h"><span lang="fr">Devenez propriétaire de <em>votre agence.</em></span><span lang="en">Become the owner of <em>your agency.</em></span></h2>
+  <!-- 3. LA SÉLECTION (défilement horizontal) -->
+  <section class="sel" id="selection" data-bg="#0E211C" data-dark aria-labelledby="s-h">
+    <div class="glow"></div>
+    <div class="track">
+      <div class="pan pan-intro">
+        <div class="over" style="color:var(--gold)"><span lang="fr">La sélection</span><span lang="en">The selection</span></div>
+        <h2 id="s-h" class="split-s"><span lang="fr">Quatre <em>adresses.</em></span><span lang="en">Four <em>addresses.</em></span></h2>
+        <p><span lang="fr">De la villa panoramique de Chaweng Noi à l'appartement meublé prêt à louer. Chaque bien, sa référence, son régime de propriété.</span><span lang="en">From the panoramic villa in Chaweng Noi to the furnished apartment ready to rent. Each property, its reference, its ownership.</span></p>
+        <div class="hint"><span lang="fr">Défiler</span><span lang="en">Scroll</span></div>
       </div>
-      <p class="intro rv"><span lang="fr">Rejoignez un réseau immobilier premium et développez votre activité dans l'une des destinations les plus recherchées au monde, avec la marque, les outils et la formation FRED&amp;CO.</span><span lang="en">Join a premium real estate network and build your business in one of the world's most sought-after destinations, with the FRED&amp;CO brand, tools and training.</span></p>
-    </div>
 
-    <div class="terr rv" aria-label="Territoires">
-      <div><div class="c">Koh Samui</div><div class="d"><span lang="fr">Marché des villas en plein essor, clientèle internationale</span><span lang="en">Booming villa market, international hotspot</span></div><div class="lv">€€€</div></div>
-      <div><div class="c">Phuket</div><div class="d"><span lang="fr">Segment luxe en croissance, fort rendement locatif</span><span lang="en">Growing luxury segment, high rental yield</span></div><div class="lv">€€€</div></div>
-      <div><div class="c">Bangkok</div><div class="d"><span lang="fr">Grande communauté d'expatriés, condominiums premium</span><span lang="en">Large expat community, premium condominiums</span></div><div class="lv">€€€</div></div>
-      <div><div class="c">Pattaya</div><div class="d"><span lang="fr">Marché dynamique, prix attractifs</span><span lang="en">Dynamic market, attractive prices</span></div><div class="lv">€€</div></div>
-    </div>
+      <div class="pan"><a class="lot a" data-cursor="view" href="https://www.fredetco.com/properties/luxury-villa-in-chaweng-noi-high-end-features-and-panoramic-180-sea-view-1050/" target="_blank" rel="noopener">
+        <span class="num" aria-hidden="true">1050</span>
+        <div class="mask"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/a4c910d5-c858-4b79-a2d3-ae03ab3d91f8" alt="Piscine à débordement face à la baie, villa réf. 1050"></div>
+        <div class="inset"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/86652ac5-0cc0-4ebe-97bd-d5460066e8f3" alt="Salon avec vue mer, villa réf. 1050"></div>
+        <div class="txt">
+          <div class="zone">Chaweng Noi · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1050</div>
+          <h3><span lang="fr">Vue mer <em>panoramique</em> à 180°</span><span lang="en">A <em>180° panoramic</em> sea view</span></h3>
+          <p class="spec"><span lang="fr">Villa contemporaine · 4 chambres · 4 salles de bain · 285 m² construits · piscine à débordement · appartement d'invités indépendant</span><span lang="en">Contemporary villa · 4 bedrooms · 4 bathrooms · 285 m² built · infinity pool · independent guest apartment</span></p>
+          <div class="price"><b>฿ 32 000 000</b><span><span lang="fr">Pleine propriété (chanote) ou bail 30 ans</span><span lang="en">Freehold (Chanote) or 30-year leasehold</span></span></div>
+        </div>
+      </a></div>
 
-    <div class="pillars rv">
-      <div><b><span lang="fr">Une marque premium</span><span lang="en">A premium brand</span></b><span><span lang="fr">Positionnée sur l'immobilier haut de gamme.</span><span lang="en">Positioned on high-end real estate.</span></span></div>
-      <div><b><span lang="fr">Clientèle internationale</span><span lang="en">International clientele</span></b><span><span lang="fr">Un réseau d'acheteurs et d'investisseurs.</span><span lang="en">A network of buyers and investors.</span></span></div>
-      <div><b><span lang="fr">Marketing et contacts entrants</span><span lang="en">Marketing &amp; inbound leads</span></b><span><span lang="fr">Stratégies d'acquisition et génération de contacts.</span><span lang="en">Acquisition strategies and lead generation.</span></span></div>
-      <div><b><span lang="fr">Technologie et outils</span><span lang="en">Technology &amp; tools</span></b><span><span lang="fr">CRM et outils numériques modernes.</span><span lang="en">CRM and modern digital tools.</span></span></div>
-      <div><b><span lang="fr">Formation et suivi</span><span lang="en">Training &amp; support</span></b><span><span lang="fr">Intégration complète, formation continue.</span><span lang="en">Full onboarding, ongoing training.</span></span></div>
-      <div><b><span lang="fr">Territoires exclusifs</span><span lang="en">Exclusive territories</span></b><span><span lang="fr">Des zones réservées dans des emplacements clés.</span><span lang="en">Reserved areas in prime locations.</span></span></div>
-    </div>
+      <div class="pan"><a class="lot b" data-cursor="view" href="https://www.fredetco.com/properties/tropical-3-bedroom-pool-villa-with-garden-in-the-heart-of-bo-phut-1046/" target="_blank" rel="noopener">
+        <span class="num" aria-hidden="true">1046</span>
+        <div class="mask"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1d8e7721-f2e3-49b8-9bef-1027e4bcf0d1" alt="Villa tropicale avec piscine et jardin, réf. 1046, Bophut"></div>
+        <div class="inset"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/030f22b3-9baf-4b10-9a4c-8d111c705961" alt="Salon ouvert sur la piscine, villa réf. 1046"></div>
+        <div class="txt">
+          <div class="zone">Bophut · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1046</div>
+          <h3><span lang="fr">Villa tropicale, <em>piscine et jardin</em></span><span lang="en">Tropical villa, <em>pool and garden</em></span></h3>
+          <p class="spec"><span lang="fr">3 suites · 4 salles de bain · terrain 472 m² · piscine 8 × 4 m</span><span lang="en">3 en-suite bedrooms · 4 bathrooms · 472 m² land · 8 × 4 m pool</span></p>
+          <div class="price"><b>฿ 10 500 000</b><span><span lang="fr">Bail, 28 ans restants</span><span lang="en">Leasehold, 28 years left</span></span></div>
+        </div>
+      </a></div>
 
-    <div class="fr-cta rv">
-      <a class="btn-gold" href="https://www.fredetco.com/franchise/"><span lang="fr">Réserver un appel découverte</span><span lang="en">Book a discovery call</span> <span>→</span></a>
-      <a class="link-arrow" href="https://www.fredetco.com/franchise/"><span lang="fr">Télécharger la brochure franchise</span><span lang="en">Download the franchise brochure</span> <span class="a">→</span></a>
+      <div class="pan"><a class="lot c" data-cursor="view" href="https://www.fredetco.com/properties/2-bedrooms-apartment-fully-furnished-new-seahorse-residence-1044/" target="_blank" rel="noopener">
+        <span class="num" aria-hidden="true">1044</span>
+        <div class="mask"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/b4b42d61-cfb5-4459-9eb1-f30fc2b3c583" alt="Piscine commune de la résidence Seahorse, réf. 1044"></div>
+        <div class="inset"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/4eeb65b3-770b-4324-83f2-4bab619ace39" alt="Salle à manger de l'appartement réf. 1044"></div>
+        <div class="txt">
+          <div class="zone">Chaweng Noi · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1044 <span class="excl"><span lang="fr">Exclusivité</span><span lang="en">Exclusive</span></span></div>
+          <h3><span lang="fr">Appartement meublé, <em>résidence Seahorse</em></span><span lang="en">Furnished apartment, <em>Seahorse residence</em></span></h3>
+          <p class="spec"><span lang="fr">2 chambres · 1 salle de bain · 55 m² + terrasse 7 m² · rénové en 2023 · piscine commune</span><span lang="en">2 bedrooms · 1 bathroom · 55 m² + 7 m² terrace · renovated in 2023 · shared pool</span></p>
+          <div class="price"><b>฿ 3 270 000</b><span><span lang="fr">Bail 30 ans</span><span lang="en">30-year leasehold</span></span></div>
+        </div>
+      </a></div>
+
+      <div class="pan"><a class="lot d" data-cursor="view" href="https://www.fredetco.com/properties/beautiful-2-bedrooms-villa-with-pool-lamai-area-high-roi-1040/" target="_blank" rel="noopener">
+        <span class="num" aria-hidden="true">1040</span>
+        <div class="mask"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/b7997de7-5ce3-49c5-9455-15b394e47e6e" alt="Terrasse et piscine, villa réf. 1040, Lamai"></div>
+        <div class="inset"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/ba7cdea5-601b-4805-9e1a-5940464fd0cf" alt="Salon de la villa réf. 1040"></div>
+        <div class="txt">
+          <div class="zone">Lamai · <span lang="fr">Réf.</span><span lang="en">Ref</span> 1040 <span class="excl"><span lang="fr">Exclusivité</span><span lang="en">Exclusive</span></span></div>
+          <h3><span lang="fr">Villa avec piscine, <em>vue mer</em></span><span lang="en">Pool villa, <em>sea view</em></span></h3>
+          <p class="spec"><span lang="fr">Entre Lamai et Hua Thanon · 2 chambres · 2 salles de bain · 65 m² · terrain 251 m² · meublée</span><span lang="en">Between Lamai and Hua Thanon · 2 bedrooms · 2 bathrooms · 65 m² · 251 m² land · furnished</span></p>
+          <div class="price"><b>฿ 7 900 000</b><span><span lang="fr">Pleine propriété, ou ฿ 6 900 000 en bail 30 ans</span><span lang="en">Freehold, or ฿6,900,000 on a 30-year lease</span></span></div>
+        </div>
+      </a></div>
+
+      <div class="pan pan-end">
+        <p><span lang="fr">Et d'autres adresses, <em>à découvrir.</em></span><span lang="en">And more addresses, <em>to discover.</em></span></p>
+        <a class="mag ring-btn" href="https://www.fredetco.com/properties-for-sale/" target="_blank" rel="noopener"><span class="lbl"><span lang="fr">Tous les biens</span><span lang="en">All properties</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RESPIRATION AÉRIENNE -->
+  <section class="aerial" data-bg="#0E211C" data-dark aria-label="Koh Samui">
+    <div class="mask"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/5c669ff2-b097-4b9f-8799-1e15b59aac3c" alt="Vue aérienne de la villa réf. 1050 et de la baie de Chaweng Noi"></div>
+    <div class="marq" aria-hidden="true">Chaweng Noi <em>—</em> Bophut <em>—</em> Lamai <em>—</em> Hua Thanon <em>—</em> Chaweng Noi <em>—</em> Bophut</div>
+    <div class="cap"><span lang="fr">Réf. 1050, Chaweng Noi, vue aérienne</span><span lang="en">Ref 1050, Chaweng Noi, aerial view</span></div>
+  </section>
+
+  <!-- 5. RÉPONSE -->
+  <section class="reply" id="contact" data-bg="#E7DCC8" aria-labelledby="r-h">
+    <div class="ghost" aria-hidden="true">7j/7</div>
+    <div class="over"><span lang="fr">Une question sur un bien&nbsp;?</span><span lang="en">A question about a property?</span></div>
+    <h2 id="r-h" class="split-s">
+      <span lang="fr">Réponse en moins <span class="r2">d'une <em>minute.</em></span></span>
+      <span lang="en">A reply in under <span class="r2">a <em>minute.</em></span></span>
+    </h2>
+    <div class="row">
+      <a class="mag wa-big" href="https://wa.me/66954254490" target="_blank" rel="noopener"><span class="lbl"><svg aria-hidden="true"><use href="#wa"/></svg><span lang="fr">Écrire sur<br>WhatsApp</span><span lang="en">Message on<br>WhatsApp</span></span></a>
+      <p class="fade-up"><span lang="fr">Jour et nuit, 7j/7 : disponibilités, visites, visite vidéo à distance, questions juridiques. Un conseiller prend ensuite le relais.</span><span lang="en">Day and night, 7 days a week: availability, viewings, remote video tours, legal questions. An advisor then takes over.</span></p>
+    </div>
+  </section>
+
+  <!-- 6. POURQUOI -->
+  <section class="why" data-bg="#F3EEE4" aria-labelledby="w-h">
+    <div class="stick"><figure>
+      <img src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1c411a67-c86b-4474-a196-9b92b302d1a0" alt="Salon et terrasse, villa réf. 1050" loading="lazy">
+      <img src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/723a2b58-4efd-4896-bab7-3718314b979f" alt="Villa réf. 1050 accrochée à la colline" loading="lazy">
+      <img src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/9623b4f2-c607-4a12-8d0e-6e2239004d1d" alt="Vue du ciel, villa réf. 1050" loading="lazy">
+      <figcaption>Réf. 1050 · Chaweng Noi</figcaption>
+    </figure></div>
+    <div>
+      <div class="head">
+        <div class="over" style="color:var(--forest)"><span lang="fr">Pourquoi Fred &amp; Co</span><span lang="en">Why Fred &amp; Co</span></div>
+        <h2 id="w-h" class="split-s"><span lang="fr">Trois <em>promesses.</em></span><span lang="en">Three <em>promises.</em></span></h2>
+      </div>
+      <div class="item" data-step="0">
+        <div class="m-img"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/1c411a67-c86b-4474-a196-9b92b302d1a0" alt=""></div>
+        <div class="roman">i.</div>
+        <h3><span lang="fr">L'expertise locale</span><span lang="en">Local expertise</span></h3>
+        <p><span lang="fr">Une équipe installée en Thaïlande, des agences à Lamai et à Maenam, et un portefeuille de villas, d'appartements et de terrains sélectionnés un par un pour leur emplacement et leur qualité de vie.</span><span lang="en">A team based in Thailand, offices in Lamai and Maenam, and a portfolio of villas, apartments and land hand-picked for their location and quality of life.</span></p>
+      </div>
+      <div class="item" data-step="1">
+        <div class="m-img"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/723a2b58-4efd-4896-bab7-3718314b979f" alt=""></div>
+        <div class="roman">ii.</div>
+        <h3><span lang="fr">Sécurité et transparence</span><span lang="en">Security &amp; transparency</span></h3>
+        <p><span lang="fr">Des transactions sécurisées, avec un accompagnement juridique et fiscal à chaque étape, aux côtés de professionnels thaïlandais de confiance.</span><span lang="en">Secure transactions, with legal and tax support at every step, alongside trusted Thai professionals.</span></p>
+      </div>
+      <div class="item" data-step="2">
+        <div class="m-img"><img loading="lazy" src="https://fredandco.eu1.qobrix.com/api/v2/files/download/media/public/xlarge/9623b4f2-c607-4a12-8d0e-6e2239004d1d" alt=""></div>
+        <div class="roman">iii.</div>
+        <h3><span lang="fr">Le sur-mesure</span><span lang="en">Tailor-made</span></h3>
+        <p><span lang="fr">Un service complet avant, pendant et après votre achat, construit autour de votre projet : y vivre, y investir ou y passer vos saisons.</span><span lang="en">A complete service before, during and after your purchase, built around your plan: to live, invest or spend your seasons here.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FRANCHISE -->
+  <section class="fr" id="franchise" data-bg="#0A1613" data-dark aria-labelledby="f-h">
+    <div class="glow"></div>
+    <div class="over">Franchise FRED&amp;CO</div>
+    <h2 id="f-h" class="split-s">
+      <span lang="fr">Devenez propriétaire <span class="f2">de <em>votre agence.</em></span></span>
+      <span lang="en">Become the owner <span class="f2">of <em>your agency.</em></span></span>
+    </h2>
+    <p class="lead fade-up"><span lang="fr">Rejoignez un réseau immobilier premium et développez votre activité dans l'une des destinations les plus recherchées au monde, avec la marque, les outils et la formation Fred &amp; Co.</span><span lang="en">Join a premium real estate network and build your business in one of the world's most sought-after destinations, with the Fred &amp; Co brand, tools and training.</span></p>
+    <ul class="terr">
+      <li class="fade-up"><span class="name">Koh <em>Samui</em></span><span class="d"><span lang="fr">Marché des villas en plein essor, destination internationale.</span><span lang="en">Booming villa market, international hotspot.</span></span></li>
+      <li class="fade-up"><span class="name"><em>Phuket</em></span><span class="d"><span lang="fr">Segment luxe en croissance, forte demande internationale.</span><span lang="en">Growing luxury segment, strong international demand.</span></span></li>
+      <li class="fade-up"><span class="name">Bang<em>kok</em></span><span class="d"><span lang="fr">Grande communauté d'expatriés, condominiums premium.</span><span lang="en">Large expat community, premium condominiums.</span></span></li>
+      <li class="fade-up"><span class="name"><em>Pattaya</em></span><span class="d"><span lang="fr">Marché dynamique, infrastructures en développement.</span><span lang="en">Dynamic market, expanding infrastructure.</span></span></li>
+    </ul>
+    <div class="pillars fade-up">
+      <p><b><span lang="fr">Une marque premium.</span><span lang="en">A premium brand.</span></b> <span lang="fr">Positionnée sur l'immobilier haut de gamme.</span><span lang="en">Positioned on high-end real estate.</span></p>
+      <p><b><span lang="fr">Une clientèle internationale.</span><span lang="en">International clientele.</span></b> <span lang="fr">Un réseau d'acheteurs et d'investisseurs.</span><span lang="en">A network of buyers and investors.</span></p>
+      <p><b><span lang="fr">Marketing et contacts entrants.</span><span lang="en">Marketing and inbound leads.</span></b> <span lang="fr">Des stratégies d'acquisition éprouvées.</span><span lang="en">Proven acquisition strategies.</span></p>
+      <p><b><span lang="fr">Technologie.</span><span lang="en">Technology.</span></b> <span lang="fr">CRM et outils numériques modernes.</span><span lang="en">CRM and modern digital tools.</span></p>
+      <p><b><span lang="fr">Formation et suivi.</span><span lang="en">Training and support.</span></b> <span lang="fr">Intégration complète, formation continue.</span><span lang="en">Full onboarding, ongoing training.</span></p>
+      <p><b><span lang="fr">Territoires exclusifs.</span><span lang="en">Exclusive territories.</span></b> <span lang="fr">Des zones réservées dans des emplacements clés.</span><span lang="en">Reserved areas in prime locations.</span></p>
+    </div>
+    <div class="cta">
+      <a class="mag pill" href="https://www.fredetco.com/franchise/" target="_blank" rel="noopener"><span class="lbl"><span><span lang="fr">Réserver un appel découverte</span><span lang="en">Book a discovery call</span></span><span><span lang="fr">Réserver un appel découverte</span><span lang="en">Book a discovery call</span></span></span></a>
+      <a class="line-link" href="https://www.fredetco.com/franchise/" target="_blank" rel="noopener"><span lang="fr">La brochure franchise</span><span lang="en">The franchise brochure</span></a>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="foot-top">
-    <div>
-      <h4><span lang="fr">Parlons de votre projet</span><span lang="en">Let's talk about your project</span></h4>
-      <p><span lang="fr">Acheter, louer, vendre ou investir à Koh Samui et en Thaïlande.</span><span lang="en">Buy, rent, sell or invest in Koh Samui and Thailand.</span></p>
-      <p style="margin-top:1rem"><a class="link-arrow" href="https://wa.me/66954254490" target="_blank" rel="noopener">WhatsApp <span class="a">→</span></a></p>
-    </div>
+<footer data-bg="#F3EEE4">
+  <div class="top">
+    <div><p class="say"><span lang="fr">Parlons de <em>votre projet.</em></span><span lang="en">Let's talk about <em>your plans.</em></span></p></div>
     <div><h4>Lamai</h4><p><a href="mailto:lamai@fredetco.com">lamai@fredetco.com</a><br><a href="tel:+66954254490">+66 954 254 490</a></p></div>
     <div><h4>Maenam</h4><p><a href="mailto:maenam@fredetco.com">maenam@fredetco.com</a><br><a href="tel:+66649106021">+66 649 106 021</a></p></div>
     <div><h4>Rawai</h4><p><a href="mailto:rawai@fredetco.com">rawai@fredetco.com</a><br><a href="tel:+66808180674">+66 808 180 674</a></p></div>
   </div>
-  <div class="wordmark" aria-hidden="true">FRED<i>&amp;</i>CO</div>
-  <div class="legal"><span>© 2026 FRED&amp;CO</span><span lang="fr">Maquette de démonstration GILD-TECH, pas le site officiel de l'agence</span><span lang="en">GILD-TECH demo mock-up, not the agency's official website</span></div>
+  <div class="wordmark split-f" aria-hidden="true">FRED<i>&amp;</i>CO</div>
+  <div class="legal"><span>© 2026 FRED&amp;CO</span><span><span lang="fr">Maquette de démonstration GILD-TECH, pas le site officiel de l'agence</span><span lang="en">GILD-TECH demo mock-up, not the agency's official website</span></span></div>
 </footer>
 
-<a class="wa-bar" href="https://wa.me/66954254490" target="_blank" rel="noopener">
-  <span class="ic"><svg aria-hidden="true"><use href="#wa"/></svg></span>
-  <span><b><span lang="fr">WhatsApp</span><span lang="en">WhatsApp</span></b><small><span lang="fr">Réponse en moins d'une minute, 7j/7</span><span lang="en">Reply in under a minute, 7 days a week</span></small></span>
-  <span class="dot" aria-hidden="true"></span>
+<a class="wa-float mag" href="https://wa.me/66954254490" target="_blank" rel="noopener" aria-label="WhatsApp — réponse en moins d'une minute, 7j/7">
+  <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
+    <defs><path id="circ" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+    <text lang="fr"><textPath href="#circ">Réponse en moins d'une minute · 7j/7 ·</textPath></text>
+    <text lang="en"><textPath href="#circ">Reply in under a minute · 7 days a week ·</textPath></text>
+  </svg>
+  <span class="disc lbl"><svg aria-hidden="true"><use href="#wa"/></svg></span>
 </a>
+<div class="demo-tag"><span lang="fr">Maquette GILD-TECH</span><span lang="en">GILD-TECH mock-up</span></div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
 <script>
-  // langue : ?lang=en ou bouton ; mémorisée pour la session
-  (function(){
-    var root=document.documentElement;
-    function set(l){ root.setAttribute('data-lang',l); root.lang=l;
-      document.title = l==='en' ? 'FRED&CO — Real estate in Koh Samui (mock-up)' : 'FRED&CO — Immobilier à Koh Samui (maquette)';
-      document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set===l ? 'true':'false'); });
-      try{ sessionStorage.setItem('fc_lang',l); }catch(e){} }
-    var q=''; try{ q=new URLSearchParams(location.search).get('lang')||sessionStorage.getItem('fc_lang')||''; }catch(e){}
-    if(q==='en'||q==='fr') set(q);
-    document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click',function(){ set(b.dataset.set); }); });
-  })();
-  // apparitions au défilement (désactivées si mouvement réduit)
-  (function(){
-    if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    document.documentElement.classList.add('js');
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px'});
-    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
-    setTimeout(function(){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); }); }, 4000);
-  })();
+(function(){
+  var root=document.documentElement, body=document.body;
+  var RM=body.classList.contains('rm') || typeof gsap==='undefined';
+
+  /* ——— langue ——— */
+  function setLang(l){ root.setAttribute('data-lang',l); root.lang=l;
+    document.title = l==='en' ? 'FRED&CO — Real estate in Koh Samui (mock-up)' : 'FRED&CO — Immobilier à Koh Samui (maquette)';
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set===l?'true':'false'); });
+    try{ sessionStorage.setItem('fc_lang',l); }catch(e){}
+    if(window.ScrollTrigger) requestAnimationFrame(function(){ ScrollTrigger.refresh(); });
+  }
+  var q=''; try{ q=new URLSearchParams(location.search).get('lang')||sessionStorage.getItem('fc_lang')||''; }catch(e){}
+  if(q==='en'||q==='fr') setLang(q);
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.dataset.set); }); });
+
+  /* ——— découpage lettres / mots ——— */
+  function split(el, mode){
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(n){
+        if(n.nodeType===3){
+          var frag=document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function(part){
+            if(!part) return;
+            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+            var w=document.createElement('span'); w.className='w';
+            if(mode==='words'){ w.textContent=part; }
+            else { Array.from(part).forEach(function(ch){ var c=document.createElement('span'); c.className='c'; c.textContent=ch; w.appendChild(c); }); }
+            frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag,n);
+        } else if(n.nodeType===1 && n.tagName!=='BR'){ walk(n); }
+      });
+    })(el);
+  }
+  document.querySelectorAll('.split,.split-s,.split-l,.split-f').forEach(function(el){ split(el,'chars'); });
+  document.querySelectorAll('.words').forEach(function(el){ split(el,'words'); });
+
+  if(RM){ document.querySelectorAll('.loader').forEach(function(l){ l.remove(); }); return; }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ——— défilement fluide ——— */
+  var lenis=new Lenis({ lerp:0.085, smoothWheel:true, wheelMultiplier:0.95 });
+  window.__lenis=lenis;
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+  gsap.ticker.lagSmoothing(0);
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(e){ var t=document.querySelector(a.getAttribute('href')); if(t){ e.preventDefault(); lenis.scrollTo(t,{duration:1.6}); } }); });
+
+  var isDesk=matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ——— 0. chargement + ouverture ——— */
+  lenis.stop();
+  var heroImg=document.querySelector('.hero .mask img');
+  gsap.set('.hero .mask',{clipPath:'inset(18% 22% 18% 22%)'});
+  gsap.set(heroImg,{scale:1.35});
+  gsap.set('.hero h1 .c',{yPercent:118,rotate:7});
+  gsap.set('.hero-in',{autoAlpha:0,y:24});
+  gsap.set('.loader .c',{yPercent:110});
+  var intro=gsap.timeline({defaults:{ease:'expo.out'}});
+  intro.to('.loader .c',{yPercent:0,duration:1,stagger:.045})
+       .to('.loader .rule b',{scaleX:1,duration:.9,ease:'power2.inOut'},'-=.6')
+       .to('.loader .c',{yPercent:-110,duration:.7,stagger:.03,ease:'power3.in'},'+=.05')
+       .to('.loader',{clipPath:'inset(0 0 100% 0)',duration:1,ease:'power4.inOut'},'-=.35')
+       .to('.hero .mask',{clipPath:'inset(0% 0% 0% 0%)',duration:1.6,ease:'power4.inOut'},'-=.75')
+       .to(heroImg,{scale:1.08,duration:2.4,ease:'power3.out'},'<')
+       .to('.hero h1 [lang]:not([hidden]) .c, .hero h1 .c',{yPercent:0,rotate:0,duration:1.25,stagger:{each:.028}},'-=1.5')
+       .to('.hero-in',{autoAlpha:1,y:0,duration:1.1,stagger:.12},'-=.9')
+       .add(function(){ document.querySelector('.loader').remove(); lenis.start(); })
+       .to(heroImg,{scale:1,duration:14,ease:'none'});
+
+  /* sortie du hero : parallaxe + voile */
+  gsap.to(heroImg,{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-copy',{yPercent:-28,autoAlpha:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero .veil',{opacity:.7,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* ——— 3. sélection horizontale épinglée ——— */
+  var track=document.querySelector('.track');
+  function dist(){ return Math.max(0, track.scrollWidth - innerWidth); }
+  var hScroll=gsap.to(track,{x:function(){ return -dist(); },ease:'none',
+    scrollTrigger:{trigger:'.sel',start:'top top',end:function(){ return '+='+dist(); },pin:true,scrub:1,invalidateOnRefresh:true,anticipatePin:1}});
+  gsap.utils.toArray('.lot').forEach(function(lot){
+    var mask=lot.querySelector('.mask'), img=mask.querySelector('img'), num=lot.querySelector('.num'), inset=lot.querySelector('.inset'), txt=lot.querySelector('.txt');
+    gsap.fromTo(mask,{clipPath:'inset(0% 100% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.out',
+      scrollTrigger:{trigger:lot,containerAnimation:hScroll,start:'left 92%',end:'left 38%',scrub:true}});
+    gsap.fromTo(img,{scale:1.35,xPercent:-6},{scale:1.04,xPercent:6,ease:'none',
+      scrollTrigger:{trigger:lot,containerAnimation:hScroll,start:'left right',end:'right left',scrub:true}});
+    gsap.fromTo(num,{x:'18vw'},{x:'-18vw',ease:'none',
+      scrollTrigger:{trigger:lot,containerAnimation:hScroll,start:'left right',end:'right left',scrub:true}});
+    gsap.fromTo(inset,{y:'12vh',clipPath:'inset(100% 0 0 0)'},{y:'-6vh',clipPath:'inset(0% 0 0 0)',ease:'none',
+      scrollTrigger:{trigger:lot,containerAnimation:hScroll,start:'left 75%',end:'right 30%',scrub:true}});
+    gsap.from(txt.children,{y:40,autoAlpha:0,stagger:.08,ease:'power2.out',
+      scrollTrigger:{trigger:lot,containerAnimation:hScroll,start:'left 62%',end:'left 30%',scrub:true}});
+  });
+
+  /* ——— fonds qui changent au défilement ——— */
+  var themed=gsap.utils.toArray('[data-bg]');
+  function lum(hex){ var n=parseInt(hex.slice(1),16); return ((n>>16)&255)*.299+((n>>8)&255)*.587+(n&255)*.114; }
+  themed.forEach(function(sec){
+    ScrollTrigger.create({ trigger:sec, start:'top 55%', end:'bottom 55%',
+      onToggle:function(self){ if(!self.isActive) return;
+        var bg=sec.getAttribute('data-bg'), dark=lum(bg)<128;
+        gsap.to(body,{backgroundColor:bg,color:dark?'#F3EEE4':'#0E211C',duration:1.1,ease:'power2.out',overwrite:'auto'});
+        body.classList.toggle('on-dark',dark);
+      }});
+  });
+
+  /* ——— titres lettre par lettre au défilement ——— */
+  gsap.utils.toArray('.split-s, .split-f').forEach(function(h){
+    h.querySelectorAll(':scope > [lang], :scope').forEach(function(){});
+    var groups=h.querySelectorAll(':scope > [lang]'); if(!groups.length) groups=[h];
+    Array.prototype.forEach.call(groups,function(g){
+      gsap.from(g.querySelectorAll('.c'),{yPercent:118,rotate:6,duration:1.2,ease:'expo.out',stagger:.022,
+        scrollTrigger:{trigger:h,start:'top 82%',toggleActions:'play none none reverse'}});
+    });
+  });
+
+  /* manifeste : les mots s'allument au défilement */
+  document.querySelectorAll('.words > [lang]').forEach(function(g){
+    gsap.fromTo(g.querySelectorAll('.w'),{opacity:.12},{opacity:1,ease:'none',stagger:.5,
+      scrollTrigger:{trigger:'.words',start:'top 78%',end:'bottom 42%',scrub:true}});
+  });
+
+  gsap.utils.toArray('.fade-up').forEach(function(el){
+    gsap.from(el,{y:50,autoAlpha:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}});
+  });
+  gsap.utils.toArray('[data-parallax] img, .why .m-img img').forEach(function(img){
+    gsap.fromTo(img,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.from('.manifesto .frame',{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'power4.inOut',scrollTrigger:{trigger:'.manifesto .frame',start:'top 85%'}});
+
+  /* ——— 4. aérien : masque + parallaxe + bandeau des zones ——— */
+  gsap.to('.aerial .mask',{clipPath:'inset(0% 0% 0% 0%)',ease:'none',scrollTrigger:{trigger:'.aerial',start:'top 85%',end:'top 10%',scrub:true}});
+  gsap.fromTo('.aerial .mask img',{yPercent:-5,scale:1.12},{yPercent:5,scale:1,ease:'none',scrollTrigger:{trigger:'.aerial',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('.aerial .marq',{xPercent:5},{xPercent:-45,ease:'none',scrollTrigger:{trigger:'.aerial',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* ——— 5. « 7j/7 » fantôme ——— */
+  gsap.fromTo('.reply .ghost',{yPercent:30},{yPercent:-30,ease:'none',scrollTrigger:{trigger:'.reply',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* ——— 6. pourquoi : l'image change avec la promesse ——— */
+  var wImgs=gsap.utils.toArray('.why figure img'), cur=0;
+  gsap.utils.toArray('.why .item').forEach(function(item,i){
+    ScrollTrigger.create({trigger:item,start:'top 60%',end:'bottom 60%',onToggle:function(s){
+      if(!s.isActive || i===cur) return;
+      var next=wImgs[i];
+      gsap.set(next,{zIndex:2}); wImgs.forEach(function(im,k){ if(k!==i) gsap.set(im,{zIndex:k===cur?1:0}); });
+      gsap.fromTo(next,{clipPath:i>cur?'inset(100% 0 0 0)':'inset(0 0 100% 0)',scale:1.18},{clipPath:'inset(0% 0 0 0)',scale:1,duration:1.3,ease:'power4.inOut'});
+      cur=i;
+    }});
+    gsap.from(item.querySelector('.roman'),{xPercent:-30,autoAlpha:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:item,start:'top 80%',toggleActions:'play none none reverse'}});
+  });
+
+  /* ——— curseur personnalisé ——— */
+  if(isDesk){
+    body.classList.add('has-cursor');
+    var c=document.querySelector('.cur'), d=document.querySelector('.cur-dot');
+    var cx=gsap.quickTo(c,'x',{duration:.55,ease:'power3'}), cy=gsap.quickTo(c,'y',{duration:.55,ease:'power3'});
+    var dx=gsap.quickTo(d,'x',{duration:.12}), dy=gsap.quickTo(d,'y',{duration:.12});
+    window.addEventListener('mousemove',function(e){ if(!body.classList.contains('cursor-on')){ gsap.set([c,d],{x:e.clientX,y:e.clientY}); body.classList.add('cursor-on'); } cx(e.clientX); cy(e.clientY); dx(e.clientX); dy(e.clientY); });
+    document.addEventListener('mouseleave',function(){ body.classList.remove('cursor-on'); });
+    document.querySelectorAll('[data-cursor="view"]').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ c.classList.add('is-view'); d.style.opacity=0; });
+      el.addEventListener('mouseleave',function(){ c.classList.remove('is-view'); d.style.opacity=1; });
+    });
+    document.querySelectorAll('.mag, .lang button, .nav ul a').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ c.classList.add('is-hide'); });
+      el.addEventListener('mouseleave',function(){ c.classList.remove('is-hide'); });
+    });
+    /* survol des biens : l'image respire vers le curseur */
+    document.querySelectorAll('.lot').forEach(function(lot){
+      var img=lot.querySelector('.mask img');
+      lot.addEventListener('mousemove',function(e){ var r=lot.getBoundingClientRect();
+        gsap.to(img,{x:((e.clientX-r.left)/r.width-.5)*-26,y:((e.clientY-r.top)/r.height-.5)*-18,duration:1,ease:'power3.out',overwrite:'auto'}); });
+      lot.addEventListener('mouseleave',function(){ gsap.to(img,{x:0,y:0,duration:1.2,ease:'expo.out'}); });
+    });
+    /* boutons magnétiques */
+    document.querySelectorAll('.mag').forEach(function(el){
+      var lbl=el.querySelector('.lbl');
+      el.addEventListener('mousemove',function(e){ var r=el.getBoundingClientRect(), mx=e.clientX-(r.left+r.width/2), my=e.clientY-(r.top+r.height/2);
+        gsap.to(el,{x:mx*.35,y:my*.35,duration:.6,ease:'power3.out'}); if(lbl) gsap.to(lbl,{x:mx*.18,y:my*.18,duration:.6,ease:'power3.out'}); });
+      el.addEventListener('mouseleave',function(){ gsap.to(el,{x:0,y:0,duration:1,ease:'elastic.out(1,.35)'}); if(lbl) gsap.to(lbl,{x:0,y:0,duration:1,ease:'elastic.out(1,.35)'}); });
+    });
+  }
+
+  /* pied : le nom se lève */
+  gsap.from('.wordmark .c',{yPercent:110,duration:1.4,ease:'expo.out',stagger:.05,scrollTrigger:{trigger:'.wordmark',start:'top 95%',toggleActions:'play none none reverse'}});
+
+  ScrollTrigger.sort();
+  window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
+})();
 </script>
 </body>
 </html>
