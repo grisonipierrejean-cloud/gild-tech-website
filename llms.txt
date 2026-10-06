@@ -1,0 +1,25 @@
+# GILD-TECH
+
+> GILD-TECH installe Sarah, une assistante qui répond sur WhatsApp aux acheteurs et aux vendeurs des agences immobilières, dans leur langue, qualifie leur demande, relance ceux qui ne répondent plus (J+1, J+3, J+7) et propose le rendez-vous à l'agent. Marché principal : Koh Samui, Thaïlande.
+
+## Ce que fait Sarah
+- Répond à chaque demande entrante sur un numéro WhatsApp dédié à l'agence, de jour comme de nuit.
+- Qualifie : usage, type de bien, zone, budget, présence sur l'île, délai.
+- Relance les prospects silencieux à J+1, J+3 et J+7, puis clôt le dossier.
+- Alerte l'agent quand un prospect est prêt, et lui remet une fiche complète.
+- Ne donne aucun conseil juridique : sur la pleine propriété, le bail et les quotas étrangers, elle donne les bases publiques puis passe la main à l'agent.
+
+## Offres pour Koh Samui (facturation en livres sterling, sans engagement)
+- RESPOND, £290 par mois, mise en service £490 : réponse et qualification sur WhatsApp, prise de rendez-vous, alerte à l'agent.
+- CONVERT, £490 par mois, mise en service £990 : RESPOND, plus les relances J+1, J+3 et J+7, le briefing avant visite, les demandes par email, le suivi par bien et le tableau de bord.
+- DOMINATE, £790 par mois, mise en service £1 490 : CONVERT, plus l'accueil des vendeurs et les pages dédiées aux biens.
+
+## Pages
+- [Sarah pour Koh Samui, en français](https://gild-tech.com/sarah-th-fr)
+- [Sarah for Koh Samui, in English](https://gild-tech.com/sarah-th)
+- [Sarah для Самуи, на русском](https://gild-tech.com/sarah-th-ru)
+- [Comment on travaille](https://gild-tech.com/comment-on-travaille)
+- [Accueil](https://gild-tech.com/)
+
+## Contact
+- Site : https://gild-tech.com/
