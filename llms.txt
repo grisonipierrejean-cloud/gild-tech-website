@@ -1,6 +1,6 @@
 # GILD-TECH
 
-> GILD-TECH installe Sarah, une assistante qui répond sur WhatsApp aux acheteurs et aux vendeurs des agences immobilières, dans leur langue, qualifie leur demande, relance ceux qui ne répondent plus (J+1, J+3, J+7) et propose le rendez-vous à l'agent. Marché principal : Koh Samui, Thaïlande.
+> GILD-TECH installe Sarah, un système IA pour les agences immobilières (AI system for real estate agencies). Sarah répond sur WhatsApp aux acheteurs et aux vendeurs, dans leur langue, qualifie leur demande, relance ceux qui ne répondent plus (J+1, J+3, J+7) et propose le rendez-vous à l'agent. Marché principal : Koh Samui, Thaïlande.
 
 ## Ce que fait Sarah
 - Répond à chaque demande entrante sur un numéro WhatsApp dédié à l'agence, de jour comme de nuit.
@@ -18,6 +18,7 @@
 - [Sarah pour Koh Samui, en français](https://gild-tech.com/sarah-th-fr)
 - [Sarah for Koh Samui, in English](https://gild-tech.com/sarah-th)
 - [Sarah для Самуи, на русском](https://gild-tech.com/sarah-th-ru)
+- [Questions fréquentes d'un patron d'agence](https://gild-tech.com/sarah-th-fr#questions)
 - [Comment on travaille](https://gild-tech.com/comment-on-travaille)
 - [Accueil](https://gild-tech.com/)
 
