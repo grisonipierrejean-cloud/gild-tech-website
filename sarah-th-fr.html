@@ -213,9 +213,25 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   .price-card{grid-row:auto;display:flex;flex-direction:column;}
   .price-card > .card-cta{margin-top:auto;}
 }
+
+/* Film d'ouverture Koh Samui : fond de la partie haute du premier écran, texte inchangé */
+body { overflow-x: clip; }
+.hero:has(.hero-film) { padding-top: 0; }
+.hero-film { position: relative; isolation: isolate; overflow: hidden; margin: -3rem calc(50% - 50vw) 0; padding: 7rem calc(50vw - 50%) 1.75rem; background: #0A0A0A url(/assets/film/samui-ouverture-fin.jpg) center / cover no-repeat; }
+.hero-film + .stat-bar { margin-top: 1.25rem; }
+.film-ok .hero-film { background-image: url(/assets/film/samui-ouverture-debut.jpg); }
+.hero-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0; transition: opacity .5s ease; }
+.hero-film video.on { opacity: 1; }
+.hero-film::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10,10,10,.84) 0%, rgba(10,10,10,.80) 62%, rgba(10,10,10,.50) 100%); }
+.hero-film h1 { color: #fff; }
+.hero-film h1 .accent { color: #BFDBFE; }
+.hero-film .subtitle { color: #F1F5F9; }
+.hero-film .subtitle strong { color: #fff; }
+@media (max-width: 880px) { .hero-film::before { background: rgba(10,10,10,.82); } }
 </style>
 <script type="application/ld+json" id="geo-service">{"@context": "https://schema.org", "@type": "Service", "@id": "https://gild-tech.com/sarah-th-fr#service", "name": "Sarah, système IA pour agences immobilières à Koh Samui, Thaïlande", "serviceType": "AI system for real estate agencies: lead response, qualification and follow-up", "description": "À 23h, un acheteur écrit à votre agence de Koh Samui. Celle qui répond gagne la vente. Sarah répond à chaque acheteur en moins de 5 minutes, jour et nuit, dans sa langue, sur un WhatsApp dédié. Dès £290/mois.", "inLanguage": "fr", "url": "https://gild-tech.com/sarah-th-fr", "provider": {"@type": "Organization", "name": "GILD-TECH", "url": "https://gild-tech.com/"}, "areaServed": [{"@type": "Place", "name": "Koh Samui, Thailand"}, {"@type": "Country", "name": "Thailand"}], "audience": {"@type": "BusinessAudience", "audienceType": "Real estate agencies"}, "offers": [{"@type": "Offer", "name": "RESPOND", "price": "290", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-fr", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "290", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "CONVERT", "price": "490", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-fr", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "490", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "DOMINATE", "price": "790", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-fr", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "790", "priceCurrency": "GBP", "unitText": "MONTH"}}]}</script>
 <script type="application/ld+json" id="geo-faq">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://gild-tech.com/sarah-th-fr#faq", "inLanguage": "fr", "mainEntity": [{"@type": "Question", "name": "Qu'est-ce que le système IA de GILD-TECH pour une agence immobilière ?", "acceptedAnswer": {"@type": "Answer", "text": "GILD-TECH installe Sarah, un système IA pour agences immobilières à Koh Samui, en Thaïlande. Sarah accueille chaque acheteur sur un WhatsApp dédié à l'agence, qualifie sa demande, relance ceux qui ne répondent plus, pose les rendez-vous et alerte l'agent. L'agent garde la visite, la négociation et la signature."}}, {"@type": "Question", "name": "En combien de temps Sarah répond-elle à un acheteur ?", "acceptedAnswer": {"@type": "Answer", "text": "En moins de 5 minutes, jour et nuit."}}, {"@type": "Question", "name": "Dans quelle langue Sarah répond-elle ?", "acceptedAnswer": {"@type": "Answer", "text": "Dans la langue de l'acheteur. La langue est détectée automatiquement."}}, {"@type": "Question", "name": "Que se passe-t-il quand un acheteur ne répond plus ?", "acceptedAnswer": {"@type": "Answer", "text": "Avec l'offre CONVERT, Sarah le relance automatiquement à J+1, J+3 et J+7. Ensuite le dossier se ferme seul."}}, {"@type": "Question", "name": "Sarah donne-t-elle des conseils juridiques sur l'achat en Thaïlande ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Sur le freehold, le leasehold et les quotas étrangers, elle donne les bases publiques puis passe la main à l'agent. Elle ne tranche jamais un cas."}}, {"@type": "Question", "name": "Faut-il changer de CRM ou d'outils ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Sarah se branche sur le CRM et les outils que l'agence utilise déjà. Si l'agence n'a pas de CRM, GILD-TECH le crée et le lui donne."}}, {"@type": "Question", "name": "Combien coûte Sarah pour une agence de Koh Samui ?", "acceptedAnswer": {"@type": "Answer", "text": "RESPOND : £290 par mois, mise en service £490. CONVERT : £490 par mois, mise en service £990. DOMINATE : £790 par mois, mise en service £1 490. En annuel : 2 mois offerts et mise en service offerte. Facturation en livres sterling."}}, {"@type": "Question", "name": "Y a-t-il un engagement ?", "acceptedAnswer": {"@type": "Answer", "text": "Non en mensuel : l'agence arrête quand elle veut, sans préavis ni reconduction cachée. L'annuel couvre douze mois en un paiement, sans reconduction tacite."}}, {"@type": "Question", "name": "À qui appartiennent les conversations et les contacts ?", "acceptedAnswer": {"@type": "Answer", "text": "À l'agence. Conversations, contacts et rendez-vous sont exportés ou effacés sur demande, dans le respect du RGPD."}}, {"@type": "Question", "name": "Qui est derrière GILD-TECH ?", "acceptedAnswer": {"@type": "Answer", "text": "Pierre-Jean Deàk Grisoni, fondateur de GILD-TECH. Chaque agence est installée à la main, une par une."}}]}</script>
+<script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -239,11 +255,13 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-film">
     <span class="badge-new">🏝️ Pour les agences immobilières de Koh Samui</span>
     <h1>Votre bureau est ouvert 24h/24. <span class="accent">Il n'y a juste personne dedans après 18h.</span></h1>
     <p class="subtitle">Un acheteur qui écrit et ne reçoit rien fait ce que vous feriez devant un restaurant fermé : vous entrez dans celui d'à côté. Personne n'attend devant une porte close. Surtout pas avec 15 millions de bahts en poche.</p>
     <div class="ctas">
       <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Écrivez-lui maintenant. Chronométrez-la.</a>
+    </div>
     </div>
 
     <div class="stat-bar">
@@ -515,5 +533,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 <a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Écrivez à Sarah">Écrivez à Sarah. Chronométrez-la.</a>
 
+<script>
+/* Film d'ouverture : chargé après le premier affichage, joué une fois, arrêt sur la dernière image */
+(function(){
+  var z=document.querySelector('.hero-film'), r=document.documentElement;
+  if(!z||!r.classList.contains('film-ok')) return;
+  function go(){
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.preload='auto';
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+    v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
+    v.addEventListener('error',function(){ v.remove(); r.classList.remove('film-ok'); });
+    v.src='/assets/film/samui-ouverture.mp4';
+    z.insertBefore(v,z.firstChild);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.remove(); r.classList.remove('film-ok'); });
+  }
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',function(){ setTimeout(go,150); });
+})();
+</script>
 </body>
 </html>

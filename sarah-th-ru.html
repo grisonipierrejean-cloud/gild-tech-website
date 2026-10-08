@@ -213,9 +213,25 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   .price-card{grid-row:auto;display:flex;flex-direction:column;}
   .price-card > .card-cta{margin-top:auto;}
 }
+
+/* Film d'ouverture Koh Samui : fond de la partie haute du premier écran, texte inchangé */
+body { overflow-x: clip; }
+.hero:has(.hero-film) { padding-top: 0; }
+.hero-film { position: relative; isolation: isolate; overflow: hidden; margin: -3rem calc(50% - 50vw) 0; padding: 7rem calc(50vw - 50%) 1.75rem; background: #0A0A0A url(/assets/film/samui-ouverture-fin.jpg) center / cover no-repeat; }
+.hero-film + .stat-bar { margin-top: 1.25rem; }
+.film-ok .hero-film { background-image: url(/assets/film/samui-ouverture-debut.jpg); }
+.hero-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0; transition: opacity .5s ease; }
+.hero-film video.on { opacity: 1; }
+.hero-film::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10,10,10,.84) 0%, rgba(10,10,10,.80) 62%, rgba(10,10,10,.50) 100%); }
+.hero-film h1 { color: #fff; }
+.hero-film h1 .accent { color: #BFDBFE; }
+.hero-film .subtitle { color: #F1F5F9; }
+.hero-film .subtitle strong { color: #fff; }
+@media (max-width: 880px) { .hero-film::before { background: rgba(10,10,10,.82); } }
 </style>
 <script type="application/ld+json" id="geo-service">{"@context": "https://schema.org", "@type": "Service", "@id": "https://gild-tech.com/sarah-th-ru#service", "name": "Sarah, ИИ-система для агентств недвижимости на Ко Самуи, Таиланд", "serviceType": "AI system for real estate agencies: lead response, qualification and follow-up", "description": "В 23:00 покупатель пишет вашему агентству на Ко Самуи. Сделку получает тот, кто отвечает. Sarah отвечает каждому покупателю менее чем за 5 минут, днём и ночью, на его языке, на выделенном WhatsApp. От £290/месяц.", "inLanguage": "ru", "url": "https://gild-tech.com/sarah-th-ru", "provider": {"@type": "Organization", "name": "GILD-TECH", "url": "https://gild-tech.com/"}, "areaServed": [{"@type": "Place", "name": "Koh Samui, Thailand"}, {"@type": "Country", "name": "Thailand"}], "audience": {"@type": "BusinessAudience", "audienceType": "Real estate agencies"}, "offers": [{"@type": "Offer", "name": "RESPOND", "price": "290", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-ru", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "290", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "CONVERT", "price": "490", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-ru", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "490", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "DOMINATE", "price": "790", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th-ru", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "790", "priceCurrency": "GBP", "unitText": "MONTH"}}]}</script>
 <script type="application/ld+json" id="geo-faq">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://gild-tech.com/sarah-th-ru#faq", "inLanguage": "ru", "mainEntity": [{"@type": "Question", "name": "Что такое ИИ-система GILD-TECH для агентства недвижимости?", "acceptedAnswer": {"@type": "Answer", "text": "GILD-TECH устанавливает Sarah, ИИ-систему для агентств недвижимости на Ко Самуи, в Таиланде. Sarah встречает каждого покупателя в отдельном WhatsApp агентства, уточняет запрос, напоминает о себе тем, кто перестал отвечать, назначает встречи и оповещает агента. Показ, переговоры и подписание остаются за агентом."}}, {"@type": "Question", "name": "Как быстро Sarah отвечает покупателю?", "acceptedAnswer": {"@type": "Answer", "text": "Меньше чем за 5 минут, днём и ночью."}}, {"@type": "Question", "name": "На каком языке отвечает Sarah?", "acceptedAnswer": {"@type": "Answer", "text": "На языке покупателя. Язык определяется автоматически."}}, {"@type": "Question", "name": "Что происходит, когда покупатель перестаёт отвечать?", "acceptedAnswer": {"@type": "Answer", "text": "На тарифе CONVERT Sarah автоматически пишет ему на 1-й, 3-й и 7-й день. После этого диалог закрывается сам."}}, {"@type": "Question", "name": "Даёт ли Sarah юридические консультации по покупке недвижимости в Таиланде?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. По фрихолду, лизхолду и иностранным квотам она даёт общедоступные основы и передаёт вопрос агенту. Она никогда не решает конкретный случай."}}, {"@type": "Question", "name": "Нужно ли менять CRM или инструменты?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Sarah подключается к CRM и инструментам, которыми агентство уже пользуется. Если CRM нет, GILD-TECH создаёт её и передаёт агентству."}}, {"@type": "Question", "name": "Сколько стоит Sarah для агентства на Ко Самуи?", "acceptedAnswer": {"@type": "Answer", "text": "RESPOND: £290 в месяц, запуск £490. CONVERT: £490 в месяц, запуск £990. DOMINATE: £790 в месяц, запуск £1 490. Годовая оплата: 2 месяца в подарок и бесплатный запуск. Счета выставляются в фунтах стерлингов."}}, {"@type": "Question", "name": "Есть ли обязательства по сроку?", "acceptedAnswer": {"@type": "Answer", "text": "При помесячной оплате нет: агентство останавливает услугу в любой момент, без уведомления и скрытого продления. Годовой тариф покрывает двенадцать месяцев одним платежом, без автоматического продления."}}, {"@type": "Question", "name": "Кому принадлежат переписка и контакты?", "acceptedAnswer": {"@type": "Answer", "text": "Агентству. Переписка, контакты и встречи выгружаются или удаляются по запросу, в соответствии с GDPR."}}, {"@type": "Question", "name": "Кто стоит за GILD-TECH?", "acceptedAnswer": {"@type": "Answer", "text": "Пьер-Жан Деак Гризони, основатель GILD-TECH. Каждое агентство подключается вручную, по одному."}}]}</script>
+<script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -238,11 +254,13 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-film">
     <span class="badge-new">🏝️ Для агентств недвижимости Ко Самуи</span>
     <h1>Ваш офис открыт 24/7. <span class="accent">Просто после 18:00 в нём никого нет.</span></h1>
     <p class="subtitle">Покупатель, который пишет и не получает ответа, делает то же, что сделали бы вы у закрытого ресторана: заходите в соседний. Никто не ждёт у закрытой двери. Тем более с 15 миллионами бат в кармане.</p>
     <div class="ctas">
       <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Напишите ей прямо сейчас. Засеките время.</a>
+    </div>
     </div>
 
     <div class="stat-bar">
@@ -513,5 +531,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 <a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Написать Sarah">Напишите Sarah. Засеките время.</a>
 
+<script>
+/* Film d'ouverture : chargé après le premier affichage, joué une fois, arrêt sur la dernière image */
+(function(){
+  var z=document.querySelector('.hero-film'), r=document.documentElement;
+  if(!z||!r.classList.contains('film-ok')) return;
+  function go(){
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.preload='auto';
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+    v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
+    v.addEventListener('error',function(){ v.remove(); r.classList.remove('film-ok'); });
+    v.src='/assets/film/samui-ouverture.mp4';
+    z.insertBefore(v,z.firstChild);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.remove(); r.classList.remove('film-ok'); });
+  }
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',function(){ setTimeout(go,150); });
+})();
+</script>
 </body>
 </html>

@@ -213,9 +213,25 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   .price-card{grid-row:auto;display:flex;flex-direction:column;}
   .price-card > .card-cta{margin-top:auto;}
 }
+
+/* Film d'ouverture Koh Samui : fond de la partie haute du premier écran, texte inchangé */
+body { overflow-x: clip; }
+.hero:has(.hero-film) { padding-top: 0; }
+.hero-film { position: relative; isolation: isolate; overflow: hidden; margin: -3rem calc(50% - 50vw) 0; padding: 7rem calc(50vw - 50%) 1.75rem; background: #0A0A0A url(/assets/film/samui-ouverture-fin.jpg) center / cover no-repeat; }
+.hero-film + .stat-bar { margin-top: 1.25rem; }
+.film-ok .hero-film { background-image: url(/assets/film/samui-ouverture-debut.jpg); }
+.hero-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0; transition: opacity .5s ease; }
+.hero-film video.on { opacity: 1; }
+.hero-film::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10,10,10,.84) 0%, rgba(10,10,10,.80) 62%, rgba(10,10,10,.50) 100%); }
+.hero-film h1 { color: #fff; }
+.hero-film h1 .accent { color: #BFDBFE; }
+.hero-film .subtitle { color: #F1F5F9; }
+.hero-film .subtitle strong { color: #fff; }
+@media (max-width: 880px) { .hero-film::before { background: rgba(10,10,10,.82); } }
 </style>
 <script type="application/ld+json" id="geo-service">{"@context": "https://schema.org", "@type": "Service", "@id": "https://gild-tech.com/sarah-th#service", "name": "Sarah, AI system for real estate agencies in Koh Samui, Thailand", "serviceType": "AI system for real estate agencies: lead response, qualification and follow-up", "description": "At 11pm, a buyer messages your Koh Samui agency. The one who answers wins the sale. Sarah replies to every buyer in under 5 minutes, day and night, in their language, on a dedicated WhatsApp. From £290/month.", "inLanguage": "en", "url": "https://gild-tech.com/sarah-th", "provider": {"@type": "Organization", "name": "GILD-TECH", "url": "https://gild-tech.com/"}, "areaServed": [{"@type": "Place", "name": "Koh Samui, Thailand"}, {"@type": "Country", "name": "Thailand"}], "audience": {"@type": "BusinessAudience", "audienceType": "Real estate agencies"}, "offers": [{"@type": "Offer", "name": "RESPOND", "price": "290", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "290", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "CONVERT", "price": "490", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "490", "priceCurrency": "GBP", "unitText": "MONTH"}}, {"@type": "Offer", "name": "DOMINATE", "price": "790", "priceCurrency": "GBP", "url": "https://gild-tech.com/sarah-th", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "790", "priceCurrency": "GBP", "unitText": "MONTH"}}]}</script>
 <script type="application/ld+json" id="geo-faq">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://gild-tech.com/sarah-th#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is GILD-TECH's AI system for a real estate agency?", "acceptedAnswer": {"@type": "Answer", "text": "GILD-TECH installs Sarah, an AI system for real estate agencies in Koh Samui, Thailand. Sarah welcomes every buyer on a WhatsApp line dedicated to the agency, qualifies the request, follows up with buyers who go quiet, books the appointments and alerts the agent. The agent keeps the viewing, the negotiation and the signature."}}, {"@type": "Question", "name": "How fast does Sarah reply to a buyer?", "acceptedAnswer": {"@type": "Answer", "text": "In under 5 minutes, day and night."}}, {"@type": "Question", "name": "What language does Sarah reply in?", "acceptedAnswer": {"@type": "Answer", "text": "In the buyer's language. The language is detected automatically."}}, {"@type": "Question", "name": "What happens when a buyer stops replying?", "acceptedAnswer": {"@type": "Answer", "text": "With the CONVERT plan, Sarah follows up automatically on day 1, day 3 and day 7. After that the file closes by itself."}}, {"@type": "Question", "name": "Does Sarah give legal advice on buying property in Thailand?", "acceptedAnswer": {"@type": "Answer", "text": "No. On freehold, leasehold and foreign quotas she gives the public basics, then hands over to the agent. She never rules on a case."}}, {"@type": "Question", "name": "Do we have to change CRM or tools?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sarah plugs into the CRM and tools the agency already uses. If the agency has no CRM, GILD-TECH builds one and hands it over."}}, {"@type": "Question", "name": "How much does Sarah cost for a Koh Samui agency?", "acceptedAnswer": {"@type": "Answer", "text": "RESPOND: £290 per month, setup £490. CONVERT: £490 per month, setup £990. DOMINATE: £790 per month, setup £1,490. Annual plan: 2 months free and setup free. Billed in pounds sterling."}}, {"@type": "Question", "name": "Is there a commitment?", "acceptedAnswer": {"@type": "Answer", "text": "Not on the monthly plan: the agency stops whenever it wants, with no notice period and no hidden renewal. The annual plan covers twelve months in one payment, with no automatic renewal."}}, {"@type": "Question", "name": "Who owns the conversations and contacts?", "acceptedAnswer": {"@type": "Answer", "text": "The agency. Conversations, contacts and appointments are exported or deleted on request, in line with GDPR."}}, {"@type": "Question", "name": "Who is behind GILD-TECH?", "acceptedAnswer": {"@type": "Answer", "text": "Pierre-Jean Deàk Grisoni, founder of GILD-TECH. Each agency is set up by hand, one at a time."}}]}</script>
+<script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -238,11 +254,13 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-film">
     <span class="badge-new">🏝️ For Koh Samui real estate agencies</span>
     <h1>Your office is open 24/7. <span class="accent">There's just nobody in it after 6pm.</span></h1>
     <p class="subtitle">A buyer who messages and hears nothing does exactly what you'd do at a locked restaurant: you walk into the one next door. Nobody waits outside a closed door. Least of all with 15 million baht in their pocket.</p>
     <div class="ctas">
       <a href="https://wa.me/447378992318" class="btn-primary" target="_blank" rel="noopener">Message her now. Time her.</a>
+    </div>
     </div>
 
     <div class="stat-bar">
@@ -513,5 +531,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 <a href="https://wa.me/447378992318" class="sticky-cta-mobile" target="_blank" rel="noopener" aria-label="Message Sarah">Message Sarah. Time her.</a>
 
+<script>
+/* Film d'ouverture : chargé après le premier affichage, joué une fois, arrêt sur la dernière image */
+(function(){
+  var z=document.querySelector('.hero-film'), r=document.documentElement;
+  if(!z||!r.classList.contains('film-ok')) return;
+  function go(){
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.preload='auto';
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+    v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
+    v.addEventListener('error',function(){ v.remove(); r.classList.remove('film-ok'); });
+    v.src='/assets/film/samui-ouverture.mp4';
+    z.insertBefore(v,z.firstChild);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.remove(); r.classList.remove('film-ok'); });
+  }
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',function(){ setTimeout(go,150); });
+})();
+</script>
 </body>
 </html>
