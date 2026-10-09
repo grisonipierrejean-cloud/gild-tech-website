@@ -160,7 +160,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .footer-brand { font-weight: 800; font-size: 0.9rem; }
 .footer-brand .gild { color: var(--g900); }
 .footer-brand .tech { color: var(--pink); }
-.footer-links { display: flex; gap: 1.5rem; list-style: none; }
+.footer-links { display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; list-style: none; }
 .footer-links a { color: var(--g500); text-decoration: none; font-size: 0.78rem; font-weight: 500; transition: color 0.2s; }
 .footer-links a:hover { color: var(--pink); }
 .footer-mention { font-size: 0.72rem; color: var(--g500); }
@@ -199,7 +199,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <section class="hero">
     <span class="badge-new">🇨🇭 USPI / COMCO · ~38 000 CHF de commission moyenne par mandat (maison suisse médiane)</span>
     <h1>Le rappel propriétaire en 5 minutes.<br><span class="accent">Avant que le confrère d'en face n'ouvre sa boîte mail.</span></h1>
-    <p class="subtitle"><strong>Sarah, l'assistante IA qui prend le premier contact à votre place sur WhatsApp Business 24/7</strong> — dans votre ton, avec votre marque, branchée sur Properstar, Homegate, ImmoScout24, ImmoMig, Casaone. Amortie dès le 1<sup>er</sup> mandat récupéré. Garantie 30 jours satisfait ou remboursé.</p>
+    <p class="subtitle"><strong>Sarah, l'assistante IA qui prend le premier contact à votre place sur WhatsApp Business 24/7</strong>, dans votre ton, avec votre marque, branchée sur Properstar, Homegate, ImmoScout24, ImmoMig, Casaone. Amortie dès le 1<sup>er</sup> mandat récupéré. Garantie 30 jours satisfait ou remboursé.</p>
     <div class="ctas">
       <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Réserver un audit gratuit (30 min)</a>
       <a href="#how" class="btn-secondary">Voir comment ça marche</a>
@@ -280,9 +280,9 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <ul>
           <li>Le prospect répond comme à un humain ("ouais d'ici 3 mois", "1", "demain matin")</li>
           <li>Si elle doute, elle vous alerte sur WhatsApp, ou par email, et vous reprenez la main en 1 clic</li>
-          <li>Conversation logguée dans votre Google Sheet — vous gardez la traçabilité</li>
-          <li>Wording 100% ajustable — vous pouvez modifier les messages à tout moment</li>
-          <li>Le prospect reçoit une réponse pro en quelques secondes — une vitesse impossible à reproduire à la main</li>
+          <li>Conversation logguée dans votre Google Sheet, vous gardez la traçabilité</li>
+          <li>Wording 100% ajustable, vous pouvez modifier les messages à tout moment</li>
+          <li>Le prospect reçoit une réponse pro en quelques secondes, une vitesse impossible à reproduire à la main</li>
           <li>Compatible avec votre numéro WhatsApp Business existant</li>
         </ul>
       </div>
@@ -306,11 +306,11 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <div class="demo-text">
         <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:1rem;">Ce que vous recevez chaque matin</h3>
         <ul>
-          <li><strong>Vos visites du jour</strong> — heure, prospect, bien, budget, téléphone cliquable</li>
+          <li><strong>Vos visites du jour</strong> : heure, prospect, bien, budget, téléphone cliquable</li>
           <li><strong>Vos contacts à rappeler en priorité</strong>, top 5 par score, justifié ("Pat, relancé hier 23h sur Homegate")</li>
-          <li><strong>1 recommandation Sarah</strong> — "Commence par X, fenêtre de 24h, c'est le contact le plus chaud"</li>
-          <li><strong>Pipeline en cours</strong> — contacts actifs, visites positionnées semaine, mandats en signature</li>
-          <li><strong>Multi-agents en Scale</strong> — 1 brief personnalisé par négociateur de l'équipe</li>
+          <li><strong>1 recommandation Sarah</strong> : "Commence par X, fenêtre de 24h, c'est le contact le plus chaud"</li>
+          <li><strong>Pipeline en cours</strong> : contacts actifs, visites positionnées semaine, mandats en signature</li>
+          <li><strong>Multi-agents en Scale</strong> : 1 brief personnalisé par négociateur de l'équipe</li>
         </ul>
         <p style="margin-top:1rem;font-size:0.9rem;color:var(--g600);font-style:italic;">Vous vous réveillez avec votre journée déjà planifiée. Pas de "qu'est-ce que je fais aujourd'hui ?".</p>
       </div>
@@ -319,7 +319,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <div class="msg in">☀️ Brief du jour · mardi 5 mai · Bonjour Sophie<div class="msg-time">07:00</div></div>
           <div class="msg in">🏠 3 visites prévues<br>• 10h Marie Dupont, appartement 3,5 pièces Lausanne<br>• 14h Jean Martin, maison Vevey 1 480 000 CHF<br>• 16h Anne Leroy, loft Eaux-Vives Genève<div class="msg-time">07:00</div></div>
           <div class="msg in">📞 2 contacts à rappeler en priorité<br>• Pat Dupont · 4j sans réponse<br>• Camille Hugo · contact chaud non rappelé<div class="msg-time">07:00</div></div>
-          <div class="msg in">⚡ Commence par Pat — contact très chaud, fenêtre de 24h.<div class="msg-time">07:00</div></div>
+          <div class="msg in">⚡ Commence par Pat : contact très chaud, fenêtre de 24h.<div class="msg-time">07:00</div></div>
           <div class="msg in">📊 Pipeline : 47 contacts actifs · 8 visites positionnées cette semaine · 2 mandats à signer<div class="msg-time">07:00</div></div>
         </div>
       </div>
@@ -335,18 +335,18 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <p style="margin-top:1rem;font-size:0.85rem;color:var(--g500);">Données fictives Agence Démo Lyon · pas de signup, pas d'email demandé</p>
     </div>
     <ul style="margin-top:2.5rem;max-width:780px;margin-left:auto;margin-right:auto;line-height:1.9;">
-      <li>🏠 <strong>Visites du jour</strong> — heure, prospect, adresse, budget, bouton appel direct</li>
-      <li>📞 <strong>Top 5 contacts prioritaires</strong> — triés par score IA, avec la justification de chaque priorité</li>
-      <li>⚡ <strong>Recommandation Sarah</strong> — qui appeler en premier et pourquoi</li>
-      <li>🌊 <strong>Pipeline acquéreurs</strong> — contacts par étape, du nouveau au mandat signé</li>
-      <li>📊 <strong>Sources des demandes</strong> — ce qui marche cette semaine, ce qui marche moins</li>
-      <li>⚡ <strong>Activité Sarah live</strong> — chaque qualification, chaque RDV, chaque relance en direct</li>
+      <li>🏠 <strong>Visites du jour</strong> : heure, prospect, adresse, budget, bouton appel direct</li>
+      <li>📞 <strong>Top 5 contacts prioritaires</strong> : triés par score IA, avec la justification de chaque priorité</li>
+      <li>⚡ <strong>Recommandation Sarah</strong> : qui appeler en premier et pourquoi</li>
+      <li>🌊 <strong>Pipeline acquéreurs</strong> : contacts par étape, du nouveau au mandat signé</li>
+      <li>📊 <strong>Sources des demandes</strong> : ce qui marche cette semaine, ce qui marche moins</li>
+      <li>⚡ <strong>Activité Sarah live</strong> : chaque qualification, chaque RDV, chaque relance en direct</li>
     </ul>
   </section>
 
   <!-- ROI -->
   <section class="block" id="roi">
-    <h2 class="section-title">ROI — Sarah s'amortit dès le <span class="accent">1<sup>er</sup> mandat</span> récupéré.</h2>
+    <h2 class="section-title">ROI : Sarah s'amortit dès le <span class="accent">1<sup>er</sup> mandat</span> récupéré.</h2>
     <p class="section-subtitle">Le calcul simple à faire pendant l'audit. Sources : RealAdvisor (prix médian Suisse 2024) et décision COMCO 2012 (abrogation de la grille USPI, pratique de commission 2-5%).</p>
     <div class="roi-card">
       <h3>La commission moyenne d'un mandat en Suisse</h3>
@@ -379,14 +379,14 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li>Calendrier de visite automatique (Calendly)</li>
           <li>Accès au tableau de bord GILD-TECH temps réel</li>
           <li>Reporting fin de période (mandats rentrés, RDV pris, conversion)</li>
-          <li><em>30 jours d'utilisation incluse — pour vérifier que ça marche chez vous</em></li>
+          <li><em>30 jours d'utilisation incluse, pour vérifier que ça marche chez vous</em></li>
         </ul>
       </div>
 
       <!-- PRO -->
       <div class="price-card featured">
         <h3>Pro</h3>
-        <div class="for">Votre réceptionniste digitale — agences 1-5 agents</div>
+        <div class="for">Votre réceptionniste digitale, agences 1-5 agents</div>
         <div class="price">2 490 CHF <small>one-shot</small></div>
         <div class="delai">→ Mise en service sous 7 jours ouvrés</div>
         <div style="font-size:.78rem;color:var(--g600);margin:-.4rem 0 .6rem;">ou 3 mensualités de 913 CHF</div>
@@ -395,19 +395,19 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li><strong>Scripts personnalisés</strong> à votre régie (audit + interview du directeur)</li>
           <li><strong>3 portails connectés</strong> (Homegate + ImmoScout24 + Newhome, ou combinaison au choix)</li>
           <li>Intégration <strong>1 CRM</strong> (ImmoMig, Casaone, Apimo, Realforce, Publimmo au choix)</li>
-          <li><strong>Sarah Brief matinal</strong> — WhatsApp 7h + email détaillé chaque jour</li>
+          <li><strong>Sarah Brief matinal</strong> : WhatsApp 7h + email détaillé chaque jour</li>
           <li>Rappel automatique sub-5 min (WhatsApp + email + canal d'équipe)</li>
           <li>Relances auto J+3 / J+7 / J+14 si pas de réponse</li>
           <li>Tableau de bord temps réel personnalisé à votre agence</li>
           <li>Bilan hebdo automatique lundi 8h</li>
-          <li>GILD Care optionnel — dès 390 CHF/mois (Essential · Performance ⭐ · Concierge)</li>
+          <li>GILD Care optionnel : dès 390 CHF/mois (Essential, Performance ⭐, Concierge)</li>
         </ul>
       </div>
 
       <!-- SCALE -->
       <div class="price-card">
         <h3>Scale</h3>
-        <div class="for">Une employée complète — agences 5+ agents</div>
+        <div class="for">Une employée complète, agences 5+ agents</div>
         <div class="price">4 990 CHF <small>one-shot</small></div>
         <div class="delai">→ Mise en service sous 7 jours ouvrés</div>
         <div style="font-size:.78rem;color:var(--g600);margin:-.4rem 0 .6rem;">ou 3 mensualités de 1 830 CHF</div>
@@ -420,7 +420,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li><strong>Fiche visite</strong> envoyée 1h avant chaque visite au négociateur</li>
           <li>Tous vos portails qui transmettent les demandes par e-mail ou par accès technique, sans plafond de nombre</li>
           <li>Multi-CRM ou ERP custom</li>
-          <li>GILD Care Concierge recommandé — 1 990 CHF/mois (SLA + 90 min/mois avec le fondateur)</li>
+          <li>GILD Care Concierge recommandé : 1 990 CHF/mois (SLA + 90 min/mois avec le fondateur)</li>
         </ul>
       </div>
 
@@ -479,7 +479,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div>
       <div class="faq-item">
         <h4>Mes prospects vont-ils se sentir robotisés ?</h4>
-        <p>Sarah pose 1 question pertinente puis envoie un lien Calendly. C'est plus rapide qu'un humain et plus pratique pour le prospect — il choisit son créneau lui-même au lieu d'attendre votre rappel. Le wording est ajustable, le ton est humain, le numéro est le vôtre. Vous gardez la main complète sur la conversation.</p>
+        <p>Sarah pose 1 question pertinente puis envoie un lien Calendly. C'est plus rapide qu'un humain et plus pratique pour le prospect : il choisit son créneau lui-même au lieu d'attendre votre rappel. Le wording est ajustable, le ton est humain, le numéro est le vôtre. Vous gardez la main complète sur la conversation.</p>
       </div>
       <div class="faq-item">
         <h4>Et si Sarah comprend mal une réponse ?</h4>
@@ -503,7 +503,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- CTA FINAL -->
   <div class="cta-final">
     <h2>30 minutes. On chiffre votre perte. Vous décidez.</h2>
-    <p>Audit gratuit, sans engagement. On calcule en direct combien votre agence laisse filer chaque mois — et combien Sarah récupère dès le premier jour. Garantie 30 jours satisfait ou remboursé. Si elle ne tient pas ses promesses, vous récupérez chaque centime.</p>
+    <p>Audit gratuit, sans engagement. On calcule en direct combien votre agence laisse filer chaque mois, et combien Sarah récupère dès le premier jour. Garantie 30 jours satisfait ou remboursé. Si elle ne tient pas ses promesses, vous récupérez chaque centime.</p>
     <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Réserver mon audit (gratuit)</a>
   </div>
 

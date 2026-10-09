@@ -159,7 +159,7 @@ Dès qu'un vendeur remplit votre formulaire d'estimation en ligne, votre agent e
 <strong>Nodes n8n</strong> : Webhook → OpenAI (génère le script vocal) → Twilio (déclenche l'appel) → Google Sheet (log).
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : +45% de mandats signés sur les estimations en ligne. Temps d'installation : 1 après-midi.
+<strong>Effet attendu</strong> : l'agent parle au vendeur pendant que la demande d'estimation est encore chaude, au lieu de la découvrir plus tard.
 </div>
 </div>
 
@@ -172,7 +172,7 @@ Tous les matins, n8n récupère vos alertes piges (ex: depuis MeilleursAgents, P
 <strong>Nodes n8n</strong> : Cron (toutes les heures) → HTTP Request (API pige) → OpenAI (personnalise le message) → Twilio SMS.
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : 80% des piges sont traitées sous 2h (vs 20% en manuel). +3 à 5 mandats/mois récupérés.
+<strong>Effet attendu</strong> : chaque nouvelle annonce de particulier reçoit un premier message le jour même, sans travail manuel.
 </div>
 </div>
 
@@ -185,14 +185,14 @@ Après une visite, un acquéreur hésite naturellement. La plupart des agences n
 <strong>Nodes n8n</strong> : CRM trigger (fin visite) → Delay (3j, 7j, 14j) → Template email personnalisé avec OpenAI → Gmail.
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : 15 à 25% d'acquéreurs "morts" récupérés. +2 compromis/mois en moyenne.
+<strong>Effet attendu</strong> : aucun acquéreur n'est oublié après une visite ; chacun reçoit ses relances aux dates prévues.
 </div>
 </div>
 
 <div class="workflow-card">
 <div><span class="workflow-num">4</span><h3>Notifications WhatsApp agents en mobilité</h3></div>
 <p>
-Vos agents sont sur le terrain 70% du temps. Ils ne checkent pas leur boîte email entre deux RDV. Un workflow qui leur envoie les notifications importantes directement sur WhatsApp (nouveau lead, RDV à confirmer, compromis signé) change leur productivité radicalement.
+Vos agents passent une grande partie de leur journée sur le terrain. Ils ne checkent pas leur boîte email entre deux RDV. Un workflow qui leur envoie les notifications importantes directement sur WhatsApp (nouveau lead, RDV à confirmer, compromis signé) change leur productivité radicalement.
 </p>
 <p>
 <strong>Nodes n8n</strong> : CRM trigger → Filter (lead chaud) → WhatsApp Business API → Log réponse.
@@ -211,7 +211,7 @@ Dès qu'un mandat est signé en visio ou en présentiel, un workflow génère au
 <strong>Nodes n8n</strong> : CRM trigger → Google Docs template → Yousign API → Webhook retour → CRM update.
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : 15 minutes économisées par mandat. Plus d'erreurs de saisie manuelle.
+<strong>Effet attendu</strong> : le mandat part en signature sans ressaisie, et le CRM se met à jour à la signature.
 </div>
 </div>
 
@@ -224,20 +224,20 @@ Le 1er de chaque mois, votre dashboard se met à jour tout seul : nombre de mand
 <strong>Nodes n8n</strong> : Cron (1er du mois) → Fetch CRM + compta → Agrégations → Google Data Studio update → Email résumé.
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : reporting qui prenait 1 jour/mois → zéro. Vision claire de la santé commerciale.
+<strong>Effet attendu</strong> : le tableau de bord du mois est prêt sans le compiler à la main.
 </div>
 </div>
 
 <div class="workflow-card">
 <div><span class="workflow-num">7</span><h3>Nurturing vendeurs "pas encore prêts"</h3></div>
 <p>
-15% des vendeurs que vous rencontrez ne sont pas prêts à signer immédiatement ("on réfléchit encore"). Sans relance, vous les perdez. Avec une newsletter mensuelle très ciblée (marché local, évolutions prix, cas concrets de vente), 20% reviennent vers vous dans les 6 mois.
+Une partie des vendeurs que vous rencontrez ne sont pas prêts à signer tout de suite ("on réfléchit encore"). Sans relance, vous les perdez. Avec une newsletter mensuelle très ciblée (marché local, évolutions prix, cas concrets de vente), certains reviennent vers vous dans les mois qui suivent.
 </p>
 <p>
 <strong>Nodes n8n</strong> : Cron mensuel → Filter vendeurs "cold" → Brevo (envoi email) → Track clicks → Alert si engagement.
 </p>
 <div class="workflow-impact">
-<strong>Impact mesuré</strong> : +3 à 8 mandats/an récupérés sur des vendeurs "oubliés".
+<strong>Effet attendu</strong> : les vendeurs qui « réfléchissent encore » gardent un lien régulier avec l'agence.
 </div>
 </div>
 
