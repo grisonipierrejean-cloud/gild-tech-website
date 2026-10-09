@@ -204,6 +204,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .footer-mention { font-size: 0.75rem; color: var(--g500); }
 
 .sticky-cta-mobile { display: none; }
+.sticky-cta-mobile.visible { opacity: 1 !important; pointer-events: auto !important; }
 
 @media (max-width: 980px) {
   .hero-grid, .demo-grid, .problem-grid, .prix-grid, .mine-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -229,7 +230,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   .cta-final { padding: 2.6rem 1.4rem; margin-bottom: 6rem; }
   .cta-final .btn-primary { display: block; }
   footer { padding-bottom: 6rem; }
-  .sticky-cta-mobile { display: block; position: fixed; bottom: 1rem; left: 1rem; right: 1rem; background: var(--cta); color: var(--blanc); text-align: center; padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.98rem; box-shadow: 0 8px 24px rgba(37,99,235,.35); z-index: 99; }
+  .sticky-cta-mobile { display: block; opacity: 0; pointer-events: none; transition: opacity .2s; position: fixed; bottom: 1rem; left: 1rem; right: 1rem; background: var(--cta); color: var(--blanc); text-align: center; padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.98rem; box-shadow: 0 8px 24px rgba(37,99,235,.35); z-index: 99; }
 }
 
 /* PRODUIT */
@@ -243,7 +244,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .hero-nuit .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .btn-ghost { display: inline-block; color: var(--blanc); padding: 0.95rem 1.7rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1.5px solid rgba(255,255,255,0.35); transition: all 0.2s; white-space: nowrap; }
 .btn-ghost:hover { border-color: var(--blanc); color: var(--blanc); }
-.hero-offre { margin-top: 1.7rem; font-size: 0.98rem; line-height: 1.55; color: rgba(255,255,255,0.82); max-width: 560px; }
+.hero-offre { margin-top: 1.4rem; font-size: 0.98rem; line-height: 1.55; color: rgba(255,255,255,0.82); max-width: 560px; }
 .hero-offre strong { color: var(--blanc); font-weight: 700; }
 .hero-offre s { color: rgba(255,255,255,0.6); }
 .hero-nuit .capture { box-shadow: 0 30px 60px rgba(0,0,0,0.45); }
@@ -254,6 +255,17 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .faits strong { display: block; font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3; color: var(--blanc); }
 .faits span { display: block; margin-top: 0.3rem; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
 section.block.sans-trait { border-top: none; }
+
+.hero-nuit .hero-grid { grid-template-columns: 1fr 1.08fr; gap: 3rem; }
+.hero-nuit h1 { font-size: 3.15rem; }
+.hero-nuit .ctas { flex-wrap: nowrap; }
+@media (max-width: 980px) { br.d { display: none; } }
+.hero-nuit .ctas a { padding-left: 1.3rem; padding-right: 1.3rem; }
+.rassure { margin-top: 0.9rem; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.rassure-fin { margin-top: 1rem !important; margin-bottom: 0 !important; font-size: 0.9rem !important; opacity: 0.7 !important; }
+.appel-milieu { display: flex; align-items: center; justify-content: space-between; gap: 2rem; background: var(--bleu-nuit-bg); border-radius: 18px; padding: 2rem 2.4rem; margin: 0 0 4.5rem; }
+.appel-milieu strong { display: block; font-size: 1.45rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; color: var(--noir); }
+.appel-milieu span { display: block; margin-top: 0.35rem; font-size: 1rem; color: var(--g600); line-height: 1.5; }
 
 /* JOURNEE */
 .journee { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
@@ -303,6 +315,10 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
 
 @media (max-width: 980px) {
   .journee, .deux { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero-nuit .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-nuit .ctas { flex-wrap: wrap; }
+  .appel-milieu { flex-direction: column; align-items: flex-start; padding: 1.6rem; }
+  .appel-milieu .btn-primary { width: 100%; text-align: center; }
 }
 @media (max-width: 640px) {
   .hero-nuit { padding: 2.6rem 0 2.2rem; }
@@ -350,12 +366,13 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <div class="hero-grid">
       <div>
         <p class="hero-produit">Radar, la veille d'annonces des marchands de biens.</p>
-        <h1>Les bonnes affaires partent au premier qui appelle.</h1>
+        <h1>Les bonnes affaires <br class="d">partent au premier <br class="d">qui appelle.</h1>
         <p class="subtitle">Radar surveille les annonces de votre secteur, les note comme un marchand de biens les lirait, et vous les envoie sur WhatsApp avec le téléphone de l'annonceur. Vous lisez, vous appelez.</p>
         <div class="ctas">
           <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
           <a href="#journee" class="btn-ghost">Voir une vraie journée</a>
         </div>
+        <p class="rassure">Écrire ne vous engage à rien. C'est Pierre-Jean Grisoni, le fondateur, qui vous répond.</p>
         <p class="hero-offre"><strong>20 places d'abonné fondateur&nbsp;: 27&nbsp;€ par mois au lieu de <s>49&nbsp;€</s>,</strong> prix gardé tant que vous restez abonné. Jusqu'au 31&nbsp;octobre&nbsp;2026.</p>
       </div>
       <div>
@@ -484,6 +501,14 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     </div>
   </section>
 
+  <div class="appel-milieu">
+    <div>
+      <strong>Votre secteur, vos critères, sur votre WhatsApp.</strong>
+      <span>27&nbsp;€ par mois pour les 20 abonnés fondateurs. Moins d'un euro par jour.</span>
+    </div>
+    <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+  </div>
+
   <!-- DESIR : fonctionnement -->
   <section class="block" id="fonctionnement">
     <h2 class="section-title">En place en trois temps.</h2>
@@ -522,17 +547,6 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     </div>
   </section>
 
-  <!-- DESIR : limites -->
-  <section class="block">
-    <h2 class="section-title">Ce que Radar ne fait pas</h2>
-    <p class="section-subtitle">Autant le savoir avant de payer.</p>
-    <div class="limites">
-      <div><strong>Il ne trouve pas le hors marché.</strong><span>Un bien qui n'est pas publié ne peut pas vous être signalé.</span></div>
-      <div><strong>Il ne négocie pas.</strong><span>Vous appelez, vous visitez, vous faites votre offre.</span></div>
-      <div><strong>Il ne lit que les annonces publiées et reprises par MoteurImmo.</strong><span>Si une annonce n'y est pas, l'alerte n'arrive pas.</span></div>
-    </div>
-  </section>
-
   <!-- DESIR : la suite -->
   <section class="block">
     <h2 class="section-title">Ce que nous construisons ensuite</h2>
@@ -564,7 +578,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <span class="price-old">49&nbsp;€</span>
           <span class="price">27&nbsp;€ <small>par mois</small></span>
         </div>
-        <p class="price-save">Votre prix reste à 27&nbsp;€ tant que vous restez abonné.</p>
+        <p class="price-save">Moins d'un euro par jour. Votre prix reste à 27&nbsp;€ tant que vous restez abonné.</p>
         <p class="price-sub">49&nbsp;€ par mois pour les inscriptions à partir du 1er&nbsp;novembre&nbsp;2026.</p>
         <ul>
           <li><strong>Les annonces de votre secteur</strong> sur votre WhatsApp.</li>
@@ -598,13 +612,24 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     </div>
   </section>
 
+  <!-- limites, après le prix -->
+  <section class="block">
+    <h2 class="section-title">Ce que Radar ne fait pas</h2>
+    <p class="section-subtitle">Autant le savoir avant de payer.</p>
+    <div class="limites">
+      <div><strong>Il ne trouve pas le hors marché.</strong><span>Un bien qui n'est pas publié ne peut pas vous être signalé.</span></div>
+      <div><strong>Il ne négocie pas.</strong><span>Vous appelez, vous visitez, vous faites votre offre.</span></div>
+      <div><strong>Il ne lit que les annonces publiées et reprises par MoteurImmo.</strong><span>Si une annonce n'y est pas, l'alerte n'arrive pas.</span></div>
+    </div>
+  </section>
+
   <!-- QUESTIONS -->
   <section class="block" id="questions">
     <h2 class="section-title">Questions fréquentes</h2>
     <p class="section-subtitle">Celles qu'un marchand de biens pose avant de s'abonner.</p>
     <div class="faq-item">
       <h3>Faut-il absolument un abonnement MoteurImmo&nbsp;?</h3>
-      <p>Oui. Radar utilise les données de MoteurImmo Agent, 39&nbsp;€ par mois réglés directement à MoteurImmo. Radar vient en plus.</p>
+      <p>Oui. Radar utilise les données de MoteurImmo Agent, 39&nbsp;€ par mois réglés directement à MoteurImmo. Radar vient en plus. Si vous ne l'avez pas encore, vous l'ouvrez sur le site de MoteurImmo et nous vous indiquons le réglage à faire.</p>
     </div>
     <div class="faq-item">
       <h3>D'autres marchands de mon secteur reçoivent-ils les mêmes alertes&nbsp;?</h3>
@@ -641,6 +666,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <h2>La prochaine annonce de votre secteur sort bientôt. Qui appellera le premier&nbsp;?</h2>
     <p>20 places d'abonné fondateur à 27&nbsp;€ par mois au lieu de 49&nbsp;€, jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
     <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+    <p class="rassure-fin">Écrire ne vous engage à rien.</p>
   </div>
 
 </div>
@@ -659,5 +685,13 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
 
 <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="sticky-cta-mobile">Écrivez ALERTE sur WhatsApp</a>
 
+<script>
+(function () {
+  var barre = document.querySelector('.sticky-cta-mobile');
+  var haut = document.querySelector('.hero-nuit .ctas');
+  if (!barre || !haut || !('IntersectionObserver' in window)) { if (barre) barre.classList.add('visible'); return; }
+  new IntersectionObserver(function (e) { barre.classList.toggle('visible', !e[0].isIntersecting); }).observe(haut);
+})();
+</script>
 </body>
 </html>
