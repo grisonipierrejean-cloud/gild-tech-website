@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pascale Grisoni, soins énergétiques à distance</title>
 <meta name="description" content="Soins énergétiques à distance avec Pascale Grisoni, thérapeute énergéticienne depuis plus de 30 ans.">
 <meta name="robots" content="noindex, nofollow">
@@ -45,88 +45,76 @@ body { margin: 0; background: #0B1526 }
 .pg-wa:active { background-color: rgba(230, 211, 163, .16) }
 .pg-link { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: rgba(230, 211, 163, .6); text-underline-offset: 7px; transition: text-decoration-color .16s ease }
 .pg-nav { text-decoration: none }
-.pg-portal { position: relative; z-index: 0; flex: 1 1 auto; box-sizing: border-box; width: 80%; max-width: 380px; min-height: 232px; margin: 4px auto 6px; overflow: hidden; border: 1px solid rgba(230, 211, 163, .72); border-radius: 999px 999px 3px 3px; box-shadow: inset 0 0 0 7px #0B1526, inset 0 0 0 8px rgba(230, 211, 163, .34), 0 0 0 200vmax rgba(11, 21, 38, .8) }
-.pg-stage { position: absolute; left: 50%; bottom: 3.5%; width: min(60%, 400px); aspect-ratio: 719 / 1005; transform: translateX(-50%); pointer-events: none }
-.pg-copy { position: relative; z-index: 3; padding: 14px clamp(20px, 6vw, 88px) 8px }
-.pg-h1 { font-size: clamp(33px, 9.6vw, 60px) }
+.pg-stage { position: absolute; top: 84px; left: 50%; width: min(236px, 61vw); aspect-ratio: 719 / 1005; transform: translateX(-50%); pointer-events: none }
+.pg-rise { position: absolute; inset: 0 }
+.pg-copy { position: relative; margin-top: auto; padding: 22px clamp(20px, 6vw, 88px) 8px; background: linear-gradient(to bottom, rgba(11, 21, 38, 0) 0, rgba(11, 21, 38, .88) 34px, #0B1526 90px) }
+.pg-h1 { font-size: clamp(29px, 8.4vw, 60px) }
 .pg-acts { display: flex; flex-direction: column; gap: 8px }
 .pg-acts-c { max-width: 340px; margin-left: auto; margin-right: auto }
 .pg-tel { margin: 10px 0 0 }
-.pg-pile { position: relative }
-.pg-ch { position: relative; box-sizing: border-box; padding: 46px 18px 74px; border: 1px solid rgba(230, 211, 163, .36); border-bottom: 0; border-radius: 52px 52px 0 0; background: #101D33 }
-.pg-ch-n { margin-top: -34px }
-.pg-ch-z { padding-bottom: 44px; border-bottom: 1px solid rgba(230, 211, 163, .36); border-radius: 52px 52px 4px 4px }
-.pg-ch.is-stick { position: sticky; top: var(--pg-top) }
-.pg-chg { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px }
-.pg-enum { min-height: 262px; margin-top: 6px !important }
-.pg-d { display: none !important }
-.pg-arch { padding: 118px 28px 44px; border-radius: 999px 999px 4px 4px }
-.pg-pres { display: grid; grid-template-columns: minmax(0, 1fr); gap: 34px; justify-items: center; text-align: center }
-.pg-med { position: relative; width: 220px; height: 220px; margin-top: 26px }
+.pg-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px }
+.pg-fa { position: relative; height: 74px }
+.pg-sky { display: none !important }
+.pg-gap { position: relative; height: 26px }
+.pg-enum { min-height: 236px; margin-right: 8px !important }
+.pg-d { display: none }
+.pg-pres { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; justify-items: center; text-align: center }
 .pg-quad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid rgba(230, 211, 163, 0.22) }
 .pg-quad li { border-top: 1px solid rgba(230, 211, 163, 0.22) }
-.pg-tri { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px }
-.pg-cards { display: flex; gap: 14px; margin: 26px calc(-1 * clamp(20px, 6vw, 88px)) 0; padding: 6px clamp(20px, 6vw, 88px) 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: clamp(20px, 6vw, 88px); scroll-padding-right: clamp(20px, 6vw, 88px); scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain }
-.pg-cards::-webkit-scrollbar { display: none }
-.pg-cli { flex: 0 0 72vw; max-width: 330px; scroll-snap-align: start }
-.pg-card { min-height: min(94vw, 410px); border: 1px solid rgba(230, 211, 163, .55); background-color: rgba(230, 211, 163, 0); background-image: radial-gradient(90% 46% at 50% 0%, rgba(230, 211, 163, .1), rgba(230, 211, 163, 0) 100%); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .22), inset 0 0 0 rgba(230, 211, 163, 0); transition: border-color .18s cubic-bezier(0.23, 1, 0.32, 1), background-color .18s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .18s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1) }
+.pg-tri { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px }
+.pg-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.pg-card { border: 1px solid rgba(230, 211, 163, .5); background-color: rgba(230, 211, 163, 0); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .2), inset 0 0 0 rgba(230, 211, 163, 0); transition: border-color .18s cubic-bezier(0.23, 1, 0.32, 1), background-color .18s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .18s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1) }
 .pg-card:active { transform: translateY(1px) scale(.99); border-color: #E6D3A3; background-color: rgba(230, 211, 163, .12) }
 .pg-foot { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center }
-.pg-bar { display: none }
 @media (max-width: 859px) {
 .pg-hero { min-height: calc(100svh + 52px) !important }
 .pg-quad li:nth-child(even) { border-left: 1px solid rgba(230, 211, 163, 0.22) }
-.pg-sky { display: none !important }
-}
-@media (max-width: 767px) {
-.pg-bar { display: flex; visibility: hidden; opacity: 0; transition: opacity .18s ease, visibility 0s linear .18s }
-.pg-bar.is-on { visibility: visible; opacity: 1; transition: opacity .18s ease }
-.pg-foot { padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important }
 }
 @media (hover: hover) and (pointer: fine) {
 .pg-book:hover { background-color: #F1E4C3 !important }
 .pg-wa:hover { border-color: #E6D3A3; background-color: rgba(230, 211, 163, .1) }
 .pg-link:hover { text-decoration-color: #E6D3A3 }
 .pg-nav:hover { text-decoration: underline; text-underline-offset: 7px; text-decoration-thickness: 1px; text-decoration-color: #E6D3A3 }
-.pg-card:hover { border-color: #E6D3A3; background-color: rgba(230, 211, 163, .05); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .46), inset 0 70px 90px -44px rgba(230, 211, 163, .34) }
+.pg-card:hover { border-color: #E6D3A3; background-color: rgba(230, 211, 163, .05); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .42), inset 0 54px 70px -36px rgba(230, 211, 163, .3) }
 }
 @media (min-width: 860px) {
-.pg-portal { position: absolute; top: 11%; right: clamp(32px, 11.5vw, 220px); width: min(35vw, 480px); max-width: none; height: 80%; min-height: 0; margin: 0; flex: none }
-.pg-stage { width: min(64%, 400px) }
-.pg-copy { margin: auto 0; padding: 16px clamp(20px, 6vw, 88px) 8vh; max-width: 60% }
-.pg-h1 { font-size: clamp(48px, 6.8vw, 96px) }
+.pg-stage { top: 50%; left: auto; right: clamp(40px, 11vw, 210px); width: min(400px, 29vw); transform: translateY(-47%) }
+.pg-copy { margin: auto 0; padding: 16px clamp(20px, 6vw, 88px) 9vh; background: none }
+.pg-h1 { font-size: clamp(44px, 5.5vw, 80px) }
 .pg-acts { flex-direction: row; flex-wrap: wrap; gap: 14px }
 .pg-acts-c { max-width: none; justify-content: center }
-.pg-ch { padding: clamp(64px, 6.4vw, 92px) clamp(44px, 6.4vw, 92px) calc(clamp(52px, 5vw, 72px) + 40px); border-radius: clamp(90px, 11vw, 150px) clamp(90px, 11vw, 150px) 0 0 }
-.pg-ch-n { margin-top: -40px }
-.pg-ch-z { padding-bottom: clamp(52px, 5vw, 72px); border-radius: clamp(90px, 11vw, 150px) clamp(90px, 11vw, 150px) 4px 4px }
-.pg-chg { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 5vw, 84px); align-items: end }
-.pg-enum { min-height: 400px; margin-top: 0 !important }
-.pg-d { display: block !important }
-.pg-arch { padding: clamp(150px, 15vw, 190px) 64px 64px }
-.pg-pres { grid-template-columns: auto minmax(0, 1fr); gap: clamp(64px, 8vw, 120px); align-items: center; justify-items: start; text-align: left }
-.pg-med { width: 280px; height: 280px; margin: 34px 0 34px 34px }
+.pg-tel { margin: 10px 0 0 }
+.pg-row { grid-template-columns: 42% 58%; gap: 0; align-items: center }
+.pg-row-r { grid-template-columns: 58% 42% }
+.pg-fa { height: auto; min-height: 300px; align-self: stretch }
+.pg-gap { height: clamp(64px, 8vw, 112px) }
+.pg-tx-r { padding-left: clamp(24px, 5vw, 72px) }
+.pg-tx-l { padding-right: clamp(24px, 5vw, 72px) }
+.pg-enum { align-self: stretch; min-height: 440px; margin-right: 0 !important }
+.pg-d { display: block }
+.pg-sky { display: block !important }
+.pg-m { display: none }
+.pg-pres { grid-template-columns: auto minmax(0, 1fr); gap: clamp(48px, 6vw, 88px); align-items: center; justify-items: start; text-align: left }
 .pg-quad { grid-template-columns: repeat(4, minmax(0, 1fr)) }
 .pg-quad li + li { border-left: 1px solid rgba(230, 211, 163, 0.22) }
 .pg-tri { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px) }
-.pg-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin: clamp(44px, 5vw, 68px) 0 0; padding: 0; overflow: visible }
-.pg-cli { max-width: none }
-.pg-card { min-height: clamp(380px, 35vw, 480px) }
+.pg-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px) }
 .pg-foot { flex-direction: row; justify-content: space-between; text-align: left; gap: 24px }
 }
 @media (prefers-reduced-motion: no-preference) {
 html { scroll-behavior: smooth }
-.pg-ring { animation: pg-turn 90s linear infinite }
+.pg-rise { animation: pg-rise 1.4s cubic-bezier(0.23, 1, 0.32, 1) both }
 }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
 .pg-card:hover .pg-tw { animation: pg-twinkle .7s cubic-bezier(0.23, 1, 0.32, 1) 1 }
 }
-@keyframes pg-turn {
-to { transform: rotate(360deg) }
+@keyframes pg-rise {
+from { opacity: 0; transform: scale(1.035) }
+to { opacity: 1; transform: scale(1) }
 }
 @keyframes pg-twinkle {
 0% { transform: scale(1) rotate(0deg); opacity: 1 }
-35% { transform: scale(1.35) rotate(45deg); opacity: .75 }
+35% { transform: scale(1.5) rotate(45deg); opacity: .75 }
 100% { transform: scale(1) rotate(90deg); opacity: 1 }
 }
 </style>
@@ -135,31 +123,34 @@ to { transform: rotate(360deg) }
 <div class="pg" style="font-family: 'Albert Sans', 'Segoe UI', sans-serif; color: #F2EEE4; background: #0B1526; -webkit-font-smoothing: antialiased">
 
 <section class="pg-hero" style="position: relative; overflow: hidden; min-height: 100svh; display: flex; flex-direction: column; color: #F2EEE4; background: #0B1526">
-<div class="pg-film-slot" data-film="hero" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none"><video class="pg-film" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GFYIEsiB4ziyFi9MDYpDmbwsC5/hf_20261009_130146_8bc6026a-44b0-49f3-a4cb-94f50c4c08d1.mp4" data-o="1" muted autoplay loop playsinline preload="none" aria-hidden="true" tabindex="-1" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 1.4s ease"></video></div>
-<header style="position: relative; z-index: 3; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; padding: 14px clamp(20px, 6vw, 88px) 6px">
-<a href="#" class="pg-nav" style="display: inline-flex; align-items: center; gap: clamp(9px, 1vw, 12px); min-height: 44px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(19px, 5.1vw, 22px); letter-spacing: 0.02em; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="display: block; flex: none; "><circle cx="16" cy="16" r="13.2" stroke="#E6D3A3" stroke-width="1.3"></circle><path d="M16 6.4 L17.5 14.5 L22.6 16 L17.5 17.5 L16 25.6 L14.5 17.5 L9.4 16 L14.5 14.5 Z" fill="#E6D3A3"></path><circle cx="25.33" cy="6.67" r="2.1" fill="#0B1526"></circle><circle cx="25.33" cy="6.67" r="1.35" fill="#E6D3A3"></circle></svg>Pascale Grisoni</a>
-<nav style="display: flex; gap: clamp(20px, 2.4vw, 30px); font-size: 17px">
-<a href="#soins" class="pg-nav" style="display: inline-flex; align-items: center; min-height: 44px">Soins</a>
-<a href="#contact" class="pg-nav" style="display: inline-flex; align-items: center; min-height: 44px">Contact</a>
-</nav>
-</header>
-<div class="pg-portal" style="background: radial-gradient(80% 46% at 50% 24%, rgba(226, 198, 138, 0.2) 0%, rgba(226, 198, 138, 0) 100%), radial-gradient(110% 80% at 50% 62%, rgba(40, 68, 116, 0.55) 0%, rgba(22, 40, 72, 0.3) 58%, rgba(11, 21, 38, 0) 100%)">
+<video class="pg-film" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GFYIEsiB4ziyFi9MDYpDmbwsC5/hf_20261009_130146_8bc6026a-44b0-49f3-a4cb-94f50c4c08d1.mp4" muted autoplay loop playsinline preload="metadata" aria-hidden="true" tabindex="-1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 1.4s ease"></video>
+<canvas data-glitter="1" data-kind="sky" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
+
 <div class="pg-stage">
+<div class="pg-rise">
 <div aria-hidden="true" style="position: absolute; left: -95%; top: -55%; width: 290%; height: 210%; background: radial-gradient(26% 28% at 57% 38%, rgba(226, 198, 138, 0.36) 0%, rgba(226, 198, 138, 0.14) 50%, rgba(226, 198, 138, 0) 100%), radial-gradient(46% 48% at 50% 50%, rgba(38, 64, 110, 0.62) 0%, rgba(24, 43, 77, 0.3) 52%, rgba(11, 21, 38, 0) 100%)"></div>
 <figure style="position: absolute; inset: 0; margin: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 15%, #000 66%, rgba(0, 0, 0, 0.72) 76%, rgba(0, 0, 0, 0.3) 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 14%, #000 81%, rgba(0, 0, 0, 0.5) 91%, transparent 100%), radial-gradient(ellipse 62% 60% at 47% 50%, #000 0%, #000 66%, rgba(0, 0, 0, 0.5) 84%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 15%, #000 66%, rgba(0, 0, 0, 0.72) 76%, rgba(0, 0, 0, 0.3) 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 6%, #000 14%, #000 81%, rgba(0, 0, 0, 0.5) 91%, transparent 100%), radial-gradient(ellipse 62% 60% at 47% 50%, #000 0%, #000 66%, rgba(0, 0, 0, 0.5) 84%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect">
 <img src="pascale-grisoni.jpg" alt="Pascale Grisoni" width="719" height="1005" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; filter: sepia(0.07) saturate(1.03)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: #0B1526; mix-blend-mode: lighten"></div>
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 30%; mix-blend-mode: screen; background: radial-gradient(90% 100% at 70% 0%, rgba(241, 222, 170, 0.34) 0%, rgba(241, 222, 170, 0.1) 55%, rgba(241, 222, 170, 0) 100%)"></div>
 </figure>
-<canvas data-glitter="1.9" data-kind="veil" data-mist="0" data-span="2.6 2.45" data-cy="0.612" aria-hidden="true" style="position: absolute; left: -80%; top: -100%; width: 260%; height: 245%; pointer-events: none"></canvas>
+<canvas data-glitter="1.9" data-kind="veil" data-span="2.6 1.9" aria-hidden="true" style="position: absolute; left: -80%; top: -45%; width: 260%; height: 190%; pointer-events: none"></canvas>
 </div>
 </div>
-<canvas data-glitter="1" data-kind="sky" aria-hidden="true" style="position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
-<div aria-hidden="true" style="position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 84px; pointer-events: none; background: linear-gradient(to bottom, rgba(11, 21, 38, 0.92) 0%, rgba(11, 21, 38, 0.78) 55%, rgba(11, 21, 38, 0) 100%)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 96px; pointer-events: none; background: linear-gradient(to bottom, rgba(11, 21, 38, 0.92) 0%, rgba(11, 21, 38, 0.8) 52%, rgba(11, 21, 38, 0) 100%)"></div>
+
+<header style="position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; padding: 20px clamp(20px, 6vw, 88px)">
+<a href="#" class="pg-nav" style="display: inline-flex; align-items: center; gap: clamp(9px, 1vw, 12px); min-height: 44px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(19px, 5.1vw, 22px); letter-spacing: 0.02em; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="display: block; flex: none; "><circle cx="16" cy="16" r="13.2" stroke="#E6D3A3" stroke-width="1.3"></circle><path d="M16 6.4 L17.5 14.5 L22.6 16 L17.5 17.5 L16 25.6 L14.5 17.5 L9.4 16 L14.5 14.5 Z" fill="#E6D3A3"></path><circle cx="25.33" cy="6.67" r="2.1" fill="#0B1526"></circle><circle cx="25.33" cy="6.67" r="1.35" fill="#E6D3A3"></circle></svg>Pascale Grisoni</a>
+<nav style="display: flex; gap: 30px; font-size: 17px">
+<a href="#soins" class="pg-nav" style="display: inline-flex; align-items: center; min-height: 44px">Soins</a>
+<a href="#contact" class="pg-nav" style="display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+</nav>
+</header>
+
 <div class="pg-copy">
 <h1 class="pg-h1" style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; line-height: 1.07; letter-spacing: 0.035em">SOINS <span style="display: block; margin: -0.02em 0 0.04em -0.03em; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 1.66em; line-height: 1.02; letter-spacing: 0; text-transform: lowercase; color: #E6D3A3">ÉNERGÉTIQUES</span> À DISTANCE</h1>
-<p style="margin: clamp(10px, 1.9vw, 26px) 0 0; max-width: 24em; font-size: clamp(18px, 1.55vw, 22px); line-height: 1.42; color: #DDDBD4; text-wrap: balance">Pour mieux vivre les énergies actuelles particulièrement hautes</p>
-<div class="pg-acts" style="margin-top: clamp(14px, 2vw, 28px)">
+<p style="margin: clamp(12px, 1.9vw, 26px) 0 0; max-width: 24em; font-size: clamp(18px, 1.55vw, 22px); line-height: 1.45; color: #DDDBD4; text-wrap: balance">Pour mieux vivre les énergies actuelles particulièrement hautes</p>
+<div class="pg-acts" style="margin-top: clamp(16px, 2vw, 28px)">
 <a class="pg-book" href="https://calendly.com/pascale7556/30min" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 11px; box-sizing: border-box; min-height: 54px; padding: 13px 24px 13px 20px; border-radius: 4px; font-size: 18px; font-weight: 600; letter-spacing: 0.005em; line-height: 1.2; text-decoration: none; white-space: nowrap; background-color: #E6D3A3; color: #0B1526; box-shadow: 0 12px 32px rgba(3, 8, 18, 0.55)">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 9.8h17M8 3v4M16 3v4"></path><path d="M12 12.4l.75 1.75 1.75.75-1.75.75L12 17.4l-.75-1.75-1.75-.75 1.75-.75z" fill="currentColor" stroke="none"></path></svg>
 Réserver un soin</a>
@@ -172,43 +163,41 @@ Réserver un soin</a>
 </section>
 
 <main>
-<section style="padding: clamp(44px, calc(9vw - 4px), 136px) clamp(20px, 6vw, 88px); background: radial-gradient(66% 12% at 86% 9%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(58% 12% at 50% 88%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%)">
+<section style="padding: clamp(30px, calc(9vw - 4px), 136px) clamp(20px, 6vw, 88px); background: radial-gradient(66% 17% at 86% 21%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(62% 19% at 8% 55%, rgba(30, 52, 94, 0.44) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(58% 14% at 50% 84%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%)">
 <div style="max-width: 1184px; margin: 0 auto">
-<p style="margin: 0 auto; max-width: 21em; text-align: center; font-family: 'Marcellus', Georgia, serif; font-size: clamp(27px, 3.7vw, 52px); line-height: 1.22; color: #F2EEE4; text-wrap: balance">Des soins proposés qui vont venir soutenir les corps qui ne sont pour la plupart pas prêts à accueillir, qui n'ont pas la capacité à intégrer, à soutenir les énergies nouvelles particulièrement élevées.</p>
+<p style="margin: 0 auto; max-width: 23em; text-align: center; font-family: 'Marcellus', Georgia, serif; font-size: clamp(22px, 3.1vw, 42px); line-height: 1.3; color: #F2EEE4; text-wrap: balance">Des soins proposés qui vont venir soutenir les corps qui ne sont pour la plupart pas prêts à accueillir, qui n'ont pas la capacité à intégrer, à soutenir les énergies nouvelles particulièrement élevées.</p>
 
-<div class="pg-pile" style="margin-top: clamp(40px, 7vw, 100px)">
-<div class="pg-ch" data-stick="14" style="--pg-top: 14px; z-index: 1">
-<svg class="pg-d" viewBox="0 0 400 300" fill="none" aria-hidden="true" style="display: block; height: auto; overflow: visible; position: absolute; top: clamp(34px, 4vw, 60px); right: clamp(40px, 7vw, 110px); width: clamp(150px, 17vw, 230px); opacity: 0.8; pointer-events: none">
-<g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1" stroke-linecap="round"><line x1="36" y1="52" x2="112" y2="34" vector-effect="non-scaling-stroke"></line><line x1="112" y1="34" x2="176" y2="92" vector-effect="non-scaling-stroke"></line><line x1="176" y1="92" x2="150" y2="164" vector-effect="non-scaling-stroke"></line><line x1="150" y1="164" x2="232" y2="196" vector-effect="non-scaling-stroke"></line><line x1="232" y1="196" x2="304" y2="150" vector-effect="non-scaling-stroke"></line><line x1="304" y1="150" x2="358" y2="226" vector-effect="non-scaling-stroke"></line></g>
-<circle cx="36" cy="52" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="112" cy="34" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><path d="M176 81 L178.2 89.8 L187 92 L178.2 94.2 L176 103 L173.8 94.2 L165 92 L173.8 89.8 Z" fill="#E6D3A3" fill-opacity="0.95"></path><circle cx="150" cy="164" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="232" cy="196" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><path d="M304 142 L305.6 148.4 L312 150 L305.6 151.6 L304 158 L302.4 151.6 L296 150 L302.4 148.4 Z" fill="#E6D3A3" fill-opacity="0.95"></path><circle cx="358" cy="226" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="70" cy="130" r="1.2" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="250" cy="60" r="1.4" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="330" cy="70" r="1" fill="#E6D3A3" fill-opacity="0.45"></circle>
-</svg>
-<p class="pg-chg" style="margin: 0; font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty"><span style="font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 3.5vw, 48px); line-height: 1.2; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">Dans ce grand passage que nous traversons tous, dans cette vague de conscience qui s’élargit, nos corps fatiguent.</span> <span>la <span style="display: inline-block; padding: 0 0.06em 0 0.2em; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 1.62em; line-height: 0.6; letter-spacing: 0; color: #E6D3A3">Lumière</span> en descendant vient perturber une organisation déjà établie. Nos structures énergétiques se transforment, et toute cette réorganisation amène toutes sortes de désagréments, dans notre monde émotionnel et même au niveau de notre psyché.</span></p>
+<div class="pg-fil" style="margin-top: clamp(22px, 6vw, 88px)">
+<div class="pg-row">
+<div class="pg-fa"><svg class="pg-thread" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="22%" y1="6%" x2="58%" y2="20%"></line><line data-t="1" x1="58%" y1="20%" x2="38%" y2="44%"></line><line data-t="1" x1="38%" y1="44%" x2="74%" y2="58%"></line><line data-t="1" x1="74%" y1="58%" x2="50%" y2="82%"></line><line data-t="1" x1="50%" y1="82%" x2="62%" y2="100%"></line><line data-t="1" x1="38%" y1="44%" x2="12%" y2="57%"></line></g><svg data-node="1" x="22%" y="6%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -10 L2.0 -2.0 L10 0 L2.0 2.0 L0 10 L-2.0 2.0 L-10 0 L-2.0 -2.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="58%" y="20%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.6" fill="#E6D3A3"></circle></svg><svg data-node="1" x="38%" y="44%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -6 L1.2 -1.2 L6 0 L1.2 1.2 L0 6 L-1.2 1.2 L-6 0 L-1.2 -1.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="74%" y="58%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.6" fill="#E6D3A3"></circle></svg><svg data-node="1" x="50%" y="82%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="12%" y="57%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.4" fill="#E6D3A3"></circle></svg></g></svg></div>
+<p class="pg-tx-r" style="margin: 0; font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty"><span style="display: block; margin-bottom: 14px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(21px, 2.15vw, 30px); line-height: 1.3; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">Dans ce grand passage que nous traversons tous, dans cette vague de conscience qui s’élargit, nos corps fatiguent.</span> la <span style="display: inline-block; padding: 0 0.06em 0 0.2em; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 1.62em; line-height: 0.6; letter-spacing: 0; color: #E6D3A3">Lumière</span> en descendant vient perturber une organisation déjà établie. Nos structures énergétiques se transforment, et toute cette réorganisation amène toutes sortes de désagréments, dans notre monde émotionnel et même au niveau de notre psyché.</p>
 </div>
-<div class="pg-ch pg-ch-n" data-stick="48" style="--pg-top: 48px; z-index: 2">
-<div class="pg-chg">
-<p style="margin: 0"><span style="display: block; font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 3.5vw, 48px); line-height: 1.2; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">La fréquence de la Terre ne cessant d'augmenter, toutes ces turbulences énergétiques nous tirent vers le bas et cette confusion vibratoire crée en nous</span></p>
-<p class="pg-enum" style="position: relative; display: grid; grid-template-rows: repeat(7, 1fr); margin: 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(16px, 4.3vw, 23px); line-height: 1.2; white-space: nowrap; text-align: right; color: #F2EEE4">
-<svg aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line x1="97%" y1="7.14%" x2="100%" y2="21.43%"></line><line x1="100%" y1="21.43%" x2="88%" y2="35.71%"></line><line x1="88%" y1="35.71%" x2="78%" y2="50.0%"></line><line x1="78%" y1="50.0%" x2="92%" y2="64.29%"></line><line x1="92%" y1="64.29%" x2="75%" y2="78.57%"></line><line x1="75%" y1="78.57%" x2="87%" y2="92.86%"></line></g><svg x="97%" y="7.14%" width="1" height="1" overflow="visible"><path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="100%" y="21.43%" width="1" height="1" overflow="visible"><path d="M0 -5.5 L1.1 -1.1 L5.5 0 L1.1 1.1 L0 5.5 L-1.1 1.1 L-5.5 0 L-1.1 -1.1 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="88%" y="35.71%" width="1" height="1" overflow="visible"><path d="M0 -5.5 L1.1 -1.1 L5.5 0 L1.1 1.1 L0 5.5 L-1.1 1.1 L-5.5 0 L-1.1 -1.1 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="78%" y="50.0%" width="1" height="1" overflow="visible"><path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="92%" y="64.29%" width="1" height="1" overflow="visible"><path d="M0 -5.5 L1.1 -1.1 L5.5 0 L1.1 1.1 L0 5.5 L-1.1 1.1 L-5.5 0 L-1.1 -1.1 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="75%" y="78.57%" width="1" height="1" overflow="visible"><path d="M0 -5.5 L1.1 -1.1 L5.5 0 L1.1 1.1 L0 5.5 L-1.1 1.1 L-5.5 0 L-1.1 -1.1 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg x="87%" y="92.86%" width="1" height="1" overflow="visible"><path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z" fill="#E6D3A3" fill-opacity="1"></path></svg></svg>
-<span style="position: relative; grid-row: 1; align-self: center; padding-right: calc(3% + 19px)">de grosses fatigues pour certains,</span>
-<span style="position: relative; grid-row: 2; align-self: center; padding-right: calc(0% + 19px)">du brouillard mental pour d’autres,</span>
-<span style="position: relative; grid-row: 3; align-self: center; padding-right: calc(12% + 19px)">des manques de motivation,</span>
-<span style="position: relative; grid-row: 4; align-self: center; padding-right: calc(22% + 19px)">des pertes de sens,</span>
-<span style="position: relative; grid-row: 5; align-self: center; padding-right: calc(8% + 19px)">des peurs,</span>
-<span style="position: relative; grid-row: 6; align-self: center; padding-right: calc(25% + 19px)">des colères,</span>
-<span style="position: relative; grid-row: 7; align-self: center; padding-right: calc(13% + 19px)">des doutes…</span>
+<div class="pg-gap"><svg class="pg-thread pg-d" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="26.04%" y1="0%" x2="83.2%" y2="100%"></line></g></g></svg></div>
+<div class="pg-row pg-row-r">
+<p class="pg-tx-l" style="margin: 0; font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty"><span style="display: block; font-family: 'Marcellus', Georgia, serif; font-size: clamp(21px, 2.15vw, 30px); line-height: 1.3; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">La fréquence de la Terre ne cessant d'augmenter, toutes ces turbulences énergétiques nous tirent vers le bas et cette confusion vibratoire crée en nous</span></p>
+<p class="pg-enum" style="position: relative; display: grid; grid-template-rows: 0.7fr repeat(7, 1fr) 0.7fr; margin: 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(16px, 4.4vw, 21px); line-height: 1.2; white-space: nowrap; text-align: right; color: #F2EEE4">
+<svg class="pg-thread" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="60%" y1="0%" x2="100%" y2="14.29%"></line><line data-t="1" x1="100%" y1="14.29%" x2="97%" y2="26.19%"></line><line data-t="1" x1="97%" y1="26.19%" x2="88%" y2="38.1%"></line><line data-t="1" x1="88%" y1="38.1%" x2="78%" y2="50.0%"></line><line data-t="1" x1="78%" y1="50.0%" x2="92%" y2="61.9%"></line><line data-t="1" x1="92%" y1="61.9%" x2="75%" y2="73.81%"></line><line data-t="1" x1="75%" y1="73.81%" x2="87%" y2="85.71%"></line><line data-t="1" x1="87%" y1="85.71%" x2="70%" y2="100%"></line></g><svg data-node="1" x="100%" y="14.29%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="97%" y="26.19%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -5 L1.0 -1.0 L5 0 L1.0 1.0 L0 5 L-1.0 1.0 L-5 0 L-1.0 -1.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="88%" y="38.1%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -5 L1.0 -1.0 L5 0 L1.0 1.0 L0 5 L-1.0 1.0 L-5 0 L-1.0 -1.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="78%" y="50.0%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="92%" y="61.9%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -5 L1.0 -1.0 L5 0 L1.0 1.0 L0 5 L-1.0 1.0 L-5 0 L-1.0 -1.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="75%" y="73.81%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -5 L1.0 -1.0 L5 0 L1.0 1.0 L0 5 L-1.0 1.0 L-5 0 L-1.0 -1.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="87%" y="85.71%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z" fill="#E6D3A3" fill-opacity="1"></path></svg></g></svg>
+<span style="position: relative; grid-row: 2; align-self: center; padding-right: calc(0% + 19px)">de grosses fatigues pour certains,</span>
+<span style="position: relative; grid-row: 3; align-self: center; padding-right: calc(3% + 19px)">du brouillard mental pour d’autres,</span>
+<span style="position: relative; grid-row: 4; align-self: center; padding-right: calc(12% + 19px)">des manques de motivation,</span>
+<span style="position: relative; grid-row: 5; align-self: center; padding-right: calc(22% + 19px)">des pertes de sens,</span>
+<span style="position: relative; grid-row: 6; align-self: center; padding-right: calc(8% + 19px)">des peurs,</span>
+<span style="position: relative; grid-row: 7; align-self: center; padding-right: calc(25% + 19px)">des colères,</span>
+<span style="position: relative; grid-row: 8; align-self: center; padding-right: calc(13% + 19px)">des doutes…</span>
 </p>
 </div>
-</div>
-<div class="pg-ch pg-ch-n pg-ch-z" style="z-index: 3">
-<p class="pg-chg" style="margin: 0; font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty"><span style="font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 3.5vw, 48px); line-height: 1.2; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">Face à cette élévation vibratoire, nos corps sont appelés à perdre de leur densité, à s'étheriser.</span> <span>Les soins proposés vont nous accompagner à réajuster le débalancement énergétique, favoriser la circulation des particules de Lumière dans les corps, dédensifier le corps de matière afin de rendre possible une meilleure connection avec les corps subtils et de permettre à de nouveaux codes vibratoires de s'inscrire dans l'ADN, sans quoi le passage sera plus difficile à traverser.</span></p>
+<div class="pg-gap"><svg class="pg-thread pg-d" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="87.4%" y1="0%" x2="16.8%" y2="100%"></line></g></g></svg><svg class="pg-thread pg-m" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="70%" y1="0%" x2="40%" y2="100%"></line></g></g></svg></div>
+<div class="pg-row">
+<div class="pg-fa"><svg class="pg-thread" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none"><g transform="translate(0 0)"><g stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1"><line data-t="1" x1="40%" y1="0%" x2="30%" y2="18%"></line><line data-t="1" x1="30%" y1="18%" x2="62%" y2="34%"></line><line data-t="1" x1="62%" y1="34%" x2="44%" y2="58%"></line><line data-t="1" x1="44%" y1="58%" x2="76%" y2="70%"></line><line data-t="1" x1="76%" y1="70%" x2="58%" y2="92%"></line><line data-t="1" x1="44%" y1="58%" x2="16%" y2="72%"></line></g><svg data-node="1" x="30%" y="18%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.6" fill="#E6D3A3"></circle></svg><svg data-node="1" x="62%" y="34%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="44%" y="58%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.6" fill="#E6D3A3"></circle></svg><svg data-node="1" x="76%" y="70%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -6 L1.2 -1.2 L6 0 L1.2 1.2 L0 6 L-1.2 1.2 L-6 0 L-1.2 -1.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="58%" y="92%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><svg data-node="1" x="16%" y="72%" width="1" height="1" overflow="visible" style="transition: opacity .5s cubic-bezier(0.23, 1, 0.32, 1)"><circle r="2.4" fill="#E6D3A3"></circle></svg></g></svg></div>
+<p class="pg-tx-r" style="margin: 0; font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty"><span style="display: block; margin-bottom: 14px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(21px, 2.15vw, 30px); line-height: 1.3; letter-spacing: 0; color: #F2EEE4; text-wrap: pretty">Face à cette élévation vibratoire, nos corps sont appelés à perdre de leur densité, à s'étheriser.</span> Les soins proposés vont nous accompagner à réajuster le débalancement énergétique, favoriser la circulation des particules de Lumière dans les corps, dédensifier le corps de matière afin de rendre possible une meilleure connection avec les corps subtils et de permettre à de nouveaux codes vibratoires de s'inscrire dans l'ADN, sans quoi le passage sera plus difficile à traverser.</p>
 </div>
 </div>
 
-<div class="pg-arch" style="position: relative; display: flex; flex-direction: column; align-items: center; margin: clamp(64px, 9vw, 128px) auto 0; max-width: 620px; box-sizing: border-box; border: 1px solid rgba(230, 211, 163, 0.6); box-shadow: inset 0 0 0 8px #0B1526, inset 0 0 0 9px rgba(230, 211, 163, 0.22); background: radial-gradient(90% 60% at 50% 0%, rgba(230, 211, 163, 0.1), rgba(230, 211, 163, 0) 100%); text-align: center">
-<div aria-hidden="true" style="position: absolute; left: 50%; top: -23px; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; margin-left: -23px; border-radius: 50%; background: #0B1526"><svg width="30" height="30" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg></div>
-<p style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(25px, 2.8vw, 38px); line-height: 1.3; color: #E6D3A3; text-wrap: balance">Au préalable, un nettoyage complet du champ vibratoire est pratiqué sur la personne.</p>
+<div style="display: flex; flex-direction: column; align-items: center; margin: clamp(30px, 9vw, 128px) auto 0; max-width: 500px; box-sizing: border-box; padding: clamp(36px, 7vw, 76px) clamp(24px, 5vw, 52px) clamp(24px, 5vw, 52px); border: 1px solid rgba(230, 211, 163, 0.55); border-radius: 250px 250px 4px 4px; box-shadow: inset 0 0 0 7px #0B1526, inset 0 0 0 8px rgba(230, 211, 163, 0.2); background: radial-gradient(90% 70% at 50% 0%, rgba(230, 211, 163, 0.07), rgba(230, 211, 163, 0) 100%); text-align: center">
+<svg width="24" height="24" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg>
+<p style="margin: 20px 0 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(21px, 2vw, 26px); line-height: 1.42; color: #E6D3A3; text-wrap: balance">Au préalable, un nettoyage complet du champ vibratoire est pratiqué sur la personne.</p>
 </div>
-<div class="pg-acts pg-acts-c" style="margin-top: clamp(30px, 5vw, 56px)">
+<div class="pg-acts pg-acts-c" style="margin-top: clamp(22px, 5vw, 56px)">
 <a class="pg-book" href="https://calendly.com/pascale7556/30min" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 11px; box-sizing: border-box; min-height: 54px; padding: 13px 24px 13px 20px; border-radius: 4px; font-size: 18px; font-weight: 600; letter-spacing: 0.005em; line-height: 1.2; text-decoration: none; white-space: nowrap; background-color: #E6D3A3; color: #0B1526; box-shadow: 0 12px 32px rgba(3, 8, 18, 0.55)">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 9.8h17M8 3v4M16 3v4"></path><path d="M12 12.4l.75 1.75 1.75.75-1.75.75L12 17.4l-.75-1.75-1.75-.75 1.75-.75z" fill="currentColor" stroke="none"></path></svg>
 Réserver un soin</a>
@@ -219,33 +208,32 @@ Réserver un soin</a>
 </div>
 </section>
 
-<section style="overflow-x: clip; padding: 0 clamp(20px, 6vw, 88px) clamp(44px, calc(9vw - 4px), 136px); background: radial-gradient(56% 28% at 18% 31%, rgba(30, 52, 94, 0.55) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(60% 24% at 88% 73%, rgba(30, 52, 94, 0.42) 0%, rgba(11, 21, 38, 0) 100%)">
+<section style="overflow-x: clip; padding: 0 clamp(20px, 6vw, 88px) clamp(30px, calc(9vw - 4px), 136px); background: radial-gradient(56% 28% at 18% 31%, rgba(30, 52, 94, 0.55) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(60% 24% at 88% 73%, rgba(30, 52, 94, 0.42) 0%, rgba(11, 21, 38, 0) 100%)">
 <div aria-hidden="true" style="display: flex; align-items: center; justify-content: center; gap: 18px"><span style="width: min(22vw, 190px); height: 1px; background: linear-gradient(to right, rgba(230, 211, 163, 0), rgba(230, 211, 163, 0.34))"></span><svg width="15" height="15" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="width: min(22vw, 190px); height: 1px; background: linear-gradient(to left, rgba(230, 211, 163, 0), rgba(230, 211, 163, 0.34))"></span></div>
-<div style="max-width: 1184px; margin: 0 auto; padding-top: clamp(44px, calc(9vw - 4px), 136px)">
+<div style="max-width: 1184px; margin: 0 auto; padding-top: clamp(30px, calc(9vw - 4px), 136px)">
 <div class="pg-pres">
-<div class="pg-med">
+<div style="position: relative; width: 224px; height: 224px">
 <div aria-hidden="true" style="position: absolute; left: -45%; top: -45%; width: 190%; height: 190%; background: radial-gradient(closest-side, rgba(226, 198, 138, 0.2) 0%, rgba(226, 198, 138, 0.1) 46%, rgba(38, 64, 110, 0.2) 62%, rgba(11, 21, 38, 0) 100%)"></div>
 <div style="position: absolute; inset: 0; overflow: hidden; border-radius: 50%; -webkit-mask-image: radial-gradient(circle closest-side, #000 0%, #000 76%, rgba(0, 0, 0, 0.55) 89%, transparent 100%); mask-image: radial-gradient(circle closest-side, #000 0%, #000 76%, rgba(0, 0, 0, 0.55) 89%, transparent 100%)">
 <img src="pascale-grisoni.jpg" alt="" aria-hidden="true" width="719" height="1005" loading="lazy" style="position: absolute; left: 12%; top: 1%; display: block; width: 76%; height: auto; filter: sepia(0.07) saturate(1.03); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 82%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 82%, transparent 100%)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: #0B1526; mix-blend-mode: lighten"></div>
 </div>
 <canvas data-glitter="1.3" data-kind="halo" data-span="1.8 1.8" aria-hidden="true" style="position: absolute; left: -40%; top: -40%; width: 180%; height: 180%; pointer-events: none"></canvas>
-<svg class="pg-ring" viewBox="-110 -110 220 220" fill="none" aria-hidden="true" style="position: absolute; left: -12%; top: -12%; width: 124%; height: 124%; overflow: visible; pointer-events: none"><circle r="104" stroke="#E6D3A3" stroke-opacity="0.6" stroke-width="1" vector-effect="non-scaling-stroke"></circle><circle cx="0" cy="-104" r="13" fill="#0B1526"></circle><path d="M0 -114 L2.0 -106.0 L10 -104 L2.0 -102.0 L0 -94 L-2.0 -102.0 L-10 -104 L-2.0 -106.0 Z" fill="#E6D3A3" fill-opacity="1"></path><circle cx="79.7" cy="66.8" r="5" fill="#0B1526"></circle><circle cx="79.7" cy="66.8" r="2.4" fill="#E6D3A3"></circle><circle cx="-98" cy="35" r="4" fill="#0B1526"></circle><circle cx="-98" cy="35" r="1.6" fill="#E6D3A3"></circle></svg>
 </div>
 <div>
-<h2 style="margin: 0; max-width: 17em; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(27px, 3.6vw, 52px); line-height: 1.2; color: #F2EEE4; text-wrap: balance">Je suis PASCALE GRISONI, thérapeute énergéticienne depuis plus de 30 ans, véhiculant tout au long de mon parcours cette quête profonde de BIEN ETRE.</h2>
-<p aria-hidden="true" style="margin: 16px 0 0; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: clamp(50px, 5.6vw, 80px); line-height: 1.1; color: #E6D3A3; transform: rotate(-3deg); transform-origin: left center">Pascale Grisoni</p>
+<h2 style="margin: 0; max-width: 21em; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.9vw, 40px); line-height: 1.28; color: #F2EEE4; text-wrap: balance">Je suis PASCALE GRISONI, thérapeute énergéticienne depuis plus de 30 ans, véhiculant tout au long de mon parcours cette quête profonde de BIEN ETRE.</h2>
+<p aria-hidden="true" style="margin: 14px 0 0; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: clamp(38px, 4.2vw, 56px); line-height: 1.1; color: #E6D3A3; transform: rotate(-3deg); transform-origin: left center">Pascale Grisoni</p>
 </div>
 </div>
 
-<ul class="pg-quad" style="list-style: none; margin: clamp(34px, 7vw, 88px) 0 0; padding: 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.3; text-align: center; color: #F2EEE4">
-<li style="display: flex; align-items: center; justify-content: center; padding: clamp(14px, 2vw, 24px) 10px">Maître REIKI</li>
-<li style="display: flex; align-items: center; justify-content: center; padding: clamp(14px, 2vw, 24px) 10px">Moon Mother</li>
-<li style="display: flex; align-items: center; justify-content: center; padding: clamp(14px, 2vw, 24px) 10px">Numérologue</li>
-<li style="display: flex; align-items: center; justify-content: center; padding: clamp(14px, 2vw, 24px) 10px">Technicienne en libération des charges</li>
+<ul class="pg-quad" style="list-style: none; margin: clamp(22px, 7vw, 88px) 0 0; padding: 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.3; text-align: center; color: #F2EEE4">
+<li style="display: flex; align-items: center; justify-content: center; padding: clamp(12px, 2vw, 24px) 10px">Maître REIKI</li>
+<li style="display: flex; align-items: center; justify-content: center; padding: clamp(12px, 2vw, 24px) 10px">Moon Mother</li>
+<li style="display: flex; align-items: center; justify-content: center; padding: clamp(12px, 2vw, 24px) 10px">Numérologue</li>
+<li style="display: flex; align-items: center; justify-content: center; padding: clamp(12px, 2vw, 24px) 10px">Technicienne en libération des charges</li>
 </ul>
 
-<div class="pg-tri" style="margin-top: clamp(30px, 7vw, 88px)">
+<div class="pg-tri" style="margin-top: clamp(24px, 7vw, 88px)">
 <p style="margin: 0; padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid rgba(230, 211, 163, 0.7); font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty">Depuis plus de 3 ans, c'est avec <span style="display: inline-block; padding: 0 0.06em 0 0.2em; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 1.62em; line-height: 0.6; letter-spacing: 0; color: #E6D3A3">Joie</span> que je propose des soins issus de la Médecine des <span style="display: inline-block; padding: 0 0.06em 0 0.2em; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 1.62em; line-height: 0.6; letter-spacing: 0; color: #E6D3A3">Étoiles</span>, médecine énergétique enseignée par Chantal LUTFY, soins qui tirent leur force du positionnement vertical que l'on pourrait associer au point zéro.</p>
 <p style="margin: 0; padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid rgba(230, 211, 163, 0.7); font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty">Aucune intervention n’est établie avec des instances astralisées, ce qui offre à la personne qui reçoit le soin une expérience sécurisante, libératrice et élevée.</p>
 <p style="margin: 0; padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid rgba(230, 211, 163, 0.7); font-size: clamp(18px, 4.6vw, 19px); line-height: calc(1.6em + 0.2vw); letter-spacing: 0.005em; color: #DDDBD4; text-wrap: pretty">Les protocoles énergétiques proposés sont transmis dans la non-directivité, ce qui permet à la personne accompagnée de reprendre pleinement son pouvoir intérieur. La libération des énergies désuètes favorise un juste retour à soi ainsi que l'émergence d'une force intérieure renouvelée.</p>
@@ -253,27 +241,26 @@ Réserver un soin</a>
 </div>
 </section>
 
-<section style="position: relative; overflow-x: clip; padding: 0 clamp(20px, 6vw, 88px); background: radial-gradient(64% 22% at 50% 24%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%)">
+<section style="position: relative; overflow-x: clip; padding: 0 clamp(20px, 6vw, 88px); background: radial-gradient(64% 25% at 50% 28%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(56% 24% at 50% 74%, rgba(30, 52, 94, 0.6) 0%, rgba(11, 21, 38, 0) 100%)">
 <canvas data-glitter="0.45" data-kind="still" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
 <div style="position: relative"><div aria-hidden="true" style="display: flex; align-items: center; justify-content: center; gap: 18px"><span style="width: min(22vw, 190px); height: 1px; background: linear-gradient(to right, rgba(230, 211, 163, 0), rgba(230, 211, 163, 0.34))"></span><svg width="15" height="15" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="width: min(22vw, 190px); height: 1px; background: linear-gradient(to left, rgba(230, 211, 163, 0), rgba(230, 211, 163, 0.34))"></span></div></div>
-<div id="soins" style="position: relative; max-width: 1184px; margin: 0 auto; padding: clamp(44px, calc(9vw - 4px), 136px) 0; scroll-margin-top: 0">
-<h2 style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(44px, 5.6vw, 76px); line-height: 1.05; letter-spacing: 0.01em; color: #F2EEE4; text-wrap: balance; text-align: center">Soins</h2>
-<ul class="pg-cards" style="list-style: none">
-<li class="pg-cli" style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; padding: clamp(54px, 6vw, 84px) 16px clamp(28px, 3vw, 40px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="68" height="68" viewBox="-34 -34 68 68" aria-hidden="true" style="display: block; flex: none"><circle r="32" fill="none" stroke="#E6D3A3" stroke-opacity="0.4" stroke-width="1"></circle><circle r="25" fill="none" stroke="#E6D3A3" stroke-opacity="0.16" stroke-width="1"></circle><path d="M0 -20 L4.0 -4.0 L20 0 L4.0 4.0 L0 20 L-4.0 4.0 L-20 0 L-4.0 -4.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 16px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 2.2vw, 32px); line-height: 1.2; text-wrap: balance">Déparasitage</span></a></li>
-<li class="pg-cli" style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage%20sexuel." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; padding: clamp(54px, 6vw, 84px) 16px clamp(28px, 3vw, 40px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="68" height="68" viewBox="-34 -34 68 68" aria-hidden="true" style="display: block; flex: none"><circle r="32" fill="none" stroke="#E6D3A3" stroke-opacity="0.4" stroke-width="1"></circle><circle r="25" fill="none" stroke="#E6D3A3" stroke-opacity="0.16" stroke-width="1"></circle><path d="M0 -20 L4.0 -4.0 L20 0 L4.0 4.0 L0 20 L-4.0 4.0 L-20 0 L-4.0 -4.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 16px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 2.2vw, 32px); line-height: 1.2; text-wrap: balance">Déparasitage sexuel</span></a></li>
-<li class="pg-cli" style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20Lib%C3%A9ration%20des%20m%C3%A9moires%20cellulaires." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; padding: clamp(54px, 6vw, 84px) 16px clamp(28px, 3vw, 40px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="68" height="68" viewBox="-34 -34 68 68" aria-hidden="true" style="display: block; flex: none"><circle r="32" fill="none" stroke="#E6D3A3" stroke-opacity="0.4" stroke-width="1"></circle><circle r="25" fill="none" stroke="#E6D3A3" stroke-opacity="0.16" stroke-width="1"></circle><path d="M0 -20 L4.0 -4.0 L20 0 L4.0 4.0 L0 20 L-4.0 4.0 L-20 0 L-4.0 -4.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 16px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 2.2vw, 32px); line-height: 1.2; text-wrap: balance">Libération des mémoires cellulaires</span></a></li>
-<li class="pg-cli" style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20108.8." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; padding: clamp(54px, 6vw, 84px) 16px clamp(28px, 3vw, 40px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="68" height="68" viewBox="-34 -34 68 68" aria-hidden="true" style="display: block; flex: none"><circle r="32" fill="none" stroke="#E6D3A3" stroke-opacity="0.4" stroke-width="1"></circle><circle r="25" fill="none" stroke="#E6D3A3" stroke-opacity="0.16" stroke-width="1"></circle><path d="M0 -20 L4.0 -4.0 L20 0 L4.0 4.0 L0 20 L-4.0 4.0 L-20 0 L-4.0 -4.0 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 16px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(28px, 2.2vw, 32px); line-height: 1.2; text-wrap: balance">108.8</span></a></li>
+<div id="soins" style="position: relative; max-width: 1184px; margin: 0 auto; padding: clamp(30px, calc(9vw - 4px), 136px) 0; scroll-margin-top: 0">
+<h2 style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 54px); line-height: 1.1; letter-spacing: 0.01em; color: #F2EEE4; text-wrap: balance; text-align: center">Soins</h2>
+<ul class="pg-cards" style="list-style: none; margin: clamp(20px, 5vw, 60px) 0 0; padding: 0">
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="22" height="22" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage%20sexuel." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="22" height="22" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage sexuel</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20Lib%C3%A9ration%20des%20m%C3%A9moires%20cellulaires." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="22" height="22" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Libération des mémoires cellulaires</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20108.8." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="22" height="22" viewBox="-12 -12 24 24" aria-hidden="true" style="display: block; flex: none; "><path d="M0 -11 L2.2 -2.2 L11 0 L2.2 2.2 L0 11 L-2.2 2.2 L-11 0 L-2.2 -2.2 Z" fill="#E6D3A3" fill-opacity="1"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">108.8</span></a></li>
 </ul>
 </div>
-<div id="contact" style="position: relative; margin: 0 calc(-1 * clamp(20px, 6vw, 88px)); padding: clamp(40px, 6vw, 84px) clamp(20px, 6vw, 88px) clamp(52px, 10vw, 136px); text-align: center; scroll-margin-top: 0">
-<div class="pg-film-slot" data-film="contact" aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; background: radial-gradient(60% 56% at 50% 56%, rgba(30, 52, 94, 0.6) 0%, rgba(11, 21, 38, 0) 100%)"><video class="pg-film" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GFYIEsiB4ziyFi9MDYpDmbwsC5/hf_20261009_130146_8bc6026a-44b0-49f3-a4cb-94f50c4c08d1.mp4" data-o="0.34" muted autoplay loop playsinline preload="none" aria-hidden="true" tabindex="-1" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 1.4s ease"></video><div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #0B1526 0%, rgba(11, 21, 38, 0) 26%, rgba(11, 21, 38, 0) 78%, #0B1526 100%)"></div></div>
-<svg class="pg-sky" viewBox="0 0 720 240" fill="none" aria-hidden="true" style="display: block; height: auto; overflow: visible; position: relative; width: min(560px, 90%); margin: 0 auto clamp(0px, 1vw, 12px); opacity: 0.75">
+<div id="contact" style="position: relative; max-width: 1184px; margin: 0 auto; padding: 0 0 clamp(36px, 10vw, 136px); text-align: center; scroll-margin-top: 0">
+<svg class="pg-sky" viewBox="0 0 720 240" fill="none" aria-hidden="true" style="display: block; height: auto; overflow: visible; width: min(560px, 90%); margin: 0 auto clamp(0px, 1vw, 12px); opacity: 0.75">
 <g stroke="#E6D3A3" stroke-opacity="0.45" stroke-width="1" stroke-linecap="round"><line x1="20" y1="150" x2="110" y2="84" vector-effect="non-scaling-stroke"></line><line x1="110" y1="84" x2="230" y2="58" vector-effect="non-scaling-stroke"></line><line x1="230" y1="58" x2="350" y2="96" vector-effect="non-scaling-stroke"></line><line x1="350" y1="96" x2="470" y2="44" vector-effect="non-scaling-stroke"></line><line x1="470" y1="44" x2="590" y2="70" vector-effect="non-scaling-stroke"></line><line x1="590" y1="70" x2="700" y2="128" vector-effect="non-scaling-stroke"></line><line x1="700" y1="128" x2="560" y2="190" vector-effect="non-scaling-stroke"></line><line x1="560" y1="190" x2="400" y2="172" vector-effect="non-scaling-stroke"></line><line x1="400" y1="172" x2="350" y2="96" vector-effect="non-scaling-stroke"></line><line x1="400" y1="172" x2="250" y2="196" vector-effect="non-scaling-stroke"></line></g>
 <circle cx="20" cy="150" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="110" cy="84" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="230" cy="58" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><path d="M350 84 L352.4 93.6 L362 96 L352.4 98.4 L350 108 L347.6 98.4 L338 96 L347.6 93.6 Z" fill="#E6D3A3" fill-opacity="0.95"></path><circle cx="470" cy="44" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><path d="M590 62 L591.6 68.4 L598 70 L591.6 71.6 L590 78 L588.4 71.6 L582 70 L588.4 68.4 Z" fill="#E6D3A3" fill-opacity="0.95"></path><circle cx="700" cy="128" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="560" cy="190" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><circle cx="400" cy="172" r="2.6" fill="#E6D3A3" fill-opacity="0.9"></circle><path d="M250 189 L251.4 194.6 L257 196 L251.4 197.4 L250 203 L248.6 197.4 L243 196 L248.6 194.6 Z" fill="#E6D3A3" fill-opacity="0.95"></path><circle cx="60" cy="40" r="1.2" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="180" cy="160" r="1" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="300" cy="20" r="1.3" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="520" cy="140" r="1" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="660" cy="30" r="1.2" fill="#E6D3A3" fill-opacity="0.45"></circle><circle cx="140" cy="220" r="1" fill="#E6D3A3" fill-opacity="0.45"></circle>
 </svg>
 <div style="position: relative">
-<h2 style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(44px, 5.6vw, 76px); line-height: 1.05; letter-spacing: 0.01em; color: #F2EEE4; text-wrap: balance">Contact</h2>
-<p style="margin: 12px 0 0; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: clamp(56px, 6.6vw, 96px); line-height: 1.15; color: #E6D3A3">Pascale Grisoni</p>
+<h2 style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 54px); line-height: 1.1; letter-spacing: 0.01em; color: #F2EEE4; text-wrap: balance">Contact</h2>
+<p style="margin: 14px 0 0; font-family: 'Parisienne', 'Segoe Script', cursive; font-size: clamp(44px, 5vw, 68px); line-height: 1.15; color: #E6D3A3">Pascale Grisoni</p>
 <p style="margin: 12px 0 0; font-size: 20px"><a class="pg-link" href="tel:+33667576074" style="display: inline-flex; align-items: center; min-height: 44px">+33 6 67 57 60 74</a></p>
 <p style="margin: 0; font-size: 20px"><a class="pg-link" href="mailto:pascale7556@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere">pascale7556@gmail.com</a></p>
 <div class="pg-acts pg-acts-c" style="margin-top: 22px">
@@ -289,19 +276,12 @@ Réserver un soin</a>
 </section>
 </main>
 
-<footer style="position: relative; padding: 0 clamp(20px, 6vw, 88px); font-size: 15px; line-height: 1.6; color: #AEB6C4; background: #0B1526">
+<footer style="padding: 0 clamp(20px, 6vw, 88px); font-size: 15px; line-height: 1.6; color: #AEB6C4">
 <div class="pg-foot" style="margin: 0 auto; max-width: 1184px; padding: 22px 0 30px; border-top: 1px solid rgba(230, 211, 163, 0.22)">
 <div aria-hidden="true" style="display: flex; align-items: center; gap: 12px"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="display: block; flex: none; "><circle cx="16" cy="16" r="13.2" stroke="#E6D3A3" stroke-width="1.3"></circle><path d="M16 6.4 L17.5 14.5 L22.6 16 L17.5 17.5 L16 25.6 L14.5 17.5 L9.4 16 L14.5 14.5 Z" fill="#E6D3A3"></path><circle cx="25.33" cy="6.67" r="2.1" fill="#0B1526"></circle><circle cx="25.33" cy="6.67" r="1.35" fill="#E6D3A3"></circle></svg><span style="font-family: 'Parisienne', 'Segoe Script', cursive; font-size: 27px; line-height: 1; color: #E6D3A3">Pascale Grisoni</span></div>
 <p style="margin: 0">Les soins énergétiques ne remplacent pas un avis, un diagnostic ou un traitement médical.</p>
 </div>
 </footer>
-
-<div class="pg-bar" style="position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; box-sizing: border-box; align-items: center; gap: 10px; padding: 5px 12px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(230, 211, 163, 0.55); background: #0B1526">
-<a class="pg-book" href="https://calendly.com/pascale7556/30min" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 11px; box-sizing: border-box; flex: 1; min-height: 44px; padding: 8px 16px; border-radius: 4px; font-size: 18px; font-weight: 600; letter-spacing: 0.005em; line-height: 1.2; text-decoration: none; white-space: nowrap; background-color: #E6D3A3; color: #0B1526">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 9.8h17M8 3v4M16 3v4"></path><path d="M12 12.4l.75 1.75 1.75.75-1.75.75L12 17.4l-.75-1.75-1.75-.75 1.75-.75z" fill="currentColor" stroke="none"></path></svg>
-Réserver un soin</a>
-<a class="pg-wa" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20vos%20soins%20%C3%A9nerg%C3%A9tiques%20%C3%A0%20distance." target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" style="display: inline-flex; flex: none; align-items: center; justify-content: center; box-sizing: border-box; width: 44px; height: 44px; border-radius: 4px; color: #F2EEE4"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-</div>
 
 </div>
 <script>
@@ -311,7 +291,6 @@ var ctx = cv.getContext('2d'), W = 0, H = 0, P = [], M = [], last = 0, born = 0,
 var k = parseFloat(cv.getAttribute('data-glitter')) || 1;
 var kind = cv.getAttribute('data-kind') || 'sky';
 var span = (cv.getAttribute('data-span') || '1.56 1.56').split(' '), rx = 0, ry = 0;
-var cyf = parseFloat(cv.getAttribute('data-cy')) || 0.5, fogOn = cv.getAttribute('data-mist') !== '0';
 var still = kind === 'still' || kind === 'halo' || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 var tones = ['240,216,156', '255,245,218', '216,184,116'];
 function sprite(c, stops) {
@@ -327,7 +306,7 @@ function rnd(a, b) { return a + Math.random() * (b - a); }
 function place(p) {
 if (kind !== 'sky' && kind !== 'still' && Math.random() < 0.72) {
 var an = Math.random() * 6.283, d = 0.8 + Math.abs(Math.random() + Math.random() + Math.random() - 1.5) * 1.5;
-p.x = W * 0.5 + Math.cos(an) * rx * 1.25 * d; p.y = H * cyf + Math.sin(an) * ry * 1.08 * d;
+p.x = W * 0.5 + Math.cos(an) * rx * 1.25 * d; p.y = H * 0.5 + Math.sin(an) * ry * 1.08 * d;
 } else { p.x = Math.random() * W; p.y = Math.random() * H; }
 }
 function seed() {
@@ -344,7 +323,7 @@ p.vx = -rnd(3, 10) * v; p.vy = rnd(2, 8) * v;
 p.star = veil && !big && Math.random() < 0.13;
 place(p); P.push(p);
 }
-if (kind === 'veil' && fogOn) {
+if (kind === 'veil') {
 for (i = 0; i < 7; i++) {
 M.push({ an: 0.55 + (i + rnd(-0.3, 0.3)) / 6 * 2.05, d: rnd(1.06, 1.2), r: rnd(0.26, 0.4), a: rnd(0.3, 0.55), ph: rnd(0, 6.28), sp: rnd(0.05, 0.13) });
 }
@@ -360,10 +339,10 @@ m = M[i];
 var an = m.an + 0.1 * Math.sin(t * m.sp + m.ph), d = m.d + 0.05 * Math.sin(t * m.sp * 1.7 + m.ph);
 s = m.r * rx * 2 * (1 + 0.08 * Math.sin(t * m.sp * 1.3 + m.ph * 2));
 ctx.globalAlpha = m.a;
-ctx.drawImage(fog, W * 0.5 + Math.cos(an) * rx * d - s / 2, H * cyf + Math.sin(an) * ry * d - s / 2, s, s);
+ctx.drawImage(fog, W * 0.5 + Math.cos(an) * rx * d - s / 2, H * 0.5 + Math.sin(an) * ry * d - s / 2, s, s);
 }
 ctx.globalCompositeOperation = 'lighter';
-var fx0 = W * 0.5 - rx * 1.04, fx1 = W * 0.5 + rx * 0.8, fy0 = H * cyf - ry * 0.52, fy1 = H * cyf + ry * 0.74;
+var fx0 = W * 0.5 - rx * 1.04, fx1 = W * 0.5 + rx * 0.8, fy0 = H * 0.5 - ry * 0.52, fy1 = H * 0.5 + ry * 0.74;
 for (i = 0; i < P.length; i++) {
 p = P[i];
 p.x += (p.vx + Math.sin(t * 0.3 + p.ph) * 2.2) * dt; p.y += p.vy * dt;
@@ -412,43 +391,59 @@ if (v && !on) { on = true; last = 0; window.requestAnimationFrame(loop); } else 
 window.requestAnimationFrame(loop);
 }
 }
-function behave() {
-var bar = document.querySelector('.pg-bar'), acts = document.querySelector('.pg-copy .pg-acts'), fin = document.getElementById('contact');
-if (bar && acts && fin && 'IntersectionObserver' in window) {
-var past = false, end = false;
-var sync = function () { if (past && !end) { bar.classList.add('is-on'); } else { bar.classList.remove('is-on'); } };
-new IntersectionObserver(function (e) { var x = e[e.length - 1]; past = !x.isIntersecting && x.boundingClientRect.top < 0; sync(); }).observe(acts);
-new IntersectionObserver(function (e) { end = e[e.length - 1].isIntersecting; sync(); }).observe(fin);
-}
-var chs = [].slice.call(document.querySelectorAll('.pg-ch[data-stick]'));
-var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var fit = function () {
-for (var i = 0; i < chs.length; i++) {
-var c = chs[i], top = parseFloat(c.getAttribute('data-stick')) || 0;
-if (!calm && c.offsetHeight + top + 20 + (window.innerWidth < 768 ? 60 : 0) <= window.innerHeight) { c.classList.add('is-stick'); } else { c.classList.remove('is-stick'); }
-}
+function thread() {
+var root = document.querySelector('.pg-fil');
+if (root && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+var lines = [].slice.call(root.querySelectorAll('line[data-t]')), stars = [].slice.call(root.querySelectorAll('[data-node]'));
+var geo = [], pts = [], live = false, due = false;
+var measure = function () {
+var sy = window.pageYOffset || 0;
+geo = lines.map(function (l) {
+var r = l.getBoundingClientRect(), len = 0;
+try { len = r.width || r.height ? l.getTotalLength() : 0; } catch (e) { len = 0; }
+if (len) { l.style.strokeDasharray = len + ' ' + len; }
+return { l: l, top: r.top + sy, h: Math.max(r.height, 44), len: len };
+});
+pts = stars.map(function (s) { var r = s.getBoundingClientRect(); return { s: s, y: r.top + sy, on: r.width || r.height || r.top }; });
 };
-if (chs.length) { fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit); }
+var paint = function () {
+due = false;
+var trig = (window.pageYOffset || 0) + window.innerHeight * 0.8, i, g, p;
+for (i = 0; i < geo.length; i++) {
+g = geo[i]; if (!g.len) { continue; }
+p = Math.max(0, Math.min(1, (trig - g.top) / g.h));
+g.l.style.strokeDashoffset = (g.len * (1 - p)).toFixed(1);
+}
+for (i = 0; i < pts.length; i++) { pts[i].s.style.opacity = trig > pts[i].y ? '1' : '0.16'; }
+};
+var ask = function () { if (live && !due) { due = true; window.requestAnimationFrame(paint); } };
+measure(); paint();
+window.addEventListener('scroll', ask, { passive: true });
+window.addEventListener('resize', function () { measure(); paint(); });
+window.addEventListener('load', function () { measure(); paint(); });
+if ('IntersectionObserver' in window) {
+new IntersectionObserver(function (e) { live = e[0].isIntersecting; ask(); }, { rootMargin: '25% 0px 25% 0px' }).observe(root);
+} else { live = true; }
+}
 }
 var list = document.querySelectorAll('canvas[data-glitter]');
 for (var i = 0; i < list.length; i++) { glitter(list[i]); }
-behave();
+thread();
 })();
 (function () {
-var vs = document.querySelectorAll('.pg-film');
-if (!vs.length || !('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) { return; }
-[].forEach.call(vs, function (v) {
+var v = document.querySelector('.pg-film');
+if (!v || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) { return; }
 var shown = false;
 function go() { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } }
 v.addEventListener('playing', function () {
-if (shown) { return; } shown = true; v.style.opacity = v.getAttribute('data-o') || '1';
-var sky = v.parentNode.getAttribute('data-film') === 'hero' && document.querySelector('canvas[data-kind="sky"]');
+if (shown) { return; } shown = true; v.style.opacity = '1';
+var sky = document.querySelector('canvas[data-kind="sky"]');
 if (sky) { sky.dispatchEvent(new Event('pg-thin')); }
 });
-new IntersectionObserver(function (e) {
-if (e[e.length - 1].isIntersecting) { if (!v.getAttribute('src')) { v.muted = true; v.src = v.getAttribute('data-src'); } go(); } else if (v.getAttribute('src')) { v.pause(); }
-}, { rootMargin: '500px 0px 500px 0px' }).observe(v);
-});
+v.muted = true; v.src = v.getAttribute('data-src'); go();
+if ('IntersectionObserver' in window) {
+new IntersectionObserver(function (e) { if (e[0].isIntersecting) { go(); } else { v.pause(); } }).observe(v);
+}
 })();
 </script>
 </body>
