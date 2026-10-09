@@ -12,6 +12,11 @@
 <meta property="og:title" content="Les bonnes affaires partent au premier qui appelle.">
 <meta property="og:description" content="Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur.">
 <meta property="og:url" content="https://gild-tech.com/marchand-de-biens/">
+<meta property="og:image" content="https://gild-tech.com/marchand-de-biens/og-marchand-de-biens.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,6 +168,14 @@ section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
 .prerequis .t { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: 0.4rem; line-height: 1.3; }
 .prerequis p { font-size: 0.97rem; color: var(--g600); line-height: 1.6; }
 
+/* APRES LE MESSAGE */
+.suite { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.suite div { background: var(--g100); border-radius: var(--r); padding: 1.6rem 1.7rem; }
+.suite strong { display: block; font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: 0.4rem; line-height: 1.35; }
+.suite span { font-size: 0.96rem; color: var(--g600); line-height: 1.6; }
+.suite-qui { margin-top: 1.4rem; font-size: 1rem; color: var(--g700); line-height: 1.6; max-width: 760px; }
+.suite-qui strong { color: var(--noir); font-weight: 700; }
+
 /* FAQ */
 .faq-item { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.4rem 1.7rem; margin-bottom: 0.7rem; max-width: 860px; }
 .faq-item h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--noir); line-height: 1.4; }
@@ -186,7 +199,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 @media (max-width: 980px) {
   .hero-grid, .demo-grid, .problem-grid, .prix-grid, .mine-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .steps, .limites, .duo { grid-template-columns: 1fr; }
+  .steps, .limites, .duo, .suite { grid-template-columns: 1fr; }
   .nav-links li:not(:last-child) { display: none; }
 }
 @media (max-width: 640px) {
@@ -243,7 +256,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       </div>
       <div>
         <div class="capture">
-          <img src="alerte-whatsapp.png" width="1132" height="820" alt="Alerte WhatsApp réelle&nbsp;: maison de 150 m² à Genouilleux, 349 000 euros, 2 327 euros le mètre carré pour un marché médian à 2 969 euros, décote de 22 %, priorité A, note 9 sur 10, lien de l'annonce et téléphone de l'agence.">
+          <img src="alerte-whatsapp.webp" width="1132" height="820" alt="Alerte WhatsApp réelle&nbsp;: maison de 150 m² à Genouilleux, 349 000 euros, 2 327 euros le mètre carré pour un marché médian à 2 969 euros, décote de 22 %, priorité A, note 9 sur 10, lien de l'annonce et téléphone de l'agence.">
         </div>
         <p class="capture-legende">Alerte réelle, reçue par un marchand de biens du Beaujolais.</p>
       </div>
@@ -291,7 +304,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="demo-grid">
       <div>
         <a class="capture" href="alerte-whatsapp.png" target="_blank" rel="noopener" style="display:block">
-          <img src="alerte-whatsapp.png" width="1132" height="820" loading="lazy" alt="La même alerte WhatsApp en grand&nbsp;: priorité A, note 9 sur 10, 349 000 euros, marché médian 2 969 euros le mètre carré, décote 22 %, DPE E, mots-clés, lien et contact de l'annonceur.">
+          <img src="alerte-whatsapp.webp" width="1132" height="820" loading="lazy" alt="La même alerte WhatsApp en grand&nbsp;: priorité A, note 9 sur 10, 349 000 euros, marché médian 2 969 euros le mètre carré, décote 22 %, DPE E, mots-clés, lien et contact de l'annonceur.">
         </a>
         <p class="capture-legende">Alerte réelle. Le nom et la fin du numéro de l'annonceur sont floutés sur cette page, pas dans vos alertes.</p>
       </div>
@@ -398,7 +411,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li><strong>Mise en service&nbsp;: 49&nbsp;€</strong>, une seule fois.</li>
         </ul>
         <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-        <p class="premier-paiement">À l'inscription&nbsp;: 76&nbsp;€, soit la mise en service et le premier mois.</p>
+        <p class="premier-paiement">À l'inscription&nbsp;: 76&nbsp;€, soit la mise en service et le premier mois. Prix hors taxes éventuelles.</p>
       </div>
       <div class="prix-cote">
         <div class="garantie">
@@ -407,7 +420,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         </div>
         <div class="prerequis">
           <div class="t">Il vous faut aussi un abonnement MoteurImmo Agent.</div>
-          <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Notre service vient en plus.</p>
+          <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Notre service vient en plus. Si vous l'avez déjà, il n'y a rien à ajouter.</p>
         </div>
         <div class="prerequis">
           <div class="t">Les conditions, noir sur blanc.</div>
@@ -438,6 +451,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <p>27&nbsp;€ est le prix de lancement, réservé aux inscriptions jusqu'au 31&nbsp;octobre&nbsp;2026. À partir du 1er&nbsp;novembre&nbsp;2026, les nouveaux inscrits paient 49&nbsp;€ par mois. Si vous vous inscrivez avant, vous gardez 27&nbsp;€ tant que vous restez abonné.</p>
     </div>
     <div class="faq-item">
+      <h3>Combien d'alertes vais-je recevoir&nbsp;?</h3>
+      <p>Cela dépend de votre secteur et de vos critères. Chez un marchand de biens du Beaujolais, le relevé du 9&nbsp;octobre&nbsp;2026 indique 10&nbsp;alertes sur 7&nbsp;jours. Des critères plus larges en donnent plus, des critères plus stricts en donnent moins.</p>
+    </div>
+    <div class="faq-item">
       <h3>Sur quel numéro arrivent les alertes&nbsp;?</h3>
       <p>Sur le numéro WhatsApp que vous nous donnez.</p>
     </div>
@@ -453,6 +470,18 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <h3>D'où vient la note sur 10&nbsp;?</h3>
       <p>De règles fixes&nbsp;: écart au marché médian, mots-clés de l'annonce, surface habitable, surface du terrain. Pas d'intelligence artificielle.</p>
     </div>
+  </section>
+
+  <!-- ACTION : la suite -->
+  <section class="block">
+    <h2 class="section-title">Ce qui se passe après votre message</h2>
+    <p class="section-subtitle">Vous écrivez ALERTE sur WhatsApp. La suite tient en trois temps.</p>
+    <div class="suite">
+      <div><strong>1. Vous répondez à quelques questions.</strong><span>Votre secteur, le type de bien, votre budget, vos surfaces.</span></div>
+      <div><strong>2. Vous réglez l'inscription.</strong><span>76&nbsp;€ par carte&nbsp;: la mise en service et le premier mois.</span></div>
+      <div><strong>3. Nous branchons vos alertes.</strong><span>Sur votre compte MoteurImmo Agent. Les annonces arrivent ensuite sur votre WhatsApp.</span></div>
+    </div>
+    <p class="suite-qui"><strong>C'est Pierre-Jean Grisoni, fondateur de GILD-TECH, qui vous répond.</strong></p>
   </section>
 
   <!-- ACTION FINALE -->
