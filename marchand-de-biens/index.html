@@ -6,7 +6,6 @@
 <title>Alertes annonces sur WhatsApp pour marchands de biens | GILD-TECH</title>
 <meta name="description" content="Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur. 27 € par mois au lieu de 49 € jusqu'au 31 octobre 2026. Sans engagement.">
 <link rel="canonical" href="https://gild-tech.com/marchand-de-biens/">
-<meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GILD-TECH">
 <meta property="og:title" content="Les bonnes affaires partent au premier qui appelle.">
@@ -176,6 +175,15 @@ section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
 .suite-qui { margin-top: 1.4rem; font-size: 1rem; color: var(--g700); line-height: 1.6; max-width: 760px; }
 .suite-qui strong { color: var(--noir); font-weight: 700; }
 
+/* A VENIR */
+.avenir { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.avenir div { border: 1px dashed var(--g200); border-radius: var(--r); padding: 1.7rem 1.8rem; background: var(--g50); }
+.avenir em { display: block; font-style: normal; font-size: 0.85rem; font-weight: 700; color: var(--g500); margin-bottom: 0.5rem; }
+.avenir strong { display: block; font-size: 1.12rem; font-weight: 800; color: var(--noir); margin-bottom: 0.45rem; line-height: 1.35; }
+.avenir span { font-size: 0.97rem; color: var(--g600); line-height: 1.6; }
+.avenir-note { margin-top: 1.4rem; font-size: 1rem; color: var(--g700); line-height: 1.6; max-width: 760px; }
+.avenir-note strong { color: var(--noir); font-weight: 700; }
+
 /* FAQ */
 .faq-item { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.4rem 1.7rem; margin-bottom: 0.7rem; max-width: 860px; }
 .faq-item h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--noir); line-height: 1.4; }
@@ -199,7 +207,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 @media (max-width: 980px) {
   .hero-grid, .demo-grid, .problem-grid, .prix-grid, .mine-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .steps, .limites, .duo, .suite { grid-template-columns: 1fr; }
+  .steps, .limites, .duo, .suite, .avenir { grid-template-columns: 1fr; }
   .nav-links li:not(:last-child) { display: none; }
 }
 @media (max-width: 640px) {
@@ -235,7 +243,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
       <li><a href="#fonctionnement">Comment ça marche</a></li>
       <li><a href="#prix">Prix</a></li>
       <li><a href="#questions">Questions</a></li>
-      <li><a href="https://wa.me/33699080539?text=ALERTE" class="btn-nav">Écrire ALERTE sur WhatsApp</a></li>
+      <li><a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-nav">Écrire ALERTE sur WhatsApp</a></li>
     </ul>
   </div>
 </nav>
@@ -249,7 +257,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <h1>Les bonnes affaires partent au premier qui appelle.</h1>
         <p class="subtitle">Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur. Vous lisez, vous appelez.</p>
         <div class="ctas">
-          <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+          <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
           <a href="#alerte" class="btn-secondary">Voir une vraie alerte</a>
         </div>
         <p class="lancement"><strong>Offre de lancement jusqu'au 31&nbsp;octobre&nbsp;2026&nbsp;: 27&nbsp;€ par mois au lieu de <s>49&nbsp;€</s>.</strong> Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
@@ -280,8 +288,8 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
   <!-- INTERET&nbsp;: le problème -->
   <section class="block">
-    <h2 class="section-title">Une annonce intéressante, c'est d'abord un tri et un coup de fil.</h2>
-    <p class="section-subtitle">Le flair, vous l'avez. Ce qui vous manque, c'est le temps de surveiller, de calculer et de chercher qui appeler.</p>
+    <h2 class="section-title">Les annonces, vous les trouvez. Le temps de les trier, non.</h2>
+    <p class="section-subtitle">Surveiller, calculer, chercher qui appeler&nbsp;: ce travail se fait avant même de savoir si l'annonce vaut un coup de fil. C'est lui que nous faisons à votre place.</p>
     <div class="problem-grid">
       <ul class="problem-list">
         <li><strong>Vous surveillez les portails entre deux visites.</strong> L'annonce sort quand vous êtes sur un chantier.</li>
@@ -351,7 +359,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <section class="block">
     <div class="mine-card">
       <h2>Une note que vous pouvez vérifier.</h2>
-      <p class="lead">Des règles fixes. Pas d'intelligence artificielle. Vous savez sur quoi elle repose.</p>
+      <p class="lead">Elle cherche ce qu'un marchand de biens cherche&nbsp;: la décote, les travaux, la division, la vente pressée. Des règles fixes, pas d'intelligence artificielle.</p>
       <div class="mine-grid">
         <div>
           <h3>Ce qui compte dans la note</h3>
@@ -389,7 +397,26 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     </div>
   </section>
 
-  <!-- ACTION&nbsp;: prix -->
+  <!-- DESIR : la suite du service -->
+  <section class="block">
+    <h2 class="section-title">Ce que nous construisons ensuite</h2>
+    <p class="section-subtitle">L'alerte vous dit quoi regarder. La suite vous dira quoi en penser.</p>
+    <div class="avenir">
+      <div>
+        <em>En préparation, pas encore disponible</em>
+        <strong>L'analyse de chaque alerte prioritaire</strong>
+        <span>Une première lecture chiffrée de l'annonce&nbsp;: prix de revente du secteur, enveloppe de travaux, marge possible.</span>
+      </div>
+      <div>
+        <em>En préparation, pas encore disponible</em>
+        <strong>Le compte rendu de visite dicté sur WhatsApp</strong>
+        <span>Vous parlez en sortant de la visite. Vous recevez un compte rendu écrit, rangé avec l'annonce.</span>
+      </div>
+    </div>
+    <p class="avenir-note"><strong>Les abonnés au prix de lancement y auront accès en premier.</strong> Nous construisons ces fonctions avec eux, sur leurs vraies annonces.</p>
+  </section>
+
+  <!-- ACTION : prix -->
   <section class="block" id="prix">
     <h2 class="section-title">Un seul prix. Au mois. Sans engagement.</h2>
     <p class="section-subtitle">Vous payez au mois. Vous arrêtez quand vous voulez, par un simple message.</p>
@@ -410,7 +437,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
           <li><strong>Vos critères modifiables</strong> par un simple message.</li>
           <li><strong>Mise en service&nbsp;: 49&nbsp;€</strong>, une seule fois.</li>
         </ul>
-        <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+        <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
         <p class="premier-paiement">À l'inscription&nbsp;: 76&nbsp;€, soit la mise en service et le premier mois. Prix hors taxes éventuelles.</p>
       </div>
       <div class="prix-cote">
@@ -421,6 +448,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
         <div class="prerequis">
           <div class="t">Il vous faut aussi un abonnement MoteurImmo Agent.</div>
           <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Notre service vient en plus. Si vous l'avez déjà, il n'y a rien à ajouter.</p>
+        </div>
+        <div class="prerequis">
+          <div class="t">Vous amenez un confrère&nbsp;: un mois offert.</div>
+          <p>Pour chaque marchand de biens qui s'abonne de votre part, votre mois suivant est offert.</p>
         </div>
         <div class="prerequis">
           <div class="t">Les conditions, noir sur blanc.</div>
@@ -453,6 +484,10 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="faq-item">
       <h3>Combien d'alertes vais-je recevoir&nbsp;?</h3>
       <p>Cela dépend de votre secteur et de vos critères. Chez un marchand de biens du Beaujolais, le relevé du 9&nbsp;octobre&nbsp;2026 indique 10&nbsp;alertes sur 7&nbsp;jours. Des critères plus larges en donnent plus, des critères plus stricts en donnent moins.</p>
+    </div>
+    <div class="faq-item">
+      <h3>D'autres marchands de mon secteur reçoivent-ils les mêmes alertes&nbsp;?</h3>
+      <p>C'est possible&nbsp;: nous ne réservons pas de secteur. Les annonces sont publiques. Ce qui fait la différence, c'est de les lire triées et d'appeler le premier.</p>
     </div>
     <div class="faq-item">
       <h3>Sur quel numéro arrivent les alertes&nbsp;?</h3>
@@ -488,7 +523,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <div class="cta-final">
     <h2>La prochaine annonce de votre secteur, vous la recevez sur WhatsApp.</h2>
     <p>27&nbsp;€ par mois au lieu de 49&nbsp;€ jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
-    <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+    <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
   </div>
 
 </div>
@@ -505,7 +540,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   </div>
 </footer>
 
-<a href="https://wa.me/33699080539?text=ALERTE" class="sticky-cta-mobile">Écrivez ALERTE sur WhatsApp</a>
+<a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="sticky-cta-mobile">Écrivez ALERTE sur WhatsApp</a>
 
 </body>
 </html>
