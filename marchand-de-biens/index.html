@@ -1,560 +1,482 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GILD-TECH, détection d'annonces immobilières sur WhatsApp pour marchands de biens</title>
-  <meta name="description" content="Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur. 29 € par mois, sans engagement. Nécessite un abonnement MoteurImmo Agent.">
-  <meta name="robots" content="noindex">
-  <meta name="author" content="GILD-TECH">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="theme-color" content="#FFFFFF">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --noir: #0A0A0A;
-      --blanc: #FFFFFF;
-      --slate: #475569;
-      --slate-fonce: #334155;
-      --bleu-nuit: #0B1D33;
-      --cta: #2563EB;
-      --cta-hover: #1D4ED8;
-      --bord: #E2E8F0;
-      --fond-doux: #F8FAFC;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    html, body { height: 100%; }
-    body {
-      background: var(--blanc);
-      color: var(--noir);
-      font-family: var(--font);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      line-height: 1.5;
-    }
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: var(--cta); }
-    a:hover, a:focus { color: var(--cta-hover); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alertes annonces sur WhatsApp pour marchands de biens | GILD-TECH</title>
+<meta name="description" content="Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur. 27 € par mois au lieu de 49 € jusqu'au 31 octobre 2026. Sans engagement.">
+<link rel="canonical" href="https://gild-tech.com/marchand-de-biens/">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GILD-TECH">
+<meta property="og:title" content="Les bonnes affaires partent au premier qui appelle.">
+<meta property="og:description" content="Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur.">
+<meta property="og:url" content="https://gild-tech.com/marchand-de-biens/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --noir: #0A0A0A;
+  --blanc: #FFFFFF;
+  --bleu-nuit: #0B1D33;
+  --bleu-nuit-bg: #F1F5F9;
+  --cta: #2563EB;
+  --cta-hover: #1D4ED8;
+  --g700: #2A2F36;
+  --g600: #4A4F57;
+  --g500: #6B6F76;
+  --g200: #E2E4E7;
+  --g100: #F5F5F7;
+  --g50: #FBFBFC;
+  --wa-fond: #0E1113;
+  --font: 'Inter', -apple-system, sans-serif;
+  --max-w: 1200px;
+  --r: 14px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--blanc); color: var(--noir); font-family: var(--font); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--cta); }
 
-    /* NAV */
-    nav { border-bottom: 1px solid rgba(0,0,0,.08); background: var(--blanc); }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .brand {
-      font-weight: 900;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      color: var(--noir);
-    }
-    .brand span { color: var(--cta); }
+/* NAV */
+nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--g200); }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: var(--noir); }
+.brand .tech { color: var(--bleu-nuit); }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--g600); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--noir); }
+.btn-nav { background: var(--cta); color: var(--blanc) !important; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
+.btn-nav:hover { background: var(--cta-hover); transform: translateY(-1px); }
 
-    /* CONTAINER */
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.page { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
 
-    /* BOUTON WhatsApp */
-    .btn-wa {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--cta);
-      color: var(--blanc);
-      padding: 0.95rem 1.7rem;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-      transition: background .15s, transform .15s;
-      white-space: nowrap;
-    }
-    .btn-wa:hover, .btn-wa:focus { background: var(--cta-hover); color: var(--blanc); transform: translateY(-1px); }
+/* BOUTONS */
+.btn-primary { display: inline-block; background: var(--cta); color: var(--blanc); padding: 0.95rem 1.7rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.2s; white-space: nowrap; }
+.btn-primary:hover { background: var(--cta-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,0.28); }
+.btn-secondary { display: inline-block; background: var(--blanc); color: var(--noir); padding: 0.95rem 1.7rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1.5px solid var(--g200); transition: all 0.2s; white-space: nowrap; }
+.btn-secondary:hover { border-color: var(--bleu-nuit); color: var(--bleu-nuit); }
 
-    /* HERO */
-    .hero { padding: 5rem 0 3.5rem; }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-    .hero-title {
-      font-size: clamp(2.4rem, 4.6vw, 3.6rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.03;
-      color: var(--bleu-nuit);
-      margin-bottom: 1.1rem;
-    }
-    .hero-sub {
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--noir);
-      line-height: 1.55;
-      margin-bottom: 1.8rem;
-      max-width: 540px;
-    }
-    .hero-img-wrap { position: relative; padding: 0.5rem; }
-    .hero-img {
-      border-radius: 18px;
-      box-shadow:
-        0 2px 4px rgba(11,29,51,.06),
-        0 28px 56px rgba(11,29,51,.16);
-    }
-    .hero-img-link { display: block; }
-    .hero-img-caption {
-      display: none;
-      margin-top: 0.6rem;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--slate);
-    }
+/* HERO */
+.hero { padding: 4.5rem 0 3rem; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.5rem; align-items: center; }
+.hero h1 { font-size: 3.4rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.2rem; color: var(--noir); }
+.hero .subtitle { font-size: 1.15rem; color: var(--g600); line-height: 1.6; margin-bottom: 2rem; max-width: 560px; }
+.hero .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.lancement { margin-top: 1.6rem; padding: 0.9rem 1.1rem; border: 1px solid var(--g200); background: var(--g50); border-radius: 10px; font-size: 0.95rem; line-height: 1.55; color: var(--g700); max-width: 560px; }
+.lancement strong { color: var(--noir); font-weight: 700; }
+.lancement s { color: var(--g500); }
 
-    /* SECTION BASE */
-    section { padding: 4.5rem 0; }
-    .sec-title {
-      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      color: var(--bleu-nuit);
-      margin-bottom: 1.6rem;
-      max-width: 760px;
-    }
-    .sec-strong {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--bleu-nuit);
-      line-height: 1.45;
-      margin-bottom: 1.6rem;
-      max-width: 760px;
-    }
-    .sec-intro {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--slate);
-      line-height: 1.55;
-      max-width: 720px;
-      margin-bottom: 2.5rem;
-    }
+/* CAPTURE WHATSAPP */
+.capture { background: var(--wa-fond); border-radius: 18px; padding: 14px; box-shadow: 0 24px 50px rgba(11,29,51,0.18); }
+.capture img { width: 100%; border-radius: 8px; }
+.capture-legende { margin-top: 0.8rem; font-size: 0.82rem; color: var(--g500); line-height: 1.5; }
 
-    /* SECTION : CONTENU DE L'ALERTE */
-    .contenu {
-      background: var(--fond-doux);
-      border-top: 1px solid var(--bord);
-      border-bottom: 1px solid var(--bord);
-    }
-    .contenu-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .contenu-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-    .contenu-item-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--bleu-nuit);
-      margin-bottom: 0.25rem;
-      letter-spacing: -0.01em;
-    }
-    .contenu-item-desc {
-      font-size: 0.98rem;
-      font-weight: 500;
-      color: var(--slate);
-      line-height: 1.5;
-    }
+/* STAT BAR */
+.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3.5rem; padding: 1.6rem; background: var(--g100); border-radius: var(--r); }
+.stat-item { text-align: center; padding: 0 0.5rem; }
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--bleu-nuit); letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.stat-num s { font-size: 1.15rem; font-weight: 600; color: var(--g500); margin-right: 0.35rem; }
+.stat-label { font-size: 0.86rem; color: var(--g600); margin-top: 0.3rem; line-height: 1.5; }
 
-    /* SECTION : COMMENT */
-    .etapes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.4rem;
-      margin-top: 1rem;
-    }
-    .etape-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--noir);
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-    .etape-desc {
-      font-size: 0.98rem;
-      font-weight: 500;
-      color: var(--slate);
-      line-height: 1.55;
-    }
+/* SECTIONS */
+section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
+.section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.7rem; line-height: 1.15; color: var(--noir); max-width: 860px; }
+.section-subtitle { font-size: 1.05rem; color: var(--g600); max-width: 760px; line-height: 1.6; margin-bottom: 2.5rem; }
 
-    /* SECTION : NOTE */
-    .note-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
-    .note-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-    .note-list li {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--noir);
-      padding-left: 1.5rem;
-      position: relative;
-      line-height: 1.5;
-    }
-    .note-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 6px;
-      height: 6px;
-      background: var(--bleu-nuit);
-      border-radius: 50%;
-    }
-    .note-exclu-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--bleu-nuit);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-    .note-exclu-p {
-      font-size: 0.98rem;
-      font-weight: 500;
-      color: var(--slate);
-      line-height: 1.55;
-    }
+/* PROBLEME */
+.problem-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: stretch; }
+.problem-list { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 0.6rem 1.7rem; list-style: none; }
+.problem-list li { padding: 1.05rem 0; border-bottom: 1px solid var(--g100); font-size: 1rem; line-height: 1.55; color: var(--g700); }
+.problem-list li:last-child { border-bottom: none; }
+.problem-list li strong { color: var(--noir); font-weight: 700; }
+.problem-stat { background: var(--bleu-nuit); color: var(--blanc); border-radius: var(--r); padding: 2.2rem; display: flex; flex-direction: column; justify-content: center; }
+.problem-stat .num { font-size: 3rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.problem-stat .desc { font-size: 1.02rem; margin-top: 1rem; line-height: 1.6; opacity: 0.94; }
+.problem-stat .source { font-size: 0.8rem; opacity: 0.7; margin-top: 1.1rem; line-height: 1.5; }
 
-    /* SECTION : PREUVE */
-    .preuve {
-      background: var(--bleu-nuit);
-      color: var(--blanc);
-    }
-    .preuve .sec-title { color: var(--blanc); }
-    .preuve-note {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.78);
-      max-width: 640px;
-      line-height: 1.55;
-    }
+/* DEMO */
+.demo-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
+.demo-list { list-style: none; counter-reset: ligne; }
+.demo-list li { counter-increment: ligne; padding: 0.85rem 0 0.85rem 2.6rem; position: relative; border-bottom: 1px solid var(--g100); font-size: 1rem; line-height: 1.5; color: var(--g700); }
+.demo-list li:last-child { border-bottom: none; }
+.demo-list li::before { content: counter(ligne); position: absolute; left: 0; top: 0.8rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--bleu-nuit-bg); color: var(--bleu-nuit); font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.demo-list li strong { color: var(--noir); font-weight: 700; }
 
-    /* SECTION : LIMITES */
-    .limites {
-      background: var(--fond-doux);
-      border-top: 1px solid var(--bord);
-      border-bottom: 1px solid var(--bord);
-    }
-    .limites-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      max-width: 820px;
-    }
-    .limites-p {
-      font-size: 1.05rem;
-      color: var(--noir);
-      line-height: 1.55;
-    }
-    .limites-p b {
-      font-weight: 700;
-      color: var(--bleu-nuit);
-    }
+/* ETAPES */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.step { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.8rem; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--bleu-nuit); color: var(--blanc); border-radius: 50%; font-weight: 800; margin-bottom: 0.9rem; }
+.step h3 { font-size: 1.12rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.3; color: var(--noir); }
+.step p { font-size: 0.95rem; color: var(--g600); line-height: 1.6; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.2rem; }
+.duo div { background: var(--g100); border-radius: var(--r); padding: 1.4rem 1.6rem; font-size: 0.98rem; line-height: 1.6; color: var(--g700); }
+.duo strong { color: var(--noir); font-weight: 700; }
 
-    /* SECTION : PRIX */
-    .prix-main {
-      font-size: clamp(2.4rem, 4vw, 3rem);
-      font-weight: 900;
-      color: var(--bleu-nuit);
-      letter-spacing: -0.025em;
-      line-height: 1;
-      margin-bottom: 0.6rem;
-    }
-    .prix-main small {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--slate);
-    }
-    .prix-setup {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--noir);
-      margin-bottom: 1.4rem;
-      line-height: 1.55;
-      max-width: 760px;
-    }
-    .prix-moteurimmo {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--slate-fonce);
-      line-height: 1.55;
-      max-width: 760px;
-      margin-bottom: 1.8rem;
-    }
-    .prix-moteurimmo b {
-      font-weight: 700;
-      color: var(--bleu-nuit);
-    }
+/* NOTE */
+.mine-card { background: var(--noir); color: var(--blanc); padding: 3rem 2.8rem; border-radius: 18px; }
+.mine-card h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.8rem; color: var(--blanc); }
+.mine-card .lead { font-size: 1.1rem; opacity: 0.88; line-height: 1.6; max-width: 720px; margin-bottom: 2rem; }
+.mine-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; }
+.mine-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.7rem; opacity: 0.7; }
+.mine-card ul { list-style: none; }
+.mine-card li { padding: 0.65rem 0; border-top: 1px solid rgba(255,255,255,0.12); font-size: 1rem; line-height: 1.55; opacity: 0.94; }
+.mine-card .ecarte { font-size: 1rem; line-height: 1.6; opacity: 0.94; padding-top: 0.65rem; border-top: 1px solid rgba(255,255,255,0.12); }
 
-    /* SECTION : FAQ */
-    .faq-list {
-      max-width: 820px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-    .faq-q {
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: var(--bleu-nuit);
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.01em;
-    }
-    .faq-a {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--slate);
-      line-height: 1.55;
-    }
-    .faq-bottom-cta {
-      margin-top: 2.5rem;
-    }
+/* LIMITES */
+.limites { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.limites div { border: 1px solid var(--g200); border-radius: var(--r); padding: 1.5rem 1.6rem; }
+.limites strong { display: block; font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: 0.4rem; line-height: 1.35; }
+.limites span { font-size: 0.95rem; color: var(--g600); line-height: 1.6; }
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(0,0,0,.08);
-      padding: 2rem 1.5rem;
-      background: var(--blanc);
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: var(--slate);
-    }
-    .footer-left { font-weight: 500; }
-    .footer-links {
-      display: flex;
-      gap: 1.4rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: var(--slate);
-      text-decoration: none;
-      transition: color .15s;
-    }
-    .footer-links a:hover, .footer-links a:focus { color: var(--noir); }
+/* PREUVE */
+.pos-card { background: var(--bleu-nuit); color: var(--blanc); border-radius: 18px; padding: 3rem 2.8rem; }
+.pos-card .quote { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; max-width: 820px; }
+.pos-card p { margin-top: 1rem; font-size: 1rem; opacity: 0.8; line-height: 1.6; }
 
-    /* RESPONSIVE */
-    @media (max-width: 820px) {
-      .hero { padding: 2.5rem 0 1.8rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 1.6rem; }
-      /* ORDRE 011 D : titre, phrase, bouton, puis capture */
-      .hero-img-wrap { order: 2; }
-      .hero-img-caption { display: block; }
-      section { padding: 3rem 0; }
-      .contenu-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .contenu-img-wrap { display: none; }
-      .etapes { grid-template-columns: 1fr; gap: 1.8rem; }
-      .note-wrap { grid-template-columns: 1fr; gap: 1.6rem; }
-      .footer-inner { justify-content: center; text-align: center; }
-      .btn-wa { font-size: 0.98rem; padding: 0.85rem 1.4rem; }
-    }
-  </style>
+/* PRIX */
+.prix-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2.5rem; align-items: start; }
+.price-card { background: var(--blanc); border: 2px solid var(--cta); border-radius: var(--r); padding: 2.2rem; box-shadow: 0 24px 54px rgba(37,99,235,0.18); }
+.price-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--noir); margin-bottom: 0.2rem; }
+.price-card .for { font-size: 0.95rem; color: var(--g600); margin-bottom: 1.3rem; line-height: 1.5; }
+.price-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.8rem; }
+.price-old { font-size: 1.5rem; color: var(--g500); text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.price { font-size: 3.2rem; font-weight: 900; letter-spacing: -0.03em; color: var(--noir); line-height: 1; font-variant-numeric: tabular-nums; }
+.price small { font-size: 1rem; font-weight: 600; color: var(--g500); letter-spacing: 0; }
+.price-save { font-size: 0.95rem; color: var(--cta); font-weight: 700; margin: 0.8rem 0 0.3rem; line-height: 1.45; }
+.price-sub { font-size: 0.9rem; color: var(--g600); line-height: 1.55; }
+.price-card ul { list-style: none; margin: 1.4rem 0 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--g100); }
+.price-card li { padding: 0.45rem 0 0.45rem 1.6rem; position: relative; font-size: 0.97rem; color: var(--g700); line-height: 1.55; }
+.price-card li::before { content: "\2713"; color: var(--cta); font-weight: 800; position: absolute; left: 0; }
+.price-card li strong { color: var(--noir); font-weight: 700; }
+.price-card .btn-primary { display: block; text-align: center; }
+.premier-paiement { margin-top: 1rem; font-size: 0.86rem; color: var(--g500); line-height: 1.55; text-align: center; }
+.prix-cote { display: flex; flex-direction: column; gap: 1.2rem; }
+.garantie { background: var(--g100); border-radius: var(--r); padding: 1.6rem 1.7rem; }
+.garantie .t { font-size: 1.15rem; font-weight: 800; color: var(--noir); margin-bottom: 0.4rem; line-height: 1.3; }
+.garantie p { font-size: 0.97rem; color: var(--g600); line-height: 1.6; }
+.prerequis { border: 1px solid var(--g200); border-radius: var(--r); padding: 1.6rem 1.7rem; }
+.prerequis .t { font-size: 1.05rem; font-weight: 800; color: var(--noir); margin-bottom: 0.4rem; line-height: 1.3; }
+.prerequis p { font-size: 0.97rem; color: var(--g600); line-height: 1.6; }
+
+/* FAQ */
+.faq-item { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 1.4rem 1.7rem; margin-bottom: 0.7rem; max-width: 860px; }
+.faq-item h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--noir); line-height: 1.4; }
+.faq-item p { color: var(--g600); font-size: 0.96rem; line-height: 1.65; }
+
+/* CTA FINAL */
+.cta-final { background: var(--noir); color: var(--blanc); border-radius: 18px; padding: 3.8rem 2rem; text-align: center; margin: 0 0 4.5rem; }
+.cta-final h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.9rem; letter-spacing: -0.02em; color: var(--blanc); line-height: 1.15; }
+.cta-final p { font-size: 1.05rem; opacity: 0.88; max-width: 640px; margin: 0 auto 1.8rem; line-height: 1.6; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
+.footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem; }
+.footer-brand { font-weight: 800; font-size: 0.9rem; color: var(--noir); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { color: var(--g500); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cta); }
+.footer-mention { font-size: 0.75rem; color: var(--g500); }
+
+.sticky-cta-mobile { display: none; }
+
+@media (max-width: 980px) {
+  .hero-grid, .demo-grid, .problem-grid, .prix-grid, .mine-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .steps, .limites, .duo { grid-template-columns: 1fr; }
+  .nav-links li:not(:last-child) { display: none; }
+}
+@media (max-width: 640px) {
+  .page { padding: 0 1.25rem; }
+  .nav-inner { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  .hero { padding: 2.5rem 0 2rem; }
+  .hero h1 { font-size: 2.3rem; }
+  .hero .subtitle { font-size: 1.05rem; }
+  .hero .ctas a { width: 100%; text-align: center; }
+  .stat-bar { grid-template-columns: 1fr; gap: 1.4rem; margin-top: 2.5rem; }
+  section.block { padding: 3.2rem 0; }
+  .section-title { font-size: 1.7rem; }
+  .mine-card, .pos-card { padding: 2rem 1.5rem; }
+  .mine-card h2, .cta-final h2 { font-size: 1.6rem; }
+  .pos-card .quote { font-size: 1.45rem; }
+  .price-card { padding: 1.6rem; }
+  .price { font-size: 2.8rem; }
+  .cta-final { padding: 2.6rem 1.4rem; margin-bottom: 6rem; }
+  .cta-final .btn-primary { display: block; }
+  footer { padding-bottom: 6rem; }
+  .sticky-cta-mobile { display: block; position: fixed; bottom: 1rem; left: 1rem; right: 1rem; background: var(--cta); color: var(--blanc); text-align: center; padding: 0.95rem 1rem; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.98rem; box-shadow: 0 8px 24px rgba(37,99,235,.35); z-index: 99; }
+}
+</style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="brand">GILD<span>-TECH</span></a>
-    </div>
-  </nav>
+<nav class="top">
+  <div class="nav-inner">
+    <a href="/" class="brand">GILD-<span class="tech">TECH</span></a>
+    <ul class="nav-links">
+      <li><a href="#alerte">L'alerte</a></li>
+      <li><a href="#fonctionnement">Comment ça marche</a></li>
+      <li><a href="#prix">Prix</a></li>
+      <li><a href="#questions">Questions</a></li>
+      <li><a href="https://wa.me/33699080539?text=ALERTE" class="btn-nav">Écrire ALERTE sur WhatsApp</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Attention -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-inner">
-        <div>
-          <h1 class="hero-title">Les bonnes affaires partent au premier qui appelle.</h1>
-          <p class="hero-sub">Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur.</p>
-          <a href="https://wa.me/33699080539?text=ALERTE" class="btn-wa">Écrivez ALERTE sur WhatsApp</a>
+<div class="page">
+
+  <!-- ATTENTION -->
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Les bonnes affaires partent au premier qui appelle.</h1>
+        <p class="subtitle">Chaque nouvelle annonce de votre secteur arrive sur votre WhatsApp, avec son prix face au marché et le téléphone de l'annonceur. Vous lisez, vous appelez.</p>
+        <div class="ctas">
+          <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+          <a href="#alerte" class="btn-secondary">Voir une vraie alerte</a>
         </div>
-        <div class="hero-img-wrap">
-          <a href="alerte-complete.png" class="hero-img-link" target="_blank" rel="noopener">
-            <img src="alerte-complete.png" alt="Alerte WhatsApp réelle, maison 150 m² à Genouilleux, 349 000 euros, prix au mètre carré 2327 euros, marché médian 2969 euros, décote 22 pour cent, DPE E, priorité A notée 9 sur 10, avec lien et numéro de téléphone de l'agence Valdor Belleville, reçue à 16 h 28." class="hero-img">
-          </a>
-          <div class="hero-img-caption">Touchez l'image pour l'agrandir.</div>
+        <p class="lancement"><strong>Offre de lancement jusqu'au 31&nbsp;octobre&nbsp;2026&nbsp;: 27&nbsp;€ par mois au lieu de <s>49&nbsp;€</s>.</strong> Sans engagement. Remboursé si vous arrêtez dans les 30&nbsp;jours.</p>
+      </div>
+      <div>
+        <div class="capture">
+          <img src="alerte-whatsapp.png" width="1132" height="820" alt="Alerte WhatsApp réelle&nbsp;: maison de 150 m² à Genouilleux, 349 000 euros, 2 327 euros le mètre carré pour un marché médian à 2 969 euros, décote de 22 %, priorité A, note 9 sur 10, lien de l'annonce et téléphone de l'agence.">
         </div>
+        <p class="capture-legende">Alerte réelle, reçue par un marchand de biens du Beaujolais.</p>
+      </div>
+    </div>
+
+    <div class="stat-bar">
+      <div class="stat-item">
+        <div class="stat-num">10 alertes en 7 jours</div>
+        <div class="stat-label">chez un marchand de biens du Beaujolais. Relevé du 9&nbsp;octobre&nbsp;2026.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><s>49&nbsp;€</s>27&nbsp;€ par mois</div>
+        <div class="stat-label">prix de lancement jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30 jours</div>
+        <div class="stat-label">pour arrêter et être remboursé, sans avoir à vous justifier.</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTERET&nbsp;: le problème -->
+  <section class="block">
+    <h2 class="section-title">Une annonce intéressante, c'est d'abord un tri et un coup de fil.</h2>
+    <p class="section-subtitle">Le flair, vous l'avez. Ce qui vous manque, c'est le temps de surveiller, de calculer et de chercher qui appeler.</p>
+    <div class="problem-grid">
+      <ul class="problem-list">
+        <li><strong>Vous surveillez les portails entre deux visites.</strong> L'annonce sort quand vous êtes sur un chantier.</li>
+        <li><strong>Les alertes par e-mail s'empilent</strong> avec le reste de votre boîte.</li>
+        <li><strong>Chaque annonce demande le même calcul&nbsp;:</strong> prix au m², marché du secteur, écart.</li>
+        <li><strong>Il faut encore ouvrir l'annonce</strong> pour trouver qui appeler.</li>
+      </ul>
+      <div class="problem-stat">
+        <div class="num">349&nbsp;000&nbsp;€</div>
+        <div class="desc">Une maison de 150&nbsp;m² à Genouilleux, affichée 22&nbsp;% sous le prix médian du secteur. L'alerte est arrivée sur WhatsApp avec la note, le calcul et le téléphone de l'agence.</div>
+        <div class="source">Alerte réelle du service. Écart calculé à partir du prix médian du secteur.</div>
       </div>
     </div>
   </section>
 
-  <!-- Intérêt : contenu -->
-  <section class="contenu">
-    <div class="wrap">
-      <h2 class="sec-title">Ce que contient chaque alerte</h2>
-      <div class="contenu-grid">
-        <ul class="contenu-list">
-          <li><div class="contenu-item-title">Note et priorité</div></li>
-          <li><div class="contenu-item-title">Prix au m² face au marché médian</div></li>
-          <li><div class="contenu-item-title">Décote</div></li>
-          <li><div class="contenu-item-title">DPE</div></li>
-          <li><div class="contenu-item-title">Mots-clés repérés</div></li>
-          <li><div class="contenu-item-title">Lien de l'annonce</div></li>
-          <li><div class="contenu-item-title">Nom et téléphone de l'annonceur pour appeler tout de suite</div></li>
-        </ul>
-        <div class="hero-img-wrap contenu-img-wrap">
-          <img src="alerte-complete.png" alt="Détail de l'alerte WhatsApp, mêmes informations relues ligne par ligne." class="hero-img">
-        </div>
+  <!-- INTERET&nbsp;: l'alerte -->
+  <section class="block" id="alerte">
+    <h2 class="section-title">Voici ce qui arrive sur votre WhatsApp.</h2>
+    <p class="section-subtitle">Un seul message par annonce. Tout ce qu'il faut pour décider d'appeler, dans l'ordre où vous le lisez.</p>
+    <div class="demo-grid">
+      <div>
+        <a class="capture" href="alerte-whatsapp.png" target="_blank" rel="noopener" style="display:block">
+          <img src="alerte-whatsapp.png" width="1132" height="820" loading="lazy" alt="La même alerte WhatsApp en grand&nbsp;: priorité A, note 9 sur 10, 349 000 euros, marché médian 2 969 euros le mètre carré, décote 22 %, DPE E, mots-clés, lien et contact de l'annonceur.">
+        </a>
+        <p class="capture-legende">Alerte réelle. Le nom et la fin du numéro de l'annonceur sont floutés sur cette page, pas dans vos alertes.</p>
       </div>
+      <ol class="demo-list">
+        <li><strong>La priorité et la note sur 10.</strong> Vous savez tout de suite si l'annonce mérite votre attention.</li>
+        <li><strong>Le bien.</strong> Type, nombre de pièces, surface habitable, terrain, commune.</li>
+        <li><strong>Le prix et le prix au m².</strong></li>
+        <li><strong>Le marché médian du secteur et la décote,</strong> déjà calculés.</li>
+        <li><strong>Le DPE et les mots-clés repérés</strong> dans le texte de l'annonce.</li>
+        <li><strong>Le lien vers l'annonce d'origine.</strong></li>
+        <li><strong>Le nom et le téléphone de l'annonceur.</strong> Vous appelez depuis le message.</li>
+      </ol>
     </div>
   </section>
 
-  <!-- Intérêt : comment -->
-  <section>
-    <div class="wrap">
-      <h2 class="sec-title">Comment ça marche</h2>
-      <div class="etapes">
-        <div>
-          <div class="etape-title">1. Vous donnez vos critères</div>
-          <div class="etape-desc">Secteur, type de bien, budget, surfaces.</div>
-        </div>
-        <div>
-          <div class="etape-title">2. Nous branchons l'alerte</div>
-          <div class="etape-desc">Sur votre compte MoteurImmo Agent. Rien à installer de votre côté.</div>
-        </div>
-        <div>
-          <div class="etape-title">3. Chaque annonce arrive, notée</div>
-          <div class="etape-desc">Sur votre WhatsApp, dès que MoteurImmo la repère.</div>
-        </div>
+  <!-- INTERET&nbsp;: fonctionnement -->
+  <section class="block" id="fonctionnement">
+    <h2 class="section-title">Comment ça marche</h2>
+    <p class="section-subtitle">Trois étapes. Une seule vous demande quelque chose.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Vous donnez vos critères</h3>
+        <p>Secteur, type de bien, budget, surfaces. Par WhatsApp, en quelques lignes.</p>
       </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Nous branchons l'alerte</h3>
+        <p>Sur votre compte MoteurImmo Agent. Rien à installer de votre côté.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Les annonces arrivent, notées</h3>
+        <p>Sur votre WhatsApp, dès que MoteurImmo les repère.</p>
+      </div>
+    </div>
+    <div class="duo">
+      <div><strong>Vous gardez la main.</strong> Vous changez vos critères par un simple message.</div>
+      <div><strong>La note sert à trier.</strong> Elle ne remplace pas votre analyse de marchand de biens.</div>
     </div>
   </section>
 
-  <!-- Désir : d'où vient la note -->
-  <section style="background: var(--fond-doux); border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord);">
-    <div class="wrap">
-      <h2 class="sec-title">D'où vient la note</h2>
-      <p class="sec-strong">Des règles fixes. Pas d'intelligence artificielle.</p>
-      <p class="sec-intro">La note sert à trier. Elle ne remplace pas votre analyse de marchand de biens.</p>
-      <div class="note-wrap">
+  <!-- DESIR&nbsp;: la note -->
+  <section class="block">
+    <div class="mine-card">
+      <h2>Une note que vous pouvez vérifier.</h2>
+      <p class="lead">Des règles fixes. Pas d'intelligence artificielle. Vous savez sur quoi elle repose.</p>
+      <div class="mine-grid">
         <div>
-          <div class="note-exclu-title">Ce qui compte dans la note</div>
-          <ul class="note-list">
+          <h3>Ce qui compte dans la note</h3>
+          <ul>
             <li>L'écart du prix au m² avec le marché médian du secteur.</li>
-            <li>Les mots-clés de l'annonce : succession, à rénover, divisible, corps de ferme, grange.</li>
+            <li>Les mots-clés de l'annonce&nbsp;: succession, à rénover, divisible, corps de ferme, grange.</li>
             <li>La surface habitable.</li>
             <li>La surface du terrain.</li>
           </ul>
         </div>
         <div>
-          <div class="note-exclu-title">Ce que la note écarte</div>
-          <p class="note-exclu-p">Certains types d'annonces sont filtrés avant même d'être notés : viager, location, programme neuf. Vous ne les voyez pas passer.</p>
+          <h3>Ce que la note écarte</h3>
+          <p class="ecarte">Certaines annonces sont filtrées avant même d'être notées&nbsp;: viager, location, programme neuf. Vous ne les voyez pas passer.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Désir : limites -->
-  <section class="limites">
-    <div class="wrap">
-      <h2 class="sec-title">Ce que ce service ne fait pas</h2>
-      <div class="limites-list">
-        <p class="limites-p"><b>Il ne trouve pas le hors marché.</b></p>
-        <p class="limites-p"><b>Il ne négocie pas.</b></p>
-        <p class="limites-p"><b>Il ne lit que les annonces publiées et reprises par MoteurImmo.</b></p>
+  <!-- DESIR&nbsp;: limites -->
+  <section class="block">
+    <h2 class="section-title">Ce que ce service ne fait pas</h2>
+    <p class="section-subtitle">Autant le savoir avant de payer.</p>
+    <div class="limites">
+      <div><strong>Il ne trouve pas le hors marché.</strong><span>Un bien qui n'est pas publié ne peut pas vous être signalé.</span></div>
+      <div><strong>Il ne négocie pas.</strong><span>Vous appelez, vous visitez, vous faites votre offre.</span></div>
+      <div><strong>Il ne lit que les annonces publiées et reprises par MoteurImmo.</strong><span>Si une annonce n'y est pas, l'alerte n'arrive pas.</span></div>
+    </div>
+  </section>
+
+  <!-- DESIR&nbsp;: preuve -->
+  <section class="block">
+    <div class="pos-card">
+      <div class="quote">10 alertes en 7 jours chez un marchand de biens du Beaujolais.</div>
+      <p>Relevé du 9&nbsp;octobre&nbsp;2026. En service depuis août&nbsp;2026.</p>
+    </div>
+  </section>
+
+  <!-- ACTION&nbsp;: prix -->
+  <section class="block" id="prix">
+    <h2 class="section-title">Un seul prix. Au mois. Sans engagement.</h2>
+    <p class="section-subtitle">Vous arrêtez quand vous voulez. Et si vous arrêtez dans les 30&nbsp;jours, vous êtes remboursé.</p>
+    <div class="prix-grid">
+      <div class="price-card">
+        <h3>Alertes annonces sur WhatsApp</h3>
+        <p class="for">Pour un marchand de biens, sur son secteur et ses critères.</p>
+        <div class="price-line">
+          <span class="price-old">49&nbsp;€</span>
+          <span class="price">27&nbsp;€ <small>par mois</small></span>
+        </div>
+        <p class="price-save">Prix de lancement pour toute inscription jusqu'au 31&nbsp;octobre&nbsp;2026.</p>
+        <p class="price-sub">49&nbsp;€ par mois pour les inscriptions à partir du 1er&nbsp;novembre&nbsp;2026. Votre prix reste à 27&nbsp;€ tant que vous restez abonné.</p>
+        <ul>
+          <li><strong>Les annonces de votre secteur</strong> sur votre WhatsApp.</li>
+          <li><strong>Note, priorité et écart au marché</strong> dans chaque message.</li>
+          <li><strong>Le téléphone de l'annonceur</strong> pour appeler tout de suite.</li>
+          <li><strong>Vos critères modifiables</strong> par un simple message.</li>
+          <li><strong>Mise en service&nbsp;: 49&nbsp;€</strong>, une seule fois.</li>
+        </ul>
+        <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+        <p class="premier-paiement">À l'inscription&nbsp;: 76&nbsp;€, soit la mise en service et le premier mois.</p>
+      </div>
+      <div class="prix-cote">
+        <div class="garantie">
+          <div class="t">30 jours pour changer d'avis.</div>
+          <p>Vous arrêtez dans les 30&nbsp;jours qui suivent la mise en service&nbsp;: nous vous remboursons tout, l'abonnement et la mise en service. Sans avoir à vous justifier.</p>
+        </div>
+        <div class="prerequis">
+          <div class="t">Il vous faut aussi un abonnement MoteurImmo Agent.</div>
+          <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Notre service vient en plus.</p>
+        </div>
+        <div class="prerequis">
+          <div class="t">Les conditions, noir sur blanc.</div>
+          <p>Prix, garantie, résiliation, limites du service&nbsp;: tout est écrit dans les <a href="conditions.html">conditions de l'offre</a>.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Désir : preuve -->
-  <section class="preuve">
-    <div class="wrap">
-      <h2 class="sec-title">10 alertes en 7 jours chez un marchand de biens du Beaujolais.</h2>
-      <p class="preuve-note">Relevé du 9 octobre 2026. En service depuis août 2026.</p>
+  <!-- QUESTIONS -->
+  <section class="block" id="questions">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <p class="section-subtitle">Celles qu'un marchand de biens pose avant de s'abonner.</p>
+    <div class="faq-item">
+      <h3>MoteurImmo envoie déjà des alertes. Quelle différence&nbsp;?</h3>
+      <p>MoteurImmo alerte par e-mail, par Telegram ou par notification. Nous envoyons sur WhatsApp un message déjà trié&nbsp;: note sur 10, priorité, écart au marché, mots-clés de marchand de biens, téléphone de l'annonceur.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Faut-il absolument un abonnement MoteurImmo&nbsp;?</h3>
+      <p>Oui. Les alertes utilisent les données de MoteurImmo Agent, 39&nbsp;€ par mois réglés directement à MoteurImmo. Notre service vient en plus.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Et si cela ne me convient pas&nbsp;?</h3>
+      <p>Vous arrêtez dans les 30&nbsp;jours qui suivent la mise en service et vous êtes remboursé intégralement. Ensuite, vous arrêtez quand vous voulez&nbsp;: il n'y a pas d'engagement de durée.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Pourquoi 27&nbsp;€ maintenant et 49&nbsp;€ ensuite&nbsp;?</h3>
+      <p>27&nbsp;€ est le prix de lancement, réservé aux inscriptions jusqu'au 31&nbsp;octobre&nbsp;2026. À partir du 1er&nbsp;novembre&nbsp;2026, les nouveaux inscrits paient 49&nbsp;€ par mois. Si vous vous inscrivez avant, vous gardez 27&nbsp;€ tant que vous restez abonné.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Sur quel numéro arrivent les alertes&nbsp;?</h3>
+      <p>Sur le numéro WhatsApp que vous nous donnez.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Puis-je changer mes critères&nbsp;?</h3>
+      <p>Oui. Vous nous écrivez vos nouveaux critères sur WhatsApp.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Comment arrêter&nbsp;?</h3>
+      <p>Vous nous l'écrivez sur WhatsApp. Il n'y a pas d'engagement de durée.</p>
+    </div>
+    <div class="faq-item">
+      <h3>D'où vient la note sur 10&nbsp;?</h3>
+      <p>De règles fixes&nbsp;: écart au marché médian, mots-clés de l'annonce, surface habitable, surface du terrain. Pas d'intelligence artificielle.</p>
     </div>
   </section>
 
-  <!-- Action : prix -->
-  <section>
-    <div class="wrap">
-      <h2 class="sec-title">Le prix</h2>
-      <div class="prix-main">29 € <small>par mois</small></div>
-      <p class="prix-setup">Mise en service 49 €, une seule fois. Sans engagement.</p>
-      <p class="prix-moteurimmo"><b>Il vous faut aussi un abonnement MoteurImmo Agent, 39 € par mois, réglé directement à MoteurImmo.</b></p>
-      <a href="https://wa.me/33699080539?text=ALERTE" class="btn-wa">Écrivez ALERTE sur WhatsApp</a>
-    </div>
-  </section>
+  <!-- ACTION FINALE -->
+  <div class="cta-final">
+    <h2>La prochaine annonce de votre secteur, vous la recevez sur WhatsApp.</h2>
+    <p>27&nbsp;€ par mois au lieu de 49&nbsp;€ jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement. Remboursé si vous arrêtez dans les 30&nbsp;jours.</p>
+    <a href="https://wa.me/33699080539?text=ALERTE" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+  </div>
 
-  <!-- FAQ -->
-  <section style="background: var(--fond-doux); border-top: 1px solid var(--bord);">
-    <div class="wrap">
-      <h2 class="sec-title">Questions fréquentes</h2>
-      <div class="faq-list">
-        <div>
-          <div class="faq-q">Faut-il absolument un abonnement MoteurImmo ?</div>
-          <div class="faq-a">Oui. Les alertes utilisent les données de MoteurImmo Agent, 39 € par mois réglés directement à MoteurImmo. Notre service de 29 € vient en plus.</div>
-        </div>
-        <div>
-          <div class="faq-q">Sur quel numéro arrivent les alertes ?</div>
-          <div class="faq-a">Sur le numéro WhatsApp que vous nous donnez.</div>
-        </div>
-        <div>
-          <div class="faq-q">Puis-je changer mes critères ?</div>
-          <div class="faq-a">Oui. Vous nous écrivez vos nouveaux critères sur WhatsApp.</div>
-        </div>
-        <div>
-          <div class="faq-q">Comment arrêter ?</div>
-          <div class="faq-a">Vous nous l'écrivez sur WhatsApp. Il n'y a pas d'engagement de durée.</div>
-        </div>
-        <div>
-          <div class="faq-q">D'où vient la note sur 10 ?</div>
-          <div class="faq-a">De règles fixes : écart au marché médian, mots-clés de l'annonce, surface habitable, surface du terrain. Pas d'intelligence artificielle.</div>
-        </div>
-      </div>
-      <div class="faq-bottom-cta">
-        <a href="https://wa.me/33699080539?text=ALERTE" class="btn-wa">Écrivez ALERTE sur WhatsApp</a>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">© 2026 GILD-TECH, Girlden LTD, ops@gild-tech.com</div>
-      <ul class="footer-links">
-        <li><a href="/mentions-legales.html">Mentions légales</a></li>
-        <li><a href="/confidentialite.html">Confidentialité</a></li>
-        <li><a href="/cgv.html">CGV</a></li>
-      </ul>
-    </div>
-  </footer>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">GILD-TECH</div>
+    <ul class="footer-links">
+      <li><a href="conditions.html">Conditions de l'offre</a></li>
+      <li><a href="/mentions-legales.html">Mentions légales</a></li>
+      <li><a href="/confidentialite.html">Confidentialité</a></li>
+    </ul>
+    <div class="footer-mention">© 2026 GILD-TECH, Girlden LTD, ops@gild-tech.com</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/33699080539?text=ALERTE" class="sticky-cta-mobile">Écrivez ALERTE sur WhatsApp</a>
 
 </body>
 </html>
