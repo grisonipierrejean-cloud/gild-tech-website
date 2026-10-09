@@ -267,6 +267,17 @@ section.block.sans-trait { border-top: none; }
 .appel-milieu strong { display: block; font-size: 1.45rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; color: var(--noir); }
 .appel-milieu span { display: block; margin-top: 0.35rem; font-size: 1rem; color: var(--g600); line-height: 1.5; }
 
+/* PARRAINAGE */
+.parrain { background: var(--bleu-nuit); color: var(--blanc); border-radius: 18px; padding: 3rem 2.8rem; display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; }
+.parrain h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--blanc); margin-bottom: 1rem; }
+.parrain-tete p { font-size: 1.08rem; line-height: 1.6; color: rgba(255,255,255,0.85); }
+.parrain-etapes { list-style: none; counter-reset: p; }
+.parrain-etapes li { counter-increment: p; position: relative; padding: 1.1rem 0 1.1rem 3.2rem; }
+.parrain-etapes li + li { border-top: 1px solid rgba(255,255,255,0.14); }
+.parrain-etapes li::before { content: counter(p); position: absolute; left: 0; top: 1.1rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--blanc); color: var(--bleu-nuit); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.parrain-etapes strong { display: block; font-size: 1.08rem; font-weight: 700; line-height: 1.4; color: var(--blanc); }
+.parrain-etapes span { display: block; margin-top: 0.2rem; font-size: 0.96rem; line-height: 1.5; color: rgba(255,255,255,0.75); }
+
 /* JOURNEE */
 .journee { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
 .fil { list-style: none; border-left: 2px solid var(--g200); margin-left: 0.4rem; }
@@ -316,6 +327,8 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
 @media (max-width: 980px) {
   .journee, .deux { grid-template-columns: 1fr; gap: 1.6rem; }
   .hero-nuit .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .parrain { grid-template-columns: 1fr; gap: 1.6rem; padding: 2rem 1.5rem; }
+  .parrain h2 { font-size: 1.7rem; }
   .hero-nuit .ctas { flex-wrap: wrap; }
   .appel-milieu { flex-direction: column; align-items: flex-start; padding: 1.6rem; }
   .appel-milieu .btn-primary { width: 100%; text-align: center; }
@@ -352,9 +365,9 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <a href="/" class="brand">GILD-<span class="tech">TECH</span> <span class="produit">Radar</span></a>
     <ul class="nav-links">
       <li><a href="#journee">Une journée</a></li>
-      <li><a href="#alerte">L'alerte</a></li>
-      <li><a href="#note">La note</a></li>
+            <li><a href="#note">La note</a></li>
       <li><a href="#prix">Prix</a></li>
+      <li><a href="#parrainage">Parrainage</a></li>
       <li><a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-nav">Écrire ALERTE sur WhatsApp</a></li>
     </ul>
   </div>
@@ -601,14 +614,29 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Si vous l'avez déjà, il n'y a rien à ajouter.</p>
         </div>
         <div class="prerequis">
-          <div class="t">Vous amenez un confrère&nbsp;: un mois offert.</div>
-          <p>Pour chaque marchand de biens qui s'abonne de votre part, votre mois suivant est offert.</p>
+          <div class="t">Un confrère amené, un mois offert.</div>
+          <p>Sans limite. Le détail est dans la section <a href="#parrainage">parrainage</a>.</p>
         </div>
         <div class="prerequis">
           <div class="t">Les conditions, noir sur blanc.</div>
           <p>Prix, résiliation, limites du service&nbsp;: tout est écrit dans les <a href="conditions.html">conditions de l'offre</a>.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ACTION : parrainage -->
+  <section class="block" id="parrainage">
+    <div class="parrain">
+      <div class="parrain-tete">
+        <h2>Un confrère amené, un mois offert.</h2>
+        <p>Vous connaissez un marchand de biens qui passe ses soirées sur les portails. Chaque confrère qui s'abonne de votre part vous offre votre mois suivant. Dix confrères, dix mois offerts.</p>
+      </div>
+      <ol class="parrain-etapes">
+        <li><strong>Vous lui envoyez cette page.</strong><span>Ou simplement le numéro WhatsApp.</span></li>
+        <li><strong>Il écrit ALERTE et donne votre nom.</strong><span>C'est tout ce qu'il a à faire pour que le parrainage compte.</span></li>
+        <li><strong>Il s'abonne, votre mois suivant est offert.</strong><span>Sans plafond, tant que vous êtes abonné.</span></li>
+      </ol>
     </div>
   </section>
 
@@ -666,7 +694,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <h2>La prochaine annonce de votre secteur sort bientôt. Qui appellera le premier&nbsp;?</h2>
     <p>20 places d'abonné fondateur à 27&nbsp;€ par mois au lieu de 49&nbsp;€, jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
     <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-    <p class="rassure-fin">Écrire ne vous engage à rien.</p>
+    <p class="rassure-fin">Écrire ne vous engage à rien. Un confrère amené, un mois offert.</p>
   </div>
 
 </div>
