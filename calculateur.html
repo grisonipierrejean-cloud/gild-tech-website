@@ -1068,14 +1068,14 @@
     });
 
     // COMPUTE LOSSES — based on Oldroyd Lead Response Study (MIT Sloan Mgmt Review)
-    // Source: 15,000 inbound leads analysed · 21× qualification lift · 9× conversion
+    // Source: 15,000 inbound leads analysed (Oldroyd study)
     // lift when replying within 5 min vs 30 min. Replicated by InsideSales and HBR.
     // PERTE = contacts × 0.67 × conversion × commission_moyenne
     function computeLosses() {
       const { leads, conv, panier, delai } = state;
 
       // Step 1: ~67% of inbound enquiries are handled beyond the optimal 5-min
-      // window (conservative estimate derived from Oldroyd 21× qualification factor).
+      // window (conservative estimate derived from the Oldroyd study).
       const lostLeadsMonth = Math.round(leads * 0.67);
 
       // Step 2: of those lost, conv% would have converted to instruction

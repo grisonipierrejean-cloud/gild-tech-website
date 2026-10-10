@@ -150,6 +150,8 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
   .pain-grid { grid-template-columns: 1fr; }
   .intro h1 { font-size: 1.6rem; }
 }
+.setclose-wrap{margin:1.4rem 0 0}.setclose-box{padding:1.3rem 1.6rem;background:#EFF6FF;border:1px solid #DBEAFE;border-radius:12px}.setclose-box .sc-head{font-size:1.15rem;font-weight:800;color:var(--g900);margin:0 0 .35rem}.setclose-box .sc-main{font-size:1rem;font-weight:600;color:var(--g900);line-height:1.45;margin:0}
+.vertical, .parcours-title, .parcours-steps { text-transform: none; letter-spacing: 0; }
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
   
@@ -179,7 +181,13 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
      ================================================================ -->
 <section class="intro" id="aida-attention">
   <h1>365 days a year. <span class="accent">Never ill, never on holiday.</span></h1>
-  <p class="subtitle"><strong>Sarah answers your applicants while you sleep, while you are out on viewings, while you are closing.</strong> She replies in minutes, day or night, in the buyer's own language. She plugs into your CRM and the tools you already use. Nothing to install, nothing to learn.</p>
+  <p class="subtitle"><strong>Sarah answers your applicants while you sleep, while you are out on viewings, while you are closing.</strong> She replies in minutes, day or night, in the buyer's own language. She plugs into your CRM if it has an API; otherwise every lead lands in a tracking sheet we provide. Nothing to install, nothing to learn.</p>
+</section>
+<section class="setclose-wrap">
+  <div class="setclose-box">
+    <p class="sc-head">Sarah does the setting. You do the closing.</p>
+    <p class="sc-main">And every conversation stays in your hands: Sarah logs it, sorts it, and no buyer is left behind.</p>
+  </div>
 </section>
 <!-- /A: ATTENTION -->
 
@@ -193,7 +201,6 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
     <div class="pain-item"><strong>It is never your fault</strong>You were on a viewing. You were at a valuation. It was 9pm. But the enquiry does not wait, and neither does the buyer.</div>
     <div class="pain-item"><strong>You never find out</strong>Every enquiry that goes cold was a viewing. Every viewing was an offer. You will never know which ones you lost, because they never told you. They simply went somewhere else.</div>
   </div>
-  <p style="margin-top:0.9rem;font-size:0.85rem;color:var(--g600);line-height:1.55;">Replying within 5 minutes rather than 30 means <strong style="color:var(--g900);">21&times; more qualified enquiries</strong> <em>(MIT Sloan, Oldroyd study, 15,000 enquiries, <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener" style="color:inherit;">HBR 2011</a>)</em>.</p>
 </section>
 <!-- /I: INTEREST -->
 
@@ -205,14 +212,14 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
   <p style="font-size:0.95rem;color:var(--g700);margin-bottom:1.1rem;max-width:900px;">She replies in minutes, day or night, in the buyer's own language. She sorts the tyre kickers from the serious ones, takes the details, and depending on your process she books the viewing or passes the file to your negotiator.</p>
 
   <div class="parcours">
-    <div class="parcours-title">HOW IT RUNS</div>
-    <div class="parcours-steps">THE ENQUIRY LANDS <span class="arrow">&rarr;</span> SARAH REPLIES AND SORTS <span class="arrow">&rarr;</span> VIEWING BOOKED, OR FILE PASSED</div>
+    <div class="parcours-title">How it runs</div>
+    <div class="parcours-steps">The enquiry lands <span class="arrow">&rarr;</span> Sarah replies and sorts <span class="arrow">&rarr;</span> Viewing booked, or file passed</div>
   </div>
 
   <div class="additional">
     <div class="additional-item">
-      <div class="name">A clean list, and the dashboard</div>
-      <div class="price">You walk in each morning to a clean list instead of a full inbox. And at the end of the day you sit down, open the dashboard, and it is all there. Who got in touch, what was said, where every file stands. It plugs into what you already use. Nothing to install, nothing to learn.</div>
+      <div class="name">A clean list, and your tracking sheet</div>
+      <div class="price">You walk in each morning to a clean list instead of a full inbox. And at the end of the day you sit down, open your tracking sheet, and it is all there. Who got in touch, what was said, where every file stands. You change nothing about your tools. Nothing to install, nothing to learn.</div>
     </div>
     <div class="additional-item">
       <div class="name">You stay the closer</div>
@@ -231,27 +238,28 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
   <div class="offres-grid">
 
     <div class="offre-card">
-      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">SHE REPLIES</div>
+      <div style="font-size:12px;font-weight:700;color:var(--pink);background:var(--pink-bg);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">She replies</div>
       <div class="offre-name">Never miss an enquiry</div>
       <div class="offre-tagline">Every person who contacts your agency gets a reply, day and night, in their language.</div>
       <div class="offre-price">&pound;290<span class="price-suffix"> / month</span></div>
-      <div class="offre-delai">Price locked for 24 months &middot; 30-day money-back</div>
+      <div class="offre-delai">Price locked for 24 months, 30-day money-back</div>
       <div class="offre-hook">Sorted, logged, ready. Your morning starts with a clean list.</div>
       <ul class="offre-features">
-        <li>Answers every enquiry in minutes, day and night, in 8 languages</li>
+        <li>Answers every enquiry in minutes, day and night, in English, French or Russian</li>
         <li>Sorts the tyre kickers from the serious ones and takes the details</li>
         <li>Books the viewing or passes the file to your negotiator, your process</li>
         <li>Your morning starts with a clean list instead of a full inbox</li>
-        <li>Plugs into your CRM and the tools you already use</li>
+        <li>Plugs into your CRM if it has an API, otherwise a tracking sheet provided</li>
+        <li>WhatsApp messages included, up to 1,000 a month</li>
       </ul>
     </div>
 
     <div class="offre-card recommended">
-      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--pink);background:var(--white);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">SHE CONVERTS</div>
+      <div style="font-size:12px;font-weight:700;color:var(--pink);background:var(--white);border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">She converts</div>
       <div class="offre-name">Enquiries become viewings</div>
       <div class="offre-tagline">Replying is not enough, you have to convert. Sarah follows up by voice, keeps the thread alive.</div>
       <div class="offre-price">&pound;490<span class="price-suffix"> / month</span></div>
-      <div class="offre-delai">Promo: &pound;290 a month for 60 days &middot; cancel anytime &middot; 30-day money-back</div>
+      <div class="offre-delai">Promo: &pound;290 a month for 60 days, cancel anytime, 30-day money-back</div>
       <div class="offre-hook">You know exactly what happened while you were out, without asking.</div>
       <ul class="offre-features">
         <li>Everything in <strong>Never miss an enquiry</strong></li>
@@ -263,18 +271,18 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
     </div>
 
     <div class="offre-card">
-      <div style="font-size:9px;font-weight:800;letter-spacing:.12em;color:#1D4ED8;background:#E5E7EB;border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">SHE WINS INSTRUCTIONS</div>
+      <div style="font-size:12px;font-weight:700;color:#1D4ED8;background:#E5E7EB;border:1px solid var(--pink-soft);padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:.5rem;">She wins instructions</div>
       <div class="offre-name">Win more instructions</div>
       <div class="offre-tagline">An instruction is won in the valuation appointment, against two other agents after the same property.</div>
       <div class="offre-price">&pound;790<span class="price-suffix"> / month</span></div>
-      <div class="offre-delai">Cancel anytime &middot; 30-day money-back</div>
+      <div class="offre-delai">Cancel anytime, 30-day money-back</div>
       <div class="offre-hook">The one who walks out with the signature is the one who made the vendor feel their home would be treated as something exceptional.</div>
       <div style="font-size:0.8rem;color:var(--g600);margin-bottom:1rem;line-height:1.45;">Sarah never speaks to your vendors. She frees up your diary for valuations, and she builds the premium presentation that YOU show the vendor.</div>
       <ul class="offre-features">
         <li>Everything in <strong>Enquiries become viewings</strong></li>
         <li>While the competition is still packing up their camera, your property is already online, presented properly, ready to show</li>
         <li><strong>Premium presentation</strong>: your real photos turned into a premium online presentation, in minutes, without you lifting a finger</li>
-        <li>Every instruction, its own premium presentation. No counting</li>
+        <li>A premium presentation of your best property each month</li>
         <li>We enhance the real, we never fabricate a property</li>
       </ul>
     </div>
@@ -300,15 +308,15 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
   </div>
 
   <p style="text-align:center;margin-top:1.1rem;font-size:0.82rem;color:var(--g500);line-height:1.6;">
-    Price locked for 24 months &middot; cancel anytime &middot; 30-day money-back.<br>
-    How it works: plugs into your CRM and the tools you already use, no training, 8 languages.
+    Price locked for 24 months, cancel anytime, 30-day money-back.<br>
+    How it works: plugs into your CRM if it has an API, otherwise a tracking sheet provided, no training, English, French or Russian.
   </p>
 </section>
 <!-- /A: ACTION -->
 
 <div class="footer">
-  <span>© 2026 GILD-TECH · Girlden LTD · Registered in England &amp; Wales</span>
-  <span>ops@gild-tech.com · gild-tech.com</span>
+  <span>© 2026 GILD-TECH, Girlden LTD, Registered in England &amp; Wales</span>
+  <span>ops@gild-tech.com, gild-tech.com</span>
 </div>
 
 </div>
