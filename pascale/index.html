@@ -39,13 +39,17 @@ body { margin: 0; background: #0B1526 }
 ::-webkit-scrollbar-thumb:hover { background: #3A4E74 }
 .pg a { color: inherit; -webkit-tap-highlight-color: transparent }
 .pg a:focus-visible { outline: 2px solid #E6D3A3; outline-offset: 4px; border-radius: 2px }
-.pg-book, .pg-wa { transition: background-color .16s cubic-bezier(0.23, 1, 0.32, 1), border-color .16s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1) }
+.pg-book, .pg-wa, .pg-ac, .pg-card { position: relative; isolation: isolate; transition: transform .16s cubic-bezier(0.23, 1, 0.32, 1) }
+.pg-book::after, .pg-wa::after, .pg-ac::after, .pg-card::before, .pg-card::after { content: ""; position: absolute; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .16s cubic-bezier(0.23, 1, 0.32, 1) }
+.pg-book::after { inset: 0; background: #F1E4C3 }
+.pg-wa::after { inset: -1px; background: rgba(230, 211, 163, .1); box-shadow: inset 0 0 0 1px #E6D3A3 }
+.pg-ac::after { inset: -1px; background: #162744; box-shadow: inset 0 0 0 1px #E6D3A3 }
+.pg-ac-1::after { background: #F1E4C3 }
+.pg-card::before { inset: -1px; background: rgba(230, 211, 163, .05); box-shadow: inset 0 0 0 1px #E6D3A3 }
+.pg-card::after { inset: 6px; box-shadow: inset 0 0 0 1px rgba(230, 211, 163, .42), inset 0 48px 70px -36px rgba(230, 211, 163, .3) }
 .pg-wa { border: 1px solid rgba(230, 211, 163, .78); background-color: rgba(230, 211, 163, 0) }
 .pg-wa svg { color: #E6D3A3 }
-.pg-book:active, .pg-wa:active { transform: translateY(1px) scale(.985) }
-.pg-book:active { background-color: #D9C48F !important }
-.pg-wa:active { background-color: rgba(230, 211, 163, .16) }
-.pg-link { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: rgba(230, 211, 163, .6); text-underline-offset: 7px; transition: text-decoration-color .16s ease }
+.pg-link { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: rgba(230, 211, 163, .6); text-underline-offset: 7px }
 .pg-nav { text-decoration: none }
 .pg-stage { position: absolute; top: 108px; left: 50%; width: min(400px, 72vw); aspect-ratio: 719 / 1005; transform: translateX(-50%); pointer-events: none }
 .pg-rise { position: absolute; inset: 0 }
@@ -65,9 +69,8 @@ body { margin: 0; background: #0B1526 }
 .pg-motif { width: 50%; max-width: 200px }
 .pg-motif-r { margin-left: auto }
 .pg-ag { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin: var(--blk) auto 0; max-width: 420px; text-align: left; align-items: start }
-.pg-ac { display: block; box-sizing: border-box; border: 1px solid rgba(230, 211, 163, .55); border-radius: 4px; background-color: #101D33; color: #F2EEE4; text-decoration: none; transition: background-color .16s cubic-bezier(0.23, 1, 0.32, 1), border-color .16s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1) }
+.pg-ac { display: block; box-sizing: border-box; border: 1px solid rgba(230, 211, 163, .55); border-radius: 4px; background-color: #101D33; color: #F2EEE4; text-decoration: none }
 .pg-ac-1 { border-color: #E6D3A3; background-color: #E6D3A3; color: #0B1526 !important }
-a.pg-ac:active { transform: translateY(1px) scale(.99) }
 .pg-ac-in { display: flex; flex-direction: column; align-items: flex-start; box-sizing: border-box; padding: 24px }
 .pg-ac-t { display: block; margin-top: 16px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(23px, 2vw, 27px); line-height: 1.2 }
 .pg-ac-s { list-style: none; cursor: pointer }
@@ -79,8 +82,7 @@ a.pg-ac:active { transform: translateY(1px) scale(.99) }
 .pg-quad li { border-top: 1px solid rgba(230, 211, 163, 0.22) }
 .pg-tri { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px }
 .pg-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
-.pg-card { border: 1px solid rgba(230, 211, 163, .5); background-color: rgba(230, 211, 163, 0); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .2), inset 0 0 0 rgba(230, 211, 163, 0); transition: border-color .18s cubic-bezier(0.23, 1, 0.32, 1), background-color .18s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .18s cubic-bezier(0.23, 1, 0.32, 1), transform .12s cubic-bezier(0.23, 1, 0.32, 1) }
-.pg-card:active { transform: translateY(1px) scale(.99); border-color: #E6D3A3; background-color: rgba(230, 211, 163, .12) }
+.pg-card { border: 1px solid rgba(230, 211, 163, .5); background-color: rgba(230, 211, 163, 0); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .2) }
 .pg-foot { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center }
 @media (max-width: 859px) {
 .pg-bs { padding-bottom: var(--tmp) !important }
@@ -89,13 +91,9 @@ a.pg-ac:active { transform: translateY(1px) scale(.99) }
 .pg-quad li:nth-child(even) { border-left: 1px solid rgba(230, 211, 163, 0.22) }
 }
 @media (hover: hover) and (pointer: fine) {
-.pg-book:hover { background-color: #F1E4C3 !important }
-.pg-wa:hover { border-color: #E6D3A3; background-color: rgba(230, 211, 163, .1) }
+.pg-book:hover::after, .pg-wa:hover::after, .pg-ac:hover::after, .pg-card:hover::before, .pg-card:hover::after { opacity: 1 }
 .pg-link:hover { text-decoration-color: #E6D3A3 }
 .pg-nav:hover { text-decoration: underline; text-underline-offset: 7px; text-decoration-thickness: 1px; text-decoration-color: #E6D3A3 }
-.pg-ac:hover { border-color: #E6D3A3; background-color: #162744 }
-.pg-ac-1:hover { background-color: #F1E4C3 }
-.pg-card:hover { border-color: #E6D3A3; background-color: rgba(230, 211, 163, .05); box-shadow: inset 0 0 0 6px #0B1526, inset 0 0 0 7px rgba(230, 211, 163, .42), inset 0 54px 70px -36px rgba(230, 211, 163, .3) }
 }
 @media (min-width: 860px) {
 :root { --gut: 64px; --sec: 96px; --tmp: 64px; --blk: 64px }
@@ -138,27 +136,53 @@ a.pg-ac:active { transform: translateY(1px) scale(.99) }
 .pg-sky svg { width: min(560px, 90%); opacity: .8 }
 .pg-ap, .pg-co, .pg-ha { transform-box: fill-box; transform-origin: center }
 .pg-tr { transform-box: fill-box; transform-origin: left center }
-.pg-fly { transform-box: view-box; transform-origin: var(--o) }
 .pg-ha { opacity: .7 }
 @media (prefers-reduced-motion: no-preference) {
 .js .pg-sep .pg-tr { transform: scaleX(0) }
-.js .pg-sep .pg-ap { opacity: 0 }
-.js .pg-sep.is-in .pg-tr { animation: pg-draw var(--du, .7s) cubic-bezier(.42, 0, .58, 1) var(--dl, 0s) forwards }
-.js .pg-sep.is-in .pg-ap { animation: pg-ignite 1.2s cubic-bezier(0.23, 1, 0.32, 1) var(--dl, 0s) forwards }
-.pg-co { animation: pg-core var(--d, 4s) ease-in-out var(--dl2, 0s) infinite; animation-play-state: paused }
-.pg-ha { animation: pg-halo var(--d, 4s) ease-in-out var(--dl2, 0s) infinite; animation-play-state: paused }
+.js .pg-sep .pg-ap { opacity: 0; transform: scale(.92) }
+.js .pg-sep.is-in .pg-tr { animation: pg-draw var(--du, .7s) cubic-bezier(0.23, 1, 0.32, 1) var(--dl, 0s) forwards }
+.js .pg-sep.is-in .pg-ap { animation: pg-ignite .7s cubic-bezier(0.23, 1, 0.32, 1) var(--dl, 0s) forwards }
+.pg-co { animation: pg-core var(--d, 4s) cubic-bezier(0.77, 0, 0.175, 1) var(--dl2, 0s) infinite; animation-play-state: paused }
+.pg-ha { animation: pg-halo var(--d, 4s) cubic-bezier(0.77, 0, 0.175, 1) var(--dl2, 0s) infinite; animation-play-state: paused }
 .is-on .pg-co, .is-on .pg-ha { animation-play-state: running }
-.pg-fly { opacity: 0; animation: pg-fly var(--d, 8s) linear 1.2s infinite; animation-play-state: paused }
-.is-on .pg-fly { animation-play-state: running }
+.js .pg-cards .pg-tw .pg-st { stroke-dasharray: 1; stroke-dashoffset: 1.01 }
+.js .pg-cards .pg-tw [stroke="none"] { opacity: 0 }
+.js .pg-cards.is-in .pg-tw .pg-st { animation: pg-trace .9s cubic-bezier(0.23, 1, 0.32, 1) var(--ed, 0s) forwards }
+.js .pg-cards.is-in .pg-tw [stroke="none"] { animation: pg-fade .5s cubic-bezier(0.23, 1, 0.32, 1) calc(var(--ed, 0s) + .45s) forwards }
+.pg-ac[open] .pg-avis { animation: pg-open .2s cubic-bezier(0.23, 1, 0.32, 1) both }
+}
+@media (prefers-reduced-motion: reduce) {
+.js .pg-sep .pg-tr, .js .pg-sep .pg-ap, .js .pg-cards .pg-tw { opacity: 0 }
+.js .pg-sep.is-in .pg-tr, .js .pg-sep.is-in .pg-ap { animation: pg-fade .7s cubic-bezier(0.23, 1, 0.32, 1) var(--dl, 0s) forwards }
+.js .pg-cards.is-in .pg-tw { animation: pg-fade .6s cubic-bezier(0.23, 1, 0.32, 1) var(--ed, 0s) forwards }
+.pg-co { animation: pg-core-f var(--d, 4s) cubic-bezier(0.77, 0, 0.175, 1) var(--dl2, 0s) infinite; animation-play-state: paused }
+.pg-ha { animation: pg-halo-f var(--d, 4s) cubic-bezier(0.77, 0, 0.175, 1) var(--dl2, 0s) infinite; animation-play-state: paused }
+.is-on .pg-co, .is-on .pg-ha { animation-play-state: running }
+.pg-rise { animation: pg-fade 1.4s cubic-bezier(0.23, 1, 0.32, 1) both }
+.pg-ac[open] .pg-avis { animation: pg-fade .2s cubic-bezier(0.23, 1, 0.32, 1) both }
+}
+@keyframes pg-fade {
+from { opacity: 0 }
+to { opacity: 1 }
+}
+@keyframes pg-trace {
+to { stroke-dashoffset: 0 }
+}
+@keyframes pg-core-f {
+0%, 100% { opacity: 1 }
+50% { opacity: .62 }
+}
+@keyframes pg-halo-f {
+0%, 100% { opacity: .9 }
+50% { opacity: .25 }
 }
 @keyframes pg-draw {
 from { transform: scaleX(0) }
 to { transform: scaleX(1) }
 }
 @keyframes pg-ignite {
-0% { opacity: 0; transform: scale(.2) }
-40% { opacity: 1; transform: scale(1.45) }
-100% { opacity: 1; transform: scale(1) }
+from { opacity: 0; transform: scale(.92) }
+to { opacity: 1; transform: scale(1) }
 }
 @keyframes pg-core {
 0%, 100% { opacity: 1; transform: scale(1) }
@@ -168,35 +192,25 @@ to { transform: scaleX(1) }
 0%, 100% { opacity: .9; transform: scale(1.15) }
 50% { opacity: .18; transform: scale(.65) }
 }
-@keyframes pg-fly {
-0% { opacity: 0; transform: rotate(0deg); animation-timing-function: cubic-bezier(.3, .1, .55, 1) }
-3% { opacity: 1 }
-13% { opacity: .85 }
-20% { opacity: 0; transform: rotate(var(--a)) }
-100% { opacity: 0; transform: rotate(var(--a)) }
-}
 @media (prefers-reduced-motion: no-preference) {
+.pg-book:active, .pg-wa:active, .pg-card:active, a.pg-ac:active, details.pg-ac:has(> .pg-ac-s:active) { transform: scale(.97) }
 html { scroll-behavior: smooth }
 .pg-rise { animation: pg-rise 1.4s cubic-bezier(0.23, 1, 0.32, 1) both }
 }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
-.pg-card:hover .pg-tw { animation: pg-twinkle .7s cubic-bezier(0.23, 1, 0.32, 1) 1 }
-}
-@media (prefers-reduced-motion: no-preference) {
-.pg-ac[open] .pg-avis { animation: pg-open .2s cubic-bezier(0.23, 1, 0.32, 1) both }
+.pg-card:hover .pg-tw { animation: pg-twinkle .8s cubic-bezier(0.77, 0, 0.175, 1) 1 }
 }
 @keyframes pg-open {
-from { opacity: 0 }
-to { opacity: 1 }
+from { opacity: 0; transform: translateY(-6px) }
+to { opacity: 1; transform: translateY(0) }
 }
 @keyframes pg-rise {
 from { opacity: 0; transform: scale(1.035) }
 to { opacity: 1; transform: scale(1) }
 }
 @keyframes pg-twinkle {
-0% { transform: scale(1) rotate(0deg); opacity: 1 }
-35% { transform: scale(1.5) rotate(45deg); opacity: .75 }
-100% { transform: scale(1) rotate(90deg); opacity: 1 }
+0%, 100% { transform: scale(1); opacity: 1 }
+45% { transform: scale(1.12); opacity: .7 }
 }
 </style>
 </head>
@@ -204,7 +218,7 @@ to { opacity: 1; transform: scale(1) }
 <div class="pg" style="font-family: 'Albert Sans', 'Segoe UI', sans-serif; color: #F2EEE4; background: #0B1526; -webkit-font-smoothing: antialiased">
 
 <section class="pg-hero" style="position: relative; overflow: hidden; min-height: 100svh; display: flex; flex-direction: column; color: #F2EEE4; background: #0B1526">
-<video class="pg-film" data-src="film-or.mp4" muted autoplay loop playsinline preload="metadata" aria-hidden="true" tabindex="-1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 1.4s ease"></video>
+<video class="pg-film" data-src="film-or.mp4" muted autoplay loop playsinline preload="metadata" aria-hidden="true" tabindex="-1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1)"></video>
 <canvas data-glitter="1" data-kind="sky" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
 
 <div class="pg-stage">
@@ -272,7 +286,7 @@ Réserver un soin</a>
 <div class="pg-sym" data-sep aria-hidden="true" style="margin-top: 24px"><svg viewBox="0 0 107 24" width="107" height="24" fill="none" aria-hidden="true" focusable="false"><defs><radialGradient id="pgsyh"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0.55"></stop><stop offset="0.35" stop-color="#E6D3A3" stop-opacity="0.2"></stop><stop offset="1" stop-color="#E6D3A3" stop-opacity="0"></stop></radialGradient></defs><circle class="pg-ha" cx="5.5" cy="12" r="13.11" fill="url(#pgsyh)" style="--d:4.21s;--dl2:-0.22s"></circle><path class="pg-co" d="M5.5 6.96 L6.51 10.99 L10.54 12 L6.51 13.01 L5.5 17.04 L4.49 13.01 L0.46 12 L4.49 10.99 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.21s;--dl2:-0.22s"></path><circle class="pg-ha" cx="39" cy="12" r="28.6" fill="url(#pgsyh)" style="--d:3.96s;--dl2:-0.48s"></circle><path class="pg-co" d="M39 1 L41.2 9.8 L50 12 L41.2 14.2 L39 23 L36.8 14.2 L28 12 L36.8 9.8 Z" fill="#E6D3A3" fill-opacity="1.0" style="--d:3.96s;--dl2:-0.48s"></path><circle class="pg-ha" cx="74.5" cy="12" r="17.88" fill="url(#pgsyh)" style="--d:3.5s;--dl2:-0.35s"></circle><path class="pg-co" d="M74.5 5.12 L75.88 10.62 L81.38 12 L75.88 13.38 L74.5 18.88 L73.12 13.38 L67.62 12 L73.12 10.62 Z" fill="#E6D3A3" fill-opacity="1.0" style="--d:3.5s;--dl2:-0.35s"></path><circle class="pg-ha" cx="102.5" cy="12" r="10.72" fill="url(#pgsyh)" style="--d:5.24s;--dl2:-3.54s"></circle><path class="pg-co" d="M102.5 7.88 L103.33 11.18 L106.62 12 L103.33 12.82 L102.5 16.12 L101.67 12.82 L98.38 12 L101.67 11.18 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:5.24s;--dl2:-3.54s"></path></svg></div>
 </div>
 </div>
-<div class="pg-sep" data-sep aria-hidden="true" style="margin: var(--tmp) auto"><svg viewBox="0 0 320 80" width="320" height="80" fill="none" aria-hidden="true" focusable="false"><defs><radialGradient id="pgc1h"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0.55"></stop><stop offset="0.35" stop-color="#E6D3A3" stop-opacity="0.2"></stop><stop offset="1" stop-color="#E6D3A3" stop-opacity="0"></stop></radialGradient></defs><circle class="pg-co" cx="36" cy="62" r="1.3" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.98s;--dl2:-4.21s"></circle><circle class="pg-co" cx="150" cy="72" r="1" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.52s;--dl2:-3.73s"></circle><circle class="pg-co" cx="292" cy="24" r="1.5" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.26s;--dl2:-4.69s"></circle><circle class="pg-ha" cx="110" cy="44" r="9.1" fill="url(#pgc1h)" style="--d:4.61s;--dl2:-0.9s"></circle><path class="pg-co" d="M110 40.5 L110.7 43.3 L113.5 44 L110.7 44.7 L110 47.5 L109.3 44.7 L106.5 44 L109.3 43.3 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.61s;--dl2:-0.9s"></path><circle class="pg-ha" cx="268" cy="58" r="13" fill="url(#pgc1h)" style="--d:5.35s;--dl2:-4.07s"></circle><path class="pg-co" d="M268 53 L269 57 L273 58 L269 59 L268 63 L267 59 L263 58 L267 57 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:5.35s;--dl2:-4.07s"></path><defs><linearGradient id="pgc1t" gradientUnits="userSpaceOnUse" x1="-36.38" y1="-24.24" x2="31.84" y2="13.58"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0"></stop><stop offset="0.7" stop-color="#E6D3A3" stop-opacity="0.35"></stop><stop offset="1" stop-color="#F6EBD0" stop-opacity="0.95"></stop></linearGradient></defs><g class="pg-fly" style="--d:7.5s;--o:250px -380px;--a:-24deg"><path d="M31.42 14.32 L-36.38 -24.24 L32.25 12.84 Z" fill="url(#pgc1t)"></path><circle cx="31.84" cy="13.58" r="7" fill="url(#pgc1h)"></circle><circle cx="31.84" cy="13.58" r="1.5" fill="#F6EBD0"></circle></g></svg></div>
+<div class="pg-sep" data-sep aria-hidden="true" style="margin: var(--tmp) auto"><svg viewBox="0 0 320 80" width="320" height="80" fill="none" aria-hidden="true" focusable="false"><defs><radialGradient id="pgc1h"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0.55"></stop><stop offset="0.35" stop-color="#E6D3A3" stop-opacity="0.2"></stop><stop offset="1" stop-color="#E6D3A3" stop-opacity="0"></stop></radialGradient></defs><circle class="pg-co" cx="36" cy="62" r="1.3" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.98s;--dl2:-4.21s"></circle><circle class="pg-co" cx="150" cy="72" r="1" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.52s;--dl2:-3.73s"></circle><circle class="pg-co" cx="292" cy="24" r="1.5" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.26s;--dl2:-4.69s"></circle><circle class="pg-ha" cx="110" cy="44" r="9.1" fill="url(#pgc1h)" style="--d:4.61s;--dl2:-0.9s"></circle><path class="pg-co" d="M110 40.5 L110.7 43.3 L113.5 44 L110.7 44.7 L110 47.5 L109.3 44.7 L106.5 44 L109.3 43.3 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.61s;--dl2:-0.9s"></path><circle class="pg-ha" cx="268" cy="58" r="13" fill="url(#pgc1h)" style="--d:5.35s;--dl2:-4.07s"></circle><path class="pg-co" d="M268 53 L269 57 L273 58 L269 59 L268 63 L267 59 L263 58 L267 57 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:5.35s;--dl2:-4.07s"></path></svg></div>
 <div class="pg-row">
 <svg class="pg-motif pg-motif-r" viewBox="0 0 400 300" fill="none" aria-hidden="true" style="display: block; height: auto; overflow: visible; ">
 <g stroke="#E6D3A3" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round"><line x1="56" y1="262" x2="122" y2="202" vector-effect="non-scaling-stroke"></line><line x1="122" y1="202" x2="98" y2="128" vector-effect="non-scaling-stroke"></line><line x1="98" y1="128" x2="184" y2="150" vector-effect="non-scaling-stroke"></line><line x1="184" y1="150" x2="122" y2="202" vector-effect="non-scaling-stroke"></line><line x1="184" y1="150" x2="214" y2="76" vector-effect="non-scaling-stroke"></line><line x1="214" y1="76" x2="294" y2="100" vector-effect="non-scaling-stroke"></line><line x1="294" y1="100" x2="338" y2="28" vector-effect="non-scaling-stroke"></line><line x1="184" y1="150" x2="256" y2="214" vector-effect="non-scaling-stroke"></line></g>
@@ -334,14 +348,14 @@ Réserver un soin</a>
 
 <section style="position: relative; overflow-x: clip; padding: 0 var(--gut); background: radial-gradient(64% 25% at 50% 28%, rgba(30, 52, 94, 0.5) 0%, rgba(11, 21, 38, 0) 100%), radial-gradient(56% 24% at 50% 74%, rgba(30, 52, 94, 0.6) 0%, rgba(11, 21, 38, 0) 100%)">
 <canvas data-glitter="0.45" data-kind="still" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none"></canvas>
-<div style="position: relative"><div class="pg-sep pg-bs-sep" data-sep aria-hidden="true" style="margin: 0 auto var(--sec)"><svg viewBox="0 0 320 80" width="320" height="80" fill="none" aria-hidden="true" focusable="false"><defs><radialGradient id="pgc2h"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0.55"></stop><stop offset="0.35" stop-color="#E6D3A3" stop-opacity="0.2"></stop><stop offset="1" stop-color="#E6D3A3" stop-opacity="0"></stop></radialGradient></defs><circle class="pg-co" cx="30" cy="26" r="1.4" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.09s;--dl2:-4.11s"></circle><circle class="pg-co" cx="176" cy="72" r="1" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.63s;--dl2:-3.98s"></circle><circle class="pg-co" cx="296" cy="60" r="1.3" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.37s;--dl2:-4.3s"></circle><circle class="pg-ha" cx="76" cy="58" r="13" fill="url(#pgc2h)" style="--d:4.71s;--dl2:-1.74s"></circle><path class="pg-co" d="M76 53 L77 57 L81 58 L77 59 L76 63 L75 59 L71 58 L75 57 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.71s;--dl2:-1.74s"></path><circle class="pg-ha" cx="214" cy="34" r="9.1" fill="url(#pgc2h)" style="--d:4.26s;--dl2:-0.56s"></circle><path class="pg-co" d="M214 30.5 L214.7 33.3 L217.5 34 L214.7 34.7 L214 37.5 L213.3 34.7 L210.5 34 L213.3 33.3 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.26s;--dl2:-0.56s"></path><defs><linearGradient id="pgc2t" gradientUnits="userSpaceOnUse" x1="349.52" y1="-21.63" x2="280.65" y2="14.99"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0"></stop><stop offset="0.7" stop-color="#E6D3A3" stop-opacity="0.35"></stop><stop offset="1" stop-color="#F6EBD0" stop-opacity="0.95"></stop></linearGradient></defs><g class="pg-fly" style="--d:9.5s;--o:60px -400px;--a:22deg"><path d="M280.25 14.23 L349.52 -21.63 L281.05 15.74 Z" fill="url(#pgc2t)"></path><circle cx="280.65" cy="14.99" r="7" fill="url(#pgc2h)"></circle><circle cx="280.65" cy="14.99" r="1.5" fill="#F6EBD0"></circle></g></svg></div></div>
+<div style="position: relative"><div class="pg-sep pg-bs-sep" data-sep aria-hidden="true" style="margin: 0 auto var(--sec)"><svg viewBox="0 0 320 80" width="320" height="80" fill="none" aria-hidden="true" focusable="false"><defs><radialGradient id="pgc2h"><stop offset="0" stop-color="#E6D3A3" stop-opacity="0.55"></stop><stop offset="0.35" stop-color="#E6D3A3" stop-opacity="0.2"></stop><stop offset="1" stop-color="#E6D3A3" stop-opacity="0"></stop></radialGradient></defs><circle class="pg-co" cx="30" cy="26" r="1.4" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.09s;--dl2:-4.11s"></circle><circle class="pg-co" cx="176" cy="72" r="1" fill="#E6D3A3" fill-opacity="0.5" style="--d:5.63s;--dl2:-3.98s"></circle><circle class="pg-co" cx="296" cy="60" r="1.3" fill="#E6D3A3" fill-opacity="0.5" style="--d:6.37s;--dl2:-4.3s"></circle><circle class="pg-ha" cx="76" cy="58" r="13" fill="url(#pgc2h)" style="--d:4.71s;--dl2:-1.74s"></circle><path class="pg-co" d="M76 53 L77 57 L81 58 L77 59 L76 63 L75 59 L71 58 L75 57 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.71s;--dl2:-1.74s"></path><circle class="pg-ha" cx="214" cy="34" r="9.1" fill="url(#pgc2h)" style="--d:4.26s;--dl2:-0.56s"></circle><path class="pg-co" d="M214 30.5 L214.7 33.3 L217.5 34 L214.7 34.7 L214 37.5 L213.3 34.7 L210.5 34 L213.3 33.3 Z" fill="#E6D3A3" fill-opacity="0.8" style="--d:4.26s;--dl2:-0.56s"></path></svg></div></div>
 <div id="soins" style="position: relative; max-width: 1184px; margin: 0 auto; padding: 0; scroll-margin-top: 40px">
 <h2 style="margin: 0; font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 54px); line-height: 1.1; letter-spacing: 0.01em; color: #F2EEE4; text-wrap: balance; text-align: center">Soins</h2>
-<ul class="pg-cards" style="list-style: none; margin: var(--blk) 0 0; padding: 0">
-<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible"><path d="M8.31 -1.77 A8.5 8.5 0 1 1 1.77 -8.31"></path><path d="M7.78 -7.78 L9.9 -9.9"></path><circle cx="4.31" cy="-11.84" r="0.8" fill="#E6D3A3" stroke="none"></circle><circle cx="11.84" cy="-4.31" r="0.8" fill="#E6D3A3" stroke="none"></circle><circle cx="0" cy="-0" r="0.95" fill="#E6D3A3" stroke="none"></circle></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage</span></a></li>
-<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage%20sexuel." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible"><path d="M-3.4 -9.4 A10 10 0 0 0 -3.4 9.4 A13.5 13.5 0 0 1 -3.4 -9.4 Z"></path><path d="M3.4 -9.4 A10 10 0 0 1 3.4 9.4 A13.5 13.5 0 0 0 3.4 -9.4 Z"></path><circle cx="0" cy="0" r="1.15" fill="#E6D3A3" stroke="none"></circle></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage sexuel</span></a></li>
-<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20Lib%C3%A9ration%20des%20m%C3%A9moires%20cellulaires." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible"><path d="M0.6 0 L0.72 0.11 L0.81 0.26 L0.87 0.44 L0.9 0.65 L0.87 0.87 L0.8 1.1 L0.67 1.32 L0.5 1.53 L0.27 1.72 L0 1.87 L-0.31 1.97 L-0.66 2.02 L-1.02 2 L-1.4 1.92 L-1.77 1.77 L-2.13 1.54 L-2.45 1.25 L-2.74 0.89 L-2.97 0.47 L-3.13 0 L-3.22 -0.51 L-3.22 -1.05 L-3.13 -1.6 L-2.94 -2.14 L-2.66 -2.66 L-2.29 -3.15 L-1.83 -3.58 L-1.28 -3.94 L-0.67 -4.22 L-0 -4.4 L0.71 -4.47 L1.44 -4.43 L2.17 -4.26 L2.88 -3.97 L3.56 -3.56 L4.17 -3.03 L4.71 -2.4 L5.15 -1.67 L5.47 -0.87 L5.67 -0 L5.72 0.91 L5.63 1.83 L5.39 2.75 L4.99 3.63 L4.45 4.45 L3.78 5.2 L2.98 5.84 L2.06 6.35 L1.06 6.72 L0 6.93 L-1.1 6.97 L-2.22 6.83 L-3.32 6.52 L-4.37 6.02 L-5.35 5.35 L-6.22 4.52 L-6.97 3.55 L-7.56 2.46 L-7.97 1.26 L-8.2 0 C-8.2 -6 -5.2 -11.5 -0.7 -14"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Libération des mémoires cellulaires</span></a></li>
-<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20108.8." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible"><circle r="8.5"></circle><circle cx="0" cy="-8.5" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="6.01" cy="-6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="8.5" cy="0" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="6.01" cy="6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="0" cy="8.5" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-6.01" cy="6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-8.5" cy="0" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-6.01" cy="-6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><path d="M0 -3 L0 -5.6"></path><path d="M2.12 -2.12 L3.96 -3.96"></path><path d="M3 0 L5.6 0"></path><path d="M2.12 2.12 L3.96 3.96"></path><path d="M0 3 L0 5.6"></path><path d="M-2.12 2.12 L-3.96 3.96"></path><path d="M-3 0 L-5.6 0"></path><path d="M-2.12 -2.12 L-3.96 -3.96"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">108.8</span></a></li>
+<ul class="pg-cards" data-sep style="list-style: none; margin: var(--blk) 0 0; padding: 0">
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible; --ed: 0ms"><path class="pg-st" pathLength="1" d="M8.31 -1.77 A8.5 8.5 0 1 1 1.77 -8.31"></path><path class="pg-st" pathLength="1" d="M7.78 -7.78 L9.9 -9.9"></path><circle cx="4.31" cy="-11.84" r="0.8" fill="#E6D3A3" stroke="none"></circle><circle cx="11.84" cy="-4.31" r="0.8" fill="#E6D3A3" stroke="none"></circle><circle cx="0" cy="-0" r="0.95" fill="#E6D3A3" stroke="none"></circle></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20D%C3%A9parasitage%20sexuel." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible; --ed: 60ms"><path class="pg-st" pathLength="1" d="M-3.4 -9.4 A10 10 0 0 0 -3.4 9.4 A13.5 13.5 0 0 1 -3.4 -9.4 Z"></path><path class="pg-st" pathLength="1" d="M3.4 -9.4 A10 10 0 0 1 3.4 9.4 A13.5 13.5 0 0 0 3.4 -9.4 Z"></path><circle cx="0" cy="0" r="1.15" fill="#E6D3A3" stroke="none"></circle></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Déparasitage sexuel</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20Lib%C3%A9ration%20des%20m%C3%A9moires%20cellulaires." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible; --ed: 120ms"><path class="pg-st" pathLength="1" d="M0.6 0 L0.72 0.11 L0.81 0.26 L0.87 0.44 L0.9 0.65 L0.87 0.87 L0.8 1.1 L0.67 1.32 L0.5 1.53 L0.27 1.72 L0 1.87 L-0.31 1.97 L-0.66 2.02 L-1.02 2 L-1.4 1.92 L-1.77 1.77 L-2.13 1.54 L-2.45 1.25 L-2.74 0.89 L-2.97 0.47 L-3.13 0 L-3.22 -0.51 L-3.22 -1.05 L-3.13 -1.6 L-2.94 -2.14 L-2.66 -2.66 L-2.29 -3.15 L-1.83 -3.58 L-1.28 -3.94 L-0.67 -4.22 L-0 -4.4 L0.71 -4.47 L1.44 -4.43 L2.17 -4.26 L2.88 -3.97 L3.56 -3.56 L4.17 -3.03 L4.71 -2.4 L5.15 -1.67 L5.47 -0.87 L5.67 -0 L5.72 0.91 L5.63 1.83 L5.39 2.75 L4.99 3.63 L4.45 4.45 L3.78 5.2 L2.98 5.84 L2.06 6.35 L1.06 6.72 L0 6.93 L-1.1 6.97 L-2.22 6.83 L-3.32 6.52 L-4.37 6.02 L-5.35 5.35 L-6.22 4.52 L-6.97 3.55 L-7.56 2.46 L-7.97 1.26 L-8.2 0 C-8.2 -6 -5.2 -11.5 -0.7 -14"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">Libération des mémoires cellulaires</span></a></li>
+<li style="display: flex"><a class="pg-card" href="https://wa.me/33667576074?text=Bonjour%20Pascale%2C%20je%20souhaite%20des%20informations%20sur%20le%20soin%20%3A%20108.8." target="_blank" rel="noopener" style="display: flex; flex: 1; flex-direction: column; align-items: center; box-sizing: border-box; min-height: clamp(138px, 25vw, 330px); padding: clamp(24px, 4.6vw, 62px) 10px clamp(16px, 2.4vw, 28px); border-radius: 999px 999px 4px 4px; text-align: center; text-decoration: none; color: #F2EEE4"><svg class="pg-tw" width="40" height="40" viewBox="-13 -13 26 26" fill="none" stroke="#E6D3A3" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex: none; overflow: visible; --ed: 180ms"><circle class="pg-st" pathLength="1" r="8.5"></circle><circle cx="0" cy="-8.5" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="6.01" cy="-6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="8.5" cy="0" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="6.01" cy="6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="0" cy="8.5" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-6.01" cy="6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-8.5" cy="0" r="0.95" fill="#E6D3A3" stroke="none"></circle><circle cx="-6.01" cy="-6.01" r="0.95" fill="#E6D3A3" stroke="none"></circle><path class="pg-st" pathLength="1" d="M0 -3 L0 -5.6"></path><path class="pg-st" pathLength="1" d="M2.12 -2.12 L3.96 -3.96"></path><path class="pg-st" pathLength="1" d="M3 0 L5.6 0"></path><path class="pg-st" pathLength="1" d="M2.12 2.12 L3.96 3.96"></path><path class="pg-st" pathLength="1" d="M0 3 L0 5.6"></path><path class="pg-st" pathLength="1" d="M-2.12 2.12 L-3.96 3.96"></path><path class="pg-st" pathLength="1" d="M-3 0 L-5.6 0"></path><path class="pg-st" pathLength="1" d="M-2.12 -2.12 L-3.96 -3.96"></path></svg><span style="margin: auto 0; padding-top: 12px; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px, 1.75vw, 24px); line-height: 1.26; text-wrap: balance">108.8</span></a></li>
 </ul>
 </div>
 <div id="contact" style="position: relative; max-width: 1184px; margin: 0 auto; padding: 0 0 var(--sec); text-align: center; scroll-margin-top: 0">
@@ -405,7 +419,7 @@ p.x = W * 0.5 + Math.cos(an) * rx * 1.25 * d; p.y = H * 0.5 + Math.sin(an) * ry 
 }
 function seed() {
 var veil = kind === 'veil' || kind === 'halo', i, n = Math.round(W * H / (veil ? 4300 : 7200) * k);
-n = Math.max(kind === 'veil' ? 90 : 24, Math.min(veil ? 420 : 240, n)); P = []; M = [];
+n = Math.max(kind === 'veil' ? 90 : 24, Math.min(veil ? 420 : 240, n)); if (window.innerWidth < 768) { n = Math.round(n / 2); } P = []; M = [];
 for (i = 0; i < n; i++) {
 var q = Math.random(), big = Math.random() < (veil ? 0.17 : 0.03);
 var p = { tone: q < 0.55 ? 0 : (q < 0.82 ? 1 : 2), big: big };
