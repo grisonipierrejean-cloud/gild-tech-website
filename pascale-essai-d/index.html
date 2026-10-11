@@ -22,7 +22,7 @@
 <link rel="preload" href="../pascale/fonts/albert-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../pascale/pascale-grisoni.jpg" as="image">
 <script>document.documentElement.className+=' js'</script>
-<link rel="preload" href="fonts/spectral-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:'Marcellus';font-style:normal;font-weight:400;font-display:swap;src:url(../pascale/fonts/marcellus-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:'Albert Sans';font-style:normal;font-weight:100 900;font-display:swap;src:url(../pascale/fonts/albert-sans-latin-wght-normal.woff2) format('woff2')}
@@ -278,14 +278,16 @@ to { opacity: 1; transform: scale(1) }
 45% { transform: scale(1.12); opacity: .7 }
 }
 
-@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/spectral-latin-400-normal.woff2) format('woff2')}
-.pg main p,.pg .pg-sub,.pg footer p{font-family:'Spectral',Georgia,serif}
-.pg-row>p.pg-tx-r,.pg-tri p{font-size:clamp(19.5px,5vw,21px) !important;line-height:1.7 !important;letter-spacing:.003em;color:#E4E2DA !important}
-.pg .pg-sub{font-size:clamp(18.5px,4.8vw,20px) !important;line-height:1.5 !important}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/cormorant-garamond-latin-wght-normal.woff2) format('woff2')}
+.pg main p,.pg .pg-sub,.pg footer p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500}
+.pg-row>p.pg-tx-r,.pg-tri p{font-size:clamp(22px,5.7vw,24px) !important;line-height:1.52 !important;letter-spacing:.006em;color:#ECEAE2 !important}
+.pg footer p{font-size:17px !important}
+.pg .pg-sub{font-size:clamp(21px,5.5vw,23px) !important;line-height:1.38 !important}
 .pg-enum span{margin-left:0 !important}
 @media (max-width:767px){.pg-row p.pg-enum{width:auto !important;max-width:none !important;text-align:center !important}}
 html{overflow-x:clip}
-.pg-hero{background:linear-gradient(180deg,rgba(11,21,38,0) 62%,#0B1526 100%),#0B1526 url(img/hero-m.jpg) 50% 0/cover no-repeat !important}
+.pg-hero{--st:calc(min(400px,72vw)*1.398);background:#0B1526 url(img/hero-m.jpg) 50% 0/auto calc((var(--st) + 178px)/0.584) no-repeat !important}
+.pg-copy{padding-top:calc(var(--st) + 150px) !important;background:linear-gradient(to bottom,rgba(11,21,38,0) 0,rgba(11,21,38,0) calc(var(--st) + 96px),rgba(11,21,38,.9) calc(var(--st) + 134px),#0B1526 calc(var(--st) + 190px)) !important}
 .pg-film{mix-blend-mode:screen;filter:brightness(.6);-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 96%);mask-image:linear-gradient(180deg,#000 60%,transparent 96%)}
 .pg-row{isolation:isolate}
 .pg-row:has(.pg-band){padding-block:clamp(56px,11vw,140px)}
@@ -309,9 +311,9 @@ main>section:first-child{overflow-x:clip}
 .pg-band-b{order:0;height:auto}
 .pg-band-a::before{background:linear-gradient(90deg,rgba(11,21,38,.1) 0%,rgba(11,21,38,.5) 46%,rgba(11,21,38,.62) 100%),url(img/voile.jpg) 0 30%/cover no-repeat}
 .pg-band-b::before{background:linear-gradient(90deg,rgba(11,21,38,.1) 0%,rgba(11,21,38,.5) 46%,rgba(11,21,38,.62) 100%),url(img/brume.jpg) 0 80%/cover no-repeat}
-.pg-copy{padding:clamp(44px,10svh,112px) var(--gut) clamp(18px,3.4svh,48px) !important}
+.pg-copy{padding:clamp(44px,10svh,112px) var(--gut) clamp(18px,3.4svh,48px) !important;background:none !important}
 .pg-h1{font-size:clamp(38px,min(5.5vw,8.4svh),80px) !important}
-.pg .pg-sub{margin-top:clamp(14px,2.8svh,40px) !important;font-size:clamp(17px,2.7svh,20px) !important}
+.pg .pg-sub{margin-top:clamp(14px,2.8svh,40px) !important;font-size:clamp(19px,3.1svh,23px) !important}
 .pg-copy .pg-acts{margin-top:clamp(18px,3.4svh,40px) !important}
 .pg-copy .pg-wlp{margin-top:clamp(8px,1.6svh,16px) !important}
 .pg-row-r::before{background:linear-gradient(rgba(11,21,38,.5),rgba(11,21,38,.5)),url(img/terre.jpg) 50% 72%/cover no-repeat}
