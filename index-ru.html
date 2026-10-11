@@ -118,7 +118,22 @@
       .mk-card { padding: 1.8rem 1.4rem; }
       .footer-inner { justify-content: center; text-align: center; }
     }
+
+    /* Film d'ouverture accueil : fond de la partie haute du premier écran, texte inchangé */
+    body { overflow-x: clip; }
+    .mk:has(.hero-film) { align-items: flex-start; padding-top: 0; }
+    .hero-film { position: relative; isolation: isolate; overflow: hidden; margin: 0 calc(50% - 50vw) 3rem; padding: 5rem calc(50vw - 50%) 4.5rem; background: #0A0A0A url(/assets/film/accueil-ouverture-fin.jpg) center bottom / cover no-repeat; }
+    .film-ok .hero-film { background-image: url(/assets/film/accueil-ouverture-debut.jpg); }
+    .hero-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; z-index: -2; opacity: 0; transition: opacity .5s ease; }
+    .hero-film video.on { opacity: 1; }
+    .hero-film::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(10,10,10,.66); }
+    .hero-film .mk-tag { color: #BFDBFE; }
+    .hero-film .mk-title { color: #fff; }
+    .hero-film .mk-title .mk-accent { color: #BFDBFE; }
+    .hero-film .mk-sub { color: #F1F5F9; margin-bottom: 0; }
+    @media (max-width: 720px) { .hero-film { padding-top: 3.5rem; padding-bottom: 3.5rem; margin-bottom: 2.25rem; } .hero-film::before { background: rgba(10,10,10,.74); } }
   </style>
+  <script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -138,9 +153,11 @@
 
   <section class="mk" aria-label="GILD-TECH, выберите свой рынок">
     <div class="mk-inner">
+      <div class="hero-film">
       <div class="mk-tag">Для независимых агентств недвижимости</div>
       <h1 class="mk-title">Кто отвечает вашим покупателям, <span class="mk-accent">пока вы на показе?</span></h1>
       <p class="mk-sub">Sarah. 365 дней в году, никогда не болеет, никогда не в отпуске, пока вы делаете то, что умеете только вы: продаёте.</p>
+      </div>
       <div class="mk-grid">
         <a class="mk-card" href="/sarah-uk-ru.html">
           <span class="mk-flag">🇬🇧</span>
@@ -179,5 +196,23 @@
     </div>
   </footer>
 
+<script>
+/* Film d'ouverture : chargé après le premier affichage, joué une fois, arrêt sur la dernière image */
+(function(){
+  var z=document.querySelector('.hero-film'), r=document.documentElement;
+  if(!z||!r.classList.contains('film-ok')) return;
+  function go(){
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.preload='auto';
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+    v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
+    v.addEventListener('error',function(){ v.remove(); r.classList.remove('film-ok'); });
+    v.src='/assets/film/accueil-ouverture.mp4';
+    z.insertBefore(v,z.firstChild);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.remove(); r.classList.remove('film-ok'); });
+  }
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',function(){ setTimeout(go,150); });
+})();
+</script>
 </body>
 </html>

@@ -307,8 +307,26 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 @media(max-width:640px){.duo-mob{grid-template-columns:1fr!important}}
 .hero .hero-main { color: var(--g900); font-size: 1.2rem; font-weight: 600; margin: -0.6rem 0 1.4rem; max-width: 760px; }
 @media (max-width: 480px) { .hero:has(.hero-main) { padding-top: 1.25rem; } .hero .subtitle:has(+ .hero-main) { margin-bottom: 1.1rem; } .hero .hero-main { font-size: 1.02rem; line-height: 1.4; margin: 0 0 1rem; } }
+
+/* Film d'ouverture Belgique : fond de la partie haute du premier écran, texte inchangé */
+body { overflow-x: clip; }
+.hero:has(.hero-film) { padding-top: 0; }
+.hero-film { position: relative; isolation: isolate; overflow: hidden; margin: -3rem calc(50% - 50vw) 0; padding: 7rem calc(50vw - 50%) 1.75rem; background: #0A0A0A url(/assets/film/belgique-ouverture-fin.jpg) center / cover no-repeat; }
+.hero-film + .stat-bar { margin-top: 1.25rem; }
+.film-ok .hero-film { background-image: url(/assets/film/belgique-ouverture-debut.jpg); }
+.hero-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0; transition: opacity .5s ease; }
+.hero-film video.on { opacity: 1; }
+.hero-film::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10,10,10,.84) 0%, rgba(10,10,10,.80) 62%, rgba(10,10,10,.50) 100%); }
+.hero-film h1 { color: #fff; }
+.hero-film h1 .accent { color: #BFDBFE; }
+.hero-film .subtitle { color: #F1F5F9; }
+.hero-film .subtitle strong { color: #fff; }
+.hero-film .hero-main { color: #fff; }
+@media (max-width: 880px) { .hero-film::before { background: rgba(10,10,10,.82); } }
+@media (max-width: 480px) { .hero-film { padding-top: 4.25rem; } }
 </style>
   
+<script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -336,6 +354,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
   <!-- HERO -->
   <!-- A, ATTENTION -->
   <section class="hero">
+    <div class="hero-film">
     <span class="badge-new">🇧🇪 Pour agences immobilières indépendantes</span>
     <h1>365 jours par an.<br><span class="accent">Jamais malade, jamais en congé.</span></h1>
     <p class="subtitle"><strong>Sarah répond à vos candidats acquéreurs pendant que vous dormez, pendant que vous êtes en visite, pendant que vous signez.</strong> Elle répond en quelques minutes, dans la langue du candidat, et elle se branche sur votre CRM s'il dispose d'une API, sinon chaque demande arrive dans un tableau de suivi fourni.</p>
@@ -343,6 +362,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
     <div class="ctas">
       <a href="https://calendly.com/ops-gild-tech/30min" class="btn-primary">Réserver mon audit gratuit</a>
       <a href="#comment" class="btn-secondary">Voir Sarah en action</a>
+    </div>
     </div>
 
     <div class="launch-hero">Offre de lancement Belgique : le palier cœur à 290 £/mois, le temps que j’installe les premières agences une par une.</div>
@@ -650,5 +670,23 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 <a href="https://calendly.com/ops-gild-tech/30min" class="sticky-cta-mobile" aria-label="Réserver mon audit gratuit">🚀 Audit gratuit, 30 min</a>
 
+<script>
+/* Film d'ouverture : chargé après le premier affichage, joué une fois, arrêt sur la dernière image */
+(function(){
+  var z=document.querySelector('.hero-film'), r=document.documentElement;
+  if(!z||!r.classList.contains('film-ok')) return;
+  function go(){
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.preload='auto';
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('aria-hidden','true');
+    v.addEventListener('playing',function(){ v.classList.add('on'); },{once:true});
+    v.addEventListener('error',function(){ v.remove(); r.classList.remove('film-ok'); });
+    v.src='/assets/film/belgique-ouverture.mp4';
+    z.insertBefore(v,z.firstChild);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.remove(); r.classList.remove('film-ok'); });
+  }
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',function(){ setTimeout(go,150); });
+})();
+</script>
 </body>
 </html>
