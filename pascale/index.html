@@ -278,6 +278,8 @@ to { opacity: 1; transform: scale(1) }
 45% { transform: scale(1.12); opacity: .7 }
 }
 
+.pg{background:#0B1526 url(img/ciel.svg) 0 0/1200px 1200px repeat !important}
+main>section{background:none !important}
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/cormorant-garamond-latin-wght-normal.woff2) format('woff2')}
 .pg main p,.pg .pg-sub,.pg footer p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500}
 .pg-row>p.pg-tx-r,.pg-tri p{font-size:clamp(22px,5.7vw,24px) !important;line-height:1.52 !important;letter-spacing:.006em;color:#ECEAE2 !important}
@@ -293,14 +295,15 @@ html{overflow-x:clip}
 .pg-row{isolation:isolate}
 .pg-row:has(.pg-band){padding-block:clamp(56px,11vw,140px)}
 .pg-band{width:100% !important;max-width:none !important;margin:0 !important;height:150px}
-.pg-band::before{content:'';position:absolute;z-index:-1;top:0;bottom:0;left:calc(50% - 50vw);width:100vw;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 78%,transparent 100%)}
+.pg-band::before{content:'';position:absolute;z-index:-1;top:-120px;bottom:-120px;left:calc(50% - 50vw);width:100vw;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 36%,#000 64%,transparent 100%)}
 .pg-band-a::before{background:linear-gradient(180deg,rgba(11,21,38,.15) 0%,rgba(11,21,38,.72) 46%,rgba(11,21,38,.86) 100%),url(img/voile.jpg) 12% 0/auto 100% no-repeat}
 .pg-band-b{order:2;height:190px}
 .pg-band-b::before{background:linear-gradient(180deg,rgba(11,21,38,.88) 0%,rgba(11,21,38,.74) 52%,rgba(11,21,38,.1) 100%),url(img/brume.jpg) 22% 100%/auto 64% no-repeat}
 main>section:first-child{overflow-x:clip}
 .pg-row-r{isolation:isolate;padding-block:clamp(64px,11vw,150px);padding-bottom:clamp(170px,30vw,150px)}
-.pg-row-r::before{content:'';position:absolute;z-index:-1;top:0;bottom:0;left:calc(50% - 50vw);width:100vw;background:linear-gradient(180deg,rgba(11,21,38,.9) 0%,rgba(11,21,38,.78) 52%,rgba(11,21,38,.2) 100%),url(img/terre.jpg) 50% 100%/auto 62% no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24%,#000 76%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 24%,#000 76%,transparent 100%)}
-.pg-bs{background:linear-gradient(180deg,#0B1526 0%,rgba(11,21,38,.86) 14%,rgba(11,21,38,.88) 82%,#0B1526 100%),url(img/soie.jpg) 50% 50%/cover no-repeat !important}
+.pg-row-r::before{content:'';position:absolute;z-index:-1;top:-120px;bottom:-120px;left:calc(50% - 50vw);width:100vw;background:linear-gradient(180deg,rgba(11,21,38,.9) 0%,rgba(11,21,38,.78) 52%,rgba(11,21,38,.2) 100%),url(img/terre.jpg) 50% 100%/auto 62% no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 36%,#000 64%,transparent 100%)}
+.pg-bs{position:relative;isolation:isolate}
+.pg-bs::before{content:'';position:absolute;z-index:-1;inset:-60px 0;background:linear-gradient(rgba(11,21,38,.84),rgba(11,21,38,.84)),url(img/soie.jpg) 50% 50%/cover no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26%,#000 74%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 26%,#000 74%,transparent 100%)}
 .pg-card{padding:0 0 clamp(18px,2.4vw,28px) !important;min-height:0 !important;overflow:hidden}
 .pg-ci{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;-webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 97%);mask-image:linear-gradient(180deg,#000 58%,transparent 97%)}
 .pg-card span{padding:0 10px !important;margin:auto 0 !important}
@@ -313,7 +316,7 @@ main>section:first-child{overflow-x:clip}
 .pg-pl{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(21px,5.4vw,24px);line-height:1.25;color:#ECEAE2}
 @media (min-width:860px){
 .pg-hero{background:linear-gradient(180deg,rgba(11,21,38,0) 66%,#0B1526 100%),#0B1526 url(img/hero-d.jpg) 100% 50%/cover no-repeat !important}
-.pg-bs{background:linear-gradient(180deg,#0B1526 0%,rgba(11,21,38,.76) 16%,rgba(11,21,38,.8) 80%,#0B1526 100%),url(img/soie.jpg) 50% 50%/cover no-repeat !important}
+.pg-bs::before{background:linear-gradient(rgba(11,21,38,.74),rgba(11,21,38,.74)),url(img/soie.jpg) 50% 50%/cover no-repeat}
 .pg-row-r{padding-bottom:clamp(64px,11vw,150px)}
 .pg-band{height:auto;align-self:stretch}
 .pg-band-b{order:0;height:auto}
