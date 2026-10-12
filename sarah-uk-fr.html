@@ -148,7 +148,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 @media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; }
 .price-card.featured { border-color: var(--pink); border-width: 2px; box-shadow: 0 8px 24px rgba(11,29,51,0.10); }
-.price-card.featured::before { content: "★ LE CŒUR"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
+.price-card.featured::before { content:"★ Le cœur"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--pink); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 700; letter-spacing:normal; }
 .price-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
 .price-card .for { font-size: 0.82rem; color: var(--g500); font-style: italic; margin-bottom: 1rem; }
 .price-card .price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
@@ -168,7 +168,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .employee-vs { display:grid; grid-template-columns: 1fr 1fr; gap:1.4rem; max-width:1080px; margin:0 auto; }
 .ev-card { background:var(--white); border:1px solid var(--g200); border-radius:18px; padding:2rem 2.2rem; box-shadow:0 1px 2px rgba(10,10,12,.04), 0 8px 32px -16px rgba(10,10,12,.10); position:relative; }
 .ev-card.ev-sarah { background:#EFF6FF; color:var(--g900); border-color:#DBEAFE; box-shadow:0 1px 2px rgba(10,10,12,.04), 0 12px 36px -12px rgba(37,99,235,.18); }
-.ev-card.ev-sarah::before { content:"✨ L'EMPLOYÉE PARFAITE"; position:absolute; top:-12px; right:1.4rem; background:#94A3B8; color:#0A0A0A; font-size:10px; font-weight:800; letter-spacing:.12em; padding:5px 11px; border-radius:999px; }
+.ev-card.ev-sarah::before { content:"✨ L'employée parfaite"; position:absolute; top:-12px; right:1.4rem; background:#94A3B8; color:#0A0A0A; font-size:10px; font-weight:800; letter-spacing:normal; padding:5px 11px; border-radius:999px; }
 .ev-header { display:flex; align-items:center; gap:.8rem; margin-bottom:1rem; }
 .ev-emoji { font-size:1.8rem; filter:saturate(.9); }
 .ev-title { font-size:1.05rem; font-weight:800; letter-spacing:-0.01em; }
@@ -248,7 +248,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .card-cta { display:block; text-align:center; background:var(--pink); color:#fff; padding:.9rem 1rem; border-radius:10px; font-weight:700; font-size:0.92rem; text-decoration:none; transition:all .2s; margin-top:1.3rem; }
 .card-cta:hover { background:var(--pink-light); box-shadow:0 8px 24px rgba(37,99,235,.28); transform:translateY(-1px); }
 .price-card.heart { border-color:var(--pink); border-width:2px; box-shadow:0 28px 60px rgba(37,99,235,0.20); z-index:2; padding:2rem 2.2rem; }
-.price-card.featured::before { content:"★ MOST CHOSEN"; position:absolute; top:-0.7rem; left:1.5rem; background:var(--pink); color:#fff; padding:0.3rem 0.85rem; border-radius:16px; font-size:0.68rem; font-weight:800; letter-spacing:0.08em; }
+.price-card.featured::before { content:"★ Le plus choisi"; position:absolute; top:-0.7rem; left:1.5rem; background:var(--pink); color:#fff; padding:0.3rem 0.85rem; border-radius:16px; font-size:0.68rem; font-weight:800; letter-spacing:normal; }
   .pricing-grid{grid-template-rows:auto;align-items:stretch;row-gap:0;}
   .price-card{grid-row:1 / span 3;grid-template-rows:subgrid;row-gap:0;}
   .price-card > .pc-top{display:flex;flex-direction:column;}
@@ -292,6 +292,11 @@ body { overflow-x: clip; }
   <!-- Cinema intro overlay (3.5s, once per session) -->
   
 <script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
+<style>/* Correctif 11/10 (ORDRE 092, R2) : règle « zéro signature IA », pas de petites capitales espacées */
+div,
+div.launch-badge,
+div.an-title,
+th{text-transform:none!important;letter-spacing:normal!important}</style>
 </head>
 <body>
 
@@ -507,7 +512,7 @@ body { overflow-x: clip; }
           <li><strong>Jusqu'à 100 acheteurs par mois, messages WhatsApp compris.</strong><span class="deliv-exp">Au-delà : £1 par acheteur supplémentaire. Un acheteur est une personne qui a écrit à Sarah dans le mois.</span></li>
           <li><strong>23h. Un acheteur écrit à votre agence. Sarah a déjà répondu.</strong><span class="deliv-exp">Réponse en moins de 5 minutes, 24h/24, sur un numéro WhatsApp dédié à votre agence, langue détectée automatiquement.</span></li>
           <li><strong>Fini de perdre 20 minutes avec un curieux qui « regarde juste ».</strong><span class="deliv-exp">Qualification systématique : budget, type de bien, délai. Tout est noté dans votre CRM ou votre tableau de suivi. Les sérieux en haut.</span></li>
-          <li><strong>Vous ne courez plus après les rendez-vous. Ils vous attendent.</strong><span class="deliv-exp">Deux créneaux proposés sur vos disponibilités, confirmation, fiche prospect complète dans votre agenda.</span></li>
+          <li><strong>Vous ne courez plus après les rendez-vous. Ils vous attendent.</strong><span class="deliv-exp">L'acheteur choisit son heure, Sarah la cale sur vos heures d'ouverture, confirmation, fiche prospect complète dans votre agenda.</span></li>
           <li><strong>Sarah se branche sur votre CRM s'il dispose d'une API.</strong><span class="deliv-exp">Sinon, un tableau de suivi vous est fourni : chaque prospect et chaque relance y sont notés. Vous ne changez rien à vos outils. Rien à installer, rien à apprendre.</span></li>
           <li><strong>Un acheteur chaud ne patiente jamais. Vous non plus.</strong><span class="deliv-exp">Alerte instantanée sur votre WhatsApp perso : nom, budget, bien visé, créneau. Une vibration, vous savez tout.</span></li>
           <li><strong>Le juridique ? Elle ne joue pas à l'avocat.</strong><span class="deliv-exp">Garde-fou juridique : les bases publiques, puis elle vous passe la main. Jamais un cas tranché sans vous.</span></li>

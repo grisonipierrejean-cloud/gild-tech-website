@@ -168,7 +168,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 @media (max-width:1100px){ .price-card{display:block;} .price-card.heart{order:-1;} }
 .price-card { background: var(--blanc); border: 1px solid var(--g200); border-radius: var(--r); padding: 2rem; position: relative; display: flex; flex-direction: column; }
 .price-card.featured { border-color: var(--cta); border-width: 2px; box-shadow: 0 8px 24px rgba(46,107,230,0.12); background: var(--blanc); }
-.price-card.featured::before { content: "★ THE HEART"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; }
+.price-card.featured::before { content:"★ Het hart"; position: absolute; top: -0.7rem; left: 1.5rem; background: var(--cta); color: var(--blanc); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.7rem; font-weight: 800; letter-spacing:normal; }
 .price-card .kicker { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--bleu-nuit); background: var(--bleu-nuit-bg); border: 1px solid var(--bleu-nuit-soft); padding: 4px 9px; border-radius: 999px; display: inline-block; margin-bottom: .6rem; }
 .price-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--noir); }
 .price-card .for { font-size: 0.9rem; color: var(--g700); margin-bottom: 1.1rem; line-height: 1.5; }
@@ -285,7 +285,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 .card-cta { display:block; text-align:center; background:var(--pink); color:#fff; padding:.9rem 1rem; border-radius:10px; font-weight:700; font-size:0.92rem; text-decoration:none; transition:all .2s; margin-top:1.3rem; }
 .card-cta:hover { background:var(--pink-light); box-shadow:0 8px 24px rgba(37,99,235,.28); transform:translateY(-1px); }
 .price-card.heart { border-color:var(--pink); border-width:2px; box-shadow:0 28px 60px rgba(37,99,235,0.20); z-index:2; padding:2rem 2.2rem; }
-.price-card.featured::before { content:"★ MOST CHOSEN"; position:absolute; top:-0.7rem; left:1.5rem; background:var(--pink); color:#fff; padding:0.3rem 0.85rem; border-radius:16px; font-size:0.68rem; font-weight:800; letter-spacing:0.08em; }
+.price-card.featured::before { content:"★ Meest gekozen"; position:absolute; top:-0.7rem; left:1.5rem; background:var(--pink); color:#fff; padding:0.3rem 0.85rem; border-radius:16px; font-size:0.68rem; font-weight:800; letter-spacing:normal; }
   .pricing-grid{grid-template-rows:auto;align-items:stretch;row-gap:0;}
   .price-card{grid-row:1 / span 3;grid-template-rows:subgrid;row-gap:0;}
   .price-card > .pc-top{display:flex;flex-direction:column;}
@@ -328,6 +328,11 @@ body { overflow-x: clip; }
 </style>
   
 <script>(function(){try{var c=navigator.connection||{},m=function(q){return window.matchMedia&&matchMedia(q).matches};if(!m('(prefers-reduced-motion: reduce)')&&!m('(prefers-reduced-data: reduce)')&&!c.saveData&&!/2g/.test(c.effectiveType||''))document.documentElement.classList.add('film-ok');}catch(e){}})();</script>
+<style>/* Correctif 11/10 (ORDRE 092, R2) : règle « zéro signature IA », pas de petites capitales espacées */
+span.badge,
+div.launch-badge,
+div.an-title,
+div.name{text-transform:none!important;letter-spacing:normal!important}</style>
 </head>
 <body>
 
@@ -366,8 +371,7 @@ body { overflow-x: clip; }
     </div>
 
     <div class="launch-hero">Lanceringsaanbod België: de hoofdformule aan £290 per maand, zolang ik de eerste kantoren één voor één opstart.</div>
-    <div class="stat-bar">
-      <div class="stat-item"><div class="stat-num">~€10,000</div><div class="stat-label">gemiddelde commissie per verkoop in België <em>(<a href="https://statbel.fgov.be/fr/themes/construction-logement/prix-de-limmobilier" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Statbel 2024</a> × 3 % marktpraktijk BIV)</em></div></div>
+    <div class="stat-bar" style="grid-template-columns:1fr;text-align:center">
       <div class="stat-item"><div class="stat-num">£290<small style="font-size:1rem;color:var(--g500);font-weight:500;">/maand</small></div><div class="stat-label">Sarah, prijs 24 maanden vast</div></div>
     </div>
     <div style="margin-top:1.6rem;text-align:center;font-size:0.78rem;color:var(--g500);letter-spacing:0.02em;line-height:1.7;">
@@ -528,7 +532,7 @@ body { overflow-x: clip; }
           <li><strong>Tot 100 kandidaat-kopers per maand, WhatsApp-berichten inbegrepen.</strong><span class="deliv-exp">Daarboven: £1 per extra kandidaat-koper. Een kandidaat-koper is een persoon die Sarah in de loop van de maand heeft geschreven.</span></li>
           <li><strong>23u. Een koper schrijft uw kantoor aan. Sarah heeft al geantwoord.</strong><span class="deliv-exp">Antwoord binnen 5 minuten, 24/7, op een apart WhatsApp-nummer voor uw kantoor, taal automatisch herkend.</span></li>
           <li><strong>Geen 20 minuten meer verliezen aan iemand die "gewoon eens kijkt".</strong><span class="deliv-exp">Systematische kwalificatie: budget, type pand, termijn. Alles genoteerd in uw CRM of uw opvolgingstabel. De ernstige kandidaten bovenaan.</span></li>
-          <li><strong>U loopt niet meer achter afspraken aan. Ze wachten op u.</strong><span class="deliv-exp">Twee momenten voorgesteld volgens uw beschikbaarheid, bevestiging, volledige fiche van de kandidaat in uw agenda.</span></li>
+          <li><strong>U loopt niet meer achter afspraken aan. Ze wachten op u.</strong><span class="deliv-exp">De koper kiest zelf zijn moment, Sarah stemt het af op uw openingsuren, bevestiging, volledige fiche van de kandidaat in uw agenda.</span></li>
           <li><strong>Sarah koppelt met uw CRM als dat een API heeft.</strong><span class="deliv-exp">Anders krijgt u een opvolgingstabel: elke kandidaat en elke opvolging wordt erin genoteerd. U verandert niets aan uw tools. Niets te installeren, niets te leren.</span></li>
           <li><strong>Een warme koper wacht nooit. U ook niet.</strong><span class="deliv-exp">Onmiddellijke melding op uw persoonlijke WhatsApp: naam, budget, pand, moment. Eén trilling en u weet alles.</span></li>
           <li><strong>Juridische vragen? Ze speelt geen advocaat.</strong><span class="deliv-exp">Juridische vangrail: de openbare basisinformatie, daarna geeft ze aan u door. Nooit een beslissing zonder u.</span></li>
@@ -621,7 +625,7 @@ body { overflow-x: clip; }
     <div>
       <div class="faq-item">
         <h4>Gaan mijn kopers het gevoel hebben dat ze met een robot praten?</h4>
-        <p>Sarah stelt één relevante vraag en stelt daarna twee momenten in uw agenda voor. Dat gaat sneller dan een mens en is handiger voor de koper: hij kiest zelf zijn moment. De toon is menselijk, de tekst is aanpasbaar, het WhatsApp-nummer is van u. U houdt de volledige controle over het gesprek en neemt het met één klik over wanneer u wilt.</p>
+        <p>Sarah stelt één relevante vraag en laat de koper daarna zelf zijn moment kiezen, afgestemd op uw openingsuren. Dat gaat sneller dan een mens en is handiger voor de koper. De toon is menselijk, de tekst is aanpasbaar, het WhatsApp-nummer is van u. U houdt de volledige controle over het gesprek en neemt het met één klik over wanneer u wilt.</p>
       </div>
       <div class="faq-item">
         <h4>En als Sarah een antwoord verkeerd begrijpt?</h4>

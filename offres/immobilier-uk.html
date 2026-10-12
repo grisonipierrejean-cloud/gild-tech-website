@@ -55,7 +55,7 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 .offres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
 .offre-card { border: 1px solid var(--g200); border-radius: var(--r); padding: 1.8rem 1.5rem; position: relative; background: var(--white); display: flex; flex-direction: column; }
 .offre-card.recommended { border-color: var(--pink); background: var(--pink-bg); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12); }
-.offre-card.recommended::before { content: "★ RECOMMENDED"; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--white); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; letter-spacing: 0.05em; }
+.offre-card.recommended::before { content:"★ Recommended"; position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--white); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; letter-spacing:normal; }
 .offre-name { font-size: 1.3rem; font-weight: 800; color: var(--g900); margin-bottom: 0.3rem; }
 .offre-tagline { font-size: 0.85rem; color: var(--g500); margin-bottom: 1.2rem; }
 .offre-price { font-size: 2.2rem; font-weight: 900; color: var(--g900); letter-spacing: -0.02em; }
@@ -155,7 +155,10 @@ body { background: var(--white); color: var(--g900); font-family: var(--font); l
 </style>
   <!-- Cinema intro overlay (3.5s, once per session) -->
   
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.svg"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#0A0A0A"></head>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.svg"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#0A0A0A"><style>/* Correctif 11/10 (ORDRE 092, R2) : règle « zéro signature IA », pas de petites capitales espacées */
+div.pain-title,
+div.roi-label{text-transform:none!important;letter-spacing:normal!important}</style>
+</head>
 <body>
 <div class="page">
 
