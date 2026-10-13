@@ -166,7 +166,7 @@
     // Deux graines : celle du parcours (demo/etat.json, générée par demo/parcours.py) et la graine PUBLIQUE, entièrement fictive
     // (demo/etat-public.json), choisie par window.RENOM_GRAINE = "public" dans config.js. Chacune a son propre stockage.
     const PUBLIQUE = window.RENOM_GRAINE === "public";
-    const K = "renom-demo-v11" + (PUBLIQUE ? "-public" : "");
+    const K = "renom-demo-v12" + (PUBLIQUE ? "-public" : "");
     let E = null, session = null, pret = null;
     const sauver = () => { try { localStorage.setItem(K, JSON.stringify(E)); } catch (e) {} };
     // Deux onglets ouverts (l'espace et la page de validation par lien) : chacun reprend l'état écrit par l'autre.
@@ -301,7 +301,7 @@
     }
     function completerGraine(G) {
       if (G.maj_membre) return G; G.maj_membre = 1; E = G;
-      ["avis_historique", "releves", "concurrents", "audits_mensuels", "collecte_evenements", "actions_fiche", "jetons_validation"].forEach(liste);
+      ["avis_historique", "google_demo", "concurrents", "audits_mensuels", "collecte_evenements", "actions_fiche", "jetons_validation"].forEach(liste);
       G.bases = G.bases || {};
       Object.values(G.commerces).forEach(c => { if (c.demarrage_fini == null) c.demarrage_fini = c.id !== "c-autre"; if (!("demarrage" in c)) c.demarrage = null; c.notifications = c.notifications || { email: true, whatsapp: false }; });
       const maintenant = Date.now(); datesRelatives(G, maintenant);
@@ -334,19 +334,19 @@
           for (let j = 0; j < n; j++, k++) { const cree = d0 + Math.round((1 + j * 26 / n) * 24 + 9) * MS_H, rep = j < REPONDUS[i] ? cree + Math.round(DELAIS[i] * (0.7 + 0.15 * ((j * 3) % 5))) * MS_H : null;
             G.avis_historique.push({ id: "h-" + k, commerce_id: er.id, note: NOTES[k % NOTES.length], cree_le: iso(cree), repondu_le: rep ? iso(rep) : null, demo: true }); } });
         G.bases[er.id] = (prof && prof.base) || { nb: 31, somme: 133 };   // avis plus anciens que la période : 31 avis, moyenne 4,29
-        // Trois concurrents fictifs, relevés mensuels
-        [["Concurrent A", [118, 120, 123, 125, 128, 131], [4.6, 4.6, 4.6, 4.6, 4.6, 4.6]], ["Concurrent B", [52, 53, 54, 55, 57, 58], [4.2, 4.2, 4.1, 4.1, 4.1, 4.1]], ["Concurrent C", [21, 22, 24, 25, 27, 29], [4.3, 4.4, 4.4, 4.4, 4.5, 4.5]]]
+        // Trois concurrents fictifs. La base ne garde que leur identifiant de lieu et un libellé ; « google_demo » joue le rôle de Google
+        // (ce que la lecture à la demande renverrait aujourd'hui : nom, note, nombre d'avis), comme n8n/renom-resultats-google.json en service.
+        [["Concurrent A", 131, 4.6], ["Concurrent B", 58, 4.1], ["Concurrent C", 29, 4.5]]
           .forEach(([nom, nb, note], o) => { const pid = "demo-concurrent-" + "abc"[o];
             G.concurrents.push({ id: "conc-" + o, commerce_id: er.id, place_id: pid, nom, ordre: o + 1 });
-            nb.forEach((n, i) => G.releves.push({ id: "rel-" + o + "-" + i, commerce_id: er.id, mois: moisDecale(i - 5), place_id: pid, nom, est_concurrent: true, note: note[i], nb_avis: n, cree_le: iso(debutMois(moisDecale(i - 5)) + 24 * MS_H) })); });
-        // Audit mensuel de la fiche : 5 piliers notés sur 20
-        const P = { profil: [14, 14, 16, 16, 17, 17], categories: [12, 12, 13, 14, 14, 15], photos: [9, 10, 12, 13, 14, 16], avis: [12, 13, 13, 14, 14, 15], engagement: [9, 10, 11, 13, 14, 14] };
+            G.google_demo.push({ type: "concurrent", commerce_id: er.id, place_id: pid, nom, note, nb_avis: nb }); });
+        // Score actuel de la fiche (5 piliers notés sur 20), tel que la lecture à la demande le calculerait : jamais gardé mois après mois
+        const P = { profil: 17, categories: 15, photos: 16, avis: 15, engagement: 14 };
         const NOMS = { profil: "Complétude du profil", categories: "Catégories et attributs", photos: "Photos", avis: "Avis", engagement: "Signaux d'engagement" };
-        for (let i = 0; i < 6; i++) {
-          const piliers = Object.keys(P).map(cle => ({ cle, nom: NOMS[cle], note: P[cle][i], sur: 20 }));
-          G.audits_mensuels.push({ id: "aud-" + i, commerce_id: er.id, mois: moisDecale(i - 5), score: piliers.reduce((s, x) => s + x.note, 0), piliers,
-            themes: i === 5 ? (prof && prof.themes) || [{ theme: "Accueil et explications", positif: 9, negatif: 0 }, { theme: "Parcours et paysages", positif: 8, negatif: 1 }, { theme: "État du matériel", positif: 7, negatif: 0 }, { theme: "Durée de la sortie", positif: 2, negatif: 1 }, { theme: "Attente au départ", positif: 0, negatif: 2 }] : [] });
-        }
+        G.google_demo.push({ type: "fiche", commerce_id: er.id, piliers: Object.keys(P).map(cle => ({ cle, nom: NOMS[cle], note: P[cle], sur: 20 })) });
+        // Thèmes des avis du mois (table audits_mensuels : thèmes seulement, ni score ni piliers)
+        G.audits_mensuels.push({ id: "aud-5", commerce_id: er.id, mois: moisDecale(0), score: null, piliers: null,
+          themes: (prof && prof.themes) || [{ theme: "Accueil et explications", positif: 9, negatif: 0 }, { theme: "Parcours et paysages", positif: 8, negatif: 1 }, { theme: "État du matériel", positif: 7, negatif: 0 }, { theme: "Durée de la sortie", positif: 2, negatif: 1 }, { theme: "Attente au départ", positif: 0, negatif: 2 }] });
         // Passages sur la page d'avis et clics vers Google depuis le début du mois
         const d0 = debutMois(mois0()), duree = Math.max(MS_H, maintenant - d0 - MS_H);
         for (let i = 0; i < 46; i++) G.collecte_evenements.push({ commerce_id: er.id, type: "passage", cree_le: iso(d0 + Math.floor(duree * (i + 0.5) / 46)), demo: true });
@@ -387,12 +387,16 @@
           return { mois: m, note: st.note, nb_avis: st.nb_avis, avis_recus: recus.length, reponses: tous.filter(a => a.repondu_le && dans(a.repondu_le, m)).length,
             delai_moyen_h: moyenneH(recus.filter(a => a.repondu_le)), publications: publiees(c, m) }; });
         const periode = tous.filter(a => new Date(a.cree_le).getTime() >= debutMois(L[0])), repondus = periode.filter(a => a.repondu_le);
-        const conc = liste("concurrents").filter(x => x.commerce_id === c.id).sort((a, b) => a.ordre - b.ordre).map(x => ({ nom: x.nom,
-          mois: liste("releves").filter(r => r.commerce_id === c.id && r.est_concurrent && r.place_id === x.place_id && L.includes(r.mois)).sort((a, b) => a.mois.localeCompare(b.mois)).map(r => ({ mois: r.mois, note: r.note, nb_avis: r.nb_avis })) }));
-        const audits = liste("audits_mensuels").filter(x => x.commerce_id === c.id && L.includes(x.mois)).sort((a, b) => a.mois.localeCompare(b.mois));
-        const avecThemes = audits.filter(x => (x.themes || []).length).pop();
+        // Comme en service : l'historique de la fiche est recalculé depuis les avis présents, les concurrents et le score n'ont que l'état du jour.
+        const gd = liste("google_demo").filter(x => x.commerce_id === c.id), fiche = gd.find(x => x.type === "fiche"), m1 = mois0();
+        const conc = liste("concurrents").filter(x => x.commerce_id === c.id).sort((a, b) => a.ordre - b.ordre).map(x => { const g = gd.find(y => y.type === "concurrent" && y.place_id === x.place_id);
+          return { nom: (g && g.nom) || x.nom, mois: [{ mois: m1, note: g ? g.note : null, nb_avis: g ? g.nb_avis : null }] }; });
+        const avecThemes = liste("audits_mensuels").filter(x => x.commerce_id === c.id && L.includes(x.mois) && (x.themes || []).length).sort((a, b) => a.mois.localeCompare(b.mois)).pop();
+        const lue = mois.some(m => m.note != null);
         return { mois, reponses: { taux: periode.length ? Math.round(repondus.length / periode.length * 100) : null, delai_moyen_h: moyenneH(repondus) },
-          audit: audits.map(x => ({ mois: x.mois, score: x.score, piliers: x.piliers })), concurrents: conc, themes: avecThemes ? avecThemes.themes : [], collecte: mesureCollecte(c), portee: null };
+          audit: fiche ? [{ mois: m1, score: fiche.piliers.reduce((s, x) => s + x.note, 0), piliers: fiche.piliers }] : [], concurrents: conc, themes: avecThemes ? avecThemes.themes : [],
+          collecte: mesureCollecte(c), portee: null,
+          lecture_google: { le: iso(maintenant), statut: "ok", fiche: lue ? "lue" : "non_reliee", concurrents: conc.length ? "lus" : "aucun", score: fiche ? "calcule" : "non_reliee", historique_reconstitue: lue && n > 1, demo: true } };
       },
       async bilanMois() {
         await init(); const c = cur(), m = mois0(), debut = etatAvis(c, debutMois(m)), fin = etatAvis(c, Date.now() + 1);
@@ -645,7 +649,26 @@
       async demandesVideoAvis() { const c = await self.commerce(); return ok(await sb.from("videos_avis_demandes").select("id,avis_ids,fond,style,statut,motif,contenu_id,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(20)); },
       async demanderVideoAvis({ avis_ids, fond, style }) { vaControle(avis_ids, fond, style); const c = await self.commerce(); ok(await sb.from("videos_avis_demandes").insert({ commerce_id: c.id, avis_ids, fond, style })); },
       // ---- Mise à jour de l'espace membre : uniquement les tables et fonctions du contrat (ordres/CONTRAT-MAJ-MEMBRE.md)
-      async resultats(n) { return ok(await sb.rpc("resultats", { p_mois: Math.max(1, Math.min(12, +n || 6)) })); },
+      // Résultats : Google interdit de conserver note, nombre d'avis, noms et historique (ordres/BRANCHEMENT.md, « Conformité des résultats »).
+      // L'écran Résultats (n >= 2) demande donc une lecture à la demande au workflow n8n renom-resultats-google (config.js, lectureGoogleUrl),
+      // avec la session du commerçant ; la base plafonne ces lectures. Rien n'est gardé dans le navigateur. Sans adresse ou en échec : les chiffres
+      // de la base seuls, et la raison dans « lecture_google ». Les autres écrans (Collecte : n = 1) ne déclenchent aucune lecture de Google.
+      async resultats(n) {
+        n = Math.max(1, Math.min(12, +n || 6));
+        if (n >= 2 && cfg.lectureGoogleUrl) {
+          try {
+            const { data } = await sb.auth.getSession(), jeton = data && data.session && data.session.access_token;
+            if (jeton) {
+              const r = await fetch(cfg.lectureGoogleUrl, { method: "POST", headers: { "Content-Type": "application/json", Authorization: "Bearer " + jeton }, body: JSON.stringify({ p_mois: n }) });
+              const R = r.ok ? await r.json() : null;
+              if (R && Array.isArray(R.mois)) return R;
+            }
+          } catch (e) {}
+        }
+        const R = ok(await sb.rpc("resultats", { p_mois: n }));
+        R.lecture_google = { le: new Date().toISOString(), statut: n < 2 ? "non_demandee" : cfg.lectureGoogleUrl ? "indisponible" : "non_branchee" };
+        return R;
+      },
       async bilanMois() { return ok(await sb.rpc("bilan_mois", {})); },
       async modifierLegende(id, reseau, texte) { ok(await sb.rpc("modifier_legende", { p_contenu: id, p_reseau: reseau, p_texte: controlerLegende(reseau, texte) })); },
       async programmerAuto(id, reseaux) { return ok(await sb.rpc("programmer_auto", { p_contenu: id, p_reseaux: reseaux })); },

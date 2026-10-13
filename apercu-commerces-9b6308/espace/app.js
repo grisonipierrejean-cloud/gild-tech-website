@@ -237,18 +237,18 @@
 
   // ---------------- Accueil
   // Bilan du mois : 4 chiffres au plus et une phrase. Mêmes données que l'email du 1er du mois (fonction bilan_mois).
-  const bandeauDemo = () => D.mode === "demo" ? `<div class="bandeau-demo" role="note"><p class="fort">Chiffres de démonstration</p><p>Ces chiffres sont fictifs. En service, ils viennent des relevés mensuels de votre fiche Google et de votre espace.</p></div>` : "";
+  const bandeauDemo = () => D.mode === "demo" ? `<div class="bandeau-demo" role="note"><p class="fort">Chiffres de démonstration</p><p>Ces chiffres sont fictifs. En service, ceux de Google sont lus à l'ouverture de cette page, ceux de RENOM viennent de votre espace.</p></div>` : "";
   function bilanBloc(b) {
     if (!b) return "";
     const m = moisDe(b.mois || k0()), notes = b.note_debut != null && b.note_fin != null, n = x => +x || 0;
     const morceaux = [`RENOM a publié ${n(b.reponses_publiees)} ${pluriel(n(b.reponses_publiees), "réponse", "réponses")} à vos avis et ${n(b.publications)} ${pluriel(n(b.publications), "publication", "publications")}.`,
-      `Vous avez obtenu ${n(b.avis_obtenus)} ${pluriel(n(b.avis_obtenus), "nouvel avis", "nouveaux avis")}${notes ? (b.note_fin === b.note_debut ? ` et votre note reste à ${nombre(b.note_fin, 1)}.` : ` et votre note passe de ${nombre(b.note_debut, 1)} à ${nombre(b.note_fin, 1)}.`) : "."}`];
+      `${b.avis_obtenus_source === "avis_recus" ? "RENOM a reçu" : "Vous avez obtenu"} ${n(b.avis_obtenus)} ${pluriel(n(b.avis_obtenus), "nouvel avis", "nouveaux avis")}${notes ? (b.note_fin === b.note_debut ? ` et votre note reste à ${nombre(b.note_fin, 1)}.` : ` et votre note passe de ${nombre(b.note_debut, 1)} à ${nombre(b.note_fin, 1)}.`) : "."}`];
     if (n(b.a_valider)) morceaux.push(n(b.a_valider) === 1 ? "Une chose attend votre accord." : `${n(b.a_valider)} choses attendent votre accord.`);
     const chiffre = (lib, val) => `<div class="bilan-chiffre"><dt>${lib}</dt><dd class="chiffre">${val}</dd></div>`;
     return `<section class="carte bilan" aria-labelledby="bilan-titre"><div class="carte-tete"><h2 id="bilan-titre">Votre mois ${/^[aeiouyéè]/i.test(MOIS[m.getMonth()]) ? "d'" : "de "}${MOIS[m.getMonth()]}</h2><span class="note">À ce jour</span></div>
       ${D.mode === "demo" ? `<p class="note bilan-demo"><span class="fort">Chiffres de démonstration.</span> En service, ces chiffres viennent de votre fiche Google et de votre espace.</p>` : ""}
       <p class="texte2">${morceaux.join(" ")}</p>
-      <dl class="bilan-chiffres">${chiffre("Réponses publiées", nombre(n(b.reponses_publiees)))}${chiffre("Publications", nombre(n(b.publications)))}${chiffre("Note Google", notes ? nombre(b.note_fin, 1) : "Pas de relevé")}${chiffre("Avis obtenus", nombre(n(b.avis_obtenus)))}</dl>
+      <dl class="bilan-chiffres">${chiffre("Réponses publiées", nombre(n(b.reponses_publiees)))}${chiffre("Publications", nombre(n(b.publications)))}${chiffre("Note Google", notes ? nombre(b.note_fin, 1) : `<a href="#/resultats">Voir Résultats</a>`)}${chiffre("Avis obtenus", nombre(n(b.avis_obtenus)))}</dl>
       <p class="pied"><a href="#/resultats">Voir tous vos résultats</a></p></section>`;
   }
   const k0 = () => new Date().toISOString().slice(0, 7) + "-01";
@@ -532,11 +532,13 @@
       try { await D.marquerRetour(b.closest("[data-retour]").dataset.retour, b.dataset.lu === "1"); await dessinerRetours(); majCompteurs(); } catch (er) { $("retours-msg").textContent = er.message; }
     });
   }
-  // Mesure de la collecte : passages sur la page d'avis, clics vers Google, retours privés, nouveaux avis (écart entre deux relevés).
+  // Mesure de la collecte : passages sur la page d'avis, clics vers Google, retours privés, nouveaux avis (lus sur la fiche Google à la demande,
+  // jamais conservés : sans lecture, « Voir Résultats », jamais un zéro inventé).
   const MESURES = [["passages", "Passages sur votre page d'avis"], ["clics_google", "Clics vers Google"], ["retours_prives", "Retours privés"], ["nouveaux_avis", "Nouveaux avis"]];
-  const chiffresCollecte = (m, deux) => `<dl class="bilan-chiffres${deux ? " deux" : ""}">${MESURES.map(([k, lib]) => `<div class="bilan-chiffre"><dt>${lib}</dt><dd class="chiffre" data-mesure="${k}">${nombre(+m[k] || 0)}</dd></div>`).join("")}</dl>`;
+  const valeurMesure = (m, k) => k === "nouveaux_avis" && m[k] == null ? `<a href="#/resultats">Voir Résultats</a>` : nombre(+m[k] || 0);
+  const chiffresCollecte = (m, deux) => `<dl class="bilan-chiffres${deux ? " deux" : ""}">${MESURES.map(([k, lib]) => `<div class="bilan-chiffre"><dt>${lib}</dt><dd class="chiffre" data-mesure="${k}">${valeurMesure(m, k)}</dd></div>`).join("")}</dl>`;
   const blocMesure = m => m ? `<section class="carte" id="mesure-collecte"><div class="carte-tete"><h2>Ce mois-ci</h2>${D.mode === "demo" ? `<span class="note">Chiffres de démonstration</span>` : ""}</div>
-      ${chiffresCollecte(m)}<p class="note">Nouveaux avis : écart entre deux relevés de votre fiche Google. Un clic vers Google ne garantit pas qu'un avis a été publié.</p></section>` : "";
+      ${chiffresCollecte(m)}<p class="note">Nouveaux avis : avis publiés sur votre fiche Google depuis le 1er du mois, lus sur Google quand vous ouvrez Résultats. Un clic vers Google ne garantit pas qu'un avis a été publié.</p></section>` : "";
   async function collecte() {
     const c = await D.commerce(), l = lienAvis(c), co = c.couleurs || {}, page = l ? lienPagePublique(await D.jetonAvis()) : null;
     const mesure = await D.resultats(1).then(r => r && r.collecte).catch(() => null);
@@ -647,50 +649,63 @@
         ${etiquette(premier, "debut")}${dernier !== premier ? etiquette(dernier, "fin") : ""}</div>
       <div class="c-mois" aria-hidden="true">${pts.map((p, i) => `<span style="left:${X(i)}%">${p.court}</span>`).join("")}</div></figure>`;
   }
+  // Google interdit à RENOM de garder note, nombre d'avis, noms et historique (ordres/BRANCHEMENT.md, « Conformité des résultats ») : ces chiffres
+  // sont lus à l'ouverture de la page (lecture_google). La phrase dit ce qui a été lu, ou pourquoi rien ne l'a été.
+  function lectureTexte(lg) {
+    if (!lg || lg.statut === "non_demandee") return "";
+    if (lg.statut === "ok") return `Chiffres de Google lus à l'instant${lg.le ? ` (${heure(lg.le)})` : ""}. Google ne permet pas à RENOM de les garder : ils sont relus à chaque ouverture de cette page.`;
+    if (lg.statut === "limite") return "Limite de lectures de Google atteinte pour votre commerce (5 par jour, 20 par mois) : les chiffres de Google reviendront à la prochaine lecture possible. Ceux de RENOM sont à jour.";
+    if (lg.statut === "non_branchee") return "La lecture de Google n'est pas encore branchée : seuls les chiffres de RENOM s'affichent.";
+    return "Google n'a pas pu être lu pour le moment. Les chiffres de RENOM sont à jour.";
+  }
   async function resultats() {
-    const [c, R] = await Promise.all([D.commerce(), D.resultats(6)]), mois = (R && R.mois) || [], avecNote = mois.filter(m => m.note != null);
+    const [c, R] = await Promise.all([D.commerce(), D.resultats(6)]), mois = (R && R.mois) || [], avecNote = mois.filter(m => m.note != null), lg = (R && R.lecture_google) || {};
     const prem = avecNote[0], dern = avecNote[avecNote.length - 1], rep = (R && R.reponses) || {}, audit = (R && R.audit) || [], conc = (R && R.concurrents) || [], themes = (R && R.themes) || [], col = (R && R.collecte) || {};
     const pts = k => mois.map(m => ({ v: m[k] == null ? null : +m[k], lib: moisLong(m.mois), court: moisCourt(m.mois) }));
     const periode = mois.length ? `de ${moisLong(mois[0].mois)} à ${moisLong(mois[mois.length - 1].mois)}` : "";
     const ecart = (a, b, d) => { const x = Math.round((b - a) * 10 ** d) / 10 ** d; return x > 0 ? "+" + nombre(x, d) : x < 0 ? "−" + nombre(-x, d) : "stable"; };
-    const taux = pctTaux(rep.taux), dernierAudit = audit[audit.length - 1], premierAudit = audit[0];
+    const taux = pctTaux(rep.taux), dernierAudit = audit[audit.length - 1];
     const maxTheme = Math.max(1, ...themes.map(t => (+t.positif || 0) + (+t.negatif || 0)));
-    const derniereConc = x => (x.mois || [])[x.mois.length - 1] || {}, premiereConc = x => (x.mois || [])[0] || {};
+    const actuelConc = x => (x.mois || [])[x.mois.length - 1] || {}, actuel = mois[mois.length - 1] || {}, enCours = dern && dern === actuel;
+    const nonLu = lg.fiche === "non_reliee" ? "Votre fiche Google n'est pas encore reliée à RENOM." : "Note non lue pour le moment.";
+    const lecture = lectureTexte(lg);
     vue.innerHTML = `${entete("Résultats", "Ce que RENOM vous rapporte", "Vos avis Google, vos réponses, votre fiche et votre collecte, mois par mois" + (periode ? ", " + periode : "") + ".")}
       ${bandeauDemo()}
+      ${lecture ? `<p class="note lecture-google" id="lecture-google">${e(lecture)}</p>` : ""}
       <div class="rangee">
         <section class="carte moitie" aria-labelledby="r-note"><div class="carte-tete"><h2 id="r-note">Note Google</h2>${prem && dern && prem !== dern ? `<span class="note">${ecart(+prem.note, +dern.note, 1)} depuis ${MOIS[moisDe(prem.mois).getMonth()]}</span>` : ""}</div>
-          ${dern ? `<p><span class="chiffre grand-chiffre">${nombre(dern.note, 1)}</span> <span class="note">sur 5, relevé ${deMois(dern.mois)}</span></p>` : ""}
-          ${courbe(pts("note"), { fmt: v => nombre(v, 1), pas: 0.4, min: 1, alt: "Note Google mois par mois : " + avecNote.map(m => moisLong(m.mois) + " " + nombre(m.note, 1)).join(", ") + ".", vide: "Pas encore de relevé de votre fiche Google. Les relevés sont mensuels." })}</section>
+          ${dern ? `<p><span class="chiffre grand-chiffre">${nombre(dern.note, 1)}</span> <span class="note">sur 5, ${enCours ? "aujourd'hui sur Google" : "fin " + moisLong(dern.mois)}</span></p>` : ""}
+          ${courbe(pts("note"), { fmt: v => nombre(v, 1), pas: 0.4, min: 1, alt: "Note Google mois par mois : " + avecNote.map(m => moisLong(m.mois) + " " + nombre(m.note, 1)).join(", ") + ".", vide: nonLu })}
+          ${lg.historique_reconstitue && avecNote.length > 1 ? `<p class="note" id="historique-note">Mois passés recalculés à partir des avis présents aujourd'hui sur votre fiche : un avis supprimé depuis n'y figure plus.</p>` : ""}</section>
         <section class="carte moitie" aria-labelledby="r-nb"><div class="carte-tete"><h2 id="r-nb">Nombre d'avis</h2>${prem && dern && prem !== dern ? `<span class="note">${ecart(+prem.nb_avis, +dern.nb_avis, 0)} depuis ${MOIS[moisDe(prem.mois).getMonth()]}</span>` : ""}</div>
           ${dern ? `<p><span class="chiffre grand-chiffre">${nombre(dern.nb_avis)}</span> <span class="note">avis au total sur votre fiche</span></p>` : ""}
-          ${courbe(pts("nb_avis"), { fmt: v => nombre(v), pas: 2, min: 0, alt: "Nombre total d'avis mois par mois : " + avecNote.map(m => moisLong(m.mois) + " " + nombre(m.nb_avis)).join(", ") + ".", vide: "Pas encore de relevé de votre fiche Google." })}</section>
+          ${courbe(pts("nb_avis"), { fmt: v => nombre(v), pas: 2, min: 0, alt: "Nombre total d'avis mois par mois : " + avecNote.map(m => moisLong(m.mois) + " " + nombre(m.nb_avis)).join(", ") + ".", vide: lg.fiche === "non_reliee" ? nonLu : "Nombre d'avis non lu pour le moment." })}</section>
       </div>
       ${avecNote.length ? `<details class="carte details-chiffres"><summary>Voir les chiffres mois par mois</summary>
         <table class="tab compact"><thead><tr><th>Mois</th><th>Note</th><th>Avis au total</th><th>Avis reçus</th><th>Réponses publiées</th><th>Délai moyen de réponse</th><th>Publications</th></tr></thead><tbody>
-        ${mois.map(m => `<tr><td data-l="Mois">${cap(moisLong(m.mois))}</td><td data-l="Note">${m.note == null ? "Pas de relevé" : nombre(m.note, 1)}</td><td data-l="Avis au total">${m.nb_avis == null ? "Pas de relevé" : nombre(m.nb_avis)}</td><td data-l="Avis reçus">${nombre(+m.avis_recus || 0)}</td><td data-l="Réponses">${nombre(+m.reponses || 0)}</td><td data-l="Délai moyen">${m.delai_moyen_h == null ? "Aucune réponse" : delaiTexte(m.delai_moyen_h)}</td><td data-l="Publications">${nombre(+m.publications || 0)}</td></tr>`).join("")}</tbody></table></details>` : ""}
+        ${mois.map(m => `<tr><td data-l="Mois">${cap(moisLong(m.mois))}</td><td data-l="Note">${m.note == null ? "Non lue" : nombre(m.note, 1)}</td><td data-l="Avis au total">${m.nb_avis == null ? "Non lu" : nombre(m.nb_avis)}</td><td data-l="Avis reçus">${nombre(+m.avis_recus || 0)}</td><td data-l="Réponses">${nombre(+m.reponses || 0)}</td><td data-l="Délai moyen">${m.delai_moyen_h == null ? "Aucune réponse" : delaiTexte(m.delai_moyen_h)}</td><td data-l="Publications">${nombre(+m.publications || 0)}</td></tr>`).join("")}</tbody></table></details>` : ""}
       <div class="rangee">
         <section class="carte etroite" aria-labelledby="r-rep"><h2 id="r-rep">Réponses à vos avis</h2>
           ${taux == null ? `<p class="texte2">Aucun avis reçu sur la période.</p>` : `<dl class="bilan-chiffres deux"><div class="bilan-chiffre"><dt>Taux de réponse</dt><dd class="chiffre" id="taux">${nombre(taux)} %</dd></div><div class="bilan-chiffre"><dt>Délai moyen</dt><dd class="chiffre" id="delai">${delaiTexte(rep.delai_moyen_h)}</dd></div></dl>
           <p class="note">Sur les avis reçus ces ${mois.length} derniers mois. Un avis sensible n'a pas de réponse automatique : il compte comme non répondu tant qu'une personne ne l'a pas traité.</p>`}</section>
-        <section class="carte large" aria-labelledby="r-audit"><div class="carte-tete"><h2 id="r-audit">Score de votre fiche Google</h2>${dernierAudit && premierAudit && dernierAudit !== premierAudit ? `<span class="note">${ecart(+premierAudit.score, +dernierAudit.score, 0)} points depuis ${MOIS[moisDe(premierAudit.mois).getMonth()]}</span>` : ""}</div>
-          ${dernierAudit ? `<p><span class="chiffre grand-chiffre">${nombre(+dernierAudit.score)}</span> <span class="note">sur 100, audit ${deMois(dernierAudit.mois)}</span></p>
-          <div class="audit">
-            <div class="barres" role="img" aria-label="Score mois par mois : ${e(audit.map(a => moisLong(a.mois) + " " + a.score).join(", "))}.">${audit.map((a, i) => `<div class="barre" title="${e(moisLong(a.mois) + " : " + a.score + " sur 100")}"><span class="b-val">${i === 0 || i === audit.length - 1 ? nombre(+a.score) : ""}</span><span class="b-zone"><span class="b-col" style="height:${Math.max(2, +a.score)}%"></span></span><span class="b-mois">${moisCourt(a.mois)}</span></div>`).join("")}</div>
-            <div class="pile serre piliers">${piliersDe(dernierAudit.piliers).map(p => mesure(e(p.nom), p.note, p.sur)).join("")}</div></div>
-          <p class="note">Cinq piliers notés sur 20, calculés à partir de ce que l'API Google Places laisse voir de votre fiche.</p>` : `<p class="texte2">Pas encore d'audit mensuel de votre fiche.</p>`}</section>
+        <section class="carte large" aria-labelledby="r-audit"><div class="carte-tete"><h2 id="r-audit">Score de votre fiche Google</h2><span class="note">État actuel</span></div>
+          ${dernierAudit ? `<p><span class="chiffre grand-chiffre">${nombre(+dernierAudit.score)}</span> <span class="note">sur 100, calculé aujourd'hui</span></p>
+          <div class="audit"><div class="pile serre piliers">${piliersDe(dernierAudit.piliers).map(p => mesure(e(p.nom), p.note, p.sur)).join("")}</div></div>
+          <p class="note">Cinq piliers notés sur 20, calculés aujourd'hui à partir de ce que l'API Google Places laisse voir de votre fiche. Google ne permet pas de garder ce score : il n'y a pas d'historique.</p>`
+          : `<p class="texte2">${lg.score === "non_reliee" ? "Votre fiche Google n'est pas encore reliée à RENOM : le score ne peut pas être calculé." : "Score non calculé pour le moment."}</p>`}</section>
       </div>
-      <section class="carte" aria-labelledby="r-conc"><div class="carte-tete"><h2 id="r-conc">Vous et vos concurrents</h2><span class="note">Relevés ${dern ? deMois(dern.mois) : "de ce mois"}</span></div>
-        ${conc.length ? `<div class="defile"><table class="comparatif"><thead><tr><th>Commerce</th><th>Note</th><th>Avis</th><th>Avis gagnés</th></tr></thead><tbody>
-          <tr class="vous"><td data-l="Commerce"><span class="fort">${e(c.nom)}</span> (vous)</td><td data-l="Note">${dern ? nombre(dern.note, 1) : "Pas de relevé"}</td><td data-l="Avis">${dern ? nombre(dern.nb_avis) : "Pas de relevé"}</td><td data-l="Avis gagnés">${prem && dern ? ecart(+prem.nb_avis, +dern.nb_avis, 0) : "Pas de relevé"}</td></tr>
-          ${conc.map(x => { const a = premiereConc(x), b = derniereConc(x); return `<tr><td data-l="Commerce">${e(x.nom)}</td><td data-l="Note">${b.note == null ? "Pas de relevé" : nombre(b.note, 1)}</td><td data-l="Avis">${b.nb_avis == null ? "Pas de relevé" : nombre(b.nb_avis)}</td><td data-l="Avis gagnés">${a.nb_avis != null && b.nb_avis != null ? ecart(+a.nb_avis, +b.nb_avis, 0) : "Pas de relevé"}</td></tr>`; }).join("")}</tbody></table></div>`
+      <section class="carte" aria-labelledby="r-conc"><div class="carte-tete"><h2 id="r-conc">Vous et vos concurrents</h2><span class="note">État actuel</span></div>
+        ${conc.length ? `<p class="note" id="conc-mention">État actuel, Google ne permet pas de conserver l'historique des concurrents.</p>
+          <div class="defile"><table class="comparatif"><thead><tr><th>Commerce</th><th>Note</th><th>Avis</th></tr></thead><tbody>
+          <tr class="vous"><td data-l="Commerce"><span class="fort">${e(c.nom)}</span> (vous)</td><td data-l="Note">${actuel.note == null ? "Non lue" : nombre(actuel.note, 1)}</td><td data-l="Avis">${actuel.nb_avis == null ? "Non lu" : nombre(actuel.nb_avis)}</td></tr>
+          ${conc.map(x => { const b = actuelConc(x); return `<tr><td data-l="Commerce">${e(x.nom)}</td><td data-l="Note">${b.note == null ? "Non lue" : nombre(b.note, 1)}</td><td data-l="Avis">${b.nb_avis == null ? "Non lu" : nombre(b.nb_avis)}</td></tr>`; }).join("")}</tbody></table></div>`
         : `<p class="texte2">Aucun concurrent suivi pour le moment. Indiquez à RENOM jusqu'à 3 commerces à suivre.</p>`}</section>
       <div class="rangee">
         <section class="carte moitie" aria-labelledby="r-themes"><h2 id="r-themes">Ce que disent vos avis</h2>
           ${themes.length ? `<ul class="liste themes">${themes.map(t => { const p = +t.positif || 0, n = +t.negatif || 0; return `<li><div class="theme"><p class="fort">${e(t.theme)}</p><div class="t-barre" aria-hidden="true">${p ? `<span class="t-pos" style="width:${p / maxTheme * 100}%"></span>` : ""}${n ? `<span class="t-neg" style="width:${n / maxTheme * 100}%"></span>` : ""}</div></div><p class="note t-compte">${p} ${pluriel(p, "positif", "positifs")} · ${n} ${pluriel(n, "négatif", "négatifs")}</p></li>`; }).join("")}</ul>
           <p class="note">Nombre d'avis qui parlent de chaque thème. Trait bleu : mentions positives. Trait foncé : mentions négatives.</p>` : `<p class="texte2">Pas encore d'analyse des thèmes de vos avis.</p>`}</section>
         <section class="carte moitie" aria-labelledby="r-col"><div class="carte-tete"><h2 id="r-col">Collecte d'avis, ce mois-ci</h2><a href="#/collecte">Ouvrir la collecte</a></div>${chiffresCollecte(col, true)}
-          <p class="note">Passages et clics comptés sur votre page d'avis. Nouveaux avis : écart entre deux relevés de votre fiche Google.</p></section>
+          <p class="note">Passages et clics comptés sur votre page d'avis. Nouveaux avis : avis publiés sur votre fiche Google depuis le 1er du mois, lus à l'instant.</p></section>
       </div>
       <section class="carte" aria-labelledby="r-portee"><h2 id="r-portee">Portée de vos publications</h2><p class="texte2" id="portee">Disponible quand les statistiques des réseaux seront branchées.</p></section>`;
   }
