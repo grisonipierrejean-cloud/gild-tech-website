@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RENOM, demande enregistrée</title><meta name="robots" content="noindex,nofollow">
+<link rel="preload" href="fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">RENOM</a><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<main>
+<section class="wrap simple">
+<h1>Demande enregistrée.</h1>
+<p class="chapo">Votre audit arrive par email sous 24&nbsp;h : votre note, vos avis et leurs réponses, face à trois commerces voisins. Aucun accès à vos comptes n'est nécessaire.</p>
+<form class="form carte-form" id="comp" name="complement" method="POST" action="merci.html" data-netlify="true" netlify-honeypot="website">
+<input type="hidden" name="form-name" value="complement"><input type="hidden" name="subject" id="c-sujet" value="Complément RENOM"><input type="hidden" name="commerce" id="c-commerce"><input type="hidden" name="email" id="c-email">
+<div class="lib">Pour aller plus vite, si vous le souhaitez. Ces deux champs sont facultatifs.</div>
+<div class="champ"><label for="c-tel">Téléphone ou WhatsApp</label><input id="c-tel" name="telephone" type="tel" autocomplete="tel"></div>
+<div class="champ"><label for="c-fiche">Lien de votre fiche Google</label><input id="c-fiche" name="fiche_google" type="url" inputmode="url"></div>
+<div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<button class="btn btn-prim" id="c-envoi" type="submit">Envoyer ces informations</button>
+<div class="note" id="c-ok" role="status" hidden>Merci, c'est noté.</div>
+</form>
+</section>
+</main>
+<footer class="pied"><div class="wrap"><div class="logo">RENOM</div><div>Aperçu de démonstration</div></div></footer>
+<script>
+(function(){var f=document.getElementById('comp'),ok=document.getElementById('c-ok');
+try{var d=JSON.parse(sessionStorage.getItem('renom')||'{}');document.getElementById('c-commerce').value=d.commerce||'';document.getElementById('c-email').value=d.email||'';document.getElementById('c-sujet').value='Complément RENOM : '+(d.commerce||'')}catch(x){}
+f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
+Promise.resolve({ok:true}).toString()})
+.then(function(r){if(!r.ok)throw 0;f.querySelectorAll('input:not([type=hidden]),button').forEach(function(x){x.disabled=true});ok.hidden=false})
+.catch(function(){ok.textContent="L'envoi a échoué. Réessayez.";ok.hidden=false})});})();
+</script>
+</body></html>

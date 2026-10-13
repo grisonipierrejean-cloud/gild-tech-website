@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RENOM, fiche de mise en route</title><meta name="robots" content="noindex,nofollow">
+<link rel="preload" href="fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">RENOM</a><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<main>
+<section class="wrap simple">
+<h1>Votre fiche de mise en route.</h1>
+<p class="chapo">Dix minutes, depuis votre téléphone. Nous écrivons avec ces informations ; vous validez chaque contenu avant qu'il soit publié.</p>
+<form class="form-fiche carte-form" name="fiche-client" method="POST" action="mise-en-route.html" data-netlify="true" netlify-honeypot="website">
+<input type="hidden" name="form-name" value="fiche-client"><input type="hidden" name="subject" id="f-sujet" value="Fiche client RENOM">
+<div class="champ"><label for="f-nom">Nom du commerce</label><input id="f-nom" name="nom_affiche" type="text" required></div>
+<div class="champ demi"><label for="f-metier">Métier</label><select id="f-metier" name="metier" required><option value="restaurant">Restaurant</option><option value="beaute">Institut de beauté</option><option value="sport">Salle de sport ou studio</option><option value="autre">Autre commerce</option></select></div>
+<div class="champ demi"><label for="f-offre">Offre choisie</label><select id="f-offre" name="offre" required><option value="essentiel">Essentiel</option><option value="croissance">Croissance</option><option value="signature">Signature</option></select></div>
+<div class="champ demi"><label for="f-ville">Ville</label><input id="f-ville" name="ville" type="text" required></div>
+<div class="champ demi"><label for="f-nomc">Votre nom</label><input id="f-nomc" name="contact_nom" type="text" required></div>
+<div class="champ demi"><label for="f-email">Email</label><input id="f-email" name="contact_email" type="email" required></div>
+<div class="champ demi"><label for="f-tel">Téléphone ou WhatsApp</label><input id="f-tel" name="contact_tel" type="tel"></div>
+<div class="champ"><label for="f-fiche">Lien de votre fiche Google</label><input id="f-fiche" name="fiche_google" type="url" inputmode="url"></div>
+<div class="champ"><label for="f-col">Couleur principale de votre enseigne (code ou « je ne sais pas »)</label><input id="f-col" name="couleur" type="text"></div>
+<div class="champ"><label for="f-ton">Ton souhaité (par exemple : chaleureux, direct, raffiné)</label><input id="f-ton" name="ton" type="text"></div>
+<div class="champ"><label for="f-hor">Horaires d'ouverture</label><input id="f-hor" name="horaires" type="text"></div>
+<div class="champ"><label for="f-spe">Vos spécialités ou prestations phares</label><input id="f-spe" name="specialites" type="text"></div>
+<div class="champ"><label for="f-int">Sujets à ne jamais aborder</label><input id="f-int" name="sujets_interdits" type="text"></div>
+<div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<div><button class="btn btn-prim" type="submit">Envoyer ma fiche</button></div>
+</form>
+<p class="note">Les photos se déposent ensuite dans le dossier partagé que nous vous indiquons par email. Nous ne vous demandons aucun mot de passe.</p>
+</section>
+</main>
+<footer class="pied"><div class="wrap"><div class="logo">RENOM</div><div>Aperçu de démonstration</div></div></footer>
+<script>(function(){var f=document.forms[0];f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
+document.getElementById('f-sujet').value='Fiche client RENOM : '+f.nom_affiche.value;
+Promise.resolve({ok:true}).toString()})
+.then(function(r){if(!r.ok)throw 0;f.innerHTML='<p>Fiche reçue. Nous revenons vers vous par email avec le dossier de dépôt des photos.</p>'})
+.catch(function(){f.insertAdjacentHTML('beforeend','<p role="alert">L\'envoi a échoué. Réessayez dans un instant.</p>')})})})();</script>
+</body></html>

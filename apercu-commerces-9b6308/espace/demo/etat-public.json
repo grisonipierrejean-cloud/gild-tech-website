@@ -1,0 +1,111 @@
+{
+ "_lisez_moi": "Graine de démonstration PUBLIQUE de l'espace RENOM : commerces entièrement fictifs, avis et retours fictifs, aucun client réel. Chargée quand config.js définit window.RENOM_GRAINE = \"public\". Dates relatives (il_y_a_h, dans_h, repondu_apres_h, mois courant ou precedent) : converties au chargement par donnees.js, pour que la démonstration reste à jour. Photos : Pexels, voir files/public/CREDITS.md.",
+ "users": {
+  "restaurant@demo": { "role": "commerçant", "commerce": "c-table" },
+  "nouveau@demo": { "role": "commerçant", "commerce": "c-nouveau" },
+  "admin@demo": { "role": "administrateur" }
+ },
+ "commerces": {
+  "c-table": {
+   "id": "c-table", "nom": "La Table d'exemple", "metier": "restaurant", "ville": "", "offre_id": "croissance", "en_pause": false,
+   "specialites": "Cuisine de saison préparée sur place : pâtes fraîches, plats mijotés, entrées dressées à la minute.",
+   "horaires": "Du mardi au samedi, de 12 h à 14 h et de 19 h à 22 h.",
+   "ton": "chaleureux, vouvoiement", "mots_cles": ["pâtes fraîches", "cuisine de saison"], "mentions_autorisees": [],
+   "contact": "contact@table-exemple.invalid", "email_validation": "", "lien_avis": "https://g.page/r/exemple-renom-demo/review",
+   "couleurs": { "fond": "#FBF8F3", "texte": "#1C1B19", "accent": "#1F3A5F" }, "reglage_avis": "auto_des_4_etoiles",
+   "demarrage_fini": true,
+   "demarrage": { "phrase": "Restaurant de cuisine de saison, pour le déjeuner et le dîner.", "distinctions": "Pâtes fraîches préparées sur place.\nCarte courte qui change avec les saisons.", "ton": "chaleureux", "interdits": "Pas de prix ni de promotion dans les publications.", "action": "reserver", "action_detail": "Par téléphone ou en répondant au message" },
+   "notifications": { "email": true, "whatsapp": false }
+  },
+  "c-nouveau": {
+   "id": "c-nouveau", "nom": "Nouveau commerce d'exemple", "metier": "beaute", "ville": "", "offre_id": "essentiel", "en_pause": false,
+   "mots_cles": [], "mentions_autorisees": [], "couleurs": { "fond": "#FFFFFF", "texte": "#000000", "accent": "#2438FF" }, "reglage_avis": "auto_des_4_etoiles",
+   "demarrage_fini": false, "demarrage": null, "notifications": { "email": true, "whatsapp": false }
+  }
+ },
+ "photos": [
+  { "id": "p-spaghetti", "commerce_id": "c-table", "nom_fichier": "spaghetti.jpg", "statut": "traitee", "il_y_a_h": 30, "url": "demo/files/public/spaghetti-visuel-4x5.jpg" },
+  { "id": "p-bol-sauce", "commerce_id": "c-table", "nom_fichier": "bol-sauce.jpg", "statut": "traitee", "il_y_a_h": 96, "url": "demo/files/public/bol-sauce-visuel-4x5.jpg" },
+  { "id": "p-entree-marbre", "commerce_id": "c-table", "nom_fichier": "entree-marbre.jpg", "statut": "traitee", "il_y_a_h": 52, "url": "demo/files/public/entree-marbre-visuel-4x5.jpg" }
+ ],
+ "contenus": [
+  { "id": "ct-spaghetti", "commerce_id": "c-table", "photo_id": "p-spaghetti", "type": "publication", "format": "publication", "statut": "a_valider", "mois": "courant", "il_y_a_h": 4, "demo": true,
+    "legende": "Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande. Réservez votre table en répondant à ce message.",
+    "legendes": {
+     "instagram": "Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande. Réservez votre table en répondant à ce message.\n\n#pâtesfraîches #cuisinedesaison",
+     "facebook": "Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande. Réservez votre table en répondant à ce message.",
+     "google": "Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande. Réservez votre table du mardi au samedi.",
+     "tiktok": "Des pâtes fraîches, préparées à la commande. #pâtesfraîches #cuisinedesaison" },
+    "visuel_url": "demo/files/public/spaghetti-visuel-4x5.jpg", "note_modification": null },
+  { "id": "ct-story-entree", "commerce_id": "c-table", "photo_id": "p-entree-marbre", "type": "publication", "format": "story", "statut": "a_valider", "mois": "courant", "il_y_a_h": 2, "demo": true,
+    "legende": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner.",
+    "legendes": { "instagram": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner.", "facebook": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner, nous gardons votre table.", "tiktok": "L'entrée du jour, dressée à la minute. #cuisinedesaison" },
+    "visuel_url": "demo/files/public/entree-marbre-visuel-9x16.jpg", "note_modification": null },
+  { "id": "ct-entree", "commerce_id": "c-table", "photo_id": "p-entree-marbre", "type": "publication", "format": "publication", "statut": "approuve", "mois": "courant", "il_y_a_h": 50, "demo": true,
+    "legende": "Une entrée dressée à la minute, servie sur une table de marbre. Passez la découvrir à l'heure du déjeuner, nous gardons votre table.",
+    "visuel_url": "demo/files/public/entree-marbre-visuel-4x5.jpg", "note_modification": null },
+  { "id": "ct-video-spaghetti", "commerce_id": "c-table", "photo_id": "p-spaghetti", "type": "video", "format": "video", "statut": "programme", "mois": "courant", "il_y_a_h": 28, "demo": true,
+    "legende": "Des pâtes fraîches, servies sans attendre. Réservez votre table en répondant à ce message.",
+    "legendes": { "instagram": "Des pâtes fraîches, servies sans attendre. Réservez votre table en répondant à ce message.\n\n#pâtesfraîches", "facebook": "Des pâtes fraîches, servies sans attendre. Réservez votre table en répondant à ce message.", "tiktok": "Des pâtes fraîches, servies sans attendre. #pâtesfraîches" },
+    "visuel_url": "demo/files/public/spaghetti-visuel-9x16.jpg", "video_url": "demo/files/public/spaghetti-video-9x16.mp4", "note_modification": null },
+  { "id": "ct-bol-sauce", "commerce_id": "c-table", "photo_id": "p-bol-sauce", "type": "publication", "format": "publication", "statut": "publie", "mois": "courant", "il_y_a_h": 94, "demo": true,
+    "legende": "Un plat mijoté, servi chaud dans une assiette creuse. Venez le goûter ce soir, la cuisine est ouverte jusqu'au dernier service.",
+    "legendes": {
+     "instagram": "Un plat mijoté, servi chaud dans une assiette creuse. Venez le goûter ce soir, la cuisine est ouverte jusqu'au dernier service.\n\n#cuisinedesaison",
+     "facebook": "Un plat mijoté, servi chaud dans une assiette creuse. Venez le goûter ce soir, la cuisine est ouverte jusqu'au dernier service.",
+     "google": "Un plat mijoté, servi chaud dans une assiette creuse. Du mardi au samedi, au déjeuner et au dîner.",
+     "tiktok": "Un plat mijoté, servi chaud. #cuisinedesaison" },
+    "visuel_url": "demo/files/public/bol-sauce-visuel-4x5.jpg", "note_modification": null },
+  { "id": "ct-video-avis", "commerce_id": "c-table", "photo_id": null, "type": "video", "format": "video", "statut": "approuve", "mois": "courant", "il_y_a_h": 20, "demo": true,
+    "legende": "Vidéo d'avis de démonstration, rendue par le vrai moteur avec des avis fictifs.",
+    "visuel_url": "demo/files/public/video-avis-exemple.jpg", "video_url": "demo/files/public/video-avis-exemple.mp4", "note_modification": null }
+ ],
+ "publications": [
+  { "id": "pub-bol", "commerce_id": "c-table", "contenu_id": "ct-bol-sauce", "reseaux": ["facebook", "instagram", "google"], "prevu_il_y_a_h": 72, "statut": "publie", "il_y_a_h": 90 },
+  { "id": "pub-video", "commerce_id": "c-table", "contenu_id": "ct-video-spaghetti", "reseaux": ["instagram", "facebook"], "dans_h": 30, "statut": "programme", "il_y_a_h": 26 }
+ ],
+ "idees_demandes": [ { "id": "idd-1", "commerce_id": "c-table", "statut": "traitee", "mois": "courant", "il_y_a_h": 70 } ],
+ "idees": [
+  { "id": "idee-1", "commerce_id": "c-table", "titre": "La mise en place avant le service", "texte": "Idée de démonstration : photographiez le plan de travail prêt, juste avant l'ouverture.", "il_y_a_h": 70, "demo": true },
+  { "id": "idee-2", "commerce_id": "c-table", "titre": "Le plat qui change avec la saison", "texte": "Idée de démonstration : montrez le premier plat de la nouvelle carte, en lumière naturelle.", "il_y_a_h": 70, "demo": true }
+ ],
+ "avis": [
+  { "id": "av-1", "commerce_id": "c-table", "google_review_id": "pub-1", "auteur": "Léa M.", "note": 5, "texte": "Avis fictif de démonstration : pâtes fraîches excellentes, service attentionné.", "reponse": "Réponse fictive de démonstration : merci Léa, à très bientôt à table.", "reponse_proposee": "Réponse fictive de démonstration : merci Léa, à très bientôt à table.", "sensible": false, "raisons": [], "decision": "publication_automatique", "statut": "publie", "il_y_a_h": 200, "repondu_apres_h": 2, "demo": true },
+  { "id": "av-2", "commerce_id": "c-table", "google_review_id": "pub-2", "auteur": "Karim B.", "note": 4, "texte": "Avis fictif de démonstration : très bon dîner, un peu d'attente pour le dessert.", "reponse": "Réponse fictive de démonstration : merci Karim, nous avons noté pour le dessert.", "reponse_proposee": "Réponse fictive de démonstration : merci Karim, nous avons noté pour le dessert.", "sensible": false, "raisons": [], "decision": "publication_automatique", "statut": "publie", "il_y_a_h": 170, "repondu_apres_h": 3, "demo": true },
+  { "id": "av-3", "commerce_id": "c-table", "google_review_id": "pub-3", "auteur": "Paul D.", "note": 5, "texte": "Avis fictif de démonstration : accueil chaleureux, on reviendra.", "reponse": "Réponse fictive de démonstration : merci Paul, au plaisir de vous revoir.", "reponse_proposee": "Réponse fictive de démonstration : merci Paul, au plaisir de vous revoir.", "sensible": false, "raisons": [], "decision": "publication_automatique", "statut": "publie", "il_y_a_h": 140, "repondu_apres_h": 4, "demo": true },
+  { "id": "av-4", "commerce_id": "c-table", "google_review_id": "pub-4", "auteur": "Nina T.", "note": 5, "texte": "Avis fictif de démonstration : un plat de pâtes simple et parfait.", "reponse": "Réponse fictive de démonstration : merci Nina pour ce mot.", "reponse_proposee": "Réponse fictive de démonstration : merci Nina pour ce mot.", "sensible": false, "raisons": [], "decision": "publication_automatique", "statut": "publie", "il_y_a_h": 110, "repondu_apres_h": 2, "demo": true },
+  { "id": "av-5", "commerce_id": "c-table", "google_review_id": "pub-5", "auteur": "Marc L.", "note": 4, "texte": "Avis fictif de démonstration : bonne adresse, carte courte mais soignée.", "reponse": "Réponse fictive de démonstration : merci Marc, la carte change bientôt.", "reponse_proposee": "Réponse fictive de démonstration : merci Marc, la carte change bientôt.", "sensible": false, "raisons": [], "decision": "validation_commercant", "statut": "publie", "il_y_a_h": 80, "repondu_apres_h": 18, "demo": true },
+  { "id": "av-6", "commerce_id": "c-table", "google_review_id": "pub-6", "auteur": "Julie R.", "note": 2, "texte": "Avis fictif de démonstration : plat arrivé tiède, dommage.", "reponse_proposee": "Bonjour Julie, merci d'avoir pris le temps de nous écrire. Nous sommes désolés que votre plat soit arrivé tiède. Écrivez-nous à contact@table-exemple.invalid pour en parler. Nous espérons vous revoir bientôt.", "sensible": false, "raisons": [], "decision": "validation_commercant", "statut": "a_valider", "il_y_a_h": 6, "demo": true },
+  { "id": "av-7", "commerce_id": "c-table", "google_review_id": "pub-7", "auteur": "Sam V.", "note": 1, "texte": "Avis fictif de démonstration : j'ai été malade après le repas, je vais porter plainte.", "sensible": true, "raisons": ["santé", "menace juridique"], "decision": "humain", "statut": "humain", "il_y_a_h": 30, "demo": true }
+ ],
+ "retours_prives": [
+  { "commerce_id": "c-table", "note": 3, "message": "Retour fictif de démonstration : la musique était un peu forte pendant le dîner.", "prenom": "Sophie", "il_y_a_h": 26 },
+  { "commerce_id": "c-table", "note": 5, "message": null, "prenom": null, "il_y_a_h": 50 }
+ ],
+ "journal": [
+  { "id": "j-1", "commerce_id": "c-table", "type": "PRODUIT", "detail": { "simule": true }, "il_y_a_h": 4 },
+  { "id": "j-2", "commerce_id": "c-table", "type": "AVIS_SENSIBLE", "detail": { "simule": true }, "il_y_a_h": 30 },
+  { "id": "j-3", "commerce_id": "c-table", "type": "VIDEO_AVIS", "detail": { "simule": true }, "il_y_a_h": 20 },
+  { "id": "j-4", "commerce_id": "c-table", "type": "PUBLIE", "detail": { "simule": true }, "il_y_a_h": 72 },
+  { "id": "j-5", "commerce_id": "c-table", "type": "IDEES", "detail": { "simule": true }, "il_y_a_h": 70 }
+ ],
+ "invitations": [],
+ "comptes": {
+  "c-table": { "google": { "etat": "connecte", "detail": "Connexion simulée (démonstration)" }, "facebook": { "etat": "connecte", "detail": "Connexion simulée (démonstration)" }, "instagram": { "etat": "connecte", "detail": "Connexion simulée (démonstration)" }, "tiktok": { "etat": "non_connecte", "detail": "" } },
+  "c-nouveau": { "google": { "etat": "non_connecte" }, "facebook": { "etat": "non_connecte" }, "instagram": { "etat": "non_connecte" }, "tiktok": { "etat": "non_connecte" } }
+ },
+ "videos_avis_demandes": [ { "id": "vad-1", "commerce_id": "c-table", "avis_ids": ["av-1", "av-3"], "fond": "photos", "style": "franc", "statut": "traitee", "motif": null, "contenu_id": "ct-video-avis", "mois": "courant", "il_y_a_h": 21, "demo": true } ],
+ "video_avis_exemple": { "video_url": "demo/files/public/video-avis-exemple.mp4", "visuel_url": "demo/files/public/video-avis-exemple.jpg" },
+ "demo_maj": {
+  "principal": "c-table",
+  "base": { "nb": 40, "somme": 168 },
+  "photos_fiche": ["p-spaghetti", "p-bol-sauce"],
+  "themes": [
+   { "theme": "Pâtes et plats", "positif": 10, "negatif": 1 },
+   { "theme": "Accueil et service", "positif": 8, "negatif": 0 },
+   { "theme": "Ambiance", "positif": 4, "negatif": 1 },
+   { "theme": "Temps d'attente", "positif": 1, "negatif": 2 },
+   { "theme": "Température des plats", "positif": 0, "negatif": 1 }
+  ]
+ }
+}
