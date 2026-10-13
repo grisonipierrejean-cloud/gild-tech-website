@@ -102,9 +102,9 @@
 
     <label>Offre</label>
     <select id="offer">
-      <option value="respond">RESPOND · 290 €/mois</option>
-      <option value="convert">CONVERT · 490 €/mois</option>
-      <option value="dominate">DOMINATE · 790 €/mois</option>
+      <option value="respond">RESPOND (290 £/mois)</option>
+      <option value="convert">CONVERT (490 £/mois)</option>
+      <option value="dominate">DOMINATE (790 £/mois)</option>
     </select>
     <p class="hint" id="offerDesc"></p>
 
@@ -249,9 +249,9 @@
   "use strict";
   // ---- offres (grille officielle) : clé -> nom + prix + une ligne de ce qui TOURNE ----
   var OFFERS = {
-    respond:  { name:"RESPOND",  price:"290 €/mois", desc:"Sarah répond sur WhatsApp en moins de 5 minutes, qualifie le contact et alerte l'agent sur les leads chauds." },
-    convert:  { name:"CONVERT",  price:"490 €/mois", desc:"Tout RESPOND, plus les relances automatiques des contacts silencieux et un tableau de bord de suivi." },
-    dominate: { name:"DOMINATE", price:"790 €/mois", desc:"Tout CONVERT, plus Sarah sur les emails entrants et un brief quotidien pour l'agent." }
+    respond:  { name:"RESPOND",  price:"290 £/mois", desc:"Sarah répond sur WhatsApp en moins de 5 minutes, qualifie le contact et alerte l'agent sur les leads chauds." },
+    convert:  { name:"CONVERT",  price:"490 £/mois", desc:"Tout RESPOND, plus les relances automatiques des contacts silencieux et un tableau de suivi Google Sheets." },
+    dominate: { name:"DOMINATE", price:"790 £/mois", desc:"Tout CONVERT, plus Sarah sur les emails entrants et un brief quotidien pour l'agent." }
   };
   // compat anciens liens (?offer=capter/convertir/developper)
   var OFFER_ALIAS = { capter:"respond", convertir:"convert", developper:"dominate",
