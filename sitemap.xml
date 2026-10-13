@@ -69,6 +69,7 @@
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-be"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-be-fr"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://gild-tech.com/sarah-be-nl"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://gild-tech.com/sarah-be-ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/sarah-be"/>
   </url>
@@ -79,6 +80,7 @@
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-be"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-be-fr"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://gild-tech.com/sarah-be-nl"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://gild-tech.com/sarah-be-ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/sarah-be"/>
   </url>
@@ -89,6 +91,18 @@
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-be"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-be-fr"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://gild-tech.com/sarah-be-nl"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gild-tech.com/sarah-be-ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/sarah-be"/>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/sarah-be-nl</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gild-tech.com/sarah-be"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gild-tech.com/sarah-be-fr"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://gild-tech.com/sarah-be-nl"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://gild-tech.com/sarah-be-ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gild-tech.com/sarah-be"/>
   </url>
@@ -128,6 +142,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://gild-tech.com/offres/immobilier-uk</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/offres/immobilier-be</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <url>
     <loc>https://gild-tech.com/legal-notice</loc>
@@ -144,6 +170,30 @@
   <url>
     <loc>https://gild-tech.com/terms</loc>
     <lastmod>2026-07-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/mentions-legales</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/confidentialite</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/cgv</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gild-tech.com/cookies</loc>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
