@@ -10,3 +10,7 @@ assets/intro/README.md
 
 # CRM interne "poste de commandement" (données clients) — jamais public
 pc-bac83e0794608620de09aa0b80431d77882f8a756ac5/
+
+# Fichiers locaux de l outil et du systeme, jamais publies
+.claude/
+.DS_Store
