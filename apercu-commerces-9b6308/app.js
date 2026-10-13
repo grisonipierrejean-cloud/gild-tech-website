@@ -32,3 +32,55 @@ form.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
   .catch(function(){btn.disabled=false;btn.textContent='Recevoir mon audit gratuit';erreur("L'envoi n'est pas passé. Vérifiez votre connexion et réessayez.")});
 });
 })();
+
+// ---- Calculateur du manque à gagner (section #calcul). Aucun réseau, rien n'est envoyé ni gardé.
+// Fourchette : une étoile de plus = +5 à +9 % de chiffre d'affaires (Luca, Harvard Business School, working paper 12-016, 2011 :
+// restaurants indépendants de Seattle, notes Yelp). Demi-étoile = moitié de la fourchette. Sources : ordres/SOURCES-PAGE.md.
+// Seuils de note : BrightLocal, Local Consumer Review Survey 2026 (68 % : 4 étoiles ou plus ; 31 % : 4,5 ou plus ; États-Unis).
+(function(){
+var calc=document.getElementById('calc');if(!calc)return;
+var BAS=0.05,HAUT=0.09;
+var el=function(id){return document.getElementById(id)};
+var vide=el('calc-vide'),plein=el('calc-plein'),seuil=el('calc-seuil');
+// « 180 000 », « 180000 € », « 4,2 » ou « 4.2 » : espaces, euros et séparateurs de milliers retirés, virgule décimale acceptée.
+function nombre(v){
+  v=String(v||'').replace(/[\s  €]/g,'').replace(/\.(?=\d{3}(\D|$))/g,'').replace(',','.');
+  if(!/^\d+(\.\d+)?$/.test(v))return NaN;
+  return parseFloat(v);
+}
+// Ordre de grandeur : arrondi à la centaine d'euros, jamais de fausse précision.
+function euros(n){
+  var r=n>=1000?Math.round(n/100)*100:Math.round(n);
+  return r.toLocaleString('fr-FR',{maximumFractionDigits:0}).replace(/ /g,' ')+' €';
+}
+function noteTexte(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})}
+function mode(){var r=calc.querySelector('input[name="calc-mode"]:checked');return r?r.value:'ca'}
+function chiffreAffaires(){
+  if(mode()==='ca')return nombre(el('c-ca').value);
+  var c=nombre(el('c-clients').value),p=nombre(el('c-panier').value),j=nombre(el('c-jours').value);
+  if(isNaN(c)||isNaN(p)||isNaN(j)||j>366)return NaN;
+  return c*p*j;
+}
+function maj(){
+  var ca=chiffreAffaires(),m=mode();
+  el('calc-ca').hidden=(m!=='ca');el('calc-clients').hidden=(m==='ca');
+  if(isNaN(ca)||ca<=0){
+    vide.textContent=m==='ca'?'Indiquez votre chiffre d’affaires : le résultat s’affiche ici.':'Indiquez vos clients par jour, votre panier moyen et vos jours d’ouverture : le résultat s’affiche ici.';
+    vide.hidden=false;plein.hidden=true;return;
+  }
+  vide.hidden=true;plein.hidden=false;
+  el('calc-base').textContent=m==='ca'?'Pour '+euros(ca)+' de chiffre d’affaires par an.':'Votre chiffre d’affaires estimé : '+euros(ca)+' par an.';
+  el('calc-bas').textContent=euros(ca*BAS);el('calc-haut').textContent=euros(ca*HAUT);
+  el('calc-demi').textContent=euros(ca*BAS/2)+' à '+euros(ca*HAUT/2);
+  var n=nombre(el('c-note').value),t='';
+  if(!isNaN(n)&&n>=1&&n<=5){
+    if(n<4)t='À '+noteTexte(n)+', vous êtes sous la barre des 4 étoiles. 68 % des clients interrogés par BrightLocal (États-Unis, 2026) ne choisissent qu’un commerce noté 4 ou plus.';
+    else if(n<4.5)t='À '+noteTexte(n)+', vous passez la barre des 4 étoiles. Mais 31 % des clients interrogés par BrightLocal (États-Unis, 2026) ne choisissent qu’un commerce noté 4,5 ou plus.';
+    else t='À '+noteTexte(n)+', votre note est un atout. Tout l’enjeu est de la garder, avis après avis.';
+  }else if(String(el('c-note').value).trim())t='La note s’écrit entre 1 et 5, par exemple 4,1.';
+  seuil.textContent=t;seuil.hidden=!t;
+}
+calc.addEventListener('input',maj);calc.addEventListener('change',maj);
+calc.addEventListener('submit',function(e){e.preventDefault();maj()});
+maj();
+})();

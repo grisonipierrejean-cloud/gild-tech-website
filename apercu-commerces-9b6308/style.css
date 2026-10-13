@@ -440,3 +440,140 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
   .audit-bloc{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;padding:72px}
   .rang{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ==========================================================================
+   nuit-page (14/10/2026) : douleur par métier, filtre par note, calculateur, community manager, offres lisibles.
+   Bloc localisé : n'écrase que les classes de ces sections (offres : .offre-promesse, .prix-public, .inclus).
+   Sources des chiffres : ordres/SOURCES-PAGE.md. Interdits respectés : aucun dégradé, rayons <= 12 px, aucun trait coloré.
+   ========================================================================== */
+
+/* ---------- Douleur : scènes par métier et constat chiffré */
+.douleur-grille{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.douleur-tete{display:flex;flex-direction:column;gap:18px}
+.douleur-chapo{font-size:19px;line-height:1.5;color:var(--doux);max-width:560px}
+.scenes{list-style:none;display:flex;flex-direction:column}
+.scenes li{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:18px 0;border-top:1px solid var(--filet-fort)}
+.scenes li:last-child{border-bottom:1px solid var(--filet-fort)}
+.scene-metier{font-family:var(--titre);font-weight:800;font-size:20px;line-height:1.15;color:var(--blanc)}
+.scene-texte{font-size:17px;line-height:1.5;color:var(--doux)}
+.constat{border:1.5px solid var(--filet-fort);border-radius:12px;padding:22px 20px;display:flex;flex-direction:column;gap:14px}
+.constat-titre{font-size:17px;font-weight:800;line-height:1.35}
+.constat-liste{list-style:none;display:flex;flex-direction:column;gap:12px}
+.constat-liste li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;align-items:baseline;font-size:17px;line-height:1.4;color:var(--doux)}
+.constat-chiffre{font-family:var(--titre);font-weight:800;font-size:28px;line-height:1;color:var(--citron);white-space:nowrap}
+.constat .mention a{color:var(--doux)}
+
+/* ---------- Ce que Google fait de votre note : citations et filtre par note (illustration fictive) */
+.citation blockquote p+p{margin-top:12px}
+.google-filtre{font-size:19px;line-height:1.5;font-weight:700;color:var(--blanc);max-width:620px}
+.filtres{display:flex;flex-wrap:wrap;gap:8px}
+.filtre{display:inline-flex;align-items:center;min-height:34px;padding:4px 12px;border:1px solid var(--filet-fort);border-radius:8px;font-size:14px;font-weight:700;color:var(--doux)}
+.filtre-actif{background:var(--bleu);border-color:var(--bleu);color:var(--blanc)}
+.fiche-masquee{border:1.5px dashed var(--filet-fort);opacity:.62}
+.fiche-masquee .fiche-type{color:var(--blanc);font-weight:700}
+
+/* ---------- Calculateur du manque à gagner */
+.calcul{display:flex;flex-direction:column;gap:28px}
+.calcul-tete{display:flex;flex-direction:column;gap:16px;max-width:860px}
+.calcul-chapo{font-size:19px;line-height:1.5;color:var(--doux);max-width:640px}
+.calcul-corps{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.calc{background:var(--carte);border:1px solid var(--filet);border-radius:12px;padding:22px 18px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.calc-mode{margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.calc-mode legend{padding:0;margin-bottom:8px;font-size:15px;font-weight:700}
+.calc-radio{display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 14px;border:1.5px solid var(--filet-fort);border-radius:10px;font-size:16px;font-weight:700;cursor:pointer}
+.calc-radio input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--bleu)}
+.calc-radio:has(input:checked){border-color:var(--bleu);background:rgba(61,75,255,.16)}
+.calc .champ label{color:var(--blanc)}
+.calc-trio{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.calc-resultat{border:2px solid var(--bleu);border-radius:12px;padding:24px 20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.calc-vide{font-size:18px;line-height:1.45;color:var(--doux)}
+.calc-plein{display:flex;flex-direction:column;gap:8px}
+.calc-base{font-size:15px;color:var(--discret)}
+.calc-lib{font-size:17px;font-weight:700}
+.calc-montant{font-family:var(--titre);font-weight:800;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:-.01em;color:var(--blanc)}
+.calc-unite{font-size:17px;line-height:1.45;color:var(--doux)}
+.calc-seuil{margin-top:6px;padding-top:14px;border-top:1px solid var(--filet-fort);font-size:17px;line-height:1.45;font-weight:700;color:var(--citron)}
+.calc-prudence{font-size:14px;line-height:1.5;color:var(--discret)}
+.calc-prudence a{color:var(--doux)}
+.calc-resultat .btn{align-self:flex-start}
+
+/* ---------- Community manager (section claire) */
+.cm{display:flex;flex-direction:column;gap:32px}
+.cm-tete{display:flex;flex-direction:column;gap:16px;max-width:900px}
+.cm-chapo{font-size:19px;line-height:1.5;color:var(--gris-clair);max-width:640px}
+.cm-grille{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.cm h3{font-size:22px;color:inherit}
+.cm-lui{display:flex;flex-direction:column;gap:14px;min-width:0}
+.cm-lui h3{color:var(--nuit)}
+.cm-liste{list-style:none;display:flex;flex-direction:column}
+.cm-liste li{display:block;padding:16px 0;border-top:1px solid #DCDEE8;font-size:17px;line-height:1.5;color:var(--gris-clair)}
+.cm-liste strong{display:block;margin-bottom:4px;font-family:var(--titre);font-weight:800;font-size:19px;line-height:1.2;color:var(--nuit)}
+.cm-vous{background:var(--nuit);color:var(--blanc);border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;gap:18px;align-self:start}
+.cm-etapes{list-style:none;display:flex;flex-direction:column;gap:16px}
+.cm-etapes li{display:block;font-size:17px;line-height:1.45;color:var(--doux)}
+.cm-etapes strong{display:block;margin-bottom:4px;font-family:var(--titre);font-weight:800;font-size:clamp(32px,3.4vw,42px);line-height:1;color:var(--blanc)}
+.cm-regle{padding-top:16px;border-top:1px solid var(--filet-fort);font-size:15px;line-height:1.5;color:var(--doux)}
+/* Bande des métiers réduite : une vignette et un nom (les scènes par métier sont dans la douleur) */
+.bande-compacte{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.bande-compacte .bande-item{gap:8px}
+.bande-compacte .bande-item img{aspect-ratio:1/1;border-radius:10px}
+.bande-compacte .bande-item strong{font-family:var(--sans);font-size:14px;overflow-wrap:anywhere}
+/* Démonstration réduite : la photo envoyée, puis la publication à valider (commerce fictif) */
+.mini-avap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px;align-items:end}
+.mini-avap figure{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini-avap figcaption{font-size:14px;font-weight:700;line-height:1.3;color:var(--blanc)}
+.mini-avant img{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;border-radius:10px;border:1px solid var(--filet-fort)}
+.mini-post{background:var(--blanc);color:var(--nuit);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.mini-compte{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:13px;line-height:1.2;min-width:0}
+.mini-compte strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini-avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:6px;background:var(--nuit);color:var(--citron);font-family:var(--titre);font-weight:800;font-size:12px}
+.mini-post img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:50% 60%}
+.mini-legende{padding:8px 10px 0;font-size:13px;line-height:1.4;color:#2B2E3A}
+.mini-bouton{align-self:flex-start;margin:10px;display:inline-flex;align-items:center;min-height:34px;padding:4px 16px;border-radius:8px;background:var(--bleu);color:var(--blanc);font-weight:800;font-size:14px}
+
+/* ---------- Offres lisibles en 10 secondes : un nom, une phrase, un prix, ce que vous recevez */
+.offre-promesse{font-size:20px;line-height:1.3}
+.prix-bloc{gap:8px}
+.prix-public{font-size:14px;line-height:1.45}
+.offre .inclus{flex:1 1 auto;gap:8px;font-size:16px}
+.offre .prix{flex-direction:column;align-items:flex-start;gap:4px}
+.google-section .bascule{font-size:clamp(22px,2.4vw,32px)}
+.offre .inclus-tout{list-style:none;margin-left:-20px;font-weight:800;color:var(--blanc)}
+.compare-cadre{border:1px solid var(--filet-fort);border-radius:12px;padding:6px 12px}
+.compare{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;line-height:1.35}
+.compare thead td{width:31%}
+.compare th,.compare td{padding:11px 6px;border-bottom:1px solid var(--filet);text-align:center;vertical-align:middle;color:var(--doux)}
+.compare tbody tr:last-child th,.compare tbody tr:last-child td{border-bottom:0}
+.compare thead th{font-weight:800;font-size:13px;color:var(--blanc)}
+.compare tbody th{text-align:left;font-weight:700;color:var(--blanc);padding-left:0}
+.compare td{font-weight:700;color:var(--blanc)}
+.compare .reco{background:rgba(61,75,255,.22)}
+
+@media (min-width:760px){
+  .scenes li{grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:baseline;padding:16px 0}
+  .scene-metier{font-size:22px}
+  .calc{padding:30px 28px}
+  .calc-mode{flex-direction:row;flex-wrap:wrap}
+  .calc-radio{flex:1 1 220px}
+  .calc-trio{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+  .calc-resultat{padding:30px 28px}
+  .cm-vous{padding:32px 30px}
+  .compare{font-size:16px}
+  .compare thead td{width:40%}
+  .compare thead th{font-family:var(--titre);font-size:18px}
+  .compare th,.compare td{padding:13px 12px}
+  .compare-cadre{padding:6px 20px}
+}
+@media (min-width:1040px){
+  .douleur-grille{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:36px 56px;align-items:start}
+  .douleur-tete{grid-column:1/-1}
+  .douleur-tete h2,.calcul-tete h2,.cm-tete h2,.offres-tete h2{font-size:clamp(34px,4.2vw,58px);max-width:1100px}
+  .calcul-tete,.cm-tete{max-width:none}
+  .bande-compacte{gap:20px}
+  .bande-compacte .bande-item img{aspect-ratio:3/2}
+  .bande-compacte .bande-item strong{font-family:var(--titre);font-size:17px}
+  .calcul-corps{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch}
+  .cm-grille{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px}
+  .offre-promesse{min-height:2.6em}
+}
+/* ---------- fin nuit-page */
