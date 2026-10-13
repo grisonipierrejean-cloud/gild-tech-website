@@ -457,3 +457,8 @@ video.visuel{object-fit:contain;background:var(--encre)}
   .audit{grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:32px}
   .c-zone{height:160px}
 }
+
+/* Démonstration : entrée directe sans passer par le lien */
+.entrer-demo{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--filet)}
+.entrer-demo .fort{margin:0 0 2px;font-weight:600}
+.entrer-demo .bouton{width:100%;justify-content:center}

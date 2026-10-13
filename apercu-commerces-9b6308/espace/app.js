@@ -220,8 +220,11 @@
       <div class="entete"><h1>Votre espace</h1><p class="chapo">Saisissez l'adresse email de votre compte. Nous vous envoyons un lien de connexion : pas de mot de passe à retenir.</p></div>
       <form id="f"><div class="f"><label for="email">Adresse email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
       <button class="bouton plein" type="submit">Recevoir le lien</button><p class="msg" id="msg" role="status"></p></form>
-      ${comptesDemo.length ? `<p class="note" id="comptes-demo">Démonstration : saisissez ${e(comptesTexte(comptesDemo))}.</p>` : ""}</div>
+      ${comptesDemo.length ? `<div class="entrer-demo" id="entrer-demo"><p class="fort">Visite directe de la démonstration</p>${comptesDemo.map(c => `<button type="button" class="bouton second" data-entrer="${e(c.email)}">${c.role === "administrateur" ? "Console de l'exploitant" : e(c.commerce || c.email)}</button>`).join("")}</div>
+      <p class="note" id="comptes-demo">Démonstration : saisissez ${e(comptesTexte(comptesDemo))}.</p>` : ""}</div>
       <p class="retour"><a href="../">Retour au site</a></p></div>`;
+    const entrer = async em => { await D.ouvrirLien(em); if (await D.estAdmin()) location.href = "console.html"; else aller("accueil"); };
+    document.querySelectorAll("[data-entrer]").forEach(b => { b.onclick = () => entrer(b.dataset.entrer); });
     $("f").onsubmit = async ev => {
       ev.preventDefault(); msg("Envoi en cours.");
       try {
