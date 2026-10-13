@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CRM Sarah</title>
+<style>
+  /* Page CRM Sarah, une par agence, lecture seule (ORDRE 106). Charte GILD-TECH : noir, blanc, gris ardoise, bleu nuit, bleu accent.
+     La couleur de l'agence (agence.couleur) remplace le bleu accent si elle est valide. */
+  :root{
+    --bg:#F5F7FA; --panel:#FFFFFF; --panel-2:#EEF2F7; --line:#DDE5EF;
+    --txt:#0B1D33; --dim:#5B6B7F; --accent:#2563EB; --on-accent:#FFFFFF;
+    --shadow:0 10px 30px -18px rgba(11,29,51,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0A0A0A; --panel:#0B1D33; --panel-2:#12263F; --line:#1E3352; --txt:#F3F6FB; --dim:#94A3B8; --shadow:0 8px 30px -14px rgba(0,0,0,.6); }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+    line-height:1.45;padding:16px 16px calc(32px + env(safe-area-inset-bottom));max-width:880px;margin:0 auto}
+  a{color:inherit}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+  .top h1{font-size:20px;font-weight:800;letter-spacing:-.01em;overflow-wrap:anywhere}
+  .top .maj{font-size:12.5px;color:var(--dim);margin-top:3px}
+  .refresh{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--txt);font:inherit;font-size:13px;font-weight:600;padding:9px 13px;border-radius:10px;cursor:pointer}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:6px}
+  @media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1.1}
+  .stat span{font-size:12.5px;color:var(--dim)}
+  h2{font-size:15px;font-weight:800;margin:22px 2px 10px;display:flex;align-items:center;gap:8px}
+  h2 .n{font-size:12px;font-weight:700;background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:1px 9px;color:var(--txt)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px 14px;box-shadow:var(--shadow);margin-bottom:9px}
+  .card.today{border-left:4px solid var(--accent)}
+  .l1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .who{font-size:15px;font-weight:700;overflow-wrap:anywhere}
+  .tel{font-size:12.5px;color:var(--dim);margin-top:1px}
+  .when{flex:none;font-size:12px;font-weight:700;color:var(--accent);text-align:right}
+  .facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .chip{font-size:12px;padding:3px 9px;border-radius:20px;background:var(--panel-2);border:1px solid var(--line);color:var(--txt)}
+  .chip.st{background:transparent;border-color:var(--accent);color:var(--accent);font-weight:700}
+  .next{font-size:13px;margin-top:9px;padding:8px 11px;background:var(--panel-2);border-radius:9px}
+  .next b{font-weight:700}
+  .acts{display:flex;gap:8px;margin-top:10px}
+  .act{flex:1;text-align:center;text-decoration:none;border:1px solid var(--line);background:var(--panel-2);color:var(--txt);font-size:13px;font-weight:700;padding:10px;border-radius:10px}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+  .tools input,.tools select{flex:1 1 200px;min-width:0;background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px}
+  .tools button{flex:0 0 auto;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font:inherit;font-size:13.5px;font-weight:700;padding:10px 14px;border-radius:10px;cursor:pointer}
+  .grp{font-size:13px;font-weight:700;color:var(--dim);margin:14px 2px 8px}
+  .empty{color:var(--dim);font-size:13.5px;padding:14px;text-align:center;background:var(--panel);border:1px dashed var(--line);border-radius:12px}
+  .rdv{display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .rdv .q{font-size:14px;font-weight:700;color:var(--accent);flex:none}
+  footer{margin-top:26px;font-size:11.5px;color:var(--dim);text-align:center;line-height:1.7}
+  #gate{padding:80px 20px;text-align:center}
+  #gate h1{font-size:19px;font-weight:800;margin-bottom:10px}
+  #gate p{color:var(--dim);font-size:14px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div id="gate" hidden><h1 id="gT"></h1><p id="gP"></p></div>
+
+<div id="app" hidden>
+  <div class="top">
+    <div><h1 id="nom"></h1><div class="maj" id="maj"></div></div>
+    <button class="refresh" id="refresh"></button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <h2><span id="hToday"></span> <span class="n" id="nToday"></span></h2>
+  <div id="today"></div>
+
+  <h2><span id="hRdv"></span> <span class="n" id="nRdv"></span></h2>
+  <div id="rdv"></div>
+
+  <h2><span id="hFiches"></span> <span class="n" id="nFiches"></span></h2>
+  <div class="tools">
+    <input id="q" type="search" autocomplete="off">
+    <select id="f"></select>
+    <button id="csv"></button>
+  </div>
+  <div id="fiches"></div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var WEBHOOK = 'https://peejay.app.n8n.cloud/webhook/sarah/crm';
+  var $ = function(s){ return document.querySelector(s); };
+
+  // ---- langues : FR, EN, RU, NL selon le navigateur ----
+  var T = {
+    fr:{deniedT:'Accès refusé',deniedP:'Ce lien n\'est pas valide. Demandez un nouveau lien à GILD-TECH.',maj:'Mis à jour le ',refresh:'Actualiser',
+      acheteurs_mois:'acheteurs ce mois-ci',rdv_a_venir:'rendez-vous à venir',relances_en_cours:'relances en cours',stop:'ont demandé STOP',
+      today:'À traiter aujourd\'hui',noToday:'Aucun rappel prévu aujourd\'hui.',rdv:'Rendez-vous à venir',noRdv:'Aucun rendez-vous à venir.',
+      fiches:'Toutes les fiches',search:'Rechercher : nom, téléphone, bien, secteur',all:'Tous les statuts',csv:'Exporter en CSV',noFiche:'Aucune fiche.',
+      rappel:'Rappel',next:'Prochaine action : ',call:'Appeler',wa:'WhatsApp',budget:'Budget',delai:'Délai',secteur:'Secteur',bien:'Bien',langue:'Langue',source:'Source',recu:'Reçu le ',
+      foot:'Page privée, en lecture seule, réservée à votre agence. Données de vos acheteurs : ne partagez pas ce lien.',noStatus:'Sans statut'},
+    en:{deniedT:'Access denied',deniedP:'This link is not valid. Ask GILD-TECH for a new link.',maj:'Updated ',refresh:'Refresh',
+      acheteurs_mois:'buyers this month',rdv_a_venir:'upcoming appointments',relances_en_cours:'follow-ups in progress',stop:'asked to STOP',
+      today:'To handle today',noToday:'No call-back planned today.',rdv:'Upcoming appointments',noRdv:'No upcoming appointment.',
+      fiches:'All buyer records',search:'Search: name, phone, property, area',all:'All statuses',csv:'Export to CSV',noFiche:'No record.',
+      rappel:'Call back',next:'Next action: ',call:'Call',wa:'WhatsApp',budget:'Budget',delai:'Timeline',secteur:'Area',bien:'Property',langue:'Language',source:'Source',recu:'Received ',
+      foot:'Private page, read only, for your agency. Your buyers\' data: do not share this link.',noStatus:'No status'},
+    ru:{deniedT:'Доступ запрещён',deniedP:'Эта ссылка недействительна. Запросите новую ссылку у GILD-TECH.',maj:'Обновлено ',refresh:'Обновить',
+      acheteurs_mois:'покупателей в этом месяце',rdv_a_venir:'предстоящих встреч',relances_en_cours:'напоминаний в работе',stop:'попросили STOP',
+      today:'На сегодня',noToday:'На сегодня звонков нет.',rdv:'Предстоящие встречи',noRdv:'Предстоящих встреч нет.',
+      fiches:'Все карточки',search:'Поиск: имя, телефон, объект, район',all:'Все статусы',csv:'Экспорт в CSV',noFiche:'Карточек нет.',
+      rappel:'Перезвонить',next:'Следующий шаг: ',call:'Позвонить',wa:'WhatsApp',budget:'Бюджет',delai:'Срок',secteur:'Район',bien:'Объект',langue:'Язык',source:'Источник',recu:'Получено ',
+      foot:'Закрытая страница, только для чтения, для вашего агентства. Данные ваших покупателей: не передавайте эту ссылку.',noStatus:'Без статуса'},
+    nl:{deniedT:'Geen toegang',deniedP:'Deze link is niet geldig. Vraag GILD-TECH om een nieuwe link.',maj:'Bijgewerkt op ',refresh:'Vernieuwen',
+      acheteurs_mois:'kopers deze maand',rdv_a_venir:'komende afspraken',relances_en_cours:'lopende opvolgingen',stop:'vroegen om STOP',
+      today:'Vandaag te doen',noToday:'Vandaag geen terugbelverzoek gepland.',rdv:'Komende afspraken',noRdv:'Geen komende afspraak.',
+      fiches:'Alle fiches',search:'Zoeken: naam, telefoon, pand, regio',all:'Alle statussen',csv:'Exporteren naar CSV',noFiche:'Geen fiche.',
+      rappel:'Terugbellen',next:'Volgende stap: ',call:'Bellen',wa:'WhatsApp',budget:'Budget',delai:'Termijn',secteur:'Regio',bien:'Pand',langue:'Taal',source:'Bron',recu:'Ontvangen op ',
+      foot:'Privépagina, alleen-lezen, voor uw kantoor. Gegevens van uw kopers: deel deze link niet.',noStatus:'Geen status'}
+  };
+  var nav = (navigator.language || 'fr').toLowerCase();
+  var L = /^ru/.test(nav) ? 'ru' : /^nl/.test(nav) ? 'nl' : /^en/.test(nav) ? 'en' : /^fr/.test(nav) ? 'fr' : 'en';
+  var t = T[L];
+  document.documentElement.lang = L;
+  var LOC = {fr:'fr-FR',en:'en-GB',ru:'ru-RU',nl:'nl-NL'}[L];
+
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+  var digits = function(p){ return String(p || '').replace(/\D/g, ''); };
+
+  function deny(){
+    $('#gT').textContent = t.deniedT; $('#gP').textContent = t.deniedP;
+    $('#app').hidden = true; $('#gate').hidden = false;
+  }
+
+  var q = new URLSearchParams(location.search);
+  var A = q.get('a'), K = q.get('k');
+  if(!A || !K || !/^[A-Za-z0-9_-]{1,64}$/.test(A) || !/^[A-Za-z0-9_-]{8,128}$/.test(K)){ deny(); return; }
+
+  var D = null, TZ = 'Asia/Bangkok';
+
+  // ---- dates dans le fuseau de l'agence ----
+  function parse(s){
+    if(!s) return null;
+    var d = new Date(s);
+    return isNaN(d) ? null : d;
+  }
+  function fmt(s, withDate){
+    var d = parse(s); if(!d) return s ? String(s) : '';
+    try{
+      var o = withDate ? {weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',timeZone:TZ} : {hour:'2-digit',minute:'2-digit',timeZone:TZ};
+      return new Intl.DateTimeFormat(LOC, o).format(d);
+    }catch(e){ return d.toISOString().slice(0,16).replace('T',' '); }
+  }
+  function dayKey(d){
+    try{ return new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:TZ}).format(d); }
+    catch(e){ return d.toISOString().slice(0,10); }
+  }
+  // heure_rappel : ISO complet, ou « HH:MM » (lu comme aujourd'hui, heure de l'agence)
+  function isToday(r){
+    if(!r) return false;
+    if(/^\d{1,2}:\d{2}$/.test(String(r).trim())) return true;
+    var d = parse(r); return !!d && dayKey(d) === dayKey(new Date());
+  }
+  function rappelSort(r){
+    if(/^\d{1,2}:\d{2}$/.test(String(r||'').trim())){ var p = String(r).trim().split(':'); return (+p[0])*60 + (+p[1]); }
+    var d = parse(r); return d ? d.getTime() : 9e15;
+  }
+  function rappelTxt(r){ return /^\d{1,2}:\d{2}$/.test(String(r||'').trim()) ? String(r).trim() : fmt(r, false); }
+
+  // ---- ordre des statuts : ceux qui demandent une action d'abord, STOP et clos à la fin ----
+  function rank(s){
+    var x = String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    if(/rappel|call ?back/.test(x)) return 1;
+    if(/rdv|rendez|appoint|visite|viewing/.test(x)) return 2;
+    if(/qualif|en cours|in progress/.test(x)) return 3;
+    if(/nouveau|new/.test(x)) return 4;
+    if(/relance|follow/.test(x)) return 5;
+    if(/stop/.test(x)) return 8;
+    if(/clos|perdu|termin|closed|lost/.test(x)) return 9;
+    return x ? 6 : 7;
+  }
+
+  function accent(c){
+    if(!/^#[0-9a-fA-F]{6}$/.test(String(c || ''))) return;
+    var r = parseInt(c.substr(1,2),16), g = parseInt(c.substr(3,2),16), b = parseInt(c.substr(5,2),16);
+    var lum = (0.2126*r + 0.7152*g + 0.0722*b) / 255;
+    var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if((dark && lum < 0.25) || (!dark && lum > 0.85)) return;   // couleur illisible sur ce fond : on garde le bleu par défaut
+    document.documentElement.style.setProperty('--accent', c);
+    document.documentElement.style.setProperty('--on-accent', lum > 0.6 ? '#0B1D33' : '#FFFFFF');
+  }
+
+  function ficheCard(x, today){
+    var tl = digits(x.telephone);
+    var chips = '<span class="chip st">' + esc(x.statut || t.noStatus) + '</span>'
+      + (x.bien_ref ? '<span class="chip">' + esc(t.bien) + ' ' + esc(x.bien_ref) + '</span>' : '')
+      + (x.secteur ? '<span class="chip">' + esc(x.secteur) + '</span>' : '')
+      + (x.budget ? '<span class="chip">' + esc(t.budget) + ' : ' + esc(x.budget) + '</span>' : '')
+      + (x.delai ? '<span class="chip">' + esc(t.delai) + ' : ' + esc(x.delai) + '</span>' : '')
+      + (x.langue ? '<span class="chip">' + esc(t.langue) + ' : ' + esc(x.langue) + '</span>' : '')
+      + (x.source ? '<span class="chip">' + esc(t.source) + ' : ' + esc(x.source) + '</span>' : '');
+    var when = today && x.heure_rappel ? t.rappel + ' ' + esc(rappelTxt(x.heure_rappel)) : (x.date ? esc(t.recu + fmt(x.date, true)) : '');
+    return '<div class="card' + (today ? ' today' : '') + '">'
+      + '<div class="l1"><div><div class="who">' + esc(x.nom || x.telephone || '') + '</div>'
+      + (x.nom && x.telephone ? '<div class="tel">' + esc(x.telephone) + '</div>' : '') + '</div>'
+      + '<div class="when">' + when + '</div></div>'
+      + '<div class="facts">' + chips + '</div>'
+      + (x.prochaine_action ? '<div class="next"><b>' + esc(t.next) + '</b>' + esc(x.prochaine_action) + '</div>' : '')
+      + (tl ? '<div class="acts"><a class="act" href="tel:+' + tl + '">' + esc(t.call) + '</a><a class="act" href="https://wa.me/' + tl + '" target="_blank" rel="noopener noreferrer">' + esc(t.wa) + '</a></div>' : '')
+      + '</div>';
+  }
+
+  function filtered(){
+    var s = $('#q').value.toLowerCase().trim(), f = $('#f').value;
+    return D.fiches.filter(function(x){
+      if(f && String(x.statut || '') !== f) return false;
+      if(!s) return true;
+      return [x.nom, x.telephone, x.bien_ref, x.secteur].join(' ').toLowerCase().indexOf(s) >= 0;
+    });
+  }
+
+  function renderFiches(){
+    var list = filtered().slice().sort(function(a, b){
+      return rank(a.statut) - rank(b.statut) || String(a.statut || '').localeCompare(String(b.statut || '')) || (parse(b.date) || 0) - (parse(a.date) || 0);
+    });
+    $('#nFiches').textContent = list.length;
+    if(!list.length){ $('#fiches').innerHTML = '<div class="empty">' + esc(t.noFiche) + '</div>'; return; }
+    var h = '', cur = null;
+    list.forEach(function(x){
+      var st = x.statut || t.noStatus;
+      if(st !== cur){ h += '<div class="grp">' + esc(st) + '</div>'; cur = st; }
+      h += ficheCard(x, false);
+    });
+    $('#fiches').innerHTML = h;
+  }
+
+  function render(){
+    accent(D.agence.couleur);
+    $('#nom').textContent = D.agence.nom || '';
+    document.title = (D.agence.nom ? D.agence.nom + ' : ' : '') + 'CRM Sarah';
+    $('#maj').textContent = D.maj ? t.maj + fmt(D.maj, true) : '';
+    var st = D.stats || {};
+    $('#stats').innerHTML = ['acheteurs_mois','rdv_a_venir','relances_en_cours','stop'].map(function(k){
+      var v = st[k]; return '<div class="stat"><b>' + esc(v == null ? '' : v) + '</b><span>' + esc(t[k]) + '</span></div>';
+    }).join('');
+
+    var today = D.fiches.filter(function(x){ return isToday(x.heure_rappel); }).sort(function(a, b){ return rappelSort(a.heure_rappel) - rappelSort(b.heure_rappel); });
+    $('#nToday').textContent = today.length;
+    $('#today').innerHTML = today.length ? today.map(function(x){ return ficheCard(x, true); }).join('') : '<div class="empty">' + esc(t.noToday) + '</div>';
+
+    var now = Date.now();
+    var rdv = (D.rdv || []).filter(function(r){ var d = parse(r.quand); return !d || d.getTime() >= now - 3600000; })
+      .sort(function(a, b){ return (parse(a.quand) || 0) - (parse(b.quand) || 0); });
+    $('#nRdv').textContent = rdv.length;
+    $('#rdv').innerHTML = rdv.length ? rdv.map(function(r){
+      return '<div class="card rdv"><div><div class="who">' + esc(r.nom || '') + '</div><div class="tel">'
+        + [r.bien_ref ? t.bien + ' ' + r.bien_ref : '', r.langue ? t.langue + ' : ' + r.langue : ''].filter(Boolean).map(esc).join(', ')
+        + '</div></div><div class="q">' + esc(fmt(r.quand, true)) + '</div></div>';
+    }).join('') : '<div class="empty">' + esc(t.noRdv) + '</div>';
+
+    var sts = [];
+    D.fiches.forEach(function(x){ var s = String(x.statut || ''); if(s && sts.indexOf(s) < 0) sts.push(s); });
+    sts.sort(function(a, b){ return rank(a) - rank(b) || a.localeCompare(b); });
+    var keep = $('#f').value;
+    $('#f').innerHTML = '<option value="">' + esc(t.all) + '</option>' + sts.map(function(s){ return '<option>' + esc(s) + '</option>'; }).join('');
+    if(sts.indexOf(keep) >= 0) $('#f').value = keep;
+    renderFiches();
+    $('#app').hidden = false; $('#gate').hidden = true;
+  }
+
+  // ---- export CSV des fiches affichées (filtre et recherche appliqués) ----
+  var COLS = ['date','nom','telephone','langue','bien_ref','secteur','budget','delai','statut','prochaine_action','heure_rappel','source'];
+  function csvCell(v){
+    var s = String(v == null ? '' : v);
+    if(/^[=+\-@]/.test(s)) s = "'" + s;   // pas de formule exécutée à l'ouverture dans un tableur
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  $('#csv').addEventListener('click', function(){
+    var rows = [COLS.join(';')].concat(filtered().map(function(x){ return COLS.map(function(c){ return csvCell(x[c]); }).join(';'); }));
+    var blob = new Blob(['﻿' + rows.join('\r\n')], {type:'text/csv;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'fiches-' + (D.agence.id || A) + '-' + dayKey(new Date()) + '.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  });
+  $('#q').addEventListener('input', renderFiches);
+  $('#f').addEventListener('change', renderFiches);
+
+  function valid(j){
+    return j && !j.error && j.agence && typeof j.agence === 'object' && Array.isArray(j.fiches) && (j.rdv == null || Array.isArray(j.rdv));
+  }
+
+  // ---- chargement : une requête à l'ouverture, puis seulement sur « Actualiser » (pas de rafraîchissement automatique) ----
+  function load(){
+    fetch(WEBHOOK + '?a=' + encodeURIComponent(A) + '&k=' + encodeURIComponent(K), {cache:'no-store', referrerPolicy:'no-referrer'})
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(j){
+        if(!valid(j)){ deny(); return; }
+        D = j; TZ = (j.agence && j.agence.fuseau) || TZ;
+        try{ new Intl.DateTimeFormat('en', {timeZone:TZ}); }catch(e){ TZ = 'Asia/Bangkok'; }
+        render();
+      })
+      .catch(deny);
+  }
+
+  $('#q').placeholder = t.search;
+  $('#csv').textContent = t.csv;
+  $('#refresh').textContent = t.refresh;
+  $('#hToday').textContent = t.today; $('#hRdv').textContent = t.rdv; $('#hFiches').textContent = t.fiches;
+  $('#foot').textContent = t.foot;
+  $('#refresh').addEventListener('click', load);
+  load();
+})();
+</script>
+</body>
+</html>
