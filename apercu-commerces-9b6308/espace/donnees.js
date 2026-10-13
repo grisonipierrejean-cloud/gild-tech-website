@@ -4,8 +4,10 @@
 // Les écrans n'appellent que RENOM_DATA : passer de l'un à l'autre ne change aucun écran.
 (function () {
   const cfg = window.RENOM_CONFIG || {};
-  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0 }, croissance: { nom: "Croissance", publications: 16, videos: 4 }, signature: { nom: "Signature", publications: 24, videos: 8 } };
-  const FICHE = ["nom", "metier", "ville", "ton", "specialites", "horaires", "mots_cles", "mentions_autorisees", "contact", "email_validation", "couleurs", "reglage_avis", "lien_avis", "notifications"];
+  // commentaires : réponses aux commentaires Instagram et Facebook comprises (page de vente : Croissance et Signature ; même valeur que offres.commentaires
+  // dans schema.sql et moteur/offres.json, égalité testée). Aucun plafond : la page de vente n'en chiffre aucun.
+  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false }, croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true }, signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true } };
+  const FICHE = ["nom", "metier", "ville", "ton", "specialites", "horaires", "mots_cles", "mentions_autorisees", "contact", "email_validation", "couleurs", "reglage_avis", "lien_avis", "notifications", "commentaires_compliments_auto"];
   const RESEAUX = ["facebook", "instagram", "google", "tiktok"];
   const TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"], MAX = 50 * 1024 * 1024;
   const verifierFichier = f => !TYPES.includes(f.type) ? "Format non accepté (JPEG, PNG, WebP ou HEIC)." : f.size > MAX ? "Fichier trop lourd (50 Mo au plus)." : null;
@@ -55,6 +57,7 @@
       const base = { etat: "a_valider", objet: r.objet, commerce: r.commerce, expire_le: r.expire_le };
       if (r.contenu) { const c = r.contenu; return { ...base, type: c.type, format: c.format, legende: c.legende || "", legendes: c.legendes || null, visuel_url: c.apercu_url || null, video_url: null }; }
       if (r.avis) { const a = r.avis; return { ...base, note: a.note, texte: a.texte || "", auteur: a.auteur || "", reponse_proposee: a.reponse_proposee || "" }; }
+      if (r.commentaire) { const m = r.commentaire; return { ...base, reseau: m.reseau, categorie: m.categorie, texte: m.texte || "", auteur: m.auteur || "", reponse_proposee: m.reponse_proposee || "", recu_le: m.recu_le }; }
       return r;
     },
     async validerParJeton(jeton, decision, texte) { await rpcPublic("valider_par_jeton", { p_jeton: String(jeton || ""), p_decision: decision, p_texte: texte == null ? null : String(texte) }); },
@@ -132,6 +135,8 @@
   // ---- Vidéo d'avis : règles communes aux deux adaptateurs. Mêmes valeurs et mêmes phrases que moteur/video_avis.py et que le
   // déclencheur SQL verifier_demande_video_avis (égalité vérifiée par moteur/tests/test_video_avis.py et espace/test_ecrans.py).
   const VIDEO_AVIS = { MIN: 2, MAX: 4, NOTE_MIN: 4, LIMITE: 240,
+    // Durée de conservation des avis (règle « Content storage » de l'API Business Profile : « no more than 30 calendar days »)
+    AGE_MAX_JOURS: 30, MOTIF_ANCIEN: "Avis reçu il y a plus de 30 jours : Google ne permet pas de conserver un avis plus longtemps, il n'est donc plus proposé.",
     PLAGES: "0020-007E 00A0-00A3 00A5-00AC 00AE-0107 010A-0113 0116-011B 011E-0123 0126-0127 012A-012B 012E-0133 0136-0137 0139-013E 0141-0148 014A-014D 0150-015B 015E-0161 0164-0165 016A-017E 2013-2014 2018-201A 201C-201E 2022 2026 2039-203A 20AC 2122 2212",
     // Cinq styles, bâtis sur les DEUX familles libres du moteur (Bricolage Grotesque et Figtree) : graisses et largeurs différentes.
     STYLES: [
@@ -151,9 +156,12 @@
   VIDEO_AVIS.PLAGES.split(" ").forEach(p => { const [a, b] = p.split("-").map(x => parseInt(x, 16)); for (let i = a; i <= (b || a); i++) VA_OK.add(i); });
   VIDEO_AVIS.longueur = t => Array.from(t || "").length;
   // Raison pour laquelle un avis ne peut pas entrer dans une vidéo ; null s'il est proposable.
-  VIDEO_AVIS.motif = a => {
+  // Avis effacé, ou reçu (entrée dans RENOM) il y a plus de 30 jours. Sans date connue : non.
+  VIDEO_AVIS.tropAncien = (a, maintenant) => !!a.efface_le || (!!a.cree_le && (maintenant || Date.now()) - Date.parse(a.cree_le) > VIDEO_AVIS.AGE_MAX_JOURS * 86400000);
+  VIDEO_AVIS.motif = (a, maintenant) => {
     const t = a.texte || "", n = VIDEO_AVIS.longueur(t);
     if (a.sensible) return "Avis marqué sensible : il n'est jamais proposé.";
+    if (VIDEO_AVIS.tropAncien(a, maintenant)) return VIDEO_AVIS.MOTIF_ANCIEN;
     if ((a.note || 0) < VIDEO_AVIS.NOTE_MIN) return `Note de ${a.note || 0} sur 5 : seuls les avis de ${VIDEO_AVIS.NOTE_MIN} et 5 étoiles sont proposés.`;
     if (!t.trim()) return "Avis sans texte : il n'y a rien à citer.";
     if (!(a.auteur || "").trim()) return "Auteur inconnu : un avis n'est cité qu'avec le prénom de son auteur.";
@@ -168,6 +176,26 @@
     if (!VIDEO_AVIS.FONDS.some(f => f.id === fond)) throw new Error("Choisissez un fond.");
     if (!VIDEO_AVIS.STYLES.some(s => s.id === style)) throw new Error("Choisissez un style de typographie.");
   };
+
+  // ---- Réponses aux commentaires : règles communes aux deux adaptateurs (mêmes valeurs que le bloc « Réponses aux commentaires » de schema.sql)
+  const COMMENTAIRES = {
+    LIMITE: 1000, CONSERVATION_JOURS: 30,
+    CATEGORIES: { question: "Question", compliment: "Compliment", reclamation: "Réclamation", spam: "Spam", sensible: "Sensible" },
+    ETATS: { a_valider: "À valider", valide: "Validée, publication en cours", a_publier_main: "Validée, publiée par notre équipe sous peu", publie: "Réponse publiée", humain: "À traiter par vous", ignore: "Sans réponse", clos: "Traité par vous" },
+    RESEAUX: { instagram: "Instagram", facebook: "Facebook" },
+  };
+  function controlerDecisionCommentaire(x, decision, texte) {
+    if (!x) throw new Error("Commentaire introuvable.");
+    if (x.statut === "humain") { if (decision !== "clos") throw new Error("Un commentaire sensible ne reçoit pas de réponse de RENOM : répondez-y vous-même sur le réseau, puis marquez-le comme traité."); return { statut: "clos" }; }
+    if (x.statut !== "a_valider") throw new Error("Ce commentaire a déjà été traité.");
+    if (decision === "ignore") return { statut: "ignore" };
+    if (decision !== "valide") throw new Error("Décision inconnue : valider la réponse ou ne pas répondre.");
+    const t = String(texte ?? x.reponse_proposee ?? "").trim();
+    if (!t) throw new Error("Écrivez une réponse, ou choisissez de ne pas répondre.");
+    if (longueur(t) > COMMENTAIRES.LIMITE) throw new Error("La réponse est trop longue (1 000 caractères au plus).");
+    return { statut: "valide", reponse_proposee: t };
+  }
+  // ---- fin des règles communes des commentaires
 
   // ---- Automatisations de service : règles communes aux deux adaptateurs (mêmes valeurs et mêmes phrases que le bloc
   // « Automatisations de service » de espace/supabase/schema.sql ; textes de la mise en route repris de moteur/courriels/service.js).
@@ -204,11 +232,13 @@
     const date = s => { const m = String(s || "").match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/); return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : String(s || ""); };
     return l.slice(1).map(x => { const c = cellules(x); return { prenom: c[ip] || "", email: String(c[ie] || "").toLowerCase(), date_passage: date(c[id]) }; });
   }
-  const TYPES_ALERTE = { ERREUR_WORKFLOW: "Erreur de workflow", PHOTOS_EMAIL_REFUSEES: "Photos par email refusées", MISE_EN_ROUTE_BLOQUEE: "Mise en route bloquée", ECHEC_RELANCE_PROSPECT: "Relance de prospect en échec" };
+  const TYPES_ALERTE = { ERREUR_WORKFLOW: "Erreur de workflow", PHOTOS_EMAIL_REFUSEES: "Photos par email refusées", MISE_EN_ROUTE_BLOQUEE: "Mise en route bloquée", ECHEC_RELANCE_PROSPECT: "Relance de prospect en échec",
+    AVIS_SENSIBLE_A_EFFACER: "Avis sensible bientôt effacé (30 jours)", COMMENTAIRE_SENSIBLE_A_EFFACER: "Commentaire sensible bientôt effacé (30 jours)" };
   const texteAlerte = a => { const d = a.detail || {};
     if (a.type === "ERREUR_WORKFLOW") return `${d.workflow || "Workflow inconnu"}, nœud ${d.noeud || "inconnu"} : ${d.message || ""}`;
     if (a.type === "PHOTOS_EMAIL_REFUSEES") return `${d.pieces || 0} pièce(s) jointe(s) refusée(s) : ${d.raison || d.statut || ""}. Rien n'a été déposé.`;
     if (a.type === "MISE_EN_ROUTE_BLOQUEE") return `${d.jours} jours après la création, il reste : ${(d.restants || []).map(r => r.point).join(", ")}.`;
+    if (/_A_EFFACER$/.test(a.type)) return `Toujours en attente d'une personne. Texte effacé le ${String(d.efface_le || "").slice(0, 10)} (règle des 30 jours) : à traiter avant.`;
     return JSON.stringify(d); };
   const MODELE_CSV = "prenom;email;date_passage\nCamille;camille@exemple.fr;" + new Date().toISOString().slice(0, 10) + "\n";
   // ---- fin des règles communes des automatisations
@@ -244,6 +274,7 @@
         if (Array.isArray(E.retours_prives)) { ecrireRetours([...E.retours_prives.map(x => ({ id: uid(), lu: false, ...x })), ...lireRetours()]); delete E.retours_prives; }
         sauver();
       }
+      conserver();   // règle des 30 jours, appliquée à chaque ouverture comme le passage quotidien du serveur
       TF = TF || await chargerTempsForts(); assurerIdeeSemaine();
       // Session durable : elle reste d'une visite à l'autre dans ce navigateur (localStorage), jusqu'à « Quitter ».
       try { if (reset) localStorage.removeItem(K + ":session"); const s = localStorage.getItem(K + ":session"); if (s && E.users[s]) session = s; } catch (e) {}
@@ -255,7 +286,9 @@
     const usage = c => E.contenus.filter(x => x.commerce_id === c.id && x.type === "publication" && x.mois === mois0() && x.statut !== "refuse").length + E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length;
     const usageVideos = c => E.contenus.filter(x => x.commerce_id === c.id && x.type === "video" && x.mois === mois0() && x.statut !== "refuse").length;
     const pasEnPause = c => { if (c.en_pause) throw new Error("Votre commerce est en pause : contactez RENOM."); };
-    const vc = c => { const o = OFFRES[c.offre_id]; return { commerce_id: c.id, mois: mois0(), offre: c.offre_id, offre_nom: o.nom, en_pause: !!c.en_pause, publications_plafond: o.publications, videos_plafond: o.videos, publications_utilisees: usage(c), videos_utilisees: usageVideos(c), idees_demandees: E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length }; };
+    const repondusCommentaires = c => liste("commentaires").filter(x => x.commerce_id === c.id && ["valide", "a_publier_main", "publie"].includes(x.statut) && x.decide_le && x.decide_le.slice(0, 7) === mois0().slice(0, 7)).length;
+    const vc = c => { const o = OFFRES[c.offre_id]; return { commerce_id: c.id, mois: mois0(), offre: c.offre_id, offre_nom: o.nom, en_pause: !!c.en_pause, publications_plafond: o.publications, videos_plafond: o.videos, publications_utilisees: usage(c), videos_utilisees: usageVideos(c), idees_demandees: E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length,
+      commentaires_inclus: !!o.commentaires, commentaires_repondus: repondusCommentaires(c) }; };
     const admin = () => { const u = E.users[session]; if (!u || u.role !== "administrateur") throw new Error("Réservé à l'administrateur."); };
 
     // ---- Collecte (démonstration) : jeton public et retours privés
@@ -308,6 +341,12 @@
       },
     };
     const vaDemandes = () => (E.videos_avis_demandes = E.videos_avis_demandes || []);
+    // Décision sur un commentaire (espace ou lien) puis, si elle est validée, le faux workflow de publication : accès de Meta non accordé, donc file manuelle.
+    function appliquerDecisionCommentaire(x, decision, texte) {
+      const d = controlerDecisionCommentaire(x, decision, texte), maintenant = iso(Date.now());
+      Object.assign(x, d, { decide_le: maintenant }); if (d.statut === "ignore") x.decision = "ignore";
+      if (d.statut === "valide") Object.assign(x, { statut: "a_publier_main", erreur: "Accès de Meta pas encore accordé : publication par l'équipe RENOM." });
+    }
 
     // =========================================================== Mise à jour de l'espace membre (démonstration)
     const MS_H = 3600000, iso = t => new Date(t).toISOString();
@@ -327,16 +366,17 @@
     function emettreJeton(cid, objet, id) {
       const c = E.commerces[cid]; if (!c || (c.notifications && c.notifications.email === false)) return;
       if (objet === "avis") { const a = E.avis.find(x => x.id === id); if (!a || a.sensible) return; }
+      if (objet === "commentaire") { const m = liste("commentaires").find(x => x.id === id); if (!m || m.categorie === "sensible") return; }
       const l = liste("jetons_validation"), maintenant = Date.now();
       if (l.some(j => j.objet_id === id && !j.utilise_le && new Date(j.expire_le).getTime() > maintenant)) return;
       l.push({ jeton: nouveauJeton(), commerce_id: cid, objet, objet_id: id, expire_le: iso(maintenant + 7 * 24 * MS_H), utilise_le: null, cree_le: iso(maintenant) });
       jour(cid, "EMAIL_VALIDATION", { objet, simule: true });
     }
-    const objetDuJeton = j => j.objet === "contenu" ? E.contenus.find(x => x.id === j.objet_id) : E.avis.find(x => x.id === j.objet_id);
+    const objetDuJeton = j => j.objet === "contenu" ? E.contenus.find(x => x.id === j.objet_id) : j.objet === "commentaire" ? liste("commentaires").find(x => x.id === j.objet_id) : E.avis.find(x => x.id === j.objet_id);
     function lireJeton(jeton) {
       const j = liste("jetons_validation").find(x => x.jeton === String(jeton || "")); if (!j) return { etat: "inconnu" };
       const o = objetDuJeton(j), c = E.commerces[j.commerce_id];
-      if (!o || !c || (j.objet === "avis" && o.sensible)) return { etat: "inconnu" };
+      if (!o || !c || (j.objet === "avis" && o.sensible) || (j.objet === "commentaire" && o.categorie === "sensible")) return { etat: "inconnu" };
       if (j.utilise_le) return { etat: "utilise", j };
       if (new Date(j.expire_le).getTime() <= Date.now()) return { etat: "expire", j };
       if (o.statut !== "a_valider") return { etat: "traite", j };
@@ -347,11 +387,12 @@
     // converties au chargement : la démonstration reste à jour quel que soit le jour où on l'ouvre.
     function datesRelatives(G, maintenant) {
       const H = 3600000;
-      ["photos", "contenus", "publications", "idees_demandes", "idees", "avis", "journal", "videos_avis_demandes", "retours_prives"].forEach(k => (G[k] || []).forEach(x => {
+      ["photos", "contenus", "publications", "idees_demandes", "idees", "avis", "journal", "videos_avis_demandes", "retours_prives", "commentaires"].forEach(k => (G[k] || []).forEach(x => {
         if (x.il_y_a_h != null) { x.cree_le = iso(maintenant - x.il_y_a_h * H); delete x.il_y_a_h; }
         if (x.dans_h != null) { x.prevu_le = iso(maintenant + x.dans_h * H); delete x.dans_h; }
         if (x.prevu_il_y_a_h != null) { x.prevu_le = iso(maintenant - x.prevu_il_y_a_h * H); delete x.prevu_il_y_a_h; }
         if (x.repondu_apres_h != null) { x.repondu_le = iso(new Date(x.cree_le).getTime() + x.repondu_apres_h * H); delete x.repondu_apres_h; }
+        if (x.decide_apres_h != null) { x.decide_le = iso(new Date(x.cree_le).getTime() + x.decide_apres_h * H); delete x.decide_apres_h; }
         if (x.mois === "courant") x.mois = mois0(); else if (x.mois === "precedent") x.mois = moisDecale(-1);
       }));
     }
@@ -400,9 +441,7 @@
         const P = { profil: 17, categories: 15, photos: 16, avis: 15, engagement: 14 };
         const NOMS = { profil: "Complétude du profil", categories: "Catégories et attributs", photos: "Photos", avis: "Avis", engagement: "Signaux d'engagement" };
         G.google_demo.push({ type: "fiche", commerce_id: er.id, piliers: Object.keys(P).map(cle => ({ cle, nom: NOMS[cle], note: P[cle], sur: 20 })) });
-        // Thèmes des avis du mois (table audits_mensuels : thèmes seulement, ni score ni piliers)
-        G.audits_mensuels.push({ id: "aud-5", commerce_id: er.id, mois: moisDecale(0), score: null, piliers: null,
-          themes: (prof && prof.themes) || [{ theme: "Accueil et explications", positif: 9, negatif: 0 }, { theme: "Parcours et paysages", positif: 8, negatif: 1 }, { theme: "État du matériel", positif: 7, negatif: 0 }, { theme: "Durée de la sortie", positif: 2, negatif: 1 }, { theme: "Attente au départ", positif: 0, negatif: 2 }] });
+        // Thèmes des avis : plus rien de rangé (règle de Google, aucune agrégation conservée) ; calculés à l'ouverture de Résultats (themesDemo).
         // Passages sur la page d'avis et clics vers Google depuis le début du mois
         const d0 = debutMois(mois0()), duree = Math.max(MS_H, maintenant - d0 - MS_H);
         for (let i = 0; i < 46; i++) G.collecte_evenements.push({ commerce_id: er.id, type: "passage", cree_le: iso(d0 + Math.floor(duree * (i + 0.5) / 46)), demo: true });
@@ -414,6 +453,7 @@
       }
       G.contenus.filter(x => x.statut === "a_valider").forEach(x => emettreJeton(x.commerce_id, "contenu", x.id));
       G.avis.filter(x => x.statut === "a_valider" && !x.sensible).forEach(x => emettreJeton(x.commerce_id, "avis", x.id));
+      liste("commentaires").filter(x => x.statut === "a_valider" && x.categorie !== "sensible").forEach(x => emettreJeton(x.commerce_id, "commentaire", x.id));
       completerAutomatisations(G, maintenant, er || null);
       return G;
     }
@@ -421,7 +461,9 @@
     const KC = K + ":collecte"; let collecteMem = [];
     try { if (/[?&]reset\b/.test(location.search + location.hash)) localStorage.removeItem(KC); } catch (e) {}
     const lireCollecte = () => { try { const l = JSON.parse(localStorage.getItem(KC)); collecteMem = Array.isArray(l) ? l : []; } catch (e) {} return collecteMem; };
-    const avisTous = c => [...liste("avis_historique").filter(x => x.commerce_id === c.id), ...E.avis.filter(x => x.commerce_id === c.id)];
+    // Ce que la lecture de Google à la demande renverrait : l'historique fictif, plus les avis de la table (ceux effacés par RENOM à 30 jours restent
+    // chez Google : leur copie « google » est rangée dans l'historique fictif au moment de l'effacement, voir conserver()).
+    const avisTous = c => [...liste("avis_historique").filter(x => x.commerce_id === c.id), ...E.avis.filter(x => x.commerce_id === c.id && !x.efface_le)];
     function etatAvis(c, t) {
       const b = (E.bases || {})[c.id], l = avisTous(c).filter(a => a.note && new Date(a.cree_le).getTime() < t);
       if (!b && !l.length) return { note: null, nb_avis: null };
@@ -436,6 +478,31 @@
       return { passages: ev.filter(x => x.type === "passage").length, clics_google: ev.filter(x => x.type === "clic_google").length,
         retours_prives: lireRetours().filter(x => x.commerce_id === c.id && dans(x.cree_le, m)).length, nouveaux_avis: apres == null ? 0 : apres - (avant || 0) };
     }
+    // ---- Conservation (démonstration) : même règle que la base (effacer_contenus_expires) : au-delà de 30 jours, texte, note et auteur d'un avis,
+    // texte et auteur d'un commentaire sont effacés ; l'identifiant, notre réponse et nos dates restent. La copie « Google » d'un avis effacé rejoint
+    // l'historique fictif (en service, Google garde l'avis : seul RENOM l'oublie).
+    function conserver() {
+      if (!E) return; const limite = Date.now() - VIDEO_AVIS.AGE_MAX_JOURS * 86400000, maintenant = iso(Date.now()); let n = 0;
+      (E.avis || []).forEach(a => { if (a.efface_le || Date.parse(a.cree_le) >= limite) return;
+        if (a.note) liste("avis_historique").push({ id: "g-" + a.id, commerce_id: a.commerce_id, note: a.note, cree_le: a.cree_le, repondu_le: a.repondu_le || null, demo: true });
+        a.texte = null; a.note = null; a.auteur = null; a.efface_le = maintenant; n++; jour(a.commerce_id, "AVIS_EFFACES_30_JOURS", { nombre: 1 }); });
+      liste("commentaires").forEach(x => { if (x.efface_le || Date.parse(x.cree_le) >= limite) return; x.texte = null; x.auteur = null; x.efface_le = maintenant; n++; });
+      if (n) sauver();
+    }
+    // ---- Thèmes des avis (démonstration) : calculés à l'ouverture de Résultats sur les avis présents (30 jours au plus, non sensibles), jamais rangés.
+    // FAUX service : un repérage par mots, pas Claude. En service, n8n/renom-resultats-google.json envoie ces avis à Claude (moteur/resultats/themes.js),
+    // avec la même règle : un thème doit revenir dans au moins deux avis.
+    const FAMILLES = [["L'accueil et le service", /accueil|explication|souri|sympa|gentil|serveu|equipe|service/], ["Le matériel", /velo|materiel|batterie|en bon etat|recent|regle/],
+      ["Le parcours et les paysages", /balade|parcours|foret|paysage|\bmer\b|sortie|vue/], ["L'attente", /attente|attendu|retard/], ["Les plats", /plat|pates|cuisine|dessert|entree|assiette|saveur|mijot/],
+      ["L'ambiance", /ambiance|cadre|decor|terrasse|calme|bruit/], ["Les prix", /prix|cher|tarif|addition/]];
+    function themesDemo(c) {
+      const plat = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      const avis = E.avis.filter(a => a.commerce_id === c.id && !a.efface_le && !a.sensible && (a.texte || "").trim() && Date.now() - Date.parse(a.cree_le) <= VIDEO_AVIS.AGE_MAX_JOURS * 86400000);
+      if (avis.length < 2) return { themes: [], statut: "insuffisants", analyses: avis.length };
+      const themes = FAMILLES.map(([theme, re]) => { const l = avis.filter(a => re.test(plat(a.texte))); return { theme, positif: l.filter(a => a.note >= 4).length, negatif: l.filter(a => a.note < 4).length }; })
+        .filter(t => t.positif + t.negatif >= 2).sort((a, b) => (b.positif + b.negatif) - (a.positif + a.negatif)).slice(0, 5);
+      return { themes, statut: "calcules", analyses: avis.length };
+    }
     const majDemo = {
       async resultats(n) {
         await init(); const c = cur(); n = Math.max(1, Math.min(12, +n || 6));
@@ -448,17 +515,19 @@
         const gd = liste("google_demo").filter(x => x.commerce_id === c.id), fiche = gd.find(x => x.type === "fiche"), m1 = mois0();
         const conc = liste("concurrents").filter(x => x.commerce_id === c.id).sort((a, b) => a.ordre - b.ordre).map(x => { const g = gd.find(y => y.type === "concurrent" && y.place_id === x.place_id);
           return { nom: (g && g.nom) || x.nom, mois: [{ mois: m1, note: g ? g.note : null, nb_avis: g ? g.nb_avis : null }] }; });
-        const avecThemes = liste("audits_mensuels").filter(x => x.commerce_id === c.id && L.includes(x.mois) && (x.themes || []).length).sort((a, b) => a.mois.localeCompare(b.mois)).pop();
+        const th = themesDemo(c);
         const lue = mois.some(m => m.note != null);
         return { mois, reponses: { taux: periode.length ? Math.round(repondus.length / periode.length * 100) : null, delai_moyen_h: moyenneH(repondus) },
-          audit: fiche ? [{ mois: m1, score: fiche.piliers.reduce((s, x) => s + x.note, 0), piliers: fiche.piliers }] : [], concurrents: conc, themes: avecThemes ? avecThemes.themes : [],
+          audit: fiche ? [{ mois: m1, score: fiche.piliers.reduce((s, x) => s + x.note, 0), piliers: fiche.piliers }] : [], concurrents: conc, themes: th.themes,
           collecte: mesureCollecte(c), portee: null,
-          lecture_google: { le: iso(maintenant), statut: "ok", fiche: lue ? "lue" : "non_reliee", concurrents: conc.length ? "lus" : "aucun", score: fiche ? "calcule" : "non_reliee", historique_reconstitue: lue && n > 1, demo: true } };
+          lecture_google: { le: iso(maintenant), statut: "ok", fiche: lue ? "lue" : "non_reliee", concurrents: conc.length ? "lus" : "aucun", score: fiche ? "calcule" : "non_reliee", historique_reconstitue: lue && n > 1,
+            themes: th.statut, themes_avis: th.analyses, demo: true } };
       },
       async bilanMois() {
         await init(); const c = cur(), m = mois0(), debut = etatAvis(c, debutMois(m)), fin = etatAvis(c, Date.now() + 1);
         return { mois: m, reponses_publiees: avisTous(c).filter(a => a.repondu_le && dans(a.repondu_le, m)).length, publications: publiees(c, m), note_debut: debut.note, note_fin: fin.note,
-          avis_obtenus: avisTous(c).filter(a => dans(a.cree_le, m)).length, a_valider: mine("contenus").filter(x => x.statut === "a_valider").length + mine("avis").filter(x => x.statut === "a_valider" && !x.sensible).length };
+          avis_obtenus: avisTous(c).filter(a => dans(a.cree_le, m)).length, a_valider: mine("contenus").filter(x => x.statut === "a_valider").length + mine("avis").filter(x => x.statut === "a_valider" && !x.sensible).length
+          + liste("commentaires").filter(x => x.commerce_id === c.id && x.statut === "a_valider").length };
       },
       async modifierLegende(id, reseau, texte) {
         await init(); const ct = mine("contenus").find(x => x.id === id); if (!ct) throw new Error("Contenu introuvable.");
@@ -501,6 +570,7 @@
         await init(); const r = lireJeton(jeton); if (r.etat === "inconnu") return null;
         if (r.etat !== "a_valider") return { etat: r.etat, objet: r.j.objet };
         const { o, c, j } = r, base = { etat: "a_valider", objet: j.objet, commerce: c.nom, expire_le: j.expire_le };
+        if (j.objet === "commentaire") return { ...base, reseau: o.reseau, categorie: o.categorie, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "", recu_le: o.cree_le };
         return j.objet === "contenu" ? { ...base, type: o.type, format: formatDe(o), legende: o.legende || "", legendes: o.legendes || null, visuel_url: o.visuel_url || null, video_url: o.video_url || null }
           : { ...base, note: o.note, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "" };
       },
@@ -513,12 +583,14 @@
           if (!["approuve", "modification", "refuse"].includes(decision)) throw new Error("Décision refusée.");
           if (decision === "modification" && !String(texte || "").trim()) throw new Error("Écrivez un mot pour dire ce qu'il faut modifier.");
           o.statut = decision; o.note_modification = decision === "modification" ? String(texte).trim() : null; o.decide_le = iso(Date.now());
+        } else if (j.objet === "commentaire") {
+          appliquerDecisionCommentaire(o, decision, texte);
         } else {
           if (!["valide", "refuse"].includes(decision)) throw new Error("Décision refusée.");
           if (decision === "valide") { const t = String(texte ?? o.reponse_proposee ?? "").trim(); if (!t) throw new Error("Réponse vide."); o.reponse_proposee = t; }
           o.statut = decision;
         }
-        j.utilise_le = iso(Date.now()); jour(j.commerce_id, (j.objet === "contenu" ? "CONTENU_" : "AVIS_") + decision.toUpperCase(), { par_lien: true }); sauver();
+        j.utilise_le = iso(Date.now()); jour(j.commerce_id, ({ contenu: "CONTENU_", commentaire: "COMMENTAIRE_" }[j.objet] || "AVIS_") + decision.toUpperCase(), { par_lien: true }); sauver();
       },
     };
 
@@ -554,10 +626,14 @@
       if (c.en_pause) orange.push("en pause");
       if (age > 10 && !inactif && derniere < now - 10 * JOUR_MS) orange.push("aucune photo depuis 10 jours");
       n = E.contenus.filter(x => x.commerce_id === c.id && x.statut === "a_valider" && now - Date.parse(x.cree_le) > 48 * HEURE).length
-        + E.avis.filter(a => a.commerce_id === c.id && a.statut === "a_valider" && !a.sensible && now - Date.parse(a.cree_le) > 48 * HEURE).length;
+        + E.avis.filter(a => a.commerce_id === c.id && a.statut === "a_valider" && !a.sensible && now - Date.parse(a.cree_le) > 48 * HEURE).length
+        + liste("commentaires").filter(x => x.commerce_id === c.id && x.statut === "a_valider" && now - Date.parse(x.cree_le) > 48 * HEURE).length;
       if (n) orange.push(`${n} ${n > 1 ? "éléments attendent" : "élément attend"} une validation depuis plus de 48 h`);
       if (usage(c) >= OFFRES[c.offre_id].publications) orange.push("plafond de publications atteint ce mois-ci");
       n = RESEAUX.filter(r => ((E.comptes[c.id] || {})[r] || {}).etat === "erreur").length; if (n) orange.push(`${n} ${n > 1 ? "réseaux en erreur" : "réseau en erreur"}`);
+      const cm = liste("commentaires").filter(x => x.commerce_id === c.id);
+      n = cm.filter(x => x.categorie === "sensible" && x.statut === "humain" && now - Date.parse(x.cree_le) > 48 * HEURE).length; if (n) orange.push(`${n} ${n > 1 ? "commentaires sensibles attendent" : "commentaire sensible attend"} le commerçant depuis plus de 48 h`);
+
       return { commerce_id: c.id, nom: c.nom, niveau: rouge.length ? "rouge" : orange.length ? "orange" : "vert", raisons: [...rouge, ...orange], mise_en_route: mr };
     }
     function compterEmailDemo(c, type, envoi) {
@@ -780,12 +856,26 @@
         setTimeout(() => { faux.videoAvis(d); sauver(); }, 1500);   // faux n8n + faux rendu
         return d.id;
       },
+      // ---- Réponses aux commentaires (démonstration). Aucun réseau n'est appelé : l'accès de Meta n'étant pas accordé, une réponse validée passe
+      // dans la file « à publier à la main » de la console, comme le ferait n8n/renom-commentaires-publication.json sans accès.
+      async commentaires() { await init(); return liste("commentaires").filter(x => x.commerce_id === cur().id).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
+      async deciderCommentaire(id, decision, texte) {
+        await init(); const x = liste("commentaires").find(y => y.id === id && y.commerce_id === cur().id);
+        appliquerDecisionCommentaire(x, decision, texte); jour(cur().id, "COMMENTAIRE_" + String(decision).toUpperCase(), { commentaire: id }); sauver(); return x.statut;
+      },
+      async adminCommentairesAPublier() { await init(); admin(); return liste("commentaires").filter(x => x.statut === "a_publier_main").map(x => ({ ...x, commerce: (E.commerces[x.commerce_id] || {}).nom })).sort((a, b) => (a.decide_le || "").localeCompare(b.decide_le || "")); },
+      async adminCommentairePublie(id) {
+        await init(); admin(); const x = liste("commentaires").find(y => y.id === id);
+        if (!x || x.statut !== "a_publier_main") throw new Error("Cette réponse n'est pas dans la file à publier à la main.");
+        Object.assign(x, { statut: "publie", publie_par: "equipe", reponse: x.reponse_proposee, repondu_le: iso(Date.now()) }); jour(x.commerce_id, "COMMENTAIRE_PUBLIE", { par: "equipe" }); sauver();
+      },
       // ---- console de PJ
       async adminCommerces() { await init(); admin(); return Object.values(E.commerces).map(c => ({ ...c, compteur: vc(c), comptes: E.comptes[c.id] || {}, alertes: E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length, sante: santeDemo(c) })); },
       async adminJournal() { await init(); admin(); return E.journal.slice(0, 300).map(j => ({ ...j, commerce: (E.commerces[j.commerce_id] || {}).nom })); },
       async adminAlertes() {
         await init(); admin(); const nom = id => (E.commerces[id] || {}).nom;
         return [...E.avis.filter(a => a.sensible && a.statut === "humain").map(a => ({ type: "Avis sensible", commerce: nom(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })),
+          ...liste("commentaires").filter(x => x.categorie === "sensible" && x.statut === "humain").map(x => ({ type: "Commentaire sensible", commerce: nom(x.commerce_id), texte: (x.raisons || []).join(", ") + " : " + (x.texte || "texte effacé après 30 jours").slice(0, 100), date: x.cree_le })),
           ...E.journal.filter(j => ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"].includes(j.type)).map(j => ({ type: j.type, commerce: nom(j.commerce_id), texte: JSON.stringify(j.detail), date: j.cree_le })),
           ...E.publications.filter(p => p.statut === "echec").map(p => ({ type: "Publication en échec", commerce: nom(p.commerce_id), texte: p.erreur || "", date: p.prevu_le })),
           ...liste("alertes_exploitant").map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: nom(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le }))];
@@ -807,8 +897,11 @@
           const court = t => { t = String(t || ""); return t.length > 160 ? t.slice(0, t.lastIndexOf(" ", 160)) + "…" : t; };
           return liste("jetons_validation").filter(j => j.commerce_id === c.id).map(j => lireJeton(j.jeton)).filter(r => r.etat === "a_valider").reverse().map(({ j, o }) => ({
             jeton: j.jeton, objet: j.objet, expire_le: j.expire_le, extrait: court(j.objet === "contenu" ? o.legende : o.texte),
-            objet_email: j.objet === "avis" ? "Une réponse d'avis attend votre accord" : ({ story: "Une story attend votre accord", video: "Une vidéo attend votre accord" })[formatDe(o)] || "Une publication attend votre accord",
-            phrase: j.objet === "avis" ? `Un avis de ${o.note} sur 5 a reçu une proposition de réponse. Ouvrez le lien pour la lire, la modifier si besoin, puis décider.` : `Un nouveau contenu pour ${c.nom} attend votre accord. Ouvrez le lien pour le voir réseau par réseau, puis décider.` }));
+            objet_email: j.objet === "avis" ? "Une réponse d'avis attend votre accord" : j.objet === "commentaire" ? "Une réponse à un commentaire attend votre accord"
+              : ({ story: "Une story attend votre accord", video: "Une vidéo attend votre accord" })[formatDe(o)] || "Une publication attend votre accord",
+            phrase: j.objet === "avis" ? `Un avis de ${o.note} sur 5 a reçu une proposition de réponse. Ouvrez le lien pour la lire, la modifier si besoin, puis décider.`
+              : j.objet === "commentaire" ? `Un commentaire ${COMMENTAIRES.RESEAUX[o.reseau] ? "sur " + COMMENTAIRES.RESEAUX[o.reseau] + " " : ""}a reçu une proposition de réponse. Ouvrez le lien pour la lire, la modifier si besoin, puis décider.`
+              : `Un nouveau contenu pour ${c.nom} attend votre accord. Ouvrez le lien pour le voir réseau par réseau, puis décider.` }));
         },
         async avisFictif() {
           await init(); const c = cur(); const sens = false, id = uid(); E.avis.unshift({ id, commerce_id: c.id, google_review_id: "demo-" + uid().slice(0, 6), auteur: "Alex D.", note: 2, texte: "Avis fictif de démonstration : l'attente au départ nous a semblé longue.", reponse_proposee: "Bonjour, merci d'avoir pris le temps de nous écrire. Nous sommes désolés que l'attente au départ vous ait semblé longue. Vous pouvez nous écrire à " + (c.contact || "l'adresse de contact de votre fiche") + " pour en parler. Nous espérons vous revoir bientôt.", sensible: sens, raisons: [], statut: "a_valider", decision: "validation_commercant", cree_le: new Date().toISOString(), demo: true }); jour(c.id, "AVIS_RECU", { simule: true }); emettreJeton(c.id, "avis", id); sauver();
@@ -878,7 +971,7 @@
       async programmer({ contenu_id, reseaux, prevu_le }) { const c = await self.commerce(); ok(await sb.from("publications").insert({ commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString() })); },
       async deplacer(id, prevu_le) { ok(await sb.from("publications").update({ prevu_le: new Date(prevu_le).toISOString() }).eq("id", id)); },
       async annuler(id) { ok(await sb.from("publications").update({ statut: "annule" }).eq("id", id)); },
-      async avis() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,reponse,reponse_proposee,statut,sensible,raisons,decision,cree_le,repondu_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      async avis() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,reponse,reponse_proposee,statut,sensible,raisons,decision,cree_le,repondu_le,efface_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
       async validerAvis(id, statut, texte) { const m = { statut }; if (texte != null) m.reponse_proposee = texte; const r = ok(await sb.from("avis").update(m).eq("id", id).select()); if (!r.length) throw new Error("Cet avis ne se valide pas ici."); },
       async comptes() { const c = await self.commerce(); const l = ok(await sb.from("comptes_connectes").select("reseau,etat,detail").eq("commerce_id", c.id)); return RESEAUX.map(r => l.find(x => x.reseau === r) || { reseau: r, etat: "non_connecte", detail: "" }); },
       async compteur() { const c = await self.commerce(); return ok(await sb.from("compteur").select("*").eq("commerce_id", c.id).single()); },
@@ -891,7 +984,12 @@
       async marquerRetour(id, lu) { const r = ok(await sb.from("retours_prives").update({ lu: !!lu }).eq("id", id).select("id")); if (!r.length) throw new Error("Retour introuvable."); },
       // ---- Collecte : fin
       // ---- Vidéo d'avis (la base refuse elle-même une demande hors règles : déclencheur verifier_demande_video_avis)
-      async avisVideo() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,auteur,sensible,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      async avisVideo() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,auteur,sensible,cree_le,efface_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      // ---- Réponses aux commentaires : table commentaires (lecture), décisions par la fonction decider_commentaire (la base revérifie tout)
+      async commentaires() { const c = await self.commerce(); return ok(await sb.from("commentaires").select("id,reseau,lien,auteur,texte,categorie,raisons,reponse_proposee,reponse,refus,statut,decision,publie_par,erreur,cree_le,ecrit_le,decide_le,repondu_le,efface_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      async deciderCommentaire(id, decision, texte) { if (decision === "valide" && texte != null) controlerDecisionCommentaire({ statut: "a_valider" }, decision, texte); return ok(await sb.rpc("decider_commentaire", { p_id: id, p_decision: decision, p_texte: texte == null ? null : String(texte) })); },
+      async adminCommentairesAPublier() { const cs = ok(await sb.from("commerces").select("id,nom")); return ok(await sb.from("commentaires").select("*").eq("statut", "a_publier_main").order("decide_le")).map(x => ({ ...x, commerce: (cs.find(c => c.id === x.commerce_id) || {}).nom })); },
+      async adminCommentairePublie(id) { ok(await sb.rpc("admin_commentaire_publie", { p_id: id })); },
       async demandesVideoAvis() { const c = await self.commerce(); return ok(await sb.from("videos_avis_demandes").select("id,avis_ids,fond,style,statut,motif,contenu_id,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(20)); },
       async demanderVideoAvis({ avis_ids, fond, style }) { vaControle(avis_ids, fond, style); const c = await self.commerce(); ok(await sb.from("videos_avis_demandes").insert({ commerce_id: c.id, avis_ids, fond, style })); },
       // ---- Mise à jour de l'espace membre : uniquement les tables et fonctions du contrat (ordres/CONTRAT-MAJ-MEMBRE.md)
@@ -950,8 +1048,10 @@
         const cs = ok(await sb.from("commerces").select("id,nom")), n = id => (cs.find(c => c.id === id) || {}).nom;
         const av = ok(await sb.from("avis").select("*").eq("sensible", true).eq("statut", "humain")), j = ok(await sb.from("journal").select("*").in("type", ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"]).order("cree_le", { ascending: false }).limit(50)), p = ok(await sb.from("publications").select("*").eq("statut", "echec"));
         const ae = ok(await sb.from("alertes_exploitant").select("*").order("cree_le", { ascending: false }).limit(50));
+        const cm = ok(await sb.from("commentaires").select("commerce_id,raisons,texte,cree_le").eq("categorie", "sensible").eq("statut", "humain"));
         return [...av.map(a => ({ type: "Avis sensible", commerce: n(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })), ...j.map(x => ({ type: x.type, commerce: n(x.commerce_id), texte: JSON.stringify(x.detail), date: x.cree_le })), ...p.map(x => ({ type: "Publication en échec", commerce: n(x.commerce_id), texte: x.erreur || "", date: x.prevu_le })),
-          ...ae.map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: n(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le }))];
+          ...ae.map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: n(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le })),
+          ...cm.map(x => ({ type: "Commentaire sensible", commerce: n(x.commerce_id), texte: (x.raisons || []).join(", ") + " : " + (x.texte || "texte effacé après 30 jours").slice(0, 100), date: x.cree_le }))];
       },
       async adminCreer(nom, metier, offre, email) { return ok(await sb.rpc("admin_creer_commerce", { p_nom: nom, p_metier: metier, p_offre: offre, p_email: email })); },
       async adminOffre(id, offre) { ok(await sb.rpc("admin_changer_offre", { p_commerce: id, p_offre: offre })); },
@@ -962,7 +1062,7 @@
   }
 
   window.RENOM_DATA = cfg.supabaseUrl && cfg.publishableKey && window.supabase ? supabase() : demo();
-  window.RENOM_OFFRES = OFFRES; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS;
+  window.RENOM_OFFRES = OFFRES; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES;
   // ---- Collecte : ce dont la page publique a besoin (aucune session, aucune bibliothèque), et la règle du lien d'avis pour l'espace
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;

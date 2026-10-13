@@ -1,23 +1,25 @@
-/* Espace et console RENOM. Fond gris clair, cartes blanches, encre presque noire, bleu de la marque.
+/* Espace et console RENOM. Aligné sur la page de vente : fond pierre, cartes blanches, noir, un seul bleu (boutons et repères).
+   Titres Source Serif 4 (500), texte Schibsted Grotesk, Google Fonts, licence SIL OFL 1.1 (fonts/OFL-*.txt).
    Ni dégradé, ni forme pilule, ni trait coloré devant un libellé. Barre latérale à partir de 900 px, onglets du bas en dessous. */
 :root{
-  --fond:#F4F5F8;--surface:#FFFFFF;--encre:#0B0D12;--texte2:#2B303B;--discret:#4A5060;--groupe:#5B6272;
-  --filet:#E3E6EC;--bord:#C9CED8;--marque:#2438FF;--bleu-texte:#1A2BD6;--teinte:#EEF0FF;
-  --r-carte:16px;--r:10px;--r-image:12px;
-  --serif:'Instrument Serif',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;
+  --fond:#F3F3F2;--surface:#FFFFFF;--encre:#000000;--texte2:#2E2E2E;--discret:#5C5C5C;--groupe:#5C5C5C;
+  --filet:#E1E1E1;--bord:#BDBDBD;--marque:#2438FF;--bleu-texte:#1A2BD6;--teinte:#EDEFFC;
+  --r-carte:8px;--r:4px;--r-image:4px;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'Schibsted Grotesk',system-ui,sans-serif;
 }
-@font-face{font-family:'Instrument Serif';font-weight:400;font-display:swap;src:url(fonts/instrument-serif-latin.woff2) format('woff2')}
-@font-face{font-family:'Instrument Sans';font-weight:400 700;font-display:swap;src:url(fonts/instrument-sans-latin.woff2) format('woff2')}
+@font-face{font-family:'Source Serif 4';font-weight:400 600;font-display:swap;src:url(fonts/source-serif-4.woff2) format('woff2')}
+@font-face{font-family:'Schibsted Grotesk';font-weight:400 700;font-display:swap;src:url(fonts/schibsted-grotesk.woff2) format('woff2')}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--encre);background:var(--fond)}
 h1,h2,h3,p,ul,figure{margin:0}
-h1{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.08}
-h2{font-size:17px;font-weight:600;line-height:1.3}
+h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.08;letter-spacing:-.015em}
+h2{font-family:var(--serif);font-size:20px;font-weight:500;line-height:1.25}
 a{color:var(--encre);text-underline-offset:3px}
 a:hover{color:var(--marque)}
 strong,.fort{font-weight:600}
+sup{font-size:.62em;line-height:0;vertical-align:.55em}
 .vh{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;border:0!important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 :focus-visible{outline:2px solid var(--marque);outline-offset:2px}
 #vue:focus{outline:0}
@@ -25,7 +27,7 @@ strong,.fort{font-weight:600}
 /* ---------- Structure */
 .app{min-height:100vh;min-height:100dvh}
 .lat{display:none}
-.logo{font-family:var(--serif);font-size:22px;line-height:1.2;letter-spacing:.1em;text-decoration:none;color:var(--encre)}
+.logo{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.2;letter-spacing:.14em;text-decoration:none;color:var(--encre)}
 .haut{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px 4px}
 .haut:empty,.sous:empty,.onglets:empty{display:none}
 .haut-note{font-size:14px;color:var(--discret);margin-left:auto}
@@ -43,7 +45,7 @@ strong,.fort{font-weight:600}
 #vue{display:flex;flex-direction:column;gap:18px;padding:14px 20px calc(104px + env(safe-area-inset-bottom));min-width:0}
 .onglets{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--filet);padding:8px 8px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;font-size:12px;font-weight:500}
 .onglets a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 0;min-height:52px;text-decoration:none;color:var(--discret);border-radius:var(--r)}
-.onglets a[aria-current]{color:var(--bleu-texte);font-weight:600}
+.onglets a[aria-current]{color:var(--encre);font-weight:600}
 .onglet-icone{position:relative;display:flex}
 .onglet-icone .nb{position:absolute;top:-7px;left:17px;min-width:18px;height:18px;padding:0 4px;border-radius:6px;background:var(--teinte);font-size:11px;line-height:18px;text-align:center}
 .hors-session #vue{padding:24px 20px 56px}
@@ -71,7 +73,7 @@ strong,.fort{font-weight:600}
 h2 .etat{font-size:inherit;font-weight:500}
 .casse{overflow-wrap:anywhere}
 .lecture{max-width:72ch}
-.chiffre{font-family:var(--serif);font-size:30px;line-height:1}
+.chiffre{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1}
 .msg{font-size:15px;color:var(--texte2)}
 .msg:empty{display:none}
 
@@ -104,7 +106,7 @@ h2 .etat{font-size:inherit;font-weight:500}
 .bouton.petit{padding:8px 14px;min-height:44px;font-size:15px}
 .bouton.plein{width:100%}
 .bouton:disabled{opacity:.5;cursor:not-allowed}
-.bouton.grand{width:100%;font-size:17px;padding:15px 20px;border-radius:12px}
+.bouton.grand{width:100%;font-size:17px;padding:15px 20px;border-radius:var(--r)}
 .bouton svg{flex:0 0 auto}
 .lien{font:inherit;font-size:15px;font-weight:500;background:none;border:0;padding:8px 4px;min-height:44px;color:var(--discret);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .lien:hover{color:var(--marque)}
@@ -244,11 +246,15 @@ video.visuel{object-fit:contain;background:var(--encre)}
 .connexion .logo{font-size:26px}
 .retour{text-align:center;font-size:14px}
 .retour a{display:inline-flex;align-items:center;min-height:44px;color:var(--discret)}
+.pied-legal{display:none}
+.hors-session .pied-legal{display:flex;flex-direction:column;gap:2px;max-width:440px;margin:0 auto;padding:0 20px 32px;font-size:12px;line-height:1.5;color:var(--discret);text-align:center}
+.pied-legal .liens-legaux{display:flex;flex-wrap:wrap;justify-content:center;gap:0 16px}
+.pied-legal a{color:inherit;display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
 
 /* ---------- Ordinateur */
 @media (min-width:900px){
   h1{font-size:42px}
-  h2{font-size:19px}
+  h2{font-size:22px}
   .app{display:grid;grid-template-columns:264px minmax(0,1fr);grid-template-rows:auto 1fr}
   .hors-session .app{display:block}
   .haut,.sous,.onglets{display:none}
@@ -259,9 +265,9 @@ video.visuel{object-fit:contain;background:var(--encre)}
   .menu{display:flex;flex-direction:column;gap:22px;font-size:15px}
   .menu a{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px;padding:10px 12px;border-radius:var(--r);text-decoration:none;color:var(--encre)}
   .menu a:hover{background:var(--fond);color:var(--encre)}
-  .menu a[aria-current=page]{background:var(--teinte);color:var(--bleu-texte);font-weight:600}
+  .menu a[aria-current=page]{background:var(--fond);color:var(--encre);font-weight:600}
   .groupe{display:flex;flex-direction:column;gap:2px}
-  .groupe-lib{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--groupe);padding:0 12px 6px}
+  .groupe-lib{font-size:13px;font-weight:600;color:var(--groupe);padding:0 12px 6px}
   .lat .quitter{margin-top:auto;align-self:flex-start;padding:0 12px}
   .demo{grid-column:2;grid-row:1;padding:0 40px}
   .demo-long{display:inline}
@@ -478,5 +484,22 @@ details.dernieres summary{cursor:pointer;font-weight:600;min-height:44px;padding
 .sante-rouge{background:#FBEAEA;border-color:#EBC1C1;color:#8A1D1D}
 .raisons{list-style:none;margin:6px 0 0;padding:0;font-size:14px;line-height:1.4;color:var(--texte2)}
 .raisons li+li{margin-top:4px}
-.console .onglets{grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;padding-left:4px;padding-right:4px;font-size:11px}
+.console .onglets{grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding-left:4px;padding-right:4px;font-size:10px}
 @media (min-width:900px){.tab td[data-l="Santé"]{min-width:170px}}
+
+/* ---------- Alignement sur la page de vente (13/10/2026) : la carte « à valider » en très grand, le bilan du mois lisible d'un coup d'œil. */
+.carte.a-valider{border:2px solid var(--encre);padding:18px;gap:16px}
+.a-valider .carte-tete h2{font-size:26px;line-height:1.15}
+.a-valider .apercu-texte .meta{font-size:14px}
+.a-valider [data-choix] .bouton:not(.second){min-height:52px;font-size:17px}
+.bilan .bilan-chiffre{background:var(--fond)}
+.bilan .bilan-chiffre .chiffre{font-size:34px}
+.groupe-lib,.carte-tete h2,.entete h1{text-wrap:balance}
+@media (min-width:900px){
+  .carte.a-valider{padding:32px;gap:22px}
+  .a-valider .carte-tete h2{font-size:34px}
+  .a-valider .apercu-reseaux{grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:40px}
+  .a-valider .cadre{max-width:440px}
+  .a-valider .apercu-texte .note{font-size:15px}
+  .bilan .bilan-chiffre .chiffre{font-size:40px}
+}

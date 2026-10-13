@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RENOM, vos avis, vos publications, vos vidéos</title>
+<title>RENOM, vos avis Google et vos réseaux, faits pour vous</title>
 <meta name="robots" content="noindex,nofollow">
-<link rel="preload" href="fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="description" content="RENOM répond à vos avis Google, publie pour vous chaque semaine et vous montre vos résultats le 1<sup>er</sup> du mois. Vous validez d'un clic, depuis un email. Audit gratuit de votre fiche.">
+<link rel="preload" href="fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
 <a class="evitement" href="#contenu">Aller au contenu</a>
@@ -12,7 +13,7 @@
 <header class="entete"><div class="wrap">
 <a class="logo" href="#haut">RENOM</a>
 <nav class="menu" aria-label="Navigation principale">
-<a href="#fonctionnement">Fonctionnement</a>
+<a class="menu-large" href="#fonctionnement">Comment ça marche</a>
 <a href="#offres">Offres</a>
 <a href="#questions">Questions</a>
 <a href="espace/">Espace client</a>
@@ -22,212 +23,402 @@
 
 <main id="contenu">
 
+<!-- 1. ATTENTION : accroche, promesse, sélecteur de métier, téléphone qui joue le parcours -->
 <section id="haut" class="haut"><div class="wrap haut-grille">
 <div class="haut-texte">
-<div class="metiers"><div class="lib" id="lib-metier">Vous êtes</div>
-<div class="tabs" role="group" aria-labelledby="lib-metier">
-<button type="button" class="tab" data-m="restaurant" aria-pressed="true">Restaurant</button>
-<button type="button" class="tab" data-m="beaute" aria-pressed="false">Institut de beauté</button>
-<button type="button" class="tab" data-m="sport" aria-pressed="false">Salle de sport ou studio</button>
-<button type="button" class="tab" data-m="autre" aria-pressed="false">Autre commerce</button>
-</div></div>
-<h1 id="titre">Un avis à une étoile sans réponse travaille contre vous ce soir encore.</h1>
-<p class="chapo">Votre silence se lit comme une réponse. Nous répondons à chaque avis, publions chaque semaine et transformons vos photos en vidéos. Vous validez d'un clic.</p>
-<div class="actions">
-<a class="btn btn-prim" href="#audit">Demander mon audit gratuit</a>
-<a class="btn" href="espace/">Voir l'espace</a>
+<div class="metiers" role="group" aria-labelledby="lib-metier">
+<span class="metiers-lib" id="lib-metier">Votre commerce</span>
+<button type="button" class="m-choix" data-m="restaurant" aria-pressed="false">Restaurant</button>
+<button type="button" class="m-choix" data-m="beaute" aria-pressed="false">Institut de beauté</button>
+<button type="button" class="m-choix" data-m="sport" aria-pressed="false">Salle de sport ou studio</button>
+<button type="button" class="m-choix" data-m="autre" aria-pressed="false">Autre commerce</button>
 </div>
-<p class="discret">Sans engagement. Aucun mot de passe à nous confier.</p>
+<h1>Vos avis ont une réponse. Vos réseaux vivent. Vos soirées vous reviennent.</h1>
+<p class="chapo" data-t="chapo">Ce soir, un client compare votre fiche Google à celle d'en face. Il lit les avis. Il regarde les photos. Il choisit.</p>
+<p class="chapo-suite">RENOM répond à vos avis Google, publie pour vous chaque semaine et vous montre vos résultats le 1<sup>er</sup> du mois. Vous envoyez des photos. Vous validez d'un clic, depuis un email.</p>
+<div class="actions">
+<a class="btn btn-prim btn-grand" href="#audit">Recevoir mon audit gratuit</a>
+<a class="lien-fort" href="#fonctionnement">Voir comment ça marche</a>
+</div>
+<ul class="assurances">
+<li>Sans engagement</li>
+<li>Aucun mot de passe à nous confier</li>
+<li>Aucune publication sans votre clic</li>
+</ul>
 </div>
 
-<div class="haut-visuel">
-<figure class="haut-photo" id="photos">
+<div class="scene">
+<figure class="scene-photo" id="photos">
 <img data-m="restaurant" src="img/restaurant.webp" width="1000" height="1500" alt="Salle de restaurant éclairée par le soleil, tables dressées" fetchpriority="high">
 <img data-m="beaute" src="img/beaute.webp" width="1000" height="1500" alt="Serviettes roulées et diffuseur près d'une fenêtre" loading="lazy" hidden>
 <img data-m="sport" src="img/sport.webp" width="1000" height="1500" alt="Studio de yoga vide, parquet et rideaux clairs" loading="lazy" hidden>
 <img data-m="autre" src="img/autre.webp" width="993" height="1500" alt="Comptoir d'une boutique lumineuse" loading="lazy" hidden>
-<figcaption>Photographie d'illustration</figcaption>
 </figure>
-<div class="ecran">
-<div class="mention">Exemple d'écran</div>
-<div class="ecran-tete"><strong>Avis Google, 2 étoiles</strong><span>À valider</span></div>
-<div class="ecran-avis">L'attente nous a semblé longue.</div>
-<div class="ecran-reponse">Merci d'avoir pris le temps de nous écrire. Nous sommes désolés pour cette attente et nous en parlons avec l'équipe.</div>
-<div class="ecran-boutons" aria-hidden="true"><span class="faux-btn plein">Valider et publier</span><span class="faux-btn">Modifier</span></div>
+
+<div class="tel" id="tel" data-scene="1" role="img" aria-label="Démonstration animée : une photo envoyée par email revient en publication à valider, le commerçant valide d'un clic, la publication sort, puis un avis Google reçoit sa réponse.">
+<div class="tel-ecran" aria-hidden="true">
+<div class="tel-barre"><span>19:30</span><span class="tel-encoche"></span><span class="tel-reseau"></span></div>
+
+<div class="ecr ecr-1">
+<div class="ecr-tete"><span class="ecr-annule">Annuler</span><strong>Nouveau message</strong><span></span></div>
+<div class="mail-ligne"><span>À</span><span>RENOM, vos photos</span></div>
+<div class="mail-ligne"><span>Objet</span><b data-t="objet">Le plat du jour</b></div>
+<img class="mail-photo" data-t="photo" src="img/demo-restaurant-avant.webp" width="480" height="720" alt="">
+<div class="mail-envoi"><span class="faux-bouton tap">Envoyer</span></div>
 </div>
+
+<div class="ecr ecr-2">
+<div class="notif"><b>RENOM</b><span>Un élément attend votre accord</span></div>
+<div class="mail-lu">
+<p class="mail-objet">Un élément attend votre accord</p>
+<p>Bonjour, une publication pour <b data-t="nom">La Table d'exemple</b> est prête. Un clic suffit, sans vous connecter.</p>
+<div class="mail-apercu"><img data-t="visuel" src="img/demo-restaurant-apres.webp" width="720" height="900" alt=""><p>Publication pour Instagram, Facebook et votre fiche Google. Prévue <span data-t="creneau">mardi à 12&nbsp;h</span>.</p></div>
+<span class="faux-bouton plein tap">Le voir, sans me connecter</span>
+<p class="mail-pied">Rien ne part sans votre accord.</p>
+</div>
+</div>
+
+<div class="ecr ecr-3">
+<div class="ecr-tete centre"><strong>À valider</strong></div>
+<img class="val-visuel" data-t="visuel" src="img/demo-restaurant-apres.webp" width="720" height="900" alt="">
+<p class="val-legende" data-t="legende">Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande.</p>
+<p class="val-quand">Prévu <span data-t="creneau">mardi à 12 h</span></p>
+<div class="val-bas"><span class="faux-bouton plein tap val-ok">Valider et programmer</span>
+<p class="val-fait">Validé. Ça part <span data-t="creneau">mardi à 12 h</span>.</p></div>
+</div>
+
+<div class="ecr ecr-4">
+<div class="post-tete"><span class="post-avatar" data-t="initiale">T</span><b data-t="compte">latabledexemple</b><span class="post-publie">Publié</span></div>
+<img class="post-visuel" data-t="visuel" src="img/demo-restaurant-apres.webp" width="720" height="900" alt="">
+<p class="post-legende"><b data-t="compte">latabledexemple</b> <span data-t="legende">Des pâtes fraîches, des herbes, une sauce crémeuse. Un plat simple, préparé à la commande.</span></p>
+</div>
+
+<div class="ecr ecr-5">
+<div class="ecr-tete centre"><strong>Avis Google</strong></div>
+<div class="avis-carte">
+<p class="avis-auteur"><b data-t="auteur">Léa M.</b><span class="etoiles e5"></span></p>
+<p class="avis-texte" data-t="avis">Pâtes fraîches excellentes, service attentionné.</p>
+<div class="avis-reponse">
+<p class="avis-de">Réponse du propriétaire</p>
+<p data-t="reponse">Merci Léa pour ce retour sur nos pâtes fraîches. Toute l'équipe sera ravie de vous revoir à table.</p>
+</div>
+</div>
+<div class="avis-carte avis-ancien">
+<p class="avis-auteur"><b data-t="auteur2">Karim B.</b><span class="etoiles e4"></span></p>
+<p class="avis-texte" data-t="avis2">Très bon dîner, un peu d'attente pour le dessert.</p>
+<p class="avis-repondu">Réponse publiée</p>
+</div>
+<p class="avis-regle">Avis à 4 ou 5 étoiles&nbsp;: réponse publiée sans vous déranger, si vous gardez ce réglage.</p>
+</div>
+</div>
+</div>
+
+<div class="tel-legende">
+<ol class="tel-etapes" aria-label="Étapes de la démonstration">
+<li><button type="button" data-s="1" aria-current="step">Photo envoyée</button></li>
+<li><button type="button" data-s="2">À valider</button></li>
+<li><button type="button" data-s="3">Validé</button></li>
+<li><button type="button" data-s="4">En ligne</button></li>
+<li><button type="button" data-s="5">Avis répondu</button></li>
+</ol>
+<button type="button" class="tel-pause" id="tel-pause" aria-pressed="false">Mettre en pause</button>
+</div>
+<p class="mention">Démonstration&nbsp;: commerce, avis et prénoms fictifs. Photos d'illustration.</p>
 </div>
 </div></section>
 
-<section class="section"><div class="wrap pile">
-<div class="tete"><h2>Un seul espace, trois choses qui ne vous prennent plus de temps.</h2></div>
-<div class="grille">
-
-<div class="carte">
-<div class="mini mini-photo"><img src="img/creation-pates.webp" width="216" height="270" alt="Assiette de pâtes" loading="lazy"><div>Votre photo devient une publication, avec sa légende.</div></div>
-<h3>La création</h3>
-<p>Vous déposez vos photos. RENOM en fait des visuels à vos couleurs, des vidéos courtes et des légendes qui ne disent que ce qui est vrai chez vous.</p>
+<!-- 2 et 3. INTÉRÊT : le problème, vécu, avec ses émotions -->
+<section class="section probleme" id="probleme"><div class="wrap probleme-grille">
+<div class="probleme-tete">
+<h2>Vous connaissez ces soirs-là.</h2>
+<figure class="probleme-photo">
+<img data-m="restaurant" src="img/metier-restaurant.webp" width="1000" height="667" alt="Entrée dressée sur une table en marbre" loading="lazy">
+<img data-m="beaute" src="img/metier-institut.webp" width="1000" height="667" alt="Table de massage, serviette et bougie" loading="lazy" hidden>
+<img data-m="sport" src="img/metier-studio.webp" width="900" height="1350" alt="Tapis de yoga rangés sur une étagère" loading="lazy" hidden>
+<img data-m="autre" src="img/autre.webp" width="993" height="1500" alt="Comptoir d'une boutique lumineuse" loading="lazy" hidden>
+</figure>
 </div>
-
-<div class="carte">
-<div class="mini">
-<div class="mention">Exemple d'écran</div>
-<div class="mini-ligne"><strong>Mardi, 12&nbsp;h&nbsp;00</strong><span>Facebook, Instagram</span></div>
-<div class="mini-ligne"><strong>Jeudi, 19&nbsp;h&nbsp;30</strong><span>Fiche Google</span></div>
-<div class="mini-ligne"><strong>Samedi, 11&nbsp;h&nbsp;00</strong><span>Instagram</span></div>
-</div>
-<h3>Les réseaux sociaux</h3>
-<p>Ce que vous approuvez se programme dans votre calendrier et sort sur Facebook, Instagram et votre fiche Google. Rien ne part sans votre accord.</p>
-</div>
-
-<div class="carte">
-<div class="mini">
-<div class="mention">Exemple d'écran</div>
-<strong>Avis Google, 5 étoiles</strong>
-<div class="avis">Superbe soirée, merci à toute l'équipe.</div>
-<strong>Réponse publiée</strong>
-</div>
-<h3>La réputation Google</h3>
-<p>Chaque avis reçoit une réponse. Les bons avis sont traités seuls, vous validez les autres, et un avis grave vous est toujours signalé.</p>
-</div>
-
-</div>
+<ol class="moments" id="moments">
+<li><p class="moment-quand">23 h 40</p><p class="moment-texte">La journée est finie. Vous ouvrez votre téléphone. Une étoile. «&nbsp;Accueil froid, je ne reviendrai pas.&nbsp;» Vous tapez une réponse. Vous l'effacez. À minuit, vous publiez un texte que vous regretterez demain. Ou rien. Et le rien se lit aussi.</p></li>
+<li><p class="moment-quand">Mardi, 11 h</p><p class="moment-texte">Votre vitrine est belle aujourd'hui. Personne ne le saura. Votre dernière publication date de l'été.</p></li>
+<li><p class="moment-quand">Samedi, 15 h</p><p class="moment-texte">Quelqu'un tape votre métier et votre ville. Votre fiche apparaît à côté de deux autres. Les autres ont des photos du mois dernier et une réponse sous chaque avis. La vôtre a trois photos de 2022. Vous ne saurez jamais qu'il a hésité.</p></li>
+<li><p class="moment-quand">Un lundi</p><p class="moment-texte">Vous découvrez un avis très dur. Il est en ligne depuis trois semaines. Personne n'y a répondu. Tout le monde l'a lu.</p></li>
+</ol>
 </div></section>
 
+<!-- Histoire : les fausses solutions déjà essayées -->
+<section class="section essais"><div class="wrap">
+<h2>Et vous avez déjà essayé.</h2>
+<ul class="essais-liste">
+<li><p class="essai-titre">Le neveu qui «&nbsp;fait Instagram&nbsp;».</p><p>Trois belles semaines. Puis il a repris ses études.</p></li>
+<li><p class="essai-titre">L'agence qui fait signer pour un an.</p><p>Vous payez chaque mois. Vos avis Google, eux, n'étaient pas dans le contrat.</p></li>
+<li><p class="essai-titre">Le logiciel de plus.</p><p>Un mot de passe de plus. Et c'est toujours vous qui écrivez, le soir.</p></li>
+</ul>
+<p class="sentence" data-t="cloture">Ce n'est pas un problème de métier. C'est un problème de temps. Et ça se règle.</p>
+</div></section>
+
+<!-- 4. DÉSIR : la solution, le mécanisme -->
 <section id="fonctionnement" class="section"><div class="wrap duo">
-<img class="duo-photo" src="img/methode.webp" width="900" height="1350" alt="Une main photographie un gobelet de café avec un téléphone" loading="lazy">
+<figure class="duo-photo"><img src="img/methode.webp" width="900" height="1350" alt="Une main photographie un gobelet de café avec un téléphone" loading="lazy"></figure>
 <div class="duo-texte">
 <h2>Une photo de votre part. Le reste est fait.</h2>
+<p class="intro">Ça peut s'arrêter ce mois-ci. Votre seul travail&nbsp;: envoyer des photos et valider d'un clic.</p>
 <ol class="etapes">
-<li><div class="chiffre" aria-hidden="true">1</div><div><h3>Vous envoyez vos photos</h3><p>Deux minutes, depuis votre téléphone. C'est tout ce que nous vous demandons.</p></div></li>
-<li><div class="chiffre" aria-hidden="true">2</div><div><h3>Nous faisons le travail</h3><p>Publications, vidéos courtes, réponses à vos avis Google. À vos couleurs, avec vos mots.</p></div></li>
-<li><div class="chiffre" aria-hidden="true">3</div><div><h3>Vous validez d'un clic</h3><p>Rien ne part sans votre accord. Vous gardez la main, pas la charge.</p></div></li>
+<li><h3>Vous envoyez.</h3><p>Des photos de votre travail, de votre lieu, de votre équipe. Depuis votre téléphone, dans votre espace ou simplement par email. Quand vous voulez.</p></li>
+<li><h3>Nous préparons.</h3><p>Chaque avis Google reçoit une réponse écrite pour lui. Chaque photo devient une publication à vos couleurs, avec une légende pour chaque réseau. Rien d'inventé&nbsp;: si vous n'avez pas écrit «&nbsp;fait maison&nbsp;», nous ne l'écrivons jamais.</p></li>
+<li><h3>Vous validez d'un clic.</h3><p>Un email arrive&nbsp;: «&nbsp;Un élément attend votre accord&nbsp;». Vous lisez, vous validez, sans vous connecter. Ça part au bon créneau. Le 1<sup>er</sup> du mois, votre bilan.</p></li>
 </ol>
+<p class="regle">Les avis à 4 et 5 étoiles reçoivent leur réponse sans vous déranger. De 1 à 3 étoiles, rien ne part sans votre clic. Ce réglage est à vous.</p>
 </div>
 </div></section>
 
-<section class="section"><div class="wrap pile">
-<h2>Pensé pour votre métier.</h2>
-<div class="grille">
-<div class="metier"><img src="img/metier-restaurant.webp" width="1000" height="667" alt="Entrée dressée sur une table en marbre" loading="lazy"><h3>Restaurant indépendant</h3></div>
-<div class="metier"><img src="img/metier-institut.webp" width="1000" height="667" alt="Table de massage, serviette et bougie" loading="lazy"><h3>Institut de beauté</h3></div>
-<div class="metier"><img src="img/metier-studio.webp" width="900" height="1350" alt="Tapis de yoga rangés sur une étagère" loading="lazy"><h3>Salle de sport ou studio</h3></div>
+<!-- 10. Illustration : le produit en action, par métier -->
+<section class="section demo-section"><div class="wrap demo-grille">
+<div class="demo-texte">
+<h2>Votre photo. Votre publication.</h2>
+<p>À gauche, une photo de téléphone. À droite, la publication que RENOM en tire&nbsp;: recadrée, à vos couleurs, sans retouche. Le client verra ce que vous servez vraiment.</p>
+<p class="note">Exemple de démonstration produit par notre moteur. La photo d'origine est une photo libre de droits, pas celle d'un client. Le commerce est fictif.</p>
 </div>
-
-<div class="panneau">
-<div class="panneau-texte">
-<h2>Ce que vous arrêtez de faire dès le premier mois.</h2>
-<ul class="liste" id="stop-liste">
-<li>Répondre aux avis à minuit, après le service.</li>
-<li>Chercher quoi publier entre deux commandes.</li>
-<li>Laisser le plat du jour sans une seule photo en ligne.</li>
-<li>Découvrir un avis assassin trois semaines trop tard.</li>
-</ul>
-</div>
-<div class="demo" id="demo"><div class="lib">Exemple de démonstration</div>
-<div class="paire">
-<figure data-m="restaurant"><img src="img/demo-restaurant-avant.webp" width="480" height="720" alt="Photo d’origine : un plat de pâtes" loading="lazy"><figcaption>Photo d’origine</figcaption></figure>
+<div class="paire" id="demo">
+<figure data-m="restaurant"><img src="img/demo-restaurant-avant.webp" width="480" height="720" alt="Photo d'origine : un plat de pâtes" loading="lazy"><figcaption>Photo d'origine</figcaption></figure>
 <figure data-m="restaurant"><img src="img/demo-restaurant-apres.webp" width="720" height="900" alt="Publication produite à partir de cette photo" loading="lazy"><figcaption>Publication produite</figcaption></figure>
-<figure data-m="beaute" hidden><img src="img/demo-beaute-avant.webp" width="720" height="480" alt="Photo d’origine : une table de soin avec une serviette roulée et une bougie" loading="lazy"><figcaption>Photo d’origine</figcaption></figure>
+<figure data-m="beaute" hidden><img src="img/demo-beaute-avant.webp" width="720" height="480" alt="Photo d'origine : une table de soin avec une serviette roulée et une bougie" loading="lazy"><figcaption>Photo d'origine</figcaption></figure>
 <figure data-m="beaute" hidden><img src="img/demo-beaute-apres.webp" width="720" height="900" alt="Publication produite à partir de cette photo" loading="lazy"><figcaption>Publication produite</figcaption></figure>
-<figure data-m="sport" hidden><img src="img/demo-sport-avant.webp" width="480" height="720" alt="Photo d’origine : des tapis de yoga roulés sur une étagère" loading="lazy"><figcaption>Photo d’origine</figcaption></figure>
+<figure data-m="sport" hidden><img src="img/demo-sport-avant.webp" width="480" height="720" alt="Photo d'origine : des tapis de yoga roulés sur une étagère" loading="lazy"><figcaption>Photo d'origine</figcaption></figure>
 <figure data-m="sport" hidden><img src="img/demo-sport-apres.webp" width="720" height="900" alt="Publication produite à partir de cette photo" loading="lazy"><figcaption>Publication produite</figcaption></figure>
 </div>
-<p class="note">La photo d’origine est une photo libre de droits (Pexels), pas celle d’un client. Le commerce de l’exemple est fictif.</p></div>
+</div></section>
+
+<!-- 5. DÉSIR : bénéfices en puces promesses, et pourquoi nous -->
+<section class="section benefices"><div class="wrap">
+<div class="benef-tete">
+<h2>Dès le premier mois, vous arrêtez de&nbsp;:</h2>
+<ul class="stop" id="stop-liste">
+<li>Répondre aux avis à minuit, énervé, après la journée.</li>
+<li>Chercher quoi publier entre deux clients.</li>
+<li>Laisser votre travail du jour sans une seule photo en ligne.</li>
+<li>Découvrir un avis grave trois semaines trop tard.</li>
+<li>Écrire trois fois la même légende pour trois réseaux.</li>
+<li>Vous demander si tout ça sert à quelque chose.</li>
+</ul>
+</div>
+<div class="piliers">
+<div class="pilier">
+<h3>Vos avis Google, tenus.</h3>
+<ul>
+<li>Une réponse à chaque avis, avec un détail de ce que le client a écrit.</li>
+<li>Un avis négatif reçoit une réponse calme. Elle part avec votre clic.</li>
+<li>Un avis grave ne reçoit jamais de réponse automatique. Vous êtes prévenu.</li>
+<li>Une carte QR pour votre comptoir et un email de demande d'avis le lendemain du passage. Tous vos clients, sans tri.</li>
+</ul>
+</div>
+<div class="pilier">
+<h3>Vos réseaux, vivants.</h3>
+<ul>
+<li>Des publications chaque semaine sur Instagram, Facebook et votre fiche Google.</li>
+<li>Une légende écrite pour chaque réseau, pas un copier-coller.</li>
+<li>Des vidéos courtes à partir de vos photos, dès l'offre Croissance.</li>
+<li>Une idée de publication chaque semaine, liée au calendrier de votre métier.</li>
+</ul>
+</div>
+<div class="pilier">
+<h3>Vos résultats, sous les yeux.</h3>
+<ul>
+<li>Votre note et vos avis, mois par mois.</li>
+<li>Votre fiche notée sur 100, pilier par pilier.</li>
+<li>Vous face à trois concurrents de votre quartier.</li>
+<li>Le bilan du mois par email, le 1<sup>er</sup>, lisible en une minute.</li>
+</ul>
+</div>
+</div>
+<div class="pourquoi">
+<h2>Pourquoi RENOM plutôt qu'un autre.</h2>
+<ul class="pourquoi-liste">
+<li><b>Un prix affiché, pour une seule adresse.</b> Pas de devis, pas de rendez-vous commercial pour le connaître.</li>
+<li><b>Vos avis et vos réseaux dans le même abonnement.</b> Un seul interlocuteur.</li>
+<li><b>Vous validez depuis l'email.</b> Pas d'application à installer, pas de mot de passe à retenir.</li>
+<li><b>Sans engagement.</b> Au mois. Vous partez le jour où vous n'êtes plus satisfait.</li>
+<li><b>Des règles écrites.</b> Rien d'inventé sur votre commerce, aucune remise que vous n'avez pas prévue, jamais de faux avis.</li>
+</ul>
+<p class="sentence">Si vous avez du temps le soir, faites-le vous-même. Sérieusement. Sinon, lisez la suite.</p>
 </div>
 </div></section>
 
-<section id="offres" class="section"><div class="wrap pile">
-<div class="tete"><h2>Le prix d'un abonnement. Pas celui d'une embauche.</h2><p class="discret">Prix hors taxes, par mois. Sans engagement : si nous ne faisons pas le travail, vous partez.</p></div>
-<div class="grille offres">
+<!-- 7. Confiance : affirmations vérifiables, résultat attendu et délai, aucun témoignage inventé -->
+<section class="section confiance"><div class="wrap confiance-grille">
+<div class="confiance-tete">
+<h2>On ne vous promet pas 4,8. On vous montre ce qui bouge.</h2>
+<p>Personne d'honnête ne peut vous garantir une note. Vos clients écrivent ce qu'ils veulent. Ce que RENOM vous garantit&nbsp;: faire le travail, et vous montrer chaque mois ce qu'il a produit.</p>
+<p class="note">Pas encore de témoignage sur cette page&nbsp;: RENOM ouvre ses premières places, et nous n'en inventerons pas. C'est pour ça que l'audit est gratuit et que le premier mois est remboursé si vous n'êtes pas satisfait.</p>
+</div>
+<ol class="calendrier">
+<li><p class="cal-quand">Aujourd'hui</p><p>Vous demandez l'audit gratuit. Il arrive par email sous 24 h&nbsp;: votre fiche notée sur 100, et ce qu'il faut corriger en premier.</p></li>
+<li><p class="cal-quand">La première semaine</p><p>Cinq questions sur votre commerce. Vous nous ajoutez comme gestionnaire de votre fiche Google, vous reliez Instagram et Facebook, vous envoyez trois photos.</p></li>
+<li><p class="cal-quand">Les semaines suivantes</p><p>Vos premières publications arrivent à valider. Vos avis reçoivent leur réponse.</p></li>
+<li><p class="cal-quand">Le 1<sup>er</sup> du mois suivant</p><p>Votre premier bilan&nbsp;: réponses publiées, publications sorties, note, nouveaux avis, vous face à trois concurrents.</p></li>
+</ol>
+</div></section>
 
-<div class="offre">
+<!-- Section fondateur : non publiée tant que PJ n'a pas validé sa photo et son prénom -->
+<section class="section fondateur" id="fondateur" hidden><div class="wrap">
+<h2>Qui répond quand vous écrivez.</h2>
+<p>[PRÉNOM], fondateur de RENOM. [DEUX PHRASES À VALIDER PAR LE FONDATEUR&nbsp;: pourquoi RENOM, et ce qu'il fait lui-même pour les dix premiers commerces.]</p>
+</div></section>
+
+<!-- 6. ACTION : l'offre irrésistible, prix et urgence réelle -->
+<section id="offres" class="section offres-section"><div class="wrap">
+<div class="offres-tete">
+<h2>Le prix d'un abonnement. Pas celui d'une embauche.</h2>
+<p>Prix hors taxes, par mois, sans engagement. Les avis Google sont traités pareil dans les trois offres. Ce qui change&nbsp;: le volume, les réseaux, le contact humain.</p>
+</div>
+<div class="fondateur-offre">
+<p class="fo-titre">Prix fondateur&nbsp;: 100 € de moins par mois, à vie, pour les 10 premiers commerces.</p>
+<p>Tant que votre abonnement reste actif. Pourquoi dix&nbsp;: l'équipe est réduite, et les premiers commerces ont droit à toute notre attention. Après eux, le prix public s'applique.</p>
+</div>
+<div class="offres">
+
+<article class="offre">
 <h3>Essentiel</h3>
-<div class="prix"><strong>290&nbsp;€</strong><span>HT par mois</span></div>
-<ul class="inclus"><li>Réponse à tous vos avis Google</li><li>8 publications par mois</li><li>Facebook, Instagram, fiche Google</li><li>Collecte d'avis par QR code</li><li>Rapport mensuel</li></ul>
-<a class="btn" href="#audit">Commencer par l'audit</a>
-</div>
+<p class="pour">Tenir votre réputation Google et rester présent.</p>
+<p class="prix"><span class="prix-montant">90&nbsp;€</span><span class="prix-unite">HT par mois, prix fondateur</span></p>
+<p class="prix-public">Prix public&nbsp;: 190&nbsp;€ HT par mois</p>
+<ul class="inclus">
+<li>Réponse à tous vos avis Google, alerte sur les avis graves</li>
+<li>Collecte d'avis&nbsp;: carte QR et emails de demande</li>
+<li>8 publications par mois&nbsp;: Instagram, Facebook, fiche Google</li>
+<li>Actions de fiche Google&nbsp;: photos, offres, événements, horaires exceptionnels</li>
+<li>Comparaison avec 3 concurrents de votre quartier</li>
+<li>Bilan du mois par email</li>
+</ul>
+<a class="btn" href="#audit">Commencer par l'audit gratuit</a>
+</article>
 
-<div class="offre reco">
-<div class="offre-tete"><h3>Croissance</h3><span class="rec">Recommandée</span></div>
-<div class="prix"><strong>490&nbsp;€</strong><span>HT par mois</span></div>
-<ul class="inclus"><li>Tout l'Essentiel</li><li>16 publications par mois</li><li>4 vidéos courtes par mois</li><li>TikTok et réponses aux commentaires</li></ul>
-<a class="btn btn-prim" href="#audit">Commencer par l'audit</a>
-</div>
+<article class="offre reco">
+<div class="offre-nom"><h3>Croissance</h3><span class="reco-lib">Recommandée</span></div>
+<p class="pour">Que ça se voie&nbsp;: plus de publications, des vidéos, plus de monde qui parle de vous.</p>
+<p class="prix"><span class="prix-montant">290&nbsp;€</span><span class="prix-unite">HT par mois, prix fondateur</span></p>
+<p class="prix-public">Prix public&nbsp;: 390&nbsp;€ HT par mois. Moins de 10&nbsp;€ HT par jour au prix fondateur.</p>
+<ul class="inclus">
+<li>Tout l'Essentiel</li>
+<li>16 publications par mois</li>
+<li>4 vidéos courtes par mois, dont les vidéos de vos meilleurs avis</li>
+<li>TikTok en plus d'Instagram, Facebook et Google</li>
+<li>Réponses aux commentaires Instagram et Facebook</li>
+</ul>
+<a class="btn btn-prim" href="#audit">Commencer par l'audit gratuit</a>
+</article>
 
-<div class="offre">
+<article class="offre">
 <h3>Signature</h3>
-<div class="prix"><strong>790&nbsp;€</strong><span>HT par mois</span></div>
-<ul class="inclus"><li>Tout Croissance</li><li>24 publications par mois</li><li>8 vidéos courtes par mois</li><li>Visuels retravaillés par IA</li><li>Avis abusifs signalés, veille des voisins</li><li>Point téléphonique mensuel</li></ul>
-<a class="btn" href="#audit">Commencer par l'audit</a>
+<p class="pour">Votre adresse est votre marque. Le niveau le plus haut, et quelqu'un au téléphone chaque mois.</p>
+<p class="prix"><span class="prix-montant">590&nbsp;€</span><span class="prix-unite">HT par mois, prix fondateur</span></p>
+<p class="prix-public">Prix public&nbsp;: 690&nbsp;€ HT par mois</p>
+<ul class="inclus">
+<li>Tout Croissance</li>
+<li>24 publications par mois</li>
+<li>8 vidéos courtes par mois, dont des vidéos animées à partir de vos photos</li>
+<li>Avis contraires aux règles de Google signalés à Google</li>
+<li>Point téléphonique mensuel sur votre bilan</li>
+</ul>
+<a class="btn" href="#audit">Commencer par l'audit gratuit</a>
+</article>
+
 </div>
 
+<div class="garantie">
+<h3>Premier mois remboursé si vous n'êtes pas satisfait.</h3>
+<p>Sans engagement&nbsp;: l'abonnement est mensuel, vous arrêtez par un simple email. Vous gardez tout ce qui est publié. Vous retirez notre accès de gestionnaire quand vous voulez, sans nous demander la permission.</p>
 </div>
 
 <details class="detail">
-<summary>Voir le détail des offres</summary>
+<summary>Comparer les offres ligne par ligne</summary>
 <div class="detail-corps">
 <table class="tableau" role="table"><caption class="hp">Ce qui est inclus dans chaque offre</caption>
-<thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Ce qui est inclus</th><th scope="col" role="columnheader"><div class="n">Essentiel</div><div class="p">290&nbsp;€</div></th><th scope="col" role="columnheader" class="reco"><div class="rec">Recommandée</div><div class="n">Croissance</div><div class="p">490&nbsp;€</div></th><th scope="col" role="columnheader"><div class="n">Signature</div><div class="p">790&nbsp;€</div></th></tr></thead>
+<thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Ce qui est inclus</th><th scope="col" role="columnheader"><span class="n">Essentiel</span><span class="p">90&nbsp;€, puis 190&nbsp;€</span></th><th scope="col" role="columnheader" class="reco"><span class="n">Croissance</span><span class="p">290&nbsp;€, puis 390&nbsp;€</span></th><th scope="col" role="columnheader"><span class="n">Signature</span><span class="p">590&nbsp;€, puis 690&nbsp;€</span></th></tr></thead>
 <tbody role="rowgroup">
-<tr role="row"><th scope="row" role="rowheader">Fiche Google optimisée</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
 <tr role="row"><th scope="row" role="rowheader">Réponse à tous vos avis Google</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
-<tr role="row"><th scope="row" role="rowheader">Collecte d'avis en caisse</th><td role="cell" data-offre="Essentiel">QR code</td><td role="cell" class="reco" data-offre="Croissance">QR code</td><td role="cell" data-offre="Signature">Plaque sans contact</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Alerte sur les avis graves</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Collecte d'avis&nbsp;: carte QR et emails</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Actions de fiche Google</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Comparaison avec 3 concurrents</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
 <tr role="row"><th scope="row" role="rowheader">Publications par mois</th><td role="cell" data-offre="Essentiel">8</td><td role="cell" class="reco" data-offre="Croissance">16</td><td role="cell" data-offre="Signature">24</td></tr>
 <tr role="row"><th scope="row" role="rowheader">Vidéos courtes par mois</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">4</td><td role="cell" data-offre="Signature">8</td></tr>
-<tr role="row"><th scope="row" role="rowheader">Facebook, Instagram, fiche Google</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
-<tr role="row"><th scope="row" role="rowheader">TikTok et réponses aux commentaires</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
-<tr role="row"><th scope="row" role="rowheader">Visuels retravaillés par IA</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Non</td><td role="cell" data-offre="Signature">Oui</td></tr>
-<tr role="row"><th scope="row" role="rowheader">Avis abusifs signalés, veille des voisins</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Non</td><td role="cell" data-offre="Signature">Oui</td></tr>
-<tr role="row"><th scope="row" role="rowheader">Rapport mensuel</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Avec point téléphonique</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Instagram, Facebook, fiche Google</th><td role="cell" data-offre="Essentiel">Oui</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">TikTok</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Réponses aux commentaires Instagram et Facebook</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Oui</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Vidéos animées à partir de vos photos</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Non</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Avis contraires aux règles signalés à Google</th><td role="cell" data-offre="Essentiel">Non</td><td role="cell" class="reco" data-offre="Croissance">Non</td><td role="cell" data-offre="Signature">Oui</td></tr>
+<tr role="row"><th scope="row" role="rowheader">Bilan du mois</th><td role="cell" data-offre="Essentiel">Par email</td><td role="cell" class="reco" data-offre="Croissance">Par email</td><td role="cell" data-offre="Signature">Avec point téléphonique</td></tr>
 </tbody></table>
+<p class="note">Premier montant&nbsp;: prix fondateur, à vie, pour les 10 premiers commerces. Second montant&nbsp;: prix public. Hors taxes, par mois.</p>
 </div>
 </details>
 </div></section>
 
+<!-- 8. ACTION : objections -->
 <section id="questions" class="section"><div class="wrap faq">
-<h2>Foire aux questions</h2>
+<h2>Vos questions, nos réponses franches.</h2>
 <div class="questions">
-<div class="q"><h3>Dois-je vous donner mes mots de passe&nbsp;?</h3><p>Non, nous ne les demandons pas. Vous nous ajoutez comme gestionnaire et vous retirez cet accès quand vous voulez.</p></div>
-<div class="q"><h3>Une machine ne va-t-elle pas répondre n'importe quoi à mes clients&nbsp;?</h3><p>Non. Les réponses s'appuient sur ce que vous avez écrit dans votre fiche, rien d'autre. Vous validez celles des avis de 1 à 3 étoiles, et un avis grave n'est jamais traité automatiquement. Aucune publication ne part sans votre accord.</p></div>
-<div class="q"><h3>Vais-je être engagé pour un an&nbsp;?</h3><p>Non. L'abonnement est mensuel. Vous partez le jour où vous n'êtes plus satisfait.</p></div>
-<div class="q"><h3>Allez-vous me fabriquer de faux avis&nbsp;?</h3><p>Jamais. Nous demandons leur avis à tous vos vrais clients, sans trier. C'est la règle de Google, et c'est ce qui protège votre fiche.</p></div>
+<details class="q"><summary>Je n'ai pas le temps de m'occuper de ça.</summary><p>C'est exactement pour ça que RENOM existe. Votre part&nbsp;: envoyer des photos quand vous en avez, et cliquer sur «&nbsp;Valider&nbsp;» dans un email. Les avis à 4 et 5 étoiles reçoivent leur réponse sans vous.</p></details>
+<details class="q"><summary>190 €, c'est cher pour mon commerce.</summary><p>Au prix fondateur, l'Essentiel coûte 90 € HT par mois&nbsp;: 3 € par jour pour des avis tous traités, 8 publications et un bilan. Comparez avec ce qu'un client perdu vous coûte. Et le premier mois est remboursé si vous n'êtes pas satisfait.</p></details>
+<details class="q"><summary>Le prix fondateur, c'est vraiment à vie&nbsp;?</summary><p>Oui, tant que votre abonnement reste actif. Il est réservé aux 10 premiers commerces. Si vous arrêtez puis revenez plus tard, le prix public s'applique.</p></details>
+<details class="q"><summary>Une IA va répondre n'importe quoi à mes clients.</summary><p>Les réponses sont préparées par une intelligence artificielle tenue par des règles écrites, vérifiées avant chaque envoi&nbsp;: rien d'inventé sur votre commerce, aucune remise que vous n'avez pas prévue, aucune promesse. Une réponse qui enfreint une règle ne part pas&nbsp;: elle vous est soumise. Un avis grave n'est jamais traité par la machine.</p></details>
+<details class="q"><summary>Mes clients vont voir que ce n'est pas moi qui réponds.</summary><p>Les réponses partent de votre fiche, sous votre nom, avec votre ton. Au démarrage, cinq questions&nbsp;: votre commerce en une phrase, ce qui vous distingue, le ton, ce qu'on ne doit jamais dire, l'action à demander. Et vous pouvez modifier chaque texte avant de valider.</p></details>
+<details class="q"><summary>Je dois vous donner mes mots de passe&nbsp;?</summary><p>Non. Vous nous ajoutez comme gestionnaire de votre fiche Google et de vos pages. Vous gardez la propriété. Vous retirez l'accès quand vous voulez.</p></details>
+<details class="q"><summary>Je vais être engagé pour un an&nbsp;?</summary><p>Non. Au mois. Vous arrêtez par un simple email, le jour où vous n'êtes plus satisfait.</p></details>
+<details class="q"><summary>Vous pouvez m'acheter des avis ou supprimer les mauvais&nbsp;?</summary><p>Non, et méfiez-vous de ceux qui disent oui. Google interdit les faux avis, le tri des clients et toute contrepartie contre un avis. Personne ne supprime un avis parce qu'il déplaît. Ce que nous faisons&nbsp;: bien répondre, demander leur avis à tous vos vrais clients, et, en Signature, signaler à Google un avis contraire à ses règles. C'est Google qui décide.</p></details>
+<details class="q"><summary>Je n'ai pas de belles photos.</summary><p>Une photo de téléphone suffit, prise près d'une fenêtre. Nous la recadrons et la mettons à vos couleurs, sans la retoucher&nbsp;: ce que le client verra en vrai est ce qu'il voit en photo. Si vous n'envoyez rien pendant dix jours, nous vous le rappelons.</p></details>
+<details class="q"><summary>Vous avez déjà des clients&nbsp;? Ça marche&nbsp;?</summary><p>RENOM ouvre ses premières places. Nous n'avons pas encore de témoignage à vous montrer, et nous n'en inventerons pas. C'est pour ça que l'audit est gratuit, que le premier mois est remboursé si vous n'êtes pas satisfait et qu'il n'y a pas d'engagement&nbsp;: vous jugez sur pièces, mois par mois.</p></details>
+<details class="q"><summary>Et mes avis sur les autres plateformes&nbsp;?</summary><p>RENOM traite aujourd'hui les avis Google. Les autres plateformes d'avis ne sont pas incluses.</p></details>
 </div>
 </div></section>
 
-<section id="audit" class="section"><div class="wrap">
-<div class="audit-bloc">
+<!-- 9. ACTION : appel à l'action et formulaire d'audit (attributs Netlify et noms de champs inchangés : le moteur en dépend) -->
+<section id="audit" class="section audit-section"><div class="wrap audit-grille">
 <div class="audit-texte">
-<h2>Voyez ce que vos clients voient de vous.</h2>
-<p>L'audit de votre fiche Google est gratuit. Vous le recevez par email sous 24&nbsp;h.</p>
-<p class="note">Gratuit. Sans engagement. Aucun accès à vos comptes n'est demandé pour l'audit.</p>
+<h2>Voyez ce que vos clients voient de vous. Gratuitement.</h2>
+<p>Chaque soir sans réponse, un client compare deux fiches et choisit. L'audit vous montre où vous en êtes, en une page.</p>
+<ul class="audit-liste">
+<li>Vous donnez le nom de votre commerce et votre ville.</li>
+<li>Vous recevez l'audit par email, sous 24&nbsp;h&nbsp;: une note sur 100, le détail pilier par pilier, et ce qu'il faut corriger en premier.</li>
+<li>Gratuit. Sans engagement. Aucun accès à vos comptes n'est demandé.</li>
+</ul>
+<p class="audit-rappel">Ensuite, si vous voulez aller plus loin&nbsp;: prix fondateur pour les 10 premiers commerces, premier mois remboursé si vous n'êtes pas satisfait.</p>
 </div>
-<form class="form" id="form" name="audit" method="POST" action="merci.html" data-netlify="true" netlify-honeypot="website">
-<input type="hidden" name="form-name" value="audit"><input type="hidden" name="subject" id="g-sujet" value="Audit RENOM"><input type="hidden" name="metier" id="g-metier" value="restaurant">
-<div class="champ"><div class="lib-champ" id="lib-choix">Votre métier</div>
+<form class="form" id="form" name="audit" method="POST" action="merci.html" data-netlify="true" netlify-honeypot="website" novalidate>
+<input type="hidden" name="form-name" value="audit"><input type="hidden" name="subject" id="g-sujet" value="Audit RENOM"><input type="hidden" name="metier" id="g-metier" value="">
+<div class="champ"><div class="lib-champ" id="lib-choix">Votre commerce</div>
 <div class="choix" role="group" aria-labelledby="lib-choix">
-<button type="button" class="tab" data-m="restaurant" aria-pressed="true">Restaurant</button>
-<button type="button" class="tab" data-m="beaute" aria-pressed="false">Institut de beauté</button>
-<button type="button" class="tab" data-m="sport" aria-pressed="false">Salle de sport ou studio</button>
-<button type="button" class="tab" data-m="autre" aria-pressed="false">Autre commerce</button>
+<button type="button" class="m-choix" data-m="restaurant" aria-pressed="false">Restaurant</button>
+<button type="button" class="m-choix" data-m="beaute" aria-pressed="false">Institut de beauté</button>
+<button type="button" class="m-choix" data-m="sport" aria-pressed="false">Salle de sport ou studio</button>
+<button type="button" class="m-choix" data-m="autre" aria-pressed="false">Autre commerce</button>
 </div></div>
-<div class="champ"><label for="g-nom">Nom de votre commerce</label><input id="g-nom" name="commerce" type="text" autocomplete="organization" required></div>
-<div class="champ" id="f-autre" hidden><label for="g-autre">Précisez votre commerce</label><input id="g-autre" name="metier_autre" type="text"></div>
+<div class="champ"><label for="g-nom">Nom de votre commerce</label><input id="g-nom" name="commerce" type="text" autocomplete="organization" required aria-describedby="aide-nom"><p class="aide" id="aide-nom">Tel qu'il apparaît sur Google Maps.</p></div>
+<div class="champ" id="f-autre" hidden><label for="g-autre">Quel commerce&nbsp;?</label><input id="g-autre" name="metier_autre" type="text" placeholder="Boulangerie, fleuriste, caviste…"></div>
 <div class="rang">
-<div class="champ"><label for="g-ville">Ville</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" required></div>
-<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required></div>
+<div class="champ"><label for="g-ville">Ville</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Lyon 7e" required></div>
+<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">L'audit arrive ici. Rien d'autre sans votre accord.</p></div>
 </div>
 <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
-<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">J'accepte d'être recontacté au sujet de mon audit. <a href="#pied">Confidentialité</a></label></div>
-<button class="btn btn-prim" id="envoi" type="submit">Voir ce que voient mes clients</button>
+<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">J'accepte d'être recontacté au sujet de mon audit. <a href="confidentialite.html">Confidentialité</a></label></div>
+<button class="btn btn-prim btn-grand" id="envoi" type="submit">Recevoir mon audit gratuit</button>
 <div class="err" id="err" role="alert" hidden></div>
 </form>
-</div>
+</div></section>
+
+<!-- Pied de confiance -->
+<section class="assise" aria-label="Nos engagements"><div class="wrap assise-grille">
+<p><b>Aucun mot de passe demandé.</b> Accès de gestionnaire, que vous retirez quand vous voulez.</p>
+<p><b>Aucune publication sans votre accord.</b> Les réponses aux avis de 1 à 3 étoiles non plus.</p>
+<p><b>Règles de Google respectées.</b> Jamais de faux avis, jamais de tri, aucune contrepartie.</p>
+<p><b>Sans engagement.</b> Au mois, résiliable par email. Premier mois remboursé si vous n'êtes pas satisfait.</p>
 </div></section>
 
 </main>
 
-<footer class="pied" id="pied"><div class="wrap"><div class="logo">RENOM</div>
-<div>Aperçu de démonstration</div>
-<div class="pied-liens"><a href="#pied">Mentions légales</a><a href="#pied">Conditions de vente</a><a href="#pied">Confidentialité</a></div></div></footer>
+<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="logo">RENOM</div>
+<p class="pied-legal">RENOM est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p>
+<nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav></div></footer><!-- /legal:pied-site -->
 <script src="app.js"></script>
 </body></html>

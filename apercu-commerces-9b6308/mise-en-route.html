@@ -2,8 +2,8 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RENOM, fiche de mise en route</title><meta name="robots" content="noindex,nofollow">
-<link rel="preload" href="fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
 <header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">RENOM</a><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
 <main>
@@ -26,15 +26,20 @@
 <div class="champ"><label for="f-spe">Vos spécialités ou prestations phares</label><input id="f-spe" name="specialites" type="text"></div>
 <div class="champ"><label for="f-int">Sujets à ne jamais aborder</label><input id="f-int" name="sujets_interdits" type="text"></div>
 <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<div class="ok"><input id="f-cgv" name="cgv_acceptees" value="oui" type="checkbox" required><label for="f-cgv">J'accepte les <a href="cgv.html" target="_blank" rel="noopener">conditions générales de vente</a> et le <a href="sous-traitance.html" target="_blank" rel="noopener">contrat de sous-traitance</a>.</label></div>
+<!-- legal:version-cgv --><input type="hidden" name="cgv_version" value="13 octobre 2026"><!-- /legal:version-cgv -->
 <div><button class="btn btn-prim" type="submit">Envoyer ma fiche</button></div>
 </form>
 <p class="note">Les photos se déposent ensuite dans le dossier partagé que nous vous indiquons par email. Nous ne vous demandons aucun mot de passe.</p>
 </section>
 </main>
-<footer class="pied"><div class="wrap"><div class="logo">RENOM</div><div>Aperçu de démonstration</div></div></footer>
+<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="logo">RENOM</div>
+<p class="pied-legal">RENOM est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p>
+<nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav></div></footer><!-- /legal:pied-site -->
 <script>(function(){var f=document.forms[0];f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
 document.getElementById('f-sujet').value='Fiche client RENOM : '+f.nom_affiche.value;
-Promise.resolve({ok:true}).toString()})
+var corps=new URLSearchParams(new FormData(f)).toString(),H={'Content-Type':'application/x-www-form-urlencoded'};
+Promise.resolve({ok:true})
 .then(function(r){if(!r.ok)throw 0;f.innerHTML='<p>Fiche reçue. Nous revenons vers vous par email avec le dossier de dépôt des photos.</p>'})
 .catch(function(){f.insertAdjacentHTML('beforeend','<p role="alert">L\'envoi a échoué. Réessayez dans un instant.</p>')})})})();</script>
 </body></html>

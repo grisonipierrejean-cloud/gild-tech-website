@@ -41,4 +41,18 @@ Chaque paire montre une photo d'origine Pexels et la publication produite à par
 | img/demo-beaute-avant.webp, img/demo-beaute-apres.webp | Marine Fougère (bougie) | https://www.pexels.com/photo/cozy-spa-massage-table-with-candle-and-decor-35884499/ |
 | img/demo-sport-avant.webp, img/demo-sport-apres.webp | MART PRODUCTION (tapis-etagere) | https://www.pexels.com/photo/rolled-yoga-mat-on-shelf-on-the-wall-7318664/ |
 
-Polices (licence SIL OFL 1.1, google/fonts) : Instrument Serif, Instrument Sans.
+## Usages sur la page de vente refondue (design v3, 13/10/2026)
+
+Aucune nouvelle photo : la page n'utilise que les fichiers ci-dessus. Le réseau de cette session refuse Pexels et Unsplash, aucune photo avec visage n'a donc pu être ajoutée (voir ordres/COPY-V3.md).
+- Premier écran (photo derrière le téléphone) : img/restaurant.webp, img/beaute.webp, img/sport.webp, img/autre.webp, selon le métier choisi.
+- Téléphone de démonstration : img/demo-*-avant.webp (photo envoyée) et img/demo-*-apres.webp (publication produite par le moteur). Commerces, prénoms et avis fictifs, signalés sous le téléphone.
+- Section « Vous connaissez ces soirs-là » : img/metier-restaurant.webp, img/metier-institut.webp, img/metier-studio.webp, img/autre.webp.
+- Section mécanisme : img/methode.webp.
+- img/creation-pates.webp n'est plus affichée sur la page (fichier gardé).
+
+## Polices
+
+Licence SIL OFL 1.1, fichiers téléchargés depuis le dépôt officiel google/fonts (github.com/google/fonts, branche main, le 13/10/2026), réduits au latin et convertis en WOFF2 :
+- Source Serif 4 (titres), ofl/sourceserif4, axes limités à graisse 400 à 600 et taille optique 16 à 48 : fonts/source-serif-4.woff2, licence fonts/OFL-source-serif-4.txt.
+- Schibsted Grotesk (texte), ofl/schibstedgrotesk : fonts/schibsted-grotesk.woff2, licence fonts/OFL-schibsted-grotesk.txt.
+- Instrument Serif et Instrument Sans (fichiers gardés : le rapport d'audit, moteur/audit/rapport.py, les embarque encore).

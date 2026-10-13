@@ -17,7 +17,9 @@
     AVIS_RECU: "Avis reçu", AVIS_A_VALIDER: "Réponse d'avis à valider", AVIS_VALIDE: "Réponse d'avis validée", AVIS_REFUSE: "Réponse d'avis refusée", AVIS_PUBLIE: "Réponse d'avis publiée", AVIS_SENSIBLE: "Avis sensible signalé",
     MISE_EN_PAUSE: "Commerce mis en pause", REPRISE: "Reprise du commerce", OFFRE_CHANGEE: "Offre modifiée", COMMERCE_CREE: "Commerce créé",
     LEGENDE_MODIFIEE: "Légende modifiée par vous", EMAIL_VALIDATION: "Email de validation préparé", ACTION_FICHE: "Action de fiche Google préparée", ACTION_FICHE_VALIDEE: "Action de fiche Google validée",
-    ACTION_FICHE_REFUSEE: "Action de fiche Google refusée", ACTION_FICHE_PUBLIEE: "Action de fiche Google publiée", DEMARRAGE: "Démarrage terminé" };
+    ACTION_FICHE_REFUSEE: "Action de fiche Google refusée", ACTION_FICHE_PUBLIEE: "Action de fiche Google publiée", DEMARRAGE: "Démarrage terminé",
+    COMMENTAIRE_VALIDE: "Réponse à un commentaire validée", COMMENTAIRE_IGNORE: "Commentaire laissé sans réponse", COMMENTAIRE_CLOS: "Commentaire sensible traité par vous", COMMENTAIRE_PUBLIE: "Réponse à un commentaire publiée",
+    AVIS_EFFACES_30_JOURS: "Avis de plus de 30 jours effacés (règle de Google)", COMMENTAIRES_EFFACES_30_JOURS: "Commentaires de plus de 30 jours effacés" };
   const M = window.RENOM_MAJ, MOIS_COURTS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
   const nombre = (x, d) => Number(x).toLocaleString("fr-FR", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
   const moisDe = m => new Date(m.slice(0, 7) + "-15T12:00:00");
@@ -80,8 +82,10 @@
   }
   const reponseAValider = x => `<div class="f"><label for="rep-${e(x.id)}">Réponse proposée, vous pouvez la modifier</label><textarea id="rep-${e(x.id)}" class="haut-texte" data-texte>${e(x.reponse_proposee || "")}</textarea></div>
     <div class="actions"><button type="button" class="bouton" data-a="valide">Valider et publier</button><button type="button" class="lien" data-a="refuse">Refuser cette réponse</button></div>`;
-  const etoiles = n => `${n} étoile${n > 1 ? "s" : ""} sur 5`;
-  const citation = x => x.texte ? `<p class="citation">« ${e(x.texte)} »</p>` : `<p class="citation">(note sans texte)</p>`;
+  const etoiles = n => n == null ? "Note effacée" : `${n} étoile${n > 1 ? "s" : ""} sur 5`;
+  // Avis de plus de 30 jours : texte, note et auteur effacés (règle « Content storage » de l'API Google Business Profile) ; notre réponse reste.
+  const EFFACE = "Texte et note effacés 30 jours après la réception : Google interdit de conserver un avis plus longtemps. Votre réponse reste.";
+  const citation = x => x.efface_le ? `<p class="note efface">${EFFACE}</p>` : x.texte ? `<p class="citation">« ${e(x.texte)} »</p>` : `<p class="citation">(note sans texte)</p>`;
 
   // ---------------- Aperçu au format du réseau et légende par réseau (Contenus et Accueil)
   // Un cadre sobre qui rappelle la publication sur chaque réseau. Aucun logo de marque : le nom du réseau suffit.
@@ -158,10 +162,10 @@
     { id: "resultats", nom: "Résultats", ecrans: ["resultats"], seul: true },
     { id: "creer", nom: "Créer", ecrans: ["photos", "contenus"], compte: "contenus" },
     { id: "publier", nom: "Publier", ecrans: ["calendrier"], mobile: "creer" },
-    { id: "reputation", nom: "Réputation", court: "Avis", ecrans: ["avis", "collecte", "fichegoogle"], compte: "avis" },
+    { id: "reputation", nom: "Réputation", court: "Avis", ecrans: ["avis", "commentaires", "collecte", "fichegoogle"], compte: "avis" },
     { id: "commerce", nom: "Mon commerce", court: "Commerce", ecrans: ["fiche", "offre", "comptes", "notifications"] },
   ];
-  const ECRANS = { accueil: "Accueil", resultats: "Résultats", photos: "Photos", contenus: "Contenus", calendrier: "Calendrier", avis: "Avis Google", collecte: "Collecte d'avis", fichegoogle: "Fiche Google",
+  const ECRANS = { accueil: "Accueil", resultats: "Résultats", photos: "Photos", contenus: "Contenus", calendrier: "Calendrier", avis: "Avis Google", commentaires: "Commentaires", collecte: "Collecte d'avis", fichegoogle: "Fiche Google",
     fiche: "Fiche", offre: "Offre", comptes: "Comptes connectés", notifications: "Notifications", demarrage: "Démarrage" };
   // Anciennes adresses : elles mènent toujours quelque part (aucun lien cassé).
   const ANCIENNES = { idees: "contenus" };
@@ -177,9 +181,9 @@
   };
   const APPAREIL = trait('<path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle>');
   const large = window.matchMedia("(min-width: 900px)");
-  const nb = { contenus: 0, avis: 0 }; let offreNom = "", route = "accueil", connecte = false;
+  const nb = { contenus: 0, avis: 0, commentaires: 0 }; let offreNom = "", route = "accueil", connecte = false;
   const compte = k => `<span class="nb" data-nb="${k}"${nb[k] ? "" : " hidden"}><span data-n>${nb[k] || ""}</span><span class="vh"> à traiter</span></span>`;
-  const lienMenu = r => `<a href="#/${r}" data-r="${r}"${r === route ? ' aria-current="page"' : ""}><span>${ECRANS[r]}</span>${r === "contenus" || r === "avis" ? compte(r) : r === "collecte" ? compte("retours") : ""}</a>`;
+  const lienMenu = r => `<a href="#/${r}" data-r="${r}"${r === route ? ' aria-current="page"' : ""}><span>${ECRANS[r]}</span>${["contenus", "avis", "commentaires"].includes(r) ? compte(r) : r === "collecte" ? compte("retours") : ""}</a>`;
   function dessinerNav() {
     document.body.classList.toggle("hors-session", !connecte);
     const lat = $("lat"), haut = $("haut"), sous = $("sous"), onglets = $("onglets");
@@ -200,11 +204,12 @@
   }
   async function majCompteurs() {
     try {
-      const [ct, av, k] = await Promise.all([D.contenus(), D.avis(), D.compteur()]);
+      const [ct, av, k, cm] = await Promise.all([D.contenus(), D.avis(), D.compteur(), D.commentaires().catch(() => [])]);
       nb.contenus = ct.filter(x => x.statut === "a_valider").length;
       nb.avis = av.filter(x => (x.statut === "a_valider" && !x.sensible) || x.statut === "humain").length;
+      nb.commentaires = k.commentaires_inclus ? cm.filter(x => x.statut === "a_valider" || x.statut === "humain").length : 0;
       offreNom = k.offre_nom || "";
-      nb.retours = await retoursNonLus(); nb.reputation = nb.avis + nb.retours;   // ---- Collecte
+      nb.retours = await retoursNonLus(); nb.reputation = nb.avis + nb.commentaires + nb.retours;   // ---- Collecte
     } catch (er) { return; }
     document.querySelectorAll("[data-nb]").forEach(s => { const n = nb[s.dataset.nb]; s.hidden = !n; s.querySelector("[data-n]").textContent = n || ""; });
     const o = $("haut-offre"); if (o) o.textContent = offreNom ? "Offre " + offreNom : "";
@@ -284,14 +289,15 @@
   async function accueil() {
     const c0 = await D.commerce();
     if (!c0.demarrage_fini && !plusTard(c0.id)) return demarrage();
-    const [c, k, p, ct, av, cal, bilan, mr, ids] = await Promise.all([D.commerce(), D.compteur(), D.photos(), D.contenus(), D.avis(), D.calendrier(), D.bilanMois().catch(() => null),
-      D.miseEnRoute().catch(() => null), D.idees().catch(() => [])]);
+    const [c, k, p, ct, av, cal, bilan, mr, ids, cm0] = await Promise.all([D.commerce(), D.compteur(), D.photos(), D.contenus(), D.avis(), D.calendrier(), D.bilanMois().catch(() => null),
+      D.miseEnRoute().catch(() => null), D.idees().catch(() => []), D.commentaires().catch(() => [])]);
+    const cm = k.commentaires_inclus ? cm0 : [], cmValider = cm.filter(x => x.statut === "a_valider"), cmHumains = cm.filter(x => x.statut === "humain");
     const idee = ids.find(x => x.semaine && x.statut === "a_valider") || null;
     nomCommerce = c.nom;
     const aValider = ct.filter(x => x.statut === "a_valider"), reponses = av.filter(x => x.statut === "a_valider" && !x.sensible), humains = av.filter(x => x.statut === "humain");
     const prochaines = cal.filter(x => x.statut === "programme").slice(0, 3), premier = aValider[0], avis1 = reponses[0], dernier = premier ? null : (ct.find(x => x.statut !== "refuse") || ct[0]);
     const [u1, v1, ...vign] = await Promise.all([urlSure(premier || dernier), videoSure(premier || dernier), ...prochaines.map(x => urlSure(x.contenu))]);
-    const mois = new Date(k.mois + "T12:00:00"), n = aValider.length + reponses.length + humains.length + (idee ? 1 : 0);
+    const mois = new Date(k.mois + "T12:00:00"), n = aValider.length + reponses.length + humains.length + cmValider.length + cmHumains.length + (idee ? 1 : 0);
     const phrase = !n ? (mr && mr.faits < mr.total ? "Il reste à finir votre mise en route." : "Tout est à jour.") : n === 1 ? "Une chose vous attend aujourd'hui." : `${cap(NOMBRES[n] || String(n))} choses vous attendent aujourd'hui.`;
     const raisons = [...new Set(humains.flatMap(x => x.raisons || []))];
     const ficheRemplie = c.specialites || c.ton || c.horaires;
@@ -302,10 +308,7 @@
       ${blocMiseEnRoute(mr)}
       ${!c.demarrage_fini ? `<section class="alerte"><div><p class="fort">Votre démarrage n'est pas terminé</p><p>Cinq questions pour que RENOM écrive comme vous. Chacune peut être passée.</p></div><a class="bouton second" href="#/demarrage">Reprendre le démarrage</a></section>` : ""}
       ${bilanBloc(bilan)}
-      ${blocIdeeSemaine(idee)}
-      ${await proposition(c)}
-      <div class="rangee">
-        <section class="carte large"${premier ? ` data-contenu="${e(premier.id)}"` : ""}>
+      <section class="carte a-valider"${premier ? ` data-contenu="${e(premier.id)}"` : ""}>
           <div class="carte-tete"><h2>${premier ? "Un contenu à valider" : "Aucun contenu à valider"}</h2>${aValider.length > 1 ? `<a href="#/contenus">Voir les ${aValider.length}</a>` : `<a href="#/contenus">Ouvrir les contenus</a>`}</div>
           ${premier ? `<div class="apercu-reseaux">${blocReseaux(premier, u1, v1)}<div class="apercu-texte">
             <p class="meta">${FORMAT_LIB[M.formatDe(premier)]}</p>
@@ -315,13 +318,8 @@
             <p class="etat">${ST_CONTENU[dernier.statut] || e(dernier.statut)}</p></div></div>`
           : `<p class="texte2">Les contenus créés à partir de vos photos arrivent ici. Vous les approuvez, vous demandez une modification ou vous les refusez.</p>`}
         </section>
-        <section class="carte etroite">
-          <div class="carte-tete"><h2>Offre ${e(k.offre_nom)}</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
-          ${mesure("Publications", k.publications_utilisees, k.publications_plafond)}
-          ${k.videos_plafond ? mesure("Vidéos", k.videos_utilisees, k.videos_plafond) : `<div class="mesure-tete"><span>Vidéos</span><span class="note">Non comprises dans votre offre</span></div>`}
-          <div class="pied"><p class="note">Le compteur repart à zéro le 1er ${MOIS[(mois.getMonth() + 1) % 12]}.</p><a href="#/offre">Voir votre offre</a></div>
-        </section>
-      </div>
+      ${blocIdeeSemaine(idee)}
+      ${await proposition(c)}
       <div class="rangee">
         <section class="carte moitie"${avis1 ? ` data-avis="${e(avis1.id)}"` : ""}>
           <div class="carte-tete"><h2>${avis1 ? "Une réponse d'avis à valider" : "Aucune réponse d'avis à valider"}</h2>${avis1 ? `<span class="note">${etoiles(avis1.note)}</span>` : ""}</div>
@@ -337,17 +335,28 @@
       </div>
       ${humains.length ? `<section class="alerte"><div><p class="fort">${humains.length > 1 ? humains.length + " avis demandent votre attention" : "Un avis demande votre attention"}</p>
         <p>${raisons.length ? "Motif signalé : " + e(raisons.join(", ")) + ". " : ""}Aucune réponse n'a été préparée : c'est à vous de ${humains.length > 1 ? "les" : "le"} traiter.</p></div><a class="bouton second" href="#/avis">Lire ${humains.length > 1 ? "les avis" : "l'avis"}</a></section>` : ""}
+      ${cmHumains.length ? `<section class="alerte" id="alerte-commentaires"><div><p class="fort">${cmHumains.length > 1 ? cmHumains.length + " commentaires demandent votre attention" : "Un commentaire demande votre attention"}</p>
+        <p>Commentaire sensible sur vos réseaux : RENOM n'y répond pas. C'est à vous de décider quoi faire.</p></div><a class="bouton second" href="#/commentaires">Lire ${cmHumains.length > 1 ? "les commentaires" : "le commentaire"}</a></section>` : ""}
+      ${cmValider.length ? `<section class="carte" data-commentaire="${e(cmValider[0].id)}" id="accueil-commentaire"><div class="carte-tete"><h2>Une réponse à un commentaire à valider</h2>${cmValider.length > 1 ? `<a href="#/commentaires">Voir les ${cmValider.length}</a>` : `<a href="#/commentaires">Ouvrir les commentaires</a>`}</div>
+        ${corpsCommentaire(cmValider[0])}</section>` : ""}
       <div class="rangee">
         <section class="carte moitie"><div class="carte-tete"><h2>Où vous en êtes</h2></div>
           <ul class="liste"><li><a href="#/contenus">Contenus à valider</a><span class="fort">${aValider.length}</span></li>
           <li><a href="#/avis">Réponses d'avis à valider</a><span class="fort">${reponses.length}</span></li>
           <li><a href="#/avis">Avis à traiter par une personne</a><span class="fort">${humains.length}</span></li>
+          ${k.commentaires_inclus ? `<li><a href="#/commentaires">Réponses aux commentaires à valider</a><span class="fort">${cmValider.length}</span></li>` : ""}
           <li><a href="#/photos">Photos en attente de traitement</a><span class="fort">${p.filter(x => x.statut === "a_traiter").length}</span></li></ul></section>
-        <section class="carte moitie"><div class="carte-tete"><h2>Votre fiche</h2><span class="note">${e(METIERS[c.metier] || "")}${c.ville ? ", " + e(c.ville) : ""}</span></div>
+        <section class="carte etroite"><div class="carte-tete"><h2>Votre fiche</h2><span class="note">${e(METIERS[c.metier] || "")}${c.ville ? ", " + e(c.ville) : ""}</span></div>
           <p class="texte2">${ficheRemplie ? "Votre fiche est renseignée. Vérifiez-la dès que quelque chose change." : "Votre fiche est vide : RENOM n'écrit que ce qu'elle contient. Renseignez-la avant de déposer vos premières photos."}</p>
           <p class="pied"><a class="bouton second" href="#/fiche">Ouvrir la fiche</a></p></section>
+        <section class="carte etroite">
+          <div class="carte-tete"><h2>Offre ${e(k.offre_nom)}</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
+          ${mesure("Publications", k.publications_utilisees, k.publications_plafond)}
+          ${k.videos_plafond ? mesure("Vidéos", k.videos_utilisees, k.videos_plafond) : `<div class="mesure-tete"><span>Vidéos</span><span class="note">Non comprises dans votre offre</span></div>`}
+          <div class="pied"><p class="note">Le compteur repart à zéro le 1er ${MOIS[(mois.getMonth() + 1) % 12]}.</p><a href="#/offre">Voir votre offre</a></div>
+        </section>
       </div>`;
-    brancherDecisions(vue, accueil); brancherAvis(vue, accueil); brancherAutomatisations(vue, accueil);
+    brancherDecisions(vue, accueil); brancherAvis(vue, accueil); brancherAutomatisations(vue, accueil); brancherCommentaires(vue, accueil);
   }
 
   // ---------------- Fiche
@@ -699,11 +708,12 @@
         <section class="carte moitie"><div class="carte-tete"><h2>Ce mois-ci</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
           ${mesure("Publications utilisées", k.publications_utilisees, k.publications_plafond)}
           ${k.videos_plafond ? mesure("Vidéos utilisées", k.videos_utilisees, k.videos_plafond) : `<div class="mesure-tete"><span>Vidéos</span><span class="note">Non comprises dans votre offre</span></div>`}
+          <div class="mesure-tete" id="offre-commentaires"><span>Réponses aux commentaires</span>${k.commentaires_inclus ? `<span><span class="chiffre">${nombre(+k.commentaires_repondus || 0)}</span> ce mois-ci, sans plafond</span>` : `<span class="note">Non comprises dans votre offre</span>`}</div>
           <p class="note pied">Le compteur repart à zéro au début du mois.</p></section>
-        <section class="carte moitie"><h2>Ce qui est inclus chaque mois</h2><ul class="liste"><li><span>Publications (visuels aux formats 4 par 5 et 9 par 16, légende)</span><span class="fort">${o.publications ?? k.publications_plafond}</span></li><li><span>Vidéos courtes</span><span class="fort">${(o.videos ?? k.videos_plafond) || "Non comprises"}</span></li><li><span>Réponses aux avis Google</span><span class="fort">Comprises</span></li></ul>
+        <section class="carte moitie"><h2>Ce qui est inclus chaque mois</h2><ul class="liste"><li><span>Publications (visuels aux formats 4 par 5 et 9 par 16, légende)</span><span class="fort">${o.publications ?? k.publications_plafond}</span></li><li><span>Vidéos courtes</span><span class="fort">${(o.videos ?? k.videos_plafond) || "Non comprises"}</span></li><li><span>Réponses aux avis Google</span><span class="fort">Comprises</span></li><li><span>Réponses aux commentaires Instagram et Facebook</span><span class="fort">${k.commentaires_inclus ? "Comprises" : "Non comprises"}</span></li><li><span>Comparaison avec 3 concurrents de votre quartier</span><span class="fort">Comprise</span></li><li><span>Bilan du mois par email, le 1<sup>er</sup></span><span class="fort">Compris</span></li></ul>
           <p class="note pied">Une demande d'idées compte pour une publication.</p></section>
       </div>
-      <section class="carte"><h2>Quand le plafond est atteint</h2><p class="texte2 lecture">Toute nouvelle photo reste visible dans votre espace mais ne produit rien : elle est marquée « refusée » avec le motif écrit dans votre historique. Les contenus déjà créés, la programmation et les réponses aux avis continuent. Le compteur repart à zéro au début du mois. Pour produire davantage, contactez RENOM pour changer d'offre.</p></section>
+      <section class="carte"><h2>Quand le plafond est atteint</h2><p class="texte2 lecture">Toute nouvelle photo reste visible dans votre espace mais ne produit rien : elle est marquée « refusée » avec le motif écrit dans votre historique. Les contenus déjà créés, la programmation et les réponses aux avis continuent. Le compteur repart à zéro au début du mois. Pour produire davantage, contactez RENOM pour changer d'offre.</p></section>
       <section class="carte"><h2>Historique récent</h2>${j.length ? `<ul class="liste">${j.slice(0, 12).map(x => `<li><span>${e(ETAPES[x.type] || cap(String(x.type || "").toLowerCase().replace(/_/g, " ")))}${x.detail && x.detail.raison ? `<span class="note"> : ${e(x.detail.raison)}</span>` : ""}</span><span class="note">${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune étape pour le moment.</p>`}</section>`;
   }
 
@@ -784,7 +794,8 @@
       <div class="rangee">
         <section class="carte moitie" aria-labelledby="r-themes"><h2 id="r-themes">Ce que disent vos avis</h2>
           ${themes.length ? `<ul class="liste themes">${themes.map(t => { const p = +t.positif || 0, n = +t.negatif || 0; return `<li><div class="theme"><p class="fort">${e(t.theme)}</p><div class="t-barre" aria-hidden="true">${p ? `<span class="t-pos" style="width:${p / maxTheme * 100}%"></span>` : ""}${n ? `<span class="t-neg" style="width:${n / maxTheme * 100}%"></span>` : ""}</div></div><p class="note t-compte">${p} ${pluriel(p, "positif", "positifs")} · ${n} ${pluriel(n, "négatif", "négatifs")}</p></li>`; }).join("")}</ul>
-          <p class="note">Nombre d'avis qui parlent de chaque thème. Trait bleu : mentions positives. Trait foncé : mentions négatives.</p>` : `<p class="texte2">Pas encore d'analyse des thèmes de vos avis.</p>`}</section>
+          <p class="note">Nombre d'avis qui parlent de chaque thème. Trait bleu : mentions positives. Trait foncé : mentions négatives.</p>` : `<p class="texte2">${lg.themes === "insuffisants" ? "Pas assez d'avis de moins de 30 jours pour dégager des thèmes : il en faut deux au moins." : "Pas encore d'analyse des thèmes de vos avis."}</p>`}
+          <p class="note" id="themes-note">Calculés à l'ouverture de cette page sur vos avis des 30 derniers jours${lg.themes_avis ? ` (${nombre(lg.themes_avis)} ${pluriel(lg.themes_avis, "avis", "avis")})` : ""}, puis oubliés : Google interdit de conserver ses avis plus de 30 jours et d'en garder des statistiques.</p></section>
         <section class="carte moitie" aria-labelledby="r-col"><div class="carte-tete"><h2 id="r-col">Collecte d'avis, ce mois-ci</h2><a href="#/collecte">Ouvrir la collecte</a></div>${chiffresCollecte(col, true)}
           <p class="note">Passages et clics comptés sur votre page d'avis. Nouveaux avis : avis publiés sur votre fiche Google depuis le 1er du mois, lus à l'instant.</p></section>
       </div>
@@ -923,6 +934,74 @@
     $("dem-plus-tard").onclick = () => { try { localStorage.setItem("renom-demarrage-plus-tard:" + c.id, "1"); } catch (er) {} dem.pour = null; aller("accueil"); };
   }
 
+  // ---- Réponses aux commentaires ----------------------------------------------------------------------------------
+  // Écran du groupe « Réputation ». Instagram et Facebook (offres Croissance et Signature). Classement et réponse proposés par RENOM, décision du
+  // commerçant ; un commentaire sensible n'est jamais traité par RENOM. Publication par l'API de Meta, ou par l'équipe tant que l'accès n'est pas accordé.
+  const CO = window.RENOM_COMMENTAIRES;
+  const rangCommentaire = x => x.statut === "a_valider" ? 0 : x.statut === "humain" ? 1 : ["valide", "a_publier_main"].includes(x.statut) ? 2 : x.statut === "publie" ? 3 : 4;
+  const texteCommentaire = x => x.efface_le ? `<p class="note efface">Texte effacé 30 jours après la réception (durée de conservation des commentaires chez RENOM).</p>`
+    : x.texte ? `<p class="citation">« ${e(x.texte)} »</p>` : `<p class="citation">(commentaire sans texte)</p>`;
+  const lienPublication = x => x.lien ? `<a href="${e(x.lien)}" target="_blank" rel="noopener">Ouvrir sur ${CO.RESEAUX[x.reseau] || "le réseau"}</a>` : "";
+  function corpsCommentaire(x) {
+    const reseau = CO.RESEAUX[x.reseau] || e(x.reseau), sensible = x.statut === "humain" || x.categorie === "sensible";
+    let suite = "";
+    if (x.statut === "a_valider") suite = `${(x.refus || []).length && !x.reponse_proposee ? `<p class="note">La proposition de RENOM a été écartée par le contrôle (${e(x.refus.join(", "))}). Écrivez votre réponse, ou ne répondez pas.</p>` : ""}
+      <div class="f"><label for="cm-${e(x.id)}">Réponse proposée, vous pouvez la modifier</label><textarea id="cm-${e(x.id)}" class="haut-texte" maxlength="${CO.LIMITE}" data-texte-c>${e(x.reponse_proposee || "")}</textarea></div>
+      <div class="actions"><button type="button" class="bouton" data-c="valide">Valider la réponse</button><button type="button" class="lien" data-c="ignore">Ne pas répondre</button></div>`;
+    else if (x.statut === "humain") suite = `<div class="encart" role="alert"><p class="fort">Commentaire sensible${(x.raisons || []).length ? " : " + e(x.raisons.join(", ")) : ""}.</p>
+      <p>RENOM n'y répond pas et n'a rien préparé. Répondez vous-même sur ${reseau} si vous le jugez utile, puis marquez-le comme traité. RENOM a été alerté.</p></div>
+      <div class="actions"><button type="button" class="bouton second" data-c="clos">J'ai traité ce commentaire</button>${lienPublication(x)}</div>`;
+    else if (x.statut === "valide" || x.statut === "a_publier_main") suite = `<p class="reponse"><span class="fort">Réponse validée :</span> ${e(x.reponse_proposee || "")}</p>
+      <p class="note">${x.statut === "a_publier_main" ? "Publiée par notre équipe sous peu, sous votre compte : Meta n'a pas encore ouvert à RENOM l'accès qui permet de répondre automatiquement." : "Publication en cours."}</p>`;
+    else if (x.statut === "publie") suite = `<p class="reponse"><span class="fort">${x.publie_par === "equipe" ? "Réponse publiée par notre équipe :" : x.decision === "publication_automatique" ? "Réponse publiée automatiquement :" : "Réponse publiée :"}</span> ${e(x.reponse || x.reponse_proposee || "")}</p>`;
+    else if (x.statut === "ignore") suite = `<p class="note">${x.categorie === "spam" ? "Classé comme spam : aucune réponse." : "Vous avez choisi de ne pas répondre."}</p>`;
+    else if (x.statut === "clos") suite = `<p class="note">Traité par vous.</p>`;
+    return `<div class="carte-tete"><p class="fort">${reseau} · ${CO.CATEGORIES[x.categorie] || e(x.categorie)}</p><p class="etat${x.statut === "a_valider" || sensible && x.statut === "humain" ? " actif" : ""}">${CO.ETATS[x.statut] || e(x.statut)}</p></div>
+      ${texteCommentaire(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}Reçu le ${date(x.cree_le)}${x.demo ? " · commentaire fictif de démonstration" : ""}</p>${suite}`;
+  }
+  function brancherCommentaires(racine, apres) {
+    racine.querySelectorAll("[data-commentaire]").forEach(a => a.addEventListener("click", async ev => {
+      const b = ev.target.closest("[data-c]"); if (!b) return; const d = b.dataset.c, ta = a.querySelector("[data-texte-c]");
+      try {
+        await D.deciderCommentaire(a.dataset.commentaire, d, d === "valide" && ta ? ta.value : null); await apres(); majCompteurs();
+        msg(d === "valide" ? "Réponse validée. Elle sera publiée sous le commentaire." : d === "ignore" ? "Enregistré : aucune réponse ne sera publiée." : "Enregistré.");
+      } catch (er) { msg(er.message); }
+    }));
+  }
+  async function commentaires() {
+    const [c, k, l0] = await Promise.all([D.commerce(), D.compteur(), D.commentaires().catch(() => [])]);
+    const titre = entete("Votre réputation sur les réseaux", "Commentaires", "Les commentaires laissés sous vos publications Instagram et Facebook. RENOM propose une réponse, vous décidez.");
+    if (!k.commentaires_inclus) {
+      vue.innerHTML = `${titre}<section class="carte"><h2>Votre offre ne comprend pas les réponses aux commentaires</h2>
+        <p class="texte2 lecture">Les réponses aux commentaires sont comprises dans les offres Croissance et Signature. Pour en profiter, contactez RENOM pour changer d'offre.</p><p class="pied"><a href="#/offre">Voir votre offre</a></p></section>`;
+      return;
+    }
+    const l = l0.map((x, i) => [x, i]).sort((a, b) => rangCommentaire(a[0]) - rangCommentaire(b[0]) || a[1] - b[1]).map(x => x[0]);
+    const visibles = l.filter(x => !(x.statut === "ignore" && x.categorie === "spam")), spams = l.filter(x => x.statut === "ignore" && x.categorie === "spam");
+    vue.innerHTML = `${pauseBandeau(c)}${titre}<p class="msg" id="msg" role="status"></p>
+      <div class="colonnes">
+        <div class="pile">${visibles.length ? visibles.map(x => `<article class="carte avis${x.statut === "humain" ? " attention" : ""}" data-commentaire="${e(x.id)}">${corpsCommentaire(x)}</article>`).join("")
+          : `<section class="carte"><h2>Aucun commentaire pour le moment</h2><p class="texte2">Les commentaires de vos publications apparaîtront ici dès que vos comptes Instagram et Facebook seront reliés à RENOM.</p></section>`}
+          ${spams.length ? `<details class="carte"><summary>Classés comme spam, sans réponse (${spams.length})</summary><div class="pile">${spams.map(x => `<div data-commentaire="${e(x.id)}">${corpsCommentaire(x)}</div>`).join("")}</div></details>` : ""}</div>
+        <div class="pile">
+          <section class="carte"><h2>Réglage</h2><form id="f-cm">
+            <label class="option"><input type="checkbox" id="cm-auto"${c.commentaires_compliments_auto ? " checked" : ""}><span>Répondre automatiquement aux compliments</span></label>
+            <p class="aide">Désactivé par défaut. Activé, un simple compliment reçoit un remerciement sans attendre votre accord. Les questions et les réclamations attendent toujours votre accord.</p>
+            <div class="actions"><button class="bouton second petit" type="submit">Enregistrer</button></div></form></section>
+          <section class="carte"><h2>Comment ça marche</h2><ul class="liste">
+            <li>RENOM classe chaque commentaire : question, compliment, réclamation, spam ou sensible.</li>
+            <li>Un commentaire sensible (insulte, accusation, santé, question juridique) n'est jamais traité par RENOM : vous êtes alerté.</li>
+            <li>Les réponses n'utilisent que votre fiche : aucun horaire, prix ni promesse inventés.</li>
+            <li>Publication : par la connexion de Meta dès qu'elle sera ouverte à RENOM. En attendant, notre équipe publie votre réponse validée à la main, sous votre compte.</li>
+            <li>Le texte d'un commentaire est effacé de RENOM après 30 jours.</li></ul>
+            <p class="note pied">${nombre(+k.commentaires_repondus || 0)} ${pluriel(+k.commentaires_repondus || 0, "réponse validée", "réponses validées")} ce mois-ci. Aucun plafond n'est fixé dans votre offre.</p></section>
+        </div>
+      </div>`;
+    $("f-cm").onsubmit = async ev => { ev.preventDefault(); try { await D.enregistrer({ commentaires_compliments_auto: $("cm-auto").checked }); msg($("cm-auto").checked ? "Réglage enregistré : les compliments recevront un remerciement automatique." : "Réglage enregistré : chaque réponse attend votre accord."); } catch (er) { msg(er.message); } };
+    brancherCommentaires(vue, commentaires);
+  }
+  // ---- fin du bloc Réponses aux commentaires -----------------------------------------------------------------------
+
   // ---- Vidéo d'avis ------------------------------------------------------------------------------------------------
   // Écran du groupe « Créer » : choisir 2 à 4 avis, un fond, un style ; la vidéo arrive dans « Contenus », à valider.
   // Tout ce qui concerne la vidéo d'avis est dans ce bloc (écran, entrée de menu, libellés du journal) ; les règles sont dans donnees.js.
@@ -967,6 +1046,7 @@
         <div class="pile">
           <section class="carte"><div class="carte-tete"><h2>1. Les avis à citer</h2><span class="note" id="va-compte"></span></div>
             <p class="note">Chaque avis est cité mot pour mot, avec le prénom de son auteur et l'initiale de son nom. Rien n'est corrigé, raccourci ni ajouté. L'ordre de la vidéo est celui dans lequel vous cochez.</p>
+            <p class="note" id="va-30-jours">Seuls les avis reçus depuis moins de 30 jours sont proposés : Google interdit à RENOM de conserver un avis plus longtemps.</p>
             ${bons.length ? `<ul class="liste va-avis">${bons.map(a => `<li><label class="option va-choix"><input type="checkbox" name="va-avis" value="${e(a.id)}"${va.choisis.includes(a.id) ? " checked" : ""}>
               <span class="va-texte"><span class="fort">${e(a.auteur)} · ${etoiles(a.note)}</span><span class="citation">«&nbsp;${e(a.texte)}&nbsp;»</span>
               <span class="note">${VA.longueur(a.texte)} caractères sur ${VA.LIMITE} au plus${a.demo ? " · avis fictif de démonstration" : ""}<span data-rang></span></span></span></label></li>`).join("")}</ul>`
@@ -1020,7 +1100,7 @@
   // ---- fin du bloc Vidéo d'avis ------------------------------------------------------------------------------------
 
   // ---------------- Routage
-  const ROUTES = { connexion, accueil, resultats, fiche, photos, contenus, calendrier, avis, collecte, fichegoogle: ficheGoogle, comptes, offre, notifications, demarrage, videoavis: videoAvis };
+  const ROUTES = { connexion, accueil, resultats, fiche, photos, contenus, calendrier, avis, commentaires, collecte, fichegoogle: ficheGoogle, comptes, offre, notifications, demarrage, videoavis: videoAvis };
   const aller = r => { if (location.hash === "#/" + r) rendre(); else location.hash = "#/" + r; };
   let derniere = null;
   async function rendre() {

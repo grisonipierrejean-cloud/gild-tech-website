@@ -16,6 +16,7 @@
     ["commerces", "Commerces", trait('<path d="M4 10l1.5-5h13L20 10"></path><path d="M5 10v10h14V10"></path><path d="M4 10h16M10 20v-5h4v5"></path>')],
     ["prospects", "Prospects", trait('<circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c.8-3.6 3.2-5.5 6-5.5s5.2 1.9 6 5.5"></path><path d="M16 6.5h5M18.5 4v5"></path>')],
     ["alertes", "Alertes", trait('<path d="M6 16v-5a6 6 0 0112 0v5l1.5 2.5h-15z"></path><path d="M10 21h4"></path>')],
+    ["apublier", "À publier", trait('<path d="M5 12h11"></path><path d="M12 6l6 6-6 6"></path><path d="M5 5v14"></path>')],
     ["journal", "Journal", trait('<path d="M9 7h10M9 12h10M9 17h10M5 7h.01M5 12h.01M5 17h.01"></path>')],
     ["invitations", "Invitations", trait('<rect x="4" y="6" width="16" height="12" rx="2"></rect><path d="M4 8l8 6 8-6"></path>')],
     ["creer", "Créer", trait('<circle cx="12" cy="12" r="8"></circle><path d="M12 8.5v7M8.5 12h7"></path>')],
@@ -88,6 +89,21 @@
     const l = await D.adminAlertes();
     vue.innerHTML = `${entete("Alertes")}${l.length ? `<div class="pile">${l.map(a => `<article class="carte"><div class="carte-tete"><h2>${e(a.type)}</h2><span class="note">${dh(a.date)}</span></div><p class="fort">${e(a.commerce || "")}</p><p class="texte2 casse">${e(a.texte)}</p></article>`).join("")}</div>` : `<section class="carte"><p class="texte2">Aucune alerte.</p></section>`}`;
   }
+  // ---------------- File « à publier à la main » : réponses aux commentaires validées par le commerçant, tant que l'accès de Meta n'est pas accordé
+  // (ou si l'API a refusé). Texte prêt à copier, lien vers la publication ; « Publiée » une fois la réponse collée sous le commentaire, sous le compte du commerce.
+  const RESEAUX_CM = { instagram: "Instagram", facebook: "Facebook" };
+  async function apublier() {
+    const l = await D.adminCommentairesAPublier();
+    vue.innerHTML = `${entete("À publier à la main", "Réponses aux commentaires validées par les commerçants. Tant que Meta n'a pas ouvert l'accès, collez chaque réponse sous son commentaire, depuis le compte du commerce, puis marquez-la publiée.")}
+      <p class="msg" id="msg" role="status"></p>${l.length ? `<div class="pile">${l.map(x => `<article class="carte" data-id="${e(x.id)}"><div class="carte-tete"><h2>${e(x.commerce || "")}</h2><span class="note">${RESEAUX_CM[x.reseau] || e(x.reseau)}, validée le ${dh(x.decide_le || x.cree_le)}</span></div>
+          ${x.texte ? `<p class="note">Commentaire${x.auteur ? " de " + e(x.auteur) : ""} : « ${e(x.texte)} »</p>` : `<p class="note">Texte du commentaire effacé (plus de 30 jours).</p>`}
+          <div class="f"><label for="rep-${e(x.id)}">Réponse à coller</label><textarea id="rep-${e(x.id)}" readonly data-rep>${e(x.reponse_proposee || "")}</textarea></div>
+          ${x.erreur ? `<p class="note">${e(x.erreur)}</p>` : ""}
+          <div class="actions"><button type="button" class="bouton second petit" data-copier>Copier la réponse</button>${x.lien ? `<a class="bouton second petit" href="${e(x.lien)}" target="_blank" rel="noopener">Ouvrir sur ${RESEAUX_CM[x.reseau] || "le réseau"}</a>` : ""}<button type="button" class="bouton petit" data-publie>Publiée</button></div></article>`).join("")}</div>`
+      : `<section class="carte"><p class="texte2">Rien à publier à la main.</p></section>`}`;
+    vue.querySelectorAll("[data-copier]").forEach(b => b.onclick = async () => { const t = b.closest("article").querySelector("[data-rep]"); try { await navigator.clipboard.writeText(t.value); msg("Réponse copiée."); } catch (er) { t.select(); msg("Sélectionnée : copiez-la avec le raccourci de votre appareil."); } });
+    vue.querySelectorAll("[data-publie]").forEach(b => b.onclick = async () => { try { await D.adminCommentairePublie(b.closest("article").dataset.id); await apublier(); msg("Enregistré : réponse publiée par l'équipe."); } catch (er) { msg(er.message); } });
+  }
   async function journal() {
     const l = await D.adminJournal();
     vue.innerHTML = `${entete("Journal de toutes les étapes")}<section class="carte"><div class="f etroit"><label for="filtre">Filtrer (commerce ou type)</label><input id="filtre" type="text"></div></section>
@@ -106,7 +122,7 @@
       <div class="f"><label for="email">Email du propriétaire</label><input id="email" type="email" required></div><button class="bouton" type="submit">Créer et inviter</button><p class="msg" id="msg" role="status"></p></form></section>`;
     $("f").onsubmit = async ev => { ev.preventDefault(); try { await D.adminCreer($("nom").value, $("metier").value, $("offre").value, $("email").value); msg("Commerce créé, invitation en attente d'envoi."); $("f").reset(); } catch (er) { msg(er.message); } };
   }
-  const ROUTES = { commerces, prospects, alertes, journal, invitations, creer };
+  const ROUTES = { commerces, prospects, alertes, apublier, journal, invitations, creer };
   let derniere = null;
   async function rendre() {
     const s = await D.session(); if (!s) return connexion();

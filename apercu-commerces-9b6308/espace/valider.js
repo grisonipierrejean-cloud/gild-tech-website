@@ -27,13 +27,15 @@
     refuse_contenu: ["Contenu refusé", "Il ne sera pas publié."],
     valide: ["Réponse validée", "Elle sera publiée sous l'avis, sur votre fiche Google."],
     refuse_avis: ["Réponse refusée", "Rien n'est publié. Vous pouvez traiter cet avis dans votre espace."],
+    valide_commentaire: ["Réponse validée", "Elle sera publiée sous le commentaire. Tant que Meta n'a pas ouvert l'accès à RENOM, notre équipe la publie à la main, sous votre compte."],
+    ignore: ["Pas de réponse", "Rien ne sera publié sous ce commentaire."],
   };
   let objet = null;
   async function decider(decision, texte) {
     const boutons = [...document.querySelectorAll("#decision button")]; boutons.forEach(b => { b.disabled = true; }); msg("Envoi en cours.");
     try {
       await P.validerParJeton(jeton, decision, texte);
-      const [t, x] = FAIT[decision === "refuse" ? "refuse_" + objet : decision];
+      const [t, x] = FAIT[decision === "refuse" ? "refuse_" + objet : decision === "valide" && objet === "commentaire" ? "valide_commentaire" : decision];
       $("page").hidden = true; $("fait").hidden = false; $("fait-titre").textContent = t; $("fait-texte").textContent = x;
     } catch (er) {
       const cle = etatDuMessage(er && er.message); if (cle) return erreur(cle);
@@ -65,6 +67,17 @@
     $("valider").onclick = () => { const t = $("reponse").value.trim(); if (!t) { msg("La réponse est vide."); $("reponse").focus(); return; } decider("valide", t); };
     $("refuser").onclick = () => decider("refuse");
   }
+  // Réponse à un commentaire Instagram ou Facebook (jamais un commentaire sensible : la base ne crée pas de lien pour lui).
+  function commentaire(o) {
+    const reseau = { instagram: "Instagram", facebook: "Facebook" }[o.reseau] || "vos réseaux";
+    $("titre").textContent = "Une réponse à un commentaire attend votre accord";
+    $("objet").innerHTML = `<section class="carte"><h2>Le commentaire, sur ${e(reseau)}</h2>${o.auteur ? `<p class="fort">${e(o.auteur)}</p>` : ""}${o.texte ? `<p class="citation">« ${e(o.texte)} »</p>` : `<p class="note">Texte non disponible.</p>`}</section>
+      <section class="carte"><div class="f"><label for="reponse">Réponse proposée, vous pouvez la modifier</label><textarea id="reponse" maxlength="1000">${e(o.reponse_proposee || "")}</textarea></div>
+        <p class="note">Elle sera publiée sous le commentaire, telle qu'elle est écrite ici. RENOM n'y met que ce que contient votre fiche.</p></section>`;
+    $("boutons").innerHTML = `<button type="button" class="bouton" id="valider">Valider la réponse</button><button type="button" class="lien" id="refuser">Ne pas répondre</button>`;
+    $("valider").onclick = () => { const t = $("reponse").value.trim(); if (!t) { msg("La réponse est vide."); $("reponse").focus(); return; } decider("valide", t); };
+    $("refuser").onclick = () => decider("ignore");
+  }
   async function charger() {
     if (P) $("demo").hidden = P.mode !== "demo";
     if (!P || !P.objetParJeton || !/^[A-Za-z0-9_-]{16,128}$/.test(jeton)) return erreur("inconnu");
@@ -72,10 +85,10 @@
     try { o = await P.objetParJeton(jeton); } catch (er) { const cle = etatDuMessage(er && er.message); return cle ? erreur(cle) : erreur(null, "La page n'a pas pu se charger", "Vérifiez votre connexion puis réessayez dans un instant."); }
     if (!o) return erreur("inconnu");
     if (o.etat && o.etat !== "a_valider") return erreur(ETATS[o.etat] ? o.etat : "inconnu");
-    objet = o.objet === "avis" ? "avis" : "contenu";
+    objet = o.objet === "avis" ? "avis" : o.objet === "commentaire" ? "commentaire" : "contenu";
     const nom = o.commerce || o.nom_commerce || o.nom || "";
     $("commerce").textContent = nom; document.title = "Valider" + (nom ? ", " + nom : "");
-    if (objet === "avis") avis(o); else contenu(o);
+    if (objet === "avis") avis(o); else if (objet === "commentaire") commentaire(o); else contenu(o);
     $("expire").textContent = o.expire_le ? `Ce lien sert une seule fois. Il est valable jusqu'au ${date(o.expire_le)}.` : "Ce lien sert une seule fois.";
     $("chargement").hidden = true; $("page").hidden = false;
   }

@@ -1,0 +1,59 @@
+{
+  "_lisez_moi": "Source unique des mentions légales (pages de site/, pieds de page de site/ et de espace/web/, pieds légaux des emails du moteur et de n8n). A_FOURNIR : donnée que le fondateur doit fournir. A_DECIDER : choix du fondateur. A_VERIFIER : point non confirmé. Après toute modification : python3 outils/legal.py (réécrit les pages), puis python3 n8n/build_automatisations.py, build_maj_membre.py, build_ordre10.py, build_audit.py et python3 moteur/avis/build_workflow.py (régénèrent les emails). Le test moteur/tests/test_legal.py refuse toute page en retard sur ce fichier.",
+  "nom_commercial": "RENOM",
+  "societe": {
+    "denomination": "Girlden LTD",
+    "forme": "société à responsabilité limitée de droit anglais (private limited company)",
+    "numero": "14837617",
+    "registre": "Companies House",
+    "pays_immatriculation": "Angleterre et au pays de Galles",
+    "siege": "71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni",
+    "capital": "1 GBP (déclaration de capital à l'immatriculation, Companies House, 1er mai 2023)",
+    "tva": "Non assujettie à la TVA (prestataire non établi en France ; autoliquidation par le Client)"
+  },
+  "directeur_publication": "Pierre-Jean Deàk Grisoni",
+  "contact": {
+    "email": "ops@gild-tech.com",
+    "telephone": "A_FOURNIR"
+  },
+  "site_url": "A_FOURNIR",
+  "hebergement": {
+    "pages_production": "netlify",
+    "fournisseurs": {
+      "github_pages": {
+        "nom": "GitHub, Inc. (service GitHub Pages)",
+        "adresse": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
+        "telephone": "A_VERIFIER",
+        "source": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement (lue le 13/10/2026)"
+      },
+      "netlify": {
+        "nom": "Netlify, Inc.",
+        "adresse": "101 2nd Street, San Francisco, CA 94105, États-Unis",
+        "telephone": "A_VERIFIER",
+        "source": "https://www.netlify.com/privacy/ (lue le 13/10/2026)"
+      },
+      "supabase": {
+        "nom": "Supabase Pte. Ltd.",
+        "adresse": "65 Chulia Street #38-02/03, OCBC Centre, Singapour 049513",
+        "telephone": "A_VERIFIER",
+        "source": "https://supabase.com/terms (lue le 13/10/2026, adresse présentée comme « place of business »)"
+      }
+    }
+  },
+  "documents": {
+    "version": "13 octobre 2026"
+  },
+  "facturation": {
+    "premier_mois": "en entier ; l'abonnement court ensuite de date à date, chaque mois",
+    "moyen_paiement": "carte bancaire ou prélèvement SEPA, par Stripe",
+    "taux_penalites": "taux de refinancement le plus récent de la Banque centrale européenne, majoré de 10 points"
+  },
+  "frais_mise_en_route": {
+    "actif": false,
+    "montant_ht": "0"
+  },
+  "droit_applicable": "francais",
+  "representant_ue": "A_DECIDER",
+  "fournisseur_email": "Google Workspace (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlande)",
+  "pied_email": "{nom_commercial} est un nom commercial de {denomination}, société immatriculée en {pays_immatriculation} ({registre}) sous le numéro {numero}. Siège : {siege}."
+}
