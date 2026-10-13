@@ -59,7 +59,7 @@ nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0
 .lang-select a.lang:hover { color: var(--pink); }
 .lang-select .lang.active { color: var(--pink); }
 .lang-select .lang.off { color: var(--g300); cursor: not-allowed; }
-.lang-select .lang:not(:last-child)::after { content: "·"; margin: 0 .4rem; color: var(--g300); }
+.lang-select .lang:not(:last-child)::after { content: "/"; margin: 0 .4rem; color: var(--g300); }
 .src-link { color: var(--pink); text-decoration: underline; text-underline-offset: 3px; }
 
 .page { max-width: var(--max-w); margin: 0 auto; padding: 3rem 2rem; }
@@ -184,7 +184,7 @@ section.block { padding: 4rem 0; border-top: 1px solid var(--g200); }
 .ev-card.ev-human .ev-list li { color:var(--g700); }
 .ev-card.ev-sarah .ev-list li strong { color:var(--g900); }
 .ev-list li:last-child { border-bottom:none; }
-.ev-card.ev-human .ev-list li::before { content:"–"; position:absolute; left:.3rem; top:.65rem; color:var(--red); font-weight:800; font-size:1.1rem; }
+.ev-card.ev-human .ev-list li::before { content:"•"; position:absolute; left:.3rem; top:.65rem; color:var(--red); font-weight:800; font-size:1.1rem; }
 .ev-card.ev-sarah .ev-list li::before { content:"✓"; position:absolute; left:.2rem; top:.55rem; color:var(--pink); font-weight:800; font-size:1rem; }
 .ev-list li em { font-style:normal; font-size:.78rem; opacity:.7; display:block; margin-top:.15rem; }
 @media (max-width:880px) { .employee-vs { grid-template-columns:1fr; } }

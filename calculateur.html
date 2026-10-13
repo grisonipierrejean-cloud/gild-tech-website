@@ -1191,9 +1191,9 @@ div.footer-brand,
       const lostMandatesEl = document.getElementById('r-lost-mandates');
       if (lostMandatesEl) lostMandatesEl.textContent = r.lostMandatesMonth;
       const roiProEl = document.getElementById('r-roi-pro');
-      if (roiProEl) roiProEl.textContent = r.roiPro >= 999 ? '—' : r.roiPro;
+      if (roiProEl) roiProEl.textContent = r.roiPro >= 999 ? '-' : r.roiPro;
       const roiScaleEl = document.getElementById('r-roi-scale');
-      if (roiScaleEl) roiScaleEl.textContent = r.roiScale >= 999 ? '—' : r.roiScale;
+      if (roiScaleEl) roiScaleEl.textContent = r.roiScale >= 999 ? '-' : r.roiScale;
       // r-monthly is recreated on lang switch via data-*-html — grab it fresh
       const rMonthly = document.getElementById('r-monthly');
       if (rMonthly) rMonthly.textContent = formatMoney(r.totalLossMonth);
