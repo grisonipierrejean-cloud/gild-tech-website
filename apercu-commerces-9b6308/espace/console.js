@@ -14,6 +14,7 @@
   const trait = d => `<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ENTREES = [
     ["commerces", "Commerces", trait('<path d="M4 10l1.5-5h13L20 10"></path><path d="M5 10v10h14V10"></path><path d="M4 10h16M10 20v-5h4v5"></path>')],
+    ["prospects", "Prospects", trait('<circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c.8-3.6 3.2-5.5 6-5.5s5.2 1.9 6 5.5"></path><path d="M16 6.5h5M18.5 4v5"></path>')],
     ["alertes", "Alertes", trait('<path d="M6 16v-5a6 6 0 0112 0v5l1.5 2.5h-15z"></path><path d="M10 21h4"></path>')],
     ["journal", "Journal", trait('<path d="M9 7h10M9 12h10M9 17h10M5 7h.01M5 12h.01M5 17h.01"></path>')],
     ["invitations", "Invitations", trait('<rect x="4" y="6" width="16" height="12" rx="2"></rect><path d="M4 8l8 6 8-6"></path>')],
@@ -40,11 +41,18 @@
     $("f").onsubmit = async ev => { ev.preventDefault(); try { const r = await D.envoyerLien($("email").value); if (D.mode === "demo") { await D.ouvrirLien(r.lien); rendre(); } else msg("Si ce compte existe, un lien vient de vous être envoyé."); } catch (er) { msg(er.message); } };
   }
 
+  // Score de santé (automatisations de service) : niveau en toutes lettres et raisons en clair. Règles : fonction SQL sante_de (schema.sql), les mêmes en démonstration.
+  const NIVEAUX = { vert: "Vert", orange: "Orange", rouge: "Rouge" }, RANG = { rouge: 0, orange: 1, vert: 2 };
+  const COURT = { compte: "Compte", google: "Accès Google", metricool: "Metricool", demarrage: "5 questions" };
+  const sante = s => s ? `<p><span class="sante sante-${e(s.niveau)}">${NIVEAUX[s.niveau] || e(s.niveau)}</span></p>${s.raisons.length ? `<ul class="raisons">${s.raisons.map(r => `<li>${e(r)}</li>`).join("")}</ul>` : `<p class="note">Rien à signaler</p>`}` : `<p class="note">Non calculé</p>`;
+  const miseEnRoute = s => { const m = s && s.mise_en_route; if (!m) return ""; const reste = m.points.filter(x => x.etat !== "fait");
+    return `<p>${m.faits} sur ${m.total}</p>${reste.map(x => `<p class="note">${COURT[x.point] || e(x.point)} : ${x.etat === "declare" ? "déclaré, à vérifier" : "à faire"}</p>${["google", "metricool"].includes(x.point) ? `<button type="button" class="bouton second petit" data-mer="${e(x.point)}">${x.point === "google" ? "Google" : "Metricool"} vérifié</button>` : ""}`).join("")}`; };
   async function commerces() {
-    const l = await D.adminCommerces();
-    vue.innerHTML = `${entete("Commerces")}<p class="msg" id="msg" role="status"></p><section class="carte tableau"><table class="tab"><thead><tr><th>Commerce</th><th>Offre</th><th>Ce mois-ci</th><th>Comptes</th><th>Alertes</th><th>État</th></tr></thead><tbody>${l.map(c => {
+    const l = (await D.adminCommerces()).sort((a, b) => (RANG[(a.sante || {}).niveau] ?? 3) - (RANG[(b.sante || {}).niveau] ?? 3) || a.nom.localeCompare(b.nom));
+    vue.innerHTML = `${entete("Commerces", "Triés par santé : rouge d'abord. Les raisons sont écrites en clair ; les seuils sont des choix de RENOM.")}<p class="msg" id="msg" role="status"></p><section class="carte tableau"><table class="tab"><thead><tr><th>Commerce</th><th>Santé</th><th>Mise en route</th><th>Offre</th><th>Ce mois-ci</th><th>Comptes</th><th>Alertes</th><th>État</th></tr></thead><tbody>${l.map(c => {
       const k = c.compteur || {}, cc = Object.values(c.comptes || {}).filter(x => x.etat === "connecte").length;
       return `<tr data-id="${e(c.id)}"><td data-l="Commerce"><p class="fort">${e(c.nom)}</p><p class="note">${e(METIERS[c.metier] || "")}${c.ville ? ", " + e(c.ville) : ""}</p></td>
+        <td data-l="Santé">${sante(c.sante)}</td><td data-l="Mise en route">${miseEnRoute(c.sante)}</td>
         <td data-l="Offre"><div class="pile serre"><select data-offre aria-label="Offre de ${e(c.nom)}">${Object.entries(OFFRES).map(([k2, o]) => `<option value="${k2}"${c.offre_id === k2 ? " selected" : ""}>${o.nom}</option>`).join("")}</select><button type="button" class="bouton second petit" data-a="offre">Changer l'offre</button></div></td>
         <td data-l="Ce mois-ci"><p>${k.publications_utilisees} sur ${k.publications_plafond} publications</p><p>${k.videos_utilisees} sur ${k.videos_plafond} vidéos</p></td><td data-l="Comptes">${cc} sur 4 connectés</td><td data-l="Alertes"><span class="${c.alertes ? "fort" : ""}">${c.alertes}</span></td>
         <td data-l="État"><div class="pile serre"><span class="etat${c.en_pause ? "" : " actif"}">${c.en_pause ? "En pause" : "Actif"}</span><button type="button" class="bouton second petit" data-a="pause">${c.en_pause ? "Reprendre" : "Mettre en pause"}</button></div></td></tr>`; }).join("")}</tbody></table></section>`;
@@ -52,6 +60,29 @@
       const b = ev.target.closest("[data-a]"); if (!b) return; const id = tr.dataset.id, c = l.find(x => x.id === id);
       try { if (b.dataset.a === "offre") await D.adminOffre(id, tr.querySelector("[data-offre]").value); else await D.adminPause(id, !c.en_pause); await commerces(); msg("Enregistré."); } catch (er) { msg(er.message); }
     }));
+    vue.querySelectorAll("[data-mer]").forEach(b => b.onclick = async () => { try { await D.adminMiseEnRoute(b.closest("tr").dataset.id, b.dataset.mer, "fait"); await commerces(); msg("Enregistré."); } catch (er) { msg(er.message); } });
+  }
+  // ---------------- Prospects (audit gratuit de la page de vente) : relances J+2, J+5, J+10 envoyées par le service du jour
+  const ECHEANCES = [2, 5, 10], JOUR = 86400000;
+  const jourCourt = d => { d = new Date(d); return (d.getDate() === 1 ? "1er" : d.getDate()) + " " + MOIS[d.getMonth()]; };
+  function etatProspect(p) {
+    if (p.desinscrit_le) return ["Arrêté", "désinscrit ou arrêté le " + jourCourt(p.desinscrit_le)];
+    if (p.rdv_le) return ["Rendez-vous pris", "le " + jourCourt(p.rdv_le)];
+    if (p.repondu_le) return ["A répondu", "le " + jourCourt(p.repondu_le) + " : à vous de jouer"];
+    if (!p.rapport_envoye_le) return ["Rapport pas encore envoyé", "rapport parti à vous seul : aucune relance tant qu'il n'est pas envoyé"];
+    if (p.relances >= 3) return ["Relances finies", "3 relances envoyées, sans réponse"];
+    return ["En relance", `${p.relances} sur 3 envoyées, prochaine le ${jourCourt(new Date(p.rapport_envoye_le).getTime() + ECHEANCES[p.relances] * JOUR)}`];
+  }
+  async function prospects() {
+    const l = await D.adminProspects();
+    vue.innerHTML = `${entete("Prospects", "Ceux qui ont demandé l'audit gratuit. Relances par email à J+2, J+5 et J+10 après l'envoi du rapport, arrêtées dès un rendez-vous, une réponse ou une désinscription. Aucune copie à personne.")}
+      <p class="msg" id="msg" role="status"></p>${l.length ? `<section class="carte tableau"><table class="tab"><thead><tr><th>Prospect</th><th>Audit</th><th>Relances</th><th>Actions</th></tr></thead><tbody>${l.map(p => { const [et, det] = etatProspect(p);
+        const fini = p.desinscrit_le || p.rdv_le;
+        return `<tr data-id="${e(p.id)}"><td data-l="Prospect"><p class="fort">${e(p.commerce || "Commerce non nommé")}</p><p class="note casse">${e(p.email)}</p></td><td data-l="Audit">${p.audit_le ? jourCourt(p.audit_le) : ""}</td>
+          <td data-l="Relances"><p class="fort">${et}</p><p class="note">${det}</p></td>
+          <td data-l="Actions"><div class="pile serre">${fini ? "" : `${!p.rapport_envoye_le ? `<button type="button" class="bouton second petit" data-p="rapport_envoye">Rapport envoyé</button>` : ""}<button type="button" class="bouton second petit" data-p="rdv">Rendez-vous pris</button>${!p.repondu_le ? `<button type="button" class="bouton second petit" data-p="reponse">A répondu</button>` : ""}<button type="button" class="lien" data-p="arreter">Arrêter les relances</button>`}</div></td></tr>`; }).join("")}</tbody></table></section>`
+      : `<section class="carte"><p class="texte2">Aucun prospect pour le moment.</p></section>`}`;
+    vue.querySelectorAll("[data-p]").forEach(b => b.onclick = async () => { try { await D.adminProspect(b.closest("tr").dataset.id, b.dataset.p); await prospects(); msg("Enregistré."); } catch (er) { msg(er.message); } });
   }
   async function alertes() {
     const l = await D.adminAlertes();
@@ -75,7 +106,7 @@
       <div class="f"><label for="email">Email du propriétaire</label><input id="email" type="email" required></div><button class="bouton" type="submit">Créer et inviter</button><p class="msg" id="msg" role="status"></p></form></section>`;
     $("f").onsubmit = async ev => { ev.preventDefault(); try { await D.adminCreer($("nom").value, $("metier").value, $("offre").value, $("email").value); msg("Commerce créé, invitation en attente d'envoi."); $("f").reset(); } catch (er) { msg(er.message); } };
   }
-  const ROUTES = { commerces, alertes, journal, invitations, creer };
+  const ROUTES = { commerces, prospects, alertes, journal, invitations, creer };
   let derniere = null;
   async function rendre() {
     const s = await D.session(); if (!s) return connexion();

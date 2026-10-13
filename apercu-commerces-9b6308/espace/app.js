@@ -235,6 +235,34 @@
     };
   }
 
+  // ---------------- Automatisations de service : mise en route (4 étapes) et idée de la semaine
+  const AU = window.RENOM_AUTO;
+  function blocMiseEnRoute(mr) {
+    if (!mr || !mr.points || mr.faits >= mr.total) return "";
+    const lib = Object.fromEntries(AU.AUTO.POINTS.map(x => [x.point, x]));
+    return `<section class="carte mise-en-route" id="mise-en-route" aria-labelledby="mer-titre"><div class="carte-tete"><h2 id="mer-titre">Votre mise en route, ${mr.faits} sur ${mr.total}</h2></div>
+      ${jauge(mr.faits, mr.total)}
+      <ol class="liste etapes">${mr.points.map(x => { const p = lib[x.point] || { titre: x.point, aide: "" };
+        const action = x.etat !== "a_faire" ? "" : p.declarable ? `<button type="button" class="bouton second petit" data-declarer="${e(x.point)}">C'est fait</button>`
+          : x.point === "demarrage" ? `<a class="bouton second petit" href="#/demarrage">Répondre</a>` : "";
+        return `<li data-point="${e(x.point)}"><div><p class="fort">${e(p.titre)}</p>${x.etat === "fait" ? "" : `<p class="note">${e(p.aide)}</p>`}</div>
+          <div class="pile serre etape-etat"><span class="etat${x.etat === "fait" ? " actif" : ""}">${AU.AUTO.ETATS[x.etat] || e(x.etat)}</span>${action}</div></li>`; }).join("")}</ol></section>`;
+  }
+  const ORIGINES = { calendrier: "Temps fort du calendrier", meteo: "Météo de demain", saison: "Saison en cours" };
+  function blocIdeeSemaine(x) {
+    if (!x) return "";
+    return `<section class="carte" id="idee-semaine" data-idee="${e(x.id)}" aria-labelledby="idee-titre"><div class="carte-tete"><h2 id="idee-titre">Idée de la semaine</h2><span class="note">${ORIGINES[x.origine] || ""}</span></div>
+      <p class="fort">${e(x.titre)}</p><p class="texte2">${e(x.texte)}</p>${x.motif ? `<p class="note">${e(x.motif)}</p>` : ""}
+      <div class="actions"><button type="button" class="bouton" data-decider-idee="retenue">Je la retiens</button><button type="button" class="lien" data-decider-idee="ecartee">Écarter</button></div>
+      <p class="note">Si vous la retenez, déposez une photo sur ce thème : elle deviendra un contenu, à valider comme les autres. Rien n'est publié sans votre accord.</p></section>`;
+  }
+  function brancherAutomatisations(racine, apres) {
+    racine.querySelectorAll("[data-declarer]").forEach(b => b.onclick = async () => { try { await D.declarerMiseEnRoute(b.dataset.declarer); await apres(); msg("Merci. RENOM vérifie et le note."); } catch (er) { msg(er.message); } });
+    racine.querySelectorAll("[data-decider-idee]").forEach(b => b.onclick = async () => {
+      const id = b.closest("[data-idee]").dataset.idee, d = b.dataset.deciderIdee;
+      try { await D.deciderIdee(id, d); await apres(); msg(d === "retenue" ? "Idée retenue. Déposez une photo sur ce thème quand vous voulez." : "Idée écartée."); majCompteurs(); } catch (er) { msg(er.message); } });
+  }
+
   // ---------------- Accueil
   // Bilan du mois : 4 chiffres au plus et une phrase. Mêmes données que l'email du 1er du mois (fonction bilan_mois).
   const bandeauDemo = () => D.mode === "demo" ? `<div class="bandeau-demo" role="note"><p class="fort">Chiffres de démonstration</p><p>Ces chiffres sont fictifs. En service, ceux de Google sont lus à l'ouverture de cette page, ceux de RENOM viennent de votre espace.</p></div>` : "";
@@ -256,21 +284,25 @@
   async function accueil() {
     const c0 = await D.commerce();
     if (!c0.demarrage_fini && !plusTard(c0.id)) return demarrage();
-    const [c, k, p, ct, av, cal, bilan] = await Promise.all([D.commerce(), D.compteur(), D.photos(), D.contenus(), D.avis(), D.calendrier(), D.bilanMois().catch(() => null)]);
+    const [c, k, p, ct, av, cal, bilan, mr, ids] = await Promise.all([D.commerce(), D.compteur(), D.photos(), D.contenus(), D.avis(), D.calendrier(), D.bilanMois().catch(() => null),
+      D.miseEnRoute().catch(() => null), D.idees().catch(() => [])]);
+    const idee = ids.find(x => x.semaine && x.statut === "a_valider") || null;
     nomCommerce = c.nom;
     const aValider = ct.filter(x => x.statut === "a_valider"), reponses = av.filter(x => x.statut === "a_valider" && !x.sensible), humains = av.filter(x => x.statut === "humain");
     const prochaines = cal.filter(x => x.statut === "programme").slice(0, 3), premier = aValider[0], avis1 = reponses[0], dernier = premier ? null : (ct.find(x => x.statut !== "refuse") || ct[0]);
     const [u1, v1, ...vign] = await Promise.all([urlSure(premier || dernier), videoSure(premier || dernier), ...prochaines.map(x => urlSure(x.contenu))]);
-    const mois = new Date(k.mois + "T12:00:00"), n = aValider.length + reponses.length + humains.length;
-    const phrase = !n ? "Tout est à jour." : n === 1 ? "Une chose vous attend aujourd'hui." : `${cap(NOMBRES[n] || String(n))} choses vous attendent aujourd'hui.`;
+    const mois = new Date(k.mois + "T12:00:00"), n = aValider.length + reponses.length + humains.length + (idee ? 1 : 0);
+    const phrase = !n ? (mr && mr.faits < mr.total ? "Il reste à finir votre mise en route." : "Tout est à jour.") : n === 1 ? "Une chose vous attend aujourd'hui." : `${cap(NOMBRES[n] || String(n))} choses vous attendent aujourd'hui.`;
     const raisons = [...new Set(humains.flatMap(x => x.raisons || []))];
     const ficheRemplie = c.specialites || c.ton || c.horaires;
     vue.innerHTML = `${pauseBandeau(c)}
       <div class="entete-accueil"><div class="entete"><p class="sur">Bonjour</p><h1>${e(c.nom)}</h1><p class="chapo">${phrase}</p></div>
         <a class="bouton grand" href="#/photos">${APPAREIL}<span>Déposer des photos</span></a></div>
       <p class="msg" id="msg" role="status"></p>
+      ${blocMiseEnRoute(mr)}
       ${!c.demarrage_fini ? `<section class="alerte"><div><p class="fort">Votre démarrage n'est pas terminé</p><p>Cinq questions pour que RENOM écrive comme vous. Chacune peut être passée.</p></div><a class="bouton second" href="#/demarrage">Reprendre le démarrage</a></section>` : ""}
       ${bilanBloc(bilan)}
+      ${blocIdeeSemaine(idee)}
       ${await proposition(c)}
       <div class="rangee">
         <section class="carte large"${premier ? ` data-contenu="${e(premier.id)}"` : ""}>
@@ -315,7 +347,7 @@
           <p class="texte2">${ficheRemplie ? "Votre fiche est renseignée. Vérifiez-la dès que quelque chose change." : "Votre fiche est vide : RENOM n'écrit que ce qu'elle contient. Renseignez-la avant de déposer vos premières photos."}</p>
           <p class="pied"><a class="bouton second" href="#/fiche">Ouvrir la fiche</a></p></section>
       </div>`;
-    brancherDecisions(vue, accueil); brancherAvis(vue, accueil);
+    brancherDecisions(vue, accueil); brancherAvis(vue, accueil); brancherAutomatisations(vue, accueil);
   }
 
   // ---------------- Fiche
@@ -365,7 +397,7 @@
 
   // ---------------- Photos
   async function photos() {
-    const [c, l] = await Promise.all([D.commerce(), D.photos()]);
+    const [c, l, s] = await Promise.all([D.commerce(), D.photos(), D.session()]), boite = D.emailPhotos ? D.emailPhotos() : null;
     vue.innerHTML = `${pauseBandeau(c)}${entete("Créer", "Vos photos", "Déposez les photos de votre commerce : chacune sert à créer un contenu, que vous validez ensuite.")}
       <div class="rangee">
         <section class="carte moitie"><h2>Déposer des photos</h2>
@@ -373,8 +405,11 @@
           <p class="aide">JPEG, PNG, WebP ou HEIC, 50 Mo au plus chacune.</p></div>
           <button class="bouton" type="submit">Envoyer</button><p class="msg" id="msg" role="status"></p></form></section>
         <section class="carte moitie"><div class="carte-tete"><h2>Déjà déposées</h2>${l.length ? `<span class="note">${l.length} ${pluriel(l.length, "photo", "photos")}</span>` : ""}</div>
-          ${l.length ? `<ul class="liste">${l.map(x => `<li><div><p class="fort casse">${e(x.nom_fichier || "Photo")}</p><p class="note">${cap(date(x.cree_le))}</p></div><span class="etat">${ST_PHOTO[x.statut] || e(x.statut)}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune photo pour le moment.</p>`}</section>
-      </div>`;
+          ${l.length ? `<ul class="liste">${l.map(x => `<li><div><p class="fort casse">${e(x.nom_fichier || "Photo")}</p><p class="note">${cap(date(x.cree_le))}${x.source === "email" ? ", reçue par email" : ""}</p></div><span class="etat">${ST_PHOTO[x.statut] || e(x.statut)}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune photo pour le moment.</p>`}</section>
+      </div>
+      ${boite ? `<section class="carte" id="photos-email"><h2>Ou par email</h2>
+        <p class="texte2">Envoyez vos photos en pièces jointes à <span class="fort casse" id="adresse-photos">${e(boite.adresse)}</span> depuis l'adresse de votre compte${s && s.email ? ` (<span class="casse">${e(s.email)}</span>)` : ""} : elles arrivent ici comme si vous les aviez déposées.</p>
+        ${boite.demo ? `<p class="note">Adresse de démonstration : en service, c'est l'adresse réservée aux photos de RENOM. Un email venu d'une autre adresse est refusé.</p>` : ""}</section>` : ""}`;
     $("fichiers").onchange = () => { const fs = [...$("fichiers").files]; $("choisies").textContent = !fs.length ? "Aucune photo choisie" : fs.length === 1 ? fs[0].name : fs.length + " photos choisies"; };
     $("f").onsubmit = async ev => {
       ev.preventDefault(); const fs = [...$("fichiers").files];
@@ -397,7 +432,9 @@
     return `<section class="carte" id="idees" aria-labelledby="idees-titre"><div class="carte-tete"><h2 id="idees-titre">Proposer des idées</h2><button type="button" class="lien" id="fermer-idees">Fermer</button></div>
         <p class="texte2">Des idées de publications liées à votre fiche et aux temps forts de votre métier. <strong>Une demande compte pour une publication de votre offre</strong> : ${k.publications_utilisees} sur ${k.publications_plafond} utilisées ce mois-ci.</p>
         <div class="actions"><button type="button" class="bouton" id="demande"${plein || c.en_pause ? " disabled" : ""}>Demander des idées</button><p class="msg" id="msg-idees" role="status">${plein ? "Le plafond de votre offre est atteint ce mois-ci." : ""}</p></div>
-        ${l.length ? `<ul class="liste idees">${l.map(x => `<li><div><p class="fort">${e(x.titre)}</p><p class="texte2">${e(x.texte)}</p></div><span class="note">${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune idée pour le moment.</p>`}</section>`;
+        ${l.length ? `<ul class="liste idees">${l.map(x => `<li${x.semaine ? ` data-idee="${e(x.id)}"` : ""}><div><p class="fort">${e(x.titre)}</p><p class="texte2">${e(x.texte)}</p>
+          ${x.semaine ? `<p class="note">Idée de la semaine${x.motif ? ". " + e(x.motif) : ""}</p>${x.statut === "a_valider" ? `<div class="actions"><button type="button" class="bouton second petit" data-decider-idee="retenue">Je la retiens</button><button type="button" class="lien" data-decider-idee="ecartee">Écarter</button></div>` : ""}` : ""}</div>
+          <span class="note">${x.semaine && x.statut !== "a_valider" ? (x.statut === "retenue" ? "Retenue" : "Écartée") + ", " : ""}${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune idée pour le moment.</p>`}</section>`;
   }
   async function contenus() {
     const [c, l] = await Promise.all([D.commerce(), D.contenus()]), nbf = Object.fromEntries(FILTRES.map(f => [f[0], l.filter(x => famille(x) === f[0]).length]));
@@ -422,7 +459,7 @@
     $("proposer-idees").onclick = async () => { ideesOuvertes = !ideesOuvertes; await contenus(); if (ideesOuvertes) $("demande").focus(); };
     if ($("fermer-idees")) $("fermer-idees").onclick = async () => { ideesOuvertes = false; await contenus(); $("proposer-idees").focus(); };
     if ($("demande")) $("demande").onclick = async () => { try { await D.demanderIdees(); await contenus(); msg("Demande enregistrée. Les idées sont dans le panneau ci-dessus."); majCompteurs(); } catch (er) { $("msg-idees").textContent = er.message; } };
-    brancherDecisions(vue, contenus);
+    brancherDecisions(vue, contenus); brancherAutomatisations(vue, contenus);
   }
 
   // ---------------- Calendrier
@@ -541,7 +578,7 @@
       ${chiffresCollecte(m)}<p class="note">Nouveaux avis : avis publiés sur votre fiche Google depuis le 1er du mois, lus sur Google quand vous ouvrez Résultats. Un clic vers Google ne garantit pas qu'un avis a été publié.</p></section>` : "";
   async function collecte() {
     const c = await D.commerce(), l = lienAvis(c), co = c.couleurs || {}, page = l ? lienPagePublique(await D.jetonAvis()) : null;
-    const mesure = await D.resultats(1).then(r => r && r.collecte).catch(() => null);
+    const mesure = await D.resultats(1).then(r => r && r.collecte).catch(() => null), dem = await D.demandesAvis().catch(() => null);
     const local = D.mode === "demo" || /^(localhost|127\.|\[::1\])/.test(location.host);
     const carteA6 = id => `<div class="a6" style="background:${e(co.fond || "#fff")};color:${e(co.texte || "#000")}"><div><p class="a6-nom">${e(c.nom)}</p><h3>Vous avez passé un moment chez nous ?</h3></div>
       <p>Votre avis, quel qu'il soit, nous aide à nous améliorer et aide d'autres personnes à nous trouver. Scannez le code pour le donner.</p><div class="qr"${id ? ` id="${id}"` : ""}>${qrSvg(page)}</div></div>`;
@@ -565,6 +602,7 @@
             <p class="msg" id="msg" role="status"></p>
             <p class="note">Le bouton Google de cette page ouvre : <span id="lien-google" class="casse">${e(l.lien)}</span>. ${e(l.source)}</p>
             ${local ? `<p class="note" id="note-adresse">Cette adresse est celle de la démonstration. N'imprimez la carte qu'une fois l'espace installé à son adresse définitive : le code de la carte contient cette adresse.</p>` : ""}</section>
+          ${blocDemandesEmail(dem)}
           <section class="carte" id="retours"></section>
           <section class="carte"><h2>Demander par WhatsApp</h2>
             <p class="texte2">Le message part de votre propre WhatsApp, quand vous l'envoyez vous-même dans l'application. RENOM n'envoie rien et n'enregistre pas le numéro.</p>
@@ -593,7 +631,50 @@
       $("wa-numero").value = ""; $("wa-prenom").value = ""; reecrit = false; proposer();
       waMsg("WhatsApp s'ouvre avec votre message. Il ne part que lorsque vous l'envoyez.");
     };
+    brancherDemandesEmail();
     await dessinerRetours();
+  }
+  // ---- Automatisations de service : demande d'avis par email (import CSV, mesure, liste d'opposition)
+  const ST_DEMANDE = { a_envoyer: "Prévue", en_cours: "En cours d'envoi", envoye: "Envoyée", annule: "Annulée", echec: "Échec d'envoi" };
+  const CHIFFRES_DEMANDES = [["envois", "Demandes envoyées"], ["ouvertures", "Pages ouvertes depuis l'email"], ["clics_google", "Clics vers Google depuis l'email"], ["relances", "Rappels envoyés"]];
+  function blocDemandesEmail(m) {
+    if (!m) return "";
+    const modele = "data:text/csv;charset=utf-8," + encodeURIComponent(AU.MODELE_CSV);
+    return `<section class="carte" id="demandes-email" aria-labelledby="dem-email-titre"><div class="carte-tete"><h2 id="dem-email-titre">Demander un avis par email</h2>${D.mode === "demo" ? `<span class="note">Chiffres de démonstration</span>` : ""}</div>
+      <p class="texte2">Importez la liste des clients qui ont accepté d'être contactés. Chacun reçoit le même message le lendemain de sa visite, avec le lien de votre page d'avis, puis un seul rappel quatre jours plus tard s'il ne l'a pas ouverte.</p>
+      <div class="encart"><p><span class="fort">Règles appliquées :</span> le même message pour tous, jamais deux demandes à la même personne en 90 jours, un lien de désinscription dans chaque email, et plus rien pour qui l'a demandé.</p></div>
+      <form id="import-clients" novalidate>
+        <div class="f"><div class="depot"><input id="csv" class="vh" type="file" accept=".csv,text/csv,text/plain"><label for="csv" class="bouton second">Choisir le fichier</label><span class="note casse" id="csv-nom" aria-live="polite">Aucun fichier choisi</span></div>
+          <p class="aide">Un fichier CSV, une ligne par client : prénom, email, date de passage (AAAA-MM-JJ ou JJ/MM/AAAA), de 14 jours au plus. <a href="${modele}" download="clients-modele.csv">Télécharger un modèle</a></p></div>
+        <label class="option consentement"><input type="checkbox" id="consentement"><span>Chaque client de ce fichier a accepté de recevoir cette demande par email.</span></label>
+        <div class="actions"><button class="bouton" type="submit" id="importer">Importer</button></div>
+        <p class="msg" id="msg-import" role="status"></p><ul class="liste" id="import-ignores" hidden></ul></form>
+      <dl class="bilan-chiffres deux">${CHIFFRES_DEMANDES.map(([k, lib]) => `<div class="bilan-chiffre"><dt>${lib}</dt><dd class="chiffre" data-demandes="${k}">${nombre(+m[k] || 0)}</dd></div>`).join("")}</dl>
+      <p class="note">Sur les ${m.periode_jours || 30} derniers jours. Prévues : <span data-demandes="a_venir">${nombre(+m.a_venir || 0)}</span>. Désinscriptions et refus : <span data-demandes="oppositions">${nombre(+m.oppositions || 0)}</span>. Un clic vers Google ne garantit pas qu'un avis a été publié.</p>
+      ${(m.dernieres || []).length ? `<details class="dernieres"><summary>Voir les dernières demandes (${m.dernieres.length})</summary><ul class="liste">${m.dernieres.map(x => `<li><div><p class="fort">${e(x.prenom || "Client")}</p>
+        <p class="note">${x.etape === "relance" ? "Rappel" : "Demande"}, ${cap(date(x.envoye_le || x.prevu_le))}${x.ouverte ? ", page ouverte" : ""}${x.motif ? " (" + e(x.motif) + ")" : ""}</p></div><span class="etat">${ST_DEMANDE[x.statut] || e(x.statut)}</span></li>`).join("")}</ul></details>` : ""}
+      <form id="opposition" novalidate><div class="f"><label for="opp-email">Une personne ne veut plus de demande ? Son adresse email</label><input id="opp-email" type="email" autocomplete="off"></div>
+        <div class="actions"><button class="bouton second" type="submit">Ne plus lui écrire</button></div><p class="msg" id="msg-opp" role="status"></p></form></section>`;
+  }
+  function brancherDemandesEmail() {
+    if (!$("import-clients")) return;
+    $("csv").onchange = () => { const f = $("csv").files[0]; $("csv-nom").textContent = f ? f.name : "Aucun fichier choisi"; };
+    $("import-clients").onsubmit = async ev => {
+      ev.preventDefault(); const m = t => { $("msg-import").textContent = t; }, ul = $("import-ignores"); ul.hidden = true; ul.innerHTML = "";
+      const f = $("csv").files[0]; if (!f) { m("Choisissez d'abord le fichier de vos clients."); return; }
+      if (!$("consentement").checked) { m("Cochez la case : chaque client du fichier doit avoir accepté de recevoir cette demande."); $("consentement").focus(); return; }
+      try {
+        const lignes = AU.lireCsvClients(await f.text()), r = await D.importerClients(lignes, true), ign = r.ignores || [];
+        await collecte();
+        $("msg-import").textContent = `${r.importes} ${pluriel(r.importes, "client importé", "clients importés")}${ign.length ? `, ${ign.length} ${pluriel(ign.length, "ligne écartée", "lignes écartées")}` : ""}. Les demandes partent le lendemain de chaque passage, à 9 h.`;
+        if (ign.length) { const u = $("import-ignores"); u.hidden = false; u.innerHTML = ign.map(x => `<li><div><p class="fort">Ligne ${x.ligne + 1} du fichier</p><p class="note">${e(x.raison)}</p></div></li>`).join(""); }
+        $("demandes-email").scrollIntoView({ block: "nearest" });
+      } catch (er) { m(er.message); }
+    };
+    $("opposition").onsubmit = async ev => {
+      ev.preventDefault(); const em = $("opp-email").value.trim();
+      try { await D.ajouterOpposition(em); await collecte(); $("msg-opp").textContent = "C'est noté : plus aucune demande ne partira vers cette adresse."; } catch (er) { $("msg-opp").textContent = er.message; }
+    };
   }
   // ---- Collecte : fin
 

@@ -462,3 +462,21 @@ video.visuel{object-fit:contain;background:var(--encre)}
 .entrer-demo{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--filet)}
 .entrer-demo .fort{margin:0 0 2px;font-weight:600}
 .entrer-demo .bouton{width:100%;justify-content:center}
+
+/* ---- Automatisations de service : mise en route, score de santé (console). Aucun trait coloré devant un libellé, aucun orange vif :
+   le niveau est écrit en toutes lettres, sur un fond pâle. */
+.mise-en-route .jauge{margin:4px 0 2px}
+.liste.etapes{counter-reset:etape}
+.liste.etapes li{align-items:flex-start}
+.etape-etat{align-items:flex-end;text-align:right;flex:0 0 auto}
+.consentement{align-items:flex-start;line-height:1.4}
+.consentement input{margin-top:3px;flex:0 0 auto}
+details.dernieres summary{cursor:pointer;font-weight:600;min-height:44px;padding-top:10px;text-decoration:underline;text-underline-offset:3px}
+.sante{display:inline-block;font-size:13px;font-weight:600;line-height:1.4;border-radius:6px;padding:2px 8px;border:1px solid var(--bord);background:var(--fond);color:var(--encre)}
+.sante-vert{background:#EAF4EE;border-color:#BCD9C6;color:#1C5530}
+.sante-orange{background:#F8F2DF;border-color:#E2D4A6;color:#574300}
+.sante-rouge{background:#FBEAEA;border-color:#EBC1C1;color:#8A1D1D}
+.raisons{list-style:none;margin:6px 0 0;padding:0;font-size:14px;line-height:1.4;color:var(--texte2)}
+.raisons li+li{margin-top:4px}
+.console .onglets{grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;padding-left:4px;padding-right:4px;font-size:11px}
+@media (min-width:900px){.tab td[data-l="Santé"]{min-width:170px}}

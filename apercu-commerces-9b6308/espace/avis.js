@@ -4,6 +4,9 @@
 (function () {
   const P = window.RENOM_PUBLIC, $ = id => document.getElementById(id);
   const jeton = decodeURIComponent(location.hash.replace(/^#\/?/, "")).trim();
+  // Automatisations de service : page ouverte depuis l'email de demande d'avis (avis.html?source=email&envoi=<jeton>). Sert à la mesure
+  // seulement ; la page, ses boutons et le lien Google restent exactement les mêmes.
+  const q = new URLSearchParams(location.search), canal = q.get("source") === "email" && /^[0-9a-f]{32}$/.test(q.get("envoi") || "") ? { source: "email", envoi: q.get("envoi") } : null;
   let note = null, envoye = false;
 
   // ---- Couleurs du commerce, avec garde-fous de lisibilité
@@ -71,7 +74,7 @@
   }
   // ---- Mesure de la collecte : un passage au chargement, un clic vers la fiche au clic sur le bouton. On compte, sans rien
   // changer au bouton (ni texte, ni lien, ni style) et sans retarder l'ouverture : la page reste la même pour toutes les notes.
-  const compter = type => { try { if (P.compterCollecte) P.compterCollecte(jeton, type).catch(() => {}); } catch (er) {} };
+  const compter = type => { try { if (P.compterCollecte) P.compterCollecte(jeton, type, canal).catch(() => {}); } catch (er) {} };
   $("google").addEventListener("click", () => compter("clic_google"));
   window.addEventListener("hashchange", () => location.reload());
   charger();

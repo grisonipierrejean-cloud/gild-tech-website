@@ -16,3 +16,7 @@ copiés depuis `preuves/ordre5-demo-restaurant/`.
 
 `video-avis-exemple.mp4` : vidéo d'avis rendue le 13/10/2026 par le vrai moteur (`moteur/video_avis.py`, style « Franc », fond photos)
 avec deux avis FICTIFS écrits pour la démonstration (« Léa M. », « Paul D. »), sur les photos d'origine de `preuves/ordre5-demo-restaurant/`.
+
+`avis-semaine-visuel-4x5.jpg`, `avis-semaine-visuel-9x16.jpg` : avis de la semaine rendu le 13/10/2026 par le vrai moteur (`moteur/video_avis.py`,
+fonction `visuel_citation`, style « Franc », fond uni aux couleurs de la fiche fictive), avec l'avis FICTIF « Léa M. » de la graine. Aucune photo :
+aucun crédit. Régénéré par `python3 moteur/tests/test_avis_semaine.py`.

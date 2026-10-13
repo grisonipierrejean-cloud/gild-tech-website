@@ -1,0 +1,100 @@
+{
+ "_lisez_moi": "Calendrier des temps forts par métier (France), pour l'idée de la semaine (n8n/renom-hebdo.json, moteur/temps_forts/temps_forts.js). AUCUNE date écrite à la main pour une année donnée : chaque date est fixe ou calculée par une règle (Pâques par le comput grégorien, n-ième jour de la semaine d'un mois). Ce qui n'a pas de règle stable (rentrée scolaire, soldes, ponts) est listé dans « exclus » avec la raison. Les textes d'idées sont des suggestions de RENOM, à valider par le commerçant : aucun chiffre, aucune promotion imposée.",
+ "metiers": ["restaurant", "beaute", "sport", "autre"],
+ "fenetre_defaut": [7, 13],
+ "evenements": [
+  { "id": "nouvel-an", "nom": "Nouvel An", "regle": { "type": "fixe", "mois": 1, "jour": 1 }, "metiers": ["sport"], "source": "date fixe",
+    "idee": { "titre": "Les bonnes résolutions de janvier", "texte": "Montrez une séance de reprise accessible : la salle un matin de janvier, un coach qui accueille un nouveau venu." } },
+  { "id": "epiphanie", "nom": "Épiphanie", "regle": { "type": "jour_semaine_apres", "mois": 1, "jour_semaine": 7, "a_partir_du": 2 }, "metiers": ["restaurant", "autre"],
+    "source": "en France, l'Épiphanie est fêtée le dimanche entre le 2 et le 8 janvier (premier dimanche à partir du 2 janvier)",
+    "idee": { "titre": "La galette des rois", "texte": "Si vous en servez ou en vendez, photographiez la galette entière puis la première part coupée." } },
+  { "id": "chandeleur", "nom": "Chandeleur", "regle": { "type": "fixe", "mois": 2, "jour": 2 }, "metiers": ["restaurant", "autre"], "source": "date fixe",
+    "idee": { "titre": "Les crêpes de la Chandeleur", "texte": "Si les crêpes sont à votre carte ce jour-là, montrez la pile qui monte ou le geste du retournement." } },
+  { "id": "saint-valentin", "nom": "Saint-Valentin", "regle": { "type": "fixe", "mois": 2, "jour": 14 }, "metiers": ["restaurant", "beaute", "autre"], "source": "date fixe",
+    "idee": { "titre": "Préparer la Saint-Valentin", "texte": "Annoncez tôt ce que vous proposez ce soir-là ou cette semaine-là, avec une photo du lieu ou du produit, et la façon de réserver." } },
+  { "id": "mardi-gras", "nom": "Mardi gras", "regle": { "type": "paques", "decalage": -47 }, "metiers": ["restaurant"], "source": "Pâques moins 47 jours",
+    "idee": { "titre": "Mardi gras", "texte": "Beignets, crêpes ou plat du jour de fête : montrez ce que vous servez ce mardi-là, s'il y a quelque chose de particulier." } },
+  { "id": "paques", "nom": "Pâques", "regle": { "type": "paques", "decalage": 0 }, "metiers": ["restaurant", "autre"], "source": "comput grégorien (algorithme de Meeus, Jones et Butcher)",
+    "idee": { "titre": "Le week-end de Pâques", "texte": "Dites si vous êtes ouvert le dimanche et le lundi de Pâques, et montrez ce que vous préparez pour l'occasion." } },
+  { "id": "lundi-paques", "nom": "Lundi de Pâques (jour férié)", "regle": { "type": "paques", "decalage": 1 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "Pâques plus 1 jour ; jour férié (code du travail, article L3133-1)" },
+  { "id": "1er-mai", "nom": "1er Mai (jour férié)", "regle": { "type": "fixe", "mois": 5, "jour": 1 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "8-mai", "nom": "8 Mai (jour férié)", "regle": { "type": "fixe", "mois": 5, "jour": 8 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "ascension", "nom": "Ascension (jour férié)", "regle": { "type": "paques", "decalage": 39 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "Pâques plus 39 jours ; jour férié (code du travail, article L3133-1)" },
+  { "id": "lundi-pentecote", "nom": "Lundi de Pentecôte", "regle": { "type": "paques", "decalage": 50 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "Pâques plus 50 jours ; jour férié dans la liste du code du travail (article L3133-1), souvent travaillé (journée de solidarité)" },
+  { "id": "fete-des-meres", "nom": "Fête des mères", "regle": { "type": "fete_des_meres" }, "metiers": ["restaurant", "beaute", "autre"],
+    "source": "loi n° 50-577 du 24 mai 1950 (Légifrance JORFTEXT000000886326) : dernier dimanche de mai ; premier dimanche de juin si ce dimanche est la Pentecôte (Pâques plus 49 jours)",
+    "idee": { "titre": "Préparer la fête des mères", "texte": "Rappelez comment offrir un moment chez vous : réservation, bon cadeau si vous en proposez, ou produit à emporter. Une photo, une phrase, la façon de faire." } },
+  { "id": "fete-des-peres", "nom": "Fête des pères", "regle": { "type": "n_ieme", "mois": 6, "jour_semaine": 7, "rang": 3 }, "metiers": ["restaurant", "beaute", "sport", "autre"],
+    "source": "usage en France : troisième dimanche de juin (aucun texte de loi trouvé, règle d'usage constante)",
+    "idee": { "titre": "Préparer la fête des pères", "texte": "Même principe que pour la fête des mères : ce qu'on peut offrir ou réserver chez vous, montré simplement." } },
+  { "id": "fete-musique", "nom": "Fête de la musique", "regle": { "type": "fixe", "mois": 6, "jour": 21 }, "metiers": ["restaurant", "autre"], "source": "date fixe",
+    "idee": { "titre": "La Fête de la musique", "texte": "Si vous restez ouvert ou si un musicien passe chez vous, annoncez-le avec l'heure." } },
+  { "id": "14-juillet", "nom": "14 Juillet (jour férié)", "regle": { "type": "fixe", "mois": 7, "jour": 14 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "15-aout", "nom": "15 Août (jour férié)", "regle": { "type": "fixe", "mois": 8, "jour": 15 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "halloween", "nom": "Halloween", "regle": { "type": "fixe", "mois": 10, "jour": 31 }, "metiers": ["restaurant", "autre"], "source": "date fixe",
+    "idee": { "titre": "Halloween", "texte": "Une décoration, un plat ou un produit de saison : une photo suffit, sans en faire trop." } },
+  { "id": "toussaint", "nom": "Toussaint (jour férié)", "regle": { "type": "fixe", "mois": 11, "jour": 1 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "11-novembre", "nom": "11 Novembre (jour férié)", "regle": { "type": "fixe", "mois": 11, "jour": 11 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "ferie": true, "source": "date fixe ; jour férié (code du travail, article L3133-1)" },
+  { "id": "beaujolais-nouveau", "nom": "Beaujolais nouveau", "regle": { "type": "n_ieme", "mois": 11, "jour_semaine": 4, "rang": 3 }, "metiers": ["restaurant"],
+    "source": "troisième jeudi de novembre (date de mise en marché fixée par la réglementation de l'appellation depuis 1985 ; texte exact non relu)",
+    "idee": { "titre": "Le Beaujolais nouveau", "texte": "Si vous le servez, dites-le et montrez la bouteille ou le verre sur une table dressée." } },
+  { "id": "black-friday", "nom": "Black Friday", "regle": { "type": "n_ieme", "mois": 11, "jour_semaine": 4, "rang": 4, "decalage": 1 }, "metiers": ["beaute", "sport", "autre"],
+    "source": "usage : vendredi suivant le quatrième jeudi de novembre",
+    "idee": { "titre": "Avant le Black Friday", "texte": "Si vous faites une offre, annoncez-la clairement avec ses dates. Sinon, une idée : montrer ce qui fait votre différence plutôt qu'un prix." } },
+  { "id": "noel", "nom": "Noël", "regle": { "type": "fixe", "mois": 12, "jour": 25 }, "metiers": ["restaurant", "beaute", "sport", "autre"], "source": "date fixe ; jour férié (code du travail, article L3133-1)",
+    "idee": { "titre": "Préparer Noël", "texte": "Vos horaires des fêtes, ce qu'on peut offrir ou réserver chez vous, et une photo du lieu décoré si c'est le cas." } },
+  { "id": "saint-sylvestre", "nom": "Saint-Sylvestre", "regle": { "type": "fixe", "mois": 12, "jour": 31 }, "metiers": ["restaurant", "beaute"], "source": "date fixe",
+    "idee": { "titre": "Le soir du 31 décembre", "texte": "Restaurant : votre soirée et comment réserver. Institut : vos créneaux de la journée pour se préparer." } }
+ ],
+ "idee_ferie": { "titre": "Vos horaires du jour férié", "texte": "Ouvert ou fermé le {jour} ? Dites-le avant : vos clients le cherchent sur votre fiche Google et sur vos réseaux. RENOM peut aussi l'ajouter en horaires exceptionnels sur votre fiche, après votre accord." },
+ "fenetre_ferie": [2, 8],
+ "saisons": [
+  { "id": "printemps", "nom": "printemps", "debut": { "mois": 3, "jour": 1 }, "idees": {
+    "restaurant": { "titre": "La carte de printemps", "texte": "Le premier légume ou le premier plat de la saison, en lumière naturelle." },
+    "beaute": { "titre": "Les soins du printemps", "texte": "Le soin que vos clients redemandent quand les beaux jours reviennent, montré par le geste." },
+    "sport": { "titre": "Reprendre au printemps", "texte": "Un cours ou une séance à l'extérieur, s'il y en a, ou la salle baignée de lumière le matin." },
+    "autre": { "titre": "Le printemps chez vous", "texte": "Ce qui change chez vous avec la saison : vitrine, produits, horaires." } } },
+  { "id": "ete", "nom": "été", "debut": { "mois": 6, "jour": 1 }, "idees": {
+    "restaurant": { "titre": "La terrasse et la carte d'été", "texte": "Si vous avez une terrasse, montrez-la à l'heure où elle est la plus belle. Sinon, un plat frais de la carte." },
+    "beaute": { "titre": "Préparer l'été", "texte": "Les soins demandés avant les vacances, et vos horaires d'été si ils changent." },
+    "sport": { "titre": "Garder le rythme l'été", "texte": "Vos horaires d'été et la séance qui se fait même quand il fait chaud." },
+    "autre": { "titre": "L'été chez vous", "texte": "Vos horaires d'été et ce que vous proposez pendant les vacances." } } },
+  { "id": "automne", "nom": "automne", "debut": { "mois": 9, "jour": 1 }, "idees": {
+    "restaurant": { "titre": "La carte d'automne", "texte": "Champignons, courges, plats mijotés : le premier plat d'automne de votre carte." },
+    "beaute": { "titre": "Les soins de la rentrée", "texte": "Le soin qui répare après l'été, montré simplement." },
+    "sport": { "titre": "La reprise de septembre", "texte": "Les cours qui reprennent et comment venir essayer." },
+    "autre": { "titre": "La rentrée chez vous", "texte": "Ce qui est nouveau chez vous ce mois-ci." } } },
+  { "id": "hiver", "nom": "hiver", "debut": { "mois": 12, "jour": 1 }, "idees": {
+    "restaurant": { "titre": "Les plats d'hiver", "texte": "Un plat chaud qui fume dans l'assiette, photographié de près." },
+    "beaute": { "titre": "Les soins d'hiver", "texte": "Le soin cocon de la saison froide, avec la salle au calme." },
+    "sport": { "titre": "S'entraîner en hiver", "texte": "La salle chauffée et éclairée un soir d'hiver, et vos horaires des fêtes." },
+    "autre": { "titre": "L'hiver chez vous", "texte": "Votre vitrine d'hiver et vos horaires des fêtes." } } }
+ ],
+ "saisons_source": "saisons météorologiques (1er mars, 1er juin, 1er septembre, 1er décembre) : convention des météorologues, retenue parce qu'elle a des dates fixes ; les saisons astronomiques changent de jour selon l'année",
+ "meteo": {
+  "source": "prévision du lendemain par Open-Meteo (champs daily temperature_2m_max et precipitation_sum). Seuils choisis par RENOM, pas une norme.",
+  "seuils": { "chaleur_tmax_min": 25, "chaleur_pluie_max": 1, "pluie_min_mm": 5, "froid_tmax_max": 5 },
+  "idees": {
+   "chaleur": {
+    "restaurant": { "titre": "Il fera chaud demain", "texte": "Une boisson fraîche, une salade ou la terrasse à l'ombre : une photo aujourd'hui, publiée demain matin." },
+    "beaute": { "titre": "Il fera chaud demain", "texte": "Rappelez qu'on est au frais chez vous, ou montrez le soin qui hydrate." },
+    "sport": { "titre": "Il fera chaud demain", "texte": "Annoncez vos créneaux du matin et rappelez de venir avec de l'eau." },
+    "autre": { "titre": "Il fera chaud demain", "texte": "Rappelez qu'on est au frais chez vous, et vos horaires." } },
+   "pluie": {
+    "restaurant": { "titre": "Il pleuvra demain", "texte": "Un plat chaud et une salle accueillante : l'abri qu'on cherche un jour de pluie." },
+    "beaute": { "titre": "Il pleuvra demain", "texte": "Le bon jour pour un soin au calme : montrez la cabine, lumière tamisée." },
+    "sport": { "titre": "Il pleuvra demain", "texte": "Rappelez que la séance a lieu à l'intérieur, et l'heure du prochain cours." },
+    "autre": { "titre": "Il pleuvra demain", "texte": "Rappelez que vous êtes ouvert, et ce qu'on peut faire chez vous à l'abri." } },
+   "froid": {
+    "restaurant": { "titre": "Il fera froid demain", "texte": "Le plat qui réchauffe, photographié fumant." },
+    "beaute": { "titre": "Il fera froid demain", "texte": "Le soin qui protège la peau du froid, montré par le geste." },
+    "sport": { "titre": "Il fera froid demain", "texte": "La salle chauffée et l'échauffement qui va avec." },
+    "autre": { "titre": "Il fera froid demain", "texte": "Rappelez que vous êtes ouvert et qu'il fait bon chez vous." } } }
+ },
+ "exclus": [
+  { "nom": "Rentrée scolaire", "raison": "date fixée chaque année par le ministère de l'Éducation nationale, différente selon les zones pour les vacances : aucune règle de calcul" },
+  { "nom": "Soldes d'hiver et d'été", "raison": "dates fixées par arrêté, avec des dérogations locales : non calculées ici, à ajouter à la main chaque année si PJ le décide" },
+  { "nom": "Vacances scolaires", "raison": "calendrier publié par le ministère, par zone : pas de règle stable" },
+  { "nom": "Ponts", "raison": "dépendent de chaque commerce" }
+ ]
+}

@@ -1,5 +1,5 @@
 {
- "_lisez_moi": "Graine de démonstration PUBLIQUE de l'espace RENOM : commerces entièrement fictifs, avis et retours fictifs, aucun client réel. Chargée quand config.js définit window.RENOM_GRAINE = \"public\". Dates relatives (il_y_a_h, dans_h, repondu_apres_h, mois courant ou precedent) : converties au chargement par donnees.js, pour que la démonstration reste à jour. Photos : Pexels, voir files/public/CREDITS.md.",
+ "_lisez_moi": "Graine de démonstration PUBLIQUE de l'espace RENOM : commerces entièrement fictifs, avis et retours fictifs, aucun client réel. Chargée quand config.js définit window.RENOM_GRAINE = \"public\". Dates relatives (il_y_a_h, dans_h, repondu_apres_h, mois courant ou precedent) : converties au chargement par donnees.js, pour que la démonstration reste à jour. Photos : Pexels, voir files/public/CREDITS.md. Automatisations de service : clients, demandes d'avis, prospects et alertes fictifs générés au chargement par donnees.js (completerAutomatisations) ; l'avis de la semaine (ct-avis-semaine) cite l'avis fictif av-1, visuel rendu par le vrai moteur (python3 moteur/tests/test_avis_semaine.py).",
  "users": {
   "restaurant@demo": { "role": "commerçant", "commerce": "c-table" },
   "nouveau@demo": { "role": "commerçant", "commerce": "c-nouveau" },
@@ -20,7 +20,7 @@
   "c-nouveau": {
    "id": "c-nouveau", "nom": "Nouveau commerce d'exemple", "metier": "beaute", "ville": "", "offre_id": "essentiel", "en_pause": false,
    "mots_cles": [], "mentions_autorisees": [], "couleurs": { "fond": "#FFFFFF", "texte": "#000000", "accent": "#2438FF" }, "reglage_avis": "auto_des_4_etoiles",
-   "demarrage_fini": false, "demarrage": null, "notifications": { "email": true, "whatsapp": false }
+   "demarrage_fini": false, "demarrage": null, "notifications": { "email": true, "whatsapp": false }, "cree_il_y_a_h": 26
   }
  },
  "photos": [
@@ -41,6 +41,9 @@
     "legende": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner.",
     "legendes": { "instagram": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner.", "facebook": "L'entrée du jour est dressée. Passez la découvrir à l'heure du déjeuner, nous gardons votre table.", "tiktok": "L'entrée du jour, dressée à la minute. #cuisinedesaison" },
     "visuel_url": "demo/files/public/entree-marbre-visuel-9x16.jpg", "note_modification": null },
+  { "id": "ct-avis-semaine", "commerce_id": "c-table", "photo_id": null, "type": "publication", "format": "publication", "statut": "a_valider", "mois": "courant", "il_y_a_h": 3, "demo": true,
+    "legende": "La Table d'exemple : l'avis de la semaine. « Avis fictif de démonstration : pâtes fraîches excellentes, service attentionné. » (Léa M.). Merci !",
+    "visuel_url": "demo/files/public/avis-semaine-visuel-4x5.jpg", "note_modification": null },
   { "id": "ct-entree", "commerce_id": "c-table", "photo_id": "p-entree-marbre", "type": "publication", "format": "publication", "statut": "approuve", "mois": "courant", "il_y_a_h": 50, "demo": true,
     "legende": "Une entrée dressée à la minute, servie sur une table de marbre. Passez la découvrir à l'heure du déjeuner, nous gardons votre table.",
     "visuel_url": "demo/files/public/entree-marbre-visuel-4x5.jpg", "note_modification": null },

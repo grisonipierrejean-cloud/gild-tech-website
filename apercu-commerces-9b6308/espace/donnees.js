@@ -40,7 +40,15 @@
     async avisPublic(jeton) { return premierDe(await rpcPublic("avis_public", { p_jeton: String(jeton || "") })); },
     async deposerRetour(jeton, r) { const v = nettoyerRetour(r); await rpcPublic("deposer_retour_prive", { p_jeton: String(jeton || ""), p_note: v.note, p_message: v.message, p_prenom: v.prenom }); },
     // ---- Mise à jour de l'espace membre : mesure de la collecte et validation par lien (fonctions publiques, rôle anon)
-    async compterCollecte(jeton, type) { if (!TYPES_COLLECTE.includes(type)) return; await rpcPublic("compter_collecte", { p_jeton: String(jeton || ""), p_type: type }); },
+    async compterCollecte(jeton, type, canal) {
+      if (!TYPES_COLLECTE.includes(type)) return;
+      // Automatisations de service : page ouverte depuis l'email de demande d'avis (avis.html?source=email&envoi=<jeton>), comptée avec sa source.
+      if (canal && canal.source === "email" && /^[0-9a-f]{32}$/.test(canal.envoi || "")) return void await rpcPublic("compter_collecte_email", { p_jeton: String(jeton || ""), p_type: type, p_envoi: canal.envoi });
+      await rpcPublic("compter_collecte", { p_jeton: String(jeton || ""), p_type: type });
+    },
+    // ---- Automatisations de service : page de désinscription (desinscription.html#<jeton>), sans connexion
+    async desinscriptionInfo(jeton) { return premierDe(await rpcPublic("desinscription_info", { p_jeton: String(jeton || "") })); },
+    async seDesinscrire(jeton) { return premierDe(await rpcPublic("se_desinscrire", { p_jeton: String(jeton || "") })); },
     // La base renvoie l'objet imbriqué ({contenu:{…}} ou {avis:{…}}) ; la page attend une forme à plat, comme en démonstration.
     async objetParJeton(jeton) {
       const r = premierDe(await rpcPublic("objet_par_jeton", { p_jeton: String(jeton || "") })); if (!r) return null;
@@ -161,13 +169,60 @@
     if (!VIDEO_AVIS.STYLES.some(s => s.id === style)) throw new Error("Choisissez un style de typographie.");
   };
 
+  // ---- Automatisations de service : règles communes aux deux adaptateurs (mêmes valeurs et mêmes phrases que le bloc
+  // « Automatisations de service » de espace/supabase/schema.sql ; textes de la mise en route repris de moteur/courriels/service.js).
+  const AUTO = {
+    MAX_CLIENTS: 500, PASSAGE_MAX_JOURS: 14, ECART_JOURS: 90,
+    POINTS: [
+      { point: "compte", titre: "Activer votre compte", aide: "C'est fait dès votre première visite dans l'espace." },
+      { point: "google", titre: "Donner à RENOM l'accès gestionnaire de votre fiche Google", aide: "Sur business.google.com : Paramètres du profil, Personnes et accès, Ajouter, l'adresse que RENOM vous indique, rôle Gestionnaire. Vous restez propriétaire.", declarable: true },
+      { point: "metricool", titre: "Connecter vos réseaux à Metricool", aide: "Ouvrez le lien de connexion Metricool que RENOM vous envoie, puis connectez Facebook et Instagram. RENOM publie ensuite pour vous, seulement ce que vous avez approuvé.", declarable: true },
+      { point: "demarrage", titre: "Répondre aux 5 questions de démarrage", aide: "Cinq questions courtes pour que RENOM écrive comme vous. Chacune peut être passée." },
+    ],
+    ETATS: { a_faire: "À faire", declare: "Fait selon vous, RENOM vérifie", fait: "Fait" },
+  };
+  const emailValide = e => /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]{2,}$/.test(e || "") && String(e).length <= 254;
+  const dateValide = d => /^\d{4}-\d{2}-\d{2}$/.test(d || "") && !isNaN(Date.parse(d + "T00:00:00Z")) && new Date(d + "T00:00:00Z").toISOString().slice(0, 10) === d;
+  // Fichier CSV de clients : une ligne d'en-tête (prénom, email, date de passage, dans n'importe quel ordre), séparateur « ; », « , » ou tabulation,
+  // dates AAAA-MM-JJ ou JJ/MM/AAAA. Les erreurs de forme du fichier sont refusées ici ; les règles ligne par ligne sont celles de la base.
+  const COLONNES = { prenom: ["prenom", "prenom du client", "first name", "firstname"], email: ["email", "e mail", "mail", "courriel", "adresse email", "adresse e mail", "adresse mail"],
+    date: ["date", "date de passage", "date passage", "passage", "date de visite", "date visite", "visite"] };
+  function lireCsvClients(texte) {
+    const l = String(texte || "").replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n").split("\n").filter(x => x.trim());
+    if (!l.length) throw new Error("Le fichier est vide.");
+    const sep = [";", ",", "\t"].map(s => [s, l[0].split(s).length]).sort((a, b) => b[1] - a[1])[0][0];
+    const cellules = ligne => { const r = []; let c = "", q = false;
+      for (let i = 0; i < ligne.length; i++) { const ch = ligne[i];
+        if (q) { if (ch === '"' && ligne[i + 1] === '"') { c += '"'; i++; } else if (ch === '"') q = false; else c += ch; }
+        else if (ch === '"') q = true; else if (ch === sep) { r.push(c); c = ""; } else c += ch; }
+      r.push(c); return r.map(x => x.trim()); };
+    const norme = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const tete = cellules(l[0]).map(norme), col = k => tete.findIndex(h => COLONNES[k].includes(h)), ip = col("prenom"), ie = col("email"), id = col("date");
+    if (ip < 0 || ie < 0 || id < 0) throw new Error("La première ligne doit nommer les colonnes : prénom, email, date de passage.");
+    if (l.length < 2) throw new Error("Le fichier ne contient aucun client.");
+    if (l.length - 1 > AUTO.MAX_CLIENTS) throw new Error("Le fichier doit contenir de 1 à " + AUTO.MAX_CLIENTS + " clients.");
+    const date = s => { const m = String(s || "").match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/); return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : String(s || ""); };
+    return l.slice(1).map(x => { const c = cellules(x); return { prenom: c[ip] || "", email: String(c[ie] || "").toLowerCase(), date_passage: date(c[id]) }; });
+  }
+  const TYPES_ALERTE = { ERREUR_WORKFLOW: "Erreur de workflow", PHOTOS_EMAIL_REFUSEES: "Photos par email refusées", MISE_EN_ROUTE_BLOQUEE: "Mise en route bloquée", ECHEC_RELANCE_PROSPECT: "Relance de prospect en échec" };
+  const texteAlerte = a => { const d = a.detail || {};
+    if (a.type === "ERREUR_WORKFLOW") return `${d.workflow || "Workflow inconnu"}, nœud ${d.noeud || "inconnu"} : ${d.message || ""}`;
+    if (a.type === "PHOTOS_EMAIL_REFUSEES") return `${d.pieces || 0} pièce(s) jointe(s) refusée(s) : ${d.raison || d.statut || ""}. Rien n'a été déposé.`;
+    if (a.type === "MISE_EN_ROUTE_BLOQUEE") return `${d.jours} jours après la création, il reste : ${(d.restants || []).map(r => r.point).join(", ")}.`;
+    return JSON.stringify(d); };
+  const MODELE_CSV = "prenom;email;date_passage\nCamille;camille@exemple.fr;" + new Date().toISOString().slice(0, 10) + "\n";
+  // ---- fin des règles communes des automatisations
+
   // =============================================================== DÉMONSTRATION
   function demo() {
     // Deux graines : celle du parcours (demo/etat.json, générée par demo/parcours.py) et la graine PUBLIQUE, entièrement fictive
     // (demo/etat-public.json), choisie par window.RENOM_GRAINE = "public" dans config.js. Chacune a son propre stockage.
     const PUBLIQUE = window.RENOM_GRAINE === "public";
     const K = "renom-demo-v12" + (PUBLIQUE ? "-public" : "");
-    let E = null, session = null, pret = null;
+    let E = null, session = null, pret = null, TF = null;
+    // Calendrier des temps forts (copie exacte de moteur/temps_forts/, vérifiée par moteur/tests/test_service.js) : l'idée de la semaine de la démonstration
+    // est calculée par le même code que le workflow n8n du lundi. Absent (page sans vendor/temps-forts.js) : pas d'idée de la semaine, rien d'inventé.
+    const chargerTempsForts = async () => { try { if (typeof ideeDeLaSemaine !== "function") return null; const r = await fetch("vendor/temps-forts.json", { cache: "no-store" }); return r.ok ? await r.json() : null; } catch (e) { return null; } };
     const sauver = () => { try { localStorage.setItem(K, JSON.stringify(E)); } catch (e) {} };
     // Deux onglets ouverts (l'espace et la page de validation par lien) : chacun reprend l'état écrit par l'autre.
     try { window.addEventListener("storage", ev => { if (ev.key === K && ev.newValue && E) { try { E = JSON.parse(ev.newValue); } catch (x) {} } }); } catch (e) {}
@@ -189,6 +244,7 @@
         if (Array.isArray(E.retours_prives)) { ecrireRetours([...E.retours_prives.map(x => ({ id: uid(), lu: false, ...x })), ...lireRetours()]); delete E.retours_prives; }
         sauver();
       }
+      TF = TF || await chargerTempsForts(); assurerIdeeSemaine();
       // Session durable : elle reste d'une visite à l'autre dans ce navigateur (localStorage), jusqu'à « Quitter ».
       try { if (reset) localStorage.removeItem(K + ":session"); const s = localStorage.getItem(K + ":session"); if (s && E.users[s]) session = s; } catch (e) {}
     })());
@@ -358,6 +414,7 @@
       }
       G.contenus.filter(x => x.statut === "a_valider").forEach(x => emettreJeton(x.commerce_id, "contenu", x.id));
       G.avis.filter(x => x.statut === "a_valider" && !x.sensible).forEach(x => emettreJeton(x.commerce_id, "avis", x.id));
+      completerAutomatisations(G, maintenant, er || null);
       return G;
     }
     // ---- Mesures (démonstration) : calculées à partir des avis, des relevés et des événements, jamais tirées au hasard
@@ -434,8 +491,9 @@
       },
       async enregistrerDemarrage(rep) { await init(); const c = cur(); c.demarrage = controlerDemarrage(rep); c.demarrage_fini = true; jour(c.id, "DEMARRAGE", {}); sauver(); },
       // ---- publiques (pages avis.html et valider.html)
-      async compterCollecte(jeton, type) {
+      async compterCollecte(jeton, type, canal) {
         await init(); const c = parJeton(String(jeton || "")); if (!c || !TYPES_COLLECTE.includes(type)) return;
+        if (canal && canal.source === "email") return compterEmailDemo(c, type, canal.envoi);
         const l = lireCollecte(); if (l.filter(x => x.commerce_id === c.id && Date.now() - new Date(x.cree_le).getTime() < MS_H).length >= 300) return;   // limite de fréquence
         l.push({ commerce_id: c.id, type, cree_le: iso(Date.now()) }); collecteMem = l; try { localStorage.setItem(KC, JSON.stringify(l)); } catch (e) {}
       },
@@ -454,13 +512,186 @@
         if (j.objet === "contenu") {
           if (!["approuve", "modification", "refuse"].includes(decision)) throw new Error("Décision refusée.");
           if (decision === "modification" && !String(texte || "").trim()) throw new Error("Écrivez un mot pour dire ce qu'il faut modifier.");
-          o.statut = decision; o.note_modification = decision === "modification" ? String(texte).trim() : null;
+          o.statut = decision; o.note_modification = decision === "modification" ? String(texte).trim() : null; o.decide_le = iso(Date.now());
         } else {
           if (!["valide", "refuse"].includes(decision)) throw new Error("Décision refusée.");
           if (decision === "valide") { const t = String(texte ?? o.reponse_proposee ?? "").trim(); if (!t) throw new Error("Réponse vide."); o.reponse_proposee = t; }
           o.statut = decision;
         }
         j.utilise_le = iso(Date.now()); jour(j.commerce_id, (j.objet === "contenu" ? "CONTENU_" : "AVIS_") + decision.toUpperCase(), { par_lien: true }); sauver();
+      },
+    };
+
+    // =========================================================== Automatisations de service (démonstration)
+    const HEURE = 3600000, JOUR_MS = 86400000;
+    const jourIso = t => { const p = partiesParis(t); return `${p.a}-${String(p.m + 1).padStart(2, "0")}-${String(p.j).padStart(2, "0")}`; };
+    const ecartJours = (a, b) => Math.round((Date.parse(a + "T00:00:00Z") - Date.parse(b + "T00:00:00Z")) / JOUR_MS);
+    const plusJours = (d, n) => new Date(Date.parse(d + "T00:00:00Z") + n * JOUR_MS).toISOString().slice(0, 10);
+    const a9h = d => { const [a, m, j] = d.split("-").map(Number); return instantParis(a, m - 1, j, 9, 0); };
+    const nouvelleDemande = (cid, cl, etape, t) => ({ id: uid(), commerce_id: cid, client_id: cl.id, email: cl.email, prenom: cl.prenom, etape, prevu_le: iso(t), statut: "a_envoyer", motif: null,
+      jeton: nouveauJeton(), envoye_le: null, ouvert_le: null, clic_le: null, cree_le: iso(Date.now()) });
+    const ORDRE_POINTS = AUTO.POINTS.map(x => x.point);
+    const tableMR = () => (E.mise_en_route = E.mise_en_route && !Array.isArray(E.mise_en_route) ? E.mise_en_route : {});   // {commerce: {point: état}}
+    // Même logique que les déclencheurs SQL : Google connecté, Facebook ou Instagram connecté (Metricool), démarrage fini.
+    function etatMiseEnRoute(cid) {
+      const m = tableMR(), k = E.comptes[cid] || {}, c = E.commerces[cid] || {}, co = r => (k[r] || {}).etat === "connecte";
+      const e = (m[cid] = m[cid] || { compte: "a_faire", google: "a_faire", metricool: "a_faire", demarrage: "a_faire" });
+      if (co("google")) e.google = "fait"; if (co("facebook") || co("instagram")) e.metricool = "fait"; if (c.demarrage_fini) e.demarrage = "fait";
+      const points = ORDRE_POINTS.map(point => ({ point, etat: e[point] }));
+      return { faits: points.filter(x => x.etat === "fait").length, total: 4, points };
+    }
+    function santeDemo(c) {
+      const now = Date.now(), age = ecartJours(aujourdhui(), jourIso(Date.parse(c.cree_le || iso(now)))), rouge = [], orange = [];
+      const ph = E.photos.filter(x => x.commerce_id === c.id).map(x => Date.parse(x.cree_le)), derniere = ph.length ? Math.max(...ph) : -Infinity;
+      const dc = E.contenus.filter(x => x.commerce_id === c.id && x.decide_le).map(x => Date.parse(x.decide_le)), decision = dc.length ? Math.max(...dc) : -Infinity;
+      let n = E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain" && now - Date.parse(a.cree_le) > 48 * HEURE).length;
+      if (n) rouge.push(`${n} ${n > 1 ? "avis graves attendent" : "avis grave attend"} une réponse humaine depuis plus de 48 h`);
+      const inactif = age > 14 && derniere < now - 14 * JOUR_MS && decision < now - 14 * JOUR_MS; if (inactif) rouge.push("rien déposé ni validé depuis 14 jours");
+      n = E.publications.filter(p => p.commerce_id === c.id && p.statut === "echec" && Date.parse(p.prevu_le) > now - 14 * JOUR_MS).length;
+      if (n) rouge.push(`${n} ${n > 1 ? "publications en échec" : "publication en échec"}`);
+      const mr = etatMiseEnRoute(c.id), reste = mr.total - mr.faits;
+      if (reste && age >= 5) rouge.push(`mise en route pas finie après ${age} jours (${mr.faits} sur 4)`); else if (reste) orange.push(`mise en route en cours (${mr.faits} sur 4)`);
+      if (c.en_pause) orange.push("en pause");
+      if (age > 10 && !inactif && derniere < now - 10 * JOUR_MS) orange.push("aucune photo depuis 10 jours");
+      n = E.contenus.filter(x => x.commerce_id === c.id && x.statut === "a_valider" && now - Date.parse(x.cree_le) > 48 * HEURE).length
+        + E.avis.filter(a => a.commerce_id === c.id && a.statut === "a_valider" && !a.sensible && now - Date.parse(a.cree_le) > 48 * HEURE).length;
+      if (n) orange.push(`${n} ${n > 1 ? "éléments attendent" : "élément attend"} une validation depuis plus de 48 h`);
+      if (usage(c) >= OFFRES[c.offre_id].publications) orange.push("plafond de publications atteint ce mois-ci");
+      n = RESEAUX.filter(r => ((E.comptes[c.id] || {})[r] || {}).etat === "erreur").length; if (n) orange.push(`${n} ${n > 1 ? "réseaux en erreur" : "réseau en erreur"}`);
+      return { commerce_id: c.id, nom: c.nom, niveau: rouge.length ? "rouge" : orange.length ? "orange" : "vert", raisons: [...rouge, ...orange], mise_en_route: mr };
+    }
+    function compterEmailDemo(c, type, envoi) {
+      const d = liste("demandes_avis").find(x => x.jeton === envoi && x.commerce_id === c.id && x.statut === "envoye"); if (!d) return;
+      const l = lireCollecte(); if (l.filter(x => x.commerce_id === c.id && Date.now() - new Date(x.cree_le).getTime() < HEURE).length >= 300) return;
+      l.push({ commerce_id: c.id, type, source: "email", cree_le: iso(Date.now()) }); collecteMem = l; try { localStorage.setItem(KC, JSON.stringify(l)); } catch (e) {}
+      d.ouvert_le = d.ouvert_le || iso(Date.now()); if (type === "clic_google") d.clic_le = d.clic_le || iso(Date.now()); sauver();
+    }
+    // Graine : clients, demandes, mise en route, idée de la semaine, prospects, alertes. Tout est fictif et marqué « demo ».
+    function completerAutomatisations(G, maintenant, principal) {
+      if (G.automatisations_v) return; G.automatisations_v = 1; E = G;
+      ["clients_commerce", "demandes_avis", "oppositions", "prospects", "alertes_exploitant"].forEach(liste);
+      Object.values(G.commerces).forEach(c => {
+        if (c.cree_il_y_a_h != null) { c.cree_le = iso(maintenant - c.cree_il_y_a_h * HEURE); delete c.cree_il_y_a_h; }
+        if (!c.cree_le) c.cree_le = iso(maintenant - (principal && c.id === principal.id ? 120 : 30) * 24 * HEURE);
+        etatMiseEnRoute(c.id); if (principal && c.id === principal.id) tableMR()[c.id].compte = "fait";
+      });
+      G.contenus.forEach(x => { if (x.statut !== "a_valider" && !x.decide_le) x.decide_le = iso(new Date(x.cree_le).getTime() + 3 * HEURE); });
+      if (!principal) return;
+      // Clients importés il y a 1 à 16 jours, avec leurs demandes, comme si le service du jour était passé chaque matin.
+      if (!G.clients_commerce.some(x => x.commerce_id === principal.id)) {
+        const P = ["Camille", "Hugo", "Inès", "Léo", "Manon", "Nathan", "Chloé", "Louis", "Emma", "Jules", "Sarah", "Tom", "Lina", "Adam"], auj = jourIso(maintenant), ev = liste("collecte_evenements");
+        P.forEach((prenom, i) => {
+          const passage = plusJours(auj, -(1 + i)), cl = { id: "cl-" + i, commerce_id: principal.id, prenom, email: prenom.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() + "." + (i + 1) + "@client-exemple.invalid",
+            date_passage: passage, consentement: true, importe_le: iso(a9h(passage) - 2 * HEURE), demo: true };
+          G.clients_commerce.push(cl);
+          const d = Object.assign(nouvelleDemande(principal.id, cl, "demande", a9h(plusJours(passage, 1))), { demo: true }), r = Object.assign(nouvelleDemande(principal.id, cl, "relance", a9h(plusJours(passage, 5))), { demo: true });
+          if (Date.parse(d.prevu_le) <= maintenant) {
+            d.statut = "envoye"; d.envoye_le = iso(Date.parse(d.prevu_le) + 5 * 60000);
+            if (i % 3 !== 2) { d.ouvert_le = iso(Date.parse(d.envoye_le) + (2 + i % 4) * HEURE); ev.push({ commerce_id: principal.id, type: "passage", source: "email", cree_le: d.ouvert_le, demo: true }); }
+            if (i % 3 === 0) { d.clic_le = iso(Date.parse(d.ouvert_le) + 60000); ev.push({ commerce_id: principal.id, type: "clic_google", source: "email", cree_le: d.clic_le, demo: true }); }
+            if (prenom === "Tom") { G.oppositions.push({ commerce_id: principal.id, email: cl.email, motif: "lien_email", cree_le: iso(Date.parse(d.envoye_le) + HEURE), demo: true }); r.statut = "annule"; r.motif = "désinscription"; }
+            else if (Date.parse(r.prevu_le) <= maintenant) {
+              if (d.ouvert_le) { r.statut = "annule"; r.motif = "page d'avis déjà ouverte"; }
+              else { r.statut = "envoye"; r.envoye_le = iso(Date.parse(r.prevu_le) + 5 * 60000); if (i % 2) { r.ouvert_le = iso(Date.parse(r.envoye_le) + 3 * HEURE); ev.push({ commerce_id: principal.id, type: "passage", source: "email", cree_le: r.ouvert_le, demo: true }); } }
+            }
+          }
+          G.demandes_avis.push(d, r);
+        });
+      }
+      // Console : prospects de la page de vente et alertes de l'exploitant (fictifs) si la graine n'en donne pas
+      if (!G.prospects.length) G.prospects.push(
+        { id: "pr-1", email: "contact@boulangerie-exemple.invalid", commerce: "Boulangerie d'exemple", ville: "", metier: "autre", audit_il_y_a_h: 40, rapport_envoye_il_y_a_h: 40, relances: 0, demo: true },
+        { id: "pr-2", email: "bonjour@coiffure-exemple.invalid", commerce: "Coiffure d'exemple", ville: "", metier: "beaute", audit_il_y_a_h: 150, rapport_envoye_il_y_a_h: 150, relances: 2, derniere_relance_il_y_a_h: 30, demo: true },
+        { id: "pr-3", email: "studio@sport-exemple.invalid", commerce: "Studio d'exemple", ville: "", metier: "sport", audit_il_y_a_h: 80, rapport_envoye_il_y_a_h: 80, relances: 1, rdv_il_y_a_h: 20, demo: true },
+        { id: "pr-4", email: "fleurs@fleuriste-exemple.invalid", commerce: "Fleuriste d'exemple", ville: "", metier: "autre", audit_il_y_a_h: 30, rapport_envoye_il_y_a_h: null, relances: 0, demo: true });
+      G.prospects.forEach(x => { [["audit", "audit_le"], ["rapport_envoye", "rapport_envoye_le"], ["rdv", "rdv_le"], ["repondu", "repondu_le"], ["desinscrit", "desinscrit_le"], ["derniere_relance", "derniere_relance_le"]].forEach(([k, c]) => {
+        const h = x[k + "_il_y_a_h"]; if (h !== undefined) { x[c] = h == null ? null : iso(maintenant - h * HEURE); delete x[k + "_il_y_a_h"]; } }); x.jeton = x.jeton || nouveauJeton(); });
+      if (!G.alertes_exploitant.length) G.alertes_exploitant.push(
+        { id: "al-1", type: "PHOTOS_EMAIL_REFUSEES", commerce_id: null, detail: { statut: "inconnu", raison: "adresse inconnue", pieces: 2 }, cree_le: iso(maintenant - 20 * HEURE), demo: true },
+        { id: "al-2", type: "ERREUR_WORKFLOW", commerce_id: null, detail: { workflow: "RENOM, service du jour", noeud: "Envoyer", message: "Exemple de démonstration : connexion au serveur d'envoi refusée." }, cree_le: iso(maintenant - 70 * HEURE), demo: true });
+    }
+    // Idée de la semaine du commerce principal : calculée par le même code que le workflow du lundi (calendrier versionné), sans météo
+    // (option désactivée par défaut). Une par semaine : une démonstration ouverte la semaine suivante reçoit la nouvelle.
+    function assurerIdeeSemaine() {
+      if (!TF || !E) return; const pr = E.demo_maj ? E.commerces[E.demo_maj.principal] : (() => { const u = Object.values(E.users).find(x => x.commerce); return u && E.commerces[u.commerce]; })();
+      if (!pr) return; const maintenant = Date.now(), lundi = lundiDeParis(new Date(maintenant));
+      if (liste("idees").some(x => x.commerce_id === pr.id && x.semaine === lundi)) return;
+      const x = ideeDeLaSemaine(TF, pr, lundi, null, pr.ville);
+      E.idees.unshift({ id: "idee-semaine-" + lundi, commerce_id: pr.id, titre: x.titre, texte: x.texte, origine: x.origine, statut: "a_valider", semaine: lundi, motif: x.motif,
+        cree_le: iso(Math.min(maintenant - HEURE, instantParis(+lundi.slice(0, 4), +lundi.slice(5, 7) - 1, +lundi.slice(8, 10), 7, 0))), demo: true });
+      sauver();
+    }
+    const autoDemo = {
+      emailPhotos() { return cfg.emailPhotos ? { adresse: cfg.emailPhotos, demo: false } : { adresse: "photos@renom.example", demo: true }; },
+      async importerClients(lignes, consentement) {
+        await init(); const c = cur(); pasEnPause(c);
+        if (consentement !== true) throw new Error("Cochez la case qui confirme que chaque client de ce fichier a accepté de recevoir cette demande par email.");
+        if (!lienAvisPublic(c)) throw new Error("Ajoutez d'abord votre lien d'avis Google dans votre fiche : la demande y renvoie.");
+        if (!Array.isArray(lignes) || !lignes.length || lignes.length > AUTO.MAX_CLIENTS) throw new Error("Le fichier doit contenir de 1 à " + AUTO.MAX_CLIENTS + " clients.");
+        const auj = aujourdhui(), D_ = liste("demandes_avis"), ign = []; let n = 0;
+        lignes.forEach((x, k) => {
+          const p = String((x && x.prenom) || "").trim(), em = String((x && x.email) || "").trim().toLowerCase(), d = String((x && x.date_passage) || "");
+          const raison = !p || longueur(p) > 60 ? "prénom manquant ou trop long" : !emailValide(em) ? "adresse email invalide" : !dateValide(d) ? "date de passage invalide"
+            : d > auj ? "date de passage dans le futur" : ecartJours(auj, d) > AUTO.PASSAGE_MAX_JOURS ? "passage de plus de 14 jours : la demande arriverait trop tard"
+            : liste("oppositions").some(o => o.commerce_id === c.id && o.email === em) ? "cette personne a demandé à ne plus recevoir de demande"
+            : D_.some(a => a.commerce_id === c.id && a.email === em && a.etape === "demande" && (["a_envoyer", "en_cours"].includes(a.statut) || (a.statut === "envoye" && Date.now() - Date.parse(a.envoye_le) < AUTO.ECART_JOURS * JOUR_MS)))
+              ? "déjà sollicitée il y a moins de 90 jours" : null;
+          if (raison) { ign.push({ ligne: k + 1, raison }); return; }
+          const cl = { id: uid(), commerce_id: c.id, prenom: p, email: em, date_passage: d, consentement: true, importe_le: iso(Date.now()) }; liste("clients_commerce").push(cl);
+          const t1 = Math.max(a9h(plusJours(d, 1)), Date.now()), t2 = Math.max(a9h(plusJours(d, 5)), a9h(plusJours(jourIso(t1), 4)));
+          D_.push(nouvelleDemande(c.id, cl, "demande", t1), nouvelleDemande(c.id, cl, "relance", t2)); n++;
+        });
+        jour(c.id, "CLIENTS_IMPORTES", { importes: n, ignores: ign.length }); sauver(); return { importes: n, ignores: ign };
+      },
+      async demandesAvis() {
+        await init(); const c = cur(), t0 = Date.now() - 30 * JOUR_MS, l = liste("demandes_avis").filter(x => x.commerce_id === c.id), dans30 = x => x.envoye_le && Date.parse(x.envoye_le) >= t0;
+        const ev = [...liste("collecte_evenements"), ...lireCollecte()].filter(x => x.commerce_id === c.id && x.source === "email" && Date.parse(x.cree_le) >= t0);
+        return { periode_jours: 30, clients: liste("clients_commerce").filter(x => x.commerce_id === c.id).length, a_venir: l.filter(x => ["a_envoyer", "en_cours"].includes(x.statut)).length,
+          envois: l.filter(x => x.etape === "demande" && x.statut === "envoye" && dans30(x)).length, relances: l.filter(x => x.etape === "relance" && x.statut === "envoye" && dans30(x)).length,
+          ouvertures: ev.filter(x => x.type === "passage").length, clics_google: ev.filter(x => x.type === "clic_google").length, oppositions: liste("oppositions").filter(x => x.commerce_id === c.id).length,
+          dernieres: l.slice().sort((a, b) => b.prevu_le.localeCompare(a.prevu_le)).slice(0, 20).map(x => ({ prenom: x.prenom, etape: x.etape, statut: x.statut, motif: x.motif, prevu_le: x.prevu_le, envoye_le: x.envoye_le, ouverte: !!(x.ouvert_le || x.clic_le) })) };
+      },
+      async ajouterOpposition(email) {
+        await init(); const c = cur(), em = String(email || "").trim().toLowerCase(); if (!emailValide(em)) throw new Error("Adresse email invalide.");
+        if (!liste("oppositions").some(o => o.commerce_id === c.id && o.email === em)) E.oppositions.push({ commerce_id: c.id, email: em, motif: "commercant", cree_le: iso(Date.now()) });
+        liste("demandes_avis").forEach(x => { if (x.commerce_id === c.id && x.email === em && x.statut === "a_envoyer") { x.statut = "annule"; x.motif = "opposition"; } });
+        jour(c.id, "OPPOSITION_AJOUTEE", {}); sauver();
+      },
+      async miseEnRoute() { await init(); const c = cur(); etatMiseEnRoute(c.id); tableMR()[c.id].compte = "fait"; sauver(); return etatMiseEnRoute(c.id); },
+      async declarerMiseEnRoute(point) {
+        await init(); const c = cur(); if (!["google", "metricool"].includes(point)) throw new Error("Seuls l'accès Google et la connexion Metricool se déclarent ici.");
+        etatMiseEnRoute(c.id); const e = tableMR()[c.id]; if (e[point] === "a_faire") e[point] = "declare"; jour(c.id, "MISE_EN_ROUTE_DECLAREE", { point }); sauver(); return etatMiseEnRoute(c.id);
+      },
+      async deciderIdee(id, decision) {
+        await init(); const x = mine("idees").find(i => i.id === id); if (!x) throw new Error("Idée introuvable.");
+        if (x.statut !== "a_valider") throw new Error("Cette idée est déjà traitée."); if (!["retenue", "ecartee"].includes(decision)) throw new Error("Décision inconnue : retenir ou écarter.");
+        x.statut = decision; jour(cur().id, "IDEE_" + decision.toUpperCase(), { idee: id }); sauver();
+      },
+      // ---- publiques (desinscription.html)
+      async desinscriptionInfo(jeton) {
+        await init(); const j = String(jeton || ""), d = liste("demandes_avis").find(x => x.jeton === j);
+        if (d) return { objet: "demande_avis", emetteur: (E.commerces[d.commerce_id] || {}).nom, fait: liste("oppositions").some(o => o.commerce_id === d.commerce_id && o.email === d.email) };
+        const p = liste("prospects").find(x => x.jeton === j); if (p) return { objet: "prospect", emetteur: "RENOM", fait: !!p.desinscrit_le };
+        throw new Error("Ce lien n'est pas reconnu.");
+      },
+      async seDesinscrire(jeton) {
+        await init(); const j = String(jeton || ""), d = liste("demandes_avis").find(x => x.jeton === j);
+        if (d) { if (!E.oppositions.some(o => o.commerce_id === d.commerce_id && o.email === d.email)) E.oppositions.push({ commerce_id: d.commerce_id, email: d.email, motif: "lien_email", cree_le: iso(Date.now()) });
+          E.demandes_avis.forEach(x => { if (x.commerce_id === d.commerce_id && x.email === d.email && x.statut === "a_envoyer") { x.statut = "annule"; x.motif = "désinscription"; } });
+          jour(d.commerce_id, "DESINSCRIPTION", {}); sauver(); return autoDemo.desinscriptionInfo(j); }
+        const p = liste("prospects").find(x => x.jeton === j); if (p) { p.desinscrit_le = p.desinscrit_le || iso(Date.now()); sauver(); return autoDemo.desinscriptionInfo(j); }
+        throw new Error("Ce lien n'est pas reconnu.");
+      },
+      // ---- console
+      async adminSante() { await init(); admin(); return Object.values(E.commerces).map(santeDemo).sort((a, b) => a.nom.localeCompare(b.nom)); },
+      async adminProspects() { await init(); admin(); return liste("prospects").slice().sort((a, b) => (b.audit_le || "").localeCompare(a.audit_le || "")); },
+      async adminProspect(id, action) {
+        await init(); admin(); const p = liste("prospects").find(x => x.id === id), k = { rdv: "rdv_le", reponse: "repondu_le", arreter: "desinscrit_le", rapport_envoye: "rapport_envoye_le" }[action];
+        if (!p || !k) throw new Error("Prospect ou action inconnus."); p[k] = p[k] || iso(Date.now()); sauver();
+      },
+      async adminMiseEnRoute(cid, point, etat) {
+        await init(); admin(); if (!["a_faire", "declare", "fait"].includes(etat) || !ORDRE_POINTS.includes(point)) throw new Error("Point ou état inconnu.");
+        etatMiseEnRoute(cid); tableMR()[cid][point] = etat; jour(cid, "MISE_EN_ROUTE", { point, etat }); sauver(); return etatMiseEnRoute(cid);
       },
     };
 
@@ -491,7 +722,7 @@
         if (!c) throw new Error("Contenu introuvable."); if (c.statut !== "a_valider") throw new Error("Ce contenu est déjà traité.");
         if (!["approuve", "modification", "refuse"].includes(statut)) throw new Error("Statut refusé.");
         if (statut === "modification" && !(note || "").trim()) throw new Error("Écrivez un mot pour dire ce qu'il faut modifier.");
-        c.statut = statut; c.note_modification = statut === "modification" ? note.trim() : null; jour(cur().id, "CONTENU_" + statut.toUpperCase(), { contenu: id }); sauver();
+        c.statut = statut; c.note_modification = statut === "modification" ? note.trim() : null; c.decide_le = new Date().toISOString(); jour(cur().id, "CONTENU_" + statut.toUpperCase(), { contenu: id }); sauver();
       },
       async idees() { await init(); return mine("idees").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async demanderIdees() {
@@ -529,6 +760,8 @@
       ...collecteDemo,
       // ---- Mise à jour de l'espace membre (voir majDemo plus haut)
       ...majDemo,
+      // ---- Automatisations de service (voir autoDemo plus haut)
+      ...autoDemo,
       // ---- Vidéo d'avis
       async avisVideo() { await init(); return mine("avis").map(a => ({ id: a.id, note: a.note, texte: a.texte, auteur: a.auteur || "", sensible: !!a.sensible, cree_le: a.cree_le, demo: !!a.demo })).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async demandesVideoAvis() { await init(); const c = cur(); return vaDemandes().filter(x => x.commerce_id === c.id).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
@@ -548,13 +781,14 @@
         return d.id;
       },
       // ---- console de PJ
-      async adminCommerces() { await init(); admin(); return Object.values(E.commerces).map(c => ({ ...c, compteur: vc(c), comptes: E.comptes[c.id] || {}, alertes: E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length })); },
+      async adminCommerces() { await init(); admin(); return Object.values(E.commerces).map(c => ({ ...c, compteur: vc(c), comptes: E.comptes[c.id] || {}, alertes: E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length, sante: santeDemo(c) })); },
       async adminJournal() { await init(); admin(); return E.journal.slice(0, 300).map(j => ({ ...j, commerce: (E.commerces[j.commerce_id] || {}).nom })); },
       async adminAlertes() {
         await init(); admin(); const nom = id => (E.commerces[id] || {}).nom;
         return [...E.avis.filter(a => a.sensible && a.statut === "humain").map(a => ({ type: "Avis sensible", commerce: nom(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })),
           ...E.journal.filter(j => ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"].includes(j.type)).map(j => ({ type: j.type, commerce: nom(j.commerce_id), texte: JSON.stringify(j.detail), date: j.cree_le })),
-          ...E.publications.filter(p => p.statut === "echec").map(p => ({ type: "Publication en échec", commerce: nom(p.commerce_id), texte: p.erreur || "", date: p.prevu_le }))];
+          ...E.publications.filter(p => p.statut === "echec").map(p => ({ type: "Publication en échec", commerce: nom(p.commerce_id), texte: p.erreur || "", date: p.prevu_le })),
+          ...liste("alertes_exploitant").map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: nom(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le }))];
       },
       async adminCreer(nom, metier, offre, email) {
         await init(); admin(); if (!nom.trim() || !/.+@.+/.test(email)) throw new Error("Nom et email valides requis.");
@@ -585,6 +819,18 @@
           liste("actions_fiche").forEach(a => { if (a.statut === "a_publier") { a.statut = "publie"; a.publie_le = iso(Date.now()); jour(a.commerce_id, "ACTION_FICHE_PUBLIEE", { type: a.type, simule: true }); n++; } });
           sauver(); return n; },
         async rendus() { await init(); E.photos.filter(p => p.statut === "a_traiter").forEach(p => faux.creation(p)); vaDemandes().forEach(d => faux.videoAvis(d)); sauver(); },
+        // Le service du jour, joué dans le navigateur : les demandes échues passent « envoyées » (rien ne part), avec les mêmes règles d'annulation.
+        async serviceDuJour() {
+          await init(); let n = 0; const now = Date.now();
+          liste("demandes_avis").filter(x => x.statut === "a_envoyer" && Date.parse(x.prevu_le) <= now).sort((a, b) => a.prevu_le.localeCompare(b.prevu_le)).forEach(x => {
+            const c = E.commerces[x.commerce_id] || {}, freres = E.demandes_avis.filter(y => y.client_id === x.client_id);
+            const motif = c.en_pause ? "commerce en pause" : !lienAvisPublic(c) ? "lien d'avis Google absent" : liste("oppositions").some(o => o.commerce_id === x.commerce_id && o.email === x.email) ? "opposition"
+              : x.etape === "relance" && !freres.some(y => y.etape === "demande" && y.statut === "envoye") ? "demande non envoyée"
+              : x.etape === "relance" && freres.some(y => y.ouvert_le || y.clic_le) ? "page d'avis déjà ouverte" : null;
+            if (motif) { x.statut = "annule"; x.motif = motif; } else { x.statut = "envoye"; x.envoye_le = iso(now); n++; }
+          });
+          sauver(); return n;
+        },
         async reinitialiser() { try { localStorage.removeItem(K); localStorage.removeItem(K + ":retours"); localStorage.removeItem(K + ":collecte"); } catch (e) {} E = null; pret = null; await init(); },
       },
     };
@@ -626,7 +872,7 @@
         const r = ok(await sb.from("contenus").update({ statut, note_modification: statut === "modification" ? note.trim() : null }).eq("id", id).select());
         if (!r.length) throw new Error("Ce contenu est déjà traité.");
       },
-      async idees() { const c = await self.commerce(); return ok(await sb.from("idees").select("id,titre,texte,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(50)); },
+      async idees() { const c = await self.commerce(); return ok(await sb.from("idees").select("id,titre,texte,cree_le,origine,statut,semaine,motif").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(50)); },
       async demanderIdees() { const c = await self.commerce(); ok(await sb.from("idees_demandes").insert({ commerce_id: c.id })); },
       async calendrier() { const c = await self.commerce(); return ok(await sb.from("publications").select("*, contenu:contenus(id,type,legende,fichier,statut)").eq("commerce_id", c.id).order("prevu_le")); },
       async programmer({ contenu_id, reseaux, prevu_le }) { const c = await self.commerce(); ok(await sb.from("publications").insert({ commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString() })); },
@@ -676,18 +922,36 @@
       async creerActionFiche(type, donnees) { return ok(await sb.rpc("creer_action_fiche", { p_type: type, p_donnees: controlerAction(type, donnees) })); },
       async validerActionFiche(id, decision) { ok(await sb.rpc("valider_action_fiche", { p_id: id, p_decision: decision })); },
       async enregistrerDemarrage(rep) { ok(await sb.rpc("enregistrer_demarrage", { p_reponses: controlerDemarrage(rep) })); cache = null; },
-      compterCollecte: (jeton, type) => publicSupabase.compterCollecte(jeton, type),
+      compterCollecte: (jeton, type, canal) => publicSupabase.compterCollecte(jeton, type, canal),
+      // ---- Automatisations de service : uniquement les tables et fonctions du bloc « Automatisations de service » de schema.sql
+      emailPhotos() { return cfg.emailPhotos ? { adresse: cfg.emailPhotos, demo: false } : null; },
+      async importerClients(lignes, consentement) { return ok(await sb.rpc("importer_clients", { p_lignes: lignes, p_consentement: consentement === true })); },
+      async demandesAvis() { return ok(await sb.rpc("mes_demandes_avis", {})); },
+      async ajouterOpposition(email) { ok(await sb.rpc("ajouter_opposition", { p_email: String(email || "") })); },
+      async miseEnRoute() { return ok(await sb.rpc("ma_mise_en_route", {})); },
+      async declarerMiseEnRoute(point) { return ok(await sb.rpc("declarer_mise_en_route", { p_point: point })); },
+      async deciderIdee(id, decision) { ok(await sb.rpc("decider_idee", { p_id: id, p_decision: decision })); },
+      desinscriptionInfo: jeton => publicSupabase.desinscriptionInfo(jeton),
+      seDesinscrire: jeton => publicSupabase.seDesinscrire(jeton),
+      async adminSante() { return ok(await sb.rpc("admin_sante_clients", {})); },
+      async adminProspects() { return ok(await sb.from("prospects").select("*").order("audit_le", { ascending: false }).limit(200)); },
+      async adminProspect(id, action) { ok(await sb.rpc("admin_prospect", { p_id: id, p_action: action })); },
+      async adminMiseEnRoute(cid, point, etat) { return ok(await sb.rpc("admin_mise_en_route", { p_commerce: cid, p_point: point, p_etat: etat })); },
       objetParJeton: jeton => publicSupabase.objetParJeton(jeton),
       validerParJeton: (jeton, decision, texte) => publicSupabase.validerParJeton(jeton, decision, texte),
       async adminCommerces() {
         const cs = ok(await sb.from("commerces").select("*")), ks = ok(await sb.from("compteur").select("*")), cc = ok(await sb.from("comptes_connectes").select("*")), av = ok(await sb.from("avis").select("commerce_id,statut,sensible"));
-        return cs.map(c => ({ ...c, compteur: ks.find(k => k.commerce_id === c.id), comptes: Object.fromEntries(cc.filter(x => x.commerce_id === c.id).map(x => [x.reseau, x])), alertes: av.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length }));
+        const sa = ok(await sb.rpc("admin_sante_clients", {})) || [];
+        return cs.map(c => ({ ...c, compteur: ks.find(k => k.commerce_id === c.id), comptes: Object.fromEntries(cc.filter(x => x.commerce_id === c.id).map(x => [x.reseau, x])), alertes: av.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length,
+          sante: sa.find(s => s.commerce_id === c.id) || null }));
       },
       async adminJournal() { const cs = ok(await sb.from("commerces").select("id,nom")), j = ok(await sb.from("journal").select("*").order("cree_le", { ascending: false }).limit(300)); return j.map(x => ({ ...x, commerce: (cs.find(c => c.id === x.commerce_id) || {}).nom })); },
       async adminAlertes() {
         const cs = ok(await sb.from("commerces").select("id,nom")), n = id => (cs.find(c => c.id === id) || {}).nom;
         const av = ok(await sb.from("avis").select("*").eq("sensible", true).eq("statut", "humain")), j = ok(await sb.from("journal").select("*").in("type", ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"]).order("cree_le", { ascending: false }).limit(50)), p = ok(await sb.from("publications").select("*").eq("statut", "echec"));
-        return [...av.map(a => ({ type: "Avis sensible", commerce: n(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })), ...j.map(x => ({ type: x.type, commerce: n(x.commerce_id), texte: JSON.stringify(x.detail), date: x.cree_le })), ...p.map(x => ({ type: "Publication en échec", commerce: n(x.commerce_id), texte: x.erreur || "", date: x.prevu_le }))];
+        const ae = ok(await sb.from("alertes_exploitant").select("*").order("cree_le", { ascending: false }).limit(50));
+        return [...av.map(a => ({ type: "Avis sensible", commerce: n(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })), ...j.map(x => ({ type: x.type, commerce: n(x.commerce_id), texte: JSON.stringify(x.detail), date: x.cree_le })), ...p.map(x => ({ type: "Publication en échec", commerce: n(x.commerce_id), texte: x.erreur || "", date: x.prevu_le })),
+          ...ae.map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: n(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le }))];
       },
       async adminCreer(nom, metier, offre, email) { return ok(await sb.rpc("admin_creer_commerce", { p_nom: nom, p_metier: metier, p_offre: offre, p_email: email })); },
       async adminOffre(id, offre) { ok(await sb.rpc("admin_changer_offre", { p_commerce: id, p_offre: offre })); },
@@ -704,4 +968,6 @@
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;
   // ---- Mise à jour de l'espace membre : règles partagées par les écrans et les pages publiques
   window.RENOM_MAJ = { CRENEAUX, LIMITE_GOOGLE, formatDe, reseauxPour, legendeDe, longueur, partiesParis, prochainCreneau, TYPES_ACTION, aujourdhui };
+  // ---- Automatisations de service : règles partagées par les écrans
+  window.RENOM_AUTO = { AUTO, lireCsvClients, MODELE_CSV, emailValide };
 })();
