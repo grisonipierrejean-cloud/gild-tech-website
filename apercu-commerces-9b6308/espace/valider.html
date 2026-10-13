@@ -3,59 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07080C">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Valider</title>
-<link rel="preload" href="fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/syne.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Page publique de validation par lien (valider.html#<jeton>), ouverte depuis l'email : sans connexion, à usage unique, 7 jours.
-   Formes et couleurs de l'espace (cartes 8 px, boutons 4 px, Source Serif 4 et Schibsted Grotesk). Ni dégradé, ni pilule, ni trait coloré. */
-:root{--fond:#F3F3F2;--surface:#FFFFFF;--encre:#000000;--texte2:#2E2E2E;--discret:#5C5C5C;--bord:#BDBDBD;--filet:#E1E1E1;--marque:#2438FF;--bleu-texte:#1A2BD6;--teinte:#EDEFFC;
-  --serif:'Source Serif 4',Georgia,serif;--sans:'Schibsted Grotesk',system-ui,sans-serif}
-@font-face{font-family:'Source Serif 4';font-weight:400 600;font-display:swap;src:url(fonts/source-serif-4.woff2) format('woff2')}
-@font-face{font-family:'Schibsted Grotesk';font-weight:400 700;font-display:swap;src:url(fonts/schibsted-grotesk.woff2) format('woff2')}
+   Charte « nuit et bleu » de l'espace (Syne 800, Hanken Grotesk, coins 10 à 18 px). Ni dégradé, ni pilule, ni trait coloré. */
+:root{color-scheme:dark;--fond:#07080C;--surface:#12141D;--releve:#1A1D29;--creux:#0B0D14;--encre:#FFFFFF;--texte2:#E4E6F2;--discret:#A9ADBF;--bord:#6B6F82;--filet:rgba(255,255,255,.12);--marque:#3D4BFF;
+  --titre:'Syne','Hanken Grotesk',system-ui,sans-serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
+@font-face{font-family:'Syne';font-weight:400 800;font-display:swap;src:url(fonts/syne.woff2) format('woff2')}
+@font-face{font-family:'Hanken Grotesk';font-weight:100 900;font-display:swap;src:url(fonts/hanken-grotesk.woff2) format('woff2')}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--encre);background:var(--fond)}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.5;color:var(--encre);background:var(--fond)}
 h1,h2,p{margin:0}
-main{max-width:560px;margin:0 auto;padding:28px 16px calc(32px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px}
+main{max-width:560px;margin:0 auto;padding:24px 16px calc(32px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px}
 #page,#erreur,#fait{display:flex;flex-direction:column;gap:14px}
-.logo{font-family:var(--serif);font-size:22px;letter-spacing:.1em}
-.tete{display:flex;flex-direction:column;gap:8px;padding:0 4px 6px}
-.commerce{font-size:16px;font-weight:600;overflow-wrap:anywhere}
-h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.08}
-.carte{background:var(--surface);color:var(--encre);border:1px solid var(--filet);border-radius:8px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
-h2{font-size:17px;font-weight:600;line-height:1.3}
-.note{font-size:14px;color:var(--discret)}
-.visuel{display:block;width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:var(--fond)}
+.logo{font-family:var(--titre);font-weight:800;font-size:24px;letter-spacing:1px}
+.tete{display:flex;flex-direction:column;gap:10px;padding:0 2px 4px}
+.commerce{font-size:17px;font-weight:700;color:var(--texte2);overflow-wrap:anywhere}
+h1{font-family:var(--titre);font-weight:800;font-size:32px;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+.carte{background:var(--surface);color:var(--encre);border:1px solid var(--filet);border-radius:18px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+h2{font-family:var(--titre);font-size:20px;font-weight:800;line-height:1.25}
+.note{font-size:15px;color:var(--discret)}
+.visuel{display:block;width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:var(--releve)}
 .visuel.vertical{aspect-ratio:9/16;max-width:280px}
-video.visuel,img.visuel.vertical{object-fit:contain;background:var(--encre)}
+video.visuel,img.visuel.vertical{object-fit:contain;background:#000}
 .legendes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .legendes li{padding:12px 0;border-bottom:1px solid var(--filet);display:flex;flex-direction:column;gap:4px}
 .legendes li:last-child{border-bottom:0}
-.reseau{font-size:13px;font-weight:600;color:var(--discret)}
+.reseau{font-size:13px;font-weight:700;color:var(--discret)}
 .texte{white-space:pre-line;overflow-wrap:anywhere;color:var(--texte2)}
 .citation{color:var(--texte2);overflow-wrap:anywhere}
-.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:17px;font-weight:600;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1px solid var(--marque);border-radius:4px;padding:13px 18px;min-height:52px;cursor:pointer}
-.bouton.second{background:var(--surface);color:var(--encre);border-color:var(--bord)}
-.lien{font:inherit;font-size:16px;font-weight:500;background:none;border:0;padding:8px 4px;min-height:44px;color:var(--discret);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:800;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1.5px solid var(--marque);border-radius:10px;padding:13px 18px;min-height:56px;cursor:pointer}
+.bouton:hover{background:#2E3BFF;border-color:#2E3BFF}
+.bouton.second{background:transparent;color:var(--encre);border-color:rgba(255,255,255,.6)}
+.bouton.second:hover{background:var(--releve)}
+.lien{font:inherit;font-size:16px;font-weight:600;background:none;border:0;padding:8px 4px;min-height:44px;color:var(--texte2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .bouton:disabled{opacity:.55;cursor:default}
-:focus-visible{outline:2px solid var(--marque);outline-offset:2px}
+:focus-visible{outline:2px solid #9DA5FF;outline-offset:2px}
+a{color:var(--encre);text-underline-offset:3px}
+.carte p>a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
 .actions{display:flex;flex-direction:column;gap:10px}
 .f{display:flex;flex-direction:column;gap:6px}
-label{font-size:14px;font-weight:500;color:var(--discret)}
-textarea{font:inherit;font-size:16px;line-height:1.45;color:var(--encre);background:var(--surface);border:1px solid var(--bord);border-radius:4px;padding:10px 12px;min-height:132px;width:100%;resize:vertical}
+label{font-size:15px;font-weight:600;color:var(--texte2)}
+textarea{font:inherit;font-size:16px;line-height:1.45;color:var(--encre);background:var(--creux);border:1px solid var(--bord);border-radius:10px;padding:11px 14px;min-height:132px;width:100%;resize:vertical}
+textarea:focus-visible{border-color:#9DA5FF}
 #reponse{min-height:220px}
-.msg{font-size:15px;color:var(--texte2)}
+.msg{font-size:16px;font-weight:600;color:var(--texte2)}
 .msg:empty{display:none}
-.fort{font-weight:600}
-.pied{font-size:13px;line-height:1.5;padding:6px 4px 0;color:var(--discret)}
-.pied-legal{font-size:12px;line-height:1.5;padding:18px 4px 0;color:var(--discret);display:flex;flex-direction:column;gap:2px}
+.fort{font-weight:700}
+.pied{font-size:14px;line-height:1.5;padding:6px 2px 0;color:var(--discret)}
+.pied-legal{font-size:12px;line-height:1.5;padding:18px 2px 0;color:var(--discret);display:flex;flex-direction:column;gap:2px}
 .pied-legal .liens-legaux{display:flex;flex-wrap:wrap;gap:0 16px}
 .pied-legal a{color:inherit;display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
-@media (min-width:600px){main{padding-top:48px}h1{font-size:40px}.carte{padding:22px}.actions{flex-direction:row;flex-wrap:wrap;align-items:center}.actions .bouton{width:auto}}
+@media (min-width:600px){main{padding-top:48px}h1{font-size:42px}.carte{padding:24px}.actions{flex-direction:row;flex-wrap:wrap;align-items:center}.actions .bouton{width:auto}}
 </style>
 </head>
 <body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
