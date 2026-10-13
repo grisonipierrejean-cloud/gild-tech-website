@@ -3,17 +3,32 @@
 Photographies d'ambiance, issues de Pexels, licence Pexels (https://www.pexels.com/license/, lue le 11/10/2026) :
 usage commercial gratuit, attribution non requise, modification autorisée. Interdits retenus : ne pas laisser croire à l'approbation par des personnes ou marques, ne pas vendre en l'état, ne pas déposer en marque. Aucune image générée par IA. Ce sont des images d'illustration : elles ne représentent aucun client de RENOM.
 
+### Photos de la page de vente (refonte photos, 13/10/2026)
+
+Licence Pexels lue le 11/10/2026 (rappel : usage commercial gratuit, attribution non obligatoire ; interdit de laisser croire que les personnes photographiées approuvent RENOM, interdit de revendre la photo en l'état). Les personnes visibles ne sont pas des clients de RENOM et la page le dit sous la bande des métiers. Fichiers convertis en WebP qualité 80 (1920 px de large pour le plein écran, 1200 px au plus pour le reste) ; originaux non versionnés.
+
 | Fichier | Usage | Auteur | Adresse | Licence |
 |---|---|---|---|---|
-| img/restaurant.webp | Premier écran, restaurant | Mathias Reding | https://www.pexels.com/photo/tables-and-chairs-in-a-restaurant-9685262/ | Pexels |
-| img/beaute.webp | Premier écran, institut de beauté | KoolShooters | https://www.pexels.com/photo/black-towels-on-the-table-6628486/ | Pexels |
-| img/sport.webp | Premier écran, salle ou studio | Zulema Laborde | https://www.pexels.com/photo/peaceful-yoga-studio-interior-in-argentina-38470685/ | Pexels |
-| img/autre.webp | Premier écran, autre commerce | Skylar Kang | https://www.pexels.com/photo/light-dressmaker-shop-interior-with-counter-6044236/ | Pexels |
-| img/methode.webp | Section méthode | Doğu Tuncer | https://www.pexels.com/photo/woman-hand-holding-smartphone-and-taking-pictures-of-cup-16309236/ | Pexels |
-| img/creation-pates.webp | Vignette de la carte « La création » (recadrée) | Rachel Claire | https://www.pexels.com/photo/close-up-of-spaghetti-on-plate-5531093/ | Pexels |
-| img/metier-restaurant.webp | Section « Pensé pour votre métier », restaurant | Tima Miroshnichenko | https://www.pexels.com/photo/photo-of-an-appetizer-on-a-white-plate-6327536/ | Pexels |
-| img/metier-institut.webp | Section « Pensé pour votre métier », institut de beauté | Marine Fougère | https://www.pexels.com/photo/cozy-spa-massage-table-with-candle-and-decor-35884499/ | Pexels |
-| img/metier-studio.webp | Section « Pensé pour votre métier », salle ou studio | MART PRODUCTION | https://www.pexels.com/photo/rolled-yoga-mat-on-shelf-on-the-wall-7318664/ | Pexels |
+| img/renom-chef.webp | Premier écran (plein écran, sous un voile en aplat) ; vignette « Restaurant » de la bande des métiers | Willians Huerta | https://www.pexels.com/photo/chef-adding-finishing-touches-to-gourmet-dish-36430088/ | Pexels |
+| img/renom-dressage.webp | Bloc avant / après, des deux côtés : la photo telle qu'envoyée dans un viseur de téléphone (avant), puis dans la publication (après). Recadrée en 4:5, 1080 x 1350, cadrage qui écarte le nom brodé sur la veste | Aabouden Yassir | https://www.pexels.com/photo/chef-perfectly-plates-gourmet-dish-in-restaurant-38958593/ | Pexels |
+| img/renom-esthetique.webp | Bande des métiers, institut de beauté | cottonbro studio | https://www.pexels.com/photo/woman-on-a-beauty-procedure-7581075/ | Pexels |
+| img/renom-coiffure.webp | Bande des métiers, coiffure | cottonbro studio | https://www.pexels.com/photo/woman-getting-a-haircut-3992875/ | Pexels |
+| img/renom-fleuriste.webp | Bande des métiers, fleuriste | Amina Filkins | https://www.pexels.com/photo/happy-florist-standing-near-window-of-floristry-shop-5414025/ | Pexels |
+
+### Anciennes photos gardées pour le faux serveur Google Places des tests (moteur/tests/faux_places.py)
+
+Plus affichées sur la page de vente, mais servies comme photos de fiches fictives par les tests de l'audit.
+
+| Fichier | Usage | Auteur | Adresse | Licence |
+|---|---|---|---|---|
+| img/restaurant.webp | Tests de l'audit (fiche fictive bien tenue) | Mathias Reding | https://www.pexels.com/photo/tables-and-chairs-in-a-restaurant-9685262/ | Pexels |
+| img/beaute.webp | Tests de l'audit (fiche fictive négligée) | KoolShooters | https://www.pexels.com/photo/black-towels-on-the-table-6628486/ | Pexels |
+| img/methode.webp | Tests de l'audit (fiche fictive bien tenue) | Doğu Tuncer | https://www.pexels.com/photo/woman-hand-holding-smartphone-and-taking-pictures-of-cup-16309236/ | Pexels |
+| img/metier-restaurant.webp | Tests de l'audit (fiche fictive bien tenue) | Tima Miroshnichenko | https://www.pexels.com/photo/photo-of-an-appetizer-on-a-white-plate-6327536/ | Pexels |
+| img/metier-institut.webp | Tests de l'audit (fiche fictive négligée) | Marine Fougère | https://www.pexels.com/photo/cozy-spa-massage-table-with-candle-and-decor-35884499/ | Pexels |
+| img/demo-restaurant-avant.webp | Tests de l'audit (fiche fictive bien tenue) ; photo d'origine : Rachel Claire (spaghetti), attribution à confirmer par la personne qui a produit ce fichier | Rachel Claire | https://www.pexels.com/photo/close-up-of-spaghetti-on-plate-5531093/ | Pexels |
+
+Retirées le 13/10/2026 (plus utilisées nulle part, vérifié par recherche dans le dépôt) : img/sport.webp, img/autre.webp, img/creation-pates.webp, img/metier-studio.webp, img/demo-restaurant-apres.webp, img/demo-beaute-avant.webp, img/demo-beaute-apres.webp, img/demo-sport-avant.webp, img/demo-sport-apres.webp. Puis img/renom-photo-telephone.webp (ROMAN ODINTSOV, https://www.pexels.com/photo/crop-woman-taking-shot-of-food-on-mobile-phone-during-lunch-4552130/), remplacée dans l'avant / après par la même photo des deux côtés.
 
 ## Photos d'origine des démonstrations du moteur (ordre 5)
 
@@ -31,24 +46,12 @@ Photos de démonstration, Pexels, même licence. Elles servent uniquement d'« e
 | Salle ou studio | tapis-panier | cottonbro studio | https://www.pexels.com/photo/black-round-plastic-tool-on-brown-plastic-basket-4325462/ |
 | Salle ou studio | halteres | Ivan S | https://www.pexels.com/photo/reflection-of-dumbbells-on-a-mirror-4164765/ |
 
-## Images de démonstration affichées sur la page (bloc « Exemple de démonstration »)
+## Usages sur la page de vente (refonte photos, 13/10/2026)
 
-Chaque paire montre une photo d'origine Pexels et la publication produite à partir d'elle. Auteur attribué d'après le texte alternatif de la page et le tableau ci-dessus : correspondance à confirmer par la personne qui a produit ces fichiers.
-
-| Fichier | Auteur de la photo d'origine | Adresse |
-|---|---|---|
-| img/demo-restaurant-avant.webp, img/demo-restaurant-apres.webp | Rachel Claire (spaghetti) | https://www.pexels.com/photo/close-up-of-spaghetti-on-plate-5531093/ |
-| img/demo-beaute-avant.webp, img/demo-beaute-apres.webp | Marine Fougère (bougie) | https://www.pexels.com/photo/cozy-spa-massage-table-with-candle-and-decor-35884499/ |
-| img/demo-sport-avant.webp, img/demo-sport-apres.webp | MART PRODUCTION (tapis-etagere) | https://www.pexels.com/photo/rolled-yoga-mat-on-shelf-on-the-wall-7318664/ |
-
-## Usages sur la page de vente refondue (design v3, 13/10/2026)
-
-Aucune nouvelle photo : la page n'utilise que les fichiers ci-dessus. Le réseau de cette session refuse Pexels et Unsplash, aucune photo avec visage n'a donc pu être ajoutée (voir ordres/COPY-V3.md).
-- Premier écran (photo derrière le téléphone) : img/restaurant.webp, img/beaute.webp, img/sport.webp, img/autre.webp, selon le métier choisi.
-- Téléphone de démonstration : img/demo-*-avant.webp (photo envoyée) et img/demo-*-apres.webp (publication produite par le moteur). Commerces, prénoms et avis fictifs, signalés sous le téléphone.
-- Section « Vous connaissez ces soirs-là » : img/metier-restaurant.webp, img/metier-institut.webp, img/metier-studio.webp, img/autre.webp.
-- Section mécanisme : img/methode.webp.
-- img/creation-pates.webp n'est plus affichée sur la page (fichier gardé).
+- Premier écran : img/renom-chef.webp, voile sombre en aplat (opacité .60, contraste du texte au moins 4,5:1 même sur un fond blanc pur).
+- Bloc « Votre photo. Notre publication. » : la même photo des deux côtés, img/renom-dressage.webp, dans un viseur de téléphone construit en CSS (avant) puis dans une publication construite en HTML et CSS pour un commerce fictif, « La Table d'exemple » (après). La photo n'est pas retouchée.
+- Section « Comment ça marche », bande des métiers : img/renom-chef.webp, img/renom-esthetique.webp, img/renom-coiffure.webp, img/renom-fleuriste.webp.
+- Aucune photo n'est présentée comme celle d'un client de RENOM.
 
 ## Polices
 
