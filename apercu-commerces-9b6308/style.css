@@ -577,3 +577,8 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
   .offre-promesse{min-height:2.6em}
 }
 /* ---------- fin nuit-page */
+
+/* Recette nuit-qa : cibles tactiles du sommaire des pages légales et des cases à cocher (≥ 44 px) */
+.sommaire li a{display:inline-flex;align-items:center;min-height:44px}
+#g-ok,#f-cgv{width:24px;height:24px}
+.ok label,label[for="f-cgv"]{min-height:44px;display:inline-flex;align-items:center}

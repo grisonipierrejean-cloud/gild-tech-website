@@ -28,7 +28,9 @@
     if (!connecte) return;
     const lien = ([r, nom, icone], avecIcone) => `<a href="#/${r}" data-r="${r}"${r === route ? ' aria-current="page"' : ""}>${avecIcone ? `<span class="onglet-icone">${icone}</span>` : ""}<span>${nom}</span></a>`;
     if (large.matches) lat.innerHTML = `<div class="lat-in"><a class="logo" href="console.html">RENOM</a><nav id="nav" class="menu" aria-label="Console"><div class="groupe"><p class="groupe-lib">Console</p>${ENTREES.map(x => lien(x, false)).join("")}</div></nav><button type="button" id="sortir" class="quitter">Quitter</button></div>`;
-    else { haut.innerHTML = `<a class="logo" href="console.html">RENOM</a><span class="haut-note">Console</span><button type="button" id="sortir" class="quitter">Quitter</button>`; onglets.innerHTML = ENTREES.map(x => lien(x, true)).join(""); }
+    else { haut.innerHTML = `<a class="logo" href="console.html">RENOM</a><span class="haut-note">Console</span><button type="button" id="sortir" class="quitter">Quitter</button>`; onglets.innerHTML = ENTREES.map(x => lien(x, true)).join("");
+      // La barre défile horizontalement : l'onglet ouvert reste visible.
+      const a = onglets.querySelector("[aria-current]"); if (a) onglets.scrollLeft = a.offsetLeft - (onglets.clientWidth - a.offsetWidth) / 2; }
   }
 
   async function refuse() { connecte = false; dessinerNav(); vue.innerHTML = `<div class="connexion"><div class="carte"><p class="logo">RENOM</p><div class="entete"><h1>Accès réservé</h1><p class="chapo">Cette console est réservée à l'administrateur de RENOM.</p></div><a class="bouton second plein" href="index.html">Retour à votre espace</a></div></div>`; }

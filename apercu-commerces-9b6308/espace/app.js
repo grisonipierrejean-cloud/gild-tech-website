@@ -180,6 +180,7 @@
     commerce: trait('<path d="M4 10l1.5-5h13L20 10"></path><path d="M5 10v10h14V10"></path><path d="M4 10h16M10 20v-5h4v5"></path>'),
   };
   const APPAREIL = trait('<path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle>');
+  const GALERIE = trait('<rect x="4" y="4" width="16" height="16" rx="3"></rect><circle cx="9" cy="9.5" r="1.5"></circle><path d="M4 16l4.5-4.5 4 4 3-3L20 17"></path>');
   const large = window.matchMedia("(min-width: 900px)");
   const nb = { contenus: 0, avis: 0, commentaires: 0 }; let offreNom = "", route = "accueil", connecte = false;
   const compte = k => `<span class="nb" data-nb="${k}"${nb[k] ? "" : " hidden"}><span data-n>${nb[k] || ""}</span><span class="vh"> à traiter</span></span>`;
@@ -195,8 +196,9 @@
       return;
     }
     const GM = groupesMobile(), actif = GM.find(g => g.ecrans.includes(route)) || GM[0];
-    haut.innerHTML = `<a class="logo" href="#/accueil">RENOM</a><span class="haut-note" id="haut-offre">${offreNom ? "Offre " + e(offreNom) : ""}</span>`;
-    sous.innerHTML = actif.ecrans.length > 1 ? actif.ecrans.map(lienMenu).join("") + (actif.id === "commerce" ? `<button type="button" id="sortir" class="quitter">Quitter</button>` : "") : "";
+    // « Quitter » : dans l'en-tête quand le groupe Mon commerce est ouvert (à la suite des liens du groupe, il se retrouvait seul sur une ligne).
+    haut.innerHTML = `<a class="logo" href="#/accueil">RENOM</a><span class="haut-note" id="haut-offre">${offreNom ? "Offre " + e(offreNom) : ""}</span>${actif.id === "commerce" ? `<button type="button" id="sortir" class="quitter">Quitter</button>` : ""}`;
+    sous.innerHTML = actif.ecrans.length > 1 ? actif.ecrans.map(lienMenu).join("") : "";
     sous.setAttribute("aria-label", actif.nom);
     // Chaque onglet mène au premier écran de son groupe ; data-ecrans liste tous les écrans du groupe.
     onglets.innerHTML = GM.map(g => `<a href="#/${g.ecrans[0]}" data-r="${g.ecrans[0]}" data-ecrans="${g.ecrans.join(" ")}"${g === actif ? ` aria-current="${g.ecrans[0] === route ? "page" : "true"}"` : ""}>
@@ -303,7 +305,7 @@
     const ficheRemplie = c.specialites || c.ton || c.horaires;
     vue.innerHTML = `${pauseBandeau(c)}
       <div class="entete-accueil"><div class="entete"><p class="sur">Bonjour</p><h1>${e(c.nom)}</h1><p class="chapo">${phrase}</p></div>
-        <a class="bouton grand" href="#/photos">${APPAREIL}<span>Déposer des photos</span></a></div>
+        <a class="bouton grand" id="envoyer-photo" href="#/photos">${APPAREIL}<span>Envoyer une photo</span></a></div>
       <p class="msg" id="msg" role="status"></p>
       ${blocMiseEnRoute(mr)}
       ${!c.demarrage_fini ? `<section class="alerte"><div><p class="fort">Votre démarrage n'est pas terminé</p><p>Cinq questions pour que RENOM écrive comme vous. Chacune peut être passée.</p></div><a class="bouton second" href="#/demarrage">Reprendre le démarrage</a></section>` : ""}
@@ -410,8 +412,11 @@
     vue.innerHTML = `${pauseBandeau(c)}${entete("Créer", "Vos photos", "Déposez les photos de votre commerce : chacune sert à créer un contenu, que vous validez ensuite.")}
       <div class="rangee">
         <section class="carte moitie"><h2>Déposer des photos</h2>
-          <form id="f"><div class="f"><div class="depot"><input id="fichiers" class="vh" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple><label for="fichiers" class="bouton second">Choisir des photos</label><span class="note" id="choisies" aria-live="polite">Aucune photo choisie</span></div>
-          <p class="aide">JPEG, PNG, WebP ou HEIC, 50 Mo au plus chacune.</p></div>
+          <form id="f"><div class="f"><div class="depot">
+            <span class="depot-choix"><input id="appareil" class="vh" type="file" accept="image/*" capture="environment"><label for="appareil" class="bouton second appareil-photo">${APPAREIL}<span>Prendre une photo</span></label></span>
+            <span class="depot-choix"><input id="fichiers" class="vh" type="file" accept="image/*" multiple><label for="fichiers" class="bouton second">${GALERIE}<span class="sur-tel">Choisir dans la galerie</span><span class="sur-ordi">Choisir des photos</span></label></span>
+            <span class="note" id="choisies" aria-live="polite">Aucune photo choisie</span></div>
+          <p class="aide">Plusieurs photos à la fois depuis la galerie. JPEG, PNG, WebP ou HEIC, 50 Mo au plus chacune.</p></div>
           <button class="bouton" type="submit">Envoyer</button><p class="msg" id="msg" role="status"></p></form></section>
         <section class="carte moitie"><div class="carte-tete"><h2>Déjà déposées</h2>${l.length ? `<span class="note">${l.length} ${pluriel(l.length, "photo", "photos")}</span>` : ""}</div>
           ${l.length ? `<ul class="liste">${l.map(x => `<li><div><p class="fort casse">${e(x.nom_fichier || "Photo")}</p><p class="note">${cap(date(x.cree_le))}${x.source === "email" ? ", reçue par email" : ""}</p></div><span class="etat">${ST_PHOTO[x.statut] || e(x.statut)}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune photo pour le moment.</p>`}</section>
@@ -419,9 +424,11 @@
       ${boite ? `<section class="carte" id="photos-email"><h2>Ou par email</h2>
         <p class="texte2">Envoyez vos photos en pièces jointes à <span class="fort casse" id="adresse-photos">${e(boite.adresse)}</span> depuis l'adresse de votre compte${s && s.email ? ` (<span class="casse">${e(s.email)}</span>)` : ""} : elles arrivent ici comme si vous les aviez déposées.</p>
         ${boite.demo ? `<p class="note">Adresse de démonstration : en service, c'est l'adresse réservée aux photos de RENOM. Un email venu d'une autre adresse est refusé.</p>` : ""}</section>` : ""}`;
-    $("fichiers").onchange = () => { const fs = [...$("fichiers").files]; $("choisies").textContent = !fs.length ? "Aucune photo choisie" : fs.length === 1 ? fs[0].name : fs.length + " photos choisies"; };
+    // Deux façons de choisir (appareil photo, galerie) ; l'envoi reste le même pour les deux.
+    const choisies = () => [...$("appareil").files, ...$("fichiers").files];
+    $("appareil").onchange = $("fichiers").onchange = () => { const fs = choisies(); $("choisies").textContent = !fs.length ? "Aucune photo choisie" : fs.length === 1 ? fs[0].name : fs.length + " photos choisies"; };
     $("f").onsubmit = async ev => {
-      ev.preventDefault(); const fs = [...$("fichiers").files];
+      ev.preventDefault(); const fs = choisies();
       if (!fs.length) { msg("Choisissez au moins une photo."); return; }
       let ok = 0; const erreurs = [];
       for (const f of fs) { msg(`Envoi de ${f.name}.`); try { await D.deposer(f); ok++; } catch (er) { erreurs.push(f.name + " : " + er.message); } }
@@ -465,6 +472,9 @@
       : `<section class="carte"><p class="texte2">${VIDE_FILTRE[filtre]}</p></section>`}`
       : `<section class="carte"><h2>Aucun contenu pour le moment</h2><p class="texte2">Déposez vos photos : les contenus créés apparaîtront ici.</p><p class="pied"><a class="bouton" href="#/photos">Déposer des photos</a></p></section><p class="msg" id="msg" role="status"></p>`}`;
     vue.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filtre = b.dataset.f; contenus(); });
+    // Téléphone : les filtres défilent sur une ligne ; le filtre choisi reste visible après le nouveau rendu.
+    const fl = vue.querySelector(".filtres"), fp = fl && fl.querySelector("[aria-pressed=true]");
+    if (fp && fl.scrollWidth > fl.clientWidth) fl.scrollLeft += fp.getBoundingClientRect().left - fl.getBoundingClientRect().left - 8;
     $("proposer-idees").onclick = async () => { ideesOuvertes = !ideesOuvertes; await contenus(); if (ideesOuvertes) $("demande").focus(); };
     if ($("fermer-idees")) $("fermer-idees").onclick = async () => { ideesOuvertes = false; await contenus(); $("proposer-idees").focus(); };
     if ($("demande")) $("demande").onclick = async () => { try { await D.demanderIdees(); await contenus(); msg("Demande enregistrée. Les idées sont dans le panneau ci-dessus."); majCompteurs(); } catch (er) { $("msg-idees").textContent = er.message; } };
@@ -853,6 +863,24 @@
     }));
   }
 
+  // ---------------- Application installable (écran Notifications) : marche à suivre iPhone et Android, bouton direct quand le navigateur le permet.
+  let invitationInstall = null;
+  window.addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); invitationInstall = ev; const b = $("installer-maintenant"); if (b) b.hidden = false; });
+  window.addEventListener("appinstalled", () => { invitationInstall = null; if (ecranCourant === notifications) rendre(); });
+  const installee = () => window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  function blocInstaller() {
+    return `<section class="carte" id="installer" aria-labelledby="inst-titre"><h2 id="inst-titre">Installer l'application sur votre téléphone</h2>
+      ${installee() ? `<p class="texte2">L'application est installée sur cet appareil. Ouvrez-la depuis son icône RENOM pour envoyer vos photos.</p>`
+      : `<p class="texte2">Votre espace s'installe comme une application : une icône RENOM sur l'écran d'accueil, et vous envoyez une photo en deux gestes. Rien à télécharger, aucun mot de passe en plus.</p>
+      <ul class="liste reponses"><li><span class="fort">iPhone</span><span>Ouvrez votre espace dans Safari, touchez Partager (le carré avec une flèche vers le haut), puis Sur l'écran d'accueil.</span></li>
+        <li><span class="fort">Android</span><span>Ouvrez votre espace dans Chrome, touchez le menu (les trois points en haut à droite), puis Installer l'application.</span></li></ul>
+      <div class="actions"><button type="button" class="bouton second" id="installer-maintenant"${invitationInstall ? "" : " hidden"}>Installer maintenant</button></div>`}</section>`;
+  }
+  document.addEventListener("click", async ev => {
+    if (!ev.target.closest("#installer-maintenant") || !invitationInstall) return;
+    const i = invitationInstall; invitationInstall = null; ev.target.closest("#installer-maintenant").hidden = true; i.prompt(); try { await i.userChoice; } catch (er) {}
+  });
+
   // ---------------- Notifications : email de validation (lien à usage unique, 7 jours). WhatsApp : pas maintenant.
   async function notifications() {
     const [c, s] = await Promise.all([D.commerce(), D.session()]), n = c.notifications || { email: true, whatsapp: false };
@@ -869,6 +897,7 @@
           <ul class="liste"><li>Il ouvre le contenu ou la réponse proposée, sans mot de passe.</li><li>Il sert une seule fois.</li><li>Il est valable 7 jours.</li><li>Un avis sensible n'est jamais envoyé par lien : il se traite dans votre espace.</li></ul>
           <p class="note">L'adresse se change dans <a href="#/fiche">votre fiche</a>, champ « Email pour vos alertes ».</p></section>
       </div>
+      ${blocInstaller()}
       ${D.mode === "demo" ? `<section class="carte" aria-labelledby="n-demo"><h2 id="n-demo">Démonstration</h2><p class="texte2">En démonstration, aucun email ne part. Vous pouvez voir ce que vous recevriez.</p>
         <div class="actions"><button type="button" class="bouton second" id="voir-email" aria-expanded="false" aria-controls="apercu-email">Voir l'email de validation</button></div><div id="apercu-email" class="pile" hidden></div></section>` : ""}`;
     $("f-notif").onsubmit = async ev => { ev.preventDefault(); try { await D.enregistrer({ notifications: { email: $("notif-email").checked, whatsapp: false } }); msg("Réglage enregistré."); } catch (er) { msg(er.message); } };
@@ -1018,7 +1047,7 @@
   const vaEtoiles = n => `<svg class="va-etoiles" viewBox="0 0 116 20" role="img" aria-label="${etoiles(n)}">${[0, 1, 2, 3, 4].map(i => `<path transform="translate(${i * 24})" d="M10 1.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.5l6-.8z" ${i < n ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.3"'}></path>`).join("")}</svg>`;
   const vaDemande = x => { const f = VA.FONDS.find(y => y.id === x.fond), s = VA.STYLES.find(y => y.id === x.style);
     return `<li><div><p class="fort">${x.avis_ids.length} avis · ${e(f ? f.nom : x.fond)} · style ${e(s ? s.nom : x.style)}</p><p class="note">Demandée ${jourRelatif(x.cree_le).toLowerCase()} à ${heure(x.cree_le)}${x.demo ? " · rendu simulé (démonstration)" : ""}</p>
-      ${x.statut === "refusee" && x.motif ? `<p class="note">Motif : ${e(x.motif)}</p>` : ""}${x.statut === "traitee" ? `<p class="note"><a href="#/contenus">À valider dans vos contenus</a></p>` : ""}</div><span class="etat${x.statut === "a_traiter" || x.statut === "en_cours" ? " actif" : ""}">${ST_VA[x.statut] || e(x.statut)}</span></li>`; };
+      ${x.statut === "refusee" && x.motif ? `<p class="note">Motif : ${e(x.motif)}</p>` : ""}${x.statut === "traitee" ? `<p class="note"><a class="lien-seul" href="#/contenus">À valider dans vos contenus</a></p>` : ""}</div><span class="etat${x.statut === "a_traiter" || x.statut === "en_cours" ? " actif" : ""}">${ST_VA[x.statut] || e(x.statut)}</span></li>`; };
   const vaQuota = k => `<strong>Une vidéo d'avis compte pour une vidéo de votre offre</strong> : ${k.videos_utilisees} sur ${k.videos_plafond} ${pluriel(k.videos_utilisees, "utilisée", "utilisées")} ce mois-ci.`;
   async function vaSuivre() {
     // Tant qu'une demande attend son rendu, on relit son état toutes les deux secondes, sans redessiner l'écran (la sélection reste).
@@ -1119,4 +1148,6 @@
   document.querySelectorAll("[data-o]").forEach(b => b.onclick = async () => { await D.outilsDemo[b.dataset.o](); rendre(); });
   large.addEventListener("change", () => { dessinerNav(); majCompteurs(); });
   window.addEventListener("hashchange", rendre); rendre();
+  // Application installable : service worker (fichiers statiques de l'espace seulement, réseau d'abord pour la page et les scripts : voir sw.js).
+  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
 })();
