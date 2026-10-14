@@ -177,7 +177,7 @@ legend{padding:0;margin-bottom:4px}
 /* Téléphone : « Prendre une photo » et « Choisir dans la galerie » en pleine largeur, faciles à toucher. Ordinateur : l'appareil photo n'a pas de sens, seul le choix de fichiers reste. */
 @media (max-width:899px){.depot .bouton{flex:1 1 100%;min-height:56px;font-size:17px}form:has(.depot)>.bouton{align-self:stretch;min-height:56px;font-size:17px}}
 .sur-ordi{display:none}
-@media (min-width:900px) and (hover:hover) and (pointer:fine){.depot-choix:has(#appareil),.sur-tel{display:none}.sur-ordi{display:inline}}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){.depot-choix:has(#appareil),.depot-choix:has(#filmer),.sur-tel{display:none}.sur-ordi{display:inline}}
 .depot input:focus-visible+label{outline:2px solid var(--focus);outline-offset:2px}
 .actions input[type=date],.actions input[type=time]{width:auto;min-height:44px;padding:8px 10px;font-size:15px}
 .coul{display:flex;flex-wrap:wrap;gap:12px 28px}
@@ -598,8 +598,46 @@ details.dernieres summary{cursor:pointer;font-weight:700;min-height:44px;padding
 .sty-logo img{max-width:100%;max-height:120px;object-fit:contain}
 .sty-logo .texte2{color:#3A3C44}
 .sty-actions{display:grid;gap:8px}
+/* Style créé par RENOM : résumé du style (client), expressions repliées, demandes de changement, lien de retour de la console */
+.sty-resume{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:4px 0 8px}
+.sty-mots summary{cursor:pointer;display:flex;align-items:center;min-height:44px;font-weight:700;text-decoration:underline;text-underline-offset:3px;list-style:none}
+.sty-mots summary::-webkit-details-marker{display:none}
+.sty-mots-corps{display:grid;gap:12px;margin-top:8px}
+.liste.sty-demandes{display:grid;gap:0;margin:6px 0}
+.liste.sty-demandes li{display:grid;justify-content:stretch;gap:2px;padding:10px 0}
+.liste.sty-demandes li>.note{text-align:left}
+.sty-historique{display:grid;gap:4px}
+.retour-liste{margin:-4px 0 12px}
+.style-ligne{margin-top:8px}
 @media (min-width:900px){
   .colonnes.sty{grid-template-columns:minmax(0,1fr) 340px}
   .sty-grille{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
   .sty-apercu{flex:none}
 }
+
+/* ---------- Dépôt de vidéos (écran Photos et vidéos). Mêmes règles que le reste : ni dégradé, ni trait coloré devant un libellé, aucune couleur orangée.
+   Guide de tournage sur fond creux, liste numérotée simple ; barres de progression dans le bleu des actions. */
+#depot-video,#dv-suivi{display:flex;flex-direction:column;gap:14px}
+.dv-grille{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+.dv-guide{background:var(--creux);border:1px solid var(--filet);border-radius:var(--r-image);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.dv-guide h3{font-size:15px;font-weight:700;line-height:1.3}
+.dv-guide h3+ol,.dv-guide h3+ul{margin-top:-2px}
+.dv-points{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--texte2)}
+.dv-points+h3{margin-top:8px}
+.dv-form{display:flex;flex-direction:column;gap:14px;min-width:0}
+.dv-form textarea{min-height:64px}
+.dv-fichiers:empty{display:none}
+.dv-fichiers li{flex-wrap:wrap;align-items:flex-start}
+.dv-fichiers li>div{flex:1 1 180px}
+.dv-fichiers li .etat{text-align:right;max-width:100%}
+.dv-fichiers li.refuse .etat{color:var(--texte2);font-weight:600;flex:1 1 100%;text-align:left}
+.dv-fichiers .jauge{flex:1 1 100%;margin-top:2px}
+.petit-lien{min-height:44px;padding:8px 0;font-size:14px}
+.dv-ouvert{border-color:var(--bord-fort)}
+.dv-motif{font-size:15px}
+#dv-suivi .liste li{align-items:flex-start}
+#dv-suivi .liste li a{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+@media (min-width:900px){.dv-grille{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+@media (max-width:899px){.dv-form .depot .bouton{flex:1 1 100%;min-height:56px;font-size:17px}.dv-form>.bouton{align-self:stretch;min-height:56px;font-size:17px}}
+.tableau>h2{padding:16px 20px 4px}
+@media (min-width:900px){.tableau>h2{padding:18px 24px 4px}}

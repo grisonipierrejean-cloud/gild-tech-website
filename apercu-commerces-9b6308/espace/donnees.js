@@ -179,6 +179,35 @@
     if (!VIDEO_AVIS.STYLES.some(s => s.id === style)) throw new Error("Choisissez un style de typographie.");
   };
 
+  // ---- Son de plateforme d'une vidéo à poser À LA MAIN dans Metricool (aucun champ de l'API Metricool documenté : moteur/metricool_api.py,
+  // son_plateforme ; même calcul dans n8n/renom-publication.json, « Préparer les posts »). La démonstration imite le workflow à la programmation.
+  const SON_METRICOOL = ["instagram", "tiktok"];
+  const sonPlateforme = (ct, reseaux) => {
+    const m = ct && ct.type === "video" ? (ct.musique || { mode: "plateforme", ambiance: null, volume_video: null, volume_musique: null }) : null;
+    const avec = m && m.mode === "plateforme" ? reseaux.filter(r => SON_METRICOOL.includes(r)) : [];
+    return avec.length ? { code: "MUSIQUE_PLATEFORME_NON_POSEE", reseaux: avec, ambiance: m.ambiance ?? null, volume_video: m.volume_video ?? null,
+      volume_musique: m.volume_musique ?? null, sans_bibliotheque: reseaux.filter(r => !SON_METRICOOL.includes(r)) } : null; };
+
+  // ---- Dépôt de vidéos : règles communes aux deux adaptateurs (valeurs dans espace/web/envoi.js, RENOM_ENVOI.REGLES ; mêmes valeurs et
+  // mêmes refus que le bloc « Dépôt de vidéos » de schema.sql, égalité testée par moteur/tests/test_depot_video.py et rls.test.mjs).
+  const DEPOT_VIDEO = {
+    STATUTS: ["en_envoi", "envoye", "en_montage", "a_valider", "valide", "refuse", "annule", "abandonne"],
+    ATTENTE: ["en_envoi", "envoye", "en_montage"],
+    OUVERT_MS: 24 * 3600000,
+    PHRASES: { sans_video: "Votre offre ne comprend pas de vidéo.", plafond: "Le plafond de vidéos de votre offre est atteint ce mois-ci.",
+      ouvert: "Un envoi de vidéos est déjà en cours : terminez-le ou annulez-le.", ferme: "Ce dépôt n'est plus en cours d'envoi.", introuvable: "Dépôt introuvable.",
+      nb_videos: "Un dépôt contient de 1 à 10 vidéos.", nb_photos: "Un dépôt contient 10 photos au plus.", longue: "Une vidéo dépasse 60 secondes.",
+      refus_commercant: "Vous avez refusé ce montage.", abandon: "Envoi non terminé en 24 h.", efface: "Vidéos d'origine déjà effacées : montage impossible.",
+      relance: "Seul un dépôt envoyé, en montage ou refusé se relance.", note: "Votre note est trop longue (500 caractères au plus)." },
+  };
+  // Refus de la base (Supabase) ramenés aux mêmes phrases que la démonstration ; une phrase inconnue reste telle quelle.
+  const phraseDepot = m => { const P = DEPOT_VIDEO.PHRASES, x = String(m || "");
+    return /ne comprend pas de vidéo/.test(x) ? P.sans_video : /plafond de l'offre atteint/.test(x) ? P.plafond : /déjà en cours/.test(x) ? P.ouvert
+      : /plus en cours d'envoi/.test(x) ? P.ferme : /dépôt introuvable/.test(x) ? P.introuvable : /de 1 à 10 vidéos/.test(x) ? P.nb_videos : /10 photos au plus/.test(x) ? P.nb_photos
+      : /60 secondes/.test(x) ? P.longue : /déjà effacées/.test(x) ? P.efface : /seul un dépôt/.test(x) ? P.relance : /commerce en pause/.test(x) ? "Votre commerce est en pause : contactez RENOM."
+      : /fichier non reçu : (.*)$/.test(x) ? "Fichier non reçu : " + x.match(/fichier non reçu : (.*)$/)[1] + "." : /réservé à l'administrateur/.test(x) ? "Réservé à l'administrateur." : x; };
+  // ---- fin des règles communes du dépôt de vidéos
+
   // ---- Réponses aux commentaires : règles communes aux deux adaptateurs (mêmes valeurs que le bloc « Réponses aux commentaires » de schema.sql)
   const COMMENTAIRES = {
     LIMITE: 1000, CONSERVATION_JOURS: 30,
@@ -235,13 +264,34 @@
     return l.slice(1).map(x => { const c = cellules(x); return { prenom: c[ip] || "", email: String(c[ie] || "").toLowerCase(), date_passage: date(c[id]) }; });
   }
   const TYPES_ALERTE = { ERREUR_WORKFLOW: "Erreur de workflow", PHOTOS_EMAIL_REFUSEES: "Photos par email refusées", MISE_EN_ROUTE_BLOQUEE: "Mise en route bloquée", ECHEC_RELANCE_PROSPECT: "Relance de prospect en échec",
-    AVIS_SENSIBLE_A_EFFACER: "Avis sensible bientôt effacé (30 jours)", COMMENTAIRE_SENSIBLE_A_EFFACER: "Commentaire sensible bientôt effacé (30 jours)" };
+    AVIS_SENSIBLE_A_EFFACER: "Avis sensible bientôt effacé (30 jours)", COMMENTAIRE_SENSIBLE_A_EFFACER: "Commentaire sensible bientôt effacé (30 jours)",
+    // Paiement Stripe (fonction appliquer_evenement_stripe de schema.sql)
+    PAIEMENT_REFUSE: "Paiement refusé", ABONNEMENT_SANS_COMMERCE: "Paiement sans commerce rattaché", REMISE_LANCEMENT_DEJA_UTILISEE: "Remise de lancement utilisée deux fois",
+    ABONNEMENT_RESILIE: "Abonnement résilié" };
   const texteAlerte = a => { const d = a.detail || {};
     if (a.type === "ERREUR_WORKFLOW") return `${d.workflow || "Workflow inconnu"}, nœud ${d.noeud || "inconnu"} : ${d.message || ""}`;
     if (a.type === "PHOTOS_EMAIL_REFUSEES") return `${d.pieces || 0} pièce(s) jointe(s) refusée(s) : ${d.raison || d.statut || ""}. Rien n'a été déposé.`;
     if (a.type === "MISE_EN_ROUTE_BLOQUEE") return `${d.jours} jours après la création, il reste : ${(d.restants || []).map(r => r.point).join(", ")}.`;
+    if (a.type === "PAIEMENT_REFUSE") return `Abonnement ${d.abonnement || ""} : appeler le commerçant sous 24 h.${d.test ? " (mode test)" : ""}`;
+    if (a.type === "ABONNEMENT_SANS_COMMERCE") return `Abonnement ${d.abonnement || ""} payé sans commerce rattaché : le rattacher dans l'éditeur SQL.${d.test ? " (mode test)" : ""}`;
+    if (a.type === "REMISE_LANCEMENT_DEJA_UTILISEE") return `Abonnement ${d.abonnement || ""} : retirer la remise dans Stripe (une fois par commerce).${d.test ? " (mode test)" : ""}`;
+    if (a.type === "ABONNEMENT_RESILIE") return `Abonnement ${d.abonnement || ""} : arrêter les publications en fin de période, retirer les accès sous 7 jours ouvrés.${d.test ? " (mode test)" : ""}`;
     if (/_A_EFFACER$/.test(a.type)) return `Toujours en attente d'une personne. Texte effacé le ${String(d.efface_le || "").slice(0, 10)} (règle des 30 jours) : à traiter avant.`;
     return JSON.stringify(d); };
+  // ---- Paiement Stripe : lien du bouton « Payer / gérer mon abonnement » (adresses publiques de config.js, stripe : {liens, portail, codeLancement,
+  // finLancement}, écrites par outils/stripe_catalogue.py). Abonnement en cours : portail client ; aucun abonnement ou abonnement résilié : lien de paiement
+  // de l'offre, avec l'identifiant du commerce (client_reference_id, relu par le webhook) et le code de lancement prérempli jusqu'à la date limite.
+  // Rien de configuré : pas de bouton (null). Source : https://docs.stripe.com/payment-links/url-parameters et /payment-links/customize, lues le 14/10/2026.
+  const STATUTS_ABONNEMENT = ["en_attente", "actif", "impaye", "resilie"];
+  function lienAbonnement(ab, c, offre, maintenant) {
+    const s = cfg.stripe || {}, https = u => typeof u === "string" && /^https:\/\/[^\s"<>]+$/.test(u) ? u : null;
+    // Abonnement en cours (même impayé) : jamais le lien de paiement, qui créerait un second abonnement ; seulement le portail.
+    if (ab && ab.statut !== "resilie") return https(s.portail);
+    const base = https((s.liens || {})[offre]); if (!base || !c || !/^[A-Za-z0-9_-]{1,200}$/.test(String(c.id || ""))) return null;
+    const q = ["client_reference_id=" + encodeURIComponent(c.id), "locale=fr"], fin = s.finLancement || LANCEMENT.date_limite;
+    if (s.codeLancement && /^[A-Za-z0-9]+$/.test(s.codeLancement) && (maintenant || new Date().toISOString().slice(0, 10)) <= fin) q.push("prefilled_promo_code=" + s.codeLancement);
+    return base + (base.includes("?") ? "&" : "?") + q.join("&");
+  }
   const MODELE_CSV = "prenom;email;date_passage\nCamille;camille@exemple.fr;" + new Date().toISOString().slice(0, 10) + "\n";
   // ---- fin des règles communes des automatisations
 
@@ -250,7 +300,7 @@
     // Deux graines : celle du parcours (demo/etat.json, générée par demo/parcours.py) et la graine PUBLIQUE, entièrement fictive
     // (demo/etat-public.json), choisie par window.RENOM_GRAINE = "public" dans config.js. Chacune a son propre stockage.
     const PUBLIQUE = window.RENOM_GRAINE === "public";
-    const K = "renom-demo-v12" + (PUBLIQUE ? "-public" : "");
+    const K = "renom-demo-v13" + (PUBLIQUE ? "-public" : "");
     let E = null, session = null, pret = null, TF = null;
     // Calendrier des temps forts (copie exacte de moteur/temps_forts/, vérifiée par moteur/tests/test_service.js) : l'idée de la semaine de la démonstration
     // est calculée par le même code que le workflow n8n du lundi. Absent (page sans vendor/temps-forts.js) : pas d'idée de la semaine, rien d'inventé.
@@ -287,6 +337,10 @@
     const jour = (cid, type, detail) => { E.journal.unshift({ id: uid(), commerce_id: cid, type, detail: detail || {}, cree_le: new Date().toISOString() }); };
     const usage = c => E.contenus.filter(x => x.commerce_id === c.id && x.type === "publication" && x.mois === mois0() && x.statut !== "refuse").length + E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length;
     const usageVideos = c => E.contenus.filter(x => x.commerce_id === c.id && x.type === "video" && x.mois === mois0() && x.statut !== "refuse").length;
+    // Dépôts de vidéos en attente de montage (sans contenu encore) : ils réservent leur place, comme la fonction SQL videos_reservees.
+    const depotsAttente = (c, sauf) => liste("depots_video").filter(d => d.commerce_id === c.id && d.mois === mois0() && !d.contenu_id && d.id !== sauf
+      && (["envoye", "en_montage"].includes(d.statut) || (d.statut === "en_envoi" && Date.now() - Date.parse(d.cree_le) < DEPOT_VIDEO.OUVERT_MS))).length;
+    const reserveesVideos = c => usageVideos(c) + (E.videos_avis_demandes || []).filter(x => x.commerce_id === c.id && x.mois === mois0() && ["a_traiter", "en_cours"].includes(x.statut)).length + depotsAttente(c);
     const pasEnPause = c => { if (c.en_pause) throw new Error("Votre commerce est en pause : contactez RENOM."); };
     const repondusCommentaires = c => liste("commentaires").filter(x => x.commerce_id === c.id && ["valide", "a_publier_main", "publie"].includes(x.statut) && x.decide_le && x.decide_le.slice(0, 7) === mois0().slice(0, 7)).length;
     const vc = c => { const o = OFFRES[c.offre_id]; return { commerce_id: c.id, mois: mois0(), offre: c.offre_id, offre_nom: o.nom, en_pause: !!c.en_pause, publications_plafond: o.publications, videos_plafond: o.videos, publications_utilisees: usage(c), videos_utilisees: usageVideos(c), idees_demandees: E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length,
@@ -327,6 +381,56 @@
       c.marque = { ...k, version: 1, maj: new Date().toISOString() }; c.couleurs = MQ.couleursCommerce(c.marque);
       jour(c.id, "MARQUE_PROPOSEE", { source: "photos", version: 1, simule: true }); sauver();
     }
+    // Kit de marque d'un commerce : écran « Votre style » (le commerçant) et panneau « Style du commerce » de la console (RENOM, par = "renom").
+    // Mêmes règles que la base : fautes refusées, version posée ici, auteur (valide_par) posé ici et jamais repris du navigateur, journal du commerce.
+    async function marqueDemo(c) {
+      const MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+      const src = ((c.marque && c.marque.source && c.marque.source.photos) || []).filter(u => /^demo\//.test(u)).map(u => ({ url: u, nom: u.split("/").pop() }));
+      const photos = [...E.photos.filter(p => p.commerce_id === c.id && /^data:image\//.test(p.url || "")).map(p => ({ url: p.url, nom: p.nom_fichier })), ...src].slice(0, 6);
+      return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null, photos,
+        logo: c.marque && c.marque.logo ? ((E.logos || {})[c.marque.logo] || null) : null, demandes: demandesStyleDemo(c) };
+    }
+    const demandesStyleDemo = c => liste("demandes_style").filter(x => x.commerce_id === c.id).sort((a, b) => b.cree_le.localeCompare(a.cree_le)).slice(0, 20);
+    async function logoDemo(c, f) {
+      const MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
+      // Démonstration : le logo est gardé dans ce navigateur, réduit à 512 px (en production : fichier d'origine dans le seau « photos », SVG converti en PNG).
+      const blob = await MQ.enPng(f, 512), url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
+      const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + ".png";
+      E.logos = E.logos || {}; E.logos[chemin] = url; sauver(); return { chemin, url };
+    }
+    // verrouille : état voulu ; explicite : validation demandée par un bouton (« Ça me plaît », « Enregistrer et valider pour le client »).
+    async function enregistrerMarqueDemo(c, kit, verrouille, par, explicite) {
+      const MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+      const m = { ...MQ.sansBase({ ...kit, verrouille: !!verrouille, auto: false }) }; delete m.valide_par;
+      const ancien = c.marque || null, maintenant = new Date().toISOString(), avant = !!(ancien && ancien.verrouille), parAvant = (ancien && ancien.valide_par) || "commercant";
+      // Auteur et date de validation : mêmes règles que le déclencheur regler_marque
+      let vl = m.verrouille ? maintenant : null; m.valide_par = par;
+      if (m.verrouille && avant && !explicite) { m.valide_par = parAvant; vl = ancien.verrouille_le; }
+      else if (m.verrouille && avant && par === parAvant) vl = ancien.verrouille_le;
+      const f = MQ.fautes(m, c.id, cat);
+      if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
+      if (!ancien || MQ.canon(MQ.sansBase(ancien)) !== MQ.canon(m)) {
+        m.version = (+(ancien && ancien.version) || 0) + 1; m.maj = maintenant; m.verrouille_le = vl;
+        const deja = avant && parAvant === "commercant";   // même règle que journaliser_marque
+        jour(c.id, par === "renom" ? (m.verrouille ? "MARQUE_VALIDEE_RENOM" : "MARQUE_REGLEE_RENOM") : m.verrouille && (explicite || !avant) && !deja ? "MARQUE_VALIDEE" : "MARQUE_ENREGISTREE", { version: m.version, par });
+        c.marque = m; c.couleurs = MQ.couleursCommerce(m); sauver();
+      }
+      return c.marque;
+    }
+    // Ce que le commerçant règle lui-même (fonction SQL regler_ma_marque) : logo, expressions, validation. Le reste est réglé par RENOM.
+    const CLES_COMMERCANT = ["logo", "logo_fond", "mots_signature", "a_eviter"];
+    async function reglerMaMarqueDemo(c, p, valider) {
+      const MQ = window.RENOM_MARQUE, cat = await MQ.charger(); p = p || {};
+      if (Object.keys(p).some(k => !CLES_COMMERCANT.includes(k)) || valider === false) throw new Error("Votre style est réglé par RENOM : demandez-lui un changement.");
+      const base = c.marque ? { ...c.marque } : MQ.normaliser(null, c.couleurs, c.metier, c.ton || "", cat);
+      return enregistrerMarqueDemo(c, { ...base, ...p }, valider ? true : !!base.verrouille, "commercant", valider === true);
+    }
+    function demanderChangementStyleDemo(c, texte) {
+      const x = String(texte || "").trim(); if (!x || x.length > 1000) throw new Error("Écrivez votre demande (1 000 caractères au plus).");
+      if (liste("demandes_style").filter(d => d.commerce_id === c.id && Date.now() - Date.parse(d.cree_le) < 86400000).length >= 10) throw new Error("Trop de demandes aujourd'hui. Réessayez demain.");
+      const d = { id: uid(), commerce_id: c.id, texte: x, cree_le: new Date().toISOString(), traitee_le: null }; E.demandes_style.unshift(d);
+      jour(c.id, "STYLE_CHANGEMENT_DEMANDE", { demande: d.id }); sauver(); return d.id;
+    }
     // Faux services (jouent le rôle de n8n, GitHub Actions, Claude, Metricool, Google : rien de réel)
     const faux = {
       creation(photo) {
@@ -343,7 +447,7 @@
         if (d.statut !== "a_traiter") return; const c = E.commerces[d.commerce_id], o = OFFRES[c.offre_id];
         const refuser = motif => { d.statut = "refusee"; d.motif = motif; jour(c.id, "VIDEO_AVIS_REFUSEE", { demande: d.id, raison: motif, simule: true }); };
         if (!o.videos) return refuser("Votre offre ne comprend pas de vidéo.");
-        if (usageVideos(c) >= o.videos) return refuser("Le plafond de vidéos de votre offre est atteint ce mois-ci.");
+        if (usageVideos(c) + depotsAttente(c) >= o.videos) return refuser("Le plafond de vidéos de votre offre est atteint ce mois-ci.");
         const ex = E.video_avis_exemple || {}, id = uid();
         E.contenus.unshift({ id, commerce_id: c.id, photo_id: null, type: "video", format: "video", legende: "Vidéo d'avis de démonstration : rendu simulé par un faux service." + (ex.video_url ? " La vidéo montrée est un exemple produit par le vrai moteur avec des avis fictifs, pas avec votre sélection." : ""),
           visuel_url: ex.visuel_url || null, video_url: ex.video_url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true });
@@ -351,6 +455,20 @@
         emettreJeton(c.id, "contenu", id);
       },
     };
+    // ---- Dépôt de vidéos : FAUX montage. Aucune vidéo n'est montée dans le navigateur : le contenu montre une vidéo d'EXEMPLE de la graine
+    // (montage_exemple), jamais les fichiers déposés, et sa légende le dit.
+    faux.montage = d => {
+      if (!["envoye", "en_montage"].includes(d.statut)) return; const c = E.commerces[d.commerce_id], ex = E.montage_exemple || E.video_avis_exemple || {}, id = uid();
+      E.contenus.unshift({ id, commerce_id: c.id, photo_id: null, depot_video_id: d.id, type: "video", format: "video",
+        legende: "Montage de démonstration : rendu simulé par un faux service." + (ex.video_url ? " La vidéo montrée est un exemple, pas un montage de vos fichiers." : ""),
+        visuel_url: ex.visuel_url || null, video_url: ex.video_url || null, note_modification: null, statut: "a_valider", mois: d.mois, cree_le: new Date().toISOString(), demo: true });
+      Object.assign(d, { statut: "a_valider", contenu_id: id, motif: null, maj_le: new Date().toISOString() }); jour(c.id, "MONTAGE", { depot: d.id, contenu: id, simule: true });
+      emettreJeton(c.id, "contenu", id);
+    };
+    // Décision sur le contenu d'un montage : le dépôt suit (même règle que le déclencheur SQL suivre_contenu_depot).
+    const suivreDepot = ct => { const d = ct.depot_video_id && liste("depots_video").find(x => x.id === ct.depot_video_id && x.contenu_id === ct.id); if (!d) return;
+      d.statut = ["approuve", "programme", "publie"].includes(ct.statut) ? "valide" : ct.statut === "refuse" ? "refuse" : ct.statut === "modification" ? "en_montage" : "a_valider";
+      d.motif = ct.statut === "refuse" ? DEPOT_VIDEO.PHRASES.refus_commercant : null; if (d.statut === "valide") d.valide_le = d.valide_le || new Date().toISOString(); d.maj_le = new Date().toISOString(); };
     const vaDemandes = () => (E.videos_avis_demandes = E.videos_avis_demandes || []);
     // Décision sur un commentaire (espace ou lien) puis, si elle est validée, le faux workflow de publication : accès de Meta non accordé, donc file manuelle.
     function appliquerDecisionCommentaire(x, decision, texte) {
@@ -398,7 +516,7 @@
     // converties au chargement : la démonstration reste à jour quel que soit le jour où on l'ouvre.
     function datesRelatives(G, maintenant) {
       const H = 3600000;
-      ["photos", "contenus", "publications", "idees_demandes", "idees", "avis", "journal", "videos_avis_demandes", "retours_prives", "commentaires"].forEach(k => (G[k] || []).forEach(x => {
+      ["photos", "contenus", "publications", "idees_demandes", "idees", "avis", "journal", "videos_avis_demandes", "retours_prives", "commentaires", "depots_video"].forEach(k => (G[k] || []).forEach(x => {
         if (x.il_y_a_h != null) { x.cree_le = iso(maintenant - x.il_y_a_h * H); delete x.il_y_a_h; }
         if (x.dans_h != null) { x.prevu_le = iso(maintenant + x.dans_h * H); delete x.dans_h; }
         if (x.prevu_il_y_a_h != null) { x.prevu_le = iso(maintenant - x.prevu_il_y_a_h * H); delete x.prevu_il_y_a_h; }
@@ -406,6 +524,9 @@
         if (x.decide_apres_h != null) { x.decide_le = iso(new Date(x.cree_le).getTime() + x.decide_apres_h * H); delete x.decide_apres_h; }
         if (x.mois === "courant") x.mois = mois0(); else if (x.mois === "precedent") x.mois = moisDecale(-1);
       }));
+      // Abonnement fictif de la graine publique : fin de la remise de lancement dans n jours (date du jour décalée), jamais une vraie date de Stripe.
+      (G.abonnements || []).forEach(x => { if (x.remise_fin_dans_j != null) { x.remise_lancement_fin = iso(maintenant + x.remise_fin_dans_j * 24 * H).slice(0, 10); delete x.remise_fin_dans_j; }
+        if (x.maj_il_y_a_h != null) { x.maj_le = iso(maintenant - x.maj_il_y_a_h * H); delete x.maj_il_y_a_h; } });
     }
     function completerGraine(G) {
       if (G.maj_membre) return G; G.maj_membre = 1; E = G;
@@ -803,33 +924,10 @@
         if (!c.marque && url) proposerKitDemo(c, url).catch(() => {});   // premières photos : le kit de marque est proposé (comme le moteur)
       },
       // ---- Kit de marque (écran « Votre style ») : mêmes règles que le moteur et la base (espace/web/marque.js, fonction SQL marque_fautes)
-      async marque() {
-        await init(); const c = cur(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
-        const src = ((c.marque && c.marque.source && c.marque.source.photos) || []).filter(u => /^demo\//.test(u)).map(u => ({ url: u, nom: u.split("/").pop() }));
-        const photos = [...mine("photos").filter(p => /^data:image\//.test(p.url || "")).map(p => ({ url: p.url, nom: p.nom_fichier })), ...src].slice(0, 6);
-        return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null, photos,
-          logo: c.marque && c.marque.logo ? ((E.logos || {})[c.marque.logo] || null) : null };
-      },
-      async deposerLogo(f) {
-        await init(); const c = cur(), MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
-        // Démonstration : le logo est gardé dans ce navigateur, réduit à 512 px (en production : fichier d'origine dans le seau « photos », SVG converti en PNG).
-        const blob = await MQ.enPng(f, 512), url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
-        const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + ".png";
-        E.logos = E.logos || {}; E.logos[chemin] = url; sauver(); return { chemin, url };
-      },
-      async enregistrerMarque(kit, verrouiller) {
-        await init(); const c = cur(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
-        const m = MQ.sansBase({ ...kit, verrouille: !!verrouiller, auto: false }), f = MQ.fautes(m, c.id, cat);
-        if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
-        const ancien = c.marque || null, maintenant = new Date().toISOString();
-        if (!ancien || MQ.canon(MQ.sansBase(ancien)) !== MQ.canon(m)) {      // même règle que le déclencheur regler_marque
-          m.version = (+(ancien && ancien.version) || 0) + 1; m.maj = maintenant;
-          m.verrouille_le = m.verrouille ? (ancien && ancien.verrouille ? ancien.verrouille_le : maintenant) : null;
-          jour(c.id, m.verrouille && !(ancien && ancien.verrouille) ? "MARQUE_VALIDEE" : "MARQUE_ENREGISTREE", { version: m.version });
-          c.marque = m; c.couleurs = MQ.couleursCommerce(m); sauver();
-        }
-        return c.marque;
-      },
+      async marque() { await init(); return marqueDemo(cur()); },
+      async deposerLogo(f) { await init(); return logoDemo(cur(), f); },
+      async reglerMaMarque(p, valider) { await init(); return reglerMaMarqueDemo(cur(), p, valider); },
+      async demanderChangementStyle(texte) { await init(); return demanderChangementStyleDemo(cur(), texte); },
       async contenus() { await init(); return mine("contenus").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async urlVisuel(c) { return c.visuel_url || null; },
       async urlVideo(c) { return c.video_url || null; },
@@ -838,7 +936,7 @@
         if (!c) throw new Error("Contenu introuvable."); if (c.statut !== "a_valider") throw new Error("Ce contenu est déjà traité.");
         if (!["approuve", "modification", "refuse"].includes(statut)) throw new Error("Statut refusé.");
         if (statut === "modification" && !(note || "").trim()) throw new Error("Écrivez un mot pour dire ce qu'il faut modifier.");
-        c.statut = statut; c.note_modification = statut === "modification" ? note.trim() : null; c.decide_le = new Date().toISOString(); jour(cur().id, "CONTENU_" + statut.toUpperCase(), { contenu: id }); sauver();
+        c.statut = statut; c.note_modification = statut === "modification" ? note.trim() : null; c.decide_le = new Date().toISOString(); jour(cur().id, "CONTENU_" + statut.toUpperCase(), { contenu: id }); suivreDepot(c); sauver();
       },
       async idees() { await init(); return mine("idees").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async demanderIdees() {
@@ -856,8 +954,9 @@
         if (!reseaux.length) throw new Error("Choisissez au moins un réseau.");
         for (const r of reseaux) if ((E.comptes[c.id][r] || {}).etat !== "connecte") throw new Error("Réseau non connecté : " + r + ".");
         if (reseaux.some(r => !reseauxPour(ct).includes(r))) throw new Error(ct.type === "video" ? "Une vidéo ne se programme pas sur la fiche Google." : "Une story ne se programme pas sur la fiche Google.");
-        E.publications.push({ id: uid(), commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString(), statut: "programme", cree_le: new Date().toISOString() });
-        ct.statut = "programme"; jour(c.id, "PROGRAMME", { contenu: contenu_id, reseaux }); sauver();
+        const son = sonPlateforme(ct, reseaux), pid = uid();
+        E.publications.push({ id: pid, commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString(), statut: "programme", cree_le: new Date().toISOString(), musique_a_poser: son, musique_posee_le: null });
+        ct.statut = "programme"; jour(c.id, "PROGRAMME", { contenu: contenu_id, reseaux }); if (son) jour(c.id, son.code, { publication: pid, reseaux: son.reseaux, simule: true }); suivreDepot(ct); sauver();
       },
       async deplacer(id, prevu_le) { await init(); const p = mine("publications").find(x => x.id === id); if (!p || p.statut !== "programme") throw new Error("Programmation introuvable."); if (!(new Date(prevu_le) > new Date())) throw new Error(REGLES.futur); p.prevu_le = new Date(prevu_le).toISOString(); sauver(); },
       async annuler(id) { await init(); const p = mine("publications").find(x => x.id === id); if (!p || p.statut !== "programme") throw new Error("Programmation introuvable."); p.statut = "annule"; const ct = mine("contenus").find(x => x.id === p.contenu_id); if (ct) ct.statut = "approuve"; jour(cur().id, "PROGRAMMATION_ANNULEE", { contenu: p.contenu_id }); sauver(); },
@@ -871,6 +970,10 @@
       },
       async comptes() { await init(); const c = cur(); return RESEAUX.map(r => ({ reseau: r, etat: ((E.comptes[c.id] || {})[r] || {}).etat || "non_connecte", detail: ((E.comptes[c.id] || {})[r] || {}).detail || "" })); },
       async compteur() { await init(); return vc(cur()); },
+      // Abonnement (table abonnements, écrite par le seul webhook Stripe) : en démonstration, celui de la graine s'il y en a un, sinon aucun.
+      async abonnement() { await init(); const c = cur(); const a = (E.abonnements || []).filter(x => x.commerce_id === c.id).sort((x, y) => String(y.maj_le || "").localeCompare(String(x.maj_le || "")))[0];
+        return a && STATUTS_ABONNEMENT.includes(a.statut) ? { offre: a.offre, statut: a.statut, stripe_customer: a.stripe_customer || null, remise_lancement_fin: a.remise_lancement_fin || null, maj_le: a.maj_le || null, demo: true } : null; },
+      lienAbonnement,
       async journal() { await init(); return mine("journal").slice(0, 100); },
       // ---- Collecte : page publique et retours privés (voir collecteDemo plus haut)
       ...collecteDemo,
@@ -884,8 +987,7 @@
       async demanderVideoAvis({ avis_ids, fond, style }) {
         await init(); const c = cur(), o = OFFRES[c.offre_id]; pasEnPause(c);
         if (!o.videos) throw new Error("Votre offre ne comprend pas de vidéo.");
-        const attente = vaDemandes().filter(x => x.commerce_id === c.id && x.mois === mois0() && ["a_traiter", "en_cours"].includes(x.statut)).length;
-        if (usageVideos(c) + attente >= o.videos) throw new Error("Le plafond de vidéos de votre offre est atteint ce mois-ci.");
+        if (reserveesVideos(c) >= o.videos) throw new Error("Le plafond de vidéos de votre offre est atteint ce mois-ci.");
         vaControle(avis_ids, fond, style);
         const choisis = avis_ids.map(id => mine("avis").find(a => a.id === id));
         if (choisis.some(a => !a)) throw new Error("Avis introuvable.");
@@ -895,6 +997,61 @@
         vaDemandes().unshift(d); jour(c.id, "VIDEO_AVIS_DEMANDEE", { demande: d.id, simule: true }); sauver();
         setTimeout(() => { faux.videoAvis(d); sauver(); }, 1500);   // faux n8n + faux rendu
         return d.id;
+      },
+      // ---- Dépôt de vidéos (démonstration) : mêmes règles que la base ; l'envoi des fichiers est SIMULÉ (RENOM_ENVOI.simuler), rien ne quitte le navigateur.
+      async depotsVideo() { await init(); const c = cur(); return liste("depots_video").filter(x => x.commerce_id === c.id).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
+      async compteurVideos() { await init(); const c = cur(), o = OFFRES[c.offre_id];
+        return { commerce_id: c.id, mois: mois0(), videos_plafond: o.videos, videos_utilisees: usageVideos(c), videos_reservees: reserveesVideos(c),
+          envois_ouverts: liste("depots_video").filter(d => d.commerce_id === c.id && d.statut === "en_envoi" && Date.now() - Date.parse(d.cree_le) < DEPOT_VIDEO.OUVERT_MS).length }; },
+      async creerDepotVideo({ note } = {}) {
+        await init(); const c = cur(), o = OFFRES[c.offre_id], P = DEPOT_VIDEO.PHRASES; pasEnPause(c);
+        const n = String(note || "").trim(); if (n.length > window.RENOM_ENVOI.REGLES.NOTE_MAX) throw new Error(P.note);
+        if (!o.videos) throw new Error(P.sans_video);
+        if (liste("depots_video").some(d => d.commerce_id === c.id && d.statut === "en_envoi" && Date.now() - Date.parse(d.cree_le) < DEPOT_VIDEO.OUVERT_MS)) throw new Error(P.ouvert);
+        if (reserveesVideos(c) >= o.videos) throw new Error(P.plafond);
+        const d = { id: "dv-" + uid().slice(0, 8), commerce_id: c.id, fichiers: [], details: [], note: n || null, nb_fichiers: 0, nb_videos: 0, duree_totale_s: null, statut: "en_envoi", motif: null,
+          contenu_id: null, mois: mois0(), essais: 0, cree_le: new Date().toISOString(), maj_le: new Date().toISOString(), demo: true, recus: {} };
+        E.depots_video.unshift(d); sauver(); return { id: d.id };
+      },
+      // Fichiers déjà complets dans le dossier du dépôt (reprise après rechargement) : nom -> taille.
+      async fichiersRecus(depot) { await init(); const d = liste("depots_video").find(x => x.id === depot && x.commerce_id === cur().id); return d ? { ...(d.recus || {}) } : {}; },
+      async envoyerFichierDepot(depot, f, rang, o = {}) {
+        await init(); const c = cur(), d = liste("depots_video").find(x => x.id === depot && x.commerce_id === c.id), P = DEPOT_VIDEO.PHRASES;
+        if (!d) throw new Error(P.introuvable); if (d.statut !== "en_envoi") throw new Error(P.ferme);
+        const nom = window.RENOM_ENVOI.nomDansDepot(rang, f), chemin = c.id + "/rushes/" + d.id + "/" + nom;
+        if (o.deja || (d.recus && d.recus[nom] === f.size)) { if (o.onProgress) o.onProgress(f.size, f.size); return { chemin, deja: true }; }
+        await window.RENOM_ENVOI.simuler({ fichier: f, onProgress: o.onProgress, onEtat: o.onEtat, signal: o.signal, debit: o.debit || window.RENOM_DEBIT_DEMO });
+        d.recus = d.recus || {}; d.recus[nom] = f.size; sauver(); return { chemin, deja: false };
+      },
+      async finaliserDepotVideo(depot, details) {
+        await init(); const c = cur(), d = liste("depots_video").find(x => x.id === depot && x.commerce_id === c.id), P = DEPOT_VIDEO.PHRASES, R = window.RENOM_ENVOI.REGLES;
+        if (!d) throw new Error(P.introuvable); if (d.statut !== "en_envoi" || Date.now() - Date.parse(d.cree_le) >= DEPOT_VIDEO.OUVERT_MS) throw new Error(P.ferme);
+        const l = (details || []).map(x => ({ chemin: x.chemin, nom: String(x.nom || "").slice(0, 200), type: /\.(mp4|mov|m4v|webm|3gp)$/i.test(x.chemin) ? "video" : "photo", taille: x.taille, duree_s: x.duree_s == null ? null : +x.duree_s }));
+        for (const x of l) if (!d.recus || !d.recus[x.chemin.split("/").pop()]) throw new Error("Fichier non reçu : " + x.chemin.split("/").pop() + ".");
+        const nv = l.filter(x => x.type === "video").length, np = l.length - nv;
+        if (nv < R.VIDEOS_MIN || nv > R.VIDEOS_MAX) throw new Error(P.nb_videos); if (np > R.PHOTOS_MAX) throw new Error(P.nb_photos);
+        if (l.some(x => x.type === "video" && x.duree_s != null && Math.round(x.duree_s) > R.DUREE_MAX_S)) throw new Error(P.longue);
+        const durees = l.filter(x => x.type === "video" && x.duree_s != null);
+        Object.assign(d, { fichiers: l.map(x => x.chemin), details: l, nb_fichiers: l.length, nb_videos: nv, duree_totale_s: durees.length ? Math.round(durees.reduce((a, x) => a + x.duree_s, 0) * 10) / 10 : null,
+          statut: "envoye", envoye_le: new Date().toISOString(), maj_le: new Date().toISOString() });
+        jour(c.id, "DEPOT_VIDEO", { depot: d.id, videos: nv, photos: np, simule: true }); sauver();
+        // Faux n8n puis faux moteur : « en montage » tout de suite, contenu « à valider » ensuite.
+        setTimeout(() => { if (d.statut === "envoye") { d.statut = "en_montage"; sauver(); } }, 800);
+        setTimeout(() => { faux.montage(d); sauver(); }, window.RENOM_MONTAGE_DEMO_MS || 4000);
+        return { id: d.id, statut: d.statut, nb_videos: nv, nb_photos: np, duree_totale_s: d.duree_totale_s };
+      },
+      async annulerDepotVideo(depot) {
+        await init(); const c = cur(), d = liste("depots_video").find(x => x.id === depot && x.commerce_id === c.id), P = DEPOT_VIDEO.PHRASES;
+        if (!d) throw new Error(P.introuvable); if (d.statut !== "en_envoi") throw new Error(P.ferme);
+        Object.assign(d, { statut: "annule", recus: {}, rushes_effaces_le: new Date().toISOString(), maj_le: new Date().toISOString() }); jour(c.id, "DEPOT_VIDEO_ANNULE", { depot: d.id }); sauver();
+      },
+      async adminDepotsVideo() { await init(); admin(); return liste("depots_video").map(d => ({ ...d, commerce: (E.commerces[d.commerce_id] || {}).nom })).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
+      async adminRelancerMontage(id) {
+        await init(); admin(); const d = liste("depots_video").find(x => x.id === id), P = DEPOT_VIDEO.PHRASES; if (!d) throw new Error(P.introuvable);
+        if (!["envoye", "en_montage", "refuse"].includes(d.statut)) throw new Error(P.relance); if (d.rushes_effaces_le) throw new Error(P.efface);
+        const c = E.commerces[d.commerce_id]; if (d.statut === "refuse" && usageVideos(c) + depotsAttente(c, d.id) + vaDemandes().filter(x => x.commerce_id === c.id && ["a_traiter", "en_cours"].includes(x.statut)).length >= OFFRES[c.offre_id].videos) throw new Error(P.plafond);
+        Object.assign(d, { statut: "envoye", motif: null, contenu_id: null, essais: (d.essais || 0) + 1, maj_le: new Date().toISOString() }); jour(d.commerce_id, "MONTAGE_RELANCE", { depot: d.id, essai: d.essais }); sauver();
+        setTimeout(() => { faux.montage(d); sauver(); }, window.RENOM_MONTAGE_DEMO_MS || 4000);
       },
       // ---- Réponses aux commentaires (démonstration). Aucun réseau n'est appelé : l'accès de Meta n'étant pas accordé, une réponse validée passe
       // dans la file « à publier à la main » de la console, comme le ferait n8n/renom-commentaires-publication.json sans accès.
@@ -909,14 +1066,21 @@
         if (!x || x.statut !== "a_publier_main") throw new Error("Cette réponse n'est pas dans la file à publier à la main.");
         Object.assign(x, { statut: "publie", publie_par: "equipe", reponse: x.reponse_proposee, repondu_le: iso(Date.now()) }); jour(x.commerce_id, "COMMENTAIRE_PUBLIE", { par: "equipe" }); sauver();
       },
+      async adminMusiquesAPoser() { await init(); admin(); return liste("publications").filter(x => x.musique_a_poser && !x.musique_posee_le && ["programme", "envoye"].includes(x.statut)).map(x => ({ ...x, commerce: (E.commerces[x.commerce_id] || {}).nom })).sort((a, b) => a.prevu_le.localeCompare(b.prevu_le)); },
+      async adminMusiquePosee(id) {
+        await init(); admin(); const x = liste("publications").find(y => y.id === id);
+        if (!x || !x.musique_a_poser || x.musique_posee_le) throw new Error("Aucun son à poser pour cette publication.");
+        x.musique_posee_le = iso(Date.now()); jour(x.commerce_id, "MUSIQUE_PLATEFORME_POSEE", { publication: x.id, par: "equipe" }); sauver();
+      },
       // ---- console de PJ
-      async adminCommerces() { await init(); admin(); return Object.values(E.commerces).map(c => ({ ...c, compteur: vc(c), comptes: E.comptes[c.id] || {}, alertes: E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length, sante: santeDemo(c) })); },
+      async adminCommerces() { await init(); admin(); return Object.values(E.commerces).map(c => ({ ...c, compteur: vc(c), comptes: E.comptes[c.id] || {}, alertes: E.avis.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length, sante: santeDemo(c),
+        demandes_style: liste("demandes_style").filter(d => d.commerce_id === c.id && !d.traitee_le).length })); },
       async adminJournal() { await init(); admin(); return E.journal.slice(0, 300).map(j => ({ ...j, commerce: (E.commerces[j.commerce_id] || {}).nom })); },
       async adminAlertes() {
         await init(); admin(); const nom = id => (E.commerces[id] || {}).nom;
         return [...E.avis.filter(a => a.sensible && a.statut === "humain").map(a => ({ type: "Avis sensible", commerce: nom(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })),
           ...liste("commentaires").filter(x => x.categorie === "sensible" && x.statut === "humain").map(x => ({ type: "Commentaire sensible", commerce: nom(x.commerce_id), texte: (x.raisons || []).join(", ") + " : " + (x.texte || "texte effacé après 30 jours").slice(0, 100), date: x.cree_le })),
-          ...E.journal.filter(j => ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"].includes(j.type)).map(j => ({ type: j.type, commerce: nom(j.commerce_id), texte: JSON.stringify(j.detail), date: j.cree_le })),
+          ...E.journal.filter(j => ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION", "SCHEMA_INCOMPLET"].includes(j.type)).map(j => ({ type: j.type, commerce: nom(j.commerce_id), texte: JSON.stringify(j.detail), date: j.cree_le })),
           ...E.publications.filter(p => p.statut === "echec").map(p => ({ type: "Publication en échec", commerce: nom(p.commerce_id), texte: p.erreur || "", date: p.prevu_le })),
           ...liste("alertes_exploitant").map(a => ({ type: TYPES_ALERTE[a.type] || a.type, commerce: nom(a.commerce_id) || "", texte: texteAlerte(a), date: a.cree_le }))];
       },
@@ -929,6 +1093,11 @@
       async adminOffre(id, offre) { await init(); admin(); E.commerces[id].offre_id = offre; jour(id, "OFFRE_CHANGEE", { offre }); sauver(); },
       async adminPause(id, pause) { await init(); admin(); E.commerces[id].en_pause = !!pause; jour(id, pause ? "MISE_EN_PAUSE" : "REPRISE", {}); sauver(); },
       async adminInvitations() { await init(); admin(); return E.invitations.map(i => ({ ...i, commerce: (E.commerces[i.commerce_id] || {}).nom })); },
+      // ---- Style du commerce réglé par RENOM (console) : mêmes règles que « Votre style », auteur « renom » (fonction SQL admin_regler_marque)
+      async adminMarque(cid) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); return { commerce: c, ...(await marqueDemo(c)) }; },
+      async adminDeposerLogo(cid, f) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); return logoDemo(c, f); },
+      async adminEnregistrerMarque(cid, kit, valider) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); const m = await enregistrerMarqueDemo(c, kit, !!valider, "renom", !!valider);
+        demandesStyleDemo(c).forEach(d => { if (!d.traitee_le) d.traitee_le = new Date().toISOString(); }); sauver(); return m; },
       // ---- outils de démonstration (n'existent qu'ici)
       outilsDemo: {
         // Aperçu des emails de validation que le commerçant recevrait (aucun email ne part en démonstration)
@@ -951,7 +1120,7 @@
           E.avis.forEach(a => { if (a.statut === "valide") { a.statut = "publie"; a.reponse = a.reponse_proposee; a.repondu_le = iso(Date.now()); jour(a.commerce_id, "AVIS_PUBLIE", { simule: true }); n++; } });
           liste("actions_fiche").forEach(a => { if (a.statut === "a_publier") { a.statut = "publie"; a.publie_le = iso(Date.now()); jour(a.commerce_id, "ACTION_FICHE_PUBLIEE", { type: a.type, simule: true }); n++; } });
           sauver(); return n; },
-        async rendus() { await init(); E.photos.filter(p => p.statut === "a_traiter").forEach(p => faux.creation(p)); vaDemandes().forEach(d => faux.videoAvis(d)); sauver(); },
+        async rendus() { await init(); E.photos.filter(p => p.statut === "a_traiter").forEach(p => faux.creation(p)); vaDemandes().forEach(d => faux.videoAvis(d)); liste("depots_video").forEach(d => faux.montage(d)); sauver(); },
         // Le service du jour, joué dans le navigateur : les demandes échues passent « envoyées » (rien ne part), avec les mêmes règles d'annulation.
         async serviceDuJour() {
           await init(); let n = 0; const now = Date.now();
@@ -974,6 +1143,31 @@
     const sb = window.supabase.createClient(cfg.supabaseUrl, cfg.publishableKey);
     let cache = null;
     const ok = ({ data, error }) => { if (error) throw new Error(error.message); return data; };
+    // Kit de marque d'un commerce (espace du commerçant et console) : photos et logo du seau « photos » par adresses signées d'une heure.
+    const signe = async ch => { try { const r = await sb.storage.from("photos").createSignedUrl(ch, 3600); return r.data && r.data.signedUrl; } catch (e) { return null; } };
+    async function marqueDe(c) {
+      const MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+      const ph = ok(await sb.from("photos").select("id,chemin,nom_fichier,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(6));
+      const urls = await Promise.all(ph.map(p => signe(p.chemin)));
+      return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null,
+        photos: ph.map((p, i) => ({ url: urls[i], nom: p.nom_fichier })).filter(p => p.url), logo: c.marque && c.marque.logo ? await signe(c.marque.logo) : null,
+        demandes: ok(await sb.from("demandes_style").select("id,texte,cree_le,traitee_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(20)) };
+    }
+    // Logo : seau « photos », <commerce>/marque/logo-<aléa>.<ext> (règles de stockage : storage.sql pour le commerçant, schema.sql pour RENOM). Un SVG est converti en PNG.
+    async function logoDe(c, f) {
+      const MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
+      const blob = MQ.estSvg(f) ? await MQ.enPng(f, 1024) : f;
+      const ext = MQ.estSvg(f) ? "png" : ({ "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" }[f.type] || (f.name.split(".").pop() || "png").toLowerCase().replace("jpeg", "jpg"));
+      const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + "." + ext;
+      ok(await sb.storage.from("photos").upload(chemin, blob, { contentType: MQ.estSvg(f) ? "image/png" : f.type }));
+      return { chemin, url: URL.createObjectURL(blob) };
+    }
+    // Contrôle avant l'envoi (mêmes règles que la base, qui a le dernier mot) : rend le kit sans les champs posés par la base.
+    async function kitControle(kit, cid) {
+      const MQ = window.RENOM_MARQUE, cat = await MQ.charger(), m = MQ.sansBase(kit), f = MQ.fautes(m, cid, cat);
+      if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
+      return m;
+    }
     const self = {
       mode: "supabase",
       async session() { const { data } = await sb.auth.getSession(); if (!data.session) return null; return { email: data.session.user.email, role: (await self.estAdmin()) ? "administrateur" : "commerçant" }; },
@@ -996,31 +1190,19 @@
         ok(await sb.storage.from("photos").upload(chemin, f, { contentType: f.type }));
         ok(await sb.from("photos").insert({ commerce_id: c.id, chemin, nom_fichier: f.name }));
       },
-      async contenus() { const c = await self.commerce(); return ok(await sb.from("contenus").select("id,type,format,statut,legende,legendes,fichier,note_modification,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
-      // ---- Kit de marque (écran « Votre style ») : colonne commerces.marque ; la base contrôle le kit, pose la version et aligne commerces.couleurs.
-      async marque() {
-        const c = await self.commerce(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
-        const ph = ok(await sb.from("photos").select("id,chemin,nom_fichier,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(6));
-        const signe = async ch => { try { const r = await sb.storage.from("photos").createSignedUrl(ch, 3600); return r.data && r.data.signedUrl; } catch (e) { return null; } };
-        const urls = await Promise.all(ph.map(p => signe(p.chemin)));
-        return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null,
-          photos: ph.map((p, i) => ({ url: urls[i], nom: p.nom_fichier })).filter(p => p.url), logo: c.marque && c.marque.logo ? await signe(c.marque.logo) : null };
-      },
-      // Logo : seau « photos », <commerce>/marque/logo-<aléa>.<ext> (règles de stockage existantes). Un SVG est converti en PNG avant le dépôt.
-      async deposerLogo(f) {
-        const MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
-        const c = await self.commerce(), blob = MQ.estSvg(f) ? await MQ.enPng(f, 1024) : f;
-        const ext = MQ.estSvg(f) ? "png" : ({ "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" }[f.type] || (f.name.split(".").pop() || "png").toLowerCase().replace("jpeg", "jpg"));
-        const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + "." + ext;
-        ok(await sb.storage.from("photos").upload(chemin, blob, { contentType: MQ.estSvg(f) ? "image/png" : f.type }));
-        return { chemin, url: URL.createObjectURL(blob) };
-      },
-      async enregistrerMarque(kit, verrouiller) {
-        const MQ = window.RENOM_MARQUE, cat = await MQ.charger(), c = await self.commerce();
-        const m = MQ.sansBase({ ...kit, verrouille: !!verrouiller, auto: false }), f = MQ.fautes(m, c.id, cat);
-        if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
-        ok(await sb.from("commerces").update({ marque: m }).eq("id", c.id)); cache = null;
-        return (await self.commerce()).marque;
+      async contenus() { const c = await self.commerce(); return ok(await sb.from("contenus").select("id,type,format,statut,legende,legendes,fichier,note_modification,cree_le,depot_video_id").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      // ---- Kit de marque (écran « Votre style ») : colonne commerces.marque ; la base contrôle le kit, pose la version, l'auteur et aligne commerces.couleurs.
+      async marque() { return marqueDe(await self.commerce()); },
+      async deposerLogo(f) { return logoDe(await self.commerce(), f); },
+      // Le commerçant ne règle que son logo, ses expressions et la validation (fonction regler_ma_marque) ; le reste est réglé par RENOM.
+      async reglerMaMarque(p, valider) { const r = ok(await sb.rpc("regler_ma_marque", { p: p || {}, p_valider: valider == null ? null : !!valider })); cache = null; return r; },
+      async demanderChangementStyle(texte) { return ok(await sb.rpc("demander_changement_style", { p_texte: String(texte || "") })); },
+      // ---- Style du commerce réglé par RENOM (console) : fonction admin_regler_marque (n'écrit que commerces.marque ; auteur « renom » posé par la base)
+      async adminMarque(cid) { const c = ok(await sb.from("commerces").select("*").eq("id", cid).single()); return { commerce: c, ...(await marqueDe(c)) }; },
+      async adminDeposerLogo(cid, f) { return logoDe({ id: cid }, f); },
+      async adminEnregistrerMarque(cid, kit, valider) {
+        const m = await kitControle({ ...kit, verrouille: !!valider, auto: false }, cid); delete m.valide_par;
+        return ok(await sb.rpc("admin_regler_marque", { p_commerce: cid, p_marque: m, p_valider: !!valider }));
       },
       // Une story s'affiche avec son visuel 9:16, les autres contenus avec le visuel 4:5.
       async urlVisuel(ct) { if (!ct.fichier) return null; const base = ct.type === "video" ? ct.fichier.slice(0, ct.fichier.lastIndexOf("/")) : ct.fichier; const r = ok(await sb.storage.from("contenus").createSignedUrl(base + (formatDe(ct) === "story" ? "/visuel-9x16.jpg" : "/visuel-4x5.jpg"), 3600)); return r.signedUrl; },
@@ -1040,6 +1222,9 @@
       async validerAvis(id, statut, texte) { const m = { statut }; if (texte != null) m.reponse_proposee = texte; const r = ok(await sb.from("avis").update(m).eq("id", id).select()); if (!r.length) throw new Error("Cet avis ne se valide pas ici."); },
       async comptes() { const c = await self.commerce(); const l = ok(await sb.from("comptes_connectes").select("reseau,etat,detail").eq("commerce_id", c.id)); return RESEAUX.map(r => l.find(x => x.reseau === r) || { reseau: r, etat: "non_connecte", detail: "" }); },
       async compteur() { const c = await self.commerce(); return ok(await sb.from("compteur").select("*").eq("commerce_id", c.id).single()); },
+      // Abonnement Stripe du commerce (lecture seule : la table n'est écrite que par le webhook, schema.sql, bloc « abonnements Stripe »).
+      async abonnement() { const c = await self.commerce(); const l = ok(await sb.from("abonnements").select("offre,statut,stripe_customer,remise_lancement_fin,maj_le").eq("commerce_id", c.id).order("maj_le", { ascending: false }).limit(1)); return l[0] || null; },
+      lienAbonnement,
       async journal() { const c = await self.commerce(); return ok(await sb.from("journal").select("*").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
       // ---- Collecte : page publique et retours privés
       async jetonAvis() { return (await self.commerce()).jeton_avis; },
@@ -1055,6 +1240,32 @@
       async deciderCommentaire(id, decision, texte) { if (decision === "valide" && texte != null) controlerDecisionCommentaire({ statut: "a_valider" }, decision, texte); return ok(await sb.rpc("decider_commentaire", { p_id: id, p_decision: decision, p_texte: texte == null ? null : String(texte) })); },
       async adminCommentairesAPublier() { const cs = ok(await sb.from("commerces").select("id,nom")); return ok(await sb.from("commentaires").select("*").eq("statut", "a_publier_main").order("decide_le")).map(x => ({ ...x, commerce: (cs.find(c => c.id === x.commerce_id) || {}).nom })); },
       async adminCommentairePublie(id) { ok(await sb.rpc("admin_commentaire_publie", { p_id: id })); },
+      // Son de plateforme à poser à la main dans Metricool (publications.musique_a_poser, rempli par n8n ; fonction admin_musique_posee).
+      async adminMusiquesAPoser() { const cs = ok(await sb.from("commerces").select("id,nom")); return ok(await sb.from("publications").select("id,commerce_id,contenu_id,reseaux,prevu_le,statut,musique_a_poser").not("musique_a_poser", "is", null).is("musique_posee_le", null).in("statut", ["programme", "envoye"]).order("prevu_le")).map(x => ({ ...x, commerce: (cs.find(c => c.id === x.commerce_id) || {}).nom })); },
+      async adminMusiquePosee(id) { ok(await sb.rpc("admin_musique_posee", { p_id: id })); },
+      // ---- Dépôt de vidéos : table depots_video (lecture, création), fonctions finaliser_depot_video et annuler_depot_video ; fichiers envoyés en TUS
+      // (espace/web/envoi.js) dans le seau « photos », <commerce>/rushes/<dépôt>/. La base revérifie tout ; ses refus sont ramenés aux phrases communes.
+      async depotsVideo() { const c = await self.commerce(); return ok(await sb.from("depots_video").select("id,statut,motif,note,nb_fichiers,nb_videos,duree_totale_s,details,contenu_id,mois,cree_le,envoye_le,valide_le,rushes_effaces_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(30)); },
+      async compteurVideos() { const c = await self.commerce(); return ok(await sb.from("compteur_videos").select("*").eq("commerce_id", c.id).single()); },
+      async creerDepotVideo({ note } = {}) {
+        const c = await self.commerce(), n = String(note || "").trim(); if (n.length > window.RENOM_ENVOI.REGLES.NOTE_MAX) throw new Error(DEPOT_VIDEO.PHRASES.note);
+        const r = await sb.from("depots_video").insert({ commerce_id: c.id, note: n || null }).select("id").single(); if (r.error) throw new Error(phraseDepot(r.error.message)); return r.data;
+      },
+      async fichiersRecus(depot) {
+        const c = await self.commerce(), r = await sb.storage.from("photos").list(c.id + "/rushes/" + depot, { limit: 100 });
+        return Object.fromEntries((r.data || []).filter(x => x.metadata && x.metadata.size != null).map(x => [x.name, +x.metadata.size]));
+      },
+      async envoyerFichierDepot(depot, f, rang, o = {}) {
+        const c = await self.commerce(), chemin = c.id + "/rushes/" + depot + "/" + window.RENOM_ENVOI.nomDansDepot(rang, f);
+        if (o.deja) { if (o.onProgress) o.onProgress(f.size, f.size); return { chemin, deja: true }; }
+        const jeton = async () => { const { data } = await sb.auth.getSession(); return data && data.session ? data.session.access_token : null; };
+        const r = await window.RENOM_ENVOI.envoyer({ fichier: f, seau: "photos", objet: chemin, url: cfg.supabaseUrl, cle: cfg.publishableKey, jeton, onProgress: o.onProgress, onEtat: o.onEtat, signal: o.signal });
+        return { chemin, deja: r.deja };
+      },
+      async finaliserDepotVideo(depot, details) { const r = await sb.rpc("finaliser_depot_video", { p_depot: depot, p_details: details }); if (r.error) throw new Error(phraseDepot(r.error.message)); return r.data; },
+      async annulerDepotVideo(depot) { const r = await sb.rpc("annuler_depot_video", { p_depot: depot }); if (r.error) throw new Error(phraseDepot(r.error.message)); },
+      async adminDepotsVideo() { const cs = ok(await sb.from("commerces").select("id,nom")); return ok(await sb.from("depots_video").select("*").order("cree_le", { ascending: false }).limit(200)).map(d => ({ ...d, commerce: (cs.find(c => c.id === d.commerce_id) || {}).nom })); },
+      async adminRelancerMontage(id) { const r = await sb.rpc("admin_relancer_montage", { p_depot: id }); if (r.error) throw new Error(phraseDepot(r.error.message)); return r.data; },
       async demandesVideoAvis() { const c = await self.commerce(); return ok(await sb.from("videos_avis_demandes").select("id,avis_ids,fond,style,statut,motif,contenu_id,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(20)); },
       async demanderVideoAvis({ avis_ids, fond, style }) { vaControle(avis_ids, fond, style); const c = await self.commerce(); ok(await sb.from("videos_avis_demandes").insert({ commerce_id: c.id, avis_ids, fond, style })); },
       // ---- Mise à jour de l'espace membre : uniquement les tables et fonctions du contrat (ordres/CONTRAT-MAJ-MEMBRE.md)
@@ -1104,14 +1315,14 @@
       validerParJeton: (jeton, decision, texte) => publicSupabase.validerParJeton(jeton, decision, texte),
       async adminCommerces() {
         const cs = ok(await sb.from("commerces").select("*")), ks = ok(await sb.from("compteur").select("*")), cc = ok(await sb.from("comptes_connectes").select("*")), av = ok(await sb.from("avis").select("commerce_id,statut,sensible"));
-        const sa = ok(await sb.rpc("admin_sante_clients", {})) || [];
+        const sa = ok(await sb.rpc("admin_sante_clients", {})) || [], ds = ok(await sb.from("demandes_style").select("commerce_id").is("traitee_le", null));
         return cs.map(c => ({ ...c, compteur: ks.find(k => k.commerce_id === c.id), comptes: Object.fromEntries(cc.filter(x => x.commerce_id === c.id).map(x => [x.reseau, x])), alertes: av.filter(a => a.commerce_id === c.id && a.sensible && a.statut === "humain").length,
-          sante: sa.find(s => s.commerce_id === c.id) || null }));
+          sante: sa.find(s => s.commerce_id === c.id) || null, demandes_style: ds.filter(d => d.commerce_id === c.id).length }));
       },
       async adminJournal() { const cs = ok(await sb.from("commerces").select("id,nom")), j = ok(await sb.from("journal").select("*").order("cree_le", { ascending: false }).limit(300)); return j.map(x => ({ ...x, commerce: (cs.find(c => c.id === x.commerce_id) || {}).nom })); },
       async adminAlertes() {
         const cs = ok(await sb.from("commerces").select("id,nom")), n = id => (cs.find(c => c.id === id) || {}).nom;
-        const av = ok(await sb.from("avis").select("*").eq("sensible", true).eq("statut", "humain")), j = ok(await sb.from("journal").select("*").in("type", ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION"]).order("cree_le", { ascending: false }).limit(50)), p = ok(await sb.from("publications").select("*").eq("statut", "echec"));
+        const av = ok(await sb.from("avis").select("*").eq("sensible", true).eq("statut", "humain")), j = ok(await sb.from("journal").select("*").in("type", ["REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION", "SCHEMA_INCOMPLET"]).order("cree_le", { ascending: false }).limit(50)), p = ok(await sb.from("publications").select("*").eq("statut", "echec"));
         const ae = ok(await sb.from("alertes_exploitant").select("*").order("cree_le", { ascending: false }).limit(50));
         const cm = ok(await sb.from("commentaires").select("commerce_id,raisons,texte,cree_le").eq("categorie", "sensible").eq("statut", "humain"));
         return [...av.map(a => ({ type: "Avis sensible", commerce: n(a.commerce_id), texte: (a.raisons || []).join(", ") + " : " + (a.texte || "").slice(0, 100), date: a.cree_le })), ...j.map(x => ({ type: x.type, commerce: n(x.commerce_id), texte: JSON.stringify(x.detail), date: x.cree_le })), ...p.map(x => ({ type: "Publication en échec", commerce: n(x.commerce_id), texte: x.erreur || "", date: x.prevu_le })),
@@ -1127,7 +1338,7 @@
   }
 
   window.RENOM_DATA = cfg.supabaseUrl && cfg.publishableKey && window.supabase ? supabase() : demo();
-  window.RENOM_OFFRES = OFFRES; window.RENOM_LANCEMENT = LANCEMENT; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES;
+  window.RENOM_OFFRES = OFFRES; window.RENOM_LANCEMENT = LANCEMENT; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES; window.RENOM_DEPOT_VIDEO = DEPOT_VIDEO;
   // ---- Collecte : ce dont la page publique a besoin (aucune session, aucune bibliothèque), et la règle du lien d'avis pour l'espace
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;

@@ -14,7 +14,8 @@
   const ETAPES = I.carte("etape", ["PRODUIT", "PUBLIE", "PROGRAMME", "PROGRAMMATION_ANNULEE", "IDEES", "CONTENU_APPROUVE", "CONTENU_MODIFICATION", "CONTENU_REFUSE", "REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION",
     "AVIS_RECU", "AVIS_A_VALIDER", "AVIS_VALIDE", "AVIS_REFUSE", "AVIS_PUBLIE", "AVIS_SENSIBLE", "MISE_EN_PAUSE", "REPRISE", "OFFRE_CHANGEE", "COMMERCE_CREE", "LEGENDE_MODIFIEE", "EMAIL_VALIDATION",
     "ACTION_FICHE", "ACTION_FICHE_VALIDEE", "ACTION_FICHE_REFUSEE", "ACTION_FICHE_PUBLIEE", "DEMARRAGE", "COMMENTAIRE_VALIDE", "COMMENTAIRE_IGNORE", "COMMENTAIRE_CLOS", "COMMENTAIRE_PUBLIE",
-    "AVIS_EFFACES_30_JOURS", "COMMENTAIRES_EFFACES_30_JOURS"]);
+    "AVIS_EFFACES_30_JOURS", "COMMENTAIRES_EFFACES_30_JOURS", "ABONNEMENT_EN_ATTENTE", "ABONNEMENT_ACTIF", "ABONNEMENT_IMPAYE", "ABONNEMENT_RESILIE"]);
+  const ST_ABO = I.carte("abo.st", ["en_attente", "actif", "impaye", "resilie"]);
   const M = window.RENOM_MAJ;
   const nombre = I.nombre;
   const moisDe = m => new Date(m.slice(0, 7) + "-15T12:00:00");
@@ -173,6 +174,8 @@
   };
   const APPAREIL = trait('<path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle>');
   const GALERIE = trait('<rect x="4" y="4" width="16" height="16" rx="3"></rect><circle cx="9" cy="9.5" r="1.5"></circle><path d="M4 16l4.5-4.5 4 4 3-3L20 17"></path>');
+  const CAMERA = trait('<rect x="3" y="7" width="13" height="10" rx="2"></rect><path d="M16 11l5-3v8l-5-3z"></path>');
+  const FILM = trait('<rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M10 9l5 3-5 3z"></path>');
   const large = window.matchMedia("(min-width: 900px)");
   const nb = { contenus: 0, avis: 0, commentaires: 0 }; let offreNom = "", route = "accueil", connecte = false;
   const compte = k => `<span class="nb" data-nb="${k}"${nb[k] ? "" : " hidden"}><span data-n>${nb[k] || ""}</span><span class="vh">${t("nav.a.traiter")}</span></span>`;
@@ -418,6 +421,7 @@
         <section class="carte moitie"><div class="carte-tete"><h2>${t("photos.deja")}</h2>${l.length ? `<span class="note">${t("photos.n", { n: l.length })}</span>` : ""}</div>
           ${l.length ? `<ul class="liste">${l.map(x => `<li><div><p class="fort casse">${e(x.nom_fichier || t("photo"))}</p><p class="note">${cap(date(x.cree_le))}${x.source === "email" ? t("photos.par.email") : ""}</p></div><span class="etat">${ST_PHOTO[x.statut] || e(x.statut)}</span></li>`).join("")}</ul>` : `<p class="texte2">${t("photos.vide")}</p>`}</section>
       </div>
+      ${await blocDepotVideo(c)}
       ${boite ? `<section class="carte" id="photos-email"><h2>${t("photos.email.titre")}</h2>
         <p class="texte2">${t("photos.email.texte", { adresse: `<span class="fort casse" id="adresse-photos">${e(boite.adresse)}</span>`, compte: s && s.email ? ` (<span class="casse">${e(s.email)}</span>)` : "" })}</p>
         ${boite.demo ? `<p class="note">${t("photos.email.demo")}</p>` : ""}</section>` : ""}`;
@@ -431,6 +435,151 @@
       for (const f of fs) { msg(t("photos.envoi.de", { nom: f.name })); try { await D.deposer(f); ok++; } catch (er) { erreurs.push(f.name + t("deux.points") + ph(er.message)); } }
       await photos(); msg(t("photos.deposees", { n: ok }) + (erreurs.length ? t("photos.refusees", { l: erreurs.join(" ; ") }) : ""));
     };
+    brancherDepotVideo();
+  }
+
+  // ---------------- Dépôt de vidéos (écran Photos et vidéos). Règles et envoi : espace/web/envoi.js ; base : bloc « Dépôt de vidéos » de schema.sql.
+  // État gardé hors de l'écran : un envoi continue si l'on change d'écran, et l'écran le retrouve à son retour.
+  const EN = window.RENOM_ENVOI, DV = window.RENOM_DEPOT_VIDEO;
+  const ST_DV = I.carte("dv.st", DV.STATUTS);
+  const dv = { fichiers: [], envoi: false, interrompu: false, reseau: "", ctrl: null, note: "", n: 0, depot: null };
+  const mo = n => nombre(Math.max(0.1, n / EN.MO), n < 10 * EN.MO ? 1 : 0);
+  const taille = n => t("dv.f.mo", { n: mo(n) });
+  const secondes = d => t("dv.f.secondes", { n: nombre(d, d < 10 && d % 1 ? 1 : 0) });
+  const pourcent = x => x.f.size ? Math.min(100, Math.floor((x.envoyes || 0) / x.f.size * 100)) : 0;
+  function etatFichier(x) {
+    const c = x.ctrl;
+    if (!c) return t("dv.f.controle");
+    if (c.raison === "lourde") return t("dv.r.lourde", { t: taille(c.taille), max: nombre(EN.REGLES.VIDEO_MAX_MO) });
+    if (c.raison === "longue") return t("dv.r.longue", { d: secondes(c.duree), max: EN.REGLES.DUREE_MAX_S });
+    if (c.raison) return t("dv.r." + c.raison);
+    if (x.etat === "recu") return t("dv.f.recu");
+    if (x.etat === "envoi") return t("dv.f.envoi", { p: pourcent(x) });
+    if (x.etat === "interrompu") return t("dv.f.interrompu", { p: pourcent(x) });
+    return dv.envoi ? t("dv.f.attente") : t("dv.f.ok");
+  }
+  const metaFichier = x => !x.ctrl || x.ctrl.raison === "format" ? "" : x.ctrl.genre === "photo" ? t("dv.f.photo", { t: taille(x.f.size) })
+    : t("dv.f.video", { d: x.ctrl.duree == null ? t("dv.f.duree.inconnue") : secondes(x.ctrl.duree), t: taille(x.f.size) });
+  const ligneFichier = x => `<li data-dvf="${x.id}"${x.ctrl && x.ctrl.raison ? ' class="refuse"' : ""}><div><p class="fort casse">${e(x.f.name)}</p><p class="note" data-dv-meta>${metaFichier(x)}</p></div>
+    <span class="etat${x.etat === "recu" ? " actif" : ""}" data-dv-etat>${etatFichier(x)}</span>
+    ${!dv.envoi && x.etat !== "recu" ? `<button type="button" class="lien petit-lien" data-dv-retirer="${x.id}" aria-label="${e(t("dv.retirer.nom", { nom: x.f.name }))}">${t("dv.retirer")}</button>` : ""}
+    ${x.ctrl && !x.ctrl.raison && (dv.envoi || x.etat) ? `<div class="jauge" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pourcent(x)}" aria-label="${e(x.f.name)}"><span style="width:${pourcent(x)}%"></span></div>` : ""}</li>`;
+  const valables = () => dv.fichiers.filter(x => x.ctrl && !x.ctrl.raison);
+  function dvDessinerListe() {
+    const ul = $("dv-fichiers"); if (!ul) return;
+    ul.innerHTML = dv.fichiers.map(ligneFichier).join("");
+    const ok = valables(), nv = ok.filter(x => x.ctrl.genre === "video").length, np = ok.length - nv;
+    $("dv-choisies").textContent = dv.fichiers.length ? t("dv.choisies", { v: nv, p: np }) : t("dv.aucun.fichier");
+    $("dv-lourde").hidden = !dv.fichiers.some(x => x.ctrl && x.ctrl.raison === "lourde");
+    const b = $("dv-envoyer"); if (b) { b.textContent = t(dv.interrompu ? "dv.reprendre" : "dv.envoyer"); b.disabled = dv.envoi; }
+    document.querySelectorAll("#depot-video input[type=file]").forEach(i => { i.disabled = dv.envoi; });
+    if ($("dv-note")) $("dv-note").disabled = dv.envoi;
+  }
+  // Mise à jour d'une ligne pendant l'envoi, sans redessiner l'écran (la page reste lisible et le défilement ne saute pas).
+  function dvMajLigne(x) {
+    const li = document.querySelector(`[data-dvf="${x.id}"]`); if (!li) return;
+    li.querySelector("[data-dv-etat]").textContent = etatFichier(x); li.querySelector("[data-dv-etat]").classList.toggle("actif", x.etat === "recu");
+    const j = li.querySelector(".jauge"); if (j) { const p = pourcent(x); j.setAttribute("aria-valuenow", p); j.firstElementChild.style.width = p + "%"; }
+  }
+  const dvMsg = x => { const m = $("dv-msg"); if (m) m.textContent = x; };
+  async function ajouterFichiers(liste) {
+    for (const f of liste) { const x = { id: "f" + (++dv.n), f, ctrl: null, etat: "", envoyes: 0 }; dv.fichiers.push(x); }
+    dv.interrompu = false; dvDessinerListe();
+    await Promise.all(dv.fichiers.filter(x => !x.ctrl).map(async x => { x.ctrl = await EN.controler(x.f); }));
+    dvDessinerListe();
+  }
+  window.addEventListener("beforeunload", ev => { if (dv.envoi) { ev.preventDefault(); ev.returnValue = t("dv.quitter"); return t("dv.quitter"); } });
+  async function envoyerDepot(ouvert) {
+    if (dv.envoi) return;
+    const ok = valables(), nv = ok.filter(x => x.ctrl.genre === "video").length, np = ok.length - nv;
+    if (dv.fichiers.some(x => !x.ctrl)) return;
+    const ens = EN.controlerEnsemble(nv, np); if (ens) { dvMsg(t("dv.ens." + ens.code, { n: ens.n })); return; }
+    dv.envoi = true; dv.interrompu = false; dv.ctrl = new AbortController(); dvDessinerListe();
+    let x = null;
+    try {
+      const depot = dv.depot || (ouvert ? ouvert.id : (await D.creerDepotVideo({ note: $("dv-note") ? $("dv-note").value : dv.note })).id); dv.depot = depot;
+      const recus = await D.fichiersRecus(depot);
+      for (let i = 0; i < ok.length; i++) {
+        x = ok[i]; dvMsg(dv.reseau === "hors_ligne" ? t("dv.hors.ligne") : t("dv.envoi.en.cours", { i: i + 1, n: ok.length }));
+        if (x.etat === "recu" && x.chemin) continue;
+        // Fichier déjà complet dans le dossier du dépôt (envoi repris après un rechargement) : il ne repart pas.
+        x.etat = "envoi"; dvMajLigne(x);
+        const r = await D.envoyerFichierDepot(depot, x.f, i, { signal: dv.ctrl.signal, deja: recus[EN.nomDansDepot(i, x.f)] === x.f.size,
+          onProgress: (a) => { x.envoyes = a; dvMajLigne(x); },
+          onEtat: et => { dv.reseau = et; dvMsg(et === "hors_ligne" ? t("dv.hors.ligne") : et === "nouvel_essai" ? t("dv.nouvel.essai") : t("dv.envoi.en.cours", { i: i + 1, n: ok.length })); } });
+        x.chemin = r.chemin; x.etat = "recu"; x.envoyes = x.f.size; dvMajLigne(x);
+      }
+      x = null;
+      const res = await D.finaliserDepotVideo(depot, ok.map(y => ({ chemin: y.chemin, nom: y.f.name, taille: y.f.size, duree_s: y.ctrl.duree })));
+      dv.fichiers = []; dv.envoi = false; dv.note = ""; dv.depot = null;
+      await photos(); dvMsg(t("dv.envoye", { v: res.nb_videos, p: res.nb_photos })); majCompteurs();
+    } catch (er) {
+      dv.envoi = false; if (x && x.etat === "envoi") x.etat = "interrompu"; dv.interrompu = !!x;
+      dvDessinerListe(); dvMsg(er && er.annule ? ph(er.message) : x ? t("dv.interrompu") + (er && er.statut ? " (" + ph(er.message) + ")" : "") : ph(er.message));
+      if (!x) await dvRafraichirSuivi();
+    }
+  }
+  const dvLigneDepot = d => {
+    const duree = d.duree_totale_s != null ? secondes(+d.duree_totale_s) : "";
+    return `<li data-depot="${e(d.id)}"><div><p class="fort">${t("dv.depot.du", { d: cap(date(d.cree_le)) })}</p>
+      ${d.statut !== "en_envoi" && d.nb_videos ? `<p class="note">${t("dv.depot.contenu", { v: d.nb_videos, p: (d.nb_fichiers || 0) - d.nb_videos, d: duree })}</p>` : ""}
+      ${d.note ? `<p class="note">${t("dv.depot.note", { x: `<span${lc()}>${e(d.note)}</span>` })}</p>` : ""}
+      ${d.motif && ["refuse", "abandonne"].includes(d.statut) ? `<p class="texte2 dv-motif">${e(ph(d.motif))}</p>` : ""}
+      ${d.statut === "a_valider" ? `<p><a href="#/contenus">${t("dv.voir.valider")}</a></p>` : ""}
+      ${d.rushes_effaces_le ? `<p class="note">${t("dv.efface.le", { d: date(d.rushes_effaces_le) })}</p>` : ""}</div>
+      <span class="etat${d.statut === "a_valider" ? " actif" : ""}">${ST_DV[d.statut] || e(d.statut)}</span></li>`;
+  };
+  const dvSuivi = l => `<div class="carte-tete"><h2>${t("dv.suivi.titre")}</h2></div>${l.length ? `<ul class="liste">${l.map(dvLigneDepot).join("")}</ul>` : `<p class="texte2">${t("dv.suivi.vide")}</p>`}
+    <p class="note">${t("dv.conservation")}</p>`;
+  let dvMinuteur = null;
+  async function dvRafraichirSuivi() {
+    const s_ = $("dv-suivi"); if (!s_) return; const l = await D.depotsVideo(); s_.innerHTML = dvSuivi(l); dvSurveiller(l);
+  }
+  // Tant qu'un dépôt est envoyé ou en montage et que l'écran reste ouvert : le suivi se relit toutes les 15 secondes (une lecture de la table).
+  function dvSurveiller(l) {
+    clearTimeout(dvMinuteur);
+    if (l.some(d => ["envoye", "en_montage"].includes(d.statut))) dvMinuteur = setTimeout(() => { if (ecranCourant === photos && !dv.envoi && $("dv-suivi")) dvRafraichirSuivi().catch(() => {}); }, window.RENOM_SUIVI_MS || 15000);
+  }
+  let dvOuvert = null;
+  async function blocDepotVideo(c) {
+    const [k, l] = await Promise.all([D.compteurVideos(), D.depotsVideo()]), o = window.RENOM_OFFRES[c.offre_id] || {};
+    if (!k.videos_plafond) return `<section class="carte" id="depot-video"><h2>${t("dv.sans.titre")}</h2><p class="texte2">${t("dv.sans.texte", { offre: e(o.nom || c.offre_id) })}</p>
+      <p class="pied"><a class="bouton second" href="#/offre">${t("dv.voir.offres")}</a></p></section>${l.length ? `<section class="carte" id="dv-suivi">${dvSuivi(l)}</section>` : ""}`;
+    dvOuvert = l.find(d => d.statut === "en_envoi" && Date.now() - Date.parse(d.cree_le) < DV.OUVERT_MS) || null;
+    const attente = k.videos_reservees - k.videos_utilisees, plein = k.videos_reservees >= k.videos_plafond && !dvOuvert;
+    const plans = t("dv.plans." + (c.metier === "restaurant" ? "restaurant" : "autre"));
+    return `<section class="carte" id="depot-video" aria-labelledby="dv-titre">
+      <div class="carte-tete"><h2 id="dv-titre">${t("dv.titre")}</h2><span class="note" id="dv-compteur">${t("dv.compteur", { a: k.videos_reservees, b: k.videos_plafond })}${attente > 0 ? t("dv.compteur.attente", { n: attente }) : ""}</span></div>
+      <p class="texte2">${t("dv.chapo")}</p>
+      ${dvOuvert && !dv.envoi ? `<div class="alerte dv-ouvert" role="status"><div><p class="fort">${t("dv.ouvert.titre")}</p><p>${t("dv.ouvert.texte", { d: I.dateHeureDans(dvOuvert.cree_le) })}</p>
+        <p><button type="button" class="lien" id="dv-annuler">${t("dv.annuler")}</button></p></div></div>` : ""}
+      <div class="dv-grille">
+        <div class="dv-guide"><h3>${t("dv.guide.titre")}</h3><ol class="dv-points">${[1, 2, 3, 4, 5].map(i => `<li>${t("dv.guide." + i)}</li>`).join("")}</ol>
+          <h3>${t("dv.plans.titre." + (c.metier === "restaurant" ? "restaurant" : "autre"))}</h3><ul class="dv-points">${plans.map(x => `<li>${x}</li>`).join("")}</ul></div>
+        ${plein ? `<div><p class="texte2" id="dv-plein">${t("dv.plafond")}</p><p class="msg" id="dv-msg" role="status" aria-live="polite"></p></div>` : `<form id="fv" class="dv-form" novalidate><div class="f"><div class="depot">
+            <span class="depot-choix"><input id="filmer" class="vh" type="file" accept="video/*" capture="environment"><label for="filmer" class="bouton second appareil-photo">${CAMERA}<span>${t("dv.filmer")}</span></label></span>
+            <span class="depot-choix"><input id="videos" class="vh" type="file" accept="video/*" multiple><label for="videos" class="bouton second">${FILM}<span>${t("dv.choisir")}</span></label></span>
+            <span class="depot-choix"><input id="photos-depot" class="vh" type="file" accept="image/*" multiple><label for="photos-depot" class="bouton second">${GALERIE}<span>${t("dv.photos")}</span></label></span>
+            <span class="note" id="dv-choisies" aria-live="polite">${t("dv.aucun.fichier")}</span></div>
+            <p class="aide">${t("dv.aide", { duree: EN.REGLES.DUREE_MAX_S, max: nombre(EN.REGLES.VIDEO_MAX_MO) })}</p></div>
+          <ul class="liste dv-fichiers" id="dv-fichiers" aria-live="off"></ul>
+          <div class="alerte dv-lourde" id="dv-lourde" hidden><div><p class="fort">${t("dv.lourde.titre")}</p><p>${t("dv.lourde.texte")}</p><p>${t("dv.lourde.iphone")}</p><p>${t("dv.lourde.android")}</p></div></div>
+          ${dvOuvert ? "" : `<div class="f"><label for="dv-note">${t("dv.note")}</label><textarea id="dv-note" maxlength="${EN.REGLES.NOTE_MAX}" rows="2" aria-describedby="dv-note-aide">${e(dv.note)}</textarea><p class="aide" id="dv-note-aide">${t("dv.note.aide")}</p></div>`}
+          <button class="bouton" type="submit" id="dv-envoyer">${t("dv.envoyer")}</button><p class="msg" id="dv-msg" role="status" aria-live="polite"></p></form>`}
+      </div></section>
+      <section class="carte" id="dv-suivi">${dvSuivi(l)}</section>`;
+  }
+  function brancherDepotVideo() {
+    D.depotsVideo().then(dvSurveiller).catch(() => {});
+    if (!$("fv")) return;
+    dvDessinerListe();
+    ["filmer", "videos", "photos-depot"].forEach(id => { $(id).onchange = async () => { const l = [...$(id).files]; $(id).value = ""; if (l.length) await ajouterFichiers(l); }; });
+    $("dv-fichiers").onclick = ev => { const b = ev.target.closest("[data-dv-retirer]"); if (!b || dv.envoi) return; dv.fichiers = dv.fichiers.filter(x => x.id !== b.dataset.dvRetirer); dvDessinerListe(); };
+    if ($("dv-note")) $("dv-note").oninput = () => { dv.note = $("dv-note").value; };
+    $("fv").onsubmit = ev => { ev.preventDefault(); envoyerDepot(dvOuvert); };
+    if ($("dv-annuler")) $("dv-annuler").onclick = async () => { try { await D.annulerDepotVideo(dvOuvert.id); dv.fichiers = []; dv.interrompu = false; dv.depot = null; await photos(); dvMsg(t("dv.annule")); } catch (er) { dvMsg(ph(er.message)); } };
+    if ($("dv-annuler") && dv.depot && dvOuvert && dv.depot !== dvOuvert.id) dv.depot = null;
+    if (dv.envoi) dvMsg(dv.reseau === "hors_ligne" ? t("dv.hors.ligne") : t("dv.envoi.en.cours", { i: valables().findIndex(x => x.etat !== "recu") + 1, n: valables().length }));
   }
 
   // ---------------- Contenus
@@ -462,7 +611,7 @@
       ${l.length ? `<div class="filtres" role="group" aria-label="${t("filtres.aria")}">${FILTRES.map(([k, nom]) => `<button type="button" data-f="${k}" aria-pressed="${k === filtre}">${nom}, ${nbf[k]}</button>`).join("")}</div>
       <p class="msg" id="msg" role="status"></p>
       ${liste.length ? `<div class="cartes">${liste.map((x, i) => `<article class="carte contenu" data-contenu="${e(x.id)}">
-        <p class="meta"><span>${formatCourt(x)} · ${jourRelatif(x.cree_le)}</span><span class="etat${x.statut === "a_valider" ? " actif" : ""}">${ST_CONTENU[x.statut] || e(x.statut)}</span></p>
+        <p class="meta"><span>${formatCourt(x)}${x.depot_video_id ? " · " + t("dv.montage.de.vos") : ""} · ${jourRelatif(x.cree_le)}</span><span class="etat${x.statut === "a_valider" ? " actif" : ""}">${ST_CONTENU[x.statut] || e(x.statut)}</span></p>
         ${blocReseaux(x, urls[i], vids[i])}<div class="contenu-corps">
         ${x.note_modification ? `<p class="note">${t("contenus.demande")}<span${lc()}>${e(x.note_modification)}</span></p>` : ""}
         ${x.statut === "a_valider" ? decisions(x, t("contenus.refuser")) : x.statut === "approuve" ? boutonsAuto(x.id, c.metier) : ""}</div></article>`).join("")}</div>`
@@ -707,7 +856,9 @@
   const dateLimiteLancement = () => I.dateLongue(LANC.date_limite);
   const euros = x => t("euros", { x: nombre(x) });
   async function offre() {
-    const [k, j, c] = await Promise.all([D.compteur(), D.journal(), D.commerce()]); const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00");
+    const [k, j, c, ab] = await Promise.all([D.compteur(), D.journal(), D.commerce(), D.abonnement ? D.abonnement().catch(() => null) : null]); const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00");
+    // Abonnement Stripe : état écrit par le webhook (table abonnements) ; bouton seulement si un lien est configuré (config.js, stripe).
+    const lien = D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre) : null, remise = ab && ab.remise_lancement_fin && ab.statut !== "resilie" && ab.remise_lancement_fin >= window.RENOM_MAJ.aujourdhui();
     vue.innerHTML = `${pauseBandeau(c)}${entete(t("offre.sur"), t("offre.titre.nom", { nom: e(k.offre_nom) }))}
       <div class="rangee">
         <section class="carte moitie"><div class="carte-tete"><h2>${t("ce.mois")}</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
@@ -721,6 +872,11 @@
       ${o.prix_ht ? `<section class="carte" id="offre-prix"><h2>${t("offre.prix.titre")}</h2><p class="prix-offre"><span class="chiffre">${euros(o.prix_ht)}</span> ${t("offre.ht.mois")}</p>
         <p class="texte2 lecture">${t("offre.lancement", { date: dateLimiteLancement(), mois: LANC.duree_mois, prix: euros(o.prix_lancement_ht) })}</p>
         <p class="note">${t("offre.cgv")}</p></section>` : ""}
+      <section class="carte" id="offre-abonnement"><div class="carte-tete"><h2>${t("abo.titre")}</h2>${ab ? `<span class="etat${ab.statut === "actif" ? " actif" : ""}" id="abo-statut">${ST_ABO[ab.statut] || e(ab.statut)}</span>` : ""}</div>
+        <p class="texte2 lecture">${ab ? t("abo.texte." + ab.statut) : t("abo.aucun")}</p>
+        ${remise ? `<p class="texte2 lecture" id="abo-remise">${t("abo.remise", { date: I.dateLongue(ab.remise_lancement_fin) })}</p>` : ""}
+        ${lien ? `<p class="pied"><a class="bouton" id="offre-payer" href="${e(lien)}" target="_blank" rel="noopener">${t("abo.bouton")}</a></p><p class="note">${t(ab && ab.statut !== "resilie" ? "abo.note.portail" : lien.includes("prefilled_promo_code=") ? "abo.note.paiement.code" : "abo.note.paiement")}</p>`
+          : D.mode === "demo" ? `<p class="note">${t("abo.demo")}</p>` : ""}</section>
       <section class="carte"><h2>${t("offre.plafond.titre")}</h2><p class="texte2 lecture">${t("offre.plafond.texte")}</p></section>
       <section class="carte"><h2>${t("offre.historique")}</h2>${j.length ? `<ul class="liste">${j.slice(0, 12).map(x => `<li><span>${e(ETAPES[x.type] || cap(String(x.type || "").toLowerCase().replace(/_/g, " ")))}${x.detail && x.detail.raison ? `<span class="note">${t("deux.points")}${e(ph(x.detail.raison))}</span>` : ""}</span><span class="note">${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">${t("offre.aucune.etape")}</p>`}</section>`;
   }
@@ -1041,7 +1197,7 @@
   // Tout ce qui concerne la vidéo d'avis est dans ce bloc (écran, entrée de menu, libellés du journal) ; les règles sont dans donnees.js.
   const VA = window.RENOM_VIDEO_AVIS;
   GROUPES.find(g => g.id === "creer").ecrans.push("videoavis"); ECRANS.videoavis = t("ecran.videoavis");
-  Object.assign(ETAPES, I.carte("etape", ["VIDEO_AVIS", "VIDEO_AVIS_DEMANDEE", "VIDEO_AVIS_REFUSEE"]));
+  Object.assign(ETAPES, I.carte("etape", ["VIDEO_AVIS", "VIDEO_AVIS_DEMANDEE", "VIDEO_AVIS_REFUSEE", "DEPOT_VIDEO", "DEPOT_VIDEO_ANNULE", "MONTAGE", "MONTAGE_RELANCE", "RUSHES_A_EFFACER", "RUSHES_EFFACES", "MUSIQUE_PLATEFORME_NON_POSEE", "MUSIQUE_PLATEFORME_POSEE"]));
   const ST_VA = I.carte("va.st", ["a_traiter", "en_cours", "traitee", "refusee"]);
   // Noms des styles et des fonds : ceux de donnees.js (égalité testée avec le moteur), traduits à l'affichage d'après leur identifiant.
   const vaNomStyle = s => I.ou("va.style." + s.id, s.nom), vaFond = f => ({ nom: I.ou("va.fond." + f.id, f.nom), note: I.ou("va.fond.note." + f.id, f.note) });
@@ -1137,121 +1293,28 @@
   // ---- fin du bloc Vidéo d'avis ------------------------------------------------------------------------------------
 
   // ---- Votre style (kit de marque) ---------------------------------------------------------------------------------
-  // Écran du groupe « Mon commerce » : logo, couleurs, polices, modèle préféré, ambiance des vidéos, expressions maison et à éviter.
-  // Aperçus des 3 gabarits dessinés avec une photo du commerce (espace/web/marque.js, règles de moteur/gabarits.py). « C'est mon style » verrouille le kit.
-  // Tant qu'il n'est pas validé, les contenus partent avec le kit proposé et l'accueil affiche la carte « Validez votre style en 1 minute ».
+  // Le style est créé par RENOM (console, panneau « Style du commerce ») à partir du logo et des photos. Écran du groupe « Mon commerce » :
+  // le style montré sur les photos du commerce (aperçus des 3 gabarits), le logo à déposer, « Ça me plaît », « Je voudrais un changement »,
+  // et les expressions maison / à éviter en option repliée. Aucune couleur, police ni ambiance à choisir ici.
+  // Tant que rien n'est validé, les contenus partent avec le style proposé. Écran partagé avec la console : marque.js, fonction ecran.
   const MQ = window.RENOM_MARQUE;
   GROUPES.find(g => g.id === "commerce").ecrans.splice(1, 0, "style"); ECRANS.style = t("ecran.style");
-  Object.assign(ETAPES, I.carte("etape", ["MARQUE_PROPOSEE", "MARQUE_ENREGISTREE", "MARQUE_VALIDEE", "MARQUE_APERCUS", "LOGO_ILLISIBLE", "VIDEO_GENEREE_REFUSEE"]));
-  const STY_GAB = I.carte("sty.gab", ["plein", "editorial", "annonce"]), STY_SP = I.carte("sty.sp", MQ.STYLES_PHOTO), STY_C = I.carte("sty.c", ["principale", "secondaire", "fond", "texte"]);
-  const sty = { pour: null, kit: null, brut: null, photos: [], images: [], photo: 0, logo: null, logoUrl: null, attente: 0 };
-  const nomCouple = c => I.langue === "en" ? c.en : c.nom;
-  const ratio = r => nombre(Math.floor(r * 10) / 10, 1);
-  // Carte de l'accueil tant que le style n'est pas validé
-  const carteStyle = c => c.marque && c.marque.verrouille ? "" : `<section class="carte style-accueil" id="carte-style" aria-labelledby="carte-style-titre"><div class="style-accueil-corps">
-      <div><h2 id="carte-style-titre">${t("acc.style.titre")}</h2><p class="texte2">${t("acc.style.texte")}</p></div>
-      ${c.marque && c.marque.couleurs ? `<div class="style-nuancier" aria-hidden="true">${["principale", "secondaire", "fond", "texte"].map(k => `<span style="background:${e(c.marque.couleurs[k])}"></span>`).join("")}</div>` : ""}</div>
+  Object.assign(ETAPES, I.carte("etape", ["MARQUE_PROPOSEE", "MARQUE_ENREGISTREE", "MARQUE_VALIDEE", "MARQUE_REGLEE_RENOM", "MARQUE_VALIDEE_RENOM", "STYLE_CHANGEMENT_DEMANDE",
+    "MARQUE_APERCUS", "LOGO_ILLISIBLE", "VIDEO_GENEREE_REFUSEE"]));
+  const styleEcran = MQ.ecran({ vue, I, mode: "commercant", entete: () => entete(t("sty.sur"), t("ecran.style"), t("sty.chapo")),
+    commerce: () => D.commerce(), marque: () => D.marque(), deposerLogo: f => D.deposerLogo(f),
+    regler: (p, v) => D.reglerMaMarque(p, v), demander: x => D.demanderChangementStyle(x), apres: async () => majCompteurs() });
+  // Carte de l'accueil : « Votre style est prêt » quand RENOM l'a validé, « Nous créons votre style » avant ; rien une fois que le commerçant l'a validé.
+  const carteStyle = c => {
+    const m = c.marque, pret = !!(m && m.verrouille && m.valide_par === "renom");
+    if (m && m.verrouille && !pret) return "";
+    const k = pret ? "acc.style.pret" : "acc.style";
+    return `<section class="carte style-accueil" id="carte-style" aria-labelledby="carte-style-titre"><div class="style-accueil-corps">
+      <div><h2 id="carte-style-titre">${t(k + ".titre")}</h2><p class="texte2">${t(k + ".texte")}</p></div>
+      ${m && m.couleurs ? `<div class="style-nuancier" aria-hidden="true">${["principale", "secondaire", "fond", "texte"].map(x => `<span style="background:${e(m.couleurs[x])}"></span>`).join("")}</div>` : ""}</div>
       <p class="pied"><a class="bouton" href="#/style">${t("acc.style.bouton")}</a></p></section>`;
-  const textesApercu = c => {
-    const lg = langueCommerce, h = String(c.horaires || "").split("\n")[0].trim();
-    return { texte_visuel: t("sty.exemple.titre", null, lg), accroche: t("sty.exemple.texte", null, lg), annonce: h && h.length <= 70 ? [h] : [] };
   };
-  async function styleDessiner() {
-    const k = sty.kit, c = await D.commerce(); if (!k || !$("sty-grille")) return;
-    await MQ.polices(k);
-    const photo = sty.images[sty.photo] || null, tx = textesApercu(c);
-    MQ.GABARITS.forEach(g => { const cv = $("sty-apercu-" + g); if (cv) MQ.dessiner(cv, g, { kit: k, nom: c.nom, photo, logo: sty.logo, textes: tx }); });
-    const r = MQ.contraste(k.couleurs.texte, k.couleurs.fond), lisible = r >= 4.5;
-    $("sty-contraste").innerHTML = `<span class="${lisible ? "" : "fort"}">${t(lisible ? "sty.contraste.ok" : "sty.contraste.ko", { r: ratio(r) })}</span>${lisible ? "" : ` <button type="button" class="bouton second petit" id="sty-corriger">${t("sty.contraste.corriger")}</button>`}`;
-    if ($("sty-corriger")) $("sty-corriger").onclick = () => { sty.kit.couleurs = MQ.couleursLisibles(sty.kit.couleurs); majCouleurs(); styleRedessiner(); };
-    $("sty-valider").disabled = !lisible; $("sty-enregistrer").disabled = !lisible;
-    $("sty-illisible").hidden = lisible;
-  }
-  const styleRedessiner = () => { cancelAnimationFrame(sty.attente); sty.attente = requestAnimationFrame(() => { styleDessiner().catch(() => {}); }); };
-  function majCouleurs() { ["principale", "secondaire", "fond", "texte"].forEach(k => { const i = $("sty-c-" + k); if (i) i.value = sty.kit.couleurs[k].toLowerCase(); }); }
-  const lignes = (id, n) => $(id).value.split("\n").map(x => x.trim()).filter(Boolean).slice(0, n).map(x => x.slice(0, MQ.MAX_CAR));
-  async function chargerLogo(url) { if (!url) return null; try { return MQ.preparerLogo(await MQ.chargerImage(url)); } catch (er) { return null; } }
-  async function style() {
-    const [c, cat] = await Promise.all([D.commerce(), MQ.charger()]);
-    if (sty.pour !== c.id) {
-      const m = await D.marque(); Object.assign(sty, { pour: c.id, brut: m.brut, photos: m.photos, photo: 0, logoUrl: m.logo });
-      sty.images = (await Promise.all(m.photos.map(p => MQ.chargerImage(p.url).catch(() => null)))).filter(Boolean);
-      sty.logo = await chargerLogo(m.logo);
-      // Pas encore de kit : proposition calculée ici depuis la première photo (même calcul que le moteur), sinon les couleurs actuelles.
-      sty.kit = m.kit || (sty.images.length ? { ...MQ.garderCouleurs(MQ.proposer({ photos: [MQ.pixels(sty.images[0])], metier: c.metier, ton: c.ton || "", cat }), c.couleurs), version: 0 }
-        : MQ.normaliser(null, c.couleurs, c.metier, c.ton || "", cat));
-    }
-    const k = sty.kit, b = sty.brut, valide = !!(b && b.verrouille), src = (k.source && k.source.type) || (b && b.source && b.source.type) || "defaut";
-    const gabarits = MQ.GABARITS.map(g => `<figure class="sty-apercu"><canvas id="sty-apercu-${g}" width="1080" height="1350" role="img" aria-label="${t("sty.apercu.alt", { g: STY_GAB[g] })}"></canvas>
-        <figcaption><label class="option"><input type="radio" name="sty-gab" value="${g}"${k.gabarit_prefere === g ? " checked" : ""}><span>${t("sty.gab.prefere", { g: STY_GAB[g] })}</span></label></figcaption></figure>`).join("");
-    vue.innerHTML = `${entete(t("sty.sur"), t("ecran.style"), t("sty.chapo"))}
-      <section class="carte sty-etat${valide ? "" : " a-valider"}" id="sty-etat" aria-live="polite">
-        <p class="fort">${valide ? t("sty.etat.valide", { d: date(b.verrouille_le || b.maj) }) : t("sty.etat.propose")}</p>
-        <p class="texte2">${valide ? t("sty.etat.valide.texte", { v: b.version }) : t("sty.etat.propose." + (["logo", "photos"].includes(src) ? src : "defaut")) + " " + t("sty.etat.propose.suite")}</p></section>
-      <div class="colonnes sty">
-        <div class="pile">
-          <section class="carte" aria-labelledby="sty-apercus-titre"><div class="carte-tete"><h2 id="sty-apercus-titre">${t("sty.apercus")}</h2></div>
-            ${sty.images.length > 1 ? `<div class="sty-photos" role="group" aria-label="${t("sty.photo.choix")}">${sty.images.map((im, i) => `<button type="button" data-sty-photo="${i}" aria-pressed="${i === sty.photo}"><img src="${e(im.src)}" alt="${t("sty.photo.n", { n: i + 1 })}"></button>`).join("")}</div>` : ""}
-            ${sty.images.length ? "" : `<p class="note">${t("sty.sans.photo")} <a href="#/photos">${t("photos.deposer")}</a></p>`}
-            <fieldset class="sty-gabarits"><legend class="vh">${t("sty.gab.legende")}</legend><div class="sty-grille" id="sty-grille">${gabarits}</div>
-              <label class="option"><input type="radio" name="sty-gab" value=""${k.gabarit_prefere ? "" : " checked"}><span>${t("sty.gab.varier")}</span></label>
-              <label class="option"><input type="checkbox" id="sty-impose"${k.gabarit_impose ? " checked" : ""}${k.gabarit_prefere ? "" : " disabled"}><span>${t("sty.gab.impose")}</span></label>
-              <p class="aide">${t("sty.gab.aide")}</p></fieldset>
-            <p class="note">${t("sty.apercus.note")}</p></section>
-          <section class="carte" aria-labelledby="sty-couleurs-titre"><h2 id="sty-couleurs-titre">${t("sty.couleurs")}</h2>
-            <div class="coul sty-coul">${["principale", "secondaire", "fond", "texte"].map(x => `<div class="f"><input id="sty-c-${x}" type="color" value="${e(k.couleurs[x].toLowerCase())}"><label for="sty-c-${x}">${STY_C[x]}</label></div>`).join("")}</div>
-            ${(k.palette || []).length ? `<div class="sty-palette"><p class="note">${t("sty.palette")}</p><div class="sty-pastilles">${k.palette.map(x => `<button type="button" data-sty-pastille="${e(x)}" style="background:${e(x)}" aria-label="${t("sty.palette.choisir", { c: e(x) })}" title="${e(x)}"></button>`).join("")}</div></div>` : ""}
-            <p class="texte2" id="sty-contraste" aria-live="polite"></p></section>
-          <section class="carte" aria-labelledby="sty-polices-titre"><h2 id="sty-polices-titre">${t("sty.polices")}</h2><p class="note">${t("sty.polices.note")}</p>
-            <fieldset class="sty-couples"><legend class="vh">${t("sty.polices")}</legend>${cat.couples.map(cp => `<label class="sty-couple"><input class="vh" type="radio" name="sty-couple" value="${cp.id}"${k.police_titres === cp.titres && k.police_texte === cp.texte ? " checked" : ""}>
-              <span class="sty-couple-nom" style="font-family:'RM-${cp.titres}';font-weight:${cat.familles[cp.titres].graisse_titre}">${e(nomCouple(cp))}</span>
-              <span class="sty-couple-ex" style="font-family:'RM-${cp.texte}';font-weight:500"${lc()}>${t("sty.polices.exemple", { nom: e(c.nom) }, langueCommerce)}</span>
-              <span class="note">${e(cat.familles[cp.titres].nom)}${cp.titres !== cp.texte ? " · " + e(cat.familles[cp.texte].nom) : ""}</span></label>`).join("")}</fieldset></section>
-        </div>
-        <div class="pile">
-          <section class="carte" aria-labelledby="sty-logo-titre"><h2 id="sty-logo-titre">${t("sty.logo")}</h2>
-            <div class="sty-logo" id="sty-logo">${sty.logoUrl ? `<img src="${e(sty.logoUrl)}" alt="${t("sty.logo.alt")}">` : `<p class="texte2">${t("sty.logo.aucun")}</p>`}</div>
-            <div class="actions"><span class="depot-choix"><input id="sty-logo-fichier" class="vh" type="file" accept="image/png,image/svg+xml,image/jpeg,image/webp"><label for="sty-logo-fichier" class="bouton second">${t(sty.logoUrl ? "sty.logo.changer" : "sty.logo.deposer")}</label></span>
-              ${k.logo ? `<button type="button" class="lien" id="sty-logo-retirer">${t("sty.logo.retirer")}</button>` : ""}</div>
-            <p class="aide">${t("sty.logo.aide")}</p></section>
-          <section class="carte" aria-labelledby="sty-video-titre"><h2 id="sty-video-titre">${t("sty.video")}</h2>
-            <fieldset><legend class="vh">${t("sty.video")}</legend>${MQ.STYLES_PHOTO.map(x => `<label class="option sty-option"><input type="radio" name="sty-sp" value="${x}"${k.style_photo === x ? " checked" : ""}><span><span>${STY_SP[x]}</span><span class="note">${t("sty.sp.note." + x)}</span></span></label>`).join("")}</fieldset>
-            <p class="note">${t("sty.video.note")}</p></section>
-          <section class="carte" aria-labelledby="sty-mots-titre"><h2 id="sty-mots-titre">${t("sty.mots")}</h2>
-            <div class="f"><label for="sty-signature">${t("sty.mots.signature")}</label><textarea id="sty-signature" rows="3"${lc()}>${e((k.mots_signature || []).join("\n"))}</textarea><p class="aide">${t("sty.mots.signature.aide")}</p></div>
-            <div class="f"><label for="sty-eviter">${t("sty.mots.eviter")}</label><textarea id="sty-eviter" rows="3"${lc()}>${e((k.a_eviter || []).join("\n"))}</textarea><p class="aide">${t("sty.mots.eviter.aide")}</p></div></section>
-          <section class="carte sty-actions"><div class="actions"><button type="button" class="bouton" id="sty-valider">${t("sty.valider")}</button><button type="button" class="bouton second" id="sty-enregistrer">${t("sty.enregistrer")}</button></div>
-            <p class="note" id="sty-illisible" hidden>${t("sty.illisible")}</p><p class="aide">${t("sty.valider.aide")}</p><p class="msg" id="msg" role="status"></p></section>
-        </div>
-      </div>`;
-    // Réglages : chaque changement redessine les aperçus
-    ["principale", "secondaire", "fond", "texte"].forEach(x => { $("sty-c-" + x).oninput = ev => { sty.kit.couleurs = { ...sty.kit.couleurs, [x]: ev.target.value.toUpperCase() }; styleRedessiner(); }; });
-    vue.querySelectorAll("[data-sty-pastille]").forEach(bt => bt.onclick = () => { sty.kit.couleurs = { ...sty.kit.couleurs, principale: bt.dataset.styPastille }; majCouleurs(); styleRedessiner(); });
-    vue.querySelectorAll("input[name=sty-couple]").forEach(i => i.onchange = () => { const cp = cat.couples.find(x => x.id === i.value); Object.assign(sty.kit, { couple: cp.id, police_titres: cp.titres, police_texte: cp.texte }); styleRedessiner(); });
-    vue.querySelectorAll("input[name=sty-gab]").forEach(i => i.onchange = () => { sty.kit.gabarit_prefere = i.value || null; $("sty-impose").disabled = !i.value; if (!i.value) { $("sty-impose").checked = false; sty.kit.gabarit_impose = false; } });
-    $("sty-impose").onchange = () => { sty.kit.gabarit_impose = $("sty-impose").checked && !!sty.kit.gabarit_prefere; };
-    vue.querySelectorAll("input[name=sty-sp]").forEach(i => i.onchange = () => { sty.kit.style_photo = i.value; });
-    vue.querySelectorAll("[data-sty-photo]").forEach(bt => bt.onclick = () => { sty.photo = +bt.dataset.styPhoto; vue.querySelectorAll("[data-sty-photo]").forEach(x => x.setAttribute("aria-pressed", String(x === bt))); styleRedessiner(); });
-    $("sty-logo-fichier").onchange = async () => {
-      const f = $("sty-logo-fichier").files[0]; if (!f) return;
-      try {
-        const r = await D.deposerLogo(f), img = await MQ.chargerImage(r.url);
-        const p = MQ.proposer({ logo: MQ.pixels(img), metier: c.metier, ton: c.ton || "", logoChemin: r.chemin, cat });
-        Object.assign(sty.kit, { logo: r.chemin, logo_fond: p.logo_fond, couleurs: p.couleurs, palette: p.palette, source: { type: "logo" } });
-        sty.logoUrl = r.url; sty.logo = MQ.preparerLogo(img); await style(); msg(t("sty.logo.lu"));
-      } catch (er) { msg(er.code ? t(er.code) : ph(er.message)); }
-    };
-    if ($("sty-logo-retirer")) $("sty-logo-retirer").onclick = async () => { Object.assign(sty.kit, { logo: null, logo_fond: null }); sty.logo = null; sty.logoUrl = null; await style(); msg(t("sty.logo.retire")); };
-    const enregistrer = async verrouiller => {
-      sty.kit.mots_signature = lignes("sty-signature", MQ.MAX_MOTS); sty.kit.a_eviter = lignes("sty-eviter", MQ.MAX_EVITER);
-      try {
-        const m = await D.enregistrerMarque(sty.kit, verrouiller); sty.pour = null; await style(); window.scrollTo(0, 0);
-        msg(t(m.verrouille ? "sty.valide.msg" : "sty.enregistre.msg", { v: m.version })); majCompteurs();
-      } catch (er) { msg(er.codes ? t("sty.refus", { l: er.codes.map(x => t("sty.f." + x)).join(", ") }) : ph(er.message)); }
-    };
-    $("sty-valider").onclick = () => enregistrer(true); $("sty-enregistrer").onclick = () => enregistrer(false);
-    await styleDessiner();
-  }
+  const style = () => styleEcran.rendre();
   // ---- fin du bloc Votre style ------------------------------------------------------------------------------------
 
   // ---------------- Routage

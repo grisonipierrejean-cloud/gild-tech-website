@@ -2,11 +2,13 @@
    Ne met en cache QUE les fichiers statiques de l'espace listés ci-dessous (même origine).
    Jamais : les réponses Supabase ou n8n (autre origine), les pages publiques (avis, valider, désinscription),
    la console, l'état de démonstration (demo/), ni aucune requête autre que GET.
+   Jamais non plus (dépôt de vidéos, 14/10/2026) : un ENVOI (POST, PATCH, HEAD de l'envoi résumable TUS, adresse /upload/resumable ou /storage/v1/)
+   ni une VIDÉO (requête de plage « Range », destination video ou audio, extension .mp4 .mov .m4v .webm .3gp), même de la même origine.
    Réseau d'abord pour les pages, scripts, styles et données : une mise à jour arrive dès la visite suivante ;
    le cache ne sert que hors connexion. Cache d'abord pour les polices et les icônes, qui ne changent pas. */
-const CACHE = "renom-espace-v4";   // v4 (14/10/2026) : kit de marque (marque.js, polices du kit) ; v3 : textes en français et en anglais
+const CACHE = "renom-espace-v5";   // v5 (14/10/2026) : dépôt de vidéos (envoi.js, vendor/tus.min.js) ; v4 : kit de marque (marque.js, polices du kit) ; v3 : textes en français et en anglais
 const RESEAU_DABORD = ["", "index.html", "app.js", "i18n.js", "donnees.js", "config.js", "style.css", "manifest.webmanifest", "manifest-en.webmanifest",
-  "vendor/qrcode.js", "vendor/temps-forts.js", "vendor/temps-forts.json", "marque.js", "fonts/couples.json"];
+  "vendor/qrcode.js", "vendor/temps-forts.js", "vendor/temps-forts.json", "marque.js", "fonts/couples.json", "envoi.js", "vendor/tus.min.js"];
 const CACHE_DABORD = ["fonts/anton-400.woff2", "fonts/figtree-400.woff2", "fonts/figtree-500.woff2", "fonts/figtree-600.woff2", "fonts/figtree-700.woff2",
   "fonts/bricolage.ttf", "fonts/figtree.ttf", "fonts/playfair.ttf", "fonts/dmsans.ttf", "fonts/fraunces.ttf", "fonts/nunito.ttf", "fonts/oswald.ttf",
   "fonts/karla.ttf", "fonts/dmserif.ttf", "fonts/manrope.ttf", "fonts/fredoka.ttf", "fonts/zillaslab.ttf",
@@ -22,10 +24,15 @@ self.addEventListener("activate", ev => {
   ev.waitUntil(caches.keys().then(l => Promise.all(l.filter(k => k.startsWith("renom-espace-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
+// Envois et vidéos : jamais interceptés, jamais gardés.
+const VIDEO = /\.(mp4|mov|m4v|webm|3gp)$/i;
+const jamais = (req, u) => req.method !== "GET" || req.headers.has("range") || req.destination === "video" || req.destination === "audio"
+  || /\/upload\/resumable|\/storage\/v1\//.test(u.pathname) || VIDEO.test(u.pathname);
 // Chemin relatif à la portée de l'espace, ou null si la requête ne concerne pas un fichier statique de l'espace.
 function relatif(req) {
   if (req.method !== "GET") return null;
   const u = new URL(req.url);
+  if (jamais(req, u)) return null;
   if (u.origin !== self.location.origin || !u.href.startsWith(PORTEE)) return null;
   return u.pathname.slice(new URL(PORTEE).pathname.length);
 }

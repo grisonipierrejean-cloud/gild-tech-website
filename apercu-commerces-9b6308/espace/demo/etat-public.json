@@ -698,6 +698,41 @@
   "video_url": "demo/files/public/video-avis-exemple.mp4",
   "visuel_url": "demo/files/public/video-avis-exemple.jpg"
  },
+ "depots_video": [
+  {
+   "id": "dv-exemple-1",
+   "commerce_id": "c-table",
+   "fichiers": [],
+   "details": [],
+   "note": "Le menu du midi",
+   "nb_fichiers": 3,
+   "nb_videos": 3,
+   "duree_totale_s": 41.5,
+   "statut": "refuse",
+   "motif": "Les vidéos reçues sont trop sombres pour être montées : refilmez de jour, face à la lumière.",
+   "contenu_id": null,
+   "mois": "courant",
+   "il_y_a_h": 50,
+   "essais": 0,
+   "demo": true
+  }
+ ],
+ "montage_exemple": {
+  "_note": "Vidéo d'EXEMPLE montrée par le faux montage de la démonstration : rendue par le vrai moteur à partir de photos, pas à partir de vidéos déposées.",
+  "video_url": "demo/files/public/spaghetti-video-9x16.mp4",
+  "visuel_url": "demo/files/public/spaghetti-visuel-9x16.jpg"
+ },
+ "abonnements": [
+  {
+   "commerce_id": "c-table",
+   "offre": "croissance",
+   "statut": "actif",
+   "stripe_customer": "cus_fictif_demo",
+   "remise_fin_dans_j": 61,
+   "maj_il_y_a_h": 700,
+   "demo": true
+  }
+ ],
  "demo_maj": {
   "principal": "c-table",
   "base": {
