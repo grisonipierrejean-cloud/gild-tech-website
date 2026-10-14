@@ -711,6 +711,8 @@
   }
 
   // ---------------- Offre
+  const LANC = window.RENOM_LANCEMENT || { duree_mois: 3, date_limite: "2026-12-31" };
+  const dateLimiteLancement = () => { const [a, m, j] = LANC.date_limite.split("-"); return `${+j} ${MOIS[+m - 1]} ${a}`; };
   async function offre() {
     const [k, j, c] = await Promise.all([D.compteur(), D.journal(), D.commerce()]); const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00");
     vue.innerHTML = `${pauseBandeau(c)}${entete("Votre offre", "Offre " + e(k.offre_nom))}
@@ -723,6 +725,9 @@
         <section class="carte moitie"><h2>Ce qui est inclus chaque mois</h2><ul class="liste"><li><span>Publications (visuels aux formats 4 par 5 et 9 par 16, légende)</span><span class="fort">${o.publications ?? k.publications_plafond}</span></li><li><span>Vidéos courtes</span><span class="fort">${(o.videos ?? k.videos_plafond) || "Non comprises"}</span></li><li><span>Réponses aux avis Google</span><span class="fort">Comprises</span></li><li><span>Réponses aux commentaires Instagram et Facebook</span><span class="fort">${k.commentaires_inclus ? "Comprises" : "Non comprises"}</span></li><li><span>Comparaison avec 3 concurrents de votre quartier</span><span class="fort">Comprise</span></li><li><span>Bilan du mois par email, le 1<sup>er</sup></span><span class="fort">Compris</span></li></ul>
           <p class="note pied">Une demande d'idées compte pour une publication.</p></section>
       </div>
+      ${o.prix_ht ? `<section class="carte" id="offre-prix"><h2>Prix de votre offre</h2><p class="prix-offre"><span class="chiffre">${nombre(o.prix_ht)}&nbsp;€</span> HT par mois</p>
+        <p class="texte2 lecture">Offre de lancement&nbsp;: pour tout abonnement souscrit au plus tard le ${dateLimiteLancement()}, les ${LANC.duree_mois} premiers mois sont à moitié prix, soit ${nombre(o.prix_lancement_ht)}&nbsp;€ HT par mois. Une seule fois par commerce. Sans engagement. Premier mois remboursé si vous n'êtes pas satisfait.</p>
+        <p class="note">Conditions complètes dans les <a href="../cgv.html#a4">conditions de vente, article 4</a>.</p></section>` : ""}
       <section class="carte"><h2>Quand le plafond est atteint</h2><p class="texte2 lecture">Toute nouvelle photo reste visible dans votre espace mais ne produit rien : elle est marquée « refusée » avec le motif écrit dans votre historique. Les contenus déjà créés, la programmation et les réponses aux avis continuent. Le compteur repart à zéro au début du mois. Pour produire davantage, contactez RENOM pour changer d'offre.</p></section>
       <section class="carte"><h2>Historique récent</h2>${j.length ? `<ul class="liste">${j.slice(0, 12).map(x => `<li><span>${e(ETAPES[x.type] || cap(String(x.type || "").toLowerCase().replace(/_/g, " ")))}${x.detail && x.detail.raison ? `<span class="note"> : ${e(x.detail.raison)}</span>` : ""}</span><span class="note">${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">Aucune étape pour le moment.</p>`}</section>`;
   }
@@ -1039,7 +1044,8 @@
   Object.assign(ETAPES, { VIDEO_AVIS: "Vidéo d'avis créée", VIDEO_AVIS_DEMANDEE: "Vidéo d'avis demandée", VIDEO_AVIS_REFUSEE: "Vidéo d'avis refusée" });
   const ST_VA = { a_traiter: "En attente de rendu", en_cours: "Rendu en cours", traitee: "Vidéo créée", refusee: "Demande refusée" };
   const va = { choisis: [], fond: null, style: "franc", veille: null };
-  const vaPolice = p => `font-family:'${p[0]}',system-ui,sans-serif;font-variation-settings:${p[1]}`;
+  // Figtree de l'aperçu : la version variable du moteur (« Figtree Variable », style.css), pas les fichiers statiques de l'interface.
+  const vaPolice = p => `font-family:'${p[0] === "Figtree" ? "Figtree Variable" : p[0]}',system-ui,sans-serif;font-variation-settings:${p[1]}`;
   // Même calcul de contraste que le moteur (gabarits.py) : le texte de l'aperçu prend la couleur que la vidéo prendra.
   const vaLum = h => { const v = parseInt(h.slice(1), 16), f = x => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(v >> 16) + 0.7152 * f((v >> 8) & 255) + 0.0722 * f(v & 255); };
   const vaContraste = (a, b) => { const [x, y] = [vaLum(a), vaLum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };

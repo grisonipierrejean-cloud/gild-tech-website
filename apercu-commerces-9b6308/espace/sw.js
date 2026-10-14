@@ -4,13 +4,14 @@
    la console, l'état de démonstration (demo/), ni aucune requête autre que GET.
    Réseau d'abord pour les pages, scripts, styles et données : une mise à jour arrive dès la visite suivante ;
    le cache ne sert que hors connexion. Cache d'abord pour les polices et les icônes, qui ne changent pas. */
-const CACHE = "renom-espace-v1";
+const CACHE = "renom-espace-v2";   // v2 (14/10/2026) : polices Anton et Figtree
 const RESEAU_DABORD = ["", "index.html", "app.js", "donnees.js", "config.js", "style.css", "manifest.webmanifest",
   "vendor/qrcode.js", "vendor/temps-forts.js", "vendor/temps-forts.json"];
-const CACHE_DABORD = ["fonts/syne.woff2", "fonts/hanken-grotesk.woff2", "fonts/bricolage.ttf", "fonts/figtree.ttf",
+const CACHE_DABORD = ["fonts/anton-400.woff2", "fonts/figtree-400.woff2", "fonts/figtree-500.woff2", "fonts/figtree-600.woff2", "fonts/figtree-700.woff2",
+  "fonts/bricolage.ttf", "fonts/figtree.ttf",
   "icones/icone-192.png", "icones/icone-512.png", "icones/apple-touch-icon.png", "icones/favicon-32.png"];
 const PRECHARGE = ["index.html", "app.js", "donnees.js", "config.js", "style.css", "manifest.webmanifest", "vendor/qrcode.js", "vendor/temps-forts.js",
-  "fonts/syne.woff2", "fonts/hanken-grotesk.woff2", "icones/icone-192.png", "icones/apple-touch-icon.png"];
+  "fonts/anton-400.woff2", "fonts/figtree-400.woff2", "fonts/figtree-700.woff2", "icones/icone-192.png", "icones/apple-touch-icon.png"];
 const PORTEE = new URL("./", self.location).href;
 
 self.addEventListener("install", ev => {

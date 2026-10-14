@@ -7,15 +7,18 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Valider</title>
-<link rel="preload" href="fonts/syne.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Page publique de validation par lien (valider.html#<jeton>), ouverte depuis l'email : sans connexion, à usage unique, 7 jours.
-   Charte « nuit et bleu » de l'espace (Syne 800, Hanken Grotesk, coins 10 à 18 px). Ni dégradé, ni pilule, ni trait coloré. */
+   Charte « nuit et bleu » de l'espace (Anton pour les titres d'écran, Figtree pour le reste, coins 10 à 18 px). Ni dégradé, ni pilule, ni trait coloré. */
 :root{color-scheme:dark;--fond:#07080C;--surface:#12141D;--releve:#1A1D29;--creux:#0B0D14;--encre:#FFFFFF;--texte2:#E4E6F2;--discret:#A9ADBF;--bord:#6B6F82;--filet:rgba(255,255,255,.12);--marque:#3D4BFF;
-  --titre:'Syne','Hanken Grotesk',system-ui,sans-serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
-@font-face{font-family:'Syne';font-weight:400 800;font-display:swap;src:url(fonts/syne.woff2) format('woff2')}
-@font-face{font-family:'Hanken Grotesk';font-weight:100 900;font-display:swap;src:url(fonts/hanken-grotesk.woff2) format('woff2')}
+  --titre:'Anton','Arial Narrow',Impact,system-ui,sans-serif;--sans:'Figtree',system-ui,sans-serif}
+@font-face{font-family:'Anton';font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:400;font-display:swap;src:url(fonts/figtree-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:500;font-display:swap;src:url(fonts/figtree-500.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:600;font-display:swap;src:url(fonts/figtree-600.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:700;font-display:swap;src:url(fonts/figtree-700.woff2) format('woff2')}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
@@ -23,12 +26,12 @@ body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.5;color:var(-
 h1,h2,p{margin:0}
 main{max-width:560px;margin:0 auto;padding:24px 16px calc(32px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px}
 #page,#erreur,#fait{display:flex;flex-direction:column;gap:14px}
-.logo{font-family:var(--titre);font-weight:800;font-size:24px;letter-spacing:1px}
+.logo{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:26px;letter-spacing:.04em}
 .tete{display:flex;flex-direction:column;gap:10px;padding:0 2px 4px}
 .commerce{font-size:17px;font-weight:700;color:var(--texte2);overflow-wrap:anywhere}
-h1{font-family:var(--titre);font-weight:800;font-size:32px;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+h1{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:32px;line-height:1.08;letter-spacing:.012em;text-wrap:balance}
 .carte{background:var(--surface);color:var(--encre);border:1px solid var(--filet);border-radius:18px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
-h2{font-family:var(--titre);font-size:20px;font-weight:800;line-height:1.25}
+h2{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25}
 .note{font-size:15px;color:var(--discret)}
 .visuel{display:block;width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:var(--releve)}
 .visuel.vertical{aspect-ratio:9/16;max-width:280px}
@@ -39,7 +42,7 @@ video.visuel,img.visuel.vertical{object-fit:contain;background:#000}
 .reseau{font-size:13px;font-weight:700;color:var(--discret)}
 .texte{white-space:pre-line;overflow-wrap:anywhere;color:var(--texte2)}
 .citation{color:var(--texte2);overflow-wrap:anywhere}
-.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:800;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1.5px solid var(--marque);border-radius:10px;padding:13px 18px;min-height:56px;cursor:pointer}
+.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1.5px solid var(--marque);border-radius:10px;padding:13px 18px;min-height:56px;cursor:pointer}
 .bouton:hover{background:#2E3BFF;border-color:#2E3BFF}
 .bouton.second{background:transparent;color:var(--encre);border-color:rgba(255,255,255,.6)}
 .bouton.second:hover{background:var(--releve)}

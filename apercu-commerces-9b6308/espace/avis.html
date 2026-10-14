@@ -7,21 +7,24 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <title>Votre avis</title>
-<link rel="preload" href="fonts/syne.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Page publique de dépôt d'avis. La même pour tous les clients : rien ici ne dépend de la note choisie, sauf le dessin des étoiles
    et la phrase « Votre note ». Le bouton Google est dans la page dès l'affichage et n'est jamais masqué, déplacé ni restylé.
-   Charte « nuit et bleu » de l'espace (Syne 800 pour le titre, Hanken Grotesk, coins 10 à 18 px, aucune pilule) ;
+   Charte « nuit et bleu » de l'espace (Anton pour le titre, en majuscules, Figtree pour le reste, coins 10 à 18 px, aucune pilule) ;
    couleurs du commerce (fond, texte, accent) quand il les a choisies : les cartes et les textes secondaires en découlent,
    ce qui garde le contraste vérifié par avis.js (texte sur fond au moins 4,5:1). */
 :root{color-scheme:dark;--fond:#07080C;--texte:#FFFFFF;--accent:#3D4BFF;--sur-accent:#FFFFFF;--etoile:#D6FF3D;
   --surface:#12141D;--discret:#B4B8C8;--bord:#6B6F82;--filet:rgba(255,255,255,.14);
-  --titre:'Syne','Hanken Grotesk',system-ui,sans-serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
+  --titre:'Anton','Arial Narrow',Impact,system-ui,sans-serif;--sans:'Figtree',system-ui,sans-serif}
 @supports (color:color-mix(in srgb,red 50%,blue)){:root{--surface:color-mix(in srgb,var(--texte) 7%,var(--fond));--discret:color-mix(in srgb,var(--texte) 74%,var(--fond));
   --bord:color-mix(in srgb,var(--texte) 45%,var(--fond));--filet:color-mix(in srgb,var(--texte) 14%,var(--fond))}}
-@font-face{font-family:'Syne';font-weight:400 800;font-display:swap;src:url(fonts/syne.woff2) format('woff2')}
-@font-face{font-family:'Hanken Grotesk';font-weight:100 900;font-display:swap;src:url(fonts/hanken-grotesk.woff2) format('woff2')}
+@font-face{font-family:'Anton';font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:400;font-display:swap;src:url(fonts/figtree-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:500;font-display:swap;src:url(fonts/figtree-500.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:600;font-display:swap;src:url(fonts/figtree-600.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:700;font-display:swap;src:url(fonts/figtree-700.woff2) format('woff2')}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
@@ -31,9 +34,9 @@ main{max-width:480px;margin:0 auto;padding:28px 16px calc(32px + env(safe-area-i
 #page,#erreur{display:flex;flex-direction:column;gap:14px}
 .tete{display:flex;flex-direction:column;gap:10px;padding:0 2px 4px}
 .commerce{font-size:17px;font-weight:700;overflow-wrap:anywhere}
-h1{font-family:var(--titre);font-weight:800;font-size:32px;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+h1{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:32px;line-height:1.08;letter-spacing:.012em;text-wrap:balance}
 .carte{background:var(--surface);color:var(--texte);border:1px solid var(--filet);border-radius:18px;padding:18px 16px;display:flex;flex-direction:column;gap:12px}
-h2{font-family:var(--titre);font-size:19px;font-weight:800;line-height:1.25}
+h2{font-family:var(--sans);font-size:19px;font-weight:700;line-height:1.25}
 .note{font-size:15px;color:var(--discret)}
 .etoiles{display:flex;justify-content:space-between;gap:4px;max-width:340px;width:100%;margin:0 auto}
 .etoile{width:58px;height:58px;padding:0;display:flex;align-items:center;justify-content:center;background:none;border:0;border-radius:10px;color:var(--discret);cursor:pointer}
@@ -41,7 +44,7 @@ h2{font-family:var(--titre);font-size:19px;font-weight:800;line-height:1.25}
 .etoile.pleine{color:var(--etoile)}
 .etoile.pleine svg{fill:currentColor;stroke:var(--etoile)}
 #etat-note{text-align:center;font-size:16px;font-weight:600;color:var(--texte);min-height:1.5em}
-.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:800;line-height:1.3;text-align:center;text-decoration:none;background:var(--accent);color:var(--sur-accent);border:1.5px solid var(--accent);border-radius:10px;padding:14px 18px;min-height:58px;cursor:pointer}
+.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;background:var(--accent);color:var(--sur-accent);border:1.5px solid var(--accent);border-radius:10px;padding:14px 18px;min-height:58px;cursor:pointer}
 .bouton.second{background:transparent;color:var(--texte);border-color:var(--bord)}
 .bouton:disabled{opacity:.55;cursor:default}
 :focus-visible{outline:2px solid var(--texte);outline-offset:2px}

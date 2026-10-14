@@ -54,7 +54,8 @@ function euros(n){
   return r.toLocaleString('fr-FR',{maximumFractionDigits:0}).replace(/ /g,' ')+' €';
 }
 function noteTexte(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})}
-function mode(){var r=calc.querySelector('input[name="calc-mode"]:checked');return r?r.value:'ca'}
+// Mode par défaut : clients par jour × panier moyen × jours d'ouverture ; le chiffre d'affaires annuel est le second choix.
+function mode(){var r=calc.querySelector('input[name="calc-mode"]:checked');return r?r.value:'clients'}
 function chiffreAffaires(){
   if(mode()==='ca')return nombre(el('c-ca').value);
   var c=nombre(el('c-clients').value),p=nombre(el('c-panier').value),j=nombre(el('c-jours').value);

@@ -6,7 +6,9 @@
   const cfg = window.RENOM_CONFIG || {};
   // commentaires : réponses aux commentaires Instagram et Facebook comprises (page de vente : Croissance et Signature ; même valeur que offres.commentaires
   // dans schema.sql et moteur/offres.json, égalité testée). Aucun plafond : la page de vente n'en chiffre aucun.
-  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false }, croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true }, signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true } };
+  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, prix_ht: 190, prix_lancement_ht: 95 }, croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true, prix_ht: 390, prix_lancement_ht: 195 }, signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true, prix_ht: 690, prix_lancement_ht: 345 } };
+  // Offre de lancement (moteur/offres.json, CGV article 4) : 3 premiers mois à moitié prix, abonnement souscrit au plus tard le 31/12/2026. Prix égaux à offres.json (test_commentaires.js).
+  const LANCEMENT = { remise_pct: 50, duree_mois: 3, date_limite: "2026-12-31" };
   const FICHE = ["nom", "metier", "ville", "ton", "specialites", "horaires", "mots_cles", "mentions_autorisees", "contact", "email_validation", "couleurs", "reglage_avis", "lien_avis", "notifications", "commentaires_compliments_auto"];
   const RESEAUX = ["facebook", "instagram", "google", "tiktok"];
   const TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"], MAX = 50 * 1024 * 1024;
@@ -1062,7 +1064,7 @@
   }
 
   window.RENOM_DATA = cfg.supabaseUrl && cfg.publishableKey && window.supabase ? supabase() : demo();
-  window.RENOM_OFFRES = OFFRES; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES;
+  window.RENOM_OFFRES = OFFRES; window.RENOM_LANCEMENT = LANCEMENT; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES;
   // ---- Collecte : ce dont la page publique a besoin (aucune session, aucune bibliothèque), et la règle du lien d'avis pour l'espace
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;

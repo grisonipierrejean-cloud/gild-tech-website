@@ -5,7 +5,7 @@ usage commercial gratuit, attribution non requise, modification autorisée. Inte
 
 ### Photos de la page de vente (refonte photos, 13/10/2026)
 
-Licence Pexels lue le 11/10/2026 (rappel : usage commercial gratuit, attribution non obligatoire ; interdit de laisser croire que les personnes photographiées approuvent RENOM, interdit de revendre la photo en l'état). Les personnes visibles ne sont pas des clients de RENOM et la page le dit sous la bande des métiers. Fichiers convertis en WebP qualité 80 (1920 px de large pour le plein écran, 1200 px au plus pour le reste) ; originaux non versionnés.
+Licence Pexels lue le 11/10/2026 (rappel : usage commercial gratuit, attribution non obligatoire ; interdit de laisser croire que les personnes photographiées approuvent RENOM, interdit de revendre la photo en l'état). Les personnes visibles ne sont pas des clients de RENOM : la page l'indique sous la bande des métiers (« Photos d'illustration. ») et, en entier, en bas de page, sous le formulaire d'audit. Fichiers convertis en WebP qualité 80 (1920 px de large pour le plein écran, 1200 px au plus pour le reste) ; originaux non versionnés.
 
 | Fichier | Usage | Auteur | Adresse | Licence |
 |---|---|---|---|---|

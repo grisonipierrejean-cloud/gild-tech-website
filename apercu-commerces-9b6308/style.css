@@ -1,10 +1,14 @@
 /* RENOM, page de vente et pages du parcours. Direction « nuit et bleu » (maquette ordres/maquette/Nuit.dc.html).
    Fond nuit #07080C, bleu #3D4BFF pour les boutons et les blocs forts, citron #D6FF3D en touche seulement (jamais en fond de section).
-   Titres : Syne 800. Texte : Hanken Grotesk 400 à 800. Google Fonts, licence SIL OFL 1.1, hébergées dans fonts/ (voir fonts/OFL-*.txt).
+   Titres : Anton (h1, h2, noms d'offres, prix, grands chiffres), en majuscules par text-transform, interlettrage léger ; jamais un paragraphe.
+   Tout le reste : Figtree 400 à 700. Fontsource (npm @fontsource/anton et @fontsource/figtree 5.3.0), licence SIL OFL 1.1, hébergées dans fonts/ (voir fonts/OFL-*.txt).
    Interdits : dégradé, pilule (rayon 12 px au plus sur les boutons), trait coloré devant un libellé, orange, majuscules d'étiquette. */
 
-@font-face{font-family:'Syne';font-weight:800;font-style:normal;font-display:swap;src:url(fonts/syne-800.woff2) format('woff2')}
-@font-face{font-family:'Hanken Grotesk';font-weight:400 800;font-style:normal;font-display:swap;src:url(fonts/hanken-grotesk.woff2) format('woff2')}
+@font-face{font-family:'Anton';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/figtree-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/figtree-500.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/figtree-600.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:700;font-style:normal;font-display:swap;src:url(fonts/figtree-700.woff2) format('woff2')}
 
 :root{
   --nuit:#07080C;
@@ -20,8 +24,8 @@
   --gris-clair:#3A3D4D;
   --filet:rgba(255,255,255,.14);
   --filet-fort:rgba(255,255,255,.2);
-  --titre:'Syne','Arial Black',system-ui,sans-serif;
-  --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --titre:'Anton','Arial Narrow',Impact,system-ui,sans-serif;
+  --sans:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --marge:16px;
   --saut:88px;
   --r-btn:10px;
@@ -36,10 +40,11 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--nuit)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--nuit);font-synthesis-weight:none}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--sans);font-size:17px;line-height:1.55;font-variant-numeric:lining-nums;overflow-x:clip}
 img{max-width:100%;height:auto;display:block}
+input,button,select,textarea{font-family:inherit}
 h1,h2,h3,p,ul,ol,figure{margin:0}
 ul,ol{padding:0}
 a{color:inherit;text-underline-offset:4px}
@@ -48,10 +53,11 @@ a:hover{color:var(--lien-survol)}
 :focus-visible{outline:2px solid var(--citron);outline-offset:3px}
 sup{font-size:.6em;line-height:0;vertical-align:.6em}
 
-h1,h2{font-family:var(--titre);font-weight:800;color:var(--texte);text-wrap:balance}
-h1{font-size:clamp(46px,7.4vw,108px);line-height:.95;letter-spacing:-.02em}
-h2{font-size:clamp(34px,4.8vw,68px);line-height:1.02;letter-spacing:-.015em}
-h3{font-family:var(--titre);font-weight:800;font-size:24px;line-height:1.1;color:var(--texte)}
+/* Anton : une seule graisse (400), majuscules et interlettrage léger. Classe .anton pour les autres titres courts et grands chiffres. */
+h1,h2,.anton{font-family:var(--titre);font-weight:400;text-transform:uppercase;letter-spacing:.012em;color:var(--texte);text-wrap:balance}
+h1{font-size:clamp(44px,7vw,100px);line-height:1}
+h2{font-size:clamp(32px,4.4vw,62px);line-height:1.04}
+h3{font-family:var(--sans);font-weight:700;font-size:22px;line-height:1.2;color:var(--texte)}
 b,strong{font-weight:700}
 .citron{color:var(--citron)}
 
@@ -65,7 +71,7 @@ b,strong{font-weight:700}
 .evitement:focus{top:8px}
 
 /* ---------- Boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;border:1.5px solid transparent;border-radius:var(--r-btn);background:var(--carte);color:var(--blanc);font:inherit;font-size:16px;font-weight:800;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;border:1.5px solid transparent;border-radius:var(--r-btn);background:var(--carte);color:var(--blanc);font:inherit;font-size:16px;font-weight:700;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
 .btn:hover{color:var(--blanc)}
 .btn-prim{background:var(--bleu);border-color:var(--bleu);color:var(--blanc)}
 .btn-prim:hover{background:var(--bleu-fonce);border-color:var(--bleu-fonce)}
@@ -80,7 +86,7 @@ b,strong{font-weight:700}
 .page{position:relative}
 .entete{position:relative;z-index:2;background:var(--nuit);border-bottom:1px solid var(--filet);color:var(--blanc)}
 .entete .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px;padding-top:12px;padding-bottom:4px}
-.logo{order:1;display:inline-flex;align-items:center;min-height:48px;font-family:var(--titre);font-size:24px;font-weight:800;letter-spacing:.04em;line-height:1;text-decoration:none;color:var(--blanc)}
+.logo{order:1;display:inline-flex;align-items:center;min-height:48px;font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:26px;letter-spacing:.04em;line-height:1;text-decoration:none;color:var(--blanc)}
 .logo:hover{color:var(--blanc)}
 .btn-menu{order:2;min-height:44px;padding:8px 18px;font-size:15px}
 .menu{order:3;flex:1 0 100%;display:flex;flex-wrap:wrap;gap:0 20px;font-size:15px;font-weight:600}
@@ -101,6 +107,7 @@ b,strong{font-weight:700}
 .chapo{font-size:19px;line-height:1.45;max-width:560px;color:var(--doux)}
 .haut .chapo{color:var(--blanc)}
 .actions{display:flex;flex-wrap:wrap;gap:12px}
+.haut-prix{font-size:16px;line-height:1.45;font-weight:600;color:var(--blanc)}
 .avis-demo{width:min(100%,380px);background:rgba(14,16,24,.86);border:1px solid var(--filet);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:12px}
 .avis-tete{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:16px}
 .etoiles{display:inline-block;width:92px;height:16px;background:var(--citron);
@@ -118,7 +125,7 @@ b,strong{font-weight:700}
 .moments{list-style:none;display:flex;flex-direction:column}
 .moments li{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:20px 0;border-top:1px solid var(--filet-fort)}
 .moments li:last-child{border-bottom:1px solid var(--filet-fort)}
-.moment-quand{font-family:var(--titre);font-weight:800;font-size:26px;line-height:1.1;color:var(--citron)}
+.moment-quand{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:26px;line-height:1.1;color:var(--citron)}
 .moment-texte{font-size:18px;line-height:1.45;color:var(--doux)}
 
 /* ---------- Comment Google classe les fiches */
@@ -136,7 +143,7 @@ b,strong{font-weight:700}
 .resultats-liste{list-style:none;display:flex;flex-direction:column;gap:10px}
 .fiche{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--filet);border-radius:12px}
 .fiche-tete{border:2px solid var(--bleu);background:rgba(61,75,255,.12)}
-.fiche-vignette{display:inline-flex;align-items:center;justify-content:center;flex:none;width:52px;height:52px;border-radius:10px;background:#1E2130;font-family:var(--titre);font-weight:800;font-size:20px;color:var(--doux)}
+.fiche-vignette{display:inline-flex;align-items:center;justify-content:center;flex:none;width:52px;height:52px;border-radius:10px;background:#1E2130;font-family:var(--sans);font-weight:700;font-size:20px;color:var(--doux)}
 .fiche-tete .fiche-vignette{background:var(--bleu);color:var(--blanc)}
 .fiche-corps{display:flex;flex-direction:column;gap:2px;min-width:0;font-size:15px;line-height:1.35}
 .fiche-corps strong{font-size:17px}
@@ -148,13 +155,13 @@ b,strong{font-weight:700}
 .leviers li{border:1px solid var(--filet);border-radius:var(--r-carte);padding:24px 22px;display:flex;flex-direction:column;gap:10px}
 .leviers h3{font-size:22px}
 .leviers p{font-size:17px;line-height:1.5;color:var(--doux)}
-.bascule{font-family:var(--titre);font-weight:800;font-size:clamp(24px,2.6vw,34px);line-height:1.15;color:var(--citron)}
+.bascule{font-family:var(--sans);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.15;color:var(--citron)}
 
 /* ---------- Trois piliers */
 .piliers-section{padding-top:var(--saut)}
 .piliers{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 .pilier{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r-carte);padding:32px 26px;display:flex;flex-direction:column;gap:16px}
-.pilier-num{font-family:var(--titre);font-weight:800;font-size:52px;line-height:1;color:var(--citron)}
+.pilier-num{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:52px;line-height:1;color:var(--citron)}
 .pilier h3{font-size:28px;line-height:1.05}
 .pilier p{font-size:18px;line-height:1.5;color:var(--doux)}
 .pilier-bleu{background:var(--bleu);border-color:var(--bleu)}
@@ -169,7 +176,7 @@ b,strong{font-weight:700}
 .marche-tete{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:end}
 .etapes{list-style:none;counter-reset:etape;display:flex;flex-direction:column;gap:14px;font-size:19px;line-height:1.5}
 .etapes li{counter-increment:etape}
-.etapes li::before{content:counter(etape) ". ";font-weight:800;color:var(--bleu)}
+.etapes li::before{content:counter(etape) ". ";font-weight:700;color:var(--bleu)}
 .bande{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
 .bande-item{display:flex;flex-direction:column;gap:12px;min-width:0}
 .bande-item img{width:100%;aspect-ratio:3/4;height:auto;object-fit:cover;border-radius:16px;background:#DCDEE8}
@@ -178,10 +185,10 @@ b,strong{font-weight:700}
 .bande-item:nth-child(3) img{object-position:64% 50%}
 .bande-item:nth-child(4) img{object-position:61% 40%}
 .bande-item p{display:flex;flex-direction:column;gap:4px;font-size:15px;line-height:1.45;color:var(--gris-clair)}
-.bande-item strong{font-family:var(--titre);font-weight:800;font-size:17px;line-height:1.15;color:var(--nuit)}
+.bande-item strong{font-family:var(--sans);font-weight:700;font-size:17px;line-height:1.15;color:var(--nuit)}
 .mention-claire{color:#545869}
 .marche-choix{display:flex;flex-direction:column;gap:14px;padding-top:28px;border-top:1px solid #DCDEE8}
-.marche-q{font-size:19px;font-weight:800}
+.marche-q{font-size:19px;font-weight:700}
 .metiers{display:flex;flex-wrap:wrap;gap:10px}
 .metiers .m-choix{min-height:44px;padding:8px 16px;border:1.5px solid var(--nuit);border-radius:var(--r-btn);background:transparent;color:var(--nuit);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
 .metiers .m-choix:hover{background:rgba(7,8,12,.06)}
@@ -216,10 +223,10 @@ b,strong{font-weight:700}
 .appareil-declencheur{display:flex;align-items:center;justify-content:center;width:60px;height:60px;border:3px solid var(--blanc);border-radius:12px}
 .appareil-declencheur span{width:44px;height:44px;border-radius:8px;background:var(--blanc)}
 .appareil-retourner{width:40px;height:40px;border-radius:8px;border:1.5px solid var(--filet-fort)}
-.avap-fleche{justify-self:center;font-family:var(--titre);font-weight:800;font-size:40px;line-height:1;color:var(--citron);transform:rotate(90deg)}
+.avap-fleche{justify-self:center;font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:40px;line-height:1;color:var(--citron);transform:rotate(90deg)}
 .post{background:var(--blanc);color:var(--nuit);border-radius:var(--r-carte);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
 .post-tete{display:flex;align-items:center;gap:12px;padding:14px 16px}
-.post-avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border-radius:10px;background:var(--nuit);color:var(--citron);font-family:var(--titre);font-weight:800;font-size:18px}
+.post-avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border-radius:10px;background:var(--nuit);color:var(--citron);font-family:var(--sans);font-weight:700;font-size:18px}
 .post-compte{display:flex;flex-direction:column;line-height:1.25;font-size:15px}
 .post-compte span{font-size:13px;color:#545869}
 .post-photo{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover}
@@ -229,7 +236,7 @@ b,strong{font-weight:700}
 .post-infos div{display:flex;flex-wrap:wrap;gap:0 8px}
 .post-infos dt{color:var(--discret)}
 .post-infos dd{margin:0;font-weight:700}
-.post-bouton{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 26px;border-radius:var(--r-btn);background:var(--bleu);color:var(--blanc);font-weight:800;font-size:16px}
+.post-bouton{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 26px;border-radius:var(--r-btn);background:var(--bleu);color:var(--blanc);font-weight:700;font-size:16px}
 .avap-note{font-size:18px;line-height:1.5;font-weight:700;color:var(--blanc);max-width:760px}
 
 /* ---------- Offres */
@@ -237,31 +244,31 @@ b,strong{font-weight:700}
 .offres-tete{display:flex;flex-direction:column;gap:20px}
 .offres-tete h2{max-width:980px;font-size:clamp(32px,4.4vw,62px)}
 .offres-chapo{font-size:19px;line-height:1.5;color:var(--doux);max-width:640px}
-.fondateur-offre{align-self:flex-start;border:1.5px solid var(--citron);border-radius:12px;padding:14px 18px;color:var(--blanc);font-weight:600;font-size:17px;line-height:1.4}
-.fondateur-offre strong{color:var(--citron);font-weight:800}
+.lancement-offre{align-self:flex-start;max-width:760px;border:1.5px solid var(--citron);border-radius:12px;padding:14px 18px;color:var(--blanc);font-weight:600;font-size:17px;line-height:1.45}
+.lancement-offre strong{color:var(--citron);font-weight:700}
 .offres{display:grid;grid-template-columns:minmax(0,1fr);gap:28px 16px;align-items:stretch}
 .offre{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r-carte);padding:28px 22px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.offre h3{font-family:var(--titre);font-size:26px;font-weight:800;line-height:1.1}
-.offre-promesse{font-size:19px;font-weight:800;line-height:1.3}
+.offre h3{font-family:var(--titre);font-weight:400;text-transform:uppercase;letter-spacing:.012em;font-size:26px;line-height:1.1}
+.offre-promesse{font-size:19px;font-weight:700;line-height:1.3}
 .offre-qui{font-size:16px;line-height:1.45;color:var(--doux)}
 .prix-bloc{display:flex;flex-direction:column;gap:6px;margin:6px 0 4px;padding:18px 0;border-top:1px solid var(--filet-fort);border-bottom:1px solid var(--filet-fort)}
-.prix-lib{font-size:16px;font-weight:800;line-height:1.3;color:var(--citron)}
+.prix-lib{font-size:16px;font-weight:700;line-height:1.3;color:var(--citron)}
 .prix-jour{font-size:15px;font-weight:700}
 .avantages{display:flex;flex-direction:column;gap:8px;flex:1 1 auto}
-.avantages h4{margin:10px 0 0;font-size:15px;font-weight:800;line-height:1.3;color:var(--blanc)}
-.avantages-plus{font-size:16px;font-weight:800}
+.avantages h4{margin:10px 0 0;font-size:15px;font-weight:700;line-height:1.3;color:var(--blanc)}
+.avantages-plus{font-size:16px;font-weight:700}
 .offre-nom{display:block}
 .offre.reco{position:relative}
 .offre.reco .reco-lib{position:absolute;top:-15px;left:22px}
-.reco-lib{background:var(--citron);color:var(--nuit);font-weight:800;font-size:13px;padding:6px 12px;border-radius:var(--r-btn)}
+.reco-lib{background:var(--citron);color:var(--nuit);font-weight:700;font-size:13px;padding:6px 12px;border-radius:var(--r-btn)}
 .prix{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
-.prix-montant{font-family:var(--titre);font-weight:800;font-size:44px;line-height:1;letter-spacing:-.02em}
+.prix-montant{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:44px;line-height:1;letter-spacing:.01em}
 .prix-unite{font-size:15px;color:var(--discret)}
-.prix-public{font-size:15px;color:var(--doux)}
+.prix-lancement{font-size:15px;line-height:1.45;font-weight:600;color:var(--blanc)}
 .inclus{padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.4;color:var(--doux)}
 .offre .btn{width:100%;min-height:54px;font-size:17px;margin-top:6px}
 .offre.reco{background:var(--bleu);border-color:var(--bleu)}
-.offre.reco .prix-unite,.offre.reco .prix-public,.offre.reco .inclus,.offre.reco .offre-qui{color:var(--blanc)}
+.offre.reco .prix-unite,.offre.reco .prix-lancement,.offre.reco .inclus,.offre.reco .offre-qui{color:var(--blanc)}
 .offre.reco .prix-bloc{border-color:rgba(255,255,255,.35)}
 .offre.reco :focus-visible{outline-color:var(--blanc)}
 .offres-pied{display:flex;flex-direction:column;gap:8px}
@@ -269,26 +276,13 @@ b,strong{font-weight:700}
 .option-trustpilot{align-self:flex-start;border:1px solid var(--filet-fort);border-radius:12px;padding:14px 18px;font-size:16px;line-height:1.45;color:var(--doux);margin:8px 0}
 .option-trustpilot strong{color:var(--blanc)}
 .ne-payez-pas{font-size:17px;line-height:1.5;color:var(--doux)}
-.detail{border-top:1px solid var(--filet-fort);border-bottom:1px solid var(--filet-fort)}
-.detail summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;font-weight:800;font-size:18px;cursor:pointer;list-style:none}
-.detail summary::-webkit-details-marker{display:none}
-.detail summary::after{content:"+";flex:none;font-size:26px;font-weight:400;line-height:1}
-.detail[open] summary::after{content:"\2212"}
-.detail-corps{overflow-x:auto;padding-bottom:22px;display:flex;flex-direction:column;gap:12px}
-.tableau{width:100%;min-width:560px;border-collapse:collapse;font-size:15px}
-.tableau th,.tableau td{padding:11px 10px;border-bottom:1px solid var(--filet);text-align:left;vertical-align:top;color:var(--doux)}
-.tableau thead th{vertical-align:bottom;border-bottom:1px solid var(--filet-fort)}
-.tableau thead .n{display:block;font-size:18px;font-weight:800;color:var(--blanc)}
-.tableau thead .p{display:block;font-size:13px;font-weight:500;color:var(--discret)}
-.tableau tbody th{font-weight:600;color:var(--blanc)}
-.tableau .reco{background:rgba(61,75,255,.22)}
 
 /* ---------- Questions */
 .faq{max-width:900px;display:flex;flex-direction:column;gap:28px}
 .faq h2{font-size:clamp(34px,4vw,56px);line-height:1}
 .questions{border-top:1px solid var(--filet-fort)}
 .q{border-bottom:1px solid var(--filet-fort)}
-.q summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:14px 0;font-size:19px;font-weight:800;cursor:pointer;list-style:none}
+.q summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:14px 0;font-size:19px;font-weight:700;cursor:pointer;list-style:none}
 .q summary::-webkit-details-marker{display:none}
 .q summary::after{content:"+";flex:none;font-size:26px;font-weight:400;line-height:1}
 .q[open] summary::after{content:"\2212"}
@@ -443,7 +437,7 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
 
 /* ==========================================================================
    nuit-page (14/10/2026) : douleur par métier, filtre par note, calculateur, community manager, offres lisibles.
-   Bloc localisé : n'écrase que les classes de ces sections (offres : .offre-promesse, .prix-public, .inclus).
+   Bloc localisé : n'écrase que les classes de ces sections (offres : .offre-promesse, .prix-lancement, .inclus).
    Sources des chiffres : ordres/SOURCES-PAGE.md. Interdits respectés : aucun dégradé, rayons <= 12 px, aucun trait coloré.
    ========================================================================== */
 
@@ -454,13 +448,13 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
 .scenes{list-style:none;display:flex;flex-direction:column}
 .scenes li{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:18px 0;border-top:1px solid var(--filet-fort)}
 .scenes li:last-child{border-bottom:1px solid var(--filet-fort)}
-.scene-metier{font-family:var(--titre);font-weight:800;font-size:20px;line-height:1.15;color:var(--blanc)}
+.scene-metier{font-family:var(--sans);font-weight:700;font-size:20px;line-height:1.15;color:var(--blanc)}
 .scene-texte{font-size:17px;line-height:1.5;color:var(--doux)}
 .constat{border:1.5px solid var(--filet-fort);border-radius:12px;padding:22px 20px;display:flex;flex-direction:column;gap:14px}
-.constat-titre{font-size:17px;font-weight:800;line-height:1.35}
+.constat-titre{font-size:17px;font-weight:700;line-height:1.35}
 .constat-liste{list-style:none;display:flex;flex-direction:column;gap:12px}
 .constat-liste li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;align-items:baseline;font-size:17px;line-height:1.4;color:var(--doux)}
-.constat-chiffre{font-family:var(--titre);font-weight:800;font-size:28px;line-height:1;color:var(--citron);white-space:nowrap}
+.constat-chiffre{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:28px;line-height:1;color:var(--citron);white-space:nowrap}
 .constat .mention a{color:var(--doux)}
 
 /* ---------- Ce que Google fait de votre note : citations et filtre par note (illustration fictive) */
@@ -490,7 +484,7 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
 .calc-plein{display:flex;flex-direction:column;gap:8px}
 .calc-base{font-size:15px;color:var(--discret)}
 .calc-lib{font-size:17px;font-weight:700}
-.calc-montant{font-family:var(--titre);font-weight:800;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:-.01em;color:var(--blanc)}
+.calc-montant{font-family:var(--titre);font-weight:400;text-transform:none;font-size:clamp(32px,4.4vw,56px);line-height:1.08;letter-spacing:.01em;color:var(--blanc)}
 .calc-unite{font-size:17px;line-height:1.45;color:var(--doux)}
 .calc-seuil{margin-top:6px;padding-top:14px;border-top:1px solid var(--filet-fort);font-size:17px;line-height:1.45;font-weight:700;color:var(--citron)}
 .calc-prudence{font-size:14px;line-height:1.5;color:var(--discret)}
@@ -507,11 +501,13 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
 .cm-lui h3{color:var(--nuit)}
 .cm-liste{list-style:none;display:flex;flex-direction:column}
 .cm-liste li{display:block;padding:16px 0;border-top:1px solid #DCDEE8;font-size:17px;line-height:1.5;color:var(--gris-clair)}
-.cm-liste strong{display:block;margin-bottom:4px;font-family:var(--titre);font-weight:800;font-size:19px;line-height:1.2;color:var(--nuit)}
+.cm-liste strong{display:block;margin-bottom:4px;font-family:var(--sans);font-weight:700;font-size:19px;line-height:1.2;color:var(--nuit)}
 .cm-vous{background:var(--nuit);color:var(--blanc);border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;gap:18px;align-self:start}
 .cm-etapes{list-style:none;display:flex;flex-direction:column;gap:16px}
 .cm-etapes li{display:block;font-size:17px;line-height:1.45;color:var(--doux)}
-.cm-etapes strong{display:block;margin-bottom:4px;font-family:var(--titre);font-weight:800;font-size:clamp(32px,3.4vw,42px);line-height:1;color:var(--blanc)}
+.cm-etapes strong{display:block;margin-bottom:4px;font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:clamp(32px,3.4vw,42px);line-height:1;color:var(--blanc)}
+.cm-photo{font-size:15px;line-height:1.5;color:var(--doux)}
+.mention-page{margin-top:28px;max-width:760px}
 .cm-regle{padding-top:16px;border-top:1px solid var(--filet-fort);font-size:15px;line-height:1.5;color:var(--doux)}
 /* Bande des métiers réduite : une vignette et un nom (les scènes par métier sont dans la douleur) */
 .bande-compacte{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
@@ -526,27 +522,28 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
 .mini-post{background:var(--blanc);color:var(--nuit);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
 .mini-compte{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:13px;line-height:1.2;min-width:0}
 .mini-compte strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mini-avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:6px;background:var(--nuit);color:var(--citron);font-family:var(--titre);font-weight:800;font-size:12px}
+.mini-avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border-radius:6px;background:var(--nuit);color:var(--citron);font-family:var(--sans);font-weight:700;font-size:12px}
 .mini-post img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:50% 60%}
 .mini-legende{padding:8px 10px 0;font-size:13px;line-height:1.4;color:#2B2E3A}
-.mini-bouton{align-self:flex-start;margin:10px;display:inline-flex;align-items:center;min-height:34px;padding:4px 16px;border-radius:8px;background:var(--bleu);color:var(--blanc);font-weight:800;font-size:14px}
+.mini-bouton{align-self:flex-start;margin:10px;display:inline-flex;align-items:center;min-height:34px;padding:4px 16px;border-radius:8px;background:var(--bleu);color:var(--blanc);font-weight:700;font-size:14px}
 
 /* ---------- Offres lisibles en 10 secondes : un nom, une phrase, un prix, ce que vous recevez */
 .offre-promesse{font-size:20px;line-height:1.3}
 .prix-bloc{gap:8px}
-.prix-public{font-size:14px;line-height:1.45}
 .offre .inclus{flex:1 1 auto;gap:8px;font-size:16px}
 .offre .prix{flex-direction:column;align-items:flex-start;gap:4px}
 .google-section .bascule{font-size:clamp(22px,2.4vw,32px)}
-.offre .inclus-tout{list-style:none;margin-left:-20px;font-weight:800;color:var(--blanc)}
+.offre .inclus-tout{list-style:none;margin-left:-20px;font-weight:700;color:var(--blanc)}
 .compare-cadre{border:1px solid var(--filet-fort);border-radius:12px;padding:6px 12px}
 .compare{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;line-height:1.35}
 .compare thead td{width:31%}
 .compare th,.compare td{padding:11px 6px;border-bottom:1px solid var(--filet);text-align:center;vertical-align:middle;color:var(--doux)}
 .compare tbody tr:last-child th,.compare tbody tr:last-child td{border-bottom:0}
-.compare thead th{font-weight:800;font-size:13px;color:var(--blanc)}
+.compare thead th{font-weight:700;font-size:13px;color:var(--blanc)}
 .compare tbody th{text-align:left;font-weight:700;color:var(--blanc);padding-left:0}
 .compare td{font-weight:700;color:var(--blanc)}
+.compare td{hyphens:manual;-webkit-hyphens:manual}
+.citron.bloc{display:block}
 .compare .reco{background:rgba(61,75,255,.22)}
 
 @media (min-width:760px){
@@ -560,7 +557,7 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
   .cm-vous{padding:32px 30px}
   .compare{font-size:16px}
   .compare thead td{width:40%}
-  .compare thead th{font-family:var(--titre);font-size:18px}
+  .compare thead th{font-family:var(--titre);font-weight:400;text-transform:uppercase;letter-spacing:.012em;font-size:18px}
   .compare th,.compare td{padding:13px 12px}
   .compare-cadre{padding:6px 20px}
 }
@@ -571,7 +568,7 @@ body.clair main :focus-visible{outline-color:var(--bleu)}
   .calcul-tete,.cm-tete{max-width:none}
   .bande-compacte{gap:20px}
   .bande-compacte .bande-item img{aspect-ratio:3/2}
-  .bande-compacte .bande-item strong{font-family:var(--titre);font-size:17px}
+  .bande-compacte .bande-item strong{font-family:var(--sans);font-size:17px}
   .calcul-corps{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch}
   .cm-grille{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px}
   .offre-promesse{min-height:2.6em}
