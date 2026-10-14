@@ -1,0 +1,34 @@
+{
+ "_lisez_moi": "Liste FERMÉE des polices du kit de marque (moteur/marque.py, espace/web/marque.js, fonction SQL polices_marque()). Fichiers d'origine, non modifiés, tous sous SIL Open Font License 1.1 (relevé dans LICENCES.md). Copie exacte dans espace/web/fonts/couples.json (égalité testée). Ajouter une police : fichier ici ET dans espace/web/fonts/, licence relue et notée dans LICENCES.md, identifiant ajouté à polices_marque() dans schema.sql.",
+ "familles": {
+  "bricolage": {"nom": "Bricolage Grotesque", "fichier": "bricolage.ttf", "axes": {"opsz": 48, "wdth": 100}, "graisse_titre": 800},
+  "figtree": {"nom": "Figtree", "fichier": "figtree.ttf", "axes": {}, "graisse_titre": 800},
+  "playfair": {"nom": "Playfair Display", "fichier": "playfair.ttf", "axes": {}, "graisse_titre": 800},
+  "dmsans": {"nom": "DM Sans", "fichier": "dmsans.ttf", "axes": {"opsz": 14}, "graisse_titre": 700},
+  "fraunces": {"nom": "Fraunces", "fichier": "fraunces.ttf", "axes": {"opsz": 72, "SOFT": 50, "WONK": 0}, "graisse_titre": 700},
+  "nunito": {"nom": "Nunito", "fichier": "nunito.ttf", "axes": {}, "graisse_titre": 800},
+  "oswald": {"nom": "Oswald", "fichier": "oswald.ttf", "axes": {}, "graisse_titre": 600},
+  "karla": {"nom": "Karla", "fichier": "karla.ttf", "axes": {}, "graisse_titre": 800},
+  "dmserif": {"nom": "DM Serif Display", "fichier": "dmserif.ttf", "axes": {}, "graisse_titre": 400},
+  "manrope": {"nom": "Manrope", "fichier": "manrope.ttf", "axes": {}, "graisse_titre": 800},
+  "fredoka": {"nom": "Fredoka", "fichier": "fredoka.ttf", "axes": {"wdth": 100}, "graisse_titre": 600},
+  "zillaslab": {"nom": "Zilla Slab", "fichier": "zillaslab.ttf", "axes": {}, "graisse_titre": 700}
+ },
+ "textes": ["figtree", "dmsans", "nunito", "karla", "manrope"],
+ "couples": [
+  {"id": "franc", "titres": "bricolage", "texte": "figtree", "nom": "Franc", "en": "Bold"},
+  {"id": "elegant", "titres": "playfair", "texte": "dmsans", "nom": "Élégant", "en": "Elegant"},
+  {"id": "chaleureux", "titres": "fraunces", "texte": "nunito", "nom": "Chaleureux", "en": "Warm"},
+  {"id": "energique", "titres": "oswald", "texte": "karla", "nom": "Énergique", "en": "Energetic"},
+  {"id": "raffine", "titres": "dmserif", "texte": "dmsans", "nom": "Raffiné", "en": "Refined"},
+  {"id": "epure", "titres": "manrope", "texte": "manrope", "nom": "Épuré", "en": "Clean"},
+  {"id": "enjoue", "titres": "fredoka", "texte": "nunito", "nom": "Enjoué", "en": "Playful"},
+  {"id": "bistrot", "titres": "zillaslab", "texte": "karla", "nom": "Bistrot", "en": "Bistro"}
+ ],
+ "propositions": {
+  "restaurant": {"chaleureux": "chaleureux", "sobre": "elegant", "enjoue": "bistrot", "_": "franc"},
+  "beaute": {"chaleureux": "elegant", "sobre": "raffine", "enjoue": "enjoue", "_": "raffine"},
+  "sport": {"chaleureux": "energique", "sobre": "epure", "enjoue": "energique", "_": "energique"},
+  "autre": {"chaleureux": "chaleureux", "sobre": "epure", "enjoue": "enjoue", "_": "franc"}
+ }
+}

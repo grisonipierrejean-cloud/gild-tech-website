@@ -47,6 +47,44 @@
    "notifications": {
     "email": true,
     "whatsapp": false
+   },
+   "marque": {
+    "version": 1,
+    "auto": true,
+    "verrouille": false,
+    "source": {
+     "type": "photos",
+     "photos": [
+      "demo/files/public/marque/spaghetti.jpg",
+      "demo/files/public/marque/bol-sauce.jpg",
+      "demo/files/public/marque/entree-marbre.jpg"
+     ]
+    },
+    "logo": null,
+    "logo_fond": null,
+    "couleurs": {
+     "principale": "#1F3A5F",
+     "secondaire": "#B09884",
+     "fond": "#FBF8F3",
+     "texte": "#1C1B19"
+    },
+    "palette": [
+     "#140E0D",
+     "#ADABAA",
+     "#81634E",
+     "#3F2A20",
+     "#948983",
+     "#704320"
+    ],
+    "couple": "chaleureux",
+    "police_titres": "fraunces",
+    "police_texte": "nunito",
+    "style_photo": "chaleureux",
+    "gabarit_prefere": null,
+    "gabarit_impose": false,
+    "mots_signature": [],
+    "a_eviter": [],
+    "maj": "2026-10-14T08:00:00Z"
    }
   },
   "c-nouveau": {

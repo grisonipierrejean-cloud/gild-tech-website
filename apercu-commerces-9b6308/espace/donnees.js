@@ -319,13 +319,22 @@
     };
     // ---- Collecte (démonstration) : fin
 
+    // Kit de marque proposé à la première photo (rôle du moteur, rendu_cloud.proposer_kit) : même calcul, dans le navigateur.
+    async function proposerKitDemo(c, url) {
+      const MQ = window.RENOM_MARQUE; if (!MQ) return; const cat = await MQ.charger(), img = await MQ.chargerImage(url);
+      if (c.marque) return;
+      const k = MQ.garderCouleurs(MQ.proposer({ photos: [MQ.pixels(img)], metier: c.metier, ton: c.ton || "", cat }), c.couleurs);
+      c.marque = { ...k, version: 1, maj: new Date().toISOString() }; c.couleurs = MQ.couleursCommerce(c.marque);
+      jour(c.id, "MARQUE_PROPOSEE", { source: "photos", version: 1, simule: true }); sauver();
+    }
     // Faux services (jouent le rôle de n8n, GitHub Actions, Claude, Metricool, Google : rien de réel)
     const faux = {
       creation(photo) {
         const c = E.commerces[photo.commerce_id];
         if (usage(c) >= OFFRES[c.offre_id].publications) { photo.statut = "refusee"; jour(c.id, "REFUS", { photo: photo.id, raison: "plafond de publications atteint" }); return; }
         const legende = "Légende de démonstration : en service, notre IA l'écrit à partir de votre photo et de votre fiche.", id = uid();
-        E.contenus.unshift({ id, commerce_id: c.id, photo_id: photo.id, type: "publication", format: "publication", legende, legendes: legendesDemo(c, legende), visuel_url: photo.url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true });
+        E.contenus.unshift({ id, commerce_id: c.id, photo_id: photo.id, type: "publication", format: "publication", legende, legendes: legendesDemo(c, legende), visuel_url: photo.url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true,
+          marque_version: (c.marque && c.marque.version) || null });
         photo.statut = "traitee"; jour(c.id, "PRODUIT", { photo: photo.id, simule: true }); emettreJeton(c.id, "contenu", id);
       },
       // ---- Vidéo d'avis : FAUX rendu. Aucune vidéo n'est fabriquée dans le navigateur. Si la démonstration a été préparée
@@ -791,6 +800,35 @@
         const p = { id: uid(), commerce_id: c.id, nom_fichier: f.name, statut: "a_traiter", cree_le: new Date().toISOString(), url };
         E.photos.unshift(p); sauver();
         setTimeout(() => { if (p.statut === "a_traiter") { faux.creation(p); sauver(); } }, 1200);   // faux n8n + faux rendu
+        if (!c.marque && url) proposerKitDemo(c, url).catch(() => {});   // premières photos : le kit de marque est proposé (comme le moteur)
+      },
+      // ---- Kit de marque (écran « Votre style ») : mêmes règles que le moteur et la base (espace/web/marque.js, fonction SQL marque_fautes)
+      async marque() {
+        await init(); const c = cur(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+        const src = ((c.marque && c.marque.source && c.marque.source.photos) || []).filter(u => /^demo\//.test(u)).map(u => ({ url: u, nom: u.split("/").pop() }));
+        const photos = [...mine("photos").filter(p => /^data:image\//.test(p.url || "")).map(p => ({ url: p.url, nom: p.nom_fichier })), ...src].slice(0, 6);
+        return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null, photos,
+          logo: c.marque && c.marque.logo ? ((E.logos || {})[c.marque.logo] || null) : null };
+      },
+      async deposerLogo(f) {
+        await init(); const c = cur(), MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
+        // Démonstration : le logo est gardé dans ce navigateur, réduit à 512 px (en production : fichier d'origine dans le seau « photos », SVG converti en PNG).
+        const blob = await MQ.enPng(f, 512), url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
+        const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + ".png";
+        E.logos = E.logos || {}; E.logos[chemin] = url; sauver(); return { chemin, url };
+      },
+      async enregistrerMarque(kit, verrouiller) {
+        await init(); const c = cur(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+        const m = MQ.sansBase({ ...kit, verrouille: !!verrouiller, auto: false }), f = MQ.fautes(m, c.id, cat);
+        if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
+        const ancien = c.marque || null, maintenant = new Date().toISOString();
+        if (!ancien || MQ.canon(MQ.sansBase(ancien)) !== MQ.canon(m)) {      // même règle que le déclencheur regler_marque
+          m.version = (+(ancien && ancien.version) || 0) + 1; m.maj = maintenant;
+          m.verrouille_le = m.verrouille ? (ancien && ancien.verrouille ? ancien.verrouille_le : maintenant) : null;
+          jour(c.id, m.verrouille && !(ancien && ancien.verrouille) ? "MARQUE_VALIDEE" : "MARQUE_ENREGISTREE", { version: m.version });
+          c.marque = m; c.couleurs = MQ.couleursCommerce(m); sauver();
+        }
+        return c.marque;
       },
       async contenus() { await init(); return mine("contenus").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async urlVisuel(c) { return c.visuel_url || null; },
@@ -959,6 +997,31 @@
         ok(await sb.from("photos").insert({ commerce_id: c.id, chemin, nom_fichier: f.name }));
       },
       async contenus() { const c = await self.commerce(); return ok(await sb.from("contenus").select("id,type,format,statut,legende,legendes,fichier,note_modification,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      // ---- Kit de marque (écran « Votre style ») : colonne commerces.marque ; la base contrôle le kit, pose la version et aligne commerces.couleurs.
+      async marque() {
+        const c = await self.commerce(), MQ = window.RENOM_MARQUE, cat = await MQ.charger();
+        const ph = ok(await sb.from("photos").select("id,chemin,nom_fichier,cree_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(6));
+        const signe = async ch => { try { const r = await sb.storage.from("photos").createSignedUrl(ch, 3600); return r.data && r.data.signedUrl; } catch (e) { return null; } };
+        const urls = await Promise.all(ph.map(p => signe(p.chemin)));
+        return { kit: c.marque ? MQ.normaliser(c.marque, c.couleurs, c.metier, c.ton || "", cat) : null, brut: c.marque || null,
+          photos: ph.map((p, i) => ({ url: urls[i], nom: p.nom_fichier })).filter(p => p.url), logo: c.marque && c.marque.logo ? await signe(c.marque.logo) : null };
+      },
+      // Logo : seau « photos », <commerce>/marque/logo-<aléa>.<ext> (règles de stockage existantes). Un SVG est converti en PNG avant le dépôt.
+      async deposerLogo(f) {
+        const MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
+        const c = await self.commerce(), blob = MQ.estSvg(f) ? await MQ.enPng(f, 1024) : f;
+        const ext = MQ.estSvg(f) ? "png" : ({ "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" }[f.type] || (f.name.split(".").pop() || "png").toLowerCase().replace("jpeg", "jpg"));
+        const chemin = c.id + "/marque/logo-" + uid().replace(/[^a-z0-9]/gi, "").slice(0, 12) + "." + ext;
+        ok(await sb.storage.from("photos").upload(chemin, blob, { contentType: MQ.estSvg(f) ? "image/png" : f.type }));
+        return { chemin, url: URL.createObjectURL(blob) };
+      },
+      async enregistrerMarque(kit, verrouiller) {
+        const MQ = window.RENOM_MARQUE, cat = await MQ.charger(), c = await self.commerce();
+        const m = MQ.sansBase({ ...kit, verrouille: !!verrouiller, auto: false }), f = MQ.fautes(m, c.id, cat);
+        if (f.length) throw Object.assign(new Error("Kit de marque refusé : " + f.join(", ")), { codes: f });
+        ok(await sb.from("commerces").update({ marque: m }).eq("id", c.id)); cache = null;
+        return (await self.commerce()).marque;
+      },
       // Une story s'affiche avec son visuel 9:16, les autres contenus avec le visuel 4:5.
       async urlVisuel(ct) { if (!ct.fichier) return null; const base = ct.type === "video" ? ct.fichier.slice(0, ct.fichier.lastIndexOf("/")) : ct.fichier; const r = ok(await sb.storage.from("contenus").createSignedUrl(base + (formatDe(ct) === "story" ? "/visuel-9x16.jpg" : "/visuel-4x5.jpg"), 3600)); return r.signedUrl; },
       async urlVideo(ct) { if (ct.type !== "video" || !ct.fichier) return null; const r = ok(await sb.storage.from("contenus").createSignedUrl(ct.fichier, 3600)); return r.signedUrl; },

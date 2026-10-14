@@ -306,6 +306,7 @@
       ${blocMiseEnRoute(mr)}
       ${!c.demarrage_fini ? `<section class="alerte"><div><p class="fort">${t("acc.dem.titre")}</p><p>${t("acc.dem.texte")}</p></div><a class="bouton second" href="#/demarrage">${t("acc.dem.reprendre")}</a></section>` : ""}
       ${bilanBloc(bilan)}
+      ${carteStyle(c)}
       <section class="carte a-valider"${premier ? ` data-contenu="${e(premier.id)}"` : ""}>
           <div class="carte-tete"><h2>${t(premier ? "acc.contenu.un" : "acc.contenu.aucun")}</h2>${aValider.length > 1 ? `<a href="#/contenus">${t("voir.les", { n: aValider.length })}</a>` : `<a href="#/contenus">${t("acc.ouvrir.contenus")}</a>`}</div>
           ${premier ? `<div class="apercu-reseaux">${blocReseaux(premier, u1, v1)}<div class="apercu-texte">
@@ -386,10 +387,9 @@
           <label class="option"><input type="radio" name="reglage" value="auto_des_4_etoiles"${c.reglage_avis !== "tout_automatique" ? " checked" : ""}><span>${t("fiche.reglage.4")}</span></label>
           <label class="option"><input type="radio" name="reglage" value="tout_automatique"${c.reglage_avis === "tout_automatique" ? " checked" : ""}><span>${t("fiche.reglage.tout")}</span></label>
           <p class="aide">${t("fiche.reglage.aide")}</p></fieldset></section>
-      <section class="carte"><h2>${t("fiche.couleurs")}</h2><div class="coul">
-        <div class="f"><input id="c_fond" type="color" value="${e(co.fond || "#FFFFFF")}"><label for="c_fond">${t("fiche.c.fond")}</label></div>
-        <div class="f"><input id="c_texte" type="color" value="${e(co.texte || "#000000")}"><label for="c_texte">${t("fiche.c.texte")}</label></div>
-        <div class="f"><input id="c_accent" type="color" value="${e(co.accent || "#2438FF")}"><label for="c_accent">${t("fiche.c.accent")}</label></div></div></section>
+      <section class="carte" id="fiche-style"><h2>${t("fiche.couleurs")}</h2>
+        <div class="style-accueil-corps"><p class="texte2">${t("fiche.couleurs.style")}</p><div class="style-nuancier" aria-hidden="true">${[co.accent, co.fond, co.texte].filter(Boolean).map(x => `<span style="background:${e(x)}"></span>`).join("")}</div></div>
+        <p class="pied"><a class="bouton second" href="#/style">${t("fiche.couleurs.lien")}</a></p></section>
       <div class="actions pied-formulaire"><button class="bouton" type="submit">${t("enregistrer")}</button><p class="msg" id="msg" role="status"></p></div></form>`;
     const liste = id => $(id).value.split(",").map(s => s.trim()).filter(Boolean);
     $("f").onsubmit = async ev => {
@@ -397,7 +397,7 @@
       try {
         await D.enregistrer({ nom: $("nom").value.trim(), metier: $("metier").value, ville: $("ville").value.trim(), specialites: $("specialites").value.trim(), horaires: $("horaires").value.trim(), ton: $("ton").value.trim(),
           mots_cles: liste("mots_cles"), mentions_autorisees: liste("mentions"), contact: $("contact").value.trim(), email_validation: $("email_validation").value.trim(), lien_avis: $("lien_avis").value.trim(),
-          couleurs: { fond: $("c_fond").value, texte: $("c_texte").value, accent: $("c_accent").value }, reglage_avis: document.querySelector("input[name=reglage]:checked").value });
+          reglage_avis: document.querySelector("input[name=reglage]:checked").value });   // couleurs : écran « Votre style » (kit de marque)
         msg(t("fiche.enregistree"));
       } catch (er) { msg(t("fiche.echec", { m: ph(er.message) })); }
     };
@@ -930,6 +930,8 @@
     if (dem.pour !== c.id) Object.assign(dem, { pour: c.id, i: 0, rep: { ...(c.demarrage || {}) }, fini: false });
     if (dem.fini) {
       vue.innerHTML = `${entete(t("dem5.fini"), e(c.nom), t("dem5.fini.chapo"))}
+        <section class="carte style-accueil" id="dem-style"><h2>${t("dem5.style.titre")}</h2><p class="texte2">${t("dem5.style.texte")}</p>
+          <p class="pied"><a class="bouton" href="#/style">${t("dem5.style.bouton")}</a></p></section>
         <section class="carte"><h2>${t("dem5.maintenant")}</h2><p class="texte2">${t("dem5.maintenant.texte")}</p>
           <div class="actions"><button type="button" class="bouton" id="dem-accueil">${t("dem5.accueil")}</button><a class="bouton second" href="#/fiche">${t("dem5.voir.fiche")}</a></div></section>`;
       $("dem-accueil").onclick = () => { dem.pour = null; aller("accueil"); };
@@ -1134,8 +1136,126 @@
   }
   // ---- fin du bloc Vidéo d'avis ------------------------------------------------------------------------------------
 
+  // ---- Votre style (kit de marque) ---------------------------------------------------------------------------------
+  // Écran du groupe « Mon commerce » : logo, couleurs, polices, modèle préféré, ambiance des vidéos, expressions maison et à éviter.
+  // Aperçus des 3 gabarits dessinés avec une photo du commerce (espace/web/marque.js, règles de moteur/gabarits.py). « C'est mon style » verrouille le kit.
+  // Tant qu'il n'est pas validé, les contenus partent avec le kit proposé et l'accueil affiche la carte « Validez votre style en 1 minute ».
+  const MQ = window.RENOM_MARQUE;
+  GROUPES.find(g => g.id === "commerce").ecrans.splice(1, 0, "style"); ECRANS.style = t("ecran.style");
+  Object.assign(ETAPES, I.carte("etape", ["MARQUE_PROPOSEE", "MARQUE_ENREGISTREE", "MARQUE_VALIDEE", "MARQUE_APERCUS", "LOGO_ILLISIBLE", "VIDEO_GENEREE_REFUSEE"]));
+  const STY_GAB = I.carte("sty.gab", ["plein", "editorial", "annonce"]), STY_SP = I.carte("sty.sp", MQ.STYLES_PHOTO), STY_C = I.carte("sty.c", ["principale", "secondaire", "fond", "texte"]);
+  const sty = { pour: null, kit: null, brut: null, photos: [], images: [], photo: 0, logo: null, logoUrl: null, attente: 0 };
+  const nomCouple = c => I.langue === "en" ? c.en : c.nom;
+  const ratio = r => nombre(Math.floor(r * 10) / 10, 1);
+  // Carte de l'accueil tant que le style n'est pas validé
+  const carteStyle = c => c.marque && c.marque.verrouille ? "" : `<section class="carte style-accueil" id="carte-style" aria-labelledby="carte-style-titre"><div class="style-accueil-corps">
+      <div><h2 id="carte-style-titre">${t("acc.style.titre")}</h2><p class="texte2">${t("acc.style.texte")}</p></div>
+      ${c.marque && c.marque.couleurs ? `<div class="style-nuancier" aria-hidden="true">${["principale", "secondaire", "fond", "texte"].map(k => `<span style="background:${e(c.marque.couleurs[k])}"></span>`).join("")}</div>` : ""}</div>
+      <p class="pied"><a class="bouton" href="#/style">${t("acc.style.bouton")}</a></p></section>`;
+  const textesApercu = c => {
+    const lg = langueCommerce, h = String(c.horaires || "").split("\n")[0].trim();
+    return { texte_visuel: t("sty.exemple.titre", null, lg), accroche: t("sty.exemple.texte", null, lg), annonce: h && h.length <= 70 ? [h] : [] };
+  };
+  async function styleDessiner() {
+    const k = sty.kit, c = await D.commerce(); if (!k || !$("sty-grille")) return;
+    await MQ.polices(k);
+    const photo = sty.images[sty.photo] || null, tx = textesApercu(c);
+    MQ.GABARITS.forEach(g => { const cv = $("sty-apercu-" + g); if (cv) MQ.dessiner(cv, g, { kit: k, nom: c.nom, photo, logo: sty.logo, textes: tx }); });
+    const r = MQ.contraste(k.couleurs.texte, k.couleurs.fond), lisible = r >= 4.5;
+    $("sty-contraste").innerHTML = `<span class="${lisible ? "" : "fort"}">${t(lisible ? "sty.contraste.ok" : "sty.contraste.ko", { r: ratio(r) })}</span>${lisible ? "" : ` <button type="button" class="bouton second petit" id="sty-corriger">${t("sty.contraste.corriger")}</button>`}`;
+    if ($("sty-corriger")) $("sty-corriger").onclick = () => { sty.kit.couleurs = MQ.couleursLisibles(sty.kit.couleurs); majCouleurs(); styleRedessiner(); };
+    $("sty-valider").disabled = !lisible; $("sty-enregistrer").disabled = !lisible;
+    $("sty-illisible").hidden = lisible;
+  }
+  const styleRedessiner = () => { cancelAnimationFrame(sty.attente); sty.attente = requestAnimationFrame(() => { styleDessiner().catch(() => {}); }); };
+  function majCouleurs() { ["principale", "secondaire", "fond", "texte"].forEach(k => { const i = $("sty-c-" + k); if (i) i.value = sty.kit.couleurs[k].toLowerCase(); }); }
+  const lignes = (id, n) => $(id).value.split("\n").map(x => x.trim()).filter(Boolean).slice(0, n).map(x => x.slice(0, MQ.MAX_CAR));
+  async function chargerLogo(url) { if (!url) return null; try { return MQ.preparerLogo(await MQ.chargerImage(url)); } catch (er) { return null; } }
+  async function style() {
+    const [c, cat] = await Promise.all([D.commerce(), MQ.charger()]);
+    if (sty.pour !== c.id) {
+      const m = await D.marque(); Object.assign(sty, { pour: c.id, brut: m.brut, photos: m.photos, photo: 0, logoUrl: m.logo });
+      sty.images = (await Promise.all(m.photos.map(p => MQ.chargerImage(p.url).catch(() => null)))).filter(Boolean);
+      sty.logo = await chargerLogo(m.logo);
+      // Pas encore de kit : proposition calculée ici depuis la première photo (même calcul que le moteur), sinon les couleurs actuelles.
+      sty.kit = m.kit || (sty.images.length ? { ...MQ.garderCouleurs(MQ.proposer({ photos: [MQ.pixels(sty.images[0])], metier: c.metier, ton: c.ton || "", cat }), c.couleurs), version: 0 }
+        : MQ.normaliser(null, c.couleurs, c.metier, c.ton || "", cat));
+    }
+    const k = sty.kit, b = sty.brut, valide = !!(b && b.verrouille), src = (k.source && k.source.type) || (b && b.source && b.source.type) || "defaut";
+    const gabarits = MQ.GABARITS.map(g => `<figure class="sty-apercu"><canvas id="sty-apercu-${g}" width="1080" height="1350" role="img" aria-label="${t("sty.apercu.alt", { g: STY_GAB[g] })}"></canvas>
+        <figcaption><label class="option"><input type="radio" name="sty-gab" value="${g}"${k.gabarit_prefere === g ? " checked" : ""}><span>${t("sty.gab.prefere", { g: STY_GAB[g] })}</span></label></figcaption></figure>`).join("");
+    vue.innerHTML = `${entete(t("sty.sur"), t("ecran.style"), t("sty.chapo"))}
+      <section class="carte sty-etat${valide ? "" : " a-valider"}" id="sty-etat" aria-live="polite">
+        <p class="fort">${valide ? t("sty.etat.valide", { d: date(b.verrouille_le || b.maj) }) : t("sty.etat.propose")}</p>
+        <p class="texte2">${valide ? t("sty.etat.valide.texte", { v: b.version }) : t("sty.etat.propose." + (["logo", "photos"].includes(src) ? src : "defaut")) + " " + t("sty.etat.propose.suite")}</p></section>
+      <div class="colonnes sty">
+        <div class="pile">
+          <section class="carte" aria-labelledby="sty-apercus-titre"><div class="carte-tete"><h2 id="sty-apercus-titre">${t("sty.apercus")}</h2></div>
+            ${sty.images.length > 1 ? `<div class="sty-photos" role="group" aria-label="${t("sty.photo.choix")}">${sty.images.map((im, i) => `<button type="button" data-sty-photo="${i}" aria-pressed="${i === sty.photo}"><img src="${e(im.src)}" alt="${t("sty.photo.n", { n: i + 1 })}"></button>`).join("")}</div>` : ""}
+            ${sty.images.length ? "" : `<p class="note">${t("sty.sans.photo")} <a href="#/photos">${t("photos.deposer")}</a></p>`}
+            <fieldset class="sty-gabarits"><legend class="vh">${t("sty.gab.legende")}</legend><div class="sty-grille" id="sty-grille">${gabarits}</div>
+              <label class="option"><input type="radio" name="sty-gab" value=""${k.gabarit_prefere ? "" : " checked"}><span>${t("sty.gab.varier")}</span></label>
+              <label class="option"><input type="checkbox" id="sty-impose"${k.gabarit_impose ? " checked" : ""}${k.gabarit_prefere ? "" : " disabled"}><span>${t("sty.gab.impose")}</span></label>
+              <p class="aide">${t("sty.gab.aide")}</p></fieldset>
+            <p class="note">${t("sty.apercus.note")}</p></section>
+          <section class="carte" aria-labelledby="sty-couleurs-titre"><h2 id="sty-couleurs-titre">${t("sty.couleurs")}</h2>
+            <div class="coul sty-coul">${["principale", "secondaire", "fond", "texte"].map(x => `<div class="f"><input id="sty-c-${x}" type="color" value="${e(k.couleurs[x].toLowerCase())}"><label for="sty-c-${x}">${STY_C[x]}</label></div>`).join("")}</div>
+            ${(k.palette || []).length ? `<div class="sty-palette"><p class="note">${t("sty.palette")}</p><div class="sty-pastilles">${k.palette.map(x => `<button type="button" data-sty-pastille="${e(x)}" style="background:${e(x)}" aria-label="${t("sty.palette.choisir", { c: e(x) })}" title="${e(x)}"></button>`).join("")}</div></div>` : ""}
+            <p class="texte2" id="sty-contraste" aria-live="polite"></p></section>
+          <section class="carte" aria-labelledby="sty-polices-titre"><h2 id="sty-polices-titre">${t("sty.polices")}</h2><p class="note">${t("sty.polices.note")}</p>
+            <fieldset class="sty-couples"><legend class="vh">${t("sty.polices")}</legend>${cat.couples.map(cp => `<label class="sty-couple"><input class="vh" type="radio" name="sty-couple" value="${cp.id}"${k.police_titres === cp.titres && k.police_texte === cp.texte ? " checked" : ""}>
+              <span class="sty-couple-nom" style="font-family:'RM-${cp.titres}';font-weight:${cat.familles[cp.titres].graisse_titre}">${e(nomCouple(cp))}</span>
+              <span class="sty-couple-ex" style="font-family:'RM-${cp.texte}';font-weight:500"${lc()}>${t("sty.polices.exemple", { nom: e(c.nom) }, langueCommerce)}</span>
+              <span class="note">${e(cat.familles[cp.titres].nom)}${cp.titres !== cp.texte ? " · " + e(cat.familles[cp.texte].nom) : ""}</span></label>`).join("")}</fieldset></section>
+        </div>
+        <div class="pile">
+          <section class="carte" aria-labelledby="sty-logo-titre"><h2 id="sty-logo-titre">${t("sty.logo")}</h2>
+            <div class="sty-logo" id="sty-logo">${sty.logoUrl ? `<img src="${e(sty.logoUrl)}" alt="${t("sty.logo.alt")}">` : `<p class="texte2">${t("sty.logo.aucun")}</p>`}</div>
+            <div class="actions"><span class="depot-choix"><input id="sty-logo-fichier" class="vh" type="file" accept="image/png,image/svg+xml,image/jpeg,image/webp"><label for="sty-logo-fichier" class="bouton second">${t(sty.logoUrl ? "sty.logo.changer" : "sty.logo.deposer")}</label></span>
+              ${k.logo ? `<button type="button" class="lien" id="sty-logo-retirer">${t("sty.logo.retirer")}</button>` : ""}</div>
+            <p class="aide">${t("sty.logo.aide")}</p></section>
+          <section class="carte" aria-labelledby="sty-video-titre"><h2 id="sty-video-titre">${t("sty.video")}</h2>
+            <fieldset><legend class="vh">${t("sty.video")}</legend>${MQ.STYLES_PHOTO.map(x => `<label class="option sty-option"><input type="radio" name="sty-sp" value="${x}"${k.style_photo === x ? " checked" : ""}><span><span>${STY_SP[x]}</span><span class="note">${t("sty.sp.note." + x)}</span></span></label>`).join("")}</fieldset>
+            <p class="note">${t("sty.video.note")}</p></section>
+          <section class="carte" aria-labelledby="sty-mots-titre"><h2 id="sty-mots-titre">${t("sty.mots")}</h2>
+            <div class="f"><label for="sty-signature">${t("sty.mots.signature")}</label><textarea id="sty-signature" rows="3"${lc()}>${e((k.mots_signature || []).join("\n"))}</textarea><p class="aide">${t("sty.mots.signature.aide")}</p></div>
+            <div class="f"><label for="sty-eviter">${t("sty.mots.eviter")}</label><textarea id="sty-eviter" rows="3"${lc()}>${e((k.a_eviter || []).join("\n"))}</textarea><p class="aide">${t("sty.mots.eviter.aide")}</p></div></section>
+          <section class="carte sty-actions"><div class="actions"><button type="button" class="bouton" id="sty-valider">${t("sty.valider")}</button><button type="button" class="bouton second" id="sty-enregistrer">${t("sty.enregistrer")}</button></div>
+            <p class="note" id="sty-illisible" hidden>${t("sty.illisible")}</p><p class="aide">${t("sty.valider.aide")}</p><p class="msg" id="msg" role="status"></p></section>
+        </div>
+      </div>`;
+    // Réglages : chaque changement redessine les aperçus
+    ["principale", "secondaire", "fond", "texte"].forEach(x => { $("sty-c-" + x).oninput = ev => { sty.kit.couleurs = { ...sty.kit.couleurs, [x]: ev.target.value.toUpperCase() }; styleRedessiner(); }; });
+    vue.querySelectorAll("[data-sty-pastille]").forEach(bt => bt.onclick = () => { sty.kit.couleurs = { ...sty.kit.couleurs, principale: bt.dataset.styPastille }; majCouleurs(); styleRedessiner(); });
+    vue.querySelectorAll("input[name=sty-couple]").forEach(i => i.onchange = () => { const cp = cat.couples.find(x => x.id === i.value); Object.assign(sty.kit, { couple: cp.id, police_titres: cp.titres, police_texte: cp.texte }); styleRedessiner(); });
+    vue.querySelectorAll("input[name=sty-gab]").forEach(i => i.onchange = () => { sty.kit.gabarit_prefere = i.value || null; $("sty-impose").disabled = !i.value; if (!i.value) { $("sty-impose").checked = false; sty.kit.gabarit_impose = false; } });
+    $("sty-impose").onchange = () => { sty.kit.gabarit_impose = $("sty-impose").checked && !!sty.kit.gabarit_prefere; };
+    vue.querySelectorAll("input[name=sty-sp]").forEach(i => i.onchange = () => { sty.kit.style_photo = i.value; });
+    vue.querySelectorAll("[data-sty-photo]").forEach(bt => bt.onclick = () => { sty.photo = +bt.dataset.styPhoto; vue.querySelectorAll("[data-sty-photo]").forEach(x => x.setAttribute("aria-pressed", String(x === bt))); styleRedessiner(); });
+    $("sty-logo-fichier").onchange = async () => {
+      const f = $("sty-logo-fichier").files[0]; if (!f) return;
+      try {
+        const r = await D.deposerLogo(f), img = await MQ.chargerImage(r.url);
+        const p = MQ.proposer({ logo: MQ.pixels(img), metier: c.metier, ton: c.ton || "", logoChemin: r.chemin, cat });
+        Object.assign(sty.kit, { logo: r.chemin, logo_fond: p.logo_fond, couleurs: p.couleurs, palette: p.palette, source: { type: "logo" } });
+        sty.logoUrl = r.url; sty.logo = MQ.preparerLogo(img); await style(); msg(t("sty.logo.lu"));
+      } catch (er) { msg(er.code ? t(er.code) : ph(er.message)); }
+    };
+    if ($("sty-logo-retirer")) $("sty-logo-retirer").onclick = async () => { Object.assign(sty.kit, { logo: null, logo_fond: null }); sty.logo = null; sty.logoUrl = null; await style(); msg(t("sty.logo.retire")); };
+    const enregistrer = async verrouiller => {
+      sty.kit.mots_signature = lignes("sty-signature", MQ.MAX_MOTS); sty.kit.a_eviter = lignes("sty-eviter", MQ.MAX_EVITER);
+      try {
+        const m = await D.enregistrerMarque(sty.kit, verrouiller); sty.pour = null; await style(); window.scrollTo(0, 0);
+        msg(t(m.verrouille ? "sty.valide.msg" : "sty.enregistre.msg", { v: m.version })); majCompteurs();
+      } catch (er) { msg(er.codes ? t("sty.refus", { l: er.codes.map(x => t("sty.f." + x)).join(", ") }) : ph(er.message)); }
+    };
+    $("sty-valider").onclick = () => enregistrer(true); $("sty-enregistrer").onclick = () => enregistrer(false);
+    await styleDessiner();
+  }
+  // ---- fin du bloc Votre style ------------------------------------------------------------------------------------
+
   // ---------------- Routage
-  const ROUTES = { connexion, accueil, resultats, fiche, photos, contenus, calendrier, avis, commentaires, collecte, fichegoogle: ficheGoogle, comptes, offre, notifications, demarrage, videoavis: videoAvis };
+  const ROUTES = { connexion, accueil, resultats, fiche, photos, contenus, calendrier, avis, commentaires, collecte, fichegoogle: ficheGoogle, comptes, offre, notifications, demarrage, videoavis: videoAvis, style };
   const aller = r => { if (location.hash === "#/" + r) rendre(); else location.hash = "#/" + r; };
   let derniere = null, langueLue = null;
   async function rendre() {
