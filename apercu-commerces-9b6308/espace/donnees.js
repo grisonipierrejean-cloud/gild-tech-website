@@ -56,7 +56,7 @@
     // La base renvoie l'objet imbriqué ({contenu:{…}} ou {avis:{…}}) ; la page attend une forme à plat, comme en démonstration.
     async objetParJeton(jeton) {
       const r = premierDe(await rpcPublic("objet_par_jeton", { p_jeton: String(jeton || "") })); if (!r) return null;
-      const base = { etat: "a_valider", objet: r.objet, commerce: r.commerce, expire_le: r.expire_le };
+      const base = { etat: "a_valider", objet: r.objet, commerce: r.commerce, expire_le: r.expire_le, langue: r.langue || null };
       if (r.contenu) { const c = r.contenu; return { ...base, type: c.type, format: c.format, legende: c.legende || "", legendes: c.legendes || null, visuel_url: c.apercu_url || null, video_url: null }; }
       if (r.avis) { const a = r.avis; return { ...base, note: a.note, texte: a.texte || "", auteur: a.auteur || "", reponse_proposee: a.reponse_proposee || "" }; }
       if (r.commentaire) { const m = r.commentaire; return { ...base, reseau: m.reseau, categorie: m.categorie, texte: m.texte || "", auteur: m.auteur || "", reponse_proposee: m.reponse_proposee || "", recu_le: m.recu_le }; }
@@ -306,7 +306,7 @@
     const ecrireRetours = l => { retoursMem = l; try { localStorage.setItem(KR, JSON.stringify(l)); } catch (e) {} };
     const collecteDemo = {
       async jetonAvis() { await init(); return jetonDe(cur()); },
-      async avisPublic(jeton) { await init(); const c = parJeton(String(jeton || "")); return c ? { nom: c.nom, couleurs: c.couleurs || {}, lien_avis: lienAvisPublic(c) } : null; },
+      async avisPublic(jeton) { await init(); const c = parJeton(String(jeton || "")); return c ? { nom: c.nom, couleurs: c.couleurs || {}, lien_avis: lienAvisPublic(c), langue: c.langue || "fr" } : null; },
       async deposerRetour(jeton, r) {
         await init(); const c = parJeton(String(jeton || "")); if (!c) throw new Error("Ce lien n'est pas reconnu.");
         if (!lienAvisPublic(c)) throw new Error("Cette page n'est pas encore active.");
@@ -570,8 +570,8 @@
       },
       async objetParJeton(jeton) {
         await init(); const r = lireJeton(jeton); if (r.etat === "inconnu") return null;
-        if (r.etat !== "a_valider") return { etat: r.etat, objet: r.j.objet };
-        const { o, c, j } = r, base = { etat: "a_valider", objet: j.objet, commerce: c.nom, expire_le: j.expire_le };
+        if (r.etat !== "a_valider") return { etat: r.etat, objet: r.j.objet, langue: (E.commerces[r.j.commerce_id] || {}).langue || "fr" };
+        const { o, c, j } = r, base = { etat: "a_valider", objet: j.objet, commerce: c.nom, expire_le: j.expire_le, langue: c.langue || "fr" };
         if (j.objet === "commentaire") return { ...base, reseau: o.reseau, categorie: o.categorie, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "", recu_le: o.cree_le };
         return j.objet === "contenu" ? { ...base, type: o.type, format: formatDe(o), legende: o.legende || "", legendes: o.legendes || null, visuel_url: o.visuel_url || null, video_url: o.video_url || null }
           : { ...base, note: o.note, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "" };
@@ -748,7 +748,7 @@
       // ---- publiques (desinscription.html)
       async desinscriptionInfo(jeton) {
         await init(); const j = String(jeton || ""), d = liste("demandes_avis").find(x => x.jeton === j);
-        if (d) return { objet: "demande_avis", emetteur: (E.commerces[d.commerce_id] || {}).nom, fait: liste("oppositions").some(o => o.commerce_id === d.commerce_id && o.email === d.email) };
+        if (d) return { objet: "demande_avis", emetteur: (E.commerces[d.commerce_id] || {}).nom, langue: (E.commerces[d.commerce_id] || {}).langue || "fr", fait: liste("oppositions").some(o => o.commerce_id === d.commerce_id && o.email === d.email) };
         const p = liste("prospects").find(x => x.jeton === j); if (p) return { objet: "prospect", emetteur: "RENOM", fait: !!p.desinscrit_le };
         throw new Error("Ce lien n'est pas reconnu.");
       },

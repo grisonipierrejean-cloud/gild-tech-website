@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#07080C">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
-<title>Votre avis</title>
+<title data-i18n-titre="avis.pub.titre.page">Votre avis</title>
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -60,21 +60,26 @@ textarea{min-height:120px;resize:vertical}
 .pied-legal{font-size:12px;line-height:1.5;padding:18px 2px 0;display:flex;flex-direction:column;gap:2px;color:var(--discret)}
 .pied-legal .liens-legaux{display:flex;flex-wrap:wrap;gap:0 16px}
 .pied-legal a{color:inherit;display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+.langues{display:inline-flex;align-items:center;gap:2px}
+.langues button{font:inherit;font-size:14px;font-weight:600;letter-spacing:.04em;min-width:44px;min-height:44px;padding:0 8px;background:none;border:0;border-radius:10px;color:var(--discret);cursor:pointer;text-decoration:none}
+.langues button[aria-pressed=true]{color:var(--texte,var(--encre));text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.langues button:hover{color:var(--texte,var(--encre))}
+.langues-pied{margin-left:-8px}
 @media (min-width:600px){main{padding-top:56px}#page{gap:16px}h1{font-size:42px}.carte{padding:22px}}
 </style>
 </head>
 <body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
 <main>
-  <p id="chargement" class="note" role="status">Chargement de la page.</p>
+  <p id="chargement" class="note" role="status" data-i18n="avis.pub.chargement">Chargement de la page.</p>
 
   <div id="erreur" hidden>
-    <section class="carte"><h2 id="erreur-titre">Ce lien n'est pas reconnu</h2><p id="erreur-texte">Demandez au commerce un nouveau lien ou scannez de nouveau son code.</p></section>
+    <section class="carte"><h2 id="erreur-titre" data-i18n="pub.lien.inconnu">Ce lien n'est pas reconnu</h2><p id="erreur-texte" data-i18n="avis.pub.demander">Demandez au commerce un nouveau lien ou scannez de nouveau son code.</p></section>
   </div>
 
   <div id="page" hidden>
     <div class="tete">
       <p class="commerce" id="commerce"></p>
-      <h1 id="question">Comment s'est passée votre visite ?</h1>
+      <h1 id="question" data-i18n="avis.pub.question">Comment s'est passée votre visite ?</h1>
     </div>
 
     <section class="carte">
@@ -85,36 +90,38 @@ textarea{min-height:120px;resize:vertical}
         <button type="button" class="etoile" data-note="4" aria-pressed="false" aria-label="4 étoiles sur 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.6 5.5 6 .8-4.4 4.2 1.1 5.9L12 17l-5.3 2.8 1.1-5.9-4.4-4.2 6-.8z"/></svg></button>
         <button type="button" class="etoile" data-note="5" aria-pressed="false" aria-label="5 étoiles sur 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.6 5.5 6 .8-4.4 4.2 1.1 5.9L12 17l-5.3 2.8 1.1-5.9-4.4-4.2 6-.8z"/></svg></button>
       </div>
-      <p id="etat-note" role="status">Choisissez une note de 1 à 5.</p>
+      <p id="etat-note" role="status" data-i18n="avis.pub.choisir">Choisissez une note de 1 à 5.</p>
     </section>
 
     <!-- Les deux actions sont toujours là, dans cet ordre, pour toutes les notes. Aucun script ne masque ni ne modifie le lien Google. -->
     <section class="carte">
-      <a class="bouton" id="google" target="_blank" rel="noopener">Publier mon avis sur Google</a>
-      <p class="note">Votre avis sera public : tout le monde pourra le lire sur Google.</p>
+      <a class="bouton" id="google" target="_blank" rel="noopener" data-i18n="avis.pub.google">Publier mon avis sur Google</a>
+      <p class="note" data-i18n="avis.pub.public">Votre avis sera public : tout le monde pourra le lire sur Google.</p>
     </section>
 
     <section class="carte">
-      <button type="button" class="bouton second" id="prive" aria-expanded="false" aria-controls="zone-prive">Écrire au commerçant en privé</button>
-      <p class="note">Votre message ne sera pas publié : seul le commerçant le lira.</p>
+      <button type="button" class="bouton second" id="prive" aria-expanded="false" aria-controls="zone-prive" data-i18n="avis.pub.prive">Écrire au commerçant en privé</button>
+      <p class="note" data-i18n="avis.pub.prive.note">Votre message ne sera pas publié : seul le commerçant le lira.</p>
       <form id="zone-prive" hidden novalidate>
-        <div class="f"><label for="message">Votre message (facultatif)</label><textarea id="message" maxlength="1000"></textarea></div>
-        <div class="f"><label for="prenom">Votre prénom (facultatif)</label><input id="prenom" type="text" maxlength="60" autocomplete="given-name"></div>
-        <p class="note">Votre note, votre message et votre prénom sont transmis au commerçant, et à lui seul. Aucune adresse email n'est demandée.</p>
-        <button type="submit" class="bouton second" id="envoyer">Envoyer au commerçant</button>
+        <div class="f"><label for="message" data-i18n="avis.pub.message">Votre message (facultatif)</label><textarea id="message" maxlength="1000"></textarea></div>
+        <div class="f"><label for="prenom" data-i18n="avis.pub.prenom">Votre prénom (facultatif)</label><input id="prenom" type="text" maxlength="60" autocomplete="given-name"></div>
+        <p class="note" data-i18n="avis.pub.transmis">Votre note, votre message et votre prénom sont transmis au commerçant, et à lui seul. Aucune adresse email n'est demandée.</p>
+        <button type="submit" class="bouton second" id="envoyer" data-i18n="avis.pub.envoyer">Envoyer au commerçant</button>
       </form>
       <p class="msg" id="msg" role="status"></p>
     </section>
 
     <div class="pied">
-      <p>Tous les avis comptent, quels qu'ils soient. Aucun avantage n'est accordé en échange d'un avis.</p>
-      <p id="demo" hidden>Démonstration : votre message reste dans ce navigateur, rien n'est envoyé.</p>
+      <p data-i18n="avis.pub.tous">Tous les avis comptent, quels qu'ils soient. Aucun avantage n'est accordé en échange d'un avis.</p>
+      <p id="demo" hidden data-i18n="avis.pub.demo">Démonstration : votre message reste dans ce navigateur, rien n'est envoyé.</p>
     </div>
   </div>
+  <div class="langues-pied" data-i18n-langues></div>
   <noscript><section class="carte"><p>Cette page a besoin de JavaScript pour s'afficher.</p></section></noscript>
   <!-- legal:pied-espace --><footer class="pied-legal" id="pied-legal"><p>RENOM est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p><p class="liens-legaux"><a href="../mentions-legales.html">Mentions légales</a> <a href="../cgv.html">Conditions de vente</a> <a href="../confidentialite.html">Confidentialité</a></p></footer><!-- /legal:pied-espace -->
 </main>
 <script src="config.js"></script>
+<script src="i18n.js"></script>
 <script src="donnees.js"></script>
 <script src="avis.js"></script>
 </body>

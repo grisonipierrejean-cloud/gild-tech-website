@@ -40,7 +40,7 @@
 <a class="btn btn-prim btn-grand" href="#audit">Get my free audit</a>
 <a class="btn btn-contour btn-grand" href="#offres">See pricing</a>
 </div>
-<p class="haut-prix">From €190 excl. VAT per month. First 3 months at half price. No minimum term.</p>
+<p class="haut-prix">From €95 excl. VAT per month for the first 3 months, then €190. No minimum term.</p>
 </div>
 <div class="avis-demo">
 <p class="avis-tete"><strong>Julie M.</strong><span class="etoiles" role="img" aria-label="5 out of 5 stars"></span></p>
@@ -153,6 +153,27 @@
 <h2 id="cm-titre">Your community manager, without the hire.</h2>
 <p class="cm-chapo">Working for you every week. No employee to train, no agency tying you into 12 months, no software to learn.</p>
 </div>
+<!-- What is a community manager? Typical week true to the product: ordres/ARCHITECTURE.md (daily service, renom-hebdo on Mondays,
+     reviews read continuously, comments every 3 hours, report on the 1st), default posting slots from ordres/CONTRAT-MAJ-MEMBRE.md
+     (starting settings), caps from moteur/offres.json. No fixed weekday for posts: each one goes out at the next free slot after your click.
+     No community manager salary shown: no source both dated and explicit about gross pay or employer cost (page-v5 report). -->
+<div class="cm-quoi">
+<div class="cm-def">
+<h3>What is a community manager?</h3>
+<p>It's the person who keeps your business alive online: they reply to your customers, post for you and keep an eye on your reputation.</p>
+<p>With RENOM, it's a service: it works every week, and nothing goes out outside the rules you've set.</p>
+</div>
+<div class="cm-semaine">
+<h3>Their week at your business</h3>
+<ol class="semaine">
+<li><span class="semaine-quand">Every day</span><span class="semaine-quoi">Every new Google review gets its reply: 4 and 5 stars without disturbing you, 1 to 3 stars after your click. A serious review is flagged to you and handled by a person. The day after a visit, your customers receive a review request by email (the ones you pass on to us, with their consent).</span></li>
+<li><span class="semaine-quand">Monday</span><span class="semaine-quoi">The idea of the week (a celebration, a public holiday, the season) and, if you've had one, a recent 5-star review turned into an image. Ready to approve in one click.</span></li>
+<li><span class="semaine-quand">During the week</span><span class="semaine-quoi">Your photos become posts, scheduled at the right times for your trade (to start with, for a restaurant: 11:30 am or 6:30 pm). 2, 4 or 6 a week depending on your plan, with your short videos and replies to your Instagram and Facebook comments from the Growth plan up.</span></li>
+<li><span class="semaine-quand">On the 1st</span><span class="semaine-quoi">Your report by email: your rating, your new reviews, your posts, how you compare with 3 competitors in your area. With a phone call on Signature.</span></li>
+</ol>
+<p class="semaine-note">Depending on your plan: 8, 16 or 24 posts a month; 0, 4 or 8 short videos.</p>
+</div>
+</div>
 <ul class="bande bande-compacte" aria-label="For your trade">
 <li class="bande-item"><img src="../img/renom-chef.webp" width="1920" height="1280" alt="A chef finishing a plate in the kitchen (illustrative photo)" loading="lazy"><p><strong>Restaurant</strong></p></li>
 <li class="bande-item"><img src="../img/renom-esthetique.webp" width="1200" height="800" alt="A beautician wearing gloves gives a facial (illustrative photo)" loading="lazy"><p><strong>Beauty salon</strong></p></li>
@@ -190,21 +211,25 @@
 </div></section>
 
 <!-- ACTION: plans. Prices and launch offer: moteur/offres.json. Cards (data-cgv attributes) and comparison table checked against the
-     English terms of sale (terms.html) and offres.json by moteur/tests/test_legal.py. No reference price shown (prohibited). -->
+     English terms of sale (terms.html) and offres.json by moteur/tests/test_legal.py. Each card: “−50%” banner, launch price
+     large, then the actual price from month 4. No struck-through or reference price (prohibited). -->
 <section id="offres" class="section offres-section"><div class="wrap">
 <div class="offres-tete">
 <h2>Your community manager. <span class="citron bloc">No salary, no year-long contract.</span></h2>
 <p class="offres-chapo">All three plans handle your Google reviews. What changes: how much we post for you, videos, and a monthly phone call. No minimum term.</p>
 <p class="lancement-offre"><strong>Launch offer:</strong> your first 3 months at half price, on any subscription taken out before 31 December 2026.</p>
+<p class="perimetre">For businesses established in France.</p>
 </div>
 <div class="offres">
 
 <article class="offre">
+<p class="offre-remise">&minus;50% for the first 3 months</p>
 <h3>Essential</h3>
 <p class="offre-promesse">We handle your Google reviews, and we post for you.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">€190</span><span class="prix-unite">excl. VAT per month</span></p>
-<p class="prix-lancement">First 3 months: €95 excl. VAT per month (launch offer until 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">€95</span><span class="prix-unite">excl. VAT/month</span></p>
+<p class="prix-ensuite">for the first 3 months, then <strong>€190 excl. VAT/month</strong></p>
+<p class="prix-validite">Offer valid until 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li data-cgv="Reply to all your Google reviews">A reply to every one of your Google reviews</li>
@@ -218,11 +243,13 @@
 </article>
 
 <article class="offre reco">
+<p class="offre-remise">&minus;50% for the first 3 months</p>
 <div class="offre-nom"><h3>Growth</h3><span class="reco-lib">Recommended</span></div>
 <p class="offre-promesse">We handle your Google reviews and all your social media.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">€390</span><span class="prix-unite">excl. VAT per month</span></p>
-<p class="prix-lancement">First 3 months: €195 excl. VAT per month (launch offer until 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">€195</span><span class="prix-unite">excl. VAT/month</span></p>
+<p class="prix-ensuite">for the first 3 months, then <strong>€390 excl. VAT/month</strong></p>
+<p class="prix-validite">Offer valid until 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Everything in Essential, plus:</li>
@@ -234,11 +261,13 @@
 </article>
 
 <article class="offre">
+<p class="offre-remise">&minus;50% for the first 3 months</p>
 <h3>Signature</h3>
 <p class="offre-promesse">We handle everything, with more videos and a monthly call.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">€690</span><span class="prix-unite">excl. VAT per month</span></p>
-<p class="prix-lancement">First 3 months: €345 excl. VAT per month (launch offer until 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">€345</span><span class="prix-unite">excl. VAT/month</span></p>
+<p class="prix-ensuite">for the first 3 months, then <strong>€690 excl. VAT/month</strong></p>
+<p class="prix-validite">Offer valid until 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Everything in Growth, plus:</li>
@@ -296,6 +325,7 @@
 </div>
 <form class="form" id="form" name="audit" method="POST" action="thank-you.html" data-netlify="true" netlify-honeypot="website" novalidate>
 <input type="hidden" name="form-name" value="audit"><input type="hidden" name="subject" id="g-sujet" value="Audit RENOM"><input type="hidden" name="metier" id="g-metier" value=""><input type="hidden" name="langue" value="en">
+<p class="perimetre">For businesses established in France.</p>
 <div class="champ"><div class="lib-champ" id="lib-choix">Your business</div>
 <div class="choix" role="group" aria-labelledby="lib-choix">
 <button type="button" class="m-choix" data-m="restaurant" aria-pressed="false">Restaurant</button>
@@ -306,7 +336,7 @@
 <div class="champ"><label for="g-nom">Business name</label><input id="g-nom" name="commerce" type="text" autocomplete="organization" required aria-describedby="aide-nom"><p class="aide" id="aide-nom">As it appears on Google Maps.</p></div>
 <div class="champ" id="f-autre" hidden><label for="g-autre">What kind of business?</label><input id="g-autre" name="metier_autre" type="text" placeholder="Bakery, florist, wine shop…"></div>
 <div class="rang">
-<div class="champ"><label for="g-ville">Town or city</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Lyon 7e" required></div>
+<div class="champ"><label for="g-ville">Town or city</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Lyon" required></div>
 <div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">Your audit arrives here. Nothing else without your consent.</p></div>
 </div>
 <div class="hp" aria-hidden="true"><label>Leave blank<input name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -321,8 +351,8 @@
 </main>
 </div>
 
-<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="logo">RENOM</div>
-<p class="pied-legal">RENOM is a trading name of Girlden LTD, a company registered in England and Wales (Companies House) under number 14837617. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom.</p>
-<nav class="pied-liens" aria-label="Legal information"><a href="legal-notice.html">Legal notice</a><a href="terms.html">Terms of sale</a><a href="privacy.html">Privacy policy</a><a href="data-processing.html">Data processing agreement</a></nav></div></footer><!-- /legal:pied-site -->
+<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 RENOM</span>
+<nav class="pied-liens" aria-label="Legal information"><a href="legal-notice.html">Legal notice</a><a href="terms.html">Terms of sale</a><a href="privacy.html">Privacy policy</a><a href="data-processing.html">Data processing agreement</a></nav>
+<span class="pied-societe">A service of Girlden LTD</span></div></div></footer><!-- /legal:pied-site -->
 <script src="../app.js"></script>
 </body></html>

@@ -4,92 +4,85 @@
 // objet_par_jeton et valider_par_jeton (voir ordres/CONTRAT-MAJ-MEMBRE.md).
 (function () {
   const P = window.RENOM_PUBLIC, M = window.RENOM_MAJ, $ = id => document.getElementById(id);
+  // Textes : espace/web/i18n.js. Langue : ?lang=, puis le choix enregistré, puis celle du commerce, sinon le français.
+  const I = window.RENOM_I18N, t = I.t;
   const e = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const jeton = decodeURIComponent(location.hash.replace(/^#\/?/, "")).trim();
-  const RES = { instagram: "Instagram", facebook: "Facebook", google: "Fiche Google", tiktok: "TikTok" };
-  const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-  const date = d => { d = new Date(d); return (d.getDate() === 1 ? "1er" : d.getDate()) + " " + MOIS[d.getMonth()] + " à " + d.getHours() + " h " + String(d.getMinutes()).padStart(2, "0"); };
-  const ETATS = {
-    utilise: ["Ce lien a déjà servi", "Un lien de validation ne sert qu'une fois. Ouvrez votre espace pour voir où en est cet élément."],
-    expire: ["Ce lien a expiré", "Un lien de validation vaut 7 jours. Ouvrez votre espace pour décider : rien n'a été publié sans vous."],
-    traite: ["Déjà traité", "Cet élément a déjà été traité dans votre espace."],
-    inconnu: ["Ce lien n'est pas reconnu", "Ouvrez votre espace pour retrouver ce qui attend votre accord."],
-  };
+  const RES = () => I.carte("res", ["instagram", "facebook", "google", "tiktok"]);
+  const date = d => I.dateEtHeure(d);
+  const ETATS = ["utilise", "expire", "traite"];
+  const etat = cle => ETATS.includes(cle) ? [t("val.etat." + cle), t("val.etat." + cle + ".texte")] : [t("pub.lien.inconnu"), t("val.inconnu.texte")];
   const etatDuMessage = m => { m = String(m || "").toLowerCase(); return /servi|utilis/.test(m) ? "utilise" : /expir/.test(m) ? "expire" : /trait/.test(m) ? "traite" : /reconnu|introuvable|inconnu/.test(m) ? "inconnu" : null; };
-  const msg = t => { $("msg").textContent = t; };
+  const msg = x => { $("msg").textContent = x; };
   function erreur(cle, titre, texte) {
-    const [t, x] = cle ? ETATS[cle] : [titre, texte];
-    $("chargement").hidden = true; $("page").hidden = true; $("fait").hidden = true; $("erreur").hidden = false; $("erreur-titre").textContent = t; $("erreur-texte").textContent = x;
+    const [a, x] = cle ? etat(cle) : [titre, texte];
+    $("chargement").hidden = true; $("page").hidden = true; $("fait").hidden = true; $("erreur").hidden = false; $("erreur-titre").textContent = a; $("erreur-texte").textContent = x;
   }
-  const FAIT = {
-    approuve: ["Contenu approuvé", "Il est prêt à être programmé. Vous le retrouvez dans votre espace."],
-    modification: ["Demande envoyée", "RENOM refait le contenu avec votre mot. Il vous sera proposé de nouveau."],
-    refuse_contenu: ["Contenu refusé", "Il ne sera pas publié."],
-    valide: ["Réponse validée", "Elle sera publiée sous l'avis, sur votre fiche Google."],
-    refuse_avis: ["Réponse refusée", "Rien n'est publié. Vous pouvez traiter cet avis dans votre espace."],
-    valide_commentaire: ["Réponse validée", "Elle sera publiée sous le commentaire. Tant que Meta n'a pas ouvert l'accès à RENOM, notre équipe la publie à la main, sous votre compte."],
-    ignore: ["Pas de réponse", "Rien ne sera publié sous ce commentaire."],
-  };
+  const FAIT = cle => [t("val.fait." + cle), t("val.fait." + cle + ".texte")];
   let objet = null;
   async function decider(decision, texte) {
-    const boutons = [...document.querySelectorAll("#decision button")]; boutons.forEach(b => { b.disabled = true; }); msg("Envoi en cours.");
+    const boutons = [...document.querySelectorAll("#decision button")]; boutons.forEach(b => { b.disabled = true; }); msg(t("envoi.en.cours"));
     try {
       await P.validerParJeton(jeton, decision, texte);
-      const [t, x] = FAIT[decision === "refuse" ? "refuse_" + objet : decision === "valide" && objet === "commentaire" ? "valide_commentaire" : decision];
-      $("page").hidden = true; $("fait").hidden = false; $("fait-titre").textContent = t; $("fait-texte").textContent = x;
+      const [a, x] = FAIT(decision === "refuse" ? "refuse_" + objet : decision === "valide" && objet === "commentaire" ? "valide_commentaire" : decision);
+      $("page").hidden = true; $("fait").hidden = false; $("fait-titre").textContent = a; $("fait-texte").textContent = x;
     } catch (er) {
       const cle = etatDuMessage(er && er.message); if (cle) return erreur(cle);
-      boutons.forEach(b => { b.disabled = false; }); msg(er && er.message ? er.message : "L'envoi n'a pas abouti. Réessayez dans un instant.");
+      boutons.forEach(b => { b.disabled = false; }); msg(er && er.message ? I.phrase(er.message) : t("pub.envoi.echec"));
     }
   }
+  // Les textes du commerce (légende, avis, réponse proposée) gardent leur langue : l'attribut lang le dit au navigateur.
+  let lc = "";
   function contenu(o) {
-    const f = M.formatDe(o), vertical = f !== "publication";
-    $("titre").textContent = f === "story" ? "Une story attend votre accord" : f === "video" ? "Une vidéo attend votre accord" : "Une publication attend votre accord";
+    const f = M.formatDe(o), vertical = f !== "publication", R = RES();
+    $("titre").textContent = t(f === "story" ? "val.titre.story" : f === "video" ? "val.titre.video" : "val.titre.publication");
     const visuel = o.video_url ? `<video class="visuel vertical" controls preload="metadata" poster="${e(o.visuel_url || "")}" src="${e(o.video_url)}"></video>`
-      : o.visuel_url ? `<img class="visuel${vertical ? " vertical" : ""}" src="${e(o.visuel_url)}" alt="Visuel du contenu">` : `<p class="note">Aperçu du visuel non disponible ici : il est visible dans votre espace.</p>`;
-    $("objet").innerHTML = `<section class="carte"><h2>Le visuel</h2>${visuel}</section>
-      <section class="carte"><h2>La légende, réseau par réseau</h2><ul class="legendes">${M.reseauxPour(o).map(r => { const t = M.legendeDe(o, r); return `<li data-reseau="${r}"><span class="reseau">${RES[r]}</span><p class="texte">${e(t)}</p>${r === "google" && M.longueur(t) > M.LIMITE_GOOGLE ? `<p class="note">Trop long pour la fiche Google (1 500 caractères au plus).</p>` : ""}</li>`; }).join("")}</ul>
-        <p class="note">Pour modifier une légende vous-même, ouvrez votre espace. Pour le visuel, demandez une modification à RENOM.</p></section>`;
-    $("boutons").innerHTML = `<button type="button" class="bouton" id="approuver">Approuver</button><button type="button" class="bouton second" id="modifier">Demander une modification</button><button type="button" class="lien" id="refuser">Refuser</button>`;
+      : o.visuel_url ? `<img class="visuel${vertical ? " vertical" : ""}" src="${e(o.visuel_url)}" alt="${t("visuel.alt")}">` : `<p class="note">${t("val.apercu.indispo")}</p>`;
+    $("objet").innerHTML = `<section class="carte"><h2>${t("val.visuel")}</h2>${visuel}</section>
+      <section class="carte"><h2>${t("val.legende.reseau")}</h2><ul class="legendes">${M.reseauxPour(o).map(r => { const x = M.legendeDe(o, r); return `<li data-reseau="${r}"><span class="reseau">${R[r]}</span><p class="texte"${lc}>${e(x)}</p>${r === "google" && M.longueur(x) > M.LIMITE_GOOGLE ? `<p class="note">${t("val.trop.google")}</p>` : ""}</li>`; }).join("")}</ul>
+        <p class="note">${t("val.modifier.note")}</p></section>`;
+    $("boutons").innerHTML = `<button type="button" class="bouton" id="approuver">${t("dec.approuver")}</button><button type="button" class="bouton second" id="modifier">${t("val.demander.modif")}</button><button type="button" class="lien" id="refuser">${t("refuser")}</button>`;
     $("approuver").onclick = () => decider("approuve");
     $("refuser").onclick = () => decider("refuse");
     $("modifier").onclick = () => { $("boutons").hidden = true; $("zone-mot").hidden = false; $("mot").focus(); };
     $("annuler-mot").onclick = () => { $("boutons").hidden = false; $("zone-mot").hidden = true; msg(""); };
-    $("envoyer-mot").onclick = () => { const t = $("mot").value.trim(); if (!t) { msg("Écrivez un mot pour dire ce qu'il faut modifier."); $("mot").focus(); return; } decider("modification", t); };
+    $("envoyer-mot").onclick = () => { const x = $("mot").value.trim(); if (!x) { msg(t("val.ecrire.mot")); $("mot").focus(); return; } decider("modification", x); };
   }
   function avis(o) {
-    $("titre").textContent = "Une réponse d'avis attend votre accord";
+    $("titre").textContent = t("val.avis.titre");
     const n = +o.note || 0;
-    $("objet").innerHTML = `<section class="carte"><h2>L'avis</h2><p class="fort">${n} étoile${n > 1 ? "s" : ""} sur 5${o.auteur ? " · " + e(o.auteur) : ""}</p>${o.texte ? `<p class="citation">« ${e(o.texte)} »</p>` : `<p class="note">Note sans texte.</p>`}</section>
-      <section class="carte"><div class="f"><label for="reponse">Réponse proposée, vous pouvez la modifier</label><textarea id="reponse" maxlength="4000">${e(o.reponse_proposee || "")}</textarea></div>
-        <p class="note">Elle sera publiée sous l'avis, sur votre fiche Google, telle qu'elle est écrite ici.</p></section>`;
-    $("boutons").innerHTML = `<button type="button" class="bouton" id="valider">Valider et publier</button><button type="button" class="lien" id="refuser">Refuser cette réponse</button>`;
-    $("valider").onclick = () => { const t = $("reponse").value.trim(); if (!t) { msg("La réponse est vide."); $("reponse").focus(); return; } decider("valide", t); };
+    $("objet").innerHTML = `<section class="carte"><h2>${t("val.l.avis")}</h2><p class="fort">${t("etoiles", { n })}${o.auteur ? " · " + e(o.auteur) : ""}</p>${o.texte ? `<p class="citation"${lc}>${t("guillemets", { x: e(o.texte) })}</p>` : `<p class="note">${t("val.note.sans.texte")}</p>`}</section>
+      <section class="carte"><div class="f"><label for="reponse">${t("rep.proposee")}</label><textarea id="reponse" maxlength="4000"${lc}>${e(o.reponse_proposee || "")}</textarea></div>
+        <p class="note">${t("val.publiee.sous.avis")}</p></section>`;
+    $("boutons").innerHTML = `<button type="button" class="bouton" id="valider">${t("rep.valider")}</button><button type="button" class="lien" id="refuser">${t("rep.refuser")}</button>`;
+    $("valider").onclick = () => { const x = $("reponse").value.trim(); if (!x) { msg(t("val.reponse.vide")); $("reponse").focus(); return; } decider("valide", x); };
     $("refuser").onclick = () => decider("refuse");
   }
   // Réponse à un commentaire Instagram ou Facebook (jamais un commentaire sensible : la base ne crée pas de lien pour lui).
   function commentaire(o) {
-    const reseau = { instagram: "Instagram", facebook: "Facebook" }[o.reseau] || "vos réseaux";
-    $("titre").textContent = "Une réponse à un commentaire attend votre accord";
-    $("objet").innerHTML = `<section class="carte"><h2>Le commentaire, sur ${e(reseau)}</h2>${o.auteur ? `<p class="fort">${e(o.auteur)}</p>` : ""}${o.texte ? `<p class="citation">« ${e(o.texte)} »</p>` : `<p class="note">Texte non disponible.</p>`}</section>
-      <section class="carte"><div class="f"><label for="reponse">Réponse proposée, vous pouvez la modifier</label><textarea id="reponse" maxlength="1000">${e(o.reponse_proposee || "")}</textarea></div>
-        <p class="note">Elle sera publiée sous le commentaire, telle qu'elle est écrite ici. RENOM n'y met que ce que contient votre fiche.</p></section>`;
-    $("boutons").innerHTML = `<button type="button" class="bouton" id="valider">Valider la réponse</button><button type="button" class="lien" id="refuser">Ne pas répondre</button>`;
-    $("valider").onclick = () => { const t = $("reponse").value.trim(); if (!t) { msg("La réponse est vide."); $("reponse").focus(); return; } decider("valide", t); };
+    const reseau = { instagram: "Instagram", facebook: "Facebook" }[o.reseau] || t("val.vos.reseaux");
+    $("titre").textContent = t("val.cm.titre");
+    $("objet").innerHTML = `<section class="carte"><h2>${t("val.cm.sur", { res: e(reseau) })}</h2>${o.auteur ? `<p class="fort">${e(o.auteur)}</p>` : ""}${o.texte ? `<p class="citation"${lc}>${t("guillemets", { x: e(o.texte) })}</p>` : `<p class="note">${t("val.texte.indispo")}</p>`}</section>
+      <section class="carte"><div class="f"><label for="reponse">${t("rep.proposee")}</label><textarea id="reponse" maxlength="1000"${lc}>${e(o.reponse_proposee || "")}</textarea></div>
+        <p class="note">${t("val.publiee.sous.cm")}</p></section>`;
+    $("boutons").innerHTML = `<button type="button" class="bouton" id="valider">${t("cm.valider")}</button><button type="button" class="lien" id="refuser">${t("cm.ne.pas.repondre")}</button>`;
+    $("valider").onclick = () => { const x = $("reponse").value.trim(); if (!x) { msg(t("val.reponse.vide")); $("reponse").focus(); return; } decider("valide", x); };
     $("refuser").onclick = () => decider("ignore");
   }
   async function charger() {
     if (P) $("demo").hidden = P.mode !== "demo";
     if (!P || !P.objetParJeton || !/^[A-Za-z0-9_-]{16,128}$/.test(jeton)) return erreur("inconnu");
     let o;
-    try { o = await P.objetParJeton(jeton); } catch (er) { const cle = etatDuMessage(er && er.message); return cle ? erreur(cle) : erreur(null, "La page n'a pas pu se charger", "Vérifiez votre connexion puis réessayez dans un instant."); }
+    try { o = await P.objetParJeton(jeton); } catch (er) { const cle = etatDuMessage(er && er.message); return cle ? erreur(cle) : erreur(null, t("pub.chargement.echec"), t("pub.verifier.connexion")); }
     if (!o) return erreur("inconnu");
-    if (o.etat && o.etat !== "a_valider") return erreur(ETATS[o.etat] ? o.etat : "inconnu");
+    // Langue du commerce (renvoyée avec l'objet) : la page s'y met, sauf ?lang= ou choix enregistré.
+    const lg = I.langueValide(o.langue); if (lg) { I.depuisCommerce(lg); lc = ` lang="${lg}"`; }
+    if (o.etat && o.etat !== "a_valider") return erreur(ETATS.includes(o.etat) ? o.etat : "inconnu");
     objet = o.objet === "avis" ? "avis" : o.objet === "commentaire" ? "commentaire" : "contenu";
     const nom = o.commerce || o.nom_commerce || o.nom || "";
-    $("commerce").textContent = nom; document.title = "Valider" + (nom ? ", " + nom : "");
+    $("commerce").textContent = nom; document.title = t("val.titre.page") + (nom ? ", " + nom : "");
     if (objet === "avis") avis(o); else if (objet === "commentaire") commentaire(o); else contenu(o);
-    $("expire").textContent = o.expire_le ? `Ce lien sert une seule fois. Il est valable jusqu'au ${date(o.expire_le)}.` : "Ce lien sert une seule fois.";
+    $("expire").textContent = o.expire_le ? t("val.expire", { d: date(o.expire_le) }) : t("val.une.fois");
     $("chargement").hidden = true; $("page").hidden = false;
   }
   window.addEventListener("hashchange", () => location.reload());

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07080C">
 <meta name="robots" content="noindex,nofollow">
-<title>Renom, console</title>
+<title data-i18n-titre="titre.console">Renom, console</title>
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -13,14 +13,15 @@
 <body class="hors-session console"><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
 <div class="app">
 <div id="demo" class="demo" hidden>
-  <p><strong>Mode démonstration.</strong> Rien n'est envoyé nulle part.</p>
+  <p><strong data-i18n="demo.mode">Mode démonstration.</strong><span data-i18n="demo.court"> Rien n'est envoyé nulle part.</span></p>
 </div>
   <aside id="lat" class="lat"></aside>
   <header id="haut" class="haut"></header>
   <main id="vue" tabindex="-1"></main>
-  <nav id="onglets" class="onglets" aria-label="Console"></nav>
+  <nav id="onglets" class="onglets" aria-label="Console" data-i18n-attr="aria-label:con.titre"></nav>
 </div>
 <script src="config.js"></script>
+<script src="i18n.js"></script>
 <script src="donnees.js"></script>
 <script src="console.js"></script>
 </body>

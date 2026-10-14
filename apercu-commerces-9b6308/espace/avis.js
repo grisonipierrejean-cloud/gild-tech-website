@@ -3,6 +3,9 @@
 // écrire « Votre note » et l'enregistrer avec un message privé. Il ne touche JAMAIS au lien Google après l'affichage.
 (function () {
   const P = window.RENOM_PUBLIC, $ = id => document.getElementById(id);
+  // Textes : espace/web/i18n.js. Langue : ?lang=, puis le choix enregistré, puis celle du commerce (connue au chargement), sinon le français.
+  // La page reste la même pour toutes les notes, dans les deux langues : seule la langue change le texte, jamais la note.
+  const I = window.RENOM_I18N, t = I.t;
   const jeton = decodeURIComponent(location.hash.replace(/^#\/?/, "")).trim();
   // Automatisations de service : page ouverte depuis l'email de demande d'avis (avis.html?source=email&envoi=<jeton>). Sert à la mesure
   // seulement ; la page, ses boutons et le lien Google restent exactement les mêmes.
@@ -26,10 +29,12 @@
 
   // ---- Les cinq étoiles : de vrais boutons, utilisables au clavier (Tab, Entrée, Espace, flèches)
   const etoiles = [...document.querySelectorAll(".etoile")];
+  const libellesEtoiles = () => etoiles.forEach(b => b.setAttribute("aria-label", t("etoiles", { n: +b.dataset.note })));
+  libellesEtoiles();
   function choisir(n) {
     note = n;
     etoiles.forEach(b => { const i = +b.dataset.note; b.classList.toggle("pleine", i <= n); b.setAttribute("aria-pressed", i === n ? "true" : "false"); });
-    $("etat-note").textContent = "Votre note : " + n + " sur 5.";
+    $("etat-note").textContent = t("avis.pub.votre.note", { n });
   }
   etoiles.forEach((b, i) => {
     b.addEventListener("click", () => choisir(+b.dataset.note));
@@ -47,26 +52,28 @@
   });
   $("zone-prive").addEventListener("submit", async ev => {
     ev.preventDefault(); if (envoye) return;
-    if (!note) { msg("Choisissez d'abord une note, en haut de la page."); etoiles[0].focus(); return; }
-    const b = $("envoyer"); b.disabled = true; msg("Envoi en cours.");
+    if (!note) { msg(t("avis.pub.note.dabord")); etoiles[0].focus(); return; }
+    const b = $("envoyer"); b.disabled = true; msg(t("envoi.en.cours"));
     try {
       await P.deposerRetour(jeton, { note, message: $("message").value, prenom: $("prenom").value });
       envoye = true; $("zone-prive").hidden = true; $("prive").hidden = true;
-      msg("Merci. Votre message a été transmis au commerçant. Il n'est pas publié.");
-    } catch (er) { b.disabled = false; msg(er && er.message ? er.message : "L'envoi n'a pas abouti. Réessayez dans un instant."); }
+      msg(t("avis.pub.merci"));
+    } catch (er) { b.disabled = false; msg(er && er.message ? I.phrase(er.message) : t("pub.envoi.echec")); }
   });
 
   // ---- Chargement : nom, couleurs et lien d'avis du commerce, rien d'autre
   async function charger() {
-    if (!P || !/^[0-9a-f]{32}$/.test(jeton)) return erreur("Ce lien n'est pas reconnu", "Demandez au commerce un nouveau lien ou scannez de nouveau son code.");
+    if (!P || !/^[0-9a-f]{32}$/.test(jeton)) return erreur(t("pub.lien.inconnu"), t("avis.pub.demander"));
     let c;
-    try { c = await P.avisPublic(jeton); } catch (er) { return erreur("La page n'a pas pu se charger", "Vérifiez votre connexion puis réessayez dans un instant."); }
-    if (!c) return erreur("Ce lien n'est pas reconnu", "Demandez au commerce un nouveau lien ou scannez de nouveau son code.");
+    try { c = await P.avisPublic(jeton); } catch (er) { return erreur(t("pub.chargement.echec"), t("pub.verifier.connexion")); }
+    if (!c) return erreur(t("pub.lien.inconnu"), t("avis.pub.demander"));
+    // Langue du commerce : par défaut, la page parle à ses clients dans leur langue (sauf ?lang= ou choix enregistré).
+    I.depuisCommerce(c.langue); libellesEtoiles();
     // Sans lien Google utilisable, la page reste fermée : le message privé n'est jamais proposé seul.
     let lien = null; try { const u = new URL(String(c.lien_avis || "")); if (u.protocol === "https:") lien = u.href; } catch (er) {}
-    if (!lien) return erreur("Cette page n'est pas encore active", "Le commerce n'a pas encore renseigné son lien d'avis Google.");
+    if (!lien) return erreur(t("avis.pub.inactive"), t("avis.pub.inactive.texte"));
     appliquerCouleurs(c.couleurs || {});
-    $("commerce").textContent = c.nom; document.title = "Votre avis, " + c.nom;
+    $("commerce").textContent = c.nom; document.title = t("avis.pub.titre.nom", { nom: c.nom });
     $("google").href = lien;
     $("demo").hidden = P.mode !== "demo";
     $("chargement").hidden = true; $("page").hidden = false;

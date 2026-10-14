@@ -59,6 +59,18 @@ details.carte>summary{min-height:44px;padding:10px 0;cursor:pointer}
 .sous .quitter{margin-left:auto}
 .quitter{font:inherit;font-size:15px;background:none;border:0;padding:0 4px;min-height:44px;color:var(--discret);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .quitter:hover{color:var(--encre)}
+/* ---------- Langue : FR / EN, deux mots discrets ; la langue en cours est soulignée (pas de couleur, pas de pastille). */
+.langues{display:inline-flex;align-items:center;flex:none}
+.langues button{font:inherit;font-size:14px;font-weight:600;letter-spacing:.04em;min-width:40px;min-height:44px;padding:0 6px;background:none;border:0;border-radius:var(--r);color:var(--discret);cursor:pointer}
+.langues button:hover{color:var(--encre)}
+.langues button[aria-pressed=true]{color:var(--encre);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px}
+.haut .langues{margin-left:auto}
+.haut .haut-note+.langues{margin-left:0}
+.haut .langues+.quitter{margin-left:0}
+.haut-note{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.connexion-tete{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-6px -6px -6px 0}
+.lat-pied{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 6px 0 12px}
+.lat-pied .quitter{margin-top:0;padding:0 4px}
 .nb{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:6px;background:var(--citron);color:var(--sur-citron);font-size:12px;font-weight:700;line-height:1}
 .nb[hidden]{display:none}
 #vue{display:flex;flex-direction:column;gap:16px;padding:16px 16px calc(104px + env(safe-area-inset-bottom));min-width:0}
@@ -300,7 +312,7 @@ video.visuel{object-fit:contain;background:#000}
   .menu a[aria-current=page]{background:var(--releve);color:var(--encre);font-weight:700;box-shadow:inset 0 0 0 1px var(--filet)}
   .groupe{display:flex;flex-direction:column;gap:2px}
   .groupe-lib{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--groupe);padding:0 12px 6px}
-  .lat .quitter{margin-top:auto;align-self:flex-start;padding:0 12px}
+  .lat-pied .quitter{padding:0 4px}
   .demo{grid-column:2;grid-row:1;padding:0 40px}
   .demo-long{display:inline}
   #vue{grid-column:2;grid-row:2;padding:40px 40px 64px;gap:24px;max-width:1280px}

@@ -40,7 +40,7 @@
 <a class="btn btn-prim btn-grand" href="#audit">Recevoir mon audit gratuit</a>
 <a class="btn btn-contour btn-grand" href="#offres">Voir les prix</a>
 </div>
-<p class="haut-prix">À partir de 190&nbsp;€ HT par mois. 3 premiers mois à moitié prix. Sans engagement.</p>
+<p class="haut-prix">À partir de 95&nbsp;€ HT par mois les 3 premiers mois, puis 190&nbsp;€. Sans engagement.</p>
 </div>
 <div class="avis-demo">
 <p class="avis-tete"><strong>Julie M.</strong><span class="etoiles" role="img" aria-label="5 étoiles sur 5"></span></p>
@@ -154,6 +154,27 @@
 <h2 id="cm-titre">Votre community manager, sans l'embaucher.</h2>
 <p class="cm-chapo">Il travaille pour vous chaque semaine. Pas de salarié à former, pas d'agence qui fait signer 12 mois, pas de logiciel à apprendre.</p>
 </div>
+<!-- Un community manager, c'est quoi ? Semaine type fidèle au produit : ordres/ARCHITECTURE.md (service du jour, renom-hebdo le lundi,
+     avis lus en continu, commentaires toutes les 3 heures, bilan du 1er), créneaux par défaut d'ordres/CONTRAT-MAJ-MEMBRE.md (réglages de
+     départ), plafonds de moteur/offres.json. Aucun jour fixe pour les publications : chacune part au prochain créneau libre après votre clic.
+     Aucun salaire de community manager affiché : aucune source à la fois datée et précise sur brut ou coût employeur (rapport page-v5). -->
+<div class="cm-quoi">
+<div class="cm-def">
+<h3>Un community manager, c'est quoi&nbsp;?</h3>
+<p>C'est la personne qui fait vivre votre commerce sur internet&nbsp;: elle répond à vos clients, publie pour vous et surveille votre réputation.</p>
+<p>Chez RENOM, c'est un service&nbsp;: il travaille chaque semaine, et rien ne part sans les règles que vous avez fixées.</p>
+</div>
+<div class="cm-semaine">
+<h3>Sa semaine chez vous</h3>
+<ol class="semaine">
+<li><span class="semaine-quand">Chaque jour</span><span class="semaine-quoi">Chaque nouvel avis Google reçoit sa réponse&nbsp;: de 4 à 5 étoiles sans vous déranger, de 1 à 3 étoiles après votre clic. Un avis grave vous est signalé et traité par une personne. Le lendemain d'une visite, vos clients reçoivent une demande d'avis par email (ceux que vous nous transmettez, avec leur accord).</span></li>
+<li><span class="semaine-quand">Le lundi</span><span class="semaine-quoi">L'idée de la semaine (une fête, un jour férié, la saison) et, si vous en avez reçu un, un avis 5 étoiles récent mis en image. Prêts à valider d'un clic.</span></li>
+<li><span class="semaine-quand">Dans la semaine</span><span class="semaine-quoi">Vos photos deviennent des publications, programmées aux heures de votre métier (au départ, pour un restaurant&nbsp;: 11&nbsp;h&nbsp;30 ou 18&nbsp;h&nbsp;30). 2, 4 ou 6 par semaine selon votre offre, avec vos vidéos courtes et les réponses à vos commentaires Instagram et Facebook dès l'offre Croissance.</span></li>
+<li><span class="semaine-quand">Le 1<sup>er</sup> du mois</span><span class="semaine-quoi">Votre bilan par email&nbsp;: votre note, vos nouveaux avis, vos publications, vous face à 3 concurrents du quartier. Avec un point au téléphone en Signature.</span></li>
+</ol>
+<p class="semaine-note">Selon votre offre&nbsp;: 8, 16 ou 24 publications par mois&nbsp;; 0, 4 ou 8 vidéos courtes.</p>
+</div>
+</div>
 <ul class="bande bande-compacte" aria-label="Pour votre métier">
 <li class="bande-item"><img src="img/renom-chef.webp" width="1920" height="1280" alt="Un chef termine une assiette en cuisine (photo d'illustration)" loading="lazy"><p><strong>Restaurant</strong></p></li>
 <li class="bande-item"><img src="img/renom-esthetique.webp" width="1200" height="800" alt="Une esthéticienne gantée réalise un soin du visage (photo d'illustration)" loading="lazy"><p><strong>Institut</strong></p></li>
@@ -191,7 +212,8 @@
 </div></section>
 
 <!-- ACTION : offres. Prix et offre de lancement : moteur/offres.json. Cartes (attributs data-cgv) et comparatif comparés aux CGV
-     et à offres.json par moteur/tests/test_legal.py et test_commentaires.js. Aucun prix de référence affiché (interdit). -->
+     et à offres.json par moteur/tests/test_legal.py et test_commentaires.js. Chaque carte : bandeau « −50 % », prix de lancement
+     en grand, puis le prix réel à partir du 4e mois. Aucun prix rayé ni prix de référence (interdit). -->
 <section id="offres" class="section offres-section"><div class="wrap">
 <div class="offres-tete">
 <h2>Votre community manager. <span class="citron bloc">Sans salaire, sans contrat d'un an.</span></h2>
@@ -201,11 +223,13 @@
 <div class="offres">
 
 <article class="offre">
+<p class="offre-remise">&minus;50&nbsp;% les 3 premiers mois</p>
 <h3>Essentiel</h3>
 <p class="offre-promesse">On gère vos avis Google, et on publie pour vous.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">190&nbsp;€</span><span class="prix-unite">HT par mois</span></p>
-<p class="prix-lancement">Les 3 premiers mois&nbsp;: 95&nbsp;€ HT par mois (offre de lancement jusqu'au 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">95&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
+<p class="prix-ensuite">les 3 premiers mois, puis <strong>190&nbsp;€ HT/mois</strong></p>
+<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li data-cgv="Réponse à tous vos avis Google">Une réponse à chacun de vos avis Google</li>
@@ -219,11 +243,13 @@
 </article>
 
 <article class="offre reco">
+<p class="offre-remise">&minus;50&nbsp;% les 3 premiers mois</p>
 <div class="offre-nom"><h3>Croissance</h3><span class="reco-lib">Recommandé</span></div>
 <p class="offre-promesse">On gère vos avis Google et tous vos réseaux sociaux.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">390&nbsp;€</span><span class="prix-unite">HT par mois</span></p>
-<p class="prix-lancement">Les 3 premiers mois&nbsp;: 195&nbsp;€ HT par mois (offre de lancement jusqu'au 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">195&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
+<p class="prix-ensuite">les 3 premiers mois, puis <strong>390&nbsp;€ HT/mois</strong></p>
+<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Tout l'Essentiel, et en plus&nbsp;:</li>
@@ -235,11 +261,13 @@
 </article>
 
 <article class="offre">
+<p class="offre-remise">&minus;50&nbsp;% les 3 premiers mois</p>
 <h3>Signature</h3>
 <p class="offre-promesse">On gère tout, avec plus de vidéos et un point chaque mois.</p>
 <div class="prix-bloc">
-<p class="prix"><span class="prix-montant">690&nbsp;€</span><span class="prix-unite">HT par mois</span></p>
-<p class="prix-lancement">Les 3 premiers mois&nbsp;: 345&nbsp;€ HT par mois (offre de lancement jusqu'au 31/12/2026)</p>
+<p class="prix"><span class="prix-montant">345&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
+<p class="prix-ensuite">les 3 premiers mois, puis <strong>690&nbsp;€ HT/mois</strong></p>
+<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Tout Croissance, et en plus&nbsp;:</li>
@@ -322,8 +350,8 @@
 </main>
 </div>
 
-<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="logo">RENOM</div>
-<p class="pied-legal">RENOM est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p>
-<nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav></div></footer><!-- /legal:pied-site -->
+<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 RENOM</span>
+<nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav>
+<span class="pied-societe">Un service de Girlden LTD</span></div></div></footer><!-- /legal:pied-site -->
 <script src="app.js"></script>
 </body></html>
