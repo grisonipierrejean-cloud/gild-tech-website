@@ -293,8 +293,10 @@
     const aValider = ct.filter(x => x.statut === "a_valider"), reponses = av.filter(x => x.statut === "a_valider" && !x.sensible), humains = av.filter(x => x.statut === "humain");
     const prochaines = cal.filter(x => x.statut === "programme").slice(0, 3), premier = aValider[0], avis1 = reponses[0], dernier = premier ? null : (ct.find(x => x.statut !== "refuse") || ct[0]);
     const [u1, v1, ...vign] = await Promise.all([urlSure(premier || dernier), videoSure(premier || dernier), ...prochaines.map(x => urlSure(x.contenu))]);
-    const mois = new Date(k.mois + "T12:00:00"), n = aValider.length + reponses.length + humains.length + cmValider.length + cmHumains.length + (idee ? 1 : 0);
-    const phrase = !n ? t(mr && mr.faits < mr.total ? "acc.reste.mer" : "acc.a.jour") : t("acc.choses", { n });
+    // Sous-titre aligné sur « une photo, un clic » : le nombre de validations (contenus, réponses aux avis, réponses aux commentaires), le même
+    // que le bilan du mois et les jetons de validation, et leur durée (environ 40 secondes chacune). Les alertes ont leur propre bandeau.
+    const mois = new Date(k.mois + "T12:00:00"), nv = aValider.length + reponses.length + cmValider.length, na = humains.length + cmHumains.length + (idee ? 1 : 0);
+    const phrase = nv ? t("acc.validations", { n: nv, m: Math.max(1, Math.round(nv * 40 / 60)) }) : na ? t("acc.choses", { n: na }) : t(mr && mr.faits < mr.total ? "acc.reste.mer" : "acc.a.jour");
     const raisons = [...new Set(humains.flatMap(x => x.raisons || []))];
     const ficheRemplie = c.specialites || c.ton || c.horaires;
     vue.innerHTML = `${pauseBandeau(c)}
@@ -319,7 +321,7 @@
       <div class="rangee">
         <section class="carte moitie"${avis1 ? ` data-avis="${e(avis1.id)}"` : ""}>
           <div class="carte-tete"><h2>${t(avis1 ? "acc.avis.un" : "acc.avis.aucun")}</h2>${avis1 ? `<span class="note">${etoiles(avis1.note)}</span>` : ""}</div>
-          ${avis1 ? `${citation(avis1)}${reponseAValider(avis1)}${reponses.length > 1 ? `<p class="note pied"><a href="#/avis">${t("acc.avis.voir", { n: reponses.length })}</a></p>` : ""}`
+          ${avis1 ? `${citation(avis1)}${avis1.auteur && !avis1.efface_le ? `<p class="note">${e(avis1.auteur)}</p>` : ""}${reponseAValider(avis1)}${reponses.length > 1 ? `<p class="note pied"><a href="#/avis">${t("acc.avis.voir", { n: reponses.length })}</a></p>` : ""}`
           : `<p class="texte2">${t(c.reglage_avis === "tout_automatique" ? "avis.tout.auto" : "acc.avis.regle")}</p><p class="pied"><a href="#/avis">${t("acc.ouvrir.avis")}</a></p>`}
         </section>
         <section class="carte moitie">
@@ -531,7 +533,7 @@
       <div class="colonnes">
         <div class="pile">${l.length ? l.map(x => `<article class="carte avis${x.sensible ? " attention" : ""}" data-avis="${e(x.id)}">
           <div class="carte-tete"><p class="fort">${etoiles(x.note)}</p><p class="etat${x.statut === "a_valider" && !x.sensible ? " actif" : ""}">${ST_AVIS[x.statut] || e(x.statut)}</p></div>
-          ${citation(x)}<p class="note">${t("recu.le", { d: date(x.cree_le) })}${x.demo ? t("avis.fictif") : ""}</p>
+          ${citation(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}${t("recu.le", { d: date(x.cree_le) })}</p>
           ${x.sensible ? `<div class="encart" role="alert"><p class="fort">${t("avis.sensible", { r: e(raisonsTexte(x.raisons)) })}</p><p>${t("avis.sensible.texte")}</p></div>` : ""}
           ${x.statut === "a_valider" && !x.sensible ? reponseAValider(x) : ""}
           ${x.statut === "publie" || x.statut === "valide" ? `<p class="reponse"><span class="fort">${t(x.decision === "publication_automatique" ? "avis.rep.auto" : "avis.rep.validee")}</span> <span${lc()}>${e(x.reponse || x.reponse_proposee || "")}</span></p>` : ""}</article>`).join("")
@@ -987,7 +989,7 @@
     else if (x.statut === "ignore") suite = `<p class="note">${t(x.categorie === "spam" ? "cm.spam" : "cm.choisi.pas")}</p>`;
     else if (x.statut === "clos") suite = `<p class="note">${t("cm.traite.par.vous")}</p>`;
     return `<div class="carte-tete"><p class="fort">${reseau} · ${CM_CATEGORIES[x.categorie] || e(x.categorie)}</p><p class="etat${x.statut === "a_valider" || sensible && x.statut === "humain" ? " actif" : ""}">${CM_ETATS[x.statut] || e(x.statut)}</p></div>
-      ${texteCommentaire(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}${t("recu.le", { d: date(x.cree_le) })}${x.demo ? t("cm.fictif") : ""}</p>${suite}`;
+      ${texteCommentaire(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}${t("recu.le", { d: date(x.cree_le) })}</p>${suite}`;
   }
   function brancherCommentaires(racine, apres) {
     racine.querySelectorAll("[data-commentaire]").forEach(a => a.addEventListener("click", async ev => {
@@ -1082,7 +1084,7 @@
             <p class="note" id="va-30-jours">${t("va.30.jours")}</p>
             ${bons.length ? `<ul class="liste va-avis">${bons.map(a => `<li><label class="option va-choix"><input type="checkbox" name="va-avis" value="${e(a.id)}"${va.choisis.includes(a.id) ? " checked" : ""}>
               <span class="va-texte"><span class="fort">${e(a.auteur)} · ${etoiles(a.note)}</span><span class="citation"${lc()}>${t("guillemets.insec", { x: e(a.texte) })}</span>
-              <span class="note">${t("va.car", { n: VA.longueur(a.texte), lim: VA.LIMITE })}${a.demo ? t("avis.fictif") : ""}<span data-rang></span></span></span></label></li>`).join("")}</ul>`
+              <span class="note">${t("va.car", { n: VA.longueur(a.texte), lim: VA.LIMITE })}<span data-rang></span></span></span></label></li>`).join("")}</ul>`
             : `<p class="texte2">${t("va.aucun.avis")}</p>`}
             ${autres.length ? `<details class="va-refus"><summary>${t("va.non.proposes", { n: autres.length })}</summary><ul class="liste">${autres.map(a => `<li><div><p class="fort">${e(a.auteur || t("va.auteur.inconnu"))} · ${etoiles(a.note)}</p><p class="citation"${lc()}>${t("guillemets.insec", { x: e(cut(a.texte || "", 140)) })}</p><p class="note">${e(ph(motifs.get(a.id)))}</p></div></li>`).join("")}</ul></details>` : ""}
           </section>

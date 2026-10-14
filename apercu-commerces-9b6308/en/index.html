@@ -45,7 +45,7 @@
 <div class="avis-demo">
 <p class="avis-tete"><strong>Julie M.</strong><span class="etoiles" role="img" aria-label="5 out of 5 stars"></span></p>
 <p class="avis-texte">Lovely welcome, and the pasta was perfect.</p>
-<p class="avis-reponse"><strong>Reply published</strong><br>Thank you, Julie. Come back soon and try our autumn menu.</p>
+<p class="avis-reponse"><strong>Reply published</strong><br>Thank you, Julie! So glad you enjoyed the pasta, and we’ll pass your kind words about the welcome on to the whole team. See you soon for the autumn menu.</p>
 <p class="mention">Fictional example.</p>
 </div>
 </div>
@@ -84,11 +84,12 @@
 </div>
 </div></section>
 
-<!-- INTEREST: lost-revenue calculator (site/app.js, no network; range from the Luca study, ordres/SOURCES-PAGE.md, § 1) -->
+<!-- INTEREST: lost-revenue calculator (site/app.js, no network; range from the Luca study, ordres/SOURCES-PAGE.md, § 1).
+     Realistic target: 4.5 from 3.5 to 4.4; rating + 1 below 3.5; no figure at 4.5 or above. Gain = (target − rating) × 5 to 9% of turnover. -->
 <section id="calcul" class="section calcul-section" aria-labelledby="calcul-titre"><div class="wrap calcul">
 <div class="calcul-tete">
-<h2 id="calcul-titre">What is one star costing you?</h2>
-<p class="calcul-chapo">A Harvard Business School study of independent restaurants found that “a one-star increase in Yelp rating leads to a 5-9 percent increase in revenue”. Run the numbers with your own figures.</p>
+<h2 id="calcul-titre">What is your rating costing you?</h2>
+<p class="calcul-chapo">A Harvard Business School study of independent restaurants found that “a one-star increase in Yelp rating leads to a 5-9 percent increase in revenue”. Enter your figures and your rating: the calculation covers the gap to a reachable target.</p>
 </div>
 <div class="calcul-corps">
 <form class="calc" id="calc" novalidate>
@@ -105,15 +106,18 @@
 <div class="champ"><label for="c-note">Your current Google rating, out of 5</label><input id="c-note" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 4.1"></div>
 </form>
 <div class="calc-resultat" aria-live="polite">
-<p class="calc-vide" id="calc-vide">Enter your customers per day, average spend and opening days: your result appears here.</p>
+<p class="calc-vide" id="calc-vide">Enter your customers per day, average spend, opening days and rating: your result appears here.</p>
 <div class="calc-plein" id="calc-plein" hidden>
 <p class="calc-base" id="calc-base"></p>
-<p class="calc-lib">According to the study, one more star is worth:</p>
+<div class="calc-gain" id="calc-gain">
+<p class="calc-lib" id="calc-lib"></p>
 <p class="calc-montant"><span id="calc-bas"></span> to <span id="calc-haut"></span></p>
-<p class="calc-unite">in turnover a year. Half a star: <span id="calc-demi"></span>.</p>
+<p class="calc-unite">in turnover a year, according to the study.</p>
+</div>
+<p class="calc-sommet" id="calc-sommet" hidden></p>
 <p class="calc-seuil" id="calc-seuil" hidden></p>
 </div>
-<p class="calc-prudence">Estimate based on a Harvard study of independent restaurants in Seattle (Yelp, 2011). It's not a promise: your result depends on your business. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Read Michael Luca's study</a></p>
+<p class="calc-prudence">Estimate based on a Harvard study of independent restaurants in Seattle (Yelp, 2011): one more star, 5 to 9% more turnover. The study covers restaurants: for another type of business, it's an order of magnitude. It's not a promise: your result depends on your business. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Read Michael Luca's study</a></p>
 <a class="btn btn-prim btn-grand" href="#audit">Get my free audit</a>
 </div>
 </div>
@@ -210,6 +214,46 @@
 
 </div></section>
 
+<!-- PROOF: three reviews and their replies, written for the demonstration (no real review of a real business). Replies follow
+     moteur/avis/consigne-reponse-avis.md: one detail taken from the review, nothing made up about the business, contact and gesture taken from the brief,
+     no promise; the sensitive review is never handled automatically (moteur/avis/regles.js, status "humain"). English version of site/index.html. -->
+<section id="reponses" class="section reponses-section" aria-labelledby="reponses-titre"><div class="wrap reponses">
+<div class="reponses-tete">
+<h2 id="reponses-titre">Three reviews, three replies.</h2>
+<p class="reponses-chapo">Every reply picks up a detail from the review, in the tone set in your brief. A serious review is never left to a machine.</p>
+</div>
+<ol class="trio">
+<li class="trio-carte">
+<p class="trio-cas">5 stars: reply published without disturbing you</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Camille D.</strong><span class="etoiles" role="img" aria-label="5 out of 5 stars"></span></p>
+<p class="avis-texte">The porcini tagliatelle was incredible, and the waiter recommended a perfect wine. We’ll be back with my parents.</p></div>
+<p class="avis-reponse"><strong>Reply</strong><br>Thank you, Camille! We’re delighted you loved the porcini tagliatelle, and we’ve passed your compliment about the wine on to the floor team. Your parents will be very welcome: our menu changes with the seasons, so there’ll be something to surprise them.</p>
+</li>
+<li class="trio-carte">
+<p class="trio-cas">2 stars: nothing goes out without your click</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Marc L.</strong><span class="etoiles etoiles-2" role="img" aria-label="2 out of 5 stars"></span></p>
+<p class="avis-texte">Forty minutes’ wait on a Saturday night, and my dish arrived lukewarm. A shame, the setting is lovely.</p></div>
+<p class="avis-reponse"><strong>Reply</strong><br>Hello Marc, thank you for taking the time to write. Forty minutes’ wait and a lukewarm dish: we’re truly sorry. Please send us a private message on Instagram or Facebook: we want to understand what happened, and dessert will be on us on your next visit. We hope to see you again soon.</p>
+</li>
+<li class="trio-carte">
+<p class="trio-cas">1 star, sensitive review</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Sam V.</strong><span class="etoiles etoiles-1" role="img" aria-label="1 out of 5 stars"></span></p>
+<p class="avis-texte">I was ill all night after your meal. I’m going to file a complaint.</p></div>
+<p class="avis-humain">No automatic reply: you’re alerted, and a person handles it.</p>
+</li>
+</ol>
+<div class="fiche-extrait">
+<div class="fiche-extrait-tete"><h3>Where the rules come from: your brief.</h3><p>You fill it in when you start, in five questions, and change it whenever you like. About your business, our AI writes nothing that isn’t in it. Extract:</p></div>
+<dl class="fiche-regles">
+<div><dt>What sets you apart</dt><dd>Fresh pasta made on site. A short menu that changes with the seasons.</dd></div>
+<div><dt>Your tone</dt><dd>Warm and polite.</dd></div>
+<div><dt>Never say or promise</dt><dd>No prices, no promotions. No promises such as “never again”.</dd></div>
+<div><dt>Unhappy customer</dt><dd>Invite them to send a private message on Instagram or Facebook. Planned gesture: dessert on the house on their next visit.</dd></div>
+</dl>
+</div>
+<p class="mention">Example: business and reviews made up for the demonstration.</p>
+</div></section>
+
 <!-- ACTION: plans. Prices and launch offer: moteur/offres.json. Cards (data-cgv attributes) and comparison table checked against the
      English terms of sale (terms.html) and offres.json by moteur/tests/test_legal.py. Each card: “−50%” banner, launch price
      large, then the actual price from month 4. No struck-through or reference price (prohibited). -->
@@ -217,7 +261,7 @@
 <div class="offres-tete">
 <h2>Your community manager. <span class="citron bloc">No salary, no year-long contract.</span></h2>
 <p class="offres-chapo">All three plans handle your Google reviews. What changes: how much we post for you, videos, and a monthly phone call. No minimum term.</p>
-<p class="lancement-offre"><strong>Launch offer:</strong> your first 3 months at half price, on any subscription taken out before 31 December 2026.</p>
+<p class="lancement-offre"><strong>Launch offer:</strong> your first 3 months at half price, on any subscription taken out up to and including 31 December 2026.</p>
 <p class="perimetre">For businesses established in France.</p>
 </div>
 <div class="offres">
@@ -229,7 +273,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">€95</span><span class="prix-unite">excl. VAT/month</span></p>
 <p class="prix-ensuite">for the first 3 months, then <strong>€190 excl. VAT/month</strong></p>
-<p class="prix-validite">Offer valid until 31/12/2026.</p>
+<p class="prix-validite">Offer valid until 31 December 2026 inclusive.</p>
 </div>
 <ul class="inclus">
 <li data-cgv="Reply to all your Google reviews">A reply to every one of your Google reviews</li>
@@ -249,7 +293,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">€195</span><span class="prix-unite">excl. VAT/month</span></p>
 <p class="prix-ensuite">for the first 3 months, then <strong>€390 excl. VAT/month</strong></p>
-<p class="prix-validite">Offer valid until 31/12/2026.</p>
+<p class="prix-validite">Offer valid until 31 December 2026 inclusive.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Everything in Essential, plus:</li>
@@ -267,7 +311,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">€345</span><span class="prix-unite">excl. VAT/month</span></p>
 <p class="prix-ensuite">for the first 3 months, then <strong>€690 excl. VAT/month</strong></p>
-<p class="prix-validite">Offer valid until 31/12/2026.</p>
+<p class="prix-validite">Offer valid until 31 December 2026 inclusive.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Everything in Growth, plus:</li>
@@ -298,6 +342,8 @@
 
 <div class="offres-pied">
 <p class="garantie">First month refunded if you're not satisfied. No minimum term. No set-up fees.</p>
+<!-- Taken from the terms of sale (section 7: cancellation by email, effective at the end of the current month; section 16: French law, French courts) -->
+<p class="contrat">Cancel with a simple email, effective at the end of the current month. French law, French courts. <a href="terms.html#a7">Terms of sale, sections 7 and 16</a></p>
 <p class="note">Prices excl. VAT, per month and per business. Full details of each plan are in the <a href="terms.html#a3">terms of sale</a>.</p>
 <p class="option-trustpilot"><strong>Optional, on any plan:</strong> your Trustpilot reviews. We prepare each reply, you publish it with a simple copy and paste. On request.</p>
 </div>
@@ -307,7 +353,7 @@
 <section id="questions" class="section"><div class="wrap faq">
 <h2>Your questions.</h2>
 <div class="questions">
-<details class="q"><summary>Won't an AI just write anything?</summary><p>No. It only writes what's in your brief. Negative reviews always go through you.</p></details>
+<details class="q"><summary>Won't an AI just write anything?</summary><p>No. About your business, it only writes what's in your RENOM brief, the one you fill in when you start (see the extract above). Negative reviews always go through you, and a serious review is handled by a person.</p></details>
 <details class="q"><summary>Do I have to give you my passwords?</summary><p>Never. You add us as a manager and remove us whenever you like.</p></details>
 <details class="q"><summary>How long before I see results?</summary><p>Replies to your reviews and your posts start in the first week. Your rating and your position on Google move with new reviews, and that takes several weeks. No result is guaranteed: your customers write what they want, and it's Google that ranks the listings.</p></details>
 <details class="q"><summary>What if I don't like a reply?</summary><p>For a 1- to 3-star review, nothing goes out without you: you edit the reply or reject it before it's published. For a 4- or 5-star review, the reply goes out without disturbing you, following the written rules in your brief: what we can say about you, and what we never say.</p></details>
@@ -321,7 +367,23 @@
 <section id="audit" class="section audit-section"><div class="wrap"><div class="audit-bloc">
 <div class="audit-texte">
 <h2>See what your customers see.</h2>
-<p>A free audit of your Google listing, scored out of 100. Within 24 hours.</p>
+<p>A free audit of your Google listing, scored out of 100. Checked by us, sent by email within 24 business hours.</p>
+<!-- Preview built in HTML on the real report format (moteur/audit/rapport.py: total out of 100, five pillars scored out of 20, gauge, verdict
+     "Strong" at 16 and above, "Needs work" from 10 to 15, "Priority" below 10; pillar names from moteur/audit/piliers.py). Example figures. -->
+<figure class="apercu-audit">
+<div class="audit-carte">
+<p class="audit-carte-tete"><span class="audit-logo">RENOM</span><span>Your Google listing audit</span></p>
+<div class="audit-total"><p class="audit-nom">Example Bistro</p><p class="audit-score"><b>68</b> out of 100</p></div>
+<ul class="audit-piliers">
+<li><span class="ap-nom">Profile completeness</span><span class="ap-note">16 out of 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:80%"></span></span><span class="ap-verdict">Strong</span></li>
+<li><span class="ap-nom">Categories and attributes</span><span class="ap-note">12 out of 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:60%"></span></span><span class="ap-verdict">Needs work</span></li>
+<li><span class="ap-nom">Photos</span><span class="ap-note">9 out of 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:45%"></span></span><span class="ap-verdict">Priority</span></li>
+<li><span class="ap-nom">Reviews</span><span class="ap-note">17 out of 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:85%"></span></span><span class="ap-verdict">Strong</span></li>
+<li><span class="ap-nom">Engagement signals</span><span class="ap-note">14 out of 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:70%"></span></span><span class="ap-verdict">Needs work</span></li>
+</ul>
+</div>
+<figcaption class="audit-legende">Preview of a report, example figures. The report itself is in French. Yours details every criterion, your photos, compliance with Google’s rules, what your reviews say and your nearby competitors.</figcaption>
+</figure>
 </div>
 <form class="form" id="form" name="audit" method="POST" action="thank-you.html" data-netlify="true" netlify-honeypot="website" novalidate>
 <input type="hidden" name="form-name" value="audit"><input type="hidden" name="subject" id="g-sujet" value="Audit RENOM"><input type="hidden" name="metier" id="g-metier" value=""><input type="hidden" name="langue" value="en">
@@ -337,10 +399,10 @@
 <div class="champ" id="f-autre" hidden><label for="g-autre">What kind of business?</label><input id="g-autre" name="metier_autre" type="text" placeholder="Bakery, florist, wine shop…"></div>
 <div class="rang">
 <div class="champ"><label for="g-ville">Town or city</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Lyon" required></div>
-<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">Your audit arrives here. Nothing else without your consent.</p></div>
+<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">Your audit arrives here. No phone number required.</p></div>
 </div>
 <div class="hp" aria-hidden="true"><label>Leave blank<input name="website" tabindex="-1" autocomplete="off"></label></div>
-<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">I agree to be contacted about my audit. <a href="privacy.html">Privacy policy</a></label></div>
+<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">I agree to receive my audit and a few follow-up messages, with one-click unsubscribe. <a href="privacy.html">Privacy policy</a></label></div>
 <button class="btn btn-prim btn-grand" id="envoi" type="submit">Get my free audit</button>
 <div class="err" id="err" role="alert" hidden></div>
 </form>

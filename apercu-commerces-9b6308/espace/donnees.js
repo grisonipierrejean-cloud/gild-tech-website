@@ -206,7 +206,7 @@
     POINTS: [
       { point: "compte", titre: "Activer votre compte", aide: "C'est fait dès votre première visite dans l'espace." },
       { point: "google", titre: "Donner à RENOM l'accès gestionnaire de votre fiche Google", aide: "Sur business.google.com : Paramètres du profil, Personnes et accès, Ajouter, l'adresse que RENOM vous indique, rôle Gestionnaire. Vous restez propriétaire.", declarable: true },
-      { point: "metricool", titre: "Connecter vos réseaux à Metricool", aide: "Ouvrez le lien de connexion Metricool que RENOM vous envoie, puis connectez Facebook et Instagram. RENOM publie ensuite pour vous, seulement ce que vous avez approuvé.", declarable: true },
+      { point: "metricool", titre: "Connecter vos réseaux à notre outil de programmation", aide: "Ouvrez le lien de connexion de notre outil de programmation que RENOM vous envoie, puis connectez Facebook et Instagram. RENOM publie ensuite pour vous, seulement ce que vous avez approuvé.", declarable: true },
       { point: "demarrage", titre: "Répondre aux 5 questions de démarrage", aide: "Cinq questions courtes pour que RENOM écrive comme vous. Chacune peut être passée." },
     ],
     ETATS: { a_faire: "À faire", declare: "Fait selon vous, RENOM vérifie", fait: "Fait" },
@@ -324,7 +324,7 @@
       creation(photo) {
         const c = E.commerces[photo.commerce_id];
         if (usage(c) >= OFFRES[c.offre_id].publications) { photo.statut = "refusee"; jour(c.id, "REFUS", { photo: photo.id, raison: "plafond de publications atteint" }); return; }
-        const legende = "Légende de démonstration produite par un faux service (ni Claude ni le vrai moteur).", id = uid();
+        const legende = "Légende de démonstration : en service, notre IA l'écrit à partir de votre photo et de votre fiche.", id = uid();
         E.contenus.unshift({ id, commerce_id: c.id, photo_id: photo.id, type: "publication", format: "publication", legende, legendes: legendesDemo(c, legende), visuel_url: photo.url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true });
         photo.statut = "traitee"; jour(c.id, "PRODUIT", { photo: photo.id, simule: true }); emettreJeton(c.id, "contenu", id);
       },
@@ -807,7 +807,7 @@
         await init(); const c = cur(); pasEnPause(c);
         if (usage(c) >= OFFRES[c.offre_id].publications) throw new Error("Plafond de votre offre atteint ce mois-ci.");
         const d = { id: uid(), commerce_id: c.id, statut: "traitee", mois: mois0(), cree_le: new Date().toISOString() }; E.idees_demandes.push(d);
-        ["Une idée de démonstration (faux service) : les coulisses avant l'ouverture", "Une idée de démonstration (faux service) : le geste que vos clients préfèrent"].forEach(t => E.idees.unshift({ id: uid(), commerce_id: c.id, titre: t, texte: "Texte de démonstration : en production, Claude propose ici une idée liée à votre fiche.", cree_le: new Date().toISOString(), demo: true }));
+        ["Une idée de démonstration (faux service) : les coulisses avant l'ouverture", "Une idée de démonstration (faux service) : le geste que vos clients préfèrent"].forEach(t => E.idees.unshift({ id: uid(), commerce_id: c.id, titre: t, texte: "Texte de démonstration : en service, notre IA propose ici une idée liée à votre fiche.", cree_le: new Date().toISOString(), demo: true }));
         jour(c.id, "IDEES", { simule: true }); sauver();
       },
       async calendrier() { await init(); const cs = mine("contenus"); return mine("publications").map(p => ({ ...p, contenu: cs.find(c => c.id === p.contenu_id) })).sort((a, b) => a.prevu_le.localeCompare(b.prevu_le)); },
@@ -906,7 +906,7 @@
               : `Un nouveau contenu pour ${c.nom} attend votre accord. Ouvrez le lien pour le voir réseau par réseau, puis décider.` }));
         },
         async avisFictif() {
-          await init(); const c = cur(); const sens = false, id = uid(); E.avis.unshift({ id, commerce_id: c.id, google_review_id: "demo-" + uid().slice(0, 6), auteur: "Alex D.", note: 2, texte: "Avis fictif de démonstration : l'attente au départ nous a semblé longue.", reponse_proposee: "Bonjour, merci d'avoir pris le temps de nous écrire. Nous sommes désolés que l'attente au départ vous ait semblé longue. Vous pouvez nous écrire à " + (c.contact || "l'adresse de contact de votre fiche") + " pour en parler. Nous espérons vous revoir bientôt.", sensible: sens, raisons: [], statut: "a_valider", decision: "validation_commercant", cree_le: new Date().toISOString(), demo: true }); jour(c.id, "AVIS_RECU", { simule: true }); emettreJeton(c.id, "avis", id); sauver();
+          await init(); const c = cur(); const sens = false, id = uid(); E.avis.unshift({ id, commerce_id: c.id, google_review_id: "demo-" + uid().slice(0, 6), auteur: "Alex D.", note: 2, texte: "L'attente au départ nous a semblé longue.", reponse_proposee: "Bonjour Alex, merci d'avoir pris le temps de nous écrire. Nous sommes désolés que l'attente au départ vous ait semblé longue. Pour en parler, " + (!c.contact ? "écrivez-nous à l'adresse de contact de votre fiche" : /@/.test(c.contact) ? "écrivez-nous à " + c.contact : "contactez-nous par " + c.contact) + ". Nous espérons vous revoir bientôt.", sensible: sens, raisons: [], statut: "a_valider", decision: "validation_commercant", cree_le: new Date().toISOString(), demo: true }); jour(c.id, "AVIS_RECU", { simule: true }); emettreJeton(c.id, "avis", id); sauver();
         },
         async echeances() { await init(); let n = 0; E.publications.forEach(p => { if (p.statut === "programme") { p.statut = "publie"; p.prevu_le = new Date(Date.now() - 60000).toISOString(); n++; const ct = E.contenus.find(c => c.id === p.contenu_id); if (ct) ct.statut = "publie"; jour(p.commerce_id, "PUBLIE", { simule: true }); } });
           // Réponses d'avis validées et actions de fiche validées : publiées (simulé)

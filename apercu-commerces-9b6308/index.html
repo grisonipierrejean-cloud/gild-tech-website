@@ -45,7 +45,7 @@
 <div class="avis-demo">
 <p class="avis-tete"><strong>Julie M.</strong><span class="etoiles" role="img" aria-label="5 étoiles sur 5"></span></p>
 <p class="avis-texte">Accueil adorable, les pâtes étaient parfaites.</p>
-<p class="avis-reponse"><strong>Réponse publiée</strong><br>Merci Julie, on vous attend pour goûter la carte d'automne.</p>
+<p class="avis-reponse"><strong>Réponse publiée</strong><br>Merci Julie&nbsp;! Ravis que les pâtes vous aient plu, et on transmet le compliment sur l'accueil à toute l'équipe. À très vite pour la carte d'automne.</p>
 <p class="mention">Exemple fictif.</p>
 </div>
 </div>
@@ -84,11 +84,12 @@
 </div>
 </div></section>
 
-<!-- INTÉRÊT : calculateur du manque à gagner (site/app.js, sans réseau ; fourchette de l'étude Luca, ordres/SOURCES-PAGE.md, § 1) -->
+<!-- INTÉRÊT : calculateur du manque à gagner (site/app.js, sans réseau ; fourchette de l'étude Luca, ordres/SOURCES-PAGE.md, § 1).
+     Objectif réaliste : 4,5 entre 3,5 et 4,4 ; note + 1 sous 3,5 ; aucun chiffre à 4,5 ou plus. Gain = (objectif − note) × 5 à 9 % du chiffre d'affaires. -->
 <section id="calcul" class="section calcul-section" aria-labelledby="calcul-titre"><div class="wrap calcul">
 <div class="calcul-tete">
-<h2 id="calcul-titre">Combien vous coûte une étoile&nbsp;?</h2>
-<p class="calcul-chapo">Une étude de la Harvard Business School a mesuré ce qu'une étoile de plus rapporte à un restaurant indépendant&nbsp;: de 5 à 9&nbsp;% de chiffre d'affaires. Faites le calcul avec vos chiffres.</p>
+<h2 id="calcul-titre">Combien vous coûte votre note&nbsp;?</h2>
+<p class="calcul-chapo">Une étude de la Harvard Business School a mesuré ce qu'une étoile de plus rapporte à un restaurant indépendant&nbsp;: de 5 à 9&nbsp;% de chiffre d'affaires. Indiquez vos chiffres et votre note&nbsp;: le calcul porte sur l'écart avec un objectif atteignable.</p>
 </div>
 <div class="calcul-corps">
 <form class="calc" id="calc" novalidate>
@@ -105,15 +106,18 @@
 <div class="champ"><label for="c-note">Votre note Google actuelle, sur 5</label><input id="c-note" type="text" inputmode="decimal" autocomplete="off" placeholder="Exemple&nbsp;: 4,1"></div>
 </form>
 <div class="calc-resultat" aria-live="polite">
-<p class="calc-vide" id="calc-vide">Indiquez vos clients par jour, votre panier moyen et vos jours d'ouverture&nbsp;: le résultat s'affiche ici.</p>
+<p class="calc-vide" id="calc-vide">Indiquez vos clients par jour, votre panier moyen, vos jours d'ouverture et votre note&nbsp;: le résultat s'affiche ici.</p>
 <div class="calc-plein" id="calc-plein" hidden>
 <p class="calc-base" id="calc-base"></p>
-<p class="calc-lib">Une étoile de plus représente, d'après l'étude&nbsp;:</p>
+<div class="calc-gain" id="calc-gain">
+<p class="calc-lib" id="calc-lib"></p>
 <p class="calc-montant"><span id="calc-bas"></span> à <span id="calc-haut"></span></p>
-<p class="calc-unite">de chiffre d'affaires par an. Une demi-étoile&nbsp;: <span id="calc-demi"></span>.</p>
+<p class="calc-unite">de chiffre d'affaires par an, d'après l'étude.</p>
+</div>
+<p class="calc-sommet" id="calc-sommet" hidden></p>
 <p class="calc-seuil" id="calc-seuil" hidden></p>
 </div>
-<p class="calc-prudence">Estimation tirée d'une étude de Harvard sur des restaurants indépendants de Seattle (Yelp, 2011). Ce n'est pas une promesse&nbsp;: votre résultat dépend de votre commerce. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Lire l'étude de Michael Luca</a></p>
+<p class="calc-prudence">Estimation tirée d'une étude de Harvard sur des restaurants indépendants de Seattle (Yelp, 2011)&nbsp;: une étoile de plus, 5 à 9&nbsp;% de chiffre d'affaires. L'étude porte sur des restaurants&nbsp;: pour un autre métier, c'est un ordre de grandeur. Ce n'est pas une promesse&nbsp;: votre résultat dépend de votre commerce. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Lire l'étude de Michael Luca</a></p>
 <a class="btn btn-prim btn-grand" href="#audit">Recevoir mon audit gratuit</a>
 </div>
 </div>
@@ -211,6 +215,46 @@
 
 </div></section>
 
+<!-- PREUVE : trois avis et leurs réponses, écrits pour la démonstration (aucun vrai avis d'un vrai commerce). Réponses conformes à
+     moteur/avis/consigne-reponse-avis.md : un détail repris de l'avis, rien d'inventé sur le commerce, contact et geste pris dans la fiche,
+     aucune promesse ; l'avis sensible n'est jamais traité automatiquement (moteur/avis/regles.js, statut « humain »). -->
+<section id="reponses" class="section reponses-section" aria-labelledby="reponses-titre"><div class="wrap reponses">
+<div class="reponses-tete">
+<h2 id="reponses-titre">Trois avis, trois réponses.</h2>
+<p class="reponses-chapo">Chaque réponse reprend un détail de l'avis, dans le ton de votre fiche. Un avis grave n'est jamais confié à une machine.</p>
+</div>
+<ol class="trio">
+<li class="trio-carte">
+<p class="trio-cas">5 étoiles&nbsp;: réponse publiée sans vous déranger</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Camille D.</strong><span class="etoiles" role="img" aria-label="5 étoiles sur 5"></span></p>
+<p class="avis-texte">Les tagliatelles aux cèpes étaient incroyables, et le serveur nous a conseillé un vin parfait. On reviendra avec mes parents.</p></div>
+<p class="avis-reponse"><strong>Réponse</strong><br>Merci Camille&nbsp;! Ravis que les tagliatelles aux cèpes vous aient plu, et le compliment sur le vin est transmis à l'équipe de salle. Vos parents seront les bienvenus&nbsp;: notre carte change avec les saisons, il y aura de quoi les surprendre.</p>
+</li>
+<li class="trio-carte">
+<p class="trio-cas">2 étoiles&nbsp;: rien ne part sans votre clic</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Marc L.</strong><span class="etoiles etoiles-2" role="img" aria-label="2 étoiles sur 5"></span></p>
+<p class="avis-texte">Quarante minutes d'attente un samedi soir, et mon plat est arrivé tiède. Dommage, le cadre est joli.</p></div>
+<p class="avis-reponse"><strong>Réponse</strong><br>Bonjour Marc, merci d'avoir pris le temps de nous écrire. Quarante minutes d'attente et un plat tiède, nous en sommes sincèrement désolés. Écrivez-nous par message privé sur Instagram ou Facebook&nbsp;: nous voulons comprendre ce qui s'est passé, et le dessert vous sera offert lors de votre prochaine visite. Au plaisir de vous revoir.</p>
+</li>
+<li class="trio-carte">
+<p class="trio-cas">1 étoile, avis sensible</p>
+<div class="trio-avis"><p class="avis-tete"><strong>Sam V.</strong><span class="etoiles etoiles-1" role="img" aria-label="1 étoile sur 5"></span></p>
+<p class="avis-texte">J'ai été malade toute la nuit après votre repas. Je vais porter plainte.</p></div>
+<p class="avis-humain">Pas de réponse automatique&nbsp;: vous êtes prévenu, une personne s'en occupe.</p>
+</li>
+</ol>
+<div class="fiche-extrait">
+<div class="fiche-extrait-tete"><h3>D'où viennent les règles&nbsp;: votre fiche.</h3><p>Vous la remplissez au démarrage, en cinq questions, et vous la modifiez quand vous voulez. Sur votre commerce, notre IA n'écrit rien qui n'y figure pas. Extrait&nbsp;:</p></div>
+<dl class="fiche-regles">
+<div><dt>Ce qui vous distingue</dt><dd>Pâtes fraîches préparées sur place. Carte courte qui change avec les saisons.</dd></div>
+<div><dt>Votre ton</dt><dd>Chaleureux, avec vouvoiement.</dd></div>
+<div><dt>À ne jamais dire ni promettre</dt><dd>Aucun prix, aucune promotion. Aucune promesse du type «&nbsp;plus jamais&nbsp;».</dd></div>
+<div><dt>Client mécontent</dt><dd>L'inviter à écrire par message privé sur Instagram ou Facebook. Geste prévu&nbsp;: le dessert offert à la prochaine visite.</dd></div>
+</dl>
+</div>
+<p class="mention">Exemple&nbsp;: commerce et avis inventés pour la démonstration.</p>
+</div></section>
+
 <!-- ACTION : offres. Prix et offre de lancement : moteur/offres.json. Cartes (attributs data-cgv) et comparatif comparés aux CGV
      et à offres.json par moteur/tests/test_legal.py et test_commentaires.js. Chaque carte : bandeau « −50 % », prix de lancement
      en grand, puis le prix réel à partir du 4e mois. Aucun prix rayé ni prix de référence (interdit). -->
@@ -218,7 +262,7 @@
 <div class="offres-tete">
 <h2>Votre community manager. <span class="citron bloc">Sans salaire, sans contrat d'un an.</span></h2>
 <p class="offres-chapo">Les trois offres gèrent vos avis Google. Ce qui change&nbsp;: combien on publie pour vous, les vidéos, et un point au téléphone. Sans engagement.</p>
-<p class="lancement-offre"><strong>Offre de lancement&nbsp;:</strong> vos 3 premiers mois à moitié prix, pour tout abonnement souscrit avant le 31 décembre 2026.</p>
+<p class="lancement-offre"><strong>Offre de lancement&nbsp;:</strong> vos 3 premiers mois à moitié prix, pour tout abonnement souscrit jusqu'au 31 décembre 2026 inclus.</p>
 </div>
 <div class="offres">
 
@@ -229,7 +273,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">95&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
 <p class="prix-ensuite">les 3 premiers mois, puis <strong>190&nbsp;€ HT/mois</strong></p>
-<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
+<p class="prix-validite">Offre valable jusqu'au 31 décembre 2026 inclus.</p>
 </div>
 <ul class="inclus">
 <li data-cgv="Réponse à tous vos avis Google">Une réponse à chacun de vos avis Google</li>
@@ -249,7 +293,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">195&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
 <p class="prix-ensuite">les 3 premiers mois, puis <strong>390&nbsp;€ HT/mois</strong></p>
-<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
+<p class="prix-validite">Offre valable jusqu'au 31 décembre 2026 inclus.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Tout l'Essentiel, et en plus&nbsp;:</li>
@@ -267,7 +311,7 @@
 <div class="prix-bloc">
 <p class="prix"><span class="prix-montant">345&nbsp;€</span><span class="prix-unite">HT/mois</span></p>
 <p class="prix-ensuite">les 3 premiers mois, puis <strong>690&nbsp;€ HT/mois</strong></p>
-<p class="prix-validite">Offre valable jusqu'au 31/12/2026.</p>
+<p class="prix-validite">Offre valable jusqu'au 31 décembre 2026 inclus.</p>
 </div>
 <ul class="inclus">
 <li class="inclus-tout">Tout Croissance, et en plus&nbsp;:</li>
@@ -298,6 +342,8 @@
 
 <div class="offres-pied">
 <p class="garantie">Premier mois remboursé si vous n'êtes pas satisfait. Sans engagement. Aucuns frais de mise en route.</p>
+<!-- Repris des CGV (article 7 : résiliation par email, effet à la fin du mois en cours ; article 16 : droit français, juridictions françaises) -->
+<p class="contrat">Résiliable par un simple email, effet à la fin du mois en cours. Droit français, tribunaux français. <a href="cgv.html#a7">Conditions de vente, articles 7 et 16</a></p>
 <p class="note">Prix hors taxes, par mois et par commerce. Tout le détail des offres est dans les <a href="cgv.html#a3">conditions de vente</a>.</p>
 <p class="option-trustpilot"><strong>En option, quelle que soit l'offre&nbsp;:</strong> vos avis Trustpilot. Nous préparons chaque réponse, vous la publiez d'un copier-coller. Sur demande.</p>
 </div>
@@ -307,7 +353,7 @@
 <section id="questions" class="section"><div class="wrap faq">
 <h2>Vos questions.</h2>
 <div class="questions">
-<details class="q"><summary>Une IA va répondre n'importe quoi&nbsp;?</summary><p>Non. Elle n'écrit que ce qui figure sur votre fiche. Les avis négatifs passent toujours par vous.</p></details>
+<details class="q"><summary>Une IA va répondre n'importe quoi&nbsp;?</summary><p>Non. Sur votre commerce, elle n'écrit que ce qui figure sur votre fiche RENOM, celle que vous remplissez au démarrage (voir l'extrait plus haut). Les avis négatifs passent toujours par vous, et un avis grave est traité par une personne.</p></details>
 <details class="q"><summary>Je dois donner mes mots de passe&nbsp;?</summary><p>Jamais. Vous nous ajoutez comme gestionnaire et vous nous retirez quand vous voulez.</p></details>
 <details class="q"><summary>Combien de temps avant de voir un résultat&nbsp;?</summary><p>Les réponses à vos avis et vos publications commencent dès la première semaine. Votre note et votre place dans Google bougent avec les nouveaux avis, et cela prend plusieurs semaines. Aucun résultat n'est garanti&nbsp;: vos clients écrivent ce qu'ils veulent, et c'est Google qui range les fiches.</p></details>
 <details class="q"><summary>Et si une réponse ne me plaît pas&nbsp;?</summary><p>Pour un avis de 1 à 3 étoiles, rien ne part sans vous&nbsp;: vous modifiez la réponse ou vous la refusez avant sa publication. Pour un avis de 4 ou 5 étoiles, la réponse part sans vous déranger, selon les règles écrites de votre fiche&nbsp;: ce qu'on peut dire de vous, et ce qu'on ne dit jamais.</p></details>
@@ -321,7 +367,23 @@
 <section id="audit" class="section audit-section"><div class="wrap"><div class="audit-bloc">
 <div class="audit-texte">
 <h2>Voyez ce que vos clients voient de vous.</h2>
-<p>Audit gratuit de votre fiche Google, noté sur 100. Sous 24&nbsp;h.</p>
+<p>Audit gratuit de votre fiche Google, noté sur 100. Relu par nous, envoyé par email sous 24&nbsp;h ouvrées.</p>
+<!-- Aperçu construit en HTML sur le format réel du rapport (moteur/audit/rapport.py : total sur 100, cinq piliers notés sur 20, jauge, verdict
+     « Solide » à 16 et plus, « À renforcer » de 10 à 15, « Prioritaire » sous 10 ; noms des piliers de moteur/audit/piliers.py). Chiffres d'exemple. -->
+<figure class="apercu-audit">
+<div class="audit-carte">
+<p class="audit-carte-tete"><span class="audit-logo">RENOM</span><span>Audit de votre fiche Google</span></p>
+<div class="audit-total"><p class="audit-nom">Bistrot d'exemple</p><p class="audit-score"><b>68</b> sur 100</p></div>
+<ul class="audit-piliers">
+<li><span class="ap-nom">Complétude du profil</span><span class="ap-note">16 sur 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:80%"></span></span><span class="ap-verdict">Solide</span></li>
+<li><span class="ap-nom">Catégories et attributs</span><span class="ap-note">12 sur 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:60%"></span></span><span class="ap-verdict">À renforcer</span></li>
+<li><span class="ap-nom">Photos</span><span class="ap-note">9 sur 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:45%"></span></span><span class="ap-verdict">Prioritaire</span></li>
+<li><span class="ap-nom">Avis</span><span class="ap-note">17 sur 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:85%"></span></span><span class="ap-verdict">Solide</span></li>
+<li><span class="ap-nom">Signaux d'engagement</span><span class="ap-note">14 sur 20</span><span class="ap-jauge" aria-hidden="true"><span style="width:70%"></span></span><span class="ap-verdict">À renforcer</span></li>
+</ul>
+</div>
+<figcaption class="audit-legende">Aperçu d'un rapport, chiffres d'exemple. Le vôtre détaille chaque critère, vos photos, la conformité aux règles de Google, ce que disent vos avis et vos concurrents proches.</figcaption>
+</figure>
 </div>
 <form class="form" id="form" name="audit" method="POST" action="merci.html" data-netlify="true" netlify-honeypot="website" novalidate>
 <input type="hidden" name="form-name" value="audit"><input type="hidden" name="subject" id="g-sujet" value="Audit RENOM"><input type="hidden" name="metier" id="g-metier" value=""><input type="hidden" name="langue" value="fr">
@@ -336,10 +398,10 @@
 <div class="champ" id="f-autre" hidden><label for="g-autre">Quel commerce&nbsp;?</label><input id="g-autre" name="metier_autre" type="text" placeholder="Boulangerie, fleuriste, caviste…"></div>
 <div class="rang">
 <div class="champ"><label for="g-ville">Ville</label><input id="g-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Lyon 7e" required></div>
-<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">L'audit arrive ici. Rien d'autre sans votre accord.</p></div>
+<div class="champ"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required aria-describedby="aide-email"><p class="aide" id="aide-email">L'audit arrive ici. Aucun numéro de téléphone demandé.</p></div>
 </div>
 <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
-<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">J'accepte d'être recontacté au sujet de mon audit. <a href="confidentialite.html">Confidentialité</a></label></div>
+<div class="ok"><input id="g-ok" name="consentement" value="oui" type="checkbox" required><label for="g-ok">J'accepte de recevoir mon audit et quelques messages de suivi, désinscription en un clic. <a href="confidentialite.html">Confidentialité</a></label></div>
 <button class="btn btn-prim btn-grand" id="envoi" type="submit">Recevoir mon audit gratuit</button>
 <div class="err" id="err" role="alert" hidden></div>
 </form>

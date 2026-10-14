@@ -10,7 +10,16 @@
 <main>
 <section class="wrap simple">
 <h1>C'est parti.</h1>
-<p class="chapo">Votre audit arrive par email sous 24&nbsp;h&nbsp;: votre fiche Google notée sur 100, pilier par pilier, et ce qu'il faut corriger en premier. Pensez à regarder dans les indésirables. Aucun accès à vos comptes n'est nécessaire.</p>
+<p class="chapo">Votre demande est bien arrivée. Voici ce qui se passe maintenant.</p>
+<!-- Étapes fidèles au fonctionnement réel (n8n/build_audit.py) : l'audit est calculé automatiquement, mais l'envoi direct au commerçant
+     est coupé par défaut (RENOM_AUDIT_ENVOI vide) : le rapport est relu avant de partir, d'où « sous 24 h ouvrées ».
+     Relances J+2, J+5, J+10 après l'envoi du rapport, arrêtées par un rendez-vous, une réponse ou une désinscription (schema.sql). -->
+<ol class="suite-etapes">
+<li><strong>Nous lisons votre fiche Google.</strong> Votre score sur 100 est calculé pilier par pilier, avec ce qu'il faut corriger en premier. Aucun accès à vos comptes n'est nécessaire.</li>
+<li><strong>Nous relisons l'audit, puis il part par email, sous 24&nbsp;h ouvrées.</strong> Pensez à regarder dans les indésirables.</li>
+<li><strong>Ensuite, trois messages de suivi au plus</strong>, 2, 5 et 10 jours après l'audit. Chacun porte un lien de désinscription en un clic.</li>
+<li><strong>Si vous le souhaitez, un appel de 15 minutes</strong> pour parcourir l'audit avec vous. Rien d'autre.</li>
+</ol>
 <form class="form carte-form" id="comp" name="complement" method="POST" action="merci.html" data-netlify="true" netlify-honeypot="website">
 <input type="hidden" name="form-name" value="complement"><input type="hidden" name="subject" id="c-sujet" value="Complément RENOM"><input type="hidden" name="commerce" id="c-commerce"><input type="hidden" name="email" id="c-email"><input type="hidden" name="langue" value="fr">
 <div class="lib">Pour aller plus vite, si vous le souhaitez. Ces deux champs sont facultatifs.</div>
@@ -19,6 +28,7 @@
 <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
 <button class="btn btn-prim" id="c-envoi" type="submit">Envoyer ces informations</button>
 <div class="note" id="c-ok" role="status" hidden>Merci, c'est noté.</div>
+<div class="note" id="c-vide" role="alert" hidden>Remplissez au moins un des deux champs, ou ignorez simplement ce formulaire.</div>
 </form>
 </section>
 </main>
@@ -28,7 +38,11 @@
 <script>
 (function(){var f=document.getElementById('comp'),ok=document.getElementById('c-ok');
 try{var d=JSON.parse(sessionStorage.getItem('renom')||'{}');document.getElementById('c-commerce').value=d.commerce||'';document.getElementById('c-email').value=d.email||'';document.getElementById('c-sujet').value='Complément RENOM : '+(d.commerce||'')}catch(x){}
+var vide=document.getElementById('c-vide');
+f.addEventListener('input',function(){vide.hidden=true});
 f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
+if(!f.telephone.value.trim()&&!f.fiche_google.value.trim()){vide.hidden=false;f.telephone.focus();return}
+vide.hidden=true;
 var corps=new URLSearchParams(new FormData(f)).toString(),H={'Content-Type':'application/x-www-form-urlencoded'};
 Promise.resolve({ok:true})
 .then(function(r){if(!r.ok)throw 0;f.querySelectorAll('input:not([type=hidden]),button').forEach(function(x){x.disabled=true});ok.hidden=false})
