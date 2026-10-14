@@ -55,7 +55,8 @@ Photos de démonstration, Pexels, même licence. Elles servent uniquement d'« e
 
 ## Polices
 
-Licence SIL OFL 1.1, fichiers téléchargés depuis le dépôt officiel google/fonts (github.com/google/fonts, branche main, le 13/10/2026), réduits au latin et convertis en WOFF2 :
-- Source Serif 4 (titres), ofl/sourceserif4, axes limités à graisse 400 à 600 et taille optique 16 à 48 : fonts/source-serif-4.woff2, licence fonts/OFL-source-serif-4.txt.
-- Schibsted Grotesk (texte), ofl/schibstedgrotesk : fonts/schibsted-grotesk.woff2, licence fonts/OFL-schibsted-grotesk.txt.
-- Instrument Serif et Instrument Sans (fichiers gardés : le rapport d'audit, moteur/audit/rapport.py, les embarque encore).
+Polices de la page de vente (site/style.css) : Anton (titres) et Figtree (texte), licence SIL OFL 1.1, paquets Fontsource @fontsource/anton et @fontsource/figtree 5.3.0 (voir l'en-tête de site/style.css), en WOFF2 : fonts/anton-400.woff2, fonts/figtree-400.woff2 à fonts/figtree-700.woff2 ; licences fonts/OFL-anton.txt et fonts/OFL-figtree.txt.
+
+Fichiers plus utilisés par la page, gardés dans fonts/ :
+- Source Serif 4 et Schibsted Grotesk (ancienne direction), licence SIL OFL 1.1 : fonts/OFL-source-serif-4.txt, fonts/OFL-schibsted-grotesk.txt.
+- Instrument Serif et Instrument Sans (le rapport d'audit, moteur/audit/rapport.py, les embarque encore).

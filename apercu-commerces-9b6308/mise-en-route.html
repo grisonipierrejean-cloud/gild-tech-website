@@ -4,14 +4,15 @@
 <title>RENOM, fiche de mise en route</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07080C">
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
-<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">RENOM</a><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<link rel="stylesheet" href="style.css">
+<!-- legal:alternates --><link rel="alternate" hreflang="fr" href="mise-en-route.html"><link rel="alternate" hreflang="en" href="en/getting-started.html"><link rel="alternate" hreflang="x-default" href="mise-en-route.html"><!-- /legal:alternates --></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">RENOM</a><!-- legal:langues --><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/getting-started.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><!-- /legal:langues --><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
 <main>
 <section class="wrap simple">
 <h1>Votre fiche de mise en route.</h1>
 <p class="chapo">Dix minutes, depuis votre téléphone. Nous écrivons avec ces informations ; vous validez chaque contenu avant qu'il soit publié.</p>
 <form class="form-fiche carte-form" name="fiche-client" method="POST" action="mise-en-route.html" data-netlify="true" netlify-honeypot="website">
-<input type="hidden" name="form-name" value="fiche-client"><input type="hidden" name="subject" id="f-sujet" value="Fiche client RENOM">
+<input type="hidden" name="form-name" value="fiche-client"><input type="hidden" name="subject" id="f-sujet" value="Fiche client RENOM"><input type="hidden" name="langue" value="fr">
 <div class="champ"><label for="f-nom">Nom du commerce</label><input id="f-nom" name="nom_affiche" type="text" required></div>
 <div class="champ demi"><label for="f-metier">Métier</label><select id="f-metier" name="metier" required><option value="restaurant">Restaurant</option><option value="beaute">Institut de beauté</option><option value="sport">Salle de sport ou studio</option><option value="autre">Autre commerce</option></select></div>
 <div class="champ demi"><label for="f-offre">Offre choisie</label><select id="f-offre" name="offre" required><option value="essentiel">Essentiel</option><option value="croissance">Croissance</option><option value="signature">Signature</option></select></div>
