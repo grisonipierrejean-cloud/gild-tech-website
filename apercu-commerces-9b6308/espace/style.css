@@ -436,6 +436,18 @@ video.visuel{object-fit:contain;background:#000}
 .cadre-facebook .cadre-texte{padding:0 12px 10px}
 .cadre-vide{background:var(--releve);border-radius:var(--r-image);padding:16px;display:flex;flex-direction:column;gap:4px}
 .leg-modifier{align-self:flex-start;padding-left:0}
+/* Publication photo : les deux visuels qui partent (4:5 Instagram, Facebook, Google ; 9:16 TikTok), côte à côte et à la même hauteur
+   (colonnes proportionnelles à 4/5 et 9/16). Libellé du réseau en gras, format dessous ; ni pastille, ni trait de couleur. */
+.formats{display:flex;flex-direction:column;gap:10px;min-width:0;margin:0}
+.formats-rangee{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,56.25fr);gap:12px;align-items:start;max-width:420px}
+.format{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.format img,.format-vide{display:block;width:100%;object-fit:cover;border-radius:var(--r-image);background:var(--releve);border:1px solid var(--filet)}
+.f45 img,.f45 .format-vide{aspect-ratio:4/5}
+.f916 img,.f916 .format-vide{aspect-ratio:9/16}
+.format-vide{display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+.format figcaption{display:flex;flex-direction:column;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.format figcaption .note{font-size:13px}
+.apercu-texte .formats .note{display:block}
 .apercu-reseaux{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
 .rangee:has(.apercu-reseaux){align-items:flex-start}
 .proposition{border:1.5px solid var(--bleu-texte)}

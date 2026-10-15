@@ -156,6 +156,7 @@
     "tiktok": "Des pâtes fraîches, préparées à la commande. #pâtesfraîches #cuisinedesaison"
    },
    "visuel_url": "demo/files/public/spaghetti-visuel-4x5.jpg",
+   "visuel_9x16_url": "demo/files/public/spaghetti-visuel-9x16.jpg",
    "note_modification": null
   },
   {
@@ -189,6 +190,7 @@
    "demo": true,
    "legende": "L'avis de la semaine. « Pâtes fraîches excellentes, service attentionné. » (Léa M.). Merci !",
    "visuel_url": "demo/files/public/avis-semaine-visuel-4x5.jpg",
+   "visuel_9x16_url": "demo/files/public/avis-semaine-visuel-9x16.jpg",
    "note_modification": null
   },
   {
@@ -203,6 +205,7 @@
    "demo": true,
    "legende": "Une entrée dressée à la minute, servie sur une table de marbre. Passez la découvrir à l'heure du déjeuner, nous gardons votre table.",
    "visuel_url": "demo/files/public/entree-marbre-visuel-4x5.jpg",
+   "visuel_9x16_url": "demo/files/public/entree-marbre-visuel-9x16.jpg",
    "note_modification": null
   },
   {
@@ -243,6 +246,7 @@
     "tiktok": "Un plat mijoté, servi chaud. #cuisinedesaison"
    },
    "visuel_url": "demo/files/public/bol-sauce-visuel-4x5.jpg",
+   "visuel_9x16_url": "demo/files/public/bol-sauce-visuel-9x16.jpg",
    "note_modification": null
   },
   {

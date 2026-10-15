@@ -33,7 +33,9 @@
 
   const cut = (s, n) => s.length > n ? s.slice(0, s.lastIndexOf(" ", n)) + "…" : s;
   const msg = x => { const m = $("msg"); if (m) m.textContent = x; };
-  const urlSure = async x => { try { return x ? await D.urlVisuel(x) : null; } catch (er) { return null; } };
+  const urlSure = async (x, reseau) => { try { return x ? await D.urlVisuel(x, reseau) : null; } catch (er) { return null; } };
+  // Visuel 9:16 envoyé à TikTok : seulement pour une publication photo (la story et la vidéo ont un seul fichier pour tous les réseaux).
+  const url916 = x => M.photoPublication(x) ? urlSure(x, "tiktok") : Promise.resolve(null);
   const videoSure = async x => { try { return x && x.type === "video" ? await D.urlVideo(x) : null; } catch (er) { return null; } };
   $("demo").hidden = D.mode !== "demo";
   // Langue du commerce : les contenus écrits pour lui (légendes, avis, réponses, idées) gardent sa langue ; l'attribut lang le dit au navigateur.
@@ -87,7 +89,8 @@
   const vus = new Map(), choixRes = {};   // contenu affiché (id -> {x, u, v}) ; réseau choisi par contenu
   let nomCommerce = "";
   function cadre(id) {
-    const { x, u, v } = vus.get(id), r = choixRes[id] || "instagram", f = M.formatDe(x), vertical = f !== "publication" || r === "tiktok";
+    const { x, u: u45, v, u9 } = vus.get(id), r = choixRes[id] || "instagram", f = M.formatDe(x), vertical = f !== "publication" || r === "tiktok";
+    const u = r === "tiktok" && M.photoPublication(x) ? u9 : u45;   // TikTok : le visuel 9:16 qui part réellement, jamais le 4:5 dans un cadre vertical
     if (!M.reseauxPour(x).includes(r)) return `<div class="cadre-vide"><p class="texte2">${t(f === "video" ? "cadre.video.google" : "cadre.story.google")}</p><p class="note">${t("cadre.choisir")}</p></div>`;
     const l = M.legendeDe(x, r), n = M.longueur(l), lim = r === "google" ? M.LIMITE_GOOGLE : 0;
     const visuel = v ? `<video class="visuel" controls preload="metadata" poster="${e(u || "")}" src="${e(v)}"></video>` : u ? `<img class="visuel" src="${e(u)}" alt="${t("visuel.alt")}">` : `<div class="visuel vide">${t("apercu.indispo")}</div>`;
@@ -97,8 +100,8 @@
     return `<div class="cadre cadre-${r}${vertical ? " vertical" : ""}">${corps}</div>
       <p class="note" data-compte>${t("car", { n })}${lim ? t("car.sur", { lim: nombre(lim) }) + (n > lim ? t("car.trop.google") : "") : ""}</p>`;
   }
-  function blocReseaux(x, u, v) {
-    vus.set(x.id, { x, u, v }); const r = choixRes[x.id] || "instagram", modifiable = (x.statut === "a_valider" || x.statut === "approuve") && M.reseauxPour(x).includes(r);
+  function blocReseaux(x, u, v, u9) {
+    vus.set(x.id, { x, u, v, u9 }); const r = choixRes[x.id] || "instagram", modifiable = (x.statut === "a_valider" || x.statut === "approuve") && M.reseauxPour(x).includes(r);
     return `<div class="reseaux" data-reseaux="${e(x.id)}">
       <div class="res-onglets" role="tablist" aria-label="${t("res.onglets")}">${ORDRE_RES.map(k => `<button type="button" role="tab" id="t-${e(x.id)}-${k}" data-res="${k}" aria-selected="${k === r}" tabindex="${k === r ? 0 : -1}">${RES[k]}</button>`).join("")}</div>
       <div class="res-panneau" role="tabpanel" aria-labelledby="t-${e(x.id)}-${r}">${cadre(x.id)}</div>
@@ -108,9 +111,16 @@
         <button type="button" class="lien leg-modifier" data-a="leg-modifier">${t("leg.modifier", { res: RES[r] })}</button>` : ""}
     </div>`;
   }
+  // Avant de valider une publication photo : les deux visuels qui partent, côte à côte, à la même hauteur, avec leurs réseaux.
+  // 4:5 pour Instagram, Facebook et Google ; 9:16 pour TikTok (metricool_api.chemin_media). Story et vidéo : un seul fichier, rien à montrer de plus.
+  const fig = (u, alt, res, fmt, cls) => `<figure class="format ${cls}">${u ? `<img src="${e(u)}" alt="${alt}">` : `<div class="format-vide"><p class="note">${t("apercu.indispo")}</p></div>`}
+    <figcaption><span class="fort">${res}</span><span class="note">${fmt}</span></figcaption></figure>`;
+  const formatsPublies = (x, u, u9) => M.photoPublication(x) ? `<section class="formats" aria-label="${t("fmt.titre")}"><p class="fort">${t("fmt.titre")}</p>
+    <div class="formats-rangee">${fig(u, t("fmt.alt.45"), t("fmt.res.45"), t("fmt.45"), "f45")}${fig(u9, t("fmt.alt.916"), t("fmt.res.916"), t("fmt.916"), "f916")}</div>
+    <p class="note">${t("fmt.note")}</p></section>` : "";
   const compteEdition = (r, x) => { const n = M.longueur(x), lim = r === "google" ? M.LIMITE_GOOGLE : 0; return `${t("car", { n })}${lim ? t("car.sur", { lim: nombre(lim) }) : ""}${lim && n > lim ? t("car.trop.google.phrase") : ""}`; };
   function redessinerReseaux(b, focus) {
-    const id = b.dataset.reseaux, { x, u, v } = vus.get(id); const d = document.createElement("div"); d.innerHTML = blocReseaux(x, u, v); const neuf = d.firstElementChild; b.replaceWith(neuf);
+    const id = b.dataset.reseaux, { x, u, v, u9 } = vus.get(id); const d = document.createElement("div"); d.innerHTML = blocReseaux(x, u, v, u9); const neuf = d.firstElementChild; b.replaceWith(neuf);
     if (focus) neuf.querySelector(`[data-res="${choixRes[id]}"]`).focus();
   }
   // Programmer au meilleur créneau : réseaux connectés compatibles avec le format, créneau de départ du métier.
@@ -295,7 +305,7 @@
     nomCommerce = c.nom;
     const aValider = ct.filter(x => x.statut === "a_valider"), reponses = av.filter(x => x.statut === "a_valider" && !x.sensible), humains = av.filter(x => x.statut === "humain");
     const prochaines = cal.filter(x => x.statut === "programme").slice(0, 3), premier = aValider[0], avis1 = reponses[0], dernier = premier ? null : (ct.find(x => x.statut !== "refuse") || ct[0]);
-    const [u1, v1, ...vign] = await Promise.all([urlSure(premier || dernier), videoSure(premier || dernier), ...prochaines.map(x => urlSure(x.contenu))]);
+    const [u1, v1, u91, ...vign] = await Promise.all([urlSure(premier || dernier), videoSure(premier || dernier), premier ? url916(premier) : null, ...prochaines.map(x => urlSure(x.contenu))]);
     // Sous-titre aligné sur « une photo, un clic » : le nombre de validations (contenus, réponses aux avis, réponses aux commentaires), le même
     // que le bilan du mois et les jetons de validation, et leur durée (environ 40 secondes chacune). Les alertes ont leur propre bandeau.
     const mois = new Date(k.mois + "T12:00:00"), nv = aValider.length + reponses.length + cmValider.length, na = humains.length + cmHumains.length + (idee ? 1 : 0);
@@ -312,9 +322,9 @@
       ${carteStyle(c)}
       <section class="carte a-valider"${premier ? ` data-contenu="${e(premier.id)}"` : ""}>
           <div class="carte-tete"><h2>${t(premier ? "acc.contenu.un" : "acc.contenu.aucun")}</h2>${aValider.length > 1 ? `<a href="#/contenus">${t("voir.les", { n: aValider.length })}</a>` : `<a href="#/contenus">${t("acc.ouvrir.contenus")}</a>`}</div>
-          ${premier ? `<div class="apercu-reseaux">${blocReseaux(premier, u1, v1)}<div class="apercu-texte">
+          ${premier ? `<div class="apercu-reseaux">${blocReseaux(premier, u1, v1, u91)}<div class="apercu-texte">
             <p class="meta">${FORMAT_LIB[M.formatDe(premier)]}</p>
-            <p class="note visible">${t("acc.legende.note")}</p>${decisions(premier, t("refuser"))}</div></div>`
+            <p class="note visible">${t("acc.legende.note")}</p>${formatsPublies(premier, u1, u91)}${decisions(premier, t("refuser"))}</div></div>`
           : dernier ? `<div class="apercu${v1 ? " avec-video" : ""}">${media(dernier, u1, v1)}<div class="apercu-texte">
             <p class="meta">${t("acc.dernier", { type: t(dernier.type === "video" ? "type.video.courte" : "type.publication"), quand: I.minusculeDebut(jourRelatif(dernier.cree_le)) })}</p><p class="legende"${lc()}>${e(dernier.legende || "")}</p>
             <p class="etat">${ST_CONTENU[dernier.statut] || e(dernier.statut)}</p></div></div>`
@@ -602,7 +612,8 @@
     const [c, l] = await Promise.all([D.commerce(), D.contenus()]), nbf = Object.fromEntries(FILTRES.map(f => [f[0], l.filter(x => famille(x) === f[0]).length]));
     nomCommerce = c.nom;
     if (!filtre) filtre = (FILTRES.find(f => nbf[f[0]]) || FILTRES[0])[0];
-    const liste = l.filter(x => famille(x) === filtre), urls = await Promise.all(liste.map(urlSure)), vids = await Promise.all(liste.map(videoSure));
+    const liste = l.filter(x => famille(x) === filtre), urls = await Promise.all(liste.map(x => urlSure(x))), vids = await Promise.all(liste.map(videoSure));
+    const u9s = await Promise.all(liste.map(url916));   // onglet TikTok de chaque publication photo : le 9:16 qui part
     const formatCourt = x => t("format.court." + M.formatDe(x));
     vue.innerHTML = `${pauseBandeau(c)}<div class="entete-accueil">${entete(t("groupe.creer"), t("contenus.titre"), t("contenus.chapo"))}
         <button type="button" class="bouton second" id="proposer-idees" aria-expanded="${ideesOuvertes}" aria-controls="idees">${t("idees.titre")}</button></div>
@@ -612,9 +623,9 @@
       <p class="msg" id="msg" role="status"></p>
       ${liste.length ? `<div class="cartes">${liste.map((x, i) => `<article class="carte contenu" data-contenu="${e(x.id)}">
         <p class="meta"><span>${formatCourt(x)}${x.depot_video_id ? " · " + t("dv.montage.de.vos") : ""} · ${jourRelatif(x.cree_le)}</span><span class="etat${x.statut === "a_valider" ? " actif" : ""}">${ST_CONTENU[x.statut] || e(x.statut)}</span></p>
-        ${blocReseaux(x, urls[i], vids[i])}<div class="contenu-corps">
+        ${blocReseaux(x, urls[i], vids[i], u9s[i])}<div class="contenu-corps">
         ${x.note_modification ? `<p class="note">${t("contenus.demande")}<span${lc()}>${e(x.note_modification)}</span></p>` : ""}
-        ${x.statut === "a_valider" ? decisions(x, t("contenus.refuser")) : x.statut === "approuve" ? boutonsAuto(x.id, c.metier) : ""}</div></article>`).join("")}</div>`
+        ${x.statut === "a_valider" ? formatsPublies(x, urls[i], u9s[i]) + decisions(x, t("contenus.refuser")) : x.statut === "approuve" ? boutonsAuto(x.id, c.metier) : ""}</div></article>`).join("")}</div>`
       : `<section class="carte"><p class="texte2">${VIDE_FILTRE[filtre]}</p></section>`}`
       : `<section class="carte"><h2>${t("contenus.vide.titre")}</h2><p class="texte2">${t("contenus.vide.texte")}</p><p class="pied"><a class="bouton" href="#/photos">${t("photos.deposer")}</a></p></section><p class="msg" id="msg" role="status"></p>`}`;
     vue.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filtre = b.dataset.f; contenus(); });

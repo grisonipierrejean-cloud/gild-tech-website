@@ -38,7 +38,14 @@
     $("titre").textContent = t(f === "story" ? "val.titre.story" : f === "video" ? "val.titre.video" : "val.titre.publication");
     const visuel = o.video_url ? `<video class="visuel vertical" controls preload="metadata" poster="${e(o.visuel_url || "")}" src="${e(o.video_url)}"></video>`
       : o.visuel_url ? `<img class="visuel${vertical ? " vertical" : ""}" src="${e(o.visuel_url)}" alt="${t("visuel.alt")}">` : `<p class="note">${t("val.apercu.indispo")}</p>`;
-    $("objet").innerHTML = `<section class="carte"><h2>${t("val.visuel")}</h2>${visuel}</section>
+    // Publication photo : les deux visuels qui partent (4:5 pour Instagram, Facebook et Google, 9:16 pour TikTok), côte à côte, avec leurs réseaux.
+    const fig = (u, alt, res, fmt, cls, vide) => `<figure class="format ${cls}">${u ? `<img src="${e(u)}" alt="${alt}">` : `<div class="format-vide"><p class="note">${vide}</p></div>`}
+      <figcaption><span class="fort">${res}</span><span class="note">${fmt}</span></figcaption></figure>`;
+    const bloc = M.photoPublication(o) && o.visuel_url ? `<section class="carte formats" aria-labelledby="formats-titre"><h2 id="formats-titre">${t("fmt.titre")}</h2>
+        <div class="formats-rangee">${fig(o.visuel_url, t("fmt.alt.45"), t("fmt.res.45"), t("fmt.45"), "f45", "")}${fig(o.visuel_9x16_url, t("fmt.alt.916"), t("fmt.res.916"), t("fmt.916"), "f916", t("val.apercu.indispo"))}</div>
+        <p class="note">${t("fmt.note")}</p></section>`
+      : `<section class="carte"><h2>${t("val.visuel")}</h2>${visuel}</section>`;
+    $("objet").innerHTML = `${bloc}
       <section class="carte"><h2>${t("val.legende.reseau")}</h2><ul class="legendes">${M.reseauxPour(o).map(r => { const x = M.legendeDe(o, r); return `<li data-reseau="${r}"><span class="reseau">${R[r]}</span><p class="texte"${lc}>${e(x)}</p>${r === "google" && M.longueur(x) > M.LIMITE_GOOGLE ? `<p class="note">${t("val.trop.google")}</p>` : ""}</li>`; }).join("")}</ul>
         <p class="note">${t("val.modifier.note")}</p></section>`;
     $("boutons").innerHTML = `<button type="button" class="bouton" id="approuver">${t("dec.approuver")}</button><button type="button" class="bouton second" id="modifier">${t("val.demander.modif")}</button><button type="button" class="lien" id="refuser">${t("refuser")}</button>`;

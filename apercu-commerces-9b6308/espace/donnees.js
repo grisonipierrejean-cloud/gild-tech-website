@@ -64,7 +64,8 @@
     async objetParJeton(jeton) {
       const r = premierDe(await rpcPublic("objet_par_jeton", { p_jeton: String(jeton || "") })); if (!r) return null;
       const base = { etat: "a_valider", objet: r.objet, commerce: r.commerce, expire_le: r.expire_le, langue: r.langue || null };
-      if (r.contenu) { const c = r.contenu; return { ...base, type: c.type, format: c.format, legende: c.legende || "", legendes: c.legendes || null, visuel_url: c.apercu_url || null, video_url: null }; }
+      // apercu_9x16_url : visuel TikTok d'une publication photo (bloc SQL « Aperçus par réseau », 15/10/2026) ; absent d'un lien plus ancien.
+      if (r.contenu) { const c = r.contenu; return { ...base, type: c.type, format: c.format, legende: c.legende || "", legendes: c.legendes || null, visuel_url: c.apercu_url || null, visuel_9x16_url: c.apercu_9x16_url || null, video_url: null }; }
       if (r.avis) { const a = r.avis; return { ...base, note: a.note, texte: a.texte || "", auteur: a.auteur || "", reponse_proposee: a.reponse_proposee || "" }; }
       if (r.commentaire) { const m = r.commentaire; return { ...base, reseau: m.reseau, categorie: m.categorie, texte: m.texte || "", auteur: m.auteur || "", reponse_proposee: m.reponse_proposee || "", recu_le: m.recu_le }; }
       return r;
@@ -84,6 +85,15 @@
   const formatDe = c => (c && c.format) || (c && c.type === "video" ? "video" : "publication");
   // Une vidéo ou une story ne se publie pas sur la fiche Google.
   const reseauxPour = c => formatDe(c) === "publication" ? RESEAUX.slice() : RESEAUX.filter(r => r !== "google");
+  // Visuel d'un contenu dans le seau « contenus », par réseau : même règle que la publication (moteur/metricool_api.chemin_media,
+  // n8n/build_ordre10.py CHEMIN_MEDIA) : story -> visuel-story.jpg ; publication photo -> visuel-9x16.jpg pour TikTok (15/10/2026),
+  // visuel-4x5.jpg pour les autres réseaux et sans réseau. Vidéo : son affiche (visuel-4x5.jpg du dossier), jamais le MP4.
+  const photoPublication = c => !!c && c.type !== "video" && formatDe(c) === "publication";
+  const cheminVisuel = (c, reseau) => {
+    if (!c || !c.fichier) return null;
+    if (c.type === "video") return c.fichier.slice(0, c.fichier.lastIndexOf("/")) + "/visuel-4x5.jpg";
+    return c.fichier + (formatDe(c) === "story" ? "/visuel-story.jpg" : reseau === "tiktok" ? "/visuel-9x16.jpg" : "/visuel-4x5.jpg");
+  };
   // Légende propre au réseau, avec repli sur la légende unique (contenus créés avant la mise à jour).
   const legendeDe = (c, r) => { const l = c && c.legendes && c.legendes[r]; return typeof l === "string" && l.trim() ? l : (c && c.legende) || ""; };
   const longueur = t => Array.from(String(t || "")).length;
@@ -452,7 +462,7 @@
         const c = E.commerces[photo.commerce_id];
         if (usage(c) >= OFFRES[c.offre_id].publications) { photo.statut = "refusee"; jour(c.id, "REFUS", { photo: photo.id, raison: "plafond de publications atteint" }); return; }
         const legende = "Légende de démonstration : en service, notre IA l'écrit à partir de votre photo et de votre fiche.", id = uid();
-        E.contenus.unshift({ id, commerce_id: c.id, photo_id: photo.id, type: "publication", format: "publication", legende, legendes: legendesDemo(c, legende), visuel_url: photo.url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true,
+        E.contenus.unshift({ id, commerce_id: c.id, photo_id: photo.id, type: "publication", format: "publication", legende, legendes: legendesDemo(c, legende), visuel_url: photo.url || null, visuel_9x16_url: photo.url || null, note_modification: null, statut: "a_valider", mois: mois0(), cree_le: new Date().toISOString(), demo: true,
           marque_version: (c.marque && c.marque.version) || null });
         photo.statut = "traitee"; jour(c.id, "PRODUIT", { photo: photo.id, simule: true }); emettreJeton(c.id, "contenu", id);
       },
@@ -718,7 +728,8 @@
         if (r.etat !== "a_valider") return { etat: r.etat, objet: r.j.objet, langue: (E.commerces[r.j.commerce_id] || {}).langue || "fr" };
         const { o, c, j } = r, base = { etat: "a_valider", objet: j.objet, commerce: c.nom, expire_le: j.expire_le, langue: c.langue || "fr" };
         if (j.objet === "commentaire") return { ...base, reseau: o.reseau, categorie: o.categorie, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "", recu_le: o.cree_le };
-        return j.objet === "contenu" ? { ...base, type: o.type, format: formatDe(o), legende: o.legende || "", legendes: o.legendes || null, visuel_url: o.visuel_url || null, video_url: o.video_url || null }
+        return j.objet === "contenu" ? { ...base, type: o.type, format: formatDe(o), legende: o.legende || "", legendes: o.legendes || null, visuel_url: o.visuel_url || null,
+            visuel_9x16_url: photoPublication(o) ? o.visuel_9x16_url || null : null, video_url: o.video_url || null }
           : { ...base, note: o.note, texte: o.texte || "", auteur: o.auteur || "", reponse_proposee: o.reponse_proposee || "" };
       },
       async validerParJeton(jeton, decision, texte) {
@@ -1018,7 +1029,8 @@
       async reglerMaMarque(p, valider) { await init(); return reglerMaMarqueDemo(cur(), p, valider); },
       async demanderChangementStyle(texte) { await init(); return demanderChangementStyleDemo(cur(), texte); },
       async contenus() { await init(); return mine("contenus").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
-      async urlVisuel(c) { return c.visuel_url || null; },
+      // reseau « tiktok » : le visuel 9:16 d'une publication photo (visuel_9x16_url de la graine), comme cheminVisuel pour Supabase.
+      async urlVisuel(c, reseau) { return reseau === "tiktok" && photoPublication(c) ? c.visuel_9x16_url || null : c.visuel_url || null; },
       async urlVideo(c) { return c.video_url || null; },
       async valider(id, statut, note) {
         await init(); const c = mine("contenus").find(x => x.id === id);
@@ -1297,8 +1309,9 @@
         const m = await kitControle({ ...kit, verrouille: !!valider, auto: false }, cid); delete m.valide_par;
         return ok(await sb.rpc("admin_regler_marque", { p_commerce: cid, p_marque: m, p_valider: !!valider }));
       },
-      // Une story s'affiche avec son visuel 9:16, les autres contenus avec le visuel 4:5.
-      async urlVisuel(ct) { if (!ct.fichier) return null; const base = ct.type === "video" ? ct.fichier.slice(0, ct.fichier.lastIndexOf("/")) : ct.fichier; const r = ok(await sb.storage.from("contenus").createSignedUrl(base + (formatDe(ct) === "story" ? "/visuel-9x16.jpg" : "/visuel-4x5.jpg"), 3600)); return r.signedUrl; },
+      // Fichier publié sur le réseau demandé (cheminVisuel) : une story montre visuel-story.jpg (celui qui part, gabarit « plein »), plus le 9x16
+      // de la publication ; une publication photo montre le 9x16 pour TikTok, le 4x5 sinon.
+      async urlVisuel(ct, reseau) { const ch = cheminVisuel(ct, reseau); if (!ch) return null; const r = ok(await sb.storage.from("contenus").createSignedUrl(ch, 3600)); return r.signedUrl; },
       async urlVideo(ct) { if (ct.type !== "video" || !ct.fichier) return null; const r = ok(await sb.storage.from("contenus").createSignedUrl(ct.fichier, 3600)); return r.signedUrl; },
       async valider(id, statut, note) {
         if (statut === "modification" && !(note || "").trim()) throw new Error("Écrivez un mot pour dire ce qu'il faut modifier.");
@@ -1442,7 +1455,7 @@
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;
   // ---- Mise à jour de l'espace membre : règles partagées par les écrans et les pages publiques
-  window.RENOM_MAJ = { CRENEAUX, LIMITE_GOOGLE, formatDe, reseauxPour, legendeDe, longueur, partiesParis, prochainCreneau, TYPES_ACTION, aujourdhui };
+  window.RENOM_MAJ = { CRENEAUX, LIMITE_GOOGLE, formatDe, reseauxPour, legendeDe, longueur, partiesParis, prochainCreneau, TYPES_ACTION, aujourdhui, photoPublication, cheminVisuel };
   // ---- Automatisations de service : règles partagées par les écrans
   window.RENOM_AUTO = { AUTO, lireCsvClients, MODELE_CSV, emailValide };
 })();

@@ -47,6 +47,17 @@ video.visuel,img.visuel.vertical{object-fit:contain;background:#000}
 .reseau{font-size:13px;font-weight:700;color:var(--discret)}
 .texte{white-space:pre-line;overflow-wrap:anywhere;color:var(--texte2)}
 .citation{color:var(--texte2);overflow-wrap:anywhere}
+/* Publication photo : les deux visuels qui partent (4:5 Instagram, Facebook, Google ; 9:16 TikTok), côte à côte et à la même hauteur
+   (colonnes proportionnelles à 4/5 et 9/16). Libellé du réseau en gras, format dessous ; ni pastille, ni trait de couleur. */
+.formats{display:flex;flex-direction:column;gap:10px;min-width:0;margin:0}
+.formats-rangee{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,56.25fr);gap:12px;align-items:start;max-width:420px}
+.format{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.format img,.format-vide{display:block;width:100%;object-fit:cover;border-radius:12px;background:var(--releve);border:1px solid var(--filet)}
+.f45 img,.f45 .format-vide{aspect-ratio:4/5}
+.f916 img,.f916 .format-vide{aspect-ratio:9/16}
+.format-vide{display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+.format figcaption{display:flex;flex-direction:column;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.format figcaption .note{font-size:13px}
 .bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1.5px solid var(--marque);border-radius:10px;padding:13px 18px;min-height:56px;cursor:pointer}
 .bouton:hover{background:#2E3BFF;border-color:#2E3BFF}
 .bouton.second{background:transparent;color:var(--encre);border-color:rgba(255,255,255,.6)}
