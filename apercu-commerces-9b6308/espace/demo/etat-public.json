@@ -413,7 +413,7 @@
    "raisons": [],
    "decision": "validation_commercant",
    "statut": "a_valider",
-   "il_y_a_h": 6,
+   "il_y_a_h": 2,
    "demo": true
   },
   {
@@ -552,7 +552,7 @@
    "statut": "a_publier_main",
    "decide_apres_h": 6,
    "reponse_proposee": "Bonjour, merci pour votre question. Pour savoir ce que nous pouvons vous proposer, écrivez-nous par message privé.",
-   "erreur": "Accès de Meta pas encore accordé : publication par l'équipe RENOM."
+   "erreur": "Accès de Meta pas encore accordé : publication par l'équipe Renomia."
   },
   {
    "commerce_id": "c-table",
@@ -728,7 +728,6 @@
    "offre": "croissance",
    "statut": "actif",
    "stripe_customer": "cus_fictif_demo",
-   "remise_fin_dans_j": 61,
    "maj_il_y_a_h": 700,
    "demo": true
   }

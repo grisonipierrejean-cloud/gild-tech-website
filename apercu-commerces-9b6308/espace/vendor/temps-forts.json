@@ -1,5 +1,5 @@
 {
- "_lisez_moi": "Calendrier des temps forts par métier (France), pour l'idée de la semaine (n8n/renom-hebdo.json, moteur/temps_forts/temps_forts.js). AUCUNE date écrite à la main pour une année donnée : chaque date est fixe ou calculée par une règle (Pâques par le comput grégorien, n-ième jour de la semaine d'un mois). Ce qui n'a pas de règle stable (rentrée scolaire, soldes, ponts) est listé dans « exclus » avec la raison. Les textes d'idées sont des suggestions de RENOM, à valider par le commerçant : aucun chiffre, aucune promotion imposée.",
+ "_lisez_moi": "Calendrier des temps forts par métier (France), pour l'idée de la semaine (n8n/renom-hebdo.json, moteur/temps_forts/temps_forts.js). AUCUNE date écrite à la main pour une année donnée : chaque date est fixe ou calculée par une règle (Pâques par le comput grégorien, n-ième jour de la semaine d'un mois). Ce qui n'a pas de règle stable (rentrée scolaire, soldes, ponts) est listé dans « exclus » avec la raison. Les textes d'idées sont des suggestions de Renomia, à valider par le commerçant : aucun chiffre, aucune promotion imposée.",
  "metiers": ["restaurant", "beaute", "sport", "autre"],
  "fenetre_defaut": [7, 13],
  "evenements": [
@@ -46,7 +46,7 @@
   { "id": "saint-sylvestre", "nom": "Saint-Sylvestre", "regle": { "type": "fixe", "mois": 12, "jour": 31 }, "metiers": ["restaurant", "beaute"], "source": "date fixe",
     "idee": { "titre": "Le soir du 31 décembre", "texte": "Restaurant : votre soirée et comment réserver. Institut : vos créneaux de la journée pour se préparer." } }
  ],
- "idee_ferie": { "titre": "Vos horaires du jour férié", "texte": "Ouvert ou fermé le {jour} ? Dites-le avant : vos clients le cherchent sur votre fiche Google et sur vos réseaux. RENOM peut aussi l'ajouter en horaires exceptionnels sur votre fiche, après votre accord." },
+ "idee_ferie": { "titre": "Vos horaires du jour férié", "texte": "Ouvert ou fermé le {jour} ? Dites-le avant : vos clients le cherchent sur votre fiche Google et sur vos réseaux. Renomia peut aussi l'ajouter en horaires exceptionnels sur votre fiche, après votre accord." },
  "fenetre_ferie": [2, 8],
  "saisons": [
   { "id": "printemps", "nom": "printemps", "debut": { "mois": 3, "jour": 1 }, "idees": {
@@ -72,7 +72,7 @@
  ],
  "saisons_source": "saisons météorologiques (1er mars, 1er juin, 1er septembre, 1er décembre) : convention des météorologues, retenue parce qu'elle a des dates fixes ; les saisons astronomiques changent de jour selon l'année",
  "meteo": {
-  "source": "prévision du lendemain par Open-Meteo (champs daily temperature_2m_max et precipitation_sum). Seuils choisis par RENOM, pas une norme.",
+  "source": "prévision du lendemain par Open-Meteo (champs daily temperature_2m_max et precipitation_sum). Seuils choisis par Renomia, pas une norme.",
   "seuils": { "chaleur_tmax_min": 25, "chaleur_pluie_max": 1, "pluie_min_mm": 5, "froid_tmax_max": 5 },
   "idees": {
    "chaleur": {

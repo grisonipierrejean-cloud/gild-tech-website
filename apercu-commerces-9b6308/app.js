@@ -42,7 +42,7 @@ form.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
   if(!form.ville.value.trim())return erreur(T.ville,form.ville);
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()))return erreur(T.email,form.email);
   if(!form.consentement.checked)return erreur(T.ok,form.consentement);
-  $('#g-sujet').value='Audit RENOM : '+form.commerce.value+', '+form.ville.value;
+  $('#g-sujet').value='Audit Renomia : '+form.commerce.value+', '+form.ville.value;
   var d=new FormData(form);
   try{sessionStorage.setItem('renom',JSON.stringify({commerce:d.get('commerce'),email:d.get('email')}))}catch(x){}
   btn.disabled=true;btn.textContent=T.envoi;

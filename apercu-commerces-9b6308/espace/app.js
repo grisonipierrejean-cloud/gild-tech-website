@@ -7,7 +7,7 @@
   const ST_PHOTO = I.carte("st.photo", ["a_traiter", "en_cours", "traitee", "refusee"]);
   const ST_CONTENU = I.carte("st.contenu", ["a_valider", "approuve", "modification", "programme", "publie", "refuse"]);
   const ST_PUB = I.carte("st.pub", ["programme", "envoye", "publie", "echec", "annule"]);
-  const ST_AVIS = I.carte("st.avis", ["nouveau", "a_valider", "valide", "publie", "humain", "refuse"]);
+  const ST_AVIS = I.carte("st.avis", ["nouveau", "a_valider", "valide", "publie", "humain", "refuse", "escalade"]);
   const METIERS = I.carte("metier", ["restaurant", "beaute", "sport", "autre"]);
   const RES = I.carte("res", ["facebook", "instagram", "google", "tiktok"]);
   const ETAT = I.carte("etat", ["non_connecte", "en_attente", "connecte", "erreur"]);
@@ -49,7 +49,7 @@
   const FORMAT_LIB = I.carte("format.lib", ["publication", "story", "video"]);
   const media = (x, u, v) => `<div class="media">${v ? `<video class="visuel" controls preload="metadata" poster="${e(u || "")}" src="${e(v)}"></video>` : u ? `<img class="visuel" src="${e(u)}" alt="${t("visuel.alt")}">` : `<div class="visuel vide">${t("apercu.indispo")}</div>`}</div>`;
   // Les trois décisions sur un contenu à valider : mêmes boutons et mêmes appels sur l'accueil et sur l'écran Contenus.
-  // La légende se modifie soi-même (voir blocReseaux) ; « Demander une modification à RENOM » reste pour ce qu'on ne peut pas faire seul, comme le visuel.
+  // La légende se modifie soi-même (voir blocReseaux) ; « Demander une modification à Renomia » reste pour ce qu'on ne peut pas faire seul, comme le visuel.
   const decisions = (x, refus) => `<div class="actions" data-choix><button type="button" class="bouton" data-a="approuve">${t("dec.approuver")}</button><button type="button" class="bouton second" data-a="modif">${t("dec.modif")}</button><button type="button" class="lien" data-a="refuse">${refus}</button></div>
     <div class="f" data-zone hidden><label for="mot-${e(x.id)}">${t("dec.mot")}</label><textarea id="mot-${e(x.id)}" data-mot></textarea>
       <div class="actions"><button type="button" class="bouton" data-a="envoyer-modif">${t("dec.envoyer")}</button><button type="button" class="lien" data-a="fermer-modif">${t("annuler")}</button></div></div>`;
@@ -186,13 +186,13 @@
     lat.innerHTML = haut.innerHTML = sous.innerHTML = onglets.innerHTML = "";
     if (!connecte) return;
     if (large.matches) {
-      lat.innerHTML = `<div class="lat-in"><a class="logo" href="#/accueil">RENOM</a><nav id="nav" class="menu" aria-label="${t("nav.espace")}"><div class="groupe">${GROUPES.filter(g => g.seul).map(g => lienMenu(g.ecrans[0])).join("")}</div>${GROUPES.filter(g => !g.seul).map(g =>
+      lat.innerHTML = `<div class="lat-in"><a class="logo" href="#/accueil">Renomia</a><nav id="nav" class="menu" aria-label="${t("nav.espace")}"><div class="groupe">${GROUPES.filter(g => g.seul).map(g => lienMenu(g.ecrans[0])).join("")}</div>${GROUPES.filter(g => !g.seul).map(g =>
         `<div class="groupe"><p class="groupe-lib">${g.nom}</p>${g.ecrans.map(lienMenu).join("")}</div>`).join("")}</nav><div class="lat-pied">${I.selecteur()}<button type="button" id="sortir" class="quitter">${t("quitter")}</button></div></div>`;
       return;
     }
     const GM = groupesMobile(), actif = GM.find(g => g.ecrans.includes(route)) || GM[0];
     // « Quitter » : dans l'en-tête quand le groupe Mon commerce est ouvert (à la suite des liens du groupe, il se retrouvait seul sur une ligne).
-    haut.innerHTML = `<a class="logo" href="#/accueil">RENOM</a><span class="haut-note" id="haut-offre">${offreNom ? t("offre.nom", { nom: e(offreNom) }) : ""}</span>${I.selecteur()}${actif.id === "commerce" ? `<button type="button" id="sortir" class="quitter">${t("quitter")}</button>` : ""}`;
+    haut.innerHTML = `<a class="logo" href="#/accueil">Renomia</a><span class="haut-note" id="haut-offre">${offreNom ? t("offre.nom", { nom: e(offreNom) }) : ""}</span>${I.selecteur()}${actif.id === "commerce" ? `<button type="button" id="sortir" class="quitter">${t("quitter")}</button>` : ""}`;
     sous.innerHTML = actif.ecrans.length > 1 ? actif.ecrans.map(lienMenu).join("") : "";
     sous.setAttribute("aria-label", actif.nom);
     // Chaque onglet mène au premier écran de son groupe ; data-ecrans liste tous les écrans du groupe.
@@ -219,7 +219,7 @@
   async function connexion() {
     const comptesDemo = D.mode === "demo" && D.comptesDemo ? await D.comptesDemo() : [];
     vue.innerHTML = `<div class="connexion"><div class="carte">
-      <div class="connexion-tete"><p class="logo">RENOM</p>${I.selecteur()}</div>
+      <div class="connexion-tete"><p class="logo">Renomia</p>${I.selecteur()}</div>
       <div class="entete"><h1>${t("cx.titre")}</h1><p class="chapo">${t("cx.chapo")}</p></div>
       <form id="f"><div class="f"><label for="email">${t("cx.email")}</label><input id="email" name="email" type="email" autocomplete="email" required></div>
       <button class="bouton plein" type="submit">${t("cx.recevoir")}</button><p class="msg" id="msg" role="status"></p></form>
@@ -685,7 +685,8 @@
           ${citation(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}${t("recu.le", { d: date(x.cree_le) })}</p>
           ${x.sensible ? `<div class="encart" role="alert"><p class="fort">${t("avis.sensible", { r: e(raisonsTexte(x.raisons)) })}</p><p>${t("avis.sensible.texte")}</p></div>` : ""}
           ${x.statut === "a_valider" && !x.sensible ? reponseAValider(x) : ""}
-          ${x.statut === "publie" || x.statut === "valide" ? `<p class="reponse"><span class="fort">${t(x.decision === "publication_automatique" ? "avis.rep.auto" : "avis.rep.validee")}</span> <span${lc()}>${e(x.reponse || x.reponse_proposee || "")}</span></p>` : ""}</article>`).join("")
+          ${x.statut === "escalade" ? `<p class="note">${t("avis.escalade.texte")}</p>` : ""}
+          ${x.statut === "publie" || x.statut === "valide" ? `<p class="reponse"><span class="fort">${t(x.escalade_le ? "avis.rep.renomia" : x.decision === "publication_automatique" ? "avis.rep.auto" : "avis.rep.validee")}</span> <span${lc()}>${e(x.reponse || x.reponse_proposee || "")}</span></p>` : ""}</article>`).join("")
           : `<section class="carte"><h2>${t("avis.vide.titre")}</h2><p class="texte2">${t("avis.vide.texte")}</p></section>`}
           <p class="msg" id="msg" role="status"></p></div>
         <section class="carte"><h2>${t("reglage")}</h2><p class="texte2">${t(c.reglage_avis === "tout_automatique" ? "avis.tout.auto" : "avis.reglage.4")}</p>
@@ -851,14 +852,25 @@
       <div class="cartes comptes">${l.map(x => `<article class="carte"><h2>${RES[x.reseau]} <span class="etat${x.etat === "connecte" ? " actif" : ""}">· ${ETAT[x.etat] || e(x.etat)}</span></h2><p class="texte2">${AIDE[x.reseau]}</p>${x.detail ? `<p class="note pied">${e(ph(x.detail))}</p>` : ""}</article>`).join("")}</div>`;
   }
 
-  // ---------------- Offre
-  const LANC = window.RENOM_LANCEMENT || { duree_mois: 3, date_limite: "2026-12-31" };
-  const dateLimiteLancement = () => I.dateLongue(LANC.date_limite);
+  // ---------------- Offre : ce qui est inclus, le prix (mensuel, semestriel, frais de mise en route), nos engagements (garanties, suivi des 10 avis),
+  // le parcours en 5 étapes et l'abonnement Stripe. Chiffres : window.RENOM_OFFRES et window.RENOM_CONDITIONS (donnees.js, égaux à moteur/ et à la base).
+  const COND = window.RENOM_CONDITIONS;
   const euros = x => t("euros", { x: nombre(x) });
+  const ETATS_GARANTIE = I.carte("gar.etat", ["en_cours", "atteinte", "travail_gratuit", "condition_manquante"]);
+  function suiviGarantie(g) {
+    if (!g) return "";
+    const ligne = (lib, val, id) => `<li${id ? ` id="${id}"` : ""}><span>${lib}</span><span class="fort chiffre">${val}</span></li>`;
+    return `<div class="pile serre" id="offre-garantie-suivi"><div class="carte-tete"><h3>${t("offre.garantie.suivi")}</h3><span class="etat${g.etat === "atteinte" ? " actif" : ""}" id="garantie-etat">${ETATS_GARANTIE[g.etat] || e(g.etat)}</span></div>
+      <ul class="liste">${ligne(t("offre.garantie.depart", { d: I.dateLongue(g.depart_le) }), t("offre.garantie.n.avis", { n: g.avis_depart }), "garantie-depart")}
+        ${ligne(t("offre.garantie.actuel"), t("offre.garantie.n.avis", { n: g.avis_actuel }), "garantie-actuel")}
+        ${ligne(t("offre.garantie.objectif", { d: I.dateLongue(g.echeance) }), t("offre.garantie.n.avis", { n: g.objectif_total }), "garantie-objectif")}</ul>
+      <p class="note">${g.source === "releve" ? t("offre.garantie.source.releve", { d: I.dateLongue(g.releve_le) }) : t("offre.garantie.source.recus")}</p></div>`;
+  }
   async function offre() {
-    const [k, j, c, ab] = await Promise.all([D.compteur(), D.journal(), D.commerce(), D.abonnement ? D.abonnement().catch(() => null) : null]); const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00");
-    // Abonnement Stripe : état écrit par le webhook (table abonnements) ; bouton seulement si un lien est configuré (config.js, stripe).
-    const lien = D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre) : null, remise = ab && ab.remise_lancement_fin && ab.statut !== "resilie" && ab.remise_lancement_fin >= window.RENOM_MAJ.aujourdhui();
+    const [k, j, c, ab, g] = await Promise.all([D.compteur(), D.journal(), D.commerce(), D.abonnement ? D.abonnement().catch(() => null) : null, D.maGarantie ? D.maGarantie().catch(() => null) : null]);
+    const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00"), mer = COND.mise_en_route, offerts = window.RENOM_MAJ.aujourdhui() <= mer.offerts_jusqu_au;
+    // Abonnement Stripe : état écrit par le webhook (table abonnements) ; boutons seulement si les liens sont configurés (config.js, stripe).
+    const portail = ab && ab.statut !== "resilie", lien = D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre, null, "mensuel") : null, lienS = !portail && D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre, null, "semestriel") : null;
     vue.innerHTML = `${pauseBandeau(c)}${entete(t("offre.sur"), t("offre.titre.nom", { nom: e(k.offre_nom) }))}
       <div class="rangee">
         <section class="carte moitie"><div class="carte-tete"><h2>${t("ce.mois")}</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
@@ -870,18 +882,24 @@
           <p class="note pied">${t("offre.idees.compte")}</p></section>
       </div>
       ${o.prix_ht ? `<section class="carte" id="offre-prix"><h2>${t("offre.prix.titre")}</h2><p class="prix-offre"><span class="chiffre">${euros(o.prix_ht)}</span> ${t("offre.ht.mois")}</p>
-        <p class="texte2 lecture">${t("offre.lancement", { date: dateLimiteLancement(), mois: LANC.duree_mois, prix: euros(o.prix_lancement_ht) })}</p>
-        <p class="note">${t("offre.cgv")}</p></section>` : ""}
+        <p class="texte2 lecture" id="offre-semestriel">${t("offre.semestriel", { prix: euros(o.prix_semestriel_ht) })}</p>
+        <p class="texte2 lecture" id="offre-frais">${offerts ? t("offre.frais.offerts", { prix: euros(mer.prix_ht), date: I.dateLongue(mer.offerts_jusqu_au) }) : t("offre.frais.factures", { prix: euros(mer.prix_ht) })}</p>
+        <p class="note">${t("offre.sans.engagement")} ${t("offre.cgv")}</p></section>` : o.retiree ? `<section class="carte" id="offre-prix"><h2>${t("offre.prix.titre")}</h2><p class="texte2 lecture">${t("offre.retiree")}</p></section>` : ""}
+      <section class="carte" id="offre-garanties"><h2>${t("offre.garanties.titre")}</h2>
+        <ul class="liste-engagements"><li><p class="fort">${t("offre.garantie.reponse")}</p><p class="note">${t("avis.reglage.4")}</p></li>
+          <li><p class="fort">${t("offre.garantie.avis")}</p><p class="note">${t("offre.garantie.avis.cond")}</p></li>
+          <li><p class="note">${t("offre.garantie.tacite")}</p></li></ul>
+        ${suiviGarantie(g)}</section>
+      <section class="carte" id="offre-processus"><h2>${t("offre.processus.titre")}</h2><ol class="etapes-offre">${[1, 2, 3, 4, 5].map(n => `<li>${t("offre.processus." + n)}</li>`).join("")}</ol></section>
       <section class="carte" id="offre-abonnement"><div class="carte-tete"><h2>${t("abo.titre")}</h2>${ab ? `<span class="etat${ab.statut === "actif" ? " actif" : ""}" id="abo-statut">${ST_ABO[ab.statut] || e(ab.statut)}</span>` : ""}</div>
         <p class="texte2 lecture">${ab ? t("abo.texte." + ab.statut) : t("abo.aucun")}</p>
-        ${remise ? `<p class="texte2 lecture" id="abo-remise">${t("abo.remise", { date: I.dateLongue(ab.remise_lancement_fin) })}</p>` : ""}
-        ${lien ? `<p class="pied"><a class="bouton" id="offre-payer" href="${e(lien)}" target="_blank" rel="noopener">${t("abo.bouton")}</a></p><p class="note">${t(ab && ab.statut !== "resilie" ? "abo.note.portail" : lien.includes("prefilled_promo_code=") ? "abo.note.paiement.code" : "abo.note.paiement")}</p>`
+        ${lien ? `<p class="pied actions-abo"><a class="bouton" id="offre-payer" href="${e(lien)}" target="_blank" rel="noopener">${t(portail ? "abo.bouton.portail" : "abo.bouton.mensuel")}</a>${lienS ? `<a class="bouton second" id="offre-payer-semestriel" href="${e(lienS)}" target="_blank" rel="noopener">${t("abo.bouton.semestriel")}</a>` : ""}</p><p class="note">${t(portail ? "abo.note.portail" : "abo.note.paiement")}</p>`
           : D.mode === "demo" ? `<p class="note">${t("abo.demo")}</p>` : ""}</section>
       <section class="carte"><h2>${t("offre.plafond.titre")}</h2><p class="texte2 lecture">${t("offre.plafond.texte")}</p></section>
       <section class="carte"><h2>${t("offre.historique")}</h2>${j.length ? `<ul class="liste">${j.slice(0, 12).map(x => `<li><span>${e(ETAPES[x.type] || cap(String(x.type || "").toLowerCase().replace(/_/g, " ")))}${x.detail && x.detail.raison ? `<span class="note">${t("deux.points")}${e(ph(x.detail.raison))}</span>` : ""}</span><span class="note">${cap(date(x.cree_le))}</span></li>`).join("")}</ul>` : `<p class="texte2">${t("offre.aucune.etape")}</p>`}</section>`;
   }
 
-  // ---------------- Résultats : ce que RENOM rapporte, mois par mois. Aucun chiffre inventé : la portée attend les statistiques des réseaux.
+  // ---------------- Résultats : ce que Renomia rapporte, mois par mois. Aucun chiffre inventé : la portée attend les statistiques des réseaux.
   const pctTaux = x => x == null ? null : Math.round(+x <= 1 ? +x * 100 : +x);   // la base peut rendre une proportion (0 à 1) ou un pourcentage
   const delaiTexte = h => h == null ? t("delai.aucun.periode") : +h < 1 ? t("delai.moins.heure") : +h < 48 ? t("delai.h", { n: nombre(Math.round(+h)) }) : t("delai.jours", { n: nombre(Math.round(+h / 24)) });
   const NOMS_PILIERS = I.carte("pilier", ["profil", "categories", "photos", "avis", "engagement"]);
@@ -905,7 +923,7 @@
         ${etiquette(premier, "debut")}${dernier !== premier ? etiquette(dernier, "fin") : ""}</div>
       <div class="c-mois" aria-hidden="true">${pts.map((p, i) => `<span style="left:${X(i)}%">${p.court}</span>`).join("")}</div></figure>`;
   }
-  // Google interdit à RENOM de garder note, nombre d'avis, noms et historique (ordres/BRANCHEMENT.md, « Conformité des résultats ») : ces chiffres
+  // Google interdit à Renomia de garder note, nombre d'avis, noms et historique (ordres/BRANCHEMENT.md, « Conformité des résultats ») : ces chiffres
   // sont lus à l'ouverture de la page (lecture_google). La phrase dit ce qui a été lu, ou pourquoi rien ne l'a été.
   function lectureTexte(lg) {
     if (!lg || lg.statut === "non_demandee") return "";
@@ -1062,7 +1080,7 @@
       // L'email part dans la langue du commerce : son contenu est montré tel qu'il serait reçu.
       const lgc = langueCommerce, tc = (k, v) => t(k, v, lgc);
       z.innerHTML = l.length ? l.map(m => `<article class="email" aria-label="${t("email.apercu", { objet: e(m.objet_email) })}">
-          <dl class="email-tete"><div><dt>${t("email.de")}</dt><dd>RENOM</dd></div><div><dt>${t("email.a")}</dt><dd class="casse">${adresse ? e(adresse) : t("email.adresse.compte")}</dd></div><div><dt>${t("email.objet")}</dt><dd lang="${lgc}">${e(m.objet_email)}</dd></div></dl>
+          <dl class="email-tete"><div><dt>${t("email.de")}</dt><dd>Renomia</dd></div><div><dt>${t("email.a")}</dt><dd class="casse">${adresse ? e(adresse) : t("email.adresse.compte")}</dd></div><div><dt>${t("email.objet")}</dt><dd lang="${lgc}">${e(m.objet_email)}</dd></div></dl>
           <div class="email-corps" lang="${lgc}"><p>${tc("email.bonjour")}</p><p>${e(m.phrase)}</p>${m.extrait ? `<p class="citation">${tc("guillemets", { x: e(m.extrait) })}</p>` : ""}
             <p><a class="bouton" data-lien-validation href="valider.html#${e(m.jeton)}" target="_blank" rel="noopener">${tc("email.voir.decider")}</a></p>
             <p class="note">${tc("email.lien.note", { d: I.date(m.expire_le, lgc) })}</p></div></article>`).join("")
@@ -1111,7 +1129,7 @@
         await D.enregistrerDemarrage(dem.rep);
         const c2 = await D.commerce(), r = dem.rep, pre = {};   // la fiche est préremplie, sans écraser ce qui y est déjà
         if (!c2.specialites && (r.phrase || r.distinctions)) pre.specialites = [r.phrase, r.distinctions].filter(Boolean).join("\n");
-        // Le ton de la fiche est écrit dans la langue du commerce (RENOM écrit dans cette langue).
+        // Le ton de la fiche est écrit dans la langue du commerce (Renomia écrit dans cette langue).
         if (!c2.ton && TONS_LIB[r.ton]) pre.ton = t("ton." + r.ton, null, langueCommerce).toLowerCase();
         if (Object.keys(pre).length) await D.enregistrer(pre);
         dem.fini = true; await demarrage(); majCompteurs();
@@ -1124,8 +1142,8 @@
   }
 
   // ---- Réponses aux commentaires ----------------------------------------------------------------------------------
-  // Écran du groupe « Réputation ». Instagram et Facebook (offres Croissance et Signature). Classement et réponse proposés par RENOM, décision du
-  // commerçant ; un commentaire sensible n'est jamais traité par RENOM. Publication par l'API de Meta, ou par l'équipe tant que l'accès n'est pas accordé.
+  // Écran du groupe « Réputation ». Instagram et Facebook (offre Croissance ; Signature, retirée, pour un ancien commerce). Classement et réponse proposés par Renomia, décision du
+  // commerçant ; un commentaire sensible n'est jamais traité par Renomia. Publication par l'API de Meta, ou par l'équipe tant que l'accès n'est pas accordé.
   const CO = window.RENOM_COMMENTAIRES;
   const CM_CATEGORIES = I.carte("cm.cat", Object.keys(CO.CATEGORIES)), CM_ETATS = I.carte("cm.etat", Object.keys(CO.ETATS));
   const rangCommentaire = x => x.statut === "a_valider" ? 0 : x.statut === "humain" ? 1 : ["valide", "a_publier_main"].includes(x.statut) ? 2 : x.statut === "publie" ? 3 : 4;
@@ -1293,7 +1311,7 @@
   // ---- fin du bloc Vidéo d'avis ------------------------------------------------------------------------------------
 
   // ---- Votre style (kit de marque) ---------------------------------------------------------------------------------
-  // Le style est créé par RENOM (console, panneau « Style du commerce ») à partir du logo et des photos. Écran du groupe « Mon commerce » :
+  // Le style est créé par Renomia (console, panneau « Style du commerce ») à partir du logo et des photos. Écran du groupe « Mon commerce » :
   // le style montré sur les photos du commerce (aperçus des 3 gabarits), le logo à déposer, « Ça me plaît », « Je voudrais un changement »,
   // et les expressions maison / à éviter en option repliée. Aucune couleur, police ni ambiance à choisir ici.
   // Tant que rien n'est validé, les contenus partent avec le style proposé. Écran partagé avec la console : marque.js, fonction ecran.
@@ -1304,7 +1322,7 @@
   const styleEcran = MQ.ecran({ vue, I, mode: "commercant", entete: () => entete(t("sty.sur"), t("ecran.style"), t("sty.chapo")),
     commerce: () => D.commerce(), marque: () => D.marque(), deposerLogo: f => D.deposerLogo(f),
     regler: (p, v) => D.reglerMaMarque(p, v), demander: x => D.demanderChangementStyle(x), apres: async () => majCompteurs() });
-  // Carte de l'accueil : « Votre style est prêt » quand RENOM l'a validé, « Nous créons votre style » avant ; rien une fois que le commerçant l'a validé.
+  // Carte de l'accueil : « Votre style est prêt » quand Renomia l'a validé, « Nous créons votre style » avant ; rien une fois que le commerçant l'a validé.
   const carteStyle = c => {
     const m = c.marque, pret = !!(m && m.verrouille && m.valide_par === "renom");
     if (m && m.verrouille && !pret) return "";

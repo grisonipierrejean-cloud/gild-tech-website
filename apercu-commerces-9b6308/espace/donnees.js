@@ -4,11 +4,17 @@
 // Les écrans n'appellent que RENOM_DATA : passer de l'un à l'autre ne change aucun écran.
 (function () {
   const cfg = window.RENOM_CONFIG || {};
-  // commentaires : réponses aux commentaires Instagram et Facebook comprises (page de vente : Croissance et Signature ; même valeur que offres.commentaires
-  // dans schema.sql et moteur/offres.json, égalité testée). Aucun plafond : la page de vente n'en chiffre aucun.
-  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, prix_ht: 190, prix_lancement_ht: 95 }, croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true, prix_ht: 390, prix_lancement_ht: 195 }, signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true, prix_ht: 690, prix_lancement_ht: 345 } };
-  // Offre de lancement (moteur/offres.json, CGV article 4) : 3 premiers mois à moitié prix, abonnement souscrit au plus tard le 31/12/2026. Prix égaux à offres.json (test_commentaires.js).
-  const LANCEMENT = { remise_pct: 50, duree_mois: 3, date_limite: "2026-12-31" };
+  // Offres (moteur/offres.json, égalité testée par test_commentaires.js) : Essentiel et Croissance, seules offres vendues depuis le 15/10/2026.
+  // commentaires : réponses aux commentaires Instagram et Facebook comprises (Croissance) ; tiktok : TikTok compris (Croissance). Aucun plafond de commentaires.
+  // Signature : retirée (retiree: true), gardée seulement pour un ancien commerce qui l'aurait encore (plafonds de moteur/offres_retirees.json) ; jamais proposée.
+  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, tiktok: false, prix_ht: 190, prix_semestriel_ht: 950 },
+    croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true, tiktok: true, prix_ht: 390, prix_semestriel_ht: 1950 },
+    signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true, tiktok: true, retiree: true } };
+  const OFFRES_EN_VENTE = Object.keys(OFFRES).filter(k => !OFFRES[k].retiree);
+  // Chiffres des garanties et du paiement (moteur/conditions_offre.json, conditions_offre() de schema.sql) et frais de mise en route (site/legal.json).
+  const CONDITIONS = { garantie_avis: { nouveaux_avis: 10, jours: 60, rappel_jour: 45, en_vue_pct: 75, fermeture_prolonge_au_dela_de_jours: 7 },
+    garantie_reponse: { delai_heures: 24, escalade_heures: 4, collecte_minutes: 15 }, validation_tacite_heures: 48, semestriel: { mois_payes: 5, mois_couverts: 6 },
+    mise_en_route: { prix_ht: 190, offerts_jusqu_au: "2026-11-30" } };
   const FICHE = ["nom", "metier", "ville", "ton", "specialites", "horaires", "mots_cles", "mentions_autorisees", "contact", "email_validation", "couleurs", "reglage_avis", "lien_avis", "notifications", "commentaires_compliments_auto"];
   const RESEAUX = ["facebook", "instagram", "google", "tiktok"];
   const TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"], MAX = 50 * 1024 * 1024;
@@ -158,7 +164,7 @@
   VIDEO_AVIS.PLAGES.split(" ").forEach(p => { const [a, b] = p.split("-").map(x => parseInt(x, 16)); for (let i = a; i <= (b || a); i++) VA_OK.add(i); });
   VIDEO_AVIS.longueur = t => Array.from(t || "").length;
   // Raison pour laquelle un avis ne peut pas entrer dans une vidéo ; null s'il est proposable.
-  // Avis effacé, ou reçu (entrée dans RENOM) il y a plus de 30 jours. Sans date connue : non.
+  // Avis effacé, ou reçu (entrée dans Renomia) il y a plus de 30 jours. Sans date connue : non.
   VIDEO_AVIS.tropAncien = (a, maintenant) => !!a.efface_le || (!!a.cree_le && (maintenant || Date.now()) - Date.parse(a.cree_le) > VIDEO_AVIS.AGE_MAX_JOURS * 86400000);
   VIDEO_AVIS.motif = (a, maintenant) => {
     const t = a.texte || "", n = VIDEO_AVIS.longueur(t);
@@ -204,7 +210,7 @@
   const phraseDepot = m => { const P = DEPOT_VIDEO.PHRASES, x = String(m || "");
     return /ne comprend pas de vidéo/.test(x) ? P.sans_video : /plafond de l'offre atteint/.test(x) ? P.plafond : /déjà en cours/.test(x) ? P.ouvert
       : /plus en cours d'envoi/.test(x) ? P.ferme : /dépôt introuvable/.test(x) ? P.introuvable : /de 1 à 10 vidéos/.test(x) ? P.nb_videos : /10 photos au plus/.test(x) ? P.nb_photos
-      : /60 secondes/.test(x) ? P.longue : /déjà effacées/.test(x) ? P.efface : /seul un dépôt/.test(x) ? P.relance : /commerce en pause/.test(x) ? "Votre commerce est en pause : contactez RENOM."
+      : /60 secondes/.test(x) ? P.longue : /déjà effacées/.test(x) ? P.efface : /seul un dépôt/.test(x) ? P.relance : /commerce en pause/.test(x) ? "Votre commerce est en pause : contactez Renomia."
       : /fichier non reçu : (.*)$/.test(x) ? "Fichier non reçu : " + x.match(/fichier non reçu : (.*)$/)[1] + "." : /réservé à l'administrateur/.test(x) ? "Réservé à l'administrateur." : x; };
   // ---- fin des règles communes du dépôt de vidéos
 
@@ -217,7 +223,7 @@
   };
   function controlerDecisionCommentaire(x, decision, texte) {
     if (!x) throw new Error("Commentaire introuvable.");
-    if (x.statut === "humain") { if (decision !== "clos") throw new Error("Un commentaire sensible ne reçoit pas de réponse de RENOM : répondez-y vous-même sur le réseau, puis marquez-le comme traité."); return { statut: "clos" }; }
+    if (x.statut === "humain") { if (decision !== "clos") throw new Error("Un commentaire sensible ne reçoit pas de réponse de Renomia : répondez-y vous-même sur le réseau, puis marquez-le comme traité."); return { statut: "clos" }; }
     if (x.statut !== "a_valider") throw new Error("Ce commentaire a déjà été traité.");
     if (decision === "ignore") return { statut: "ignore" };
     if (decision !== "valide") throw new Error("Décision inconnue : valider la réponse ou ne pas répondre.");
@@ -234,11 +240,11 @@
     MAX_CLIENTS: 500, PASSAGE_MAX_JOURS: 14, ECART_JOURS: 90,
     POINTS: [
       { point: "compte", titre: "Activer votre compte", aide: "C'est fait dès votre première visite dans l'espace." },
-      { point: "google", titre: "Donner à RENOM l'accès gestionnaire de votre fiche Google", aide: "Sur business.google.com : Paramètres du profil, Personnes et accès, Ajouter, l'adresse que RENOM vous indique, rôle Gestionnaire. Vous restez propriétaire.", declarable: true },
-      { point: "metricool", titre: "Connecter vos réseaux à notre outil de programmation", aide: "Ouvrez le lien de connexion de notre outil de programmation que RENOM vous envoie, puis connectez Facebook et Instagram. RENOM publie ensuite pour vous, seulement ce que vous avez approuvé.", declarable: true },
-      { point: "demarrage", titre: "Répondre aux 5 questions de démarrage", aide: "Cinq questions courtes pour que RENOM écrive comme vous. Chacune peut être passée." },
+      { point: "google", titre: "Donner à Renomia l'accès gestionnaire de votre fiche Google", aide: "Sur business.google.com : Paramètres du profil, Personnes et accès, Ajouter, l'adresse que Renomia vous indique, rôle Gestionnaire. Vous restez propriétaire.", declarable: true },
+      { point: "metricool", titre: "Connecter vos réseaux à notre outil de programmation", aide: "Ouvrez le lien de connexion de notre outil de programmation que Renomia vous envoie, puis connectez Facebook et Instagram. Renomia publie ensuite pour vous, seulement ce que vous avez approuvé.", declarable: true },
+      { point: "demarrage", titre: "Répondre aux 5 questions de démarrage", aide: "Cinq questions courtes pour que Renomia écrive comme vous. Chacune peut être passée." },
     ],
-    ETATS: { a_faire: "À faire", declare: "Fait selon vous, RENOM vérifie", fait: "Fait" },
+    ETATS: { a_faire: "À faire", declare: "Fait selon vous, Renomia vérifie", fait: "Fait" },
   };
   const emailValide = e => /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]{2,}$/.test(e || "") && String(e).length <= 254;
   const dateValide = d => /^\d{4}-\d{2}-\d{2}$/.test(d || "") && !isNaN(Date.parse(d + "T00:00:00Z")) && new Date(d + "T00:00:00Z").toISOString().slice(0, 10) === d;
@@ -267,7 +273,9 @@
     AVIS_SENSIBLE_A_EFFACER: "Avis sensible bientôt effacé (30 jours)", COMMENTAIRE_SENSIBLE_A_EFFACER: "Commentaire sensible bientôt effacé (30 jours)",
     // Paiement Stripe (fonction appliquer_evenement_stripe de schema.sql)
     PAIEMENT_REFUSE: "Paiement refusé", ABONNEMENT_SANS_COMMERCE: "Paiement sans commerce rattaché", REMISE_LANCEMENT_DEJA_UTILISEE: "Remise de lancement utilisée deux fois",
-    ABONNEMENT_RESILIE: "Abonnement résilié" };
+    ABONNEMENT_RESILIE: "Abonnement résilié",
+    // Garanties (bloc « Modèle Vincent » de schema.sql)
+    GARANTIE_AVIS_J45: "Garantie des 10 avis : J+45, objectif pas en vue", GARANTIE_AVIS_ECHUE: "Garantie des 10 avis : échéance passée", VALIDATION_TACITE_A_PROGRAMMER: "Contenu validé sans réponse, à programmer" };
   const texteAlerte = a => { const d = a.detail || {};
     if (a.type === "ERREUR_WORKFLOW") return `${d.workflow || "Workflow inconnu"}, nœud ${d.noeud || "inconnu"} : ${d.message || ""}`;
     if (a.type === "PHOTOS_EMAIL_REFUSEES") return `${d.pieces || 0} pièce(s) jointe(s) refusée(s) : ${d.raison || d.statut || ""}. Rien n'a été déposé.`;
@@ -275,22 +283,28 @@
     if (a.type === "PAIEMENT_REFUSE") return `Abonnement ${d.abonnement || ""} : appeler le commerçant sous 24 h.${d.test ? " (mode test)" : ""}`;
     if (a.type === "ABONNEMENT_SANS_COMMERCE") return `Abonnement ${d.abonnement || ""} payé sans commerce rattaché : le rattacher dans l'éditeur SQL.${d.test ? " (mode test)" : ""}`;
     if (a.type === "REMISE_LANCEMENT_DEJA_UTILISEE") return `Abonnement ${d.abonnement || ""} : retirer la remise dans Stripe (une fois par commerce).${d.test ? " (mode test)" : ""}`;
+    if (a.type === "GARANTIE_AVIS_J45") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} au jour ${d.jour} (seuil en vue : ${d.seuil_en_vue}). Échéance le ${d.echeance} : vérifier les cartes en salle et relancer les demandes d'avis.`;
+    if (a.type === "GARANTIE_AVIS_ECHUE") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} à l'échéance du ${d.echeance} : on continue gratuitement jusqu'aux ${d.objectif} avis. Suspendre la facturation dans Stripe.`;
+    if (a.type === "VALIDATION_TACITE_A_PROGRAMMER") return `Contenu validé sans réponse en 48 h, non programmé : ${d.raison || "raison inconnue"}. Le programmer à la main.`;
     if (a.type === "ABONNEMENT_RESILIE") return `Abonnement ${d.abonnement || ""} : arrêter les publications en fin de période, retirer les accès sous 7 jours ouvrés.${d.test ? " (mode test)" : ""}`;
     if (/_A_EFFACER$/.test(a.type)) return `Toujours en attente d'une personne. Texte effacé le ${String(d.efface_le || "").slice(0, 10)} (règle des 30 jours) : à traiter avant.`;
     return JSON.stringify(d); };
-  // ---- Paiement Stripe : lien du bouton « Payer / gérer mon abonnement » (adresses publiques de config.js, stripe : {liens, portail, codeLancement,
-  // finLancement}, écrites par outils/stripe_catalogue.py). Abonnement en cours : portail client ; aucun abonnement ou abonnement résilié : lien de paiement
-  // de l'offre, avec l'identifiant du commerce (client_reference_id, relu par le webhook) et le code de lancement prérempli jusqu'à la date limite.
-  // Rien de configuré : pas de bouton (null). Source : https://docs.stripe.com/payment-links/url-parameters et /payment-links/customize, lues le 14/10/2026.
+  // ---- Paiement Stripe : lien du bouton « Payer / gérer mon abonnement » (adresses publiques de config.js, stripe : {liens, portail, fraisOffertsJusquAu},
+  // écrites par outils/stripe_catalogue.py ; liens[offre][rythme][frais], rythme « mensuel » ou « semestriel » (6 mois payés d'avance, 1 offert), frais
+  // « offerts » (souscription jusqu'au 30/11/2026 inclus) ou « factures » (190 € HT une fois). Abonnement en cours : portail client ; aucun abonnement ou
+  // abonnement résilié : lien de paiement de l'offre, avec l'identifiant du commerce (client_reference_id, relu par le webhook). Aucun code promotionnel.
+  // Rien de configuré : pas de bouton (null). Source : https://docs.stripe.com/payment-links/url-parameters, lue le 14/10/2026.
   const STATUTS_ABONNEMENT = ["en_attente", "actif", "impaye", "resilie"];
-  function lienAbonnement(ab, c, offre, maintenant) {
+  const fraisOfferts = (maintenant, s) => (maintenant || new Date().toISOString().slice(0, 10)) <= ((s && s.fraisOffertsJusquAu) || CONDITIONS.mise_en_route.offerts_jusqu_au);
+  function lienAbonnement(ab, c, offre, maintenant, rythme) {
     const s = cfg.stripe || {}, https = u => typeof u === "string" && /^https:\/\/[^\s"<>]+$/.test(u) ? u : null;
     // Abonnement en cours (même impayé) : jamais le lien de paiement, qui créerait un second abonnement ; seulement le portail.
     if (ab && ab.statut !== "resilie") return https(s.portail);
-    const base = https((s.liens || {})[offre]); if (!base || !c || !/^[A-Za-z0-9_-]{1,200}$/.test(String(c.id || ""))) return null;
-    const q = ["client_reference_id=" + encodeURIComponent(c.id), "locale=fr"], fin = s.finLancement || LANCEMENT.date_limite;
-    if (s.codeLancement && /^[A-Za-z0-9]+$/.test(s.codeLancement) && (maintenant || new Date().toISOString().slice(0, 10)) <= fin) q.push("prefilled_promo_code=" + s.codeLancement);
-    return base + (base.includes("?") ? "&" : "?") + q.join("&");
+    if (!OFFRES_EN_VENTE.includes(offre)) return null;   // offre retirée : aucun lien de paiement
+    const r = ((s.liens || {})[offre] || {})[rythme === "semestriel" ? "semestriel" : "mensuel"] || {};
+    const base = https(fraisOfferts(maintenant, s) ? (r.offerts || r.factures) : r.factures);
+    if (!base || !c || !/^[A-Za-z0-9_-]{1,200}$/.test(String(c.id || ""))) return null;
+    return base + (base.includes("?") ? "&" : "?") + ["client_reference_id=" + encodeURIComponent(c.id), "locale=fr"].join("&");
   }
   const MODELE_CSV = "prenom;email;date_passage\nCamille;camille@exemple.fr;" + new Date().toISOString().slice(0, 10) + "\n";
   // ---- fin des règles communes des automatisations
@@ -341,7 +355,7 @@
     const depotsAttente = (c, sauf) => liste("depots_video").filter(d => d.commerce_id === c.id && d.mois === mois0() && !d.contenu_id && d.id !== sauf
       && (["envoye", "en_montage"].includes(d.statut) || (d.statut === "en_envoi" && Date.now() - Date.parse(d.cree_le) < DEPOT_VIDEO.OUVERT_MS))).length;
     const reserveesVideos = c => usageVideos(c) + (E.videos_avis_demandes || []).filter(x => x.commerce_id === c.id && x.mois === mois0() && ["a_traiter", "en_cours"].includes(x.statut)).length + depotsAttente(c);
-    const pasEnPause = c => { if (c.en_pause) throw new Error("Votre commerce est en pause : contactez RENOM."); };
+    const pasEnPause = c => { if (c.en_pause) throw new Error("Votre commerce est en pause : contactez Renomia."); };
     const repondusCommentaires = c => liste("commentaires").filter(x => x.commerce_id === c.id && ["valide", "a_publier_main", "publie"].includes(x.statut) && x.decide_le && x.decide_le.slice(0, 7) === mois0().slice(0, 7)).length;
     const vc = c => { const o = OFFRES[c.offre_id]; return { commerce_id: c.id, mois: mois0(), offre: c.offre_id, offre_nom: o.nom, en_pause: !!c.en_pause, publications_plafond: o.publications, videos_plafond: o.videos, publications_utilisees: usage(c), videos_utilisees: usageVideos(c), idees_demandees: E.idees_demandes.filter(x => x.commerce_id === c.id && x.mois === mois0() && x.statut !== "refusee").length,
       commentaires_inclus: !!o.commentaires, commentaires_repondus: repondusCommentaires(c) }; };
@@ -381,7 +395,7 @@
       c.marque = { ...k, version: 1, maj: new Date().toISOString() }; c.couleurs = MQ.couleursCommerce(c.marque);
       jour(c.id, "MARQUE_PROPOSEE", { source: "photos", version: 1, simule: true }); sauver();
     }
-    // Kit de marque d'un commerce : écran « Votre style » (le commerçant) et panneau « Style du commerce » de la console (RENOM, par = "renom").
+    // Kit de marque d'un commerce : écran « Votre style » (le commerçant) et panneau « Style du commerce » de la console (Renomia, par = "renom").
     // Mêmes règles que la base : fautes refusées, version posée ici, auteur (valide_par) posé ici et jamais repris du navigateur, journal du commerce.
     async function marqueDemo(c) {
       const MQ = window.RENOM_MARQUE, cat = await MQ.charger();
@@ -417,11 +431,11 @@
       }
       return c.marque;
     }
-    // Ce que le commerçant règle lui-même (fonction SQL regler_ma_marque) : logo, expressions, validation. Le reste est réglé par RENOM.
+    // Ce que le commerçant règle lui-même (fonction SQL regler_ma_marque) : logo, expressions, validation. Le reste est réglé par Renomia.
     const CLES_COMMERCANT = ["logo", "logo_fond", "mots_signature", "a_eviter"];
     async function reglerMaMarqueDemo(c, p, valider) {
       const MQ = window.RENOM_MARQUE, cat = await MQ.charger(); p = p || {};
-      if (Object.keys(p).some(k => !CLES_COMMERCANT.includes(k)) || valider === false) throw new Error("Votre style est réglé par RENOM : demandez-lui un changement.");
+      if (Object.keys(p).some(k => !CLES_COMMERCANT.includes(k)) || valider === false) throw new Error("Votre style est réglé par Renomia : demandez-lui un changement.");
       const base = c.marque ? { ...c.marque } : MQ.normaliser(null, c.couleurs, c.metier, c.ton || "", cat);
       return enregistrerMarqueDemo(c, { ...base, ...p }, valider ? true : !!base.verrouille, "commercant", valider === true);
     }
@@ -474,7 +488,7 @@
     function appliquerDecisionCommentaire(x, decision, texte) {
       const d = controlerDecisionCommentaire(x, decision, texte), maintenant = iso(Date.now());
       Object.assign(x, d, { decide_le: maintenant }); if (d.statut === "ignore") x.decision = "ignore";
-      if (d.statut === "valide") Object.assign(x, { statut: "a_publier_main", erreur: "Accès de Meta pas encore accordé : publication par l'équipe RENOM." });
+      if (d.statut === "valide") Object.assign(x, { statut: "a_publier_main", erreur: "Accès de Meta pas encore accordé : publication par l'équipe Renomia." });
     }
 
     // =========================================================== Mise à jour de l'espace membre (démonstration)
@@ -593,7 +607,7 @@
     const KC = K + ":collecte"; let collecteMem = [];
     try { if (/[?&]reset\b/.test(location.search + location.hash)) localStorage.removeItem(KC); } catch (e) {}
     const lireCollecte = () => { try { const l = JSON.parse(localStorage.getItem(KC)); collecteMem = Array.isArray(l) ? l : []; } catch (e) {} return collecteMem; };
-    // Ce que la lecture de Google à la demande renverrait : l'historique fictif, plus les avis de la table (ceux effacés par RENOM à 30 jours restent
+    // Ce que la lecture de Google à la demande renverrait : l'historique fictif, plus les avis de la table (ceux effacés par Renomia à 30 jours restent
     // chez Google : leur copie « google » est rangée dans l'historique fictif au moment de l'effacement, voir conserver()).
     const avisTous = c => [...liste("avis_historique").filter(x => x.commerce_id === c.id), ...E.avis.filter(x => x.commerce_id === c.id && !x.efface_le)];
     function etatAvis(c, t) {
@@ -612,7 +626,7 @@
     }
     // ---- Conservation (démonstration) : même règle que la base (effacer_contenus_expires) : au-delà de 30 jours, texte, note et auteur d'un avis,
     // texte et auteur d'un commentaire sont effacés ; l'identifiant, notre réponse et nos dates restent. La copie « Google » d'un avis effacé rejoint
-    // l'historique fictif (en service, Google garde l'avis : seul RENOM l'oublie).
+    // l'historique fictif (en service, Google garde l'avis : seul Renomia l'oublie).
     function conserver() {
       if (!E) return; const limite = Date.now() - VIDEO_AVIS.AGE_MAX_JOURS * 86400000, maintenant = iso(Date.now()); let n = 0;
       (E.avis || []).forEach(a => { if (a.efface_le || Date.parse(a.cree_le) >= limite) return;
@@ -816,7 +830,7 @@
         const h = x[k + "_il_y_a_h"]; if (h !== undefined) { x[c] = h == null ? null : iso(maintenant - h * HEURE); delete x[k + "_il_y_a_h"]; } }); x.jeton = x.jeton || nouveauJeton(); });
       if (!G.alertes_exploitant.length) G.alertes_exploitant.push(
         { id: "al-1", type: "PHOTOS_EMAIL_REFUSEES", commerce_id: null, detail: { statut: "inconnu", raison: "adresse inconnue", pieces: 2 }, cree_le: iso(maintenant - 20 * HEURE), demo: true },
-        { id: "al-2", type: "ERREUR_WORKFLOW", commerce_id: null, detail: { workflow: "RENOM, service du jour", noeud: "Envoyer", message: "Exemple de démonstration : connexion au serveur d'envoi refusée." }, cree_le: iso(maintenant - 70 * HEURE), demo: true });
+        { id: "al-2", type: "ERREUR_WORKFLOW", commerce_id: null, detail: { workflow: "Renomia, service du jour", noeud: "Envoyer", message: "Exemple de démonstration : connexion au serveur d'envoi refusée." }, cree_le: iso(maintenant - 70 * HEURE), demo: true });
     }
     // Idée de la semaine du commerce principal : calculée par le même code que le workflow du lundi (calendrier versionné), sans météo
     // (option désactivée par défaut). Une par semaine : une démonstration ouverte la semaine suivante reçoit la nouvelle.
@@ -879,7 +893,7 @@
       async desinscriptionInfo(jeton) {
         await init(); const j = String(jeton || ""), d = liste("demandes_avis").find(x => x.jeton === j);
         if (d) return { objet: "demande_avis", emetteur: (E.commerces[d.commerce_id] || {}).nom, langue: (E.commerces[d.commerce_id] || {}).langue || "fr", fait: liste("oppositions").some(o => o.commerce_id === d.commerce_id && o.email === d.email) };
-        const p = liste("prospects").find(x => x.jeton === j); if (p) return { objet: "prospect", emetteur: "RENOM", fait: !!p.desinscrit_le };
+        const p = liste("prospects").find(x => x.jeton === j); if (p) return { objet: "prospect", emetteur: "Renomia", fait: !!p.desinscrit_le };
         throw new Error("Ce lien n'est pas reconnu.");
       },
       async seDesinscrire(jeton) {
@@ -900,6 +914,80 @@
       async adminMiseEnRoute(cid, point, etat) {
         await init(); admin(); if (!["a_faire", "declare", "fait"].includes(etat) || !ORDRE_POINTS.includes(point)) throw new Error("Point ou état inconnu.");
         etatMiseEnRoute(cid); tableMR()[cid][point] = etat; jour(cid, "MISE_EN_ROUTE", { point, etat }); sauver(); return etatMiseEnRoute(cid);
+      },
+    };
+
+    // ---- Garanties (démonstration) : mêmes règles que le bloc « Modèle Vincent » de schema.sql. Le passage du serveur (n8n toutes les 15 minutes :
+    // escalade des avis à 4 h, validation tacite à 48 h, rappels de la garantie) est simulé à l'ouverture de l'écran « Avis et garanties » de la console.
+    const J_GAR = 24 * MS_H, jourParis = t => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(t));
+    const ajouterJours = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * J_GAR).toISOString().slice(0, 10);
+    function assurerGarantieDemo() {
+      if (E.garanties_avis) return; E.garanties_avis = [];
+      const prof = E.demo_maj || null, premier = Object.values(E.users).find(u => u.commerce), cid = prof ? prof.principal : premier && premier.commerce;
+      if (!cid || !E.commerces[cid]) return;
+      const depart = ajouterJours(jourParis(Date.now()), PUBLIQUE ? -20 : -46);
+      E.garanties_avis.push({ commerce_id: cid, depart_le: depart, avis_depart: PUBLIQUE ? 40 : 30, capture: cid + "/garantie/capture-depart.png", cartes_en_place_le: depart,
+        prolongation_jours: 0, avis_releve: null, releve_le: null, rappel_j45_le: null, echue_le: null, atteinte_le: null, demo: true });
+    }
+    function garantieEtat(g) {
+      const k = CONDITIONS.garantie_avis, nouveaux = E.avis.filter(a => a.commerce_id === g.commerce_id && jourParis(a.cree_le) >= g.depart_le).length;
+      const actuel = g.avis_releve != null ? g.avis_releve : g.avis_depart + nouveaux, gagnes = Math.max(actuel - g.avis_depart, 0), ech = ajouterJours(g.depart_le, k.jours + (g.prolongation_jours || 0));
+      const auj = jourParis(Date.now()), jourN = Math.round((Date.parse(auj) - Date.parse(g.depart_le)) / J_GAR), seuil = Math.ceil(k.nouveaux_avis * k.en_vue_pct / 100);
+      const etat = gagnes >= k.nouveaux_avis ? "atteinte" : !g.cartes_en_place_le ? "condition_manquante" : auj > ech ? "travail_gratuit" : "en_cours";
+      return { commerce_id: g.commerce_id, commerce: (E.commerces[g.commerce_id] || {}).nom, depart_le: g.depart_le, avis_depart: g.avis_depart, capture: g.capture, cartes_en_place_le: g.cartes_en_place_le,
+        prolongation_jours: g.prolongation_jours || 0, avis_releve: g.avis_releve, releve_le: g.releve_le, nouveaux_recus: nouveaux, avis_actuel: actuel, gagnes, objectif: k.nouveaux_avis,
+        objectif_total: g.avis_depart + k.nouveaux_avis, echeance: ech, jour: jourN, en_vue: gagnes >= seuil, seuil_en_vue: seuil, etat, source: g.avis_releve != null ? "releve" : "avis_recus",
+        rappel_j45_le: g.rappel_j45_le, echue_le: g.echue_le, atteinte_le: g.atteinte_le, demo: !!g.demo };
+    }
+    function passageServeurDemo() {
+      const maintenant = Date.now(), R = CONDITIONS.garantie_reponse, l = { escalades: [], validations_tacites: [], rappels: [] };
+      E.avis.filter(a => a.statut === "a_valider" && !a.sensible && maintenant - Date.parse(a.cree_le) >= R.escalade_heures * MS_H).forEach(a => {
+        a.statut = "escalade"; a.escalade_le = iso(maintenant); jour(a.commerce_id, "AVIS_ESCALADE", { avis: a.id, note: a.note }); l.escalades.push(a.id);
+        liste("jetons_validation").filter(j => j.objet === "avis" && j.objet_id === a.id && !j.utilise_le).forEach(j => { j.expire_le = iso(maintenant); }); });
+      // Validation tacite : approuvé, puis programmé au prochain créneau sur les réseaux connectés compris dans l'offre (démonstration : marqué approuvé seulement).
+      E.contenus.filter(x => x.statut === "a_valider" && !(E.commerces[x.commerce_id] || {}).en_pause && maintenant - Date.parse(x.soumis_le || x.cree_le) >= CONDITIONS.validation_tacite_heures * MS_H).forEach(x => {
+        x.statut = "approuve"; x.valide_tacitement_le = iso(maintenant); jour(x.commerce_id, "VALIDATION_TACITE", { contenu: x.id, heures: CONDITIONS.validation_tacite_heures }); l.validations_tacites.push(x.id); });
+      assurerGarantieDemo();
+      E.garanties_avis.forEach(g => { const e = garantieEtat(g);
+        if (e.etat === "atteinte" && !g.atteinte_le) { g.atteinte_le = iso(maintenant); jour(g.commerce_id, "GARANTIE_AVIS_ATTEINTE", { gagnes: e.gagnes, jour: e.jour }); }
+        else if (e.etat !== "atteinte") {
+          if (e.jour >= CONDITIONS.garantie_avis.rappel_jour && !g.rappel_j45_le && !e.en_vue) { g.rappel_j45_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "GARANTIE_AVIS_J45", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("GARANTIE_AVIS_J45"); }
+          if (e.etat === "travail_gratuit" && !g.echue_le) { g.echue_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "GARANTIE_AVIS_ECHUE", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("GARANTIE_AVIS_ECHUE"); }
+        } });
+      sauver(); return l;
+    }
+    const garantiesDemo = {
+      async maGarantie() { await init(); assurerGarantieDemo(); const g = E.garanties_avis.find(x => x.commerce_id === cur().id); return g ? garantieEtat(g) : null; },
+      async adminFileAvis() {
+        await init(); admin(); passageServeurDemo(); const d = CONDITIONS.garantie_reponse.delai_heures * MS_H;
+        return E.avis.filter(a => ["escalade", "humain"].includes(a.statut)).sort((a, b) => a.cree_le.localeCompare(b.cree_le)).map(a => ({ id: a.id, commerce_id: a.commerce_id, commerce: (E.commerces[a.commerce_id] || {}).nom,
+          note: a.note, texte: a.texte, auteur: a.auteur || "", reponse_proposee: a.reponse_proposee || "", statut: a.statut, sensible: !!a.sensible, raisons: a.raisons || [], recu_le: a.cree_le, escalade_le: a.escalade_le || null,
+          echeance: iso(Date.parse(a.cree_le) + d), en_retard: Date.now() > Date.parse(a.cree_le) + d, demo: !!a.demo }));
+      },
+      async adminAvisPublie(id, reponse) {
+        await init(); admin(); const a = E.avis.find(x => x.id === id), txt = String(reponse || "").trim();
+        if (!a || !["escalade", "humain"].includes(a.statut)) throw new Error("Cet avis n'est pas dans la file de Renomia.");
+        if (!txt) throw new Error("Écrivez la réponse publiée."); if (txt.length > 2000) throw new Error("La réponse est trop longue (2 000 caractères au plus).");
+        const depuis = a.statut; a.reponse = txt; a.reponse_proposee = a.reponse_proposee || txt; a.statut = "publie"; a.repondu_le = iso(Date.now());
+        jour(a.commerce_id, "AVIS_PUBLIE", { avis: a.id, par: "renomia", depuis, dans_les_24h: Date.now() <= Date.parse(a.cree_le) + CONDITIONS.garantie_reponse.delai_heures * MS_H }); sauver();
+      },
+      async adminGaranties() { await init(); admin(); passageServeurDemo(); return E.garanties_avis.map(garantieEtat); },
+      async adminGarantie(cid, p) {
+        await init(); admin(); if (!E.commerces[cid]) throw new Error("Commerce introuvable."); assurerGarantieDemo(); p = p || {};
+        const date = s => { if (s == null || s === "") return null; if (!/^\d{4}-\d{2}-\d{2}$/.test(s) || isNaN(Date.parse(s + "T12:00:00Z"))) throw new Error("Date (AAAA-MM-JJ) ou nombre illisible."); return s; };
+        const nb = s => { if (s == null || s === "") return null; const n = Number(s); if (!Number.isInteger(n) || n < 0) throw new Error("Date (AAAA-MM-JJ) ou nombre illisible."); return n; };
+        if (p.capture && !String(p.capture).startsWith(cid + "/garantie/")) throw new Error("La capture se range dans le dossier du commerce, sous garantie/.");
+        let g = E.garanties_avis.find(x => x.commerce_id === cid);
+        if (!g) { if (!date(p.depart_le) || nb(p.avis_depart) == null) throw new Error("Pour démarrer la garantie : la date de mise en route et le nombre d'avis de la capture datée.");
+          g = { commerce_id: cid, depart_le: p.depart_le, avis_depart: nb(p.avis_depart), capture: null, cartes_en_place_le: null, prolongation_jours: 0, avis_releve: null, releve_le: null, rappel_j45_le: null, echue_le: null, atteinte_le: null };
+          E.garanties_avis.push(g); jour(cid, "GARANTIE_AVIS_DEMARREE", { depart_le: g.depart_le, avis_depart: g.avis_depart }); }
+        if ("depart_le" in p && date(p.depart_le)) g.depart_le = date(p.depart_le);
+        if ("avis_depart" in p && nb(p.avis_depart) != null) g.avis_depart = nb(p.avis_depart);
+        if ("capture" in p) g.capture = p.capture || null;
+        if ("cartes_en_place_le" in p) g.cartes_en_place_le = date(p.cartes_en_place_le);
+        if ("avis_releve" in p) { g.avis_releve = nb(p.avis_releve); g.releve_le = g.avis_releve == null ? null : date(p.releve_le) || jourParis(Date.now()); }
+        if ("prolongation_jours" in p && nb(p.prolongation_jours) != null) { if (nb(p.prolongation_jours) > 365) throw new Error("Date (AAAA-MM-JJ) ou nombre illisible."); g.prolongation_jours = nb(p.prolongation_jours); }
+        sauver(); return garantieEtat(g);
       },
     };
 
@@ -981,6 +1069,8 @@
       ...majDemo,
       // ---- Automatisations de service (voir autoDemo plus haut)
       ...autoDemo,
+      // ---- Garanties (voir garantiesDemo plus haut)
+      ...garantiesDemo,
       // ---- Vidéo d'avis
       async avisVideo() { await init(); return mine("avis").map(a => ({ id: a.id, note: a.note, texte: a.texte, auteur: a.auteur || "", sensible: !!a.sensible, cree_le: a.cree_le, demo: !!a.demo })).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async demandesVideoAvis() { await init(); const c = cur(); return vaDemandes().filter(x => x.commerce_id === c.id).sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
@@ -1086,14 +1176,16 @@
       },
       async adminCreer(nom, metier, offre, email) {
         await init(); admin(); if (!nom.trim() || !/.+@.+/.test(email)) throw new Error("Nom et email valides requis.");
+        if (!OFFRES_EN_VENTE.includes(offre)) throw new Error("Offre plus vendue : " + offre + ". Offres en vente : Essentiel, Croissance.");
         const id = "c-" + uid().slice(0, 8); E.commerces[id] = { id, nom: nom.trim(), metier, ville: "", offre_id: offre, en_pause: false, mots_cles: [], mentions_autorisees: [], couleurs: { fond: "#FFFFFF", texte: "#000000", accent: "#2438FF" }, reglage_avis: "auto_des_4_etoiles", email_validation: email.toLowerCase() };
         E.comptes[id] = Object.fromEntries(RESEAUX.map(r => [r, { etat: "non_connecte" }])); E.invitations.push({ id: uid(), email: email.toLowerCase(), commerce_id: id, statut: "a_envoyer", cree_le: new Date().toISOString() });
         E.users[email.toLowerCase()] = { role: "commerçant", commerce: id }; jour(id, "COMMERCE_CREE", { offre }); sauver(); return id;
       },
-      async adminOffre(id, offre) { await init(); admin(); E.commerces[id].offre_id = offre; jour(id, "OFFRE_CHANGEE", { offre }); sauver(); },
+      async adminOffre(id, offre) { await init(); admin(); if (!OFFRES_EN_VENTE.includes(offre) && E.commerces[id].offre_id !== offre) throw new Error("Offre plus vendue : " + offre + ". Offres en vente : Essentiel, Croissance.");
+        E.commerces[id].offre_id = offre; jour(id, "OFFRE_CHANGEE", { offre }); sauver(); },
       async adminPause(id, pause) { await init(); admin(); E.commerces[id].en_pause = !!pause; jour(id, pause ? "MISE_EN_PAUSE" : "REPRISE", {}); sauver(); },
       async adminInvitations() { await init(); admin(); return E.invitations.map(i => ({ ...i, commerce: (E.commerces[i.commerce_id] || {}).nom })); },
-      // ---- Style du commerce réglé par RENOM (console) : mêmes règles que « Votre style », auteur « renom » (fonction SQL admin_regler_marque)
+      // ---- Style du commerce réglé par Renomia (console) : mêmes règles que « Votre style », auteur « renom » (fonction SQL admin_regler_marque)
       async adminMarque(cid) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); return { commerce: c, ...(await marqueDemo(c)) }; },
       async adminDeposerLogo(cid, f) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); return logoDemo(c, f); },
       async adminEnregistrerMarque(cid, kit, valider) { await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable."); const m = await enregistrerMarqueDemo(c, kit, !!valider, "renom", !!valider);
@@ -1153,7 +1245,7 @@
         photos: ph.map((p, i) => ({ url: urls[i], nom: p.nom_fichier })).filter(p => p.url), logo: c.marque && c.marque.logo ? await signe(c.marque.logo) : null,
         demandes: ok(await sb.from("demandes_style").select("id,texte,cree_le,traitee_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(20)) };
     }
-    // Logo : seau « photos », <commerce>/marque/logo-<aléa>.<ext> (règles de stockage : storage.sql pour le commerçant, schema.sql pour RENOM). Un SVG est converti en PNG.
+    // Logo : seau « photos », <commerce>/marque/logo-<aléa>.<ext> (règles de stockage : storage.sql pour le commerçant, schema.sql pour Renomia). Un SVG est converti en PNG.
     async function logoDe(c, f) {
       const MQ = window.RENOM_MARQUE, e = MQ.controlerLogo(f); if (e) throw Object.assign(new Error("logo " + e), { code: "sty.logo." + e });
       const blob = MQ.estSvg(f) ? await MQ.enPng(f, 1024) : f;
@@ -1178,7 +1270,7 @@
       async commerce() {
         if (cache) return cache;
         const m = ok(await sb.from("membres").select("commerce_id").limit(1).maybeSingle());
-        if (!m) throw new Error("Aucun commerce n'est rattaché à ce compte. Contactez RENOM.");
+        if (!m) throw new Error("Aucun commerce n'est rattaché à ce compte. Contactez Renomia.");
         return (cache = ok(await sb.from("commerces").select("*").eq("id", m.commerce_id).single()));
       },
       async enregistrer(ch) { const c = await self.commerce(); const m = {}; FICHE.forEach(k => { if (k in ch) m[k] = ch[k]; }); ok(await sb.from("commerces").update(m).eq("id", c.id)); cache = null; },
@@ -1194,10 +1286,10 @@
       // ---- Kit de marque (écran « Votre style ») : colonne commerces.marque ; la base contrôle le kit, pose la version, l'auteur et aligne commerces.couleurs.
       async marque() { return marqueDe(await self.commerce()); },
       async deposerLogo(f) { return logoDe(await self.commerce(), f); },
-      // Le commerçant ne règle que son logo, ses expressions et la validation (fonction regler_ma_marque) ; le reste est réglé par RENOM.
+      // Le commerçant ne règle que son logo, ses expressions et la validation (fonction regler_ma_marque) ; le reste est réglé par Renomia.
       async reglerMaMarque(p, valider) { const r = ok(await sb.rpc("regler_ma_marque", { p: p || {}, p_valider: valider == null ? null : !!valider })); cache = null; return r; },
       async demanderChangementStyle(texte) { return ok(await sb.rpc("demander_changement_style", { p_texte: String(texte || "") })); },
-      // ---- Style du commerce réglé par RENOM (console) : fonction admin_regler_marque (n'écrit que commerces.marque ; auteur « renom » posé par la base)
+      // ---- Style du commerce réglé par Renomia (console) : fonction admin_regler_marque (n'écrit que commerces.marque ; auteur « renom » posé par la base)
       async adminMarque(cid) { const c = ok(await sb.from("commerces").select("*").eq("id", cid).single()); return { commerce: c, ...(await marqueDe(c)) }; },
       async adminDeposerLogo(cid, f) { return logoDe({ id: cid }, f); },
       async adminEnregistrerMarque(cid, kit, valider) {
@@ -1218,7 +1310,7 @@
       async programmer({ contenu_id, reseaux, prevu_le }) { const c = await self.commerce(); ok(await sb.from("publications").insert({ commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString() })); },
       async deplacer(id, prevu_le) { ok(await sb.from("publications").update({ prevu_le: new Date(prevu_le).toISOString() }).eq("id", id)); },
       async annuler(id) { ok(await sb.from("publications").update({ statut: "annule" }).eq("id", id)); },
-      async avis() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,reponse,reponse_proposee,statut,sensible,raisons,decision,cree_le,repondu_le,efface_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
+      async avis() { const c = await self.commerce(); return ok(await sb.from("avis").select("id,note,texte,reponse,reponse_proposee,statut,sensible,raisons,decision,cree_le,repondu_le,efface_le,escalade_le").eq("commerce_id", c.id).order("cree_le", { ascending: false }).limit(100)); },
       async validerAvis(id, statut, texte) { const m = { statut }; if (texte != null) m.reponse_proposee = texte; const r = ok(await sb.from("avis").update(m).eq("id", id).select()); if (!r.length) throw new Error("Cet avis ne se valide pas ici."); },
       async comptes() { const c = await self.commerce(); const l = ok(await sb.from("comptes_connectes").select("reseau,etat,detail").eq("commerce_id", c.id)); return RESEAUX.map(r => l.find(x => x.reseau === r) || { reseau: r, etat: "non_connecte", detail: "" }); },
       async compteur() { const c = await self.commerce(); return ok(await sb.from("compteur").select("*").eq("commerce_id", c.id).single()); },
@@ -1331,6 +1423,12 @@
       },
       async adminCreer(nom, metier, offre, email) { return ok(await sb.rpc("admin_creer_commerce", { p_nom: nom, p_metier: metier, p_offre: offre, p_email: email })); },
       async adminOffre(id, offre) { ok(await sb.rpc("admin_changer_offre", { p_commerce: id, p_offre: offre })); },
+      // ---- Garanties (bloc « Modèle Vincent » de schema.sql) : file des avis de Renomia, publication notée, garantie des 10 avis
+      async maGarantie() { const c = await self.commerce(); return ok(await sb.rpc("ma_garantie", { p_commerce: c.id })); },
+      async adminFileAvis() { return ok(await sb.rpc("admin_file_avis", {})) || []; },
+      async adminAvisPublie(id, reponse) { ok(await sb.rpc("admin_avis_publie", { p_id: id, p_reponse: reponse })); },
+      async adminGaranties() { return ok(await sb.rpc("admin_garanties", {})) || []; },
+      async adminGarantie(cid, p) { return ok(await sb.rpc("admin_garantie", { p_commerce: cid, p: p || {} })); },
       async adminPause(id, pause) { ok(await sb.rpc("admin_mettre_en_pause", { p_commerce: id, p_pause: !!pause })); },
       async adminInvitations() { const cs = ok(await sb.from("commerces").select("id,nom")); return ok(await sb.from("invitations").select("*").order("cree_le", { ascending: false })).map(i => ({ ...i, commerce: (cs.find(c => c.id === i.commerce_id) || {}).nom })); },
     };
@@ -1338,7 +1436,7 @@
   }
 
   window.RENOM_DATA = cfg.supabaseUrl && cfg.publishableKey && window.supabase ? supabase() : demo();
-  window.RENOM_OFFRES = OFFRES; window.RENOM_LANCEMENT = LANCEMENT; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES; window.RENOM_DEPOT_VIDEO = DEPOT_VIDEO;
+  window.RENOM_OFFRES = OFFRES; window.RENOM_OFFRES_EN_VENTE = OFFRES_EN_VENTE; window.RENOM_CONDITIONS = CONDITIONS; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES; window.RENOM_DEPOT_VIDEO = DEPOT_VIDEO;
   // ---- Collecte : ce dont la page publique a besoin (aucune session, aucune bibliothèque), et la règle du lien d'avis pour l'espace
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;

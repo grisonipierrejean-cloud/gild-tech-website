@@ -4,11 +4,11 @@
 // Supabase : fonctions publiques desinscription_info et se_desinscrire (bloc « Automatisations de service » de schema.sql).
 (function () {
   const P = window.RENOM_PUBLIC, $ = id => document.getElementById(id);
-  // Textes : espace/web/i18n.js. Langue : ?lang=, puis le choix enregistré, puis celle du commerce qui écrit (prospect : RENOM, en français), sinon le français.
+  // Textes : espace/web/i18n.js. Langue : ?lang=, puis le choix enregistré, puis celle du commerce qui écrit (prospect : Renomia, en français), sinon le français.
   const I = window.RENOM_I18N, t = I.t;
   const jeton = decodeURIComponent(location.hash.replace(/^#\/?/, "")).trim();
   const textes = r => r.objet === "prospect"
-    ? { emetteur: "RENOM", explication: t("des.prospect.explication"), bouton: t("des.prospect.bouton"), fait: t("des.prospect.fait") }
+    ? { emetteur: "Renomia", explication: t("des.prospect.explication"), bouton: t("des.prospect.bouton"), fait: t("des.prospect.fait") }
     : { emetteur: r.emetteur || t("des.ce.commerce"), explication: t("des.explication", { e: r.emetteur || t("des.ce.commerce") }),
         bouton: t("des.bouton"), fait: t("des.fait.texte", { e: r.emetteur || t("des.ce.commerce.min") }) };
   function erreur() { $("chargement").hidden = true; $("page").hidden = true; $("fait").hidden = true; $("erreur").hidden = false; }

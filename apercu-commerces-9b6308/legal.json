@@ -1,6 +1,6 @@
 {
   "_lisez_moi": "Source unique des mentions légales (pages de site/, pieds de page de site/ et de espace/web/, pieds légaux des emails du moteur et de n8n). A_FOURNIR : donnée que le fondateur doit fournir. A_DECIDER : choix du fondateur. A_VERIFIER : point non confirmé. Après toute modification : python3 outils/legal.py (réécrit les pages), puis python3 n8n/build_automatisations.py, build_maj_membre.py, build_ordre10.py, build_audit.py et python3 moteur/avis/build_workflow.py (régénèrent les emails). Le test moteur/tests/test_legal.py refuse toute page en retard sur ce fichier.",
-  "nom_commercial": "RENOM",
+  "nom_commercial": "Renomia",
   "societe": {
     "denomination": "Girlden LTD",
     "forme": "société à responsabilité limitée de droit anglais (private limited company)",
@@ -41,7 +41,7 @@
     }
   },
   "documents": {
-    "version": "14 octobre 2026"
+    "version": "15 octobre 2026"
   },
   "facturation": {
     "premier_mois": "en entier ; l'abonnement court ensuite de date à date, chaque mois",
@@ -49,8 +49,9 @@
     "taux_penalites": "taux de refinancement le plus récent de la Banque centrale européenne, majoré de 10 points"
   },
   "frais_mise_en_route": {
-    "actif": false,
-    "montant_ht": "0"
+    "actif": true,
+    "montant_ht": "190",
+    "offerts_jusqu_au": "2026-11-30"
   },
   "droit_applicable": "francais",
   "representant_ue": "A_DECIDER",

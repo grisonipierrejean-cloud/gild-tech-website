@@ -291,10 +291,10 @@
   }
 
   // ---------------------------------------------------------------- Écran du kit
-  // Le style est créé par RENOM. Un seul écran, deux usages :
+  // Le style est créé par Renomia. Un seul écran, deux usages :
   //  * mode « renom » (console, panneau « Style du commerce ») : tous les réglages (logo, proposition de couleurs depuis le logo ou les photos,
   //    4 couleurs, polices, ambiance, modèle, expressions), aperçus, « Enregistrer » et « Enregistrer et valider pour le client » ;
-  //  * mode « commercant » (espace, « Votre style ») : le style créé par RENOM montré sur ses photos, son logo à déposer, « Ça me plaît »,
+  //  * mode « commercant » (espace, « Votre style ») : le style créé par Renomia montré sur ses photos, son logo à déposer, « Ça me plaît »,
   //    « Je voudrais un changement » (texte libre), et ses expressions en option repliée. Aucune couleur, police ni ambiance à choisir.
   // Libellés : clés « con.sty.* » en mode renom quand elles existent, sinon « sty.* ». Mêmes contrôles et mêmes aperçus pour les deux.
   // o = { vue, I (RENOM_I18N), mode, entete: c => html, commerce: async () => commerce,

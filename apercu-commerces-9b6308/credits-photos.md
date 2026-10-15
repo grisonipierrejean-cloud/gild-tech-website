@@ -1,11 +1,11 @@
 # Crédits photographiques
 
 Photographies d'ambiance, issues de Pexels, licence Pexels (https://www.pexels.com/license/, lue le 11/10/2026) :
-usage commercial gratuit, attribution non requise, modification autorisée. Interdits retenus : ne pas laisser croire à l'approbation par des personnes ou marques, ne pas vendre en l'état, ne pas déposer en marque. Aucune image générée par IA. Ce sont des images d'illustration : elles ne représentent aucun client de RENOM.
+usage commercial gratuit, attribution non requise, modification autorisée. Interdits retenus : ne pas laisser croire à l'approbation par des personnes ou marques, ne pas vendre en l'état, ne pas déposer en marque. Aucune image générée par IA. Ce sont des images d'illustration : elles ne représentent aucun client de Renomia.
 
 ### Photos de la page de vente (refonte photos, 13/10/2026)
 
-Licence Pexels lue le 11/10/2026 (rappel : usage commercial gratuit, attribution non obligatoire ; interdit de laisser croire que les personnes photographiées approuvent RENOM, interdit de revendre la photo en l'état). Les personnes visibles ne sont pas des clients de RENOM : la page l'indique sous la bande des métiers (« Photos d'illustration. ») et, en entier, en bas de page, sous le formulaire d'audit. Fichiers convertis en WebP qualité 80 (1920 px de large pour le plein écran, 1200 px au plus pour le reste) ; originaux non versionnés.
+Licence Pexels lue le 11/10/2026 (rappel : usage commercial gratuit, attribution non obligatoire ; interdit de laisser croire que les personnes photographiées approuvent Renomia, interdit de revendre la photo en l'état). Les personnes visibles ne sont pas des clients de Renomia : la page l'indique sous la bande des métiers (« Photos d'illustration. ») et, en entier, en bas de page, sous le formulaire d'audit. Fichiers convertis en WebP qualité 80 (1920 px de large pour le plein écran, 1200 px au plus pour le reste) ; originaux non versionnés.
 
 | Fichier | Usage | Auteur | Adresse | Licence |
 |---|---|---|---|---|
@@ -51,7 +51,7 @@ Photos de démonstration, Pexels, même licence. Elles servent uniquement d'« e
 - Premier écran : img/renom-chef.webp, voile sombre en aplat (opacité .60, contraste du texte au moins 4,5:1 même sur un fond blanc pur).
 - Bloc « Votre photo. Notre publication. » : la même photo des deux côtés, img/renom-dressage.webp, dans un viseur de téléphone construit en CSS (avant) puis dans une publication construite en HTML et CSS pour un commerce fictif, « La Table d'exemple » (après). La photo n'est pas retouchée.
 - Section « Comment ça marche », bande des métiers : img/renom-chef.webp, img/renom-esthetique.webp, img/renom-coiffure.webp, img/renom-fleuriste.webp.
-- Aucune photo n'est présentée comme celle d'un client de RENOM.
+- Aucune photo n'est présentée comme celle d'un client de Renomia.
 
 ## Polices
 

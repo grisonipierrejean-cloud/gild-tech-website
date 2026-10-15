@@ -12,7 +12,7 @@
 (function () {
   const cfg = window.RENOM_CONFIG || {};
   const MO = 1024 * 1024;
-  // Valeurs RENOM : 1 à 10 vidéos et 10 photos au plus par dépôt, 60 s au plus par vidéo (le guide conseille 5 à 20 s par plan), 50 Mo par photo.
+  // Valeurs Renomia : 1 à 10 vidéos et 10 photos au plus par dépôt, 60 s au plus par vidéo (le guide conseille 5 à 20 s par plan), 50 Mo par photo.
   // videoMaxMo : taille maximale d'une vidéo, ÉGALE à la limite du seau « photos » (file_size_limit, storage.sql) : 50 Mo sur le forfait gratuit
   // de Supabase (maximum de ce forfait), à monter dans config.js en même temps que le seau sur le forfait Pro (ordres/BRANCHEMENT.md, étape 41).
   const REGLES = { VIDEOS_MIN: 1, VIDEOS_MAX: 10, PHOTOS_MAX: 10, DUREE_MAX_S: 60, DUREE_MIN_S: 1, NOTE_MAX: 500, PHOTO_MAX_MO: 50,

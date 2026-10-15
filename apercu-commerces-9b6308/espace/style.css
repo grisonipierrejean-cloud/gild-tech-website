@@ -156,7 +156,7 @@ form>.bouton{align-self:flex-start}
 .f{display:flex;flex-direction:column;gap:6px;min-width:0}
 label,legend{font-size:14px;font-weight:600;color:var(--texte2)}
 .aide{font-size:14px;color:var(--discret)}
-input[type=text],input[type=email],input[type=url],input[type=tel],input[type=date],input[type=time],input[type=file],select,textarea{font:inherit;font-size:16px;line-height:1.45;color:var(--encre);background:var(--creux);border:1px solid var(--bord);border-radius:var(--r);padding:11px 14px;min-height:48px;width:100%;max-width:100%}
+input[type=text],input[type=number],input[type=email],input[type=url],input[type=tel],input[type=date],input[type=time],input[type=file],select,textarea{font:inherit;font-size:16px;line-height:1.45;color:var(--encre);background:var(--creux);border:1px solid var(--bord);border-radius:var(--r);padding:11px 14px;min-height:48px;width:100%;max-width:100%}
 textarea{min-height:92px;resize:vertical}
 textarea.haut-texte{min-height:132px}
 input:hover,select:hover,textarea:hover{border-color:var(--discret)}
@@ -641,3 +641,15 @@ details.dernieres summary{cursor:pointer;font-weight:700;min-height:44px;padding
 @media (max-width:899px){.dv-form .depot .bouton{flex:1 1 100%;min-height:56px;font-size:17px}.dv-form>.bouton{align-self:stretch;min-height:56px;font-size:17px}}
 .tableau>h2{padding:16px 20px 4px}
 @media (min-width:900px){.tableau>h2{padding:18px 24px 4px}}
+
+/* ---- Offre : nos engagements, suivi de la garantie des 10 avis, parcours en 5 étapes, deux boutons de paiement (modèle Vincent, 15/10/2026).
+   Numéros en chiffres simples, aucun trait coloré devant un libellé, aucune pilule. */
+h3{font-family:var(--sans);font-size:17px;font-weight:700;line-height:1.25}
+.liste-engagements{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.liste-engagements li{display:grid;gap:4px;padding-bottom:14px;border-bottom:1px solid var(--filet)}
+.liste-engagements li:last-child{border-bottom:0;padding-bottom:0}
+#offre-garantie-suivi{align-items:stretch;margin-top:8px;padding-top:14px;border-top:1px solid var(--filet)}
+.etapes-offre{margin:0;padding:0 0 0 1.6em;display:grid;gap:10px;color:var(--texte2)}
+.etapes-offre li{padding-left:4px}
+.etapes-offre li::marker{font-weight:700;color:var(--encre)}
+.actions-abo{display:flex;flex-wrap:wrap;gap:10px}
