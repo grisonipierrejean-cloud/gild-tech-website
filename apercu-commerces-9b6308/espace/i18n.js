@@ -377,6 +377,9 @@
     "offre.rep.commentaires": ["Réponses aux commentaires", "Comment replies"], "offre.cm.sans.plafond": ["{n} ce mois-ci, sans plafond", "{n} this month, no limit"],
     "offre.compteur.debut": ["Le compteur repart à zéro au début du mois.", "The counter resets at the start of the month."], "offre.inclus": ["Ce qui est inclus chaque mois", "What's included each month"],
     "offre.inc.publications": ["Publications (visuels aux formats 4 par 5 et 9 par 16, légende)", "Posts (visuals in 4:5 and 9:16 formats, caption)"], "offre.inc.videos": ["Vidéos courtes", "Short videos"],
+    // Réseaux des publications : Instagram, Facebook et TikTok dans les deux offres (décision du 15/10/2026, 16 h 22), plus les actualités de la fiche Google
+    "offre.inc.reseaux": ["Réseaux de vos publications (reprises aussi en actualités sur votre fiche Google)", "Networks for your posts (also shared as updates on your Google listing)"],
+    "offre.reseaux.tous": ["Instagram, Facebook, TikTok", "Instagram, Facebook, TikTok"], "offre.reseaux.sans.tiktok": ["Instagram, Facebook", "Instagram, Facebook"],
     "offre.inc.avis": ["Réponses aux avis Google", "Replies to Google reviews"], "offre.inc.commentaires": ["Réponses aux commentaires Instagram et Facebook", "Replies to Instagram and Facebook comments"],
     "offre.inc.concurrents": ["Comparaison avec 3 concurrents de votre quartier", "Comparison with 3 competitors in your area"], "offre.inc.bilan": ["Bilan du mois par email, le 1<sup>er</sup>", "Monthly summary by email, on the 1<sup>st</sup>"],
     "offre.idees.compte": ["Une demande d'idées compte pour une publication.", "A request for ideas counts as one post."], "offre.prix.titre": ["Prix de votre offre", "Your plan's price"], "offre.ht.mois": ["HT par mois", "excl. VAT per month"],

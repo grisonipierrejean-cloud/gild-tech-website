@@ -5,9 +5,10 @@
 (function () {
   const cfg = window.RENOM_CONFIG || {};
   // Offres (moteur/offres.json, égalité testée par test_commentaires.js) : Essentiel et Croissance, seules offres vendues depuis le 15/10/2026.
-  // commentaires : réponses aux commentaires Instagram et Facebook comprises (Croissance) ; tiktok : TikTok compris (Croissance). Aucun plafond de commentaires.
+  // commentaires : réponses aux commentaires Instagram et Facebook comprises (Croissance) ; tiktok : publications sur TikTok comprises dans les DEUX offres
+  // (décision du fondateur du 15/10/2026, 16 h 22 : Instagram, Facebook et TikTok en Essentiel comme en Croissance). Aucun plafond de commentaires.
   // Signature : retirée (retiree: true), gardée seulement pour un ancien commerce qui l'aurait encore (plafonds de moteur/offres_retirees.json) ; jamais proposée.
-  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, tiktok: false, prix_ht: 190, prix_semestriel_ht: 950 },
+  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, tiktok: true, prix_ht: 190, prix_semestriel_ht: 950 },
     croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true, tiktok: true, prix_ht: 390, prix_semestriel_ht: 1950 },
     signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true, tiktok: true, retiree: true } };
   const OFFRES_EN_VENTE = Object.keys(OFFRES).filter(k => !OFFRES[k].retiree);
