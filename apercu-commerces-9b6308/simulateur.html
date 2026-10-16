@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renomia, simulateur : ce que vaut une meilleure note</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07080C">
+<link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="fr" href="simulateur.html"><link rel="alternate" hreflang="en" href="en/simulator.html"><link rel="alternate" hreflang="x-default" href="simulateur.html"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/simulator.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<main>
+
+<section class="wrap simple simu">
+<h1>Ce que vaut une meilleure note.</h1>
+<p class="chapo">Un ordre de grandeur, pas une promesse. Une étude de la Harvard Business School a mesuré qu'une étoile de plus sur Yelp rapportait de 5 à 9&nbsp;% de chiffre d'affaires à un restaurant indépendant.</p>
+<p class="calc-limite"><strong>Les limites de cette étude&nbsp;:</strong> elle porte sur des restaurants indépendants de Seattle, notés sur Yelp entre 2003 et 2009. Elle ne parle ni de Google, ni de la France, ni des autres métiers&nbsp;: pour eux, c'est une indication, pas une mesure. Votre résultat dépend de votre commerce, et nous ne vous le garantissons pas.</p>
+<form class="calc carte-form" id="calc" novalidate>
+<fieldset class="calc-mode"><legend>Je préfère indiquer</legend>
+<label class="calc-radio"><input type="radio" name="calc-mode" value="clients" checked> Mes clients et mon panier moyen</label>
+<label class="calc-radio"><input type="radio" name="calc-mode" value="ca"> Mon chiffre d'affaires annuel</label>
+</fieldset>
+<div class="calc-trio" id="calc-clients">
+<div class="champ"><label for="c-clients">Clients par jour</label><input id="c-clients" type="text" inputmode="numeric" autocomplete="off" placeholder="Exemple&nbsp;: 40"></div>
+<div class="champ"><label for="c-panier">Panier moyen, en euros</label><input id="c-panier" type="text" inputmode="decimal" autocomplete="off" placeholder="Exemple&nbsp;: 25"></div>
+<div class="champ"><label for="c-jours">Jours d'ouverture par an</label><input id="c-jours" type="text" inputmode="numeric" autocomplete="off" placeholder="Exemple&nbsp;: 300"></div>
+</div>
+<div class="champ" id="calc-ca" hidden><label for="c-ca">Chiffre d'affaires annuel, en euros</label><input id="c-ca" type="text" inputmode="numeric" autocomplete="off" placeholder="Exemple&nbsp;: 180 000"></div>
+<div class="champ"><label for="c-note">Votre note Google actuelle, sur 5</label><input id="c-note" type="text" inputmode="decimal" autocomplete="off" placeholder="Exemple&nbsp;: 4,1"></div>
+</form>
+<div class="calc-resultat" aria-live="polite">
+<p class="calc-vide" id="calc-vide">Indiquez vos clients par jour, votre panier moyen, vos jours d'ouverture et votre note&nbsp;: le résultat s'affiche ici.</p>
+<div class="calc-plein" id="calc-plein" hidden>
+<p class="calc-base" id="calc-base"></p>
+<div class="calc-gain" id="calc-gain">
+<p class="calc-lib" id="calc-lib"></p>
+<p class="calc-montant"><span id="calc-bas"></span> à <span id="calc-haut"></span></p>
+<p class="calc-unite">de chiffre d'affaires par an, d'après l'étude.</p>
+</div>
+<p class="calc-sommet" id="calc-sommet" hidden></p>
+<p class="calc-seuil" id="calc-seuil" hidden></p>
+</div>
+<p class="calc-prudence">Calcul&nbsp;: l'écart entre votre note et un objectif atteignable (4,5, ou votre note plus une étoile sous 3,5), multiplié par 5 à 9&nbsp;% de votre chiffre d'affaires. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Lire l'étude de Michael Luca</a>. Seuils de note&nbsp;: BrightLocal, <a href="https://www.brightlocal.com/research/local-consumer-review-survey/" rel="noopener">Local Consumer Review Survey 2026</a> (consommateurs aux États-Unis).</p>
+</div>
+<p><a class="btn btn-prim btn-grand" href="index.html#audit">Recevoir mon audit gratuit</a></p>
+</section>
+</main>
+<footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
+<nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav>
+<span class="pied-societe">Un service de Girlden LTD</span></div></div></footer>
+<script src="app.js"></script>
+</body></html>

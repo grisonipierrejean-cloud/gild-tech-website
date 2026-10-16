@@ -41,7 +41,7 @@
     }
   },
   "documents": {
-    "version": "15 octobre 2026"
+    "version": "16 octobre 2026"
   },
   "facturation": {
     "premier_mois": "en entier ; l'abonnement court ensuite de date à date, chaque mois",
@@ -51,7 +51,11 @@
   "frais_mise_en_route": {
     "actif": true,
     "montant_ht": "190",
-    "offerts_jusqu_au": "2026-11-30"
+    "offerts_jusqu_au": "2026-11-30",
+    "offres": [
+      "standard",
+      "premium"
+    ]
   },
   "droit_applicable": "francais",
   "representant_ue": "A_DECIDER",

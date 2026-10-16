@@ -4,20 +4,32 @@
 // Les écrans n'appellent que RENOM_DATA : passer de l'un à l'autre ne change aucun écran.
 (function () {
   const cfg = window.RENOM_CONFIG || {};
-  // Offres (moteur/offres.json, égalité testée par test_commentaires.js) : Essentiel et Croissance, seules offres vendues depuis le 15/10/2026.
-  // commentaires : réponses aux commentaires Instagram et Facebook comprises (Croissance) ; tiktok : publications sur TikTok comprises dans les DEUX offres
-  // (décision du fondateur du 15/10/2026, 16 h 22 : Instagram, Facebook et TikTok en Essentiel comme en Croissance). Aucun plafond de commentaires.
-  // Signature : retirée (retiree: true), gardée seulement pour un ancien commerce qui l'aurait encore (plafonds de moteur/offres_retirees.json) ; jamais proposée.
-  const OFFRES = { essentiel: { nom: "Essentiel", publications: 8, videos: 0, commentaires: false, tiktok: true, prix_ht: 190, prix_semestriel_ht: 950 },
-    croissance: { nom: "Croissance", publications: 16, videos: 4, commentaires: true, tiktok: true, prix_ht: 390, prix_semestriel_ht: 1950 },
-    signature: { nom: "Signature", publications: 24, videos: 8, commentaires: true, tiktok: true, retiree: true } };
+  // Offres (moteur/offres.json et moteur/offres_retirees.json, égalité testée par moteur/tests/test_commentaires.js). Trois offres en vente depuis le 16/10/2026 :
+  // Essentiel (fiche Google seule), Standard (réseaux retenus), Premium (16 contenus dont 4 vidéos, mode délégation). Unité : contenus originaux par mois
+  // (publications + vidéos). Croissance et Signature : retirées (retiree: true), gardées pour un ancien commerce ; jamais proposées. Aucun plafond de commentaires.
+  const OFFRES = {
+    essentiel: { nom: "Essentiel", contenus: 2, publications: 2, videos: 0, reseaux_sociaux: false, commentaires: false, tiktok: false, avis_auto: false, delegation: false, frais_mise_en_route: false, prix_ht: 79, prix_semestriel_ht: 395 },
+    standard: { nom: "Standard", contenus: 8, publications: 8, videos: 0, reseaux_sociaux: true, commentaires: true, tiktok: true, avis_auto: true, delegation: false, frais_mise_en_route: true, prix_ht: 190, prix_semestriel_ht: 950 },
+    premium: { nom: "Premium", contenus: 16, publications: 12, videos: 4, reseaux_sociaux: true, commentaires: true, tiktok: true, avis_auto: true, delegation: true, frais_mise_en_route: true, prix_ht: 390, prix_semestriel_ht: 1950 },
+    croissance: { nom: "Croissance", contenus: 20, publications: 16, videos: 4, reseaux_sociaux: true, commentaires: true, tiktok: true, avis_auto: true, delegation: false, retiree: true },
+    signature: { nom: "Signature", contenus: 32, publications: 24, videos: 8, reseaux_sociaux: true, commentaires: true, tiktok: true, avis_auto: true, delegation: false, retiree: true } };
   const OFFRES_EN_VENTE = Object.keys(OFFRES).filter(k => !OFFRES[k].retiree);
-  // Chiffres des garanties et du paiement (moteur/conditions_offre.json, conditions_offre() de schema.sql) et frais de mise en route (site/legal.json).
-  const CONDITIONS = { garantie_avis: { nouveaux_avis: 10, jours: 60, rappel_jour: 45, en_vue_pct: 75, fermeture_prolonge_au_dela_de_jours: 7 },
-    garantie_reponse: { delai_heures: 24, escalade_heures: 4, collecte_minutes: 15 }, validation_tacite_heures: 48, semestriel: { mois_payes: 5, mois_couverts: 6 },
-    mise_en_route: { prix_ht: 190, offerts_jusqu_au: "2026-11-30" } };
+  const MSG_OFFRES = "Offres en vente : Essentiel, Standard, Premium.";
+  // Chiffres de la garantie des délais, des relances, de la délégation et du paiement (moteur/conditions_offre.json, conditions_offre() de schema.sql)
+  // et frais de mise en route (site/legal.json : Standard et Premium seulement).
+  const CONDITIONS = { garantie_delais: { fiche_optimisee_jours: 7, premier_contenu_heures: 72, avis_traite_heures: 24, alerte_fiche_avant_heures: 48, alerte_contenu_avant_heures: 24,
+      alerte_avis_avant_heures: 4, contrepartie: "mois_suivant_offert" },
+    avis: { collecte_minutes: 15, relances_client_heures: [4, 24] }, delegation: { publication_auto_heures: 48 }, semestriel: { mois_payes: 5, mois_couverts: 6 },
+    objectif_interne_pilotes: { nouveaux_avis: 10, jours: 60, rappel_jour: 45, en_vue_pct: 75, fermeture_prolonge_au_dela_de_jours: 7 },
+    mise_en_route: { prix_ht: 190, offerts_jusqu_au: "2026-11-30", offres: ["standard", "premium"] } };
+  // Réseaux où un commerce peut publier (même règle que reseaux_autorises() de schema.sql et redaction.reseaux_du_commerce) : la fiche Google toujours ;
+  // Instagram, Facebook, TikTok si l'offre comprend les réseaux sociaux ET s'ils sont retenus (aucun choix enregistré : ceux de l'offre).
+  const reseauxAutorises = c => { const o = OFFRES[(c || {}).offre_id] || {}, ret = Array.isArray((c || {}).reseaux_retenus) ? c.reseaux_retenus : ["instagram", "facebook", "tiktok"];
+    return ["instagram", "facebook", "google", "tiktok"].filter(r => r === "google" || (o.reseaux_sociaux && ret.includes(r) && (r !== "tiktok" || o.tiktok))); };
   const FICHE = ["nom", "metier", "ville", "ton", "specialites", "horaires", "mots_cles", "mentions_autorisees", "contact", "email_validation", "couleurs", "reglage_avis", "lien_avis", "notifications", "commentaires_compliments_auto"];
   const RESEAUX = ["facebook", "instagram", "google", "tiktok"];
+  // Même refus que le déclencheur a_reseaux_retenus de schema.sql : un réseau hors de l'offre ou non retenu à la mise en route ne se programme pas.
+  const horsOffre = (c, r) => { if (!reseauxAutorises(c).includes(r)) throw new Error("réseau non compris dans l'offre ou non retenu pour ce commerce : " + r); };
   const TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"], MAX = 50 * 1024 * 1024;
   const verifierFichier = f => !TYPES.includes(f.type) ? "Format non accepté (JPEG, PNG, WebP ou HEIC)." : f.size > MAX ? "Fichier trop lourd (50 Mo au plus)." : null;
   const mois0 = () => new Date().toISOString().slice(0, 7) + "-01";
@@ -71,7 +83,12 @@
       return r;
     },
     async validerParJeton(jeton, decision, texte) { await rpcPublic("valider_par_jeton", { p_jeton: String(jeton || ""), p_decision: decision, p_texte: texte == null ? null : String(texte) }); },
+    // ---- Tournée du jour (bloc « Prospection quotidienne » de schema.sql) : lien « résultat » de l'email de PJ (resultat.html#<jeton>), sans connexion
+    async prospectParJeton(jeton) { return premierDe(await rpcPublic("prospect_par_jeton", { p_jeton: String(jeton || "") })); },
+    async resultatParJeton(jeton, resultat, note) { return premierDe(await rpcPublic("resultat_par_jeton", { p_jeton: String(jeton || ""), p_resultat: resultat, p_note: note == null ? null : String(note) })); },
   };
+  // Résultats possibles d'un prospect de la tournée et effet (mêmes règles que appliquer_resultat_prospect de schema.sql).
+  const RESULTATS_TOURNEE = ["pas_interesse", "rappeler", "rdv", "pilote"];
   // ---- Collecte : fin des règles communes
 
   // ---- Mise à jour de l'espace membre : règles communes aux deux adaptateurs (contrat : ordres/CONTRAT-MAJ-MEMBRE.md)
@@ -285,8 +302,10 @@
     // Paiement Stripe (fonction appliquer_evenement_stripe de schema.sql)
     PAIEMENT_REFUSE: "Paiement refusé", ABONNEMENT_SANS_COMMERCE: "Paiement sans commerce rattaché", REMISE_LANCEMENT_DEJA_UTILISEE: "Remise de lancement utilisée deux fois",
     ABONNEMENT_RESILIE: "Abonnement résilié",
-    // Garanties (bloc « Modèle Vincent » de schema.sql)
-    GARANTIE_AVIS_J45: "Garantie des 10 avis : J+45, objectif pas en vue", GARANTIE_AVIS_ECHUE: "Garantie des 10 avis : échéance passée", VALIDATION_TACITE_A_PROGRAMMER: "Contenu validé sans réponse, à programmer" };
+    // Trois offres (bloc « Trois offres » de schema.sql) : garantie des délais, mode délégation, objectif interne des pilotes
+    DELAI_FICHE_BIENTOT: "Garantie : fiche à optimiser bientôt", DELAI_CONTENU_BIENTOT: "Garantie : premier contenu à proposer bientôt", DELAI_AVIS_BIENTOT: "Garantie : avis à traiter bientôt",
+    MOIS_OFFERT_A_APPLIQUER: "Garantie manquée : mois offert à appliquer", OBJECTIF_PILOTE_J45: "Objectif interne des pilotes : J+45, pas en vue",
+    OBJECTIF_PILOTE_NON_ATTEINT: "Objectif interne des pilotes : non atteint", VALIDATION_TACITE_A_PROGRAMMER: "Mode délégation : contenu validé, à programmer" };
   const texteAlerte = a => { const d = a.detail || {};
     if (a.type === "ERREUR_WORKFLOW") return `${d.workflow || "Workflow inconnu"}, nœud ${d.noeud || "inconnu"} : ${d.message || ""}`;
     if (a.type === "PHOTOS_EMAIL_REFUSEES") return `${d.pieces || 0} pièce(s) jointe(s) refusée(s) : ${d.raison || d.statut || ""}. Rien n'a été déposé.`;
@@ -294,15 +313,17 @@
     if (a.type === "PAIEMENT_REFUSE") return `Abonnement ${d.abonnement || ""} : appeler le commerçant sous 24 h.${d.test ? " (mode test)" : ""}`;
     if (a.type === "ABONNEMENT_SANS_COMMERCE") return `Abonnement ${d.abonnement || ""} payé sans commerce rattaché : le rattacher dans l'éditeur SQL.${d.test ? " (mode test)" : ""}`;
     if (a.type === "REMISE_LANCEMENT_DEJA_UTILISEE") return `Abonnement ${d.abonnement || ""} : retirer la remise dans Stripe (une fois par commerce).${d.test ? " (mode test)" : ""}`;
-    if (a.type === "GARANTIE_AVIS_J45") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} au jour ${d.jour} (seuil en vue : ${d.seuil_en_vue}). Échéance le ${d.echeance} : vérifier les cartes en salle et relancer les demandes d'avis.`;
-    if (a.type === "GARANTIE_AVIS_ECHUE") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} à l'échéance du ${d.echeance} : on continue gratuitement jusqu'aux ${d.objectif} avis. Suspendre la facturation dans Stripe.`;
+    if (a.type === "OBJECTIF_PILOTE_J45") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} au jour ${d.jour} (seuil en vue : ${d.seuil_en_vue}). Objectif interne, aucune conséquence de facturation.`;
+    if (a.type === "OBJECTIF_PILOTE_NON_ATTEINT") return `${d.gagnes} nouveau(x) avis sur ${d.objectif} à l'échéance du ${d.echeance}. Objectif interne, aucune conséquence de facturation.`;
+    if (/^DELAI_/.test(a.type)) return `Échéance : ${String(d.echeance || "").slice(0, 16).replace("T", " ")} (UTC).`;
+    if (a.type === "MOIS_OFFERT_A_APPLIQUER") return `Mois offert : ${d.mois_offert}. L'appliquer à la main dans Stripe, puis le noter dans la console.`;
     if (a.type === "VALIDATION_TACITE_A_PROGRAMMER") return `Contenu validé sans réponse en 48 h, non programmé : ${d.raison || "raison inconnue"}. Le programmer à la main.`;
     if (a.type === "ABONNEMENT_RESILIE") return `Abonnement ${d.abonnement || ""} : arrêter les publications en fin de période, retirer les accès sous 7 jours ouvrés.${d.test ? " (mode test)" : ""}`;
     if (/_A_EFFACER$/.test(a.type)) return `Toujours en attente d'une personne. Texte effacé le ${String(d.efface_le || "").slice(0, 10)} (règle des 30 jours) : à traiter avant.`;
     return JSON.stringify(d); };
   // ---- Paiement Stripe : lien du bouton « Payer / gérer mon abonnement » (adresses publiques de config.js, stripe : {liens, portail, fraisOffertsJusquAu},
   // écrites par outils/stripe_catalogue.py ; liens[offre][rythme][frais], rythme « mensuel » ou « semestriel » (6 mois payés d'avance, 1 offert), frais
-  // « offerts » (souscription jusqu'au 30/11/2026 inclus) ou « factures » (190 € HT une fois). Abonnement en cours : portail client ; aucun abonnement ou
+  // « offerts » (Standard et Premium, souscription jusqu'au 30/11/2026 inclus), « factures » (190 € HT une fois) ou « sans_frais » (Essentiel). Abonnement en cours : portail client ; aucun abonnement ou
   // abonnement résilié : lien de paiement de l'offre, avec l'identifiant du commerce (client_reference_id, relu par le webhook). Aucun code promotionnel.
   // Rien de configuré : pas de bouton (null). Source : https://docs.stripe.com/payment-links/url-parameters, lue le 14/10/2026.
   const STATUTS_ABONNEMENT = ["en_attente", "actif", "impaye", "resilie"];
@@ -313,7 +334,8 @@
     if (ab && ab.statut !== "resilie") return https(s.portail);
     if (!OFFRES_EN_VENTE.includes(offre)) return null;   // offre retirée : aucun lien de paiement
     const r = ((s.liens || {})[offre] || {})[rythme === "semestriel" ? "semestriel" : "mensuel"] || {};
-    const base = https(fraisOfferts(maintenant, s) ? (r.offerts || r.factures) : r.factures);
+    // Essentiel : aucuns frais de mise en route, un seul lien (« sans_frais ») ; Standard et Premium : « offerts » jusqu'au 30/11/2026 inclus, puis « factures ».
+    const base = https(!(OFFRES[offre] || {}).frais_mise_en_route ? r.sans_frais : fraisOfferts(maintenant, s) ? (r.offerts || r.factures) : r.factures);
     if (!base || !c || !/^[A-Za-z0-9_-]{1,200}$/.test(String(c.id || ""))) return null;
     return base + (base.includes("?") ? "&" : "?") + ["client_reference_id=" + encodeURIComponent(c.id), "locale=fr"].join("&");
   }
@@ -338,7 +360,7 @@
       if (PUBLIQUE) throw new Error("La démonstration n'a pas pu se charger. Rechargez la page.");   // jamais de repli sur les données du parcours
       return { users: { "commerce@demo": { role: "commerçant", commerce: "c-demo" }, "autre@demo": { role: "commerçant", commerce: "c-autre" }, "pj@demo": { role: "administrateur" } },
         commerces: { "c-demo": { id: "c-demo", nom: "Commerce de démonstration", metier: "autre", ville: "", offre_id: "essentiel", en_pause: false, mots_cles: [], mentions_autorisees: [], couleurs: { fond: "#FFFFFF", texte: "#000000", accent: "#2438FF" }, reglage_avis: "auto_des_4_etoiles" },
-          "c-autre": { id: "c-autre", nom: "Salle de démonstration", metier: "sport", ville: "Orléans", offre_id: "croissance", en_pause: false, mots_cles: [], mentions_autorisees: [], couleurs: { fond: "#FFFFFF", texte: "#000000", accent: "#2438FF" }, reglage_avis: "tout_automatique" } },
+          "c-autre": { id: "c-autre", nom: "Salle de démonstration", metier: "sport", ville: "Orléans", offre_id: "premium", en_pause: false, mots_cles: [], mentions_autorisees: [], couleurs: { fond: "#FFFFFF", texte: "#000000", accent: "#2438FF" }, reglage_avis: "auto_des_4_etoiles" } },
         photos: [], contenus: [], publications: [], idees_demandes: [], idees: [], avis: [], journal: [], invitations: [],
         comptes: { "c-demo": { google: { etat: "non_connecte" }, facebook: { etat: "non_connecte" }, instagram: { etat: "non_connecte" }, tiktok: { etat: "non_connecte" } }, "c-autre": { google: { etat: "non_connecte" }, facebook: { etat: "non_connecte" }, instagram: { etat: "non_connecte" }, tiktok: { etat: "non_connecte" } } } };
     };
@@ -560,6 +582,13 @@
       Object.values(G.commerces).forEach(c => { if (c.demarrage_fini == null) c.demarrage_fini = c.id !== "c-autre"; if (!("demarrage" in c)) c.demarrage = null; c.notifications = c.notifications || { email: true, whatsapp: false }; });
       const maintenant = Date.now(); datesRelatives(G, maintenant);
       G.contenus.forEach(x => { x.format = x.format || (x.type === "video" ? "video" : "publication"); });
+      // Trois offres (16/10/2026) : une réponse proposée ou publiée vaut « traitée » (garantie des 24 h) ; plus de réglage « tout automatique ».
+      (G.avis || []).forEach(a => { if (!a.traite_le && ["a_valider", "valide", "publie", "refuse"].includes(a.statut)) a.traite_le = a.cree_le; });
+      // Avis sensible dont l'équipe a déjà proposé une réponse au commerçant (graine : propose_apres_h) : traité au sens de la garantie des 24 h.
+      (G.avis || []).forEach(a => { if (a.propose_apres_h != null && !a.propose_le) { a.propose_le = a.traite_le = new Date(Date.parse(a.cree_le) + a.propose_apres_h * 3600000).toISOString(); } delete a.propose_apres_h; });
+      Object.values(G.commerces).forEach(c => { if (c.reglage_avis && c.reglage_avis !== "auto_des_4_etoiles") c.reglage_avis = "auto_des_4_etoiles";
+        // Graine du parcours générée avant le 16/10/2026 (offre Croissance, retirée) : la démonstration montre l'offre en vente qui la remplace, Premium.
+        if ((OFFRES[c.offre_id] || {}).retiree) c.offre_id = "premium"; });
       // Commerce principal de la démonstration : celui que désigne la graine (demo_maj), sinon celui du premier compte commerçant.
       // Les textes propres au commerce du parcours viennent de sa propre fiche : aucun nom de commerce n'est écrit ici.
       const prof = G.demo_maj || null, premier = Object.values(G.users).find(u => u.commerce), er = G.commerces[prof ? prof.principal : premier && premier.commerce];
@@ -697,7 +726,7 @@
         await init(); const c = cur(); pasEnPause(c); const ct = mine("contenus").find(x => x.id === id);
         if (!ct || ct.statut !== "approuve") throw new Error(REGLES.programme);
         reseaux = (reseaux || []).filter(r => RESEAUX.includes(r)); if (!reseaux.length) throw new Error("Choisissez au moins un réseau.");
-        for (const r of reseaux) { if ((E.comptes[c.id][r] || {}).etat !== "connecte") throw new Error("Réseau non connecté : " + r + "."); if (!reseauxPour(ct).includes(r)) throw new Error("Une vidéo ou une story ne se programme pas sur la fiche Google."); }
+        for (const r of reseaux) { horsOffre(c, r); if ((E.comptes[c.id][r] || {}).etat !== "connecte") throw new Error("Réseau non connecté : " + r + "."); if (!reseauxPour(ct).includes(r)) throw new Error("Une vidéo ou une story ne se programme pas sur la fiche Google."); }
         const pris = mine("publications").filter(p => ["programme", "envoye", "publie"].includes(p.statut)).map(p => new Date(p.prevu_le).getTime());
         const t = iso(prochainCreneau(c.metier, pris));
         E.publications.push({ id: uid(), commerce_id: c.id, contenu_id: id, reseaux, prevu_le: t, statut: "programme", auto: true, cree_le: iso(Date.now()) });
@@ -838,7 +867,14 @@
         { id: "pr-2", email: "bonjour@coiffure-exemple.invalid", commerce: "Coiffure d'exemple", ville: "", metier: "beaute", audit_il_y_a_h: 150, rapport_envoye_il_y_a_h: 150, relances: 2, derniere_relance_il_y_a_h: 30, demo: true },
         { id: "pr-3", email: "studio@sport-exemple.invalid", commerce: "Studio d'exemple", ville: "", metier: "sport", audit_il_y_a_h: 80, rapport_envoye_il_y_a_h: 80, relances: 1, rdv_il_y_a_h: 20, demo: true },
         { id: "pr-4", email: "fleurs@fleuriste-exemple.invalid", commerce: "Fleuriste d'exemple", ville: "", metier: "autre", audit_il_y_a_h: 30, rapport_envoye_il_y_a_h: null, relances: 0, demo: true });
-      G.prospects.forEach(x => { [["audit", "audit_le"], ["rapport_envoye", "rapport_envoye_le"], ["rdv", "rdv_le"], ["repondu", "repondu_le"], ["desinscrit", "desinscrit_le"], ["derniere_relance", "derniere_relance_le"]].forEach(([k, c]) => {
+      // Tournée du jour (fictifs) : sans adresse email, identifiés par SIRET ; le lien « résultat » de démonstration a un jeton fixe (64 caractères).
+      if (!G.prospects.some(x => x.origine === "tournee")) G.prospects.push(
+        { id: "pr-t1", origine: "tournee", email: null, commerce: "RESTAURANT D'EXEMPLE", ville: "VILLEURBANNE", code_postal: "69100", siren: "812000001", siret: "81200000100011", canal: "visite",
+          resultat: "propose", audit_il_y_a_h: 6, propose_il_y_a_h: 6, relances: 0, jeton_tournee: "d".repeat(64), demo: true },
+        { id: "pr-t2", origine: "tournee", email: null, commerce: "BRASSERIE D'EXEMPLE", ville: "VILLEURBANNE", code_postal: "69100", siren: "812000002", siret: "81200000200011", canal: "appel",
+          resultat: "rappeler", audit_il_y_a_h: 76, propose_il_y_a_h: 76, resultat_il_y_a_h: 50, relances: 1, derniere_relance_il_y_a_h: 4, note_pj: "Rappeler après 15 h", jeton_tournee: "e".repeat(64), demo: true });
+      G.prospects.forEach(x => { [["audit", "audit_le"], ["rapport_envoye", "rapport_envoye_le"], ["rdv", "rdv_le"], ["repondu", "repondu_le"], ["desinscrit", "desinscrit_le"], ["derniere_relance", "derniere_relance_le"],
+        ["propose", "propose_le"], ["resultat", "resultat_le"]].forEach(([k, c]) => {
         const h = x[k + "_il_y_a_h"]; if (h !== undefined) { x[c] = h == null ? null : iso(maintenant - h * HEURE); delete x[k + "_il_y_a_h"]; } }); x.jeton = x.jeton || nouveauJeton(); });
       if (!G.alertes_exploitant.length) G.alertes_exploitant.push(
         { id: "al-1", type: "PHOTOS_EMAIL_REFUSEES", commerce_id: null, detail: { statut: "inconnu", raison: "adresse inconnue", pieces: 2 }, cree_le: iso(maintenant - 20 * HEURE), demo: true },
@@ -854,6 +890,18 @@
       E.idees.unshift({ id: "idee-semaine-" + lundi, commerce_id: pr.id, titre: x.titre, texte: x.texte, origine: x.origine, statut: "a_valider", semaine: lundi, motif: x.motif,
         cree_le: iso(Math.min(maintenant - HEURE, instantParis(+lundi.slice(0, 4), +lundi.slice(5, 7) - 1, +lundi.slice(8, 10), 7, 0))), demo: true });
       sauver();
+    }
+    function resultatDemo(p, resultat, note) {
+      if (!p || p.origine !== "tournee") throw new Error("Prospect de la tournée introuvable.");
+      if (!RESULTATS_TOURNEE.includes(resultat)) throw new Error("Résultat inconnu : pas intéressé, rappeler, rendez-vous ou pilote signé.");
+      const n = String(note || "").trim(); if (n.length > 500) throw new Error("La note est trop longue (500 caractères au plus).");
+      const maintenant = iso(Date.now());
+      Object.assign(p, { resultat, resultat_le: maintenant });
+      if (resultat === "rappeler") Object.assign(p, { relances: 0, derniere_relance_le: null });
+      if (resultat === "rdv" || resultat === "pilote") p.rdv_le = p.rdv_le || maintenant;
+      if (resultat === "pas_interesse") p.desinscrit_le = p.desinscrit_le || maintenant;
+      if (n) p.note_pj = [p.note_pj, new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", timeZone: "Europe/Paris" }) + " : " + n].filter(Boolean).join("\n").slice(0, 1000);
+      sauver(); return { id: p.id, commerce: p.commerce, resultat };
     }
     const autoDemo = {
       emailPhotos() { return cfg.emailPhotos ? { adresse: cfg.emailPhotos, demo: false } : { adresse: "photos@renom.example", demo: true }; },
@@ -923,65 +971,178 @@
         await init(); admin(); const p = liste("prospects").find(x => x.id === id), k = { rdv: "rdv_le", reponse: "repondu_le", arreter: "desinscrit_le", rapport_envoye: "rapport_envoye_le" }[action];
         if (!p || !k) throw new Error("Prospect ou action inconnus."); p[k] = p[k] || iso(Date.now()); sauver();
       },
+      // ---- Tournée du jour : résultat noté depuis la console ou par le lien de l'email (resultat.html), mêmes règles que appliquer_resultat_prospect
+      async adminResultatProspect(id, resultat, note) { await init(); admin(); const p = liste("prospects").find(x => x.id === id); return resultatDemo(p, resultat, note); },
+      async prospectParJeton(jeton) {
+        await init(); const j = String(jeton || ""), p = /^[0-9a-f]{64}$/.test(j) && liste("prospects").find(x => x.jeton_tournee === j);
+        if (!p) throw new Error("Ce lien n'est pas reconnu.");
+        if (p.jeton_tournee_utilise) throw new Error("Ce lien a déjà servi. Le résultat se change dans la console, onglet Prospects.");
+        return { commerce: p.commerce, ville: p.ville, code_postal: p.code_postal, canal: p.canal, resultat: p.resultat, expire_le: iso(Date.now() + 7 * 24 * 3600000) };
+      },
+      async resultatParJeton(jeton, resultat, note) {
+        const info = await autoDemo.prospectParJeton(jeton), p = liste("prospects").find(x => x.jeton_tournee === String(jeton));
+        const r = resultatDemo(p, resultat, note); p.jeton_tournee_utilise = true; sauver(); return Object.assign(r, { commerce: info.commerce });
+      },
       async adminMiseEnRoute(cid, point, etat) {
         await init(); admin(); if (!["a_faire", "declare", "fait"].includes(etat) || !ORDRE_POINTS.includes(point)) throw new Error("Point ou état inconnu.");
         etatMiseEnRoute(cid); tableMR()[cid][point] = etat; jour(cid, "MISE_EN_ROUTE", { point, etat }); sauver(); return etatMiseEnRoute(cid);
       },
     };
 
-    // ---- Garanties (démonstration) : mêmes règles que le bloc « Modèle Vincent » de schema.sql. Le passage du serveur (n8n toutes les 15 minutes :
-    // escalade des avis à 4 h, validation tacite à 48 h, rappels de la garantie) est simulé à l'ouverture de l'écran « Avis et garanties » de la console.
+    // ---- Trois offres (démonstration) : mêmes règles que le bloc « Trois offres » de schema.sql. Le passage du serveur (n8n toutes les heures :
+    // avis Premium à l'équipe, relances du commerçant, mode délégation à 48 h, garantie des délais, objectif interne des pilotes) est simulé à
+    // l'ouverture de l'écran « Avis et garanties » de la console et de l'écran Offre de l'espace.
     const J_GAR = 24 * MS_H, jourParis = t => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(t));
     const ajouterJours = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * J_GAR).toISOString().slice(0, 10);
+    const offreDe = cid => OFFRES[(E.commerces[cid] || {}).offre_id] || {};
+    const principalDemo = () => { const prof = E.demo_maj || null, premier = Object.values(E.users).find(u => u.commerce); return prof ? prof.principal : premier && premier.commerce; };
+    // Objectif INTERNE des pilotes (ancienne garantie « 10 avis ») : suivi pour l'administrateur seulement, jamais montré au commerçant.
     function assurerGarantieDemo() {
       if (E.garanties_avis) return; E.garanties_avis = [];
-      const prof = E.demo_maj || null, premier = Object.values(E.users).find(u => u.commerce), cid = prof ? prof.principal : premier && premier.commerce;
-      if (!cid || !E.commerces[cid]) return;
+      const cid = principalDemo(); if (!cid || !E.commerces[cid]) return;
       const depart = ajouterJours(jourParis(Date.now()), PUBLIQUE ? -20 : -46);
       E.garanties_avis.push({ commerce_id: cid, depart_le: depart, avis_depart: PUBLIQUE ? 40 : 30, capture: cid + "/garantie/capture-depart.png", cartes_en_place_le: depart,
         prolongation_jours: 0, avis_releve: null, releve_le: null, rappel_j45_le: null, echue_le: null, atteinte_le: null, demo: true });
     }
     function garantieEtat(g) {
-      const k = CONDITIONS.garantie_avis, nouveaux = E.avis.filter(a => a.commerce_id === g.commerce_id && jourParis(a.cree_le) >= g.depart_le).length;
+      const k = CONDITIONS.objectif_interne_pilotes, nouveaux = E.avis.filter(a => a.commerce_id === g.commerce_id && jourParis(a.cree_le) >= g.depart_le).length;
       const actuel = g.avis_releve != null ? g.avis_releve : g.avis_depart + nouveaux, gagnes = Math.max(actuel - g.avis_depart, 0), ech = ajouterJours(g.depart_le, k.jours + (g.prolongation_jours || 0));
       const auj = jourParis(Date.now()), jourN = Math.round((Date.parse(auj) - Date.parse(g.depart_le)) / J_GAR), seuil = Math.ceil(k.nouveaux_avis * k.en_vue_pct / 100);
-      const etat = gagnes >= k.nouveaux_avis ? "atteinte" : !g.cartes_en_place_le ? "condition_manquante" : auj > ech ? "travail_gratuit" : "en_cours";
+      const etat = gagnes >= k.nouveaux_avis ? "atteinte" : !g.cartes_en_place_le ? "condition_manquante" : auj > ech ? "non_atteint" : "en_cours";
       return { commerce_id: g.commerce_id, commerce: (E.commerces[g.commerce_id] || {}).nom, depart_le: g.depart_le, avis_depart: g.avis_depart, capture: g.capture, cartes_en_place_le: g.cartes_en_place_le,
         prolongation_jours: g.prolongation_jours || 0, avis_releve: g.avis_releve, releve_le: g.releve_le, nouveaux_recus: nouveaux, avis_actuel: actuel, gagnes, objectif: k.nouveaux_avis,
         objectif_total: g.avis_depart + k.nouveaux_avis, echeance: ech, jour: jourN, en_vue: gagnes >= seuil, seuil_en_vue: seuil, etat, source: g.avis_releve != null ? "releve" : "avis_recus",
         rappel_j45_le: g.rappel_j45_le, echue_le: g.echue_le, atteinte_le: g.atteinte_le, demo: !!g.demo };
     }
+    // Garantie sur les délais : départ = remise des accès ET premières photos ; fiche sous 7 jours, premier contenu sous 72 h (Standard, Premium), avis traité sous 24 h.
+    function assurerDelaisDemo() {
+      if (E.garantie_delais) return; E.garantie_delais = []; E.manquements_garantie = E.manquements_garantie || [];
+      const cid = principalDemo(); if (!cid || !E.commerces[cid]) return;
+      const dep = Date.now() - 12 * J_GAR;
+      E.garantie_delais.push({ commerce_id: cid, acces_remis_le: iso(dep), photos_recues_le: iso(dep), fiche_optimisee_le: iso(dep + 4 * J_GAR), premier_contenu_le: iso(dep + 30 * MS_H), alerte_fiche_le: null, alerte_contenu_le: null, demo: true });
+    }
+    const etatDelai = (ech, fait) => ech == null ? "non_demarre" : fait != null && fait <= ech ? "tenu" : (fait != null ? fait : Date.now()) > ech ? "manque" : "en_cours";
+    function delaisEtat(g) {
+      const k = CONDITIONS.garantie_delais, o = offreDe(g.commerce_id), ha = k.avis_traite_heures * MS_H;
+      const dep = g.acces_remis_le && g.photos_recues_le ? Math.max(Date.parse(g.acces_remis_le), Date.parse(g.photos_recues_le)) : null;
+      const ef = dep == null ? null : dep + k.fiche_optimisee_jours * J_GAR, ec = dep == null || !o.reseaux_sociaux ? null : dep + k.premier_contenu_heures * MS_H;
+      const soumis = E.contenus.filter(x => x.commerce_id === g.commerce_id && (x.soumis_le || x.cree_le)).map(x => Date.parse(x.soumis_le || x.cree_le));
+      const pc = g.premier_contenu_le ? Date.parse(g.premier_contenu_le) : soumis.length ? Math.min(...soumis) : null;
+      const ms = (E.manquements_garantie || []).filter(m => m.commerce_id === g.commerce_id);
+      return { commerce_id: g.commerce_id, commerce: (E.commerces[g.commerce_id] || {}).nom, offre: (E.commerces[g.commerce_id] || {}).offre_id, depart: dep == null ? null : iso(dep),
+        acces_remis_le: g.acces_remis_le, photos_recues_le: g.photos_recues_le,
+        fiche: { echeance: ef == null ? null : iso(ef), fait_le: g.fiche_optimisee_le, etat: etatDelai(ef, g.fiche_optimisee_le ? Date.parse(g.fiche_optimisee_le) : null) },
+        premier_contenu: o.reseaux_sociaux ? { echeance: ec == null ? null : iso(ec), fait_le: pc == null ? null : iso(pc), etat: etatDelai(ec, pc == null ? null : Math.max(pc, dep)) } : null,
+        avis_en_cours: dep == null ? [] : E.avis.filter(a => a.commerce_id === g.commerce_id && !a.traite_le && Date.parse(a.cree_le) >= dep).sort((a, b) => a.cree_le.localeCompare(b.cree_le))
+          .map(a => ({ id: a.id, note: a.note, recu_le: a.cree_le, echeance: iso(Date.parse(a.cree_le) + ha), en_retard: Date.now() > Date.parse(a.cree_le) + ha })),
+        manquements: ms.map(m => ({ id: m.id, engagement: m.engagement, objet_id: m.objet_id, echeance: m.echeance, mois_offert: m.mois_offert, statut: m.statut, motif: m.motif || null })),
+        mois_offerts: [...new Set(ms.filter(m => m.statut !== "ecarte").map(m => m.mois_offert))], demo: !!g.demo };
+    }
+    const moisSuivant = t => { const d = jourParis(t), [a, m] = d.split("-").map(Number); return (m === 12 ? (a + 1) + "-01" : a + "-" + String(m + 1).padStart(2, "0")) + "-01"; };
+    function noterManquement(cid, engagement, objet, echeance, l) {
+      const ms = (E.manquements_garantie = E.manquements_garantie || []);
+      if (ms.some(m => m.commerce_id === cid && m.engagement === engagement && (m.objet_id || null) === (objet || null))) return;
+      const mo = moisSuivant(echeance), nouveau = !ms.some(m => m.commerce_id === cid && m.mois_offert === mo && m.statut !== "ecarte"), id = ms.length + 1;
+      ms.push({ id, commerce_id: cid, engagement, objet_id: objet || null, echeance: iso(echeance), mois_offert: mo, statut: "a_appliquer", motif: null, constate_le: iso(Date.now()) });
+      jour(cid, "GARANTIE_MANQUEMENT", { engagement, objet: objet || null, echeance: iso(echeance), mois_offert: mo });
+      if (nouveau) liste("alertes_exploitant").unshift({ id: uid(), type: "MOIS_OFFERT_A_APPLIQUER", commerce_id: cid, detail: { mois_offert: mo, engagement, echeance: iso(echeance), manquement: id }, cree_le: iso(Date.now()) });
+      l.push({ manquement: id, commerce_id: cid, engagement, mois_offert: mo, nouveau_mois_offert: nouveau });
+    }
     function passageServeurDemo() {
-      const maintenant = Date.now(), R = CONDITIONS.garantie_reponse, l = { escalades: [], validations_tacites: [], rappels: [] };
-      E.avis.filter(a => a.statut === "a_valider" && !a.sensible && maintenant - Date.parse(a.cree_le) >= R.escalade_heures * MS_H).forEach(a => {
-        a.statut = "escalade"; a.escalade_le = iso(maintenant); jour(a.commerce_id, "AVIS_ESCALADE", { avis: a.id, note: a.note }); l.escalades.push(a.id);
+      const maintenant = Date.now(), l = { escalades: [], relances_avis: [], validations_tacites: [], rappels: [], delais: { alertes: [], manquements: [] } };
+      // Premium : un avis « à valider » va à l'équipe, tout de suite. Essentiel et Standard : plus d'escalade, le client garde la main (relances).
+      E.avis.filter(a => a.statut === "a_valider" && !a.sensible && offreDe(a.commerce_id).delegation).forEach(a => {
+        a.statut = "escalade"; a.decision = "equipe"; a.escalade_le = iso(maintenant); a.traite_le = null; jour(a.commerce_id, "AVIS_EQUIPE", { avis: a.id, note: a.note }); l.escalades.push(a.id);
         liste("jetons_validation").filter(j => j.objet === "avis" && j.objet_id === a.id && !j.utilise_le).forEach(j => { j.expire_le = iso(maintenant); }); });
-      // Validation tacite : approuvé, puis programmé au prochain créneau sur les réseaux connectés compris dans l'offre (démonstration : marqué approuvé seulement).
-      E.contenus.filter(x => x.statut === "a_valider" && !(E.commerces[x.commerce_id] || {}).en_pause && maintenant - Date.parse(x.soumis_le || x.cree_le) >= CONDITIONS.validation_tacite_heures * MS_H).forEach(x => {
-        x.statut = "approuve"; x.valide_tacitement_le = iso(maintenant); jour(x.commerce_id, "VALIDATION_TACITE", { contenu: x.id, heures: CONDITIONS.validation_tacite_heures }); l.validations_tacites.push(x.id); });
+      const hs = CONDITIONS.avis.relances_client_heures;
+      E.avis.filter(a => a.statut === "a_valider" && !a.sensible && (a.relances || 0) < hs.length && maintenant - Date.parse(a.traite_le || a.cree_le) >= hs[a.relances || 0] * MS_H).forEach(a => {
+        a.relances = (a.relances || 0) + 1; a.derniere_relance_le = iso(maintenant); jour(a.commerce_id, "AVIS_RELANCE", { avis: a.id, numero: a.relances }); l.relances_avis.push(a.id); });
+      // Mode délégation (Premium signé seulement) : approuvé 48 h après l'envoi sans réponse (démonstration : marqué approuvé seulement).
+      E.contenus.filter(x => x.statut === "a_valider" && !(E.commerces[x.commerce_id] || {}).en_pause && offreDe(x.commerce_id).delegation && (E.commerces[x.commerce_id] || {}).delegation_signee_le
+          && maintenant - Date.parse(x.soumis_le || x.cree_le) >= CONDITIONS.delegation.publication_auto_heures * MS_H).forEach(x => {
+        x.statut = "approuve"; x.valide_tacitement_le = iso(maintenant); jour(x.commerce_id, "VALIDATION_TACITE", { contenu: x.id, heures: CONDITIONS.delegation.publication_auto_heures, mode: "delegation" }); l.validations_tacites.push(x.id); });
+      // Garantie des délais : alertes avant dépassement, manquements après.
+      assurerDelaisDemo(); const k = CONDITIONS.garantie_delais, ha = k.avis_traite_heures * MS_H;
+      E.garantie_delais.forEach(g => { const c = E.commerces[g.commerce_id]; if (!c || c.en_pause || !g.acces_remis_le || !g.photos_recues_le) return;
+        const dep = Math.max(Date.parse(g.acces_remis_le), Date.parse(g.photos_recues_le)), ef = dep + k.fiche_optimisee_jours * J_GAR, fo = g.fiche_optimisee_le ? Date.parse(g.fiche_optimisee_le) : null;
+        if ((fo != null ? fo : maintenant) > ef) noterManquement(g.commerce_id, "fiche_7j", null, ef, l.delais.manquements);
+        else if (fo == null && !g.alerte_fiche_le && maintenant > ef - k.alerte_fiche_avant_heures * MS_H) { g.alerte_fiche_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "DELAI_FICHE_BIENTOT", commerce_id: g.commerce_id, detail: { echeance: iso(ef) }, cree_le: iso(maintenant) }); l.delais.alertes.push("DELAI_FICHE_BIENTOT"); }
+        if (offreDe(g.commerce_id).reseaux_sociaux) { const e = delaisEtat(g).premier_contenu, ec = Date.parse(e.echeance);
+          if (e.etat === "manque") noterManquement(g.commerce_id, "premier_contenu_72h", null, ec, l.delais.manquements);
+          else if (!e.fait_le && !g.alerte_contenu_le && maintenant > ec - k.alerte_contenu_avant_heures * MS_H) { g.alerte_contenu_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "DELAI_CONTENU_BIENTOT", commerce_id: g.commerce_id, detail: { echeance: iso(ec) }, cree_le: iso(maintenant) }); l.delais.alertes.push("DELAI_CONTENU_BIENTOT"); } }
+        E.avis.filter(a => a.commerce_id === g.commerce_id && Date.parse(a.cree_le) >= dep).forEach(a => { const ech = Date.parse(a.cree_le) + ha, tr = a.traite_le ? Date.parse(a.traite_le) : null;
+          if ((tr != null ? tr : maintenant) > ech) noterManquement(g.commerce_id, "avis_24h", a.id, ech, l.delais.manquements);
+          else if (tr == null && !a.alerte_delai_le && maintenant > ech - k.alerte_avis_avant_heures * MS_H) { a.alerte_delai_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "DELAI_AVIS_BIENTOT", commerce_id: g.commerce_id, detail: { avis: a.id, note: a.note, echeance: iso(ech) }, cree_le: iso(maintenant) }); l.delais.alertes.push("DELAI_AVIS_BIENTOT"); } });
+      });
+      // Objectif interne des pilotes (aucune conséquence de facturation)
       assurerGarantieDemo();
       E.garanties_avis.forEach(g => { const e = garantieEtat(g);
-        if (e.etat === "atteinte" && !g.atteinte_le) { g.atteinte_le = iso(maintenant); jour(g.commerce_id, "GARANTIE_AVIS_ATTEINTE", { gagnes: e.gagnes, jour: e.jour }); }
+        if (e.etat === "atteinte" && !g.atteinte_le) { g.atteinte_le = iso(maintenant); jour(g.commerce_id, "OBJECTIF_PILOTE_ATTEINT", { gagnes: e.gagnes, jour: e.jour }); }
         else if (e.etat !== "atteinte") {
-          if (e.jour >= CONDITIONS.garantie_avis.rappel_jour && !g.rappel_j45_le && !e.en_vue) { g.rappel_j45_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "GARANTIE_AVIS_J45", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("GARANTIE_AVIS_J45"); }
-          if (e.etat === "travail_gratuit" && !g.echue_le) { g.echue_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "GARANTIE_AVIS_ECHUE", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("GARANTIE_AVIS_ECHUE"); }
+          if (e.jour >= CONDITIONS.objectif_interne_pilotes.rappel_jour && !g.rappel_j45_le && !e.en_vue) { g.rappel_j45_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "OBJECTIF_PILOTE_J45", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("OBJECTIF_PILOTE_J45"); }
+          if (e.etat === "non_atteint" && !g.echue_le) { g.echue_le = iso(maintenant); liste("alertes_exploitant").unshift({ id: uid(), type: "OBJECTIF_PILOTE_NON_ATTEINT", commerce_id: g.commerce_id, detail: e, cree_le: iso(maintenant) }); l.rappels.push("OBJECTIF_PILOTE_NON_ATTEINT"); }
         } });
       sauver(); return l;
     }
+    const dansFile = a => a && ["escalade", "humain"].includes(a.statut);
+    const texteReponse = r => { const t = String(r || "").trim(); if (!t) throw new Error("Écrivez la réponse publiée."); if (t.length > 2000) throw new Error("La réponse est trop longue (2 000 caractères au plus)."); return t; };
+    const dateSaisie = v => { if (v == null || v === "") return null; const t = /^\d{4}-\d{2}-\d{2}$/.test(v) ? Date.parse(v + "T12:00:00Z") : Date.parse(v); if (isNaN(t)) throw new Error("Date illisible (AAAA-MM-JJ)."); return iso(t); };
     const garantiesDemo = {
-      async maGarantie() { await init(); assurerGarantieDemo(); const g = E.garanties_avis.find(x => x.commerce_id === cur().id); return g ? garantieEtat(g) : null; },
+      async maGarantieDelais() { await init(); passageServeurDemo(); const g = E.garantie_delais.find(x => x.commerce_id === cur().id); return g ? delaisEtat(g) : null; },
       async adminFileAvis() {
-        await init(); admin(); passageServeurDemo(); const d = CONDITIONS.garantie_reponse.delai_heures * MS_H;
-        return E.avis.filter(a => ["escalade", "humain"].includes(a.statut)).sort((a, b) => a.cree_le.localeCompare(b.cree_le)).map(a => ({ id: a.id, commerce_id: a.commerce_id, commerce: (E.commerces[a.commerce_id] || {}).nom,
+        await init(); admin(); passageServeurDemo(); const d = CONDITIONS.garantie_delais.avis_traite_heures * MS_H;
+        return E.avis.filter(dansFile).sort((a, b) => a.cree_le.localeCompare(b.cree_le)).map(a => ({ id: a.id, commerce_id: a.commerce_id, commerce: (E.commerces[a.commerce_id] || {}).nom,
+          offre: (E.commerces[a.commerce_id] || {}).offre_id, email_client: (E.commerces[a.commerce_id] || {}).email_validation || null, mode: offreDe(a.commerce_id).delegation ? "equipe" : "proposer",
           note: a.note, texte: a.texte, auteur: a.auteur || "", reponse_proposee: a.reponse_proposee || "", statut: a.statut, sensible: !!a.sensible, raisons: a.raisons || [], recu_le: a.cree_le, escalade_le: a.escalade_le || null,
-          echeance: iso(Date.parse(a.cree_le) + d), en_retard: Date.now() > Date.parse(a.cree_le) + d, demo: !!a.demo }));
+          propose_le: a.propose_le || null, traite_le: a.traite_le || null, echeance: iso(Date.parse(a.cree_le) + d), en_retard: !a.traite_le && Date.now() > Date.parse(a.cree_le) + d, demo: !!a.demo }));
       },
-      async adminAvisPublie(id, reponse) {
-        await init(); admin(); const a = E.avis.find(x => x.id === id), txt = String(reponse || "").trim();
-        if (!a || !["escalade", "humain"].includes(a.statut)) throw new Error("Cet avis n'est pas dans la file de Renomia.");
-        if (!txt) throw new Error("Écrivez la réponse publiée."); if (txt.length > 2000) throw new Error("La réponse est trop longue (2 000 caractères au plus).");
-        const depuis = a.statut; a.reponse = txt; a.reponse_proposee = a.reponse_proposee || txt; a.statut = "publie"; a.repondu_le = iso(Date.now());
-        jour(a.commerce_id, "AVIS_PUBLIE", { avis: a.id, par: "renomia", depuis, dans_les_24h: Date.now() <= Date.parse(a.cree_le) + CONDITIONS.garantie_reponse.delai_heures * MS_H }); sauver();
+      async adminAvisProposer(id, reponse) {
+        await init(); admin(); const a = E.avis.find(x => x.id === id); if (!dansFile(a)) throw new Error("Cet avis n'est pas dans la file de Renomia.");
+        a.reponse_proposee = texteReponse(reponse); a.propose_le = iso(Date.now()); a.traite_le = a.traite_le || a.propose_le;
+        jour(a.commerce_id, "AVIS_PROPOSE", { avis: a.id, sensible: !!a.sensible }); sauver(); return { id: a.id, propose_le: a.propose_le, email_client: (E.commerces[a.commerce_id] || {}).email_validation || null };
+      },
+      async adminAvisPublie(id, reponse, accord) {
+        await init(); admin(); const a = E.avis.find(x => x.id === id); if (!dansFile(a)) throw new Error("Cet avis n'est pas dans la file de Renomia.");
+        const txt = texteReponse(reponse);
+        if (!offreDe(a.commerce_id).delegation && !accord) throw new Error("Offre Essentiel ou Standard : rien n'est publié sans l'accord du commerçant. Proposez la réponse, puis publiez-la après son accord.");
+        const depuis = a.statut, tr = a.traite_le ? Date.parse(a.traite_le) : Date.now(); a.reponse = txt; a.reponse_proposee = a.reponse_proposee || txt; a.statut = "publie"; a.repondu_le = iso(Date.now()); a.traite_le = a.traite_le || a.repondu_le;
+        jour(a.commerce_id, "AVIS_PUBLIE", { avis: a.id, par: "renomia", depuis, accord_client: !!accord, dans_les_24h: tr <= Date.parse(a.cree_le) + CONDITIONS.garantie_delais.avis_traite_heures * MS_H }); sauver();
+      },
+      async adminGarantieDelais() { await init(); admin(); passageServeurDemo(); return E.garantie_delais.map(delaisEtat).sort((a, b) => String(a.commerce).localeCompare(String(b.commerce))); },
+      async adminDelais(cid, p) {
+        await init(); admin(); if (!E.commerces[cid]) throw new Error("Commerce introuvable."); assurerDelaisDemo(); p = p || {};
+        let g = E.garantie_delais.find(x => x.commerce_id === cid); if (!g) { g = { commerce_id: cid, acces_remis_le: null, photos_recues_le: null, fiche_optimisee_le: null }; E.garantie_delais.push(g); }
+        const v = {}; ["acces_remis_le", "photos_recues_le", "fiche_optimisee_le"].forEach(k => { if (k in p) v[k] = dateSaisie(p[k]); }); Object.assign(g, v);
+        jour(cid, "GARANTIE_DELAIS_SAISIE", p); sauver(); return delaisEtat(g);
+      },
+      async adminManquement(id, statut, motif) {
+        await init(); admin(); const m = (E.manquements_garantie || []).find(x => String(x.id) === String(id) && x.statut === "a_appliquer"), t = String(motif || "").trim();
+        if (!["applique", "ecarte"].includes(statut)) throw new Error("Décision inconnue : appliqué ou écarté.");
+        if (statut === "ecarte" && !t) throw new Error("Écrivez pourquoi ce manquement est écarté.");
+        if (!m) throw new Error("Ce manquement est introuvable ou déjà traité.");
+        m.statut = statut; m.motif = t || m.motif || null; m.decide_le = iso(Date.now());
+        jour(m.commerce_id, statut === "applique" ? "MOIS_OFFERT_APPLIQUE" : "MANQUEMENT_ECARTE", { manquement: m.id, mois_offert: m.mois_offert, motif: t || null }); sauver(); return { id: m.id, statut, mois_offert: m.mois_offert };
+      },
+      async adminReseaux(cid, reseaux) {
+        await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable.");
+        if (!Array.isArray(reseaux) || reseaux.some(r => !["instagram", "facebook", "tiktok"].includes(r))) throw new Error("Réseaux possibles : Instagram, Facebook, TikTok.");
+        c.reseaux_retenus = [...new Set(reseaux)]; jour(cid, "RESEAUX_RETENUS", { reseaux: c.reseaux_retenus }); sauver(); return reseauxAutorises(c);
+      },
+      async adminDelegation(cid, signee) {
+        await init(); admin(); const c = E.commerces[cid]; if (!c) throw new Error("Commerce introuvable.");
+        if (signee && !offreDe(cid).delegation) throw new Error("Le mode délégation est réservé à l'offre Premium.");
+        c.delegation_signee_le = signee ? (c.delegation_signee_le || iso(Date.now())) : null; jour(cid, signee ? "DELEGATION_SIGNEE" : "DELEGATION_RETIREE", {}); sauver();
+        return { commerce_id: cid, delegation_signee_le: c.delegation_signee_le };
+      },
+      async adminCommentairesEquipe() {
+        await init(); admin();
+        return liste("commentaires").filter(x => x.statut === "a_valider" && offreDe(x.commerce_id).delegation).map(x => ({ id: x.id, commerce_id: x.commerce_id, commerce: (E.commerces[x.commerce_id] || {}).nom,
+          reseau: x.reseau, categorie: x.categorie, auteur: x.auteur, texte: x.texte, reponse_proposee: x.reponse_proposee, recu_le: x.cree_le }));
+      },
+      async adminCommentaireDecider(id, decision, texte) {
+        await init(); admin(); const x = liste("commentaires").find(y => y.id === id);
+        if (!x || !offreDe(x.commerce_id).delegation) throw new Error("Réservé aux commerces Premium : ailleurs, le commerçant décide.");
+        appliquerDecisionCommentaire(x, decision, texte); jour(x.commerce_id, "COMMENTAIRE_" + String(decision).toUpperCase(), { commentaire: id, par: "equipe" }); sauver(); return x.statut;
       },
       async adminGaranties() { await init(); admin(); passageServeurDemo(); return E.garanties_avis.map(garantieEtat); },
       async adminGarantie(cid, p) {
@@ -1013,7 +1174,8 @@
       async quitter() { session = null; try { localStorage.removeItem(K + ":session"); } catch (x) {} },
       async estAdmin() { await init(); return !!session && E.users[session].role === "administrateur"; },
       async commerce() { await init(); return cur(); },
-      async enregistrer(ch) { await init(); const c = cur(); FICHE.forEach(k => { if (k in ch) c[k] = ch[k]; }); sauver(); },
+      async enregistrer(ch) { await init(); const c = cur(); if ("reglage_avis" in ch && ch.reglage_avis !== "auto_des_4_etoiles") throw new Error("Ce réglage n'existe plus : rien n'est publié sans votre validation, sauf ce que prévoit votre offre.");
+        FICHE.forEach(k => { if (k in ch) c[k] = ch[k]; }); sauver(); },
       async photos() { await init(); return mine("photos").sort((a, b) => b.cree_le.localeCompare(a.cree_le)); },
       async deposer(f) {
         await init(); const e = verifierFichier(f); if (e) throw new Error(e); const c = cur(); pasEnPause(c);
@@ -1053,7 +1215,7 @@
         if (!ct || ct.statut !== "approuve") throw new Error(REGLES.programme);
         if (!(new Date(prevu_le) > new Date())) throw new Error(REGLES.futur);
         if (!reseaux.length) throw new Error("Choisissez au moins un réseau.");
-        for (const r of reseaux) if ((E.comptes[c.id][r] || {}).etat !== "connecte") throw new Error("Réseau non connecté : " + r + ".");
+        for (const r of reseaux) { horsOffre(c, r); if ((E.comptes[c.id][r] || {}).etat !== "connecte") throw new Error("Réseau non connecté : " + r + "."); }
         if (reseaux.some(r => !reseauxPour(ct).includes(r))) throw new Error(ct.type === "video" ? "Une vidéo ne se programme pas sur la fiche Google." : "Une story ne se programme pas sur la fiche Google.");
         const son = sonPlateforme(ct, reseaux), pid = uid();
         E.publications.push({ id: pid, commerce_id: c.id, contenu_id, reseaux, prevu_le: new Date(prevu_le).toISOString(), statut: "programme", cree_le: new Date().toISOString(), musique_a_poser: son, musique_posee_le: null });
@@ -1189,12 +1351,12 @@
       },
       async adminCreer(nom, metier, offre, email) {
         await init(); admin(); if (!nom.trim() || !/.+@.+/.test(email)) throw new Error("Nom et email valides requis.");
-        if (!OFFRES_EN_VENTE.includes(offre)) throw new Error("Offre plus vendue : " + offre + ". Offres en vente : Essentiel, Croissance.");
+        if (!OFFRES_EN_VENTE.includes(offre)) throw new Error("Offre plus vendue : " + offre + ". " + MSG_OFFRES);
         const id = "c-" + uid().slice(0, 8); E.commerces[id] = { id, nom: nom.trim(), metier, ville: "", offre_id: offre, en_pause: false, mots_cles: [], mentions_autorisees: [], couleurs: { fond: "#FFFFFF", texte: "#000000", accent: "#2438FF" }, reglage_avis: "auto_des_4_etoiles", email_validation: email.toLowerCase() };
         E.comptes[id] = Object.fromEntries(RESEAUX.map(r => [r, { etat: "non_connecte" }])); E.invitations.push({ id: uid(), email: email.toLowerCase(), commerce_id: id, statut: "a_envoyer", cree_le: new Date().toISOString() });
         E.users[email.toLowerCase()] = { role: "commerçant", commerce: id }; jour(id, "COMMERCE_CREE", { offre }); sauver(); return id;
       },
-      async adminOffre(id, offre) { await init(); admin(); if (!OFFRES_EN_VENTE.includes(offre) && E.commerces[id].offre_id !== offre) throw new Error("Offre plus vendue : " + offre + ". Offres en vente : Essentiel, Croissance.");
+      async adminOffre(id, offre) { await init(); admin(); if (!OFFRES_EN_VENTE.includes(offre) && E.commerces[id].offre_id !== offre) throw new Error("Offre plus vendue : " + offre + ". " + MSG_OFFRES);
         E.commerces[id].offre_id = offre; jour(id, "OFFRE_CHANGEE", { offre }); sauver(); },
       async adminPause(id, pause) { await init(); admin(); E.commerces[id].en_pause = !!pause; jour(id, pause ? "MISE_EN_PAUSE" : "REPRISE", {}); sauver(); },
       async adminInvitations() { await init(); admin(); return E.invitations.map(i => ({ ...i, commerce: (E.commerces[i.commerce_id] || {}).nom })); },
@@ -1416,6 +1578,9 @@
       async adminSante() { return ok(await sb.rpc("admin_sante_clients", {})); },
       async adminProspects() { return ok(await sb.from("prospects").select("*").order("audit_le", { ascending: false }).limit(200)); },
       async adminProspect(id, action) { ok(await sb.rpc("admin_prospect", { p_id: id, p_action: action })); },
+      async adminResultatProspect(id, resultat, note) { return ok(await sb.rpc("admin_resultat_prospect", { p_id: id, p_resultat: resultat, p_note: note == null ? null : String(note) })); },
+      prospectParJeton: jeton => publicSupabase.prospectParJeton(jeton),
+      resultatParJeton: (jeton, resultat, note) => publicSupabase.resultatParJeton(jeton, resultat, note),
       async adminMiseEnRoute(cid, point, etat) { return ok(await sb.rpc("admin_mise_en_route", { p_commerce: cid, p_point: point, p_etat: etat })); },
       objetParJeton: jeton => publicSupabase.objetParJeton(jeton),
       validerParJeton: (jeton, decision, texte) => publicSupabase.validerParJeton(jeton, decision, texte),
@@ -1438,9 +1603,17 @@
       async adminCreer(nom, metier, offre, email) { return ok(await sb.rpc("admin_creer_commerce", { p_nom: nom, p_metier: metier, p_offre: offre, p_email: email })); },
       async adminOffre(id, offre) { ok(await sb.rpc("admin_changer_offre", { p_commerce: id, p_offre: offre })); },
       // ---- Garanties (bloc « Modèle Vincent » de schema.sql) : file des avis de Renomia, publication notée, garantie des 10 avis
-      async maGarantie() { const c = await self.commerce(); return ok(await sb.rpc("ma_garantie", { p_commerce: c.id })); },
+      async maGarantieDelais() { const c = await self.commerce(); return ok(await sb.rpc("ma_garantie_delais", { p_commerce: c.id })); },
       async adminFileAvis() { return ok(await sb.rpc("admin_file_avis", {})) || []; },
-      async adminAvisPublie(id, reponse) { ok(await sb.rpc("admin_avis_publie", { p_id: id, p_reponse: reponse })); },
+      async adminAvisPublie(id, reponse, accord) { ok(await sb.rpc("admin_avis_publie", { p_id: id, p_reponse: reponse, p_accord_client: !!accord })); },
+      async adminAvisProposer(id, reponse) { return ok(await sb.rpc("admin_avis_proposer", { p_id: id, p_reponse: reponse })); },
+      async adminGarantieDelais() { return ok(await sb.rpc("admin_garantie_delais", {})) || []; },
+      async adminDelais(cid, p) { return ok(await sb.rpc("admin_delais", { p_commerce: cid, p: p || {} })); },
+      async adminManquement(id, statut, motif) { return ok(await sb.rpc("admin_manquement", { p_id: id, p_statut: statut, p_motif: motif || null })); },
+      async adminReseaux(cid, reseaux) { return ok(await sb.rpc("admin_reseaux", { p_commerce: cid, p_reseaux: reseaux })); },
+      async adminDelegation(cid, signee) { return ok(await sb.rpc("admin_delegation", { p_commerce: cid, p_signee: !!signee })); },
+      async adminCommentairesEquipe() { return ok(await sb.rpc("admin_commentaires_equipe", {})) || []; },
+      async adminCommentaireDecider(id, decision, texte) { return ok(await sb.rpc("admin_commentaire_decider", { p_id: id, p_decision: decision, p_texte: texte || null })); },
       async adminGaranties() { return ok(await sb.rpc("admin_garanties", {})) || []; },
       async adminGarantie(cid, p) { return ok(await sb.rpc("admin_garantie", { p_commerce: cid, p: p || {} })); },
       async adminPause(id, pause) { ok(await sb.rpc("admin_mettre_en_pause", { p_commerce: id, p_pause: !!pause })); },
@@ -1450,7 +1623,7 @@
   }
 
   window.RENOM_DATA = cfg.supabaseUrl && cfg.publishableKey && window.supabase ? supabase() : demo();
-  window.RENOM_OFFRES = OFFRES; window.RENOM_OFFRES_EN_VENTE = OFFRES_EN_VENTE; window.RENOM_CONDITIONS = CONDITIONS; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES; window.RENOM_DEPOT_VIDEO = DEPOT_VIDEO;
+  window.RENOM_OFFRES = OFFRES; window.RENOM_OFFRES_EN_VENTE = OFFRES_EN_VENTE; window.RENOM_RESEAUX_AUTORISES = reseauxAutorises; window.RENOM_CONDITIONS = CONDITIONS; window.RENOM_RESEAUX = RESEAUX; window.RENOM_VIDEO_AVIS = VIDEO_AVIS; window.RENOM_COMMENTAIRES = COMMENTAIRES; window.RENOM_DEPOT_VIDEO = DEPOT_VIDEO;
   // ---- Collecte : ce dont la page publique a besoin (aucune session, aucune bibliothèque), et la règle du lien d'avis pour l'espace
   window.RENOM_PUBLIC = cfg.supabaseUrl && cfg.publishableKey ? publicSupabase : window.RENOM_DATA;
   window.RENOM_LIEN_AVIS = lienAvisPublic; window.RENOM_RETOUR = RETOUR;

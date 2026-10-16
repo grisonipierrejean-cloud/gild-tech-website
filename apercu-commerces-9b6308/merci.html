@@ -5,17 +5,15 @@
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
-<!-- legal:alternates --><link rel="alternate" hreflang="fr" href="merci.html"><link rel="alternate" hreflang="en" href="en/thank-you.html"><link rel="alternate" hreflang="x-default" href="merci.html"><!-- /legal:alternates --></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
-<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><!-- legal:langues --><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/thank-you.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><!-- /legal:langues --><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<link rel="alternate" hreflang="fr" href="merci.html"><link rel="alternate" hreflang="en" href="en/thank-you.html"><link rel="alternate" hreflang="x-default" href="merci.html"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/thank-you.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
 <main>
 <section class="wrap simple">
 <h1>C'est parti.</h1>
 <p class="chapo">Votre demande est bien arrivée. Voici ce qui se passe maintenant.</p>
-<!-- Étapes fidèles au fonctionnement réel (n8n/build_audit.py) : l'audit est calculé automatiquement, mais l'envoi direct au commerçant
-     est coupé par défaut (RENOM_AUDIT_ENVOI vide) : le rapport est relu avant de partir, d'où « sous 24 h ouvrées ».
-     Relances J+2, J+5, J+10 après l'envoi du rapport, arrêtées par un rendez-vous, une réponse ou une désinscription (schema.sql). -->
+
 <ol class="suite-etapes">
-<li><strong>Nous lisons votre fiche Google.</strong> Votre score sur 100 est calculé pilier par pilier, avec ce qu'il faut corriger en premier. Aucun accès à vos comptes n'est nécessaire.</li>
+<li><strong>Nous lisons votre fiche Google.</strong> Nous en tirons vos 3 priorités et la comparaison avec 3 concurrents proches. Le score sur 100 est notre grille d'analyse, pas une note de Google. Aucun accès à vos comptes n'est nécessaire.</li>
 <li><strong>Nous relisons l'audit, puis il part par email, sous 24&nbsp;h ouvrées.</strong> Pensez à regarder dans les indésirables.</li>
 <li><strong>Ensuite, trois messages de suivi au plus</strong>, 2, 5 et 10 jours après l'audit. Chacun porte un lien de désinscription en un clic.</li>
 <li><strong>Si vous le souhaitez, un appel de 15 minutes</strong> pour parcourir l'audit avec vous. Rien d'autre.</li>
@@ -32,9 +30,9 @@
 </form>
 </section>
 </main>
-<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
+<footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
 <nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav>
-<span class="pied-societe">Un service de Girlden LTD</span></div></div></footer><!-- /legal:pied-site -->
+<span class="pied-societe">Un service de Girlden LTD</span></div></div></footer>
 <script>
 (function(){var f=document.getElementById('comp'),ok=document.getElementById('c-ok');
 try{var d=JSON.parse(sessionStorage.getItem('renom')||'{}');document.getElementById('c-commerce').value=d.commerce||'';document.getElementById('c-email').value=d.email||'';document.getElementById('c-sujet').value='Complément Renomia : '+(d.commerce||'')}catch(x){}

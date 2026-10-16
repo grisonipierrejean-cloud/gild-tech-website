@@ -194,6 +194,9 @@ legend{padding:0;margin-bottom:4px}
 .liste li:has(>a){padding:2px 0}
 .liste li>a{flex:1 1 auto;display:flex;align-items:center;min-height:44px}
 .liste li>.fort,.liste li>.etat,.liste li>.note{flex:0 0 auto;text-align:right}
+/* Écran Offre : valeurs longues (réseaux retenus, contenus « dont vidéos », suivi des délais) : elles passent à la ligne au lieu de déborder à 390 px. */
+#offre-reseaux>.fort,#offre-contenus>.fort,#offre-delais-suivi .liste li>span:first-child{flex:0 1 auto;min-width:0}
+#offre-delais-suivi .liste li>span:first-child .note{display:block}
 .liste li.avec-vignette{justify-content:flex-start;gap:14px}
 .vignette{width:52px;height:52px;flex:0 0 auto;object-fit:cover;border-radius:10px;background:var(--releve);display:block}
 .programmations li{align-items:flex-start}

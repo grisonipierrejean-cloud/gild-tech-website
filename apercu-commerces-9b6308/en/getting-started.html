@@ -5,22 +5,25 @@
 <link rel="preload" href="../fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
-<!-- legal:alternates --><link rel="alternate" hreflang="fr" href="../mise-en-route.html"><link rel="alternate" hreflang="en" href="getting-started.html"><link rel="alternate" hreflang="x-default" href="../mise-en-route.html"><!-- /legal:alternates --></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Demo preview: no form sends any data, figures and business are fictitious.</div>
-<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><!-- legal:langues --><nav class="langues" aria-label="Language"><a href="../mise-en-route.html" hreflang="fr" lang="fr" aria-label="Français">FR</a><span class="langues-sep" aria-hidden="true">/</span><span class="langue-active" aria-current="true">EN</span></nav><!-- /legal:langues --><a class="retour" href="index.html">Back to home</a></div></header>
+<link rel="alternate" hreflang="fr" href="../mise-en-route.html"><link rel="alternate" hreflang="en" href="getting-started.html"><link rel="alternate" hreflang="x-default" href="../mise-en-route.html"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Demo preview: no form sends any data, figures and business are fictitious.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><nav class="langues" aria-label="Language"><a href="../mise-en-route.html" hreflang="fr" lang="fr" aria-label="Français">FR</a><span class="langues-sep" aria-hidden="true">/</span><span class="langue-active" aria-current="true">EN</span></nav><a class="retour" href="index.html">Back to home</a></div></header>
 <main>
 <section class="wrap simple">
 <h1>Your onboarding form.</h1>
-<p class="chapo">Ten minutes, from your phone. We write using this information; you approve every piece of content before it's published.</p>
+<p class="chapo">Ten minutes, from your phone. We write using this information. In Essential and Standard, you approve every piece of content before it's published; in Premium, you can choose delegation mode.</p>
 <form class="form-fiche carte-form" name="fiche-client" method="POST" action="getting-started.html" data-netlify="true" netlify-honeypot="website">
 <input type="hidden" name="form-name" value="fiche-client"><input type="hidden" name="subject" id="f-sujet" value="Fiche client Renomia"><input type="hidden" name="langue" value="en">
 <p class="perimetre">For businesses established in France.</p>
 <div class="champ"><label for="f-nom">Business name</label><input id="f-nom" name="nom_affiche" type="text" required></div>
 <div class="champ demi"><label for="f-metier">Type of business</label><select id="f-metier" name="metier" required><option value="restaurant">Restaurant</option><option value="beaute">Beauty salon</option><option value="sport">Gym or studio</option><option value="autre">Other business</option></select></div>
-<div class="champ demi"><label for="f-offre">Chosen plan</label><select id="f-offre" name="offre" required><option value="essentiel">Essential</option><option value="croissance">Growth</option></select></div>
+<div class="champ demi"><label for="f-offre">Chosen plan</label><select id="f-offre" name="offre" required><option value="essentiel">Essential</option><option value="standard" selected>Standard</option><option value="premium">Premium</option></select></div>
 <div class="champ demi"><label for="f-ville">Town or city</label><input id="f-ville" name="ville" type="text" required></div>
 <div class="champ demi"><label for="f-nomc">Your name</label><input id="f-nomc" name="contact_nom" type="text" required></div>
 <div class="champ demi"><label for="f-email">Email</label><input id="f-email" name="contact_email" type="email" required></div>
 <div class="champ demi"><label for="f-tel">Phone or WhatsApp</label><input id="f-tel" name="contact_tel" type="tel"></div>
+<fieldset class="champ" id="f-reseaux"><legend class="lib">Chosen accounts (Standard and Premium), according to your trade</legend><p class="note">We only publish on the ones you tick, and always on your Google Business Profile. Essential only includes the Google Business Profile.</p>
+<label class="ok"><input type="checkbox" name="reseaux" value="instagram"> Instagram</label><label class="ok"><input type="checkbox" name="reseaux" value="facebook"> Facebook</label><label class="ok"><input type="checkbox" name="reseaux" value="tiktok"> TikTok</label></fieldset>
+<div class="ok" id="f-deleg"><input id="f-delegation" name="delegation" value="oui" type="checkbox"><label for="f-delegation">Premium only: I choose delegation mode. My approval becomes optional: a piece of content goes out 48 hours after sending if I haven't replied (<a href="terms.html#a8" target="_blank" rel="noopener">terms of sale, section 8</a>). A sensitive review is never published automatically.</label></div>
 <div class="champ"><label for="f-fiche">Link to your Google listing</label><input id="f-fiche" name="fiche_google" type="url" inputmode="url"></div>
 <div class="champ"><label for="f-col">Your visual identity, if you already have one: main colour of your brand (colour code, or “none”)</label><p class="note">We create your visual identity from your logo and your photos; if you already have one, we stick to it.</p><input id="f-col" name="couleur" type="text"></div>
 <div class="champ"><label for="f-ton">Preferred tone (for example: warm, direct, refined)</label><input id="f-ton" name="ton" type="text"></div>
@@ -29,16 +32,16 @@
 <div class="champ"><label for="f-int">Topics never to mention</label><input id="f-int" name="sujets_interdits" type="text"></div>
 <div class="hp" aria-hidden="true"><label>Leave blank<input name="website" tabindex="-1" autocomplete="off"></label></div>
 <div class="ok"><input id="f-cgv" name="cgv_acceptees" value="oui" type="checkbox" required><label for="f-cgv">I accept the <a href="terms.html" target="_blank" rel="noopener">terms of sale</a> and the <a href="data-processing.html" target="_blank" rel="noopener">data processing agreement</a>.</label></div>
-<!-- legal:version-cgv --><input type="hidden" name="cgv_version" value="15 octobre 2026"><!-- /legal:version-cgv -->
+<input type="hidden" name="cgv_version" value="16 octobre 2026">
 <div><button class="btn btn-prim" type="submit">Send my form</button></div>
 </form>
 <p class="note">You then drop your photos, and your logo if you have one, into the shared folder we send you by email. We never ask for any password.</p>
 </section>
 </main>
-<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
+<footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
 <nav class="pied-liens" aria-label="Legal information"><a href="legal-notice.html">Legal notice</a><a href="terms.html">Terms of sale</a><a href="privacy.html">Privacy policy</a><a href="data-processing.html">Data processing agreement</a></nav>
 <span class="pied-societe">A service of Girlden LTD</span></div>
-<p class="pied-identite">Renomia is a trading name of Girlden LTD, a company registered in England and Wales (Companies House) under number 14837617. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom.</p></div></footer><!-- /legal:pied-site -->
+<p class="pied-identite">Renomia is a trading name of Girlden LTD, a company registered in England and Wales (Companies House) under number 14837617. Registered office: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom.</p></div></footer>
 <script>(function(){var f=document.forms[0];f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
 document.getElementById('f-sujet').value='Fiche client Renomia : '+f.nom_affiche.value;
 var corps=new URLSearchParams(new FormData(f)).toString(),H={'Content-Type':'application/x-www-form-urlencoded'};

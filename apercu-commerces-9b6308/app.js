@@ -2,45 +2,33 @@
 var RENOM_EN=document.documentElement.lang==='en';
 (function(){
 var EN=RENOM_EN;
-// Page de vente : sélecteur de métier (section « Comment ça marche » et formulaire, synchronisés), formulaire d'audit.
-// Le métier choisi est repris dans la demande d'audit (champ caché « metier ») ; « Autre commerce » ouvre un champ libre.
-var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-var NOMS=EN?{restaurant:'Restaurant',beaute:'Beauty salon',sport:'Gym or studio',autre:'Other business'}:{restaurant:'Restaurant',beaute:'Institut de beauté',sport:'Salle ou studio',autre:'Autre commerce'};
+// Page de vente : formulaire d'audit (16/10/2026 : nom du commerce, ville, email, lien Google Maps facultatif ; plus de choix du métier).
+var $=function(s,r){return (r||document).querySelector(s)};
+var form=$('#form');if(!form)return;
 var T=EN?{
-  noteMetier:function(n){return 'Noted: '+n+'. Your audit request includes it.'},
-  metier:'Choose your type of business.',commerce:'Enter the name of your business.',autre:'Tell us what kind of business it is.',
-  ville:'Enter your town or city, so we find the right listing.',email:'This email address looks incomplete.',
+  commerce:'Enter the name of your business.',ville:'Enter your town or city, so we find the right listing.',email:'This email address looks incomplete.',
+  maps:'This doesn\u2019t look like a Google Maps link. Leave it empty if you don\u2019t have one.',
   ok:'Tick the box so we can send you the audit.',envoi:'Sending…',bouton:'Get my free audit',
   echec:'Your request didn\u2019t go through. Check your connection and try again.',merci:'thank-you.html'
 }:{
-  noteMetier:function(n){return 'Noté\u00a0: '+n+'. Votre demande d\'audit le reprend.'},
-  metier:'Choisissez votre type de commerce.',commerce:'Indiquez le nom de votre commerce.',autre:'Précisez votre commerce.',
-  ville:"Indiquez votre ville, pour qu'on trouve la bonne fiche.",email:'Cette adresse email semble incomplète.',
+  commerce:'Indiquez le nom de votre commerce.',ville:"Indiquez votre ville, pour qu'on trouve la bonne fiche.",email:'Cette adresse email semble incomplète.',
+  maps:"Ce lien ne ressemble pas à un lien Google Maps. Laissez le champ vide si vous ne l'avez pas.",
   ok:"Cochez la case pour qu'on puisse vous envoyer l'audit.",envoi:'Envoi en cours…',bouton:'Recevoir mon audit gratuit',
   echec:"L'envoi n'est pas passé. Vérifiez votre connexion et réessayez.",merci:'merci.html'
 };
-var gm=$('#g-metier'),autre=$('#f-autre'),gAutre=$('#g-autre'),note=$('#metiers-note');
-function choisir(m){
-  $$('.m-choix').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.m===m))});
-  gm.value=m;autre.hidden=(m!=='autre');gAutre.required=(m==='autre');
-  if(note)note.textContent=T.noteMetier(NOMS[m]);
-}
-$$('.m-choix').forEach(function(b){b.addEventListener('click',function(){choisir(b.dataset.m)})});
-
-// ---- Formulaire d'audit
-var form=$('#form'),err=$('#err'),btn=$('#envoi');
+// Lien Google Maps : facultatif ; même règle que le contrôle de n8n (n8n/build_audit.py), qui l'écarte sinon.
+var MAPS=/^https:\/\/(www\.google\.[a-z.]{2,6}\/maps|maps\.google\.[a-z.]{2,6}|maps\.app\.goo\.gl|goo\.gl\/maps)[^\s"<>]*$/;
+var err=$('#err'),btn=$('#envoi');
 function erreur(m,champ){err.textContent=m;err.hidden=false;if(champ)champ.focus()}
-// Le message d'erreur disparaît dès que le visiteur corrige (case cochée, champ modifié, métier choisi) : il ne reste pas affiché à tort.
+// Le message d'erreur disparaît dès que le visiteur corrige : il ne reste pas affiché à tort.
 function effacer(){if(!err.hidden){err.hidden=true;err.textContent=''}}
 form.addEventListener('input',effacer);form.addEventListener('change',effacer);
-$$('.m-choix').forEach(function(b){b.addEventListener('click',effacer)});
 form.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
   if(form.website.value)return;
-  if(!gm.value)return erreur(T.metier,$('.choix .m-choix'));
   if(!form.commerce.value.trim())return erreur(T.commerce,form.commerce);
-  if(gm.value==='autre'&&!gAutre.value.trim())return erreur(T.autre,gAutre);
   if(!form.ville.value.trim())return erreur(T.ville,form.ville);
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()))return erreur(T.email,form.email);
+  var m=form.lien_maps.value.trim();if(m&&!MAPS.test(m))return erreur(T.maps,form.lien_maps);
   if(!form.consentement.checked)return erreur(T.ok,form.consentement);
   $('#g-sujet').value='Audit Renomia : '+form.commerce.value+', '+form.ville.value;
   var d=new FormData(form);
@@ -53,7 +41,7 @@ form.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
 });
 })();
 
-// ---- Calculateur du manque à gagner (section #calcul). Aucun réseau, rien n'est envoyé ni gardé.
+// ---- Simulateur (page secondaire site/simulateur.html, en/simulator.html ; retiré de la page de vente le 16/10/2026). Aucun réseau, rien n'est envoyé ni gardé.
 // Fourchette : une étoile de plus = +5 à +9 % de chiffre d'affaires (Luca, Harvard Business School, working paper 12-016, 2011 :
 // restaurants indépendants de Seattle, notes Yelp). Sources : ordres/SOURCES-PAGE.md.
 // Objectif atteignable (décision du 14/10/2026) : 4,5 si la note est entre 3,5 et 4,4 ; note + 1 sous 3,5 ; à 4,5 ou plus, aucun chiffre.

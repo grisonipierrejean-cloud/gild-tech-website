@@ -5,21 +5,24 @@
 <link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
-<!-- legal:alternates --><link rel="alternate" hreflang="fr" href="mise-en-route.html"><link rel="alternate" hreflang="en" href="en/getting-started.html"><link rel="alternate" hreflang="x-default" href="mise-en-route.html"><!-- /legal:alternates --></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
-<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><!-- legal:langues --><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/getting-started.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><!-- /legal:langues --><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
+<link rel="alternate" hreflang="fr" href="mise-en-route.html"><link rel="alternate" hreflang="en" href="en/getting-started.html"><link rel="alternate" hreflang="x-default" href="mise-en-route.html"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Aperçu de démonstration : aucun formulaire n'envoie de données, les chiffres et le commerce sont fictifs.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><nav class="langues" aria-label="Langue"><span class="langue-active" aria-current="true">FR</span><span class="langues-sep" aria-hidden="true">/</span><a href="en/getting-started.html" hreflang="en" lang="en" aria-label="English">EN</a></nav><a class="retour" href="index.html">Retour à l'accueil</a></div></header>
 <main>
 <section class="wrap simple">
 <h1>Votre fiche de mise en route.</h1>
-<p class="chapo">Dix minutes, depuis votre téléphone. Nous écrivons avec ces informations ; vous validez chaque contenu avant qu'il soit publié.</p>
+<p class="chapo">Dix minutes, depuis votre téléphone. Nous écrivons avec ces informations. En Essentiel et en Standard, vous validez chaque contenu avant qu'il soit publié&nbsp;; en Premium, vous pouvez choisir le mode délégation.</p>
 <form class="form-fiche carte-form" name="fiche-client" method="POST" action="mise-en-route.html" data-netlify="true" netlify-honeypot="website">
 <input type="hidden" name="form-name" value="fiche-client"><input type="hidden" name="subject" id="f-sujet" value="Fiche client Renomia"><input type="hidden" name="langue" value="fr">
 <div class="champ"><label for="f-nom">Nom du commerce</label><input id="f-nom" name="nom_affiche" type="text" required></div>
 <div class="champ demi"><label for="f-metier">Métier</label><select id="f-metier" name="metier" required><option value="restaurant">Restaurant</option><option value="beaute">Institut de beauté</option><option value="sport">Salle de sport ou studio</option><option value="autre">Autre commerce</option></select></div>
-<div class="champ demi"><label for="f-offre">Offre choisie</label><select id="f-offre" name="offre" required><option value="essentiel">Essentiel</option><option value="croissance">Croissance</option></select></div>
+<div class="champ demi"><label for="f-offre">Offre choisie</label><select id="f-offre" name="offre" required><option value="essentiel">Essentiel</option><option value="standard" selected>Standard</option><option value="premium">Premium</option></select></div>
 <div class="champ demi"><label for="f-ville">Ville</label><input id="f-ville" name="ville" type="text" required></div>
 <div class="champ demi"><label for="f-nomc">Votre nom</label><input id="f-nomc" name="contact_nom" type="text" required></div>
 <div class="champ demi"><label for="f-email">Email</label><input id="f-email" name="contact_email" type="email" required></div>
 <div class="champ demi"><label for="f-tel">Téléphone ou WhatsApp</label><input id="f-tel" name="contact_tel" type="tel"></div>
+<fieldset class="champ" id="f-reseaux"><legend class="lib">Réseaux retenus (Standard et Premium), selon votre métier</legend><p class="note">Nous publions seulement sur ceux que vous cochez, et toujours sur votre fiche Google. L'Essentiel ne comprend que la fiche Google.</p>
+<label class="ok"><input type="checkbox" name="reseaux" value="instagram"> Instagram</label><label class="ok"><input type="checkbox" name="reseaux" value="facebook"> Facebook</label><label class="ok"><input type="checkbox" name="reseaux" value="tiktok"> TikTok</label></fieldset>
+<div class="ok" id="f-deleg"><input id="f-delegation" name="delegation" value="oui" type="checkbox"><label for="f-delegation">Premium seulement&nbsp;: je choisis le mode délégation. Ma validation devient facultative&nbsp;: un contenu part 48&nbsp;h après l'envoi si je n'ai pas répondu (<a href="cgv.html#a8" target="_blank" rel="noopener">conditions de vente, article 8</a>). Un avis sensible n'est jamais publié automatiquement.</label></div>
 <div class="champ"><label for="f-fiche">Lien de votre fiche Google</label><input id="f-fiche" name="fiche_google" type="url" inputmode="url"></div>
 <div class="champ"><label for="f-col">Votre identité visuelle, si vous en avez déjà une : couleur principale de votre enseigne (code, ou « aucune »)</label><p class="note">Nous créons votre identité visuelle à partir de votre logo et de vos photos ; s'il en existe déjà une, nous la respectons.</p><input id="f-col" name="couleur" type="text"></div>
 <div class="champ"><label for="f-ton">Ton souhaité (par exemple : chaleureux, direct, raffiné)</label><input id="f-ton" name="ton" type="text"></div>
@@ -28,16 +31,16 @@
 <div class="champ"><label for="f-int">Sujets à ne jamais aborder</label><input id="f-int" name="sujets_interdits" type="text"></div>
 <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label></div>
 <div class="ok"><input id="f-cgv" name="cgv_acceptees" value="oui" type="checkbox" required><label for="f-cgv">J'accepte les <a href="cgv.html" target="_blank" rel="noopener">conditions générales de vente</a> et le <a href="sous-traitance.html" target="_blank" rel="noopener">contrat de sous-traitance</a>.</label></div>
-<!-- legal:version-cgv --><input type="hidden" name="cgv_version" value="15 octobre 2026"><!-- /legal:version-cgv -->
+<input type="hidden" name="cgv_version" value="16 octobre 2026">
 <div><button class="btn btn-prim" type="submit">Envoyer ma fiche</button></div>
 </form>
 <p class="note">Les photos, et votre logo si vous en avez un, se déposent ensuite dans le dossier partagé que nous vous indiquons par email. Nous ne vous demandons aucun mot de passe.</p>
 </section>
 </main>
-<!-- legal:pied-site --><footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
+<footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
 <nav class="pied-liens" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">Conditions de vente</a><a href="confidentialite.html">Confidentialité</a><a href="sous-traitance.html">Sous-traitance</a></nav>
 <span class="pied-societe">Un service de Girlden LTD</span></div>
-<p class="pied-identite">Renomia est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p></div></footer><!-- /legal:pied-site -->
+<p class="pied-identite">Renomia est un nom commercial de Girlden LTD, société immatriculée en Angleterre et au pays de Galles (Companies House) sous le numéro 14837617. Siège : 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, Royaume-Uni.</p></div></footer>
 <script>(function(){var f=document.forms[0];f.addEventListener('submit',function(e){e.preventDefault();if(f.website.value)return;
 document.getElementById('f-sujet').value='Fiche client Renomia : '+f.nom_affiche.value;
 var corps=new URLSearchParams(new FormData(f)).toString(),H={'Content-Type':'application/x-www-form-urlencoded'};

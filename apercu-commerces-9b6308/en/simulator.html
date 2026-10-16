@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renomia, simulator: what a better rating is worth</title><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07080C">
+<link rel="preload" href="../fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="fr" href="../simulateur.html"><link rel="alternate" hreflang="en" href="simulator.html"><link rel="alternate" hreflang="x-default" href="../simulateur.html"></head><body><div style="background:#0B0D12;color:#FFFFFF;font:500 14px/1.4 system-ui,sans-serif;padding:10px 16px;text-align:center">Demo preview: no form sends any data, figures and business are fictitious.</div>
+<header class="entete entete-simple"><div class="wrap"><a class="logo" href="index.html">Renomia</a><nav class="langues" aria-label="Language"><a href="../simulateur.html" hreflang="fr" lang="fr" aria-label="Français">FR</a><span class="langues-sep" aria-hidden="true">/</span><span class="langue-active" aria-current="true">EN</span></nav><a class="retour" href="index.html">Back to home</a></div></header>
+<main>
+
+<section class="wrap simple simu">
+<h1>What a better rating is worth.</h1>
+<p class="perimetre">For businesses established in France.</p>
+<p class="chapo">An order of magnitude, not a promise. A Harvard Business School study of independent restaurants found that “a one-star increase in Yelp rating leads to a 5-9 percent increase in revenue”.</p>
+<p class="calc-limite"><strong>The limits of this study:</strong> it covers independent restaurants in Seattle, rated on Yelp between 2003 and 2009. It says nothing about Google, France or other trades: for them, it is an indication, not a measurement. Your result depends on your business, and we do not guarantee it.</p>
+<form class="calc carte-form" id="calc" novalidate>
+<fieldset class="calc-mode"><legend>I'd rather enter</legend>
+<label class="calc-radio"><input type="radio" name="calc-mode" value="clients" checked> My customers and average spend</label>
+<label class="calc-radio"><input type="radio" name="calc-mode" value="ca"> My annual turnover</label>
+</fieldset>
+<div class="calc-trio" id="calc-clients">
+<div class="champ"><label for="c-clients">Customers per day</label><input id="c-clients" type="text" inputmode="numeric" autocomplete="off" placeholder="For example: 40"></div>
+<div class="champ"><label for="c-panier">Average spend, in euros</label><input id="c-panier" type="text" inputmode="decimal" autocomplete="off" placeholder="For example: 25"></div>
+<div class="champ"><label for="c-jours">Opening days per year</label><input id="c-jours" type="text" inputmode="numeric" autocomplete="off" placeholder="For example: 300"></div>
+</div>
+<div class="champ" id="calc-ca" hidden><label for="c-ca">Annual turnover, in euros</label><input id="c-ca" type="text" inputmode="numeric" autocomplete="off" placeholder="For example: 180,000"></div>
+<div class="champ"><label for="c-note">Your current Google rating, out of 5</label><input id="c-note" type="text" inputmode="decimal" autocomplete="off" placeholder="For example: 4.1"></div>
+</form>
+<div class="calc-resultat" aria-live="polite">
+<p class="calc-vide" id="calc-vide">Enter your customers per day, average spend, opening days and rating: your result appears here.</p>
+<div class="calc-plein" id="calc-plein" hidden>
+<p class="calc-base" id="calc-base"></p>
+<div class="calc-gain" id="calc-gain">
+<p class="calc-lib" id="calc-lib"></p>
+<p class="calc-montant"><span id="calc-bas"></span> to <span id="calc-haut"></span></p>
+<p class="calc-unite">of turnover a year, according to the study.</p>
+</div>
+<p class="calc-sommet" id="calc-sommet" hidden></p>
+<p class="calc-seuil" id="calc-seuil" hidden></p>
+</div>
+<p class="calc-prudence">Calculation: the gap between your rating and a reachable target (4.5, or your rating plus one star below 3.5), multiplied by 5 to 9% of your turnover. <a href="https://papers.ssrn.com/abstract=1928601" rel="noopener">Read Michael Luca's study</a>. Rating thresholds: BrightLocal, <a href="https://www.brightlocal.com/research/local-consumer-review-survey/" rel="noopener">Local Consumer Review Survey 2026</a> (consumers in the United States).</p>
+</div>
+<p><a class="btn btn-prim btn-grand" href="index.html#audit">Get my free audit</a></p>
+</section>
+</main>
+<footer class="pied" id="pied"><div class="wrap"><div class="pied-ligne"><span class="pied-copy">&copy; 2026 Renomia</span>
+<nav class="pied-liens" aria-label="Legal information"><a href="legal-notice.html">Legal notice</a><a href="terms.html">Terms of sale</a><a href="privacy.html">Privacy policy</a><a href="data-processing.html">Data processing agreement</a></nav>
+<span class="pied-societe">A service of Girlden LTD</span></div></div></footer>
+<script src="../app.js"></script>
+</body></html>

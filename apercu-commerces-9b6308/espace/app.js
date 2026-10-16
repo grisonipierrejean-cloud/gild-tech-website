@@ -10,6 +10,12 @@
   const ST_AVIS = I.carte("st.avis", ["nouveau", "a_valider", "valide", "publie", "humain", "refuse", "escalade"]);
   const METIERS = I.carte("metier", ["restaurant", "beaute", "sport", "autre"]);
   const RES = I.carte("res", ["facebook", "instagram", "google", "tiktok"]);
+  // Règle de publication des réponses aux avis, selon l'offre (moteur/avis/regles.js ; CGV article 8). Essentiel : tout est validé par le commerçant ;
+  // Standard : 4 et 5 étoiles automatiques ; Premium : en plus, 1 à 3 étoiles traités par l'équipe Renomia. Un avis sensible n'est jamais automatique.
+  const offreDe = c => (window.RENOM_OFFRES || {})[(c || {}).offre_id] || {};
+  // Mode délégation : Premium ET accepté par écrit par le commerçant (commerces.delegation_signee_le, saisi dans la console).
+  const delegationActive = c => !!(offreDe(c).delegation && (c || {}).delegation_signee_le);
+  const regleAvis = c => { const o = offreDe(c); return o.delegation ? "avis.regle.premium" : o.avis_auto ? "avis.regle.standard" : "avis.regle.essentiel"; };
   const ETAT = I.carte("etat", ["non_connecte", "en_attente", "connecte", "erreur"]);
   const ETAPES = I.carte("etape", ["PRODUIT", "PUBLIE", "PROGRAMME", "PROGRAMMATION_ANNULEE", "IDEES", "CONTENU_APPROUVE", "CONTENU_MODIFICATION", "CONTENU_REFUSE", "REFUS", "LEGENDE_REFUSEE", "ECHEC_PUBLICATION",
     "AVIS_RECU", "AVIS_A_VALIDER", "AVIS_VALIDE", "AVIS_REFUSE", "AVIS_PUBLIE", "AVIS_SENSIBLE", "MISE_EN_PAUSE", "REPRISE", "OFFRE_CHANGEE", "COMMERCE_CREE", "LEGENDE_MODIFIEE", "EMAIL_VALIDATION",
@@ -336,7 +342,7 @@
         <section class="carte moitie"${avis1 ? ` data-avis="${e(avis1.id)}"` : ""}>
           <div class="carte-tete"><h2>${t(avis1 ? "acc.avis.un" : "acc.avis.aucun")}</h2>${avis1 ? `<span class="note">${etoiles(avis1.note)}</span>` : ""}</div>
           ${avis1 ? `${citation(avis1)}${avis1.auteur && !avis1.efface_le ? `<p class="note">${e(avis1.auteur)}</p>` : ""}${reponseAValider(avis1)}${reponses.length > 1 ? `<p class="note pied"><a href="#/avis">${t("acc.avis.voir", { n: reponses.length })}</a></p>` : ""}`
-          : `<p class="texte2">${t(c.reglage_avis === "tout_automatique" ? "avis.tout.auto" : "acc.avis.regle")}</p><p class="pied"><a href="#/avis">${t("acc.ouvrir.avis")}</a></p>`}
+          : `<p class="texte2">${t(regleAvis(c))}</p><p class="pied"><a href="#/avis">${t("acc.ouvrir.avis")}</a></p>`}
         </section>
         <section class="carte moitie">
           <div class="carte-tete"><h2>${t("acc.prochaines")}</h2></div>
@@ -396,10 +402,8 @@
         <div class="f"><label for="email_validation">${t("fiche.email")}</label><input id="email_validation" type="email" value="${v("email_validation")}"></div></div></section>
       <section class="carte"><h2>${t("fiche.avis.titre")}</h2>
         <div class="f"><label for="lien_avis">${t("fiche.lien")}</label><input id="lien_avis" type="url" value="${v("lien_avis")}"><p class="aide">${t("fiche.lien.aide")}</p></div>
-        <fieldset><legend>${t("fiche.reponses")}</legend>
-          <label class="option"><input type="radio" name="reglage" value="auto_des_4_etoiles"${c.reglage_avis !== "tout_automatique" ? " checked" : ""}><span>${t("fiche.reglage.4")}</span></label>
-          <label class="option"><input type="radio" name="reglage" value="tout_automatique"${c.reglage_avis === "tout_automatique" ? " checked" : ""}><span>${t("fiche.reglage.tout")}</span></label>
-          <p class="aide">${t("fiche.reglage.aide")}</p></fieldset></section>
+        <div class="pile serre" id="fiche-regle-avis"><h3>${t("fiche.reponses")}</h3><p class="texte2">${t(regleAvis(c))}</p>
+          <p class="aide">${t("fiche.reglage.aide")}</p></div></section>
       <section class="carte" id="fiche-style"><h2>${t("fiche.couleurs")}</h2>
         <div class="style-accueil-corps"><p class="texte2">${t("fiche.couleurs.style")}</p><div class="style-nuancier" aria-hidden="true">${[co.accent, co.fond, co.texte].filter(Boolean).map(x => `<span style="background:${e(x)}"></span>`).join("")}</div></div>
         <p class="pied"><a class="bouton second" href="#/style">${t("fiche.couleurs.lien")}</a></p></section>
@@ -409,8 +413,7 @@
       ev.preventDefault();
       try {
         await D.enregistrer({ nom: $("nom").value.trim(), metier: $("metier").value, ville: $("ville").value.trim(), specialites: $("specialites").value.trim(), horaires: $("horaires").value.trim(), ton: $("ton").value.trim(),
-          mots_cles: liste("mots_cles"), mentions_autorisees: liste("mentions"), contact: $("contact").value.trim(), email_validation: $("email_validation").value.trim(), lien_avis: $("lien_avis").value.trim(),
-          reglage_avis: document.querySelector("input[name=reglage]:checked").value });   // couleurs : écran « Votre style » (kit de marque)
+          mots_cles: liste("mots_cles"), mentions_autorisees: liste("mentions"), contact: $("contact").value.trim(), email_validation: $("email_validation").value.trim(), lien_avis: $("lien_avis").value.trim() });   // couleurs : écran « Votre style » (kit de marque)
         msg(t("fiche.enregistree"));
       } catch (er) { msg(t("fiche.echec", { m: ph(er.message) })); }
     };
@@ -615,7 +618,7 @@
     const liste = l.filter(x => famille(x) === filtre), urls = await Promise.all(liste.map(x => urlSure(x))), vids = await Promise.all(liste.map(videoSure));
     const u9s = await Promise.all(liste.map(url916));   // onglet TikTok de chaque publication photo : le 9:16 qui part
     const formatCourt = x => t("format.court." + M.formatDe(x));
-    vue.innerHTML = `${pauseBandeau(c)}<div class="entete-accueil">${entete(t("groupe.creer"), t("contenus.titre"), t("contenus.chapo"))}
+    vue.innerHTML = `${pauseBandeau(c)}<div class="entete-accueil">${entete(t("groupe.creer"), t("contenus.titre"), t(delegationActive(c) ? "contenus.chapo.delegation" : "contenus.chapo"))}
         <button type="button" class="bouton second" id="proposer-idees" aria-expanded="${ideesOuvertes}" aria-controls="idees">${t("idees.titre")}</button></div>
       ${ideesOuvertes ? await panneauIdees(c) : ""}
       ${await proposition(c)}
@@ -696,12 +699,12 @@
           ${citation(x)}<p class="note">${x.auteur && !x.efface_le ? e(x.auteur) + " · " : ""}${t("recu.le", { d: date(x.cree_le) })}</p>
           ${x.sensible ? `<div class="encart" role="alert"><p class="fort">${t("avis.sensible", { r: e(raisonsTexte(x.raisons)) })}</p><p>${t("avis.sensible.texte")}</p></div>` : ""}
           ${x.statut === "a_valider" && !x.sensible ? reponseAValider(x) : ""}
-          ${x.statut === "escalade" ? `<p class="note">${t("avis.escalade.texte")}</p>` : ""}
+          ${x.statut === "escalade" ? `<p class="note">${t(offreDe(c).delegation ? "avis.equipe.texte" : "avis.escalade.texte")}</p>` : ""}
           ${x.statut === "publie" || x.statut === "valide" ? `<p class="reponse"><span class="fort">${t(x.escalade_le ? "avis.rep.renomia" : x.decision === "publication_automatique" ? "avis.rep.auto" : "avis.rep.validee")}</span> <span${lc()}>${e(x.reponse || x.reponse_proposee || "")}</span></p>` : ""}</article>`).join("")
           : `<section class="carte"><h2>${t("avis.vide.titre")}</h2><p class="texte2">${t("avis.vide.texte")}</p></section>`}
           <p class="msg" id="msg" role="status"></p></div>
-        <section class="carte"><h2>${t("reglage")}</h2><p class="texte2">${t(c.reglage_avis === "tout_automatique" ? "avis.tout.auto" : "avis.reglage.4")}</p>
-          <p class="note">${t("avis.sensible.jamais")}</p><p class="pied"><a href="#/fiche">${t("avis.modifier.reglage")}</a></p></section>
+        <section class="carte" id="avis-regle"><h2>${t("reglage")}</h2><p class="texte2">${t(regleAvis(c))}</p>
+          <p class="note">${t("avis.sensible.jamais")}</p><p class="pied"><a href="#/offre">${t("acc.voir.offre")}</a></p></section>
       </div>`;
     brancherAvis(vue, avis);
   }
@@ -863,25 +866,30 @@
       <div class="cartes comptes">${l.map(x => `<article class="carte"><h2>${RES[x.reseau]} <span class="etat${x.etat === "connecte" ? " actif" : ""}">· ${ETAT[x.etat] || e(x.etat)}</span></h2><p class="texte2">${AIDE[x.reseau]}</p>${x.detail ? `<p class="note pied">${e(ph(x.detail))}</p>` : ""}</article>`).join("")}</div>`;
   }
 
-  // ---------------- Offre : ce qui est inclus, le prix (mensuel, semestriel, frais de mise en route), nos engagements (garanties, suivi des 10 avis),
-  // le parcours en 5 étapes et l'abonnement Stripe. Chiffres : window.RENOM_OFFRES et window.RENOM_CONDITIONS (donnees.js, égaux à moteur/ et à la base).
+  // ---------------- Offre : ce qui est inclus (contenus originaux par mois, réseaux retenus), le prix (mensuel, 6 mois d'avance, frais de mise en route
+  // selon l'offre), la règle de publication, la garantie des délais et son suivi, le parcours en 3 étapes et l'abonnement Stripe.
+  // Chiffres : window.RENOM_OFFRES et window.RENOM_CONDITIONS (donnees.js, égaux à moteur/ et à la base). L'objectif interne des pilotes n'est jamais montré ici.
   const COND = window.RENOM_CONDITIONS;
   const euros = x => t("euros", { x: nombre(x) });
-  const ETATS_GARANTIE = I.carte("gar.etat", ["en_cours", "atteinte", "travail_gratuit", "condition_manquante"]);
-  function suiviGarantie(g) {
+  const ETATS_DELAI = I.carte("delai.etat", ["non_demarre", "en_cours", "tenu", "manque"]);
+  function suiviDelais(g) {
     if (!g) return "";
-    const ligne = (lib, val, id) => `<li${id ? ` id="${id}"` : ""}><span>${lib}</span><span class="fort chiffre">${val}</span></li>`;
-    return `<div class="pile serre" id="offre-garantie-suivi"><div class="carte-tete"><h3>${t("offre.garantie.suivi")}</h3><span class="etat${g.etat === "atteinte" ? " actif" : ""}" id="garantie-etat">${ETATS_GARANTIE[g.etat] || e(g.etat)}</span></div>
-      <ul class="liste">${ligne(t("offre.garantie.depart", { d: I.dateLongue(g.depart_le) }), t("offre.garantie.n.avis", { n: g.avis_depart }), "garantie-depart")}
-        ${ligne(t("offre.garantie.actuel"), t("offre.garantie.n.avis", { n: g.avis_actuel }), "garantie-actuel")}
-        ${ligne(t("offre.garantie.objectif", { d: I.dateLongue(g.echeance) }), t("offre.garantie.n.avis", { n: g.objectif_total }), "garantie-objectif")}</ul>
-      <p class="note">${g.source === "releve" ? t("offre.garantie.source.releve", { d: I.dateLongue(g.releve_le) }) : t("offre.garantie.source.recus")}</p></div>`;
+    if (!g.depart) return `<div class="pile serre" id="offre-delais-suivi"><h3>${t("offre.delais.suivi")}</h3><p class="note">${t("offre.delais.pas.demarre")}</p></div>`;
+    const ligne = (lib, d, id) => `<li id="${id}"><span>${lib}${d.echeance ? `<span class="note">${t(d.fait_le ? "offre.delais.fait" : "offre.delais.avant", { d: I.dateLongue((d.fait_le || d.echeance).slice(0, 10)) })}</span>` : ""}</span><span class="etat${d.etat === "tenu" ? " actif" : ""}">${ETATS_DELAI[d.etat] || e(d.etat)}</span></li>`;
+    const av = g.avis_en_cours || [], offerts = (g.mois_offerts || []).map(m => I.dateLongue(m)).join(", ");
+    return `<div class="pile serre" id="offre-delais-suivi"><h3>${t("offre.delais.suivi")}</h3>
+      <p class="note">${t("offre.delais.depart", { d: I.dateLongue(g.depart.slice(0, 10)) })}</p>
+      <ul class="liste">${ligne(t("offre.delais.fiche"), g.fiche, "delai-fiche")}${g.premier_contenu ? ligne(t("offre.delais.contenu"), g.premier_contenu, "delai-contenu") : ""}
+        <li id="delai-avis"><span>${t("offre.delais.avis")}</span><span class="fort chiffre">${av.length ? t("offre.delais.avis.n", { n: av.length }) : t("offre.delais.avis.aucun")}</span></li></ul>
+      ${offerts ? `<p class="note" id="offre-mois-offerts">${t("offre.delais.mois.offerts", { l: offerts })}</p>` : ""}</div>`;
   }
   async function offre() {
-    const [k, j, c, ab, g] = await Promise.all([D.compteur(), D.journal(), D.commerce(), D.abonnement ? D.abonnement().catch(() => null) : null, D.maGarantie ? D.maGarantie().catch(() => null) : null]);
+    const [k, j, c, ab, g] = await Promise.all([D.compteur(), D.journal(), D.commerce(), D.abonnement ? D.abonnement().catch(() => null) : null, D.maGarantieDelais ? D.maGarantieDelais().catch(() => null) : null]);
     const o = window.RENOM_OFFRES[k.offre] || {}, mois = new Date(k.mois + "T12:00:00"), mer = COND.mise_en_route, offerts = window.RENOM_MAJ.aujourdhui() <= mer.offerts_jusqu_au;
+    const gd = COND.garantie_delais, reseaux = window.RENOM_RESEAUX_AUTORISES(c), sociaux = reseaux.filter(r => r !== "google");
     // Abonnement Stripe : état écrit par le webhook (table abonnements) ; boutons seulement si les liens sont configurés (config.js, stripe).
     const portail = ab && ab.statut !== "resilie", lien = D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre, null, "mensuel") : null, lienS = !portail && D.lienAbonnement ? D.lienAbonnement(ab, c, k.offre, null, "semestriel") : null;
+    const contenus = o.contenus ?? ((+k.publications_plafond || 0) + (+k.videos_plafond || 0));
     vue.innerHTML = `${pauseBandeau(c)}${entete(t("offre.sur"), t("offre.titre.nom", { nom: e(k.offre_nom) }))}
       <div class="rangee">
         <section class="carte moitie"><div class="carte-tete"><h2>${t("ce.mois")}</h2><span class="note">${cap(MOIS[mois.getMonth()])} ${mois.getFullYear()}</span></div>
@@ -889,19 +897,27 @@
           ${k.videos_plafond ? mesure(t("offre.vid.utilisees"), k.videos_utilisees, k.videos_plafond) : `<div class="mesure-tete"><span>${t("mes.videos")}</span><span class="note">${t("non.comprises.offre")}</span></div>`}
           <div class="mesure-tete" id="offre-commentaires"><span>${t("offre.rep.commentaires")}</span>${k.commentaires_inclus ? `<span>${t("offre.cm.sans.plafond", { n: `<span class="chiffre">${nombre(+k.commentaires_repondus || 0)}</span>` })}</span>` : `<span class="note">${t("non.comprises.offre")}</span>`}</div>
           <p class="note pied">${t("offre.compteur.debut")}</p></section>
-        <section class="carte moitie"><h2>${t("offre.inclus")}</h2><ul class="liste"><li><span>${t("offre.inc.publications")}</span><span class="fort">${o.publications ?? k.publications_plafond}</span></li><li id="offre-reseaux"><span>${t("offre.inc.reseaux")}</span><span class="fort">${t(o.tiktok === false ? "offre.reseaux.sans.tiktok" : "offre.reseaux.tous")}</span></li><li><span>${t("offre.inc.videos")}</span><span class="fort">${(o.videos ?? k.videos_plafond) || t("non.comprises")}</span></li><li><span>${t("offre.inc.avis")}</span><span class="fort">${t("comprises")}</span></li><li><span>${t("offre.inc.commentaires")}</span><span class="fort">${t(k.commentaires_inclus ? "comprises" : "non.comprises")}</span></li><li><span>${t("offre.inc.concurrents")}</span><span class="fort">${t("comprise")}</span></li><li><span>${t("offre.inc.bilan")}</span><span class="fort">${t("compris")}</span></li></ul>
-          <p class="note pied">${t("offre.idees.compte")}</p></section>
+        <section class="carte moitie"><h2>${t("offre.inclus")}</h2><ul class="liste">
+          <li id="offre-contenus"><span>${t("offre.inc.contenus")}</span><span class="fort">${o.videos ? t("offre.contenus.dont.videos", { n: contenus, v: o.videos }) : t("offre.contenus.n", { n: contenus })}</span></li>
+          <li id="offre-reseaux"><span>${t("offre.inc.reseaux")}</span><span class="fort">${sociaux.length ? [...sociaux, "google"].map(r => RES[r]).join(", ") : t("offre.reseaux.google.seul")}</span></li>
+          <li><span>${t("offre.inc.avis")}</span><span class="fort">${t("comprises")}</span></li><li><span>${t("offre.inc.commentaires")}</span><span class="fort">${t(k.commentaires_inclus ? "comprises" : "non.comprises")}</span></li>
+          <li><span>${t("offre.inc.concurrents")}</span><span class="fort">${t("comprise")}</span></li><li><span>${t("offre.inc.bilan")}</span><span class="fort">${t("compris")}</span></li></ul>
+          <p class="note pied">${t("offre.contenus.unite")} ${t("offre.idees.compte")}</p></section>
       </div>
       ${o.prix_ht ? `<section class="carte" id="offre-prix"><h2>${t("offre.prix.titre")}</h2><p class="prix-offre"><span class="chiffre">${euros(o.prix_ht)}</span> ${t("offre.ht.mois")}</p>
         <p class="texte2 lecture" id="offre-semestriel">${t("offre.semestriel", { prix: euros(o.prix_semestriel_ht) })}</p>
-        <p class="texte2 lecture" id="offre-frais">${offerts ? t("offre.frais.offerts", { prix: euros(mer.prix_ht), date: I.dateLongue(mer.offerts_jusqu_au) }) : t("offre.frais.factures", { prix: euros(mer.prix_ht) })}</p>
+        <p class="texte2 lecture" id="offre-frais">${!o.frais_mise_en_route ? t("offre.frais.aucun") : offerts ? t("offre.frais.offerts", { prix: euros(mer.prix_ht), date: I.dateLongue(mer.offerts_jusqu_au) }) : t("offre.frais.factures", { prix: euros(mer.prix_ht) })}</p>
         <p class="note">${t("offre.sans.engagement")} ${t("offre.cgv")}</p></section>` : o.retiree ? `<section class="carte" id="offre-prix"><h2>${t("offre.prix.titre")}</h2><p class="texte2 lecture">${t("offre.retiree")}</p></section>` : ""}
+      <section class="carte" id="offre-regle"><h2>${t("offre.regle.titre")}</h2><p class="texte2 lecture">${t(regleAvis(c))}</p>
+        <p class="texte2 lecture" id="offre-regle-contenus">${t(delegationActive(c) ? "offre.regle.contenus.delegation" : o.delegation ? "offre.regle.contenus.delegation.option" : "offre.regle.contenus", { h: COND.delegation.publication_auto_heures })}</p>
+        <p class="note">${t("avis.sensible.jamais")}</p></section>
       <section class="carte" id="offre-garanties"><h2>${t("offre.garanties.titre")}</h2>
-        <ul class="liste-engagements"><li><p class="fort">${t("offre.garantie.reponse")}</p><p class="note">${t("avis.reglage.4")}</p></li>
-          <li><p class="fort">${t("offre.garantie.avis")}</p><p class="note">${t("offre.garantie.avis.cond")}</p></li>
-          <li><p class="note">${t("offre.garantie.tacite")}</p></li></ul>
-        ${suiviGarantie(g)}</section>
-      <section class="carte" id="offre-processus"><h2>${t("offre.processus.titre")}</h2><ol class="etapes-offre">${[1, 2, 3, 4, 5].map(n => `<li>${t("offre.processus." + n)}</li>`).join("")}</ol></section>
+        <ul class="liste-engagements"><li><p class="fort">${t("offre.garantie.fiche", { n: gd.fiche_optimisee_jours })}</p></li>
+          ${o.reseaux_sociaux ? `<li><p class="fort">${t("offre.garantie.contenu", { n: gd.premier_contenu_heures })}</p></li>` : ""}
+          <li><p class="fort">${t("offre.garantie.avis24", { n: gd.avis_traite_heures })}</p></li>
+          <li><p class="note">${t("offre.garantie.contrepartie")}</p></li></ul>
+        ${suiviDelais(g)}</section>
+      <section class="carte" id="offre-processus"><h2>${t("offre.processus.titre")}</h2><ol class="etapes-offre">${[1, 2, 3].map(n => `<li>${t("offre.processus." + n)}</li>`).join("")}</ol></section>
       <section class="carte" id="offre-abonnement"><div class="carte-tete"><h2>${t("abo.titre")}</h2>${ab ? `<span class="etat${ab.statut === "actif" ? " actif" : ""}" id="abo-statut">${ST_ABO[ab.statut] || e(ab.statut)}</span>` : ""}</div>
         <p class="texte2 lecture">${ab ? t("abo.texte." + ab.statut) : t("abo.aucun")}</p>
         ${lien ? `<p class="pied actions-abo"><a class="bouton" id="offre-payer" href="${e(lien)}" target="_blank" rel="noopener">${t(portail ? "abo.bouton.portail" : "abo.bouton.mensuel")}</a>${lienS ? `<a class="bouton second" id="offre-payer-semestriel" href="${e(lienS)}" target="_blank" rel="noopener">${t("abo.bouton.semestriel")}</a>` : ""}</p><p class="note">${t(portail ? "abo.note.portail" : "abo.note.paiement")}</p>`
@@ -1153,7 +1169,7 @@
   }
 
   // ---- Réponses aux commentaires ----------------------------------------------------------------------------------
-  // Écran du groupe « Réputation ». Instagram et Facebook (offre Croissance ; Signature, retirée, pour un ancien commerce). Classement et réponse proposés par Renomia, décision du
+  // Écran du groupe « Réputation ». Instagram et Facebook (offres Standard et Premium ; Croissance et Signature, retirées, pour un ancien commerce). Classement et réponse proposés par Renomia, décision du
   // commerçant ; un commentaire sensible n'est jamais traité par Renomia. Publication par l'API de Meta, ou par l'équipe tant que l'accès n'est pas accordé.
   const CO = window.RENOM_COMMENTAIRES;
   const CM_CATEGORIES = I.carte("cm.cat", Object.keys(CO.CATEGORIES)), CM_ETATS = I.carte("cm.etat", Object.keys(CO.ETATS));
