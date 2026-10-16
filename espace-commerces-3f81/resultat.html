@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07080C">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Résultat du prospect</title>
+<link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Page du lien « résultat » de l'email « Tournée du jour » (resultat.html?r=<résultat>#<jeton>), pour PJ seul : sans connexion, le jeton suffit
+   (64 caractères, 7 jours, usage unique : bloc « Prospection quotidienne » de schema.sql). Rien n'est enregistré à l'ouverture (un antivirus de
+   messagerie peut ouvrir les liens) : le résultat proposé par le lien est présélectionné, PJ confirme d'un clic. Styles repris de desinscription.html. */
+:root{color-scheme:dark;--fond:#07080C;--surface:#12141D;--releve:#1A1D29;--creux:#0B0D14;--encre:#FFFFFF;--texte2:#E4E6F2;--discret:#A9ADBF;--bord:#6B6F82;--filet:rgba(255,255,255,.12);--marque:#3D4BFF;
+  --titre:'Anton','Arial Narrow',Impact,system-ui,sans-serif;--sans:'Figtree',system-ui,sans-serif}
+@font-face{font-family:'Anton';font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:400;font-display:swap;src:url(fonts/figtree-400.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:500;font-display:swap;src:url(fonts/figtree-500.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:600;font-display:swap;src:url(fonts/figtree-600.woff2) format('woff2')}
+@font-face{font-family:'Figtree';font-weight:700;font-display:swap;src:url(fonts/figtree-700.woff2) format('woff2')}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.5;color:var(--encre);background:var(--fond)}
+h1,h2,p{margin:0}
+main{max-width:560px;margin:0 auto;padding:24px 16px calc(32px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px}
+#page,#erreur,#fait{display:flex;flex-direction:column;gap:14px}
+.logo{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:26px;letter-spacing:.04em}
+.barre{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-8px -8px -8px 0}
+.langues{display:inline-flex;align-items:center;gap:2px}
+.langues button{font:inherit;font-size:14px;font-weight:600;letter-spacing:.04em;min-width:44px;min-height:44px;padding:0 8px;background:none;border:0;border-radius:10px;color:var(--discret);cursor:pointer;text-decoration:none}
+.langues button[aria-pressed=true]{color:var(--encre);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.langues button:hover{color:var(--encre)}
+.tete{display:flex;flex-direction:column;gap:10px;padding:0 2px 4px}
+.commerce{font-size:17px;font-weight:700;color:var(--texte2);overflow-wrap:anywhere}
+h1{font-family:var(--titre);font-weight:400;text-transform:uppercase;font-size:32px;line-height:1.08;letter-spacing:.012em;text-wrap:balance}
+.carte{background:var(--surface);color:var(--encre);border:1px solid var(--filet);border-radius:18px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+h2{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.25}
+.note{font-size:15px;color:var(--discret)}
+.visuel{display:block;width:100%;max-width:340px;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:var(--releve)}
+.visuel.vertical{aspect-ratio:9/16;max-width:280px}
+video.visuel,img.visuel.vertical{object-fit:contain;background:#000}
+.legendes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.legendes li{padding:12px 0;border-bottom:1px solid var(--filet);display:flex;flex-direction:column;gap:4px}
+.legendes li:last-child{border-bottom:0}
+.reseau{font-size:13px;font-weight:700;color:var(--discret)}
+.texte{white-space:pre-line;overflow-wrap:anywhere;color:var(--texte2)}
+.citation{color:var(--texte2);overflow-wrap:anywhere}
+.bouton{display:flex;align-items:center;justify-content:center;width:100%;font:inherit;font-size:18px;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;background:var(--marque);color:#fff;border:1.5px solid var(--marque);border-radius:10px;padding:13px 18px;min-height:56px;cursor:pointer}
+.bouton:hover{background:#2E3BFF;border-color:#2E3BFF}
+.bouton.second{background:transparent;color:var(--encre);border-color:rgba(255,255,255,.6)}
+.bouton.second:hover{background:var(--releve)}
+.lien{font:inherit;font-size:16px;font-weight:600;background:none;border:0;padding:8px 4px;min-height:44px;color:var(--texte2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.bouton:disabled{opacity:.55;cursor:default}
+:focus-visible{outline:2px solid #9DA5FF;outline-offset:2px}
+a{color:var(--encre);text-underline-offset:3px}
+.carte p>a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.actions{display:flex;flex-direction:column;gap:10px}
+.f{display:flex;flex-direction:column;gap:6px}
+label{font-size:15px;font-weight:600;color:var(--texte2)}
+textarea{font:inherit;font-size:16px;line-height:1.45;color:var(--encre);background:var(--creux);border:1px solid var(--bord);border-radius:10px;padding:11px 14px;min-height:132px;width:100%;resize:vertical}
+textarea:focus-visible{border-color:#9DA5FF}
+#reponse{min-height:220px}
+.msg{font-size:16px;font-weight:600;color:var(--texte2)}
+.msg:empty{display:none}
+.fort{font-weight:700}
+.pied{font-size:14px;line-height:1.5;padding:6px 2px 0;color:var(--discret)}
+.pied-legal{font-size:12px;line-height:1.5;padding:18px 2px 0;color:var(--discret);display:flex;flex-direction:column;gap:2px}
+.pied-legal .liens-legaux{display:flex;flex-wrap:wrap;gap:0 16px}
+.pied-legal a{color:inherit;display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+@media (min-width:600px){main{padding-top:48px}h1{font-size:42px}.carte{padding:24px}.actions{flex-direction:row;flex-wrap:wrap;align-items:center}.actions .bouton{width:auto}}
+.choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.choix .bouton{font-size:16px;min-height:52px;padding:10px 12px}
+.choix .bouton[aria-pressed=false]{background:transparent;color:var(--encre);border-color:rgba(255,255,255,.6)}
+.choix .bouton[aria-pressed=false]:hover{background:var(--releve)}
+</style>
+</head>
+<body>
+<main>
+  <div class="barre"><p class="logo">Renomia</p></div>
+  <p id="chargement" class="note" role="status">Chargement.</p>
+
+  <div id="erreur" hidden>
+    <section class="carte"><h2>Lien inutilisable</h2><p id="erreur-texte">Ce lien n'est pas reconnu.</p><p><a href="console.html#/prospects">Ouvrir la console, onglet Prospects</a></p></section>
+  </div>
+
+  <div id="page" hidden>
+    <div class="tete"><p class="commerce" id="commerce"></p><h1>Résultat du prospect</h1></div>
+    <section class="carte">
+      <p class="note" id="contexte"></p>
+      <div class="choix" role="group" aria-label="Résultat">
+        <button type="button" class="bouton" data-r="rdv" aria-pressed="false">Rendez-vous</button>
+        <button type="button" class="bouton" data-r="rappeler" aria-pressed="false">Rappeler</button>
+        <button type="button" class="bouton" data-r="pilote" aria-pressed="false">Pilote signé</button>
+        <button type="button" class="bouton" data-r="pas_interesse" aria-pressed="false">Pas intéressé</button>
+      </div>
+      <p class="note" id="effet"></p>
+      <div class="f"><label for="note">Note pour vous (facultatif, 500 caractères au plus)</label><textarea id="note" maxlength="500" placeholder="Ex. : rappeler jeudi après 15 h, voit avec son associé"></textarea></div>
+      <div class="actions"><button type="button" class="bouton" id="enregistrer" disabled>Enregistrer</button></div>
+      <p class="msg" id="msg" role="status"></p>
+    </section>
+  </div>
+
+  <div id="fait" hidden>
+    <section class="carte"><h2>C'est noté</h2><p id="fait-texte"></p><p><a href="console.html#/prospects">Voir les prospects dans la console</a></p></section>
+  </div>
+  <p class="pied" id="demo" hidden>Démonstration : rien n'est envoyé, les données restent dans ce navigateur.</p>
+  <noscript><section class="carte"><p>Cette page a besoin de JavaScript. Notez le résultat dans la console, onglet Prospects.</p></section></noscript>
+</main>
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script src="donnees.js"></script>
+<script src="resultat.js"></script>
+</body>
+</html>
