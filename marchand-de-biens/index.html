@@ -158,6 +158,13 @@ section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
 .price-card li::before { content: "\2713"; color: var(--cta); font-weight: 800; position: absolute; left: 0; }
 .price-card li strong { color: var(--noir); font-weight: 700; }
 .price-card .btn-primary { display: block; text-align: center; }
+.price-total { margin: 0.9rem 0 0.6rem; padding: 0.9rem 1rem; background: var(--g100); border-radius: 10px; font-size: 0.95rem; color: var(--g600); line-height: 1.55; }
+.price-total strong { display: block; color: var(--noir); font-size: 1.05rem; margin-bottom: 0.15rem; }
+.sous-titre { margin: 2.6rem 0 1rem; font-size: 1.2rem; font-weight: 800; color: var(--noir); }
+.note-moteur { margin-top: 1.4rem; font-size: 1rem; color: var(--g600); line-height: 1.6; max-width: 760px; }
+.note-moteur strong { color: var(--noir); }
+.mobile-seul { display: none; }
+@media (max-width: 640px) { .mobile-seul { display: inline; } }
 .premier-paiement { margin-top: 1rem; font-size: 0.86rem; color: var(--g500); line-height: 1.55; text-align: center; }
 .prix-cote { display: flex; flex-direction: column; gap: 1.2rem; }
 .garantie { background: var(--g100); border-radius: var(--r); padding: 1.6rem 1.7rem; }
@@ -238,7 +245,7 @@ footer { border-top: 1px solid var(--g200); padding: 2.5rem 2rem; }
 
 /* HERO NUIT */
 .hero-nuit { background: var(--bleu-nuit); color: var(--blanc); padding: 4.5rem 0 3.5rem; }
-.hero-nuit .hero-produit { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.72); margin-bottom: 1.1rem; }
+.hero-nuit .hero-produit { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; color: var(--blanc); margin-bottom: 0.9rem; }
 .hero-nuit h1 { font-size: 3.6rem; font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.3rem; color: var(--blanc); }
 .hero-nuit .subtitle { font-size: 1.15rem; color: rgba(255,255,255,0.82); line-height: 1.6; margin-bottom: 2rem; max-width: 560px; }
 .hero-nuit .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
@@ -366,8 +373,8 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
   <div class="nav-inner">
     <a href="/" class="brand">GILD-<span class="tech">TECH</span> <span class="produit">Radar</span></a>
     <ul class="nav-links">
-      <li><a href="#journee">Une journée</a></li>
-            <li><a href="#note">La note</a></li>
+      <li><a href="#alerte">L'alerte</a></li>
+      <li><a href="#fonctionnement">Comment ça marche</a></li>
       <li><a href="#prix">Prix</a></li>
       <li><a href="#parrainage">Parrainage</a></li>
       <li><a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-nav">Écrire ALERTE sur WhatsApp</a></li>
@@ -380,22 +387,19 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
   <div class="page">
     <div class="hero-grid">
       <div>
-        <p class="hero-produit">Radar, la veille d'annonces des marchands de biens.</p>
+        <p class="hero-produit">Premier arrivé, premier servi.</p>
         <h1>Les bonnes affaires <br class="d">partent au premier <br class="d">qui appelle.</h1>
-        <p class="subtitle">Radar surveille les annonces de votre secteur, les note comme un marchand de biens les lirait, et vous les envoie sur WhatsApp avec le téléphone de l'annonceur. Vous lisez, vous appelez.</p>
+        <p class="subtitle">Radar est une automatisation branchée sur MoteurImmo. Dès qu'une annonce de votre secteur y apparaît, elle arrive sur votre WhatsApp, notée sur 10, avec l'écart au marché et le téléphone de l'annonceur. Vous lisez, vous appelez.</p>
         <div class="ctas">
-          <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-          <a href="#journee" class="btn-ghost">Voir une vraie journée</a>
+          <a href="#alerte" class="btn-primary">Voir une alerte réelle</a>
+          <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-ghost">Écrire sur WhatsApp</a>
         </div>
-        <p class="rassure">Écrire ne vous engage à rien. C'est Pierre-Jean Grisoni, le fondateur, qui vous répond.</p>
-        <p class="hero-offre"><strong>20 places d'abonné fondateur&nbsp;: 27&nbsp;€ par mois au lieu de <s>49&nbsp;€</s>,</strong> prix gardé tant que vous restez abonné. Jusqu'au 31&nbsp;octobre&nbsp;2026.</p>
-        <p class="hero-offre hero-parrain"><strong>Un confrère amené, un mois offert.</strong> Sans limite. <a href="#parrainage">Voir le parrainage</a></p>
       </div>
       <div>
         <a class="capture" href="alerte-whatsapp-2.png" target="_blank" rel="noopener" style="display:block">
-          <img src="alerte-whatsapp-2.webp" width="1132" height="806" alt="Alerte WhatsApp réelle : maison de 100 m² à Saint-Georges-de-Reneins, 249 000 euros, 2 490 euros le mètre carré pour un marché médian à 3 259 euros, décote de 24 %, DPE G, priorité A, lien de l'annonce et téléphone de l'agence.">
+          <picture><source media="(max-width: 640px)" srcset="alerte-whatsapp-2-mobile.webp" width="660" height="505"><img src="alerte-whatsapp-2.webp" width="1132" height="806" alt="Alerte WhatsApp réelle : maison de 100 m² à Saint-Georges-de-Reneins, 249 000 euros, 2 490 euros le mètre carré pour un marché médian à 3 259 euros, décote de 24 %, DPE G, priorité A, lien de l'annonce et téléphone de l'agence."></picture>
         </a>
-        <p class="capture-legende">Alerte réelle du 8&nbsp;octobre&nbsp;2026, reçue par un marchand de biens du Beaujolais. Rien n'est retouché.</p>
+        <p class="capture-legende">Alerte réelle du 8&nbsp;octobre&nbsp;2026, reçue par un marchand de biens du Beaujolais. Rien n'est retouché.<span class="mobile-seul"> Touchez l'image pour la voir en entier.</span></p>
       </div>
     </div>
     <div class="faits">
@@ -408,8 +412,67 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
 
 <div class="page">
 
+  <!-- INTERET : l'alerte -->
+  <section class="block sans-trait" id="alerte">
+    <h2 class="section-title">Un message. Sept informations. Une décision.</h2>
+    <p class="section-subtitle">Tout ce qu'il faut pour décider d'appeler, dans l'ordre où vous le lisez.</p>
+    <div class="demo-grid">
+      <div>
+        <a class="capture" href="alerte-whatsapp.png" target="_blank" rel="noopener" style="display:block">
+          <picture><source media="(max-width: 640px)" srcset="alerte-whatsapp-mobile.webp" width="560" height="334"><img src="alerte-whatsapp.webp" width="1132" height="820" loading="lazy" alt="Autre alerte WhatsApp réelle : maison de 150 m² à Genouilleux, priorité A, note 9 sur 10, 349 000 euros, marché médian 2 969 euros le mètre carré, décote 22 %, DPE E, mots-clés, lien et contact de l'annonceur."></picture>
+        </a>
+        <p class="capture-legende">Autre alerte réelle. Ici l'annonceur est une personne&nbsp;: son nom et la fin de son numéro sont floutés sur cette page, pas dans vos alertes.<span class="mobile-seul"> Touchez l'image pour voir le message entier.</span></p>
+      </div>
+      <ol class="demo-list">
+        <li><strong>La priorité et la note sur 10.</strong> Vous savez tout de suite si l'annonce mérite votre attention.</li>
+        <li><strong>Le bien.</strong> Type, nombre de pièces, surface habitable, terrain, commune.</li>
+        <li><strong>Le prix et le prix au m².</strong></li>
+        <li><strong>Le marché médian du secteur et la décote,</strong> déjà calculés.</li>
+        <li><strong>Le DPE et les mots-clés repérés</strong> dans le texte de l'annonce.</li>
+        <li><strong>Le lien vers l'annonce d'origine.</strong></li>
+        <li><strong>Le nom et le téléphone de l'annonceur.</strong> Vous appelez depuis le message.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- INTERET : comment ça marche, MoteurImmo d'abord -->
+  <section class="block" id="fonctionnement">
+    <h2 class="section-title">Comment ça marche&nbsp;: MoteurImmo repère, Radar trie, vous appelez.</h2>
+    <p class="section-subtitle">Radar ne cherche pas les annonces lui-même. Il est branché sur MoteurImmo, qui réunit les annonces de centaines de sites immobiliers.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>MoteurImmo repère l'annonce</h3>
+        <p>Leboncoin, SeLoger, Bien'ici, les réseaux d'agences&nbsp;: MoteurImmo surveille votre secteur selon vos critères. Il faut la formule MoteurImmo Agent, 39&nbsp;€ par mois réglés directement à MoteurImmo. C'est elle qui permet le branchement.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Radar la note</h3>
+        <p>Dès que MoteurImmo la lui transmet, Radar calcule l'écart au marché, repère les mots-clés et donne une note sur 10. Sous votre seuil, rien ne part.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Vous la recevez sur WhatsApp</h3>
+        <p>Avec le prix, la décote et le téléphone de l'annonceur. Vous appelez depuis le message.</p>
+      </div>
+    </div>
+    <h3 class="sous-titre">MoteurImmo seul, ou avec Radar</h3>
+    <div class="table-wrap">
+      <table class="face">
+        <thead><tr><th></th><th>MoteurImmo Agent seul</th><th>MoteurImmo Agent avec Radar</th></tr></thead>
+        <tbody>
+          <tr><th>Où arrive l'annonce</th><td>E-mail, Telegram ou notification</td><td>WhatsApp</td></tr>
+          <tr><th>Tri pour un marchand de biens</th><td>À faire vous-même</td><td>Note sur 10 et priorité A, B ou C</td></tr>
+          <tr><th>Écart au marché</th><td>Prix médian à consulter</td><td>Écart calculé, écrit dans le message</td></tr>
+          <tr><th>Qui appeler</th><td>Sur la fiche de l'annonce</td><td>Nom et téléphone dans le message</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note-moteur"><strong>Pas encore abonné à MoteurImmo&nbsp;?</strong> MoteurImmo offre 10&nbsp;jours de formule Agent à la création du compte. Nous vous guidons pour le branchement.</p>
+  </section>
+
   <!-- INTERET : une vraie journée -->
-  <section class="block sans-trait" id="journee">
+  <section class="block" id="journee">
     <h2 class="section-title">Jeudi 8 octobre 2026, sur le WhatsApp d'un marchand de biens.</h2>
     <p class="section-subtitle">Ce n'est pas une démonstration. C'est ce que Radar a envoyé ce jour-là, heure par heure.</p>
     <div class="journee">
@@ -426,54 +489,13 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     </div>
   </section>
 
-  <!-- INTERET : sans / avec -->
-  <section class="block">
-    <h2 class="section-title">Les annonces, vous les trouvez. Le temps de les trier, non.</h2>
-    <p class="section-subtitle">Surveiller, calculer, chercher qui appeler&nbsp;: ce travail se fait avant même de savoir si l'annonce vaut un coup de fil. C'est lui que Radar fait à votre place.</p>
-    <div class="deux">
-      <div class="sans">
-        <h3>Sans Radar</h3>
-        <ul>
-          <li>Vous ouvrez les portails entre deux visites, quand vous y pensez.</li>
-          <li>Les alertes par e-mail s'empilent avec le reste de votre boîte.</li>
-          <li>Vous refaites le même calcul à chaque annonce&nbsp;: prix au m², marché, écart.</li>
-          <li>Vous ouvrez l'annonce pour trouver qui appeler.</li>
-        </ul>
-      </div>
-      <div class="avec">
-        <h3>Avec Radar</h3>
-        <ul>
-          <li>L'annonce arrive sur WhatsApp, là où vous lisez déjà vos messages.</li>
-          <li>Un message par annonce, classé A ou B. Le reste ne vous dérange pas.</li>
-          <li>Le prix au m², le marché médian et l'écart sont déjà calculés.</li>
-          <li>Le nom et le téléphone de l'annonceur sont dans le message.</li>
-        </ul>
-      </div>
+  <div class="appel-milieu">
+    <div>
+      <strong>La même chose sur votre secteur&nbsp;?</strong>
+      <span>Écrivez ALERTE sur WhatsApp avec votre secteur et vos critères. Pierre-Jean Grisoni, le fondateur, vous répond lui-même.</span>
     </div>
-  </section>
-
-  <!-- INTERET : l'alerte -->
-  <section class="block" id="alerte">
-    <h2 class="section-title">Un message. Sept informations. Une décision.</h2>
-    <p class="section-subtitle">Tout ce qu'il faut pour décider d'appeler, dans l'ordre où vous le lisez.</p>
-    <div class="demo-grid">
-      <div>
-        <a class="capture" href="alerte-whatsapp.png" target="_blank" rel="noopener" style="display:block">
-          <img src="alerte-whatsapp.webp" width="1132" height="820" loading="lazy" alt="Autre alerte WhatsApp réelle : maison de 150 m² à Genouilleux, priorité A, note 9 sur 10, 349 000 euros, marché médian 2 969 euros le mètre carré, décote 22 %, DPE E, mots-clés, lien et contact de l'annonceur.">
-        </a>
-        <p class="capture-legende">Autre alerte réelle. Ici l'annonceur est une personne&nbsp;: son nom et la fin de son numéro sont floutés sur cette page, pas dans vos alertes.</p>
-      </div>
-      <ol class="demo-list">
-        <li><strong>La priorité et la note sur 10.</strong> Vous savez tout de suite si l'annonce mérite votre attention.</li>
-        <li><strong>Le bien.</strong> Type, nombre de pièces, surface habitable, terrain, commune.</li>
-        <li><strong>Le prix et le prix au m².</strong></li>
-        <li><strong>Le marché médian du secteur et la décote,</strong> déjà calculés.</li>
-        <li><strong>Le DPE et les mots-clés repérés</strong> dans le texte de l'annonce.</li>
-        <li><strong>Le lien vers l'annonce d'origine.</strong></li>
-        <li><strong>Le nom et le téléphone de l'annonceur.</strong> Vous appelez depuis le message.</li>
-      </ol>
-    </div>
-  </section>
+    <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+  </div>
 
   <!-- DESIR : la note -->
   <section class="block" id="note">
@@ -496,58 +518,6 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <p class="ecarte">La note sert à trier. Elle ne remplace pas votre analyse.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- DESIR : face à MoteurImmo -->
-  <section class="block">
-    <h2 class="section-title">Radar ne remplace pas MoteurImmo. Il le rend exploitable sur le terrain.</h2>
-    <p class="section-subtitle">MoteurImmo rassemble les annonces. Radar les trie pour un marchand de biens et les met dans votre poche.</p>
-    <div class="table-wrap">
-      <table class="face">
-        <thead><tr><th></th><th>MoteurImmo Agent seul</th><th>MoteurImmo Agent avec Radar</th></tr></thead>
-        <tbody>
-          <tr><th>Où arrive l'annonce</th><td>E-mail, Telegram ou notification</td><td>WhatsApp</td></tr>
-          <tr><th>Tri pour un marchand de biens</th><td>À faire vous-même</td><td>Note sur 10 et priorité A, B ou C</td></tr>
-          <tr><th>Écart au marché</th><td>Prix médian à consulter</td><td>Écart calculé, écrit dans le message</td></tr>
-          <tr><th>Qui appeler</th><td>Sur la fiche de l'annonce</td><td>Nom et téléphone dans le message</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <div class="appel-milieu">
-    <div>
-      <strong>Votre secteur, vos critères, sur votre WhatsApp.</strong>
-      <span>27&nbsp;€ par mois pour les 20 abonnés fondateurs. Moins d'un euro par jour.</span>
-    </div>
-    <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-  </div>
-
-  <!-- DESIR : fonctionnement -->
-  <section class="block" id="fonctionnement">
-    <h2 class="section-title">En place en trois temps.</h2>
-    <p class="section-subtitle">Rien à installer. Vous gardez votre téléphone et vos habitudes.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Vous écrivez ALERTE</h3>
-        <p>Sur WhatsApp. Vous nous donnez votre secteur, le type de bien, votre budget, vos surfaces.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Vous réglez l'inscription</h3>
-        <p>76&nbsp;€ par carte&nbsp;: la mise en service et le premier mois.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Radar veille pour vous</h3>
-        <p>Nous le branchons sur votre compte MoteurImmo Agent. Les annonces arrivent, notées, dès que MoteurImmo les repère.</p>
-      </div>
-    </div>
-    <div class="duo">
-      <div><strong>Vous gardez la main.</strong> Vous changez vos critères par un simple message.</div>
-      <div><strong>Vous arrêtez quand vous voulez.</strong> Pas d'engagement de durée.</div>
     </div>
   </section>
 
@@ -581,6 +551,33 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <p class="avenir-note"><strong>Les abonnés fondateurs recevront l'analyse sans supplément pendant 12&nbsp;mois à sa sortie.</strong> Nous la construisons avec eux, sur leurs vraies annonces. Aucune date n'est promise.</p>
   </section>
 
+  <!-- ACTION : inscription, juste avant le prix -->
+  <section class="block" id="inscription">
+    <h2 class="section-title">L'inscription en trois temps.</h2>
+    <p class="section-subtitle">Rien à installer. Vous gardez votre téléphone et vos habitudes.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Vous écrivez ALERTE</h3>
+        <p>Sur WhatsApp. Vous nous donnez votre secteur, le type de bien, votre budget, vos surfaces.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Vous réglez l'inscription</h3>
+        <p>76&nbsp;€ par carte&nbsp;: 49&nbsp;€ de mise en service, une seule fois, et 27&nbsp;€ pour le premier mois.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Radar veille pour vous</h3>
+        <p>Nous branchons Radar sur votre compte MoteurImmo Agent. Les annonces arrivent, notées, dès que MoteurImmo les repère.</p>
+      </div>
+    </div>
+    <div class="duo">
+      <div><strong>Vous gardez la main.</strong> Vous changez vos critères par un simple message.</div>
+      <div><strong>Vous arrêtez quand vous voulez.</strong> Pas d'engagement de durée.</div>
+    </div>
+  </section>
+
   <!-- ACTION : prix -->
   <section class="block" id="prix">
     <h2 class="section-title">20 places d'abonné fondateur.</h2>
@@ -594,6 +591,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <span class="price">27&nbsp;€ <small>par mois</small></span>
         </div>
         <p class="price-save">Moins d'un euro par jour. Votre prix reste à 27&nbsp;€ tant que vous restez abonné.</p>
+        <p class="price-total"><strong>+ 49&nbsp;€ de mise en service, une seule fois.</strong> À l'inscription, vous réglez 76&nbsp;€&nbsp;: la mise en service et le premier mois. Ensuite, 27&nbsp;€ par mois. Prix hors taxes éventuelles.</p>
         <p class="price-sub">49&nbsp;€ par mois pour les inscriptions à partir du 1er&nbsp;novembre&nbsp;2026.</p>
         <ul>
           <li><strong>Les annonces de votre secteur</strong> sur votre WhatsApp.</li>
@@ -602,10 +600,8 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <li><strong>Vos critères modifiables</strong> par un simple message.</li>
           <li><strong>L'analyse des alertes prioritaires</strong> sans supplément pendant 12&nbsp;mois, à sa sortie.</li>
           <li><strong>Un mois offert</strong> pour chaque confrère que vous amenez, sans limite.</li>
-          <li><strong>Mise en service&nbsp;: 49&nbsp;€</strong>, une seule fois.</li>
         </ul>
         <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-        <p class="premier-paiement">À l'inscription&nbsp;: 76&nbsp;€, soit la mise en service et le premier mois. Prix hors taxes éventuelles.</p>
       </div>
       <div class="prix-cote">
         <div class="garantie">
@@ -614,7 +610,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
         </div>
         <div class="prerequis">
           <div class="t">Il vous faut aussi un abonnement MoteurImmo Agent.</div>
-          <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Si vous l'avez déjà, il n'y a rien à ajouter.</p>
+          <p>39&nbsp;€ par mois, réglé directement à MoteurImmo. C'est lui qui donne accès aux annonces. Si vous l'avez déjà, il n'y a rien à ajouter. Sinon, MoteurImmo offre 10&nbsp;jours d'essai.</p>
         </div>
         <div class="prerequis">
           <div class="t">Un confrère amené, un mois offert.</div>
@@ -697,7 +693,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <h2>La prochaine annonce de votre secteur sort bientôt. Qui appellera le premier&nbsp;?</h2>
     <p>20 places d'abonné fondateur à 27&nbsp;€ par mois au lieu de 49&nbsp;€, jusqu'au 31&nbsp;octobre&nbsp;2026. Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
     <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-    <p class="rassure-fin">Écrire ne vous engage à rien. Un confrère amené, un mois offert.</p>
+    <p class="rassure-fin">Un confrère amené, un mois offert.</p>
   </div>
 
 </div>
