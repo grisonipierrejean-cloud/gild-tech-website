@@ -158,6 +158,15 @@ section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
 .price-card li::before { content: "\2713"; color: var(--cta); font-weight: 800; position: absolute; left: 0; }
 .price-card li strong { color: var(--noir); font-weight: 700; }
 .price-card .btn-primary { display: block; text-align: center; }
+.temoignage { margin: 0; background: var(--g100); border-radius: 18px; padding: 2.6rem 2.8rem; }
+.temoignage blockquote { margin: 0; }
+.temoignage blockquote p { font-size: 1.22rem; line-height: 1.6; color: var(--noir); font-weight: 500; }
+.temoignage blockquote p + p { margin-top: 1rem; }
+.temoignage figcaption { margin-top: 1.4rem; font-size: 0.98rem; color: var(--g600); line-height: 1.5; }
+.temoignage figcaption strong { color: var(--noir); }
+.price-citation { margin: 0.4rem 0 0.2rem; font-size: 0.95rem; font-style: italic; color: var(--g600); line-height: 1.55; }
+.price-citation span { display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.2rem; }
+@media (max-width: 640px) { .temoignage { padding: 1.6rem 1.4rem; } .temoignage blockquote p { font-size: 1.05rem; } }
 .price-total { margin: 0.9rem 0 0.6rem; padding: 0.9rem 1rem; background: var(--g100); border-radius: 10px; font-size: 0.95rem; color: var(--g600); line-height: 1.55; }
 .price-total strong { display: block; color: var(--noir); font-size: 1.05rem; margin-bottom: 0.15rem; }
 .sous-titre { margin: 2.6rem 0 1rem; font-size: 1.2rem; font-weight: 800; color: var(--noir); }
@@ -435,6 +444,17 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     </div>
   </section>
 
+  <!-- PREUVE : témoignage client, texte intégral non retouché -->
+  <section class="block" id="temoignage">
+    <figure class="temoignage">
+      <blockquote>
+        <p>«&nbsp;L'automatisation proposée par Pierre-Jean est un véritable gain de temps dans ma recherche de biens. Grâce à Moteur Immo et à sa large couverture des sites immobiliers, je reçois les nouvelles annonces directement sur WhatsApp, sans qu'elles se perdent dans mes mails. Les informations essentielles sont immédiatement visibles&nbsp;: DPE, comparaison avec le prix médian du secteur, coordonnées et lien vers l'annonce. Une fois mes critères et mots-clés bien configurés, je peux repérer rapidement les opportunités et contacter les vendeurs dès réception.</p>
+        <p>J'apprécie également la disponibilité et l'écoute de Pierre-Jean. Son accompagnement permet de personnaliser l'automatisation et de la faire évoluer selon mes besoins. Un outil pratique, associé à un suivi humain très appréciable&nbsp;!&nbsp;»</p>
+      </blockquote>
+      <figcaption><strong>Stéphane P.</strong>, marchand de biens dans le Beaujolais, utilisateur depuis août&nbsp;2026</figcaption>
+    </figure>
+  </section>
+
   <!-- INTERET : comment ça marche, MoteurImmo d'abord -->
   <section class="block" id="fonctionnement">
     <h2 class="section-title">Comment ça marche&nbsp;: MoteurImmo repère, Radar trie, vous appelez.</h2>
@@ -593,6 +613,7 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
         <p class="price-save">Moins d'un euro par jour. Votre prix reste à 27&nbsp;€ tant que vous restez abonné.</p>
         <p class="price-total"><strong>+ 49&nbsp;€ de mise en service, une seule fois.</strong> À l'inscription, vous réglez 76&nbsp;€&nbsp;: la mise en service et le premier mois. Ensuite, 27&nbsp;€ par mois. Prix hors taxes éventuelles.</p>
         <p class="price-sub">39&nbsp;€ par mois pour les inscriptions à partir du 1er&nbsp;décembre&nbsp;2026.</p>
+        <p class="price-citation">«&nbsp;Je reçois les nouvelles annonces directement sur WhatsApp, sans qu'elles se perdent dans mes mails.&nbsp;» <span>Stéphane P., marchand de biens</span></p>
         <ul>
           <li><strong>Les annonces de votre secteur</strong> sur votre WhatsApp.</li>
           <li><strong>Note, priorité et écart au marché</strong> dans chaque message.</li>
