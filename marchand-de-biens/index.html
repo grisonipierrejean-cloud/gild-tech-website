@@ -167,6 +167,13 @@ section.block { padding: 4.5rem 0; border-top: 1px solid var(--g200); }
 .price-citation { margin: 0.4rem 0 0.2rem; font-size: 0.95rem; font-style: italic; color: var(--g600); line-height: 1.55; }
 .price-citation span { display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.2rem; }
 @media (max-width: 640px) { .temoignage { padding: 1.6rem 1.4rem; } .temoignage blockquote p { font-size: 1.05rem; } }
+.paiement-note { margin-top: 0.7rem; font-size: 0.85rem; color: var(--g600); line-height: 1.5; text-align: center; }
+.btn-contour { display: block; margin-top: 0.9rem; text-align: center; padding: 0.85rem 1.2rem; border-radius: 10px; border: 1.5px solid var(--g200); color: var(--noir); text-decoration: none; font-weight: 600; font-size: 0.95rem; line-height: 1.35; }
+.btn-contour:hover { border-color: var(--noir); }
+.cta-final .btn-contour { color: var(--blanc); border-color: rgba(255,255,255,0.35); }
+.cta-double { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.cta-double .btn-contour { margin-top: 0; display: inline-block; }
+@media (max-width: 640px) { .cta-double { flex-direction: column; } .cta-double .btn-contour { display: block; } }
 .price-total { margin: 0.9rem 0 0.6rem; padding: 0.9rem 1rem; background: var(--g100); border-radius: 10px; font-size: 0.95rem; color: var(--g600); line-height: 1.55; }
 .price-total strong { display: block; color: var(--noir); font-size: 1.05rem; margin-bottom: 0.15rem; }
 .sous-titre { margin: 2.6rem 0 1rem; font-size: 1.2rem; font-weight: 800; color: var(--noir); }
@@ -578,13 +585,13 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Vous écrivez ALERTE</h3>
-        <p>Sur WhatsApp. Vous nous donnez votre secteur, le type de bien, votre budget, vos surfaces.</p>
+        <h3>Vous réservez votre place</h3>
+        <p>76&nbsp;€ par carte&nbsp;: 49&nbsp;€ de mise en service, une seule fois, et 27&nbsp;€ pour le premier mois. Une question avant&nbsp;? Écrivez ALERTE sur WhatsApp.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Vous réglez l'inscription</h3>
-        <p>76&nbsp;€ par carte&nbsp;: 49&nbsp;€ de mise en service, une seule fois, et 27&nbsp;€ pour le premier mois.</p>
+        <h3>Nous réglons vos critères</h3>
+        <p>Pierre-Jean Grisoni vous écrit sur WhatsApp&nbsp;: votre secteur, le type de bien, votre budget, vos surfaces.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
@@ -622,7 +629,9 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
           <li><strong>L'analyse des alertes prioritaires</strong> sans supplément pendant 12&nbsp;mois, à sa sortie.</li>
           <li><strong>Un mois offert</strong> pour chaque confrère que vous amenez, sans limite.</li>
         </ul>
-        <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
+        <a href="https://buy.stripe.com/eVqbJ1eZcdTv7Q7fam2sM1i" class="btn-primary" rel="noopener">Réserver ma place fondateur</a>
+        <p class="paiement-note">Paiement sécurisé par Stripe&nbsp;: 76&nbsp;€ aujourd'hui, puis 27&nbsp;€ par mois. En payant, vous acceptez les <a href="conditions.html">conditions de l'offre</a>.</p>
+        <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-contour">Une question avant&nbsp;? Écrivez ALERTE sur WhatsApp</a>
       </div>
       <div class="prix-cote">
         <div class="garantie">
@@ -713,8 +722,11 @@ table.face td:last-child { color: var(--noir); font-weight: 600; background: var
   <div class="cta-final">
     <h2>La prochaine annonce de votre secteur sort bientôt. Qui appellera le premier&nbsp;?</h2>
     <p>10 places d'abonné fondateur à 27&nbsp;€ par mois au lieu de 39&nbsp;€, jusqu'au 30&nbsp;novembre&nbsp;2026. Sans engagement&nbsp;: vous arrêtez quand vous voulez.</p>
-    <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-primary">Écrivez ALERTE sur WhatsApp</a>
-    <p class="rassure-fin">Un confrère amené, un mois offert.</p>
+    <div class="cta-double">
+      <a href="https://buy.stripe.com/eVqbJ1eZcdTv7Q7fam2sM1i" class="btn-primary" rel="noopener">Réserver ma place fondateur</a>
+      <a href="https://wa.me/33699080539?text=ALERTE%20%28site%29" class="btn-contour">Écrire ALERTE sur WhatsApp</a>
+    </div>
+    <p class="rassure-fin">76&nbsp;€ aujourd'hui, puis 27&nbsp;€ par mois. Un confrère amené, un mois offert.</p>
   </div>
 
 </div>
