@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brancher Radar sur MoteurImmo | GILD-TECH</title>
+  <meta name="description" content="Le guide pas à pas pour brancher Radar sur votre compte MoteurImmo Agent : recherche, alerte et webhook.">
+  <link rel="canonical" href="https://gild-tech.com/marchand-de-biens/installation.html">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/legal.css">
+<style>
+div.nav-logo, .nav-logo > span, div.page-tag, div.footer-brand, .footer-brand > span{text-transform:none!important;letter-spacing:normal!important}
+.guide-intro { font-size: 1.05rem; line-height: 1.65; }
+.encadre { background: #F5F5F7; border-radius: 12px; padding: 1.1rem 1.3rem; margin: 1.4rem 0; line-height: 1.6; }
+.encadre strong { color: #0A0A0A; }
+.etape { margin-top: 2.6rem; }
+.etape h2 { margin-top: 0; }
+.page-content figure { margin: 1.2rem 0 0.4rem; }
+.page-content figure img { display: block; width: 100%; height: auto; border: 1px solid #E4E4E7; border-radius: 10px; }
+.page-content figcaption { margin-top: 0.5rem; font-size: 0.85rem; color: #6B6F76; line-height: 1.5; }
+.adresse { display: block; margin: 0.6rem 0; padding: 0.7rem 0.9rem; background: #F5F5F7; border-radius: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 0.85rem; word-break: break-all; }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <div class="nav-mark">G<span>T</span></div>
+        <div class="nav-logo">GILD <span>TECH</span></div>
+      </a>
+      <a href="/marchand-de-biens/" class="nav-back">&larr; Retour à l'offre</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-tag">Guide</div>
+    <h1 class="page-title">Brancher Radar sur votre compte MoteurImmo</h1>
+    <div class="page-date">Dernière mise à jour&nbsp;: 24 octobre 2026</div>
+
+    <div class="page-content">
+
+      <p class="guide-intro">Comptez une dizaine de minutes. Vous faites tous les réglages vous-même, dans votre propre compte MoteurImmo. Nous vous accompagnons sur WhatsApp si besoin.</p>
+
+      <div class="encadre"><strong>Ne communiquez jamais votre mot de passe MoteurImmo</strong>, ni à nous ni à personne. Radar n'en a pas besoin.</div>
+
+      <div class="encadre"><strong>Avant de commencer</strong>, gardez sous la main l'adresse Radar personnelle que nous vous avons envoyée sur WhatsApp. Elle ressemble à ceci&nbsp;:
+        <span class="adresse">https://peejay.app.n8n.cloud/webhook/radar?c=votre-clé</span>
+        La fin de l'adresse est votre clé personnelle. Ne la partagez pas.</div>
+
+      <div class="etape">
+        <h2>1. Créer votre compte MoteurImmo</h2>
+        <p>Rendez-vous sur <a href="https://moteurimmo.fr/inscription" rel="noopener">moteurimmo.fr</a>, rubrique Inscription. L'inscription est gratuite et donne accès à la formule Agent pendant 10&nbsp;jours d'essai. Vous pouvez aussi vous inscrire avec votre compte Google ou Apple.</p>
+        <p>Si vous avez déjà un compte MoteurImmo Agent, passez directement à l'étape&nbsp;2.</p>
+        <p>À la fin de l'essai, la formule Agent coûte 39&nbsp;€ par mois, ou 390&nbsp;€ par an, réglés directement à MoteurImmo&nbsp;: Mon compte, onglet Abonnement, bouton «&nbsp;Prendre un abonnement&nbsp;». C'est la formule qui permet le branchement de Radar.</p>
+      </div>
+
+      <div class="etape">
+        <h2>2. Créer votre recherche</h2>
+        <p>Dans l'onglet Recherche&nbsp;:</p>
+        <ul>
+          <li>choisissez <strong>Vente</strong> et le <strong>type de bien</strong>&nbsp;;</li>
+          <li>dans <strong>Localisations</strong>, tapez vos communes, codes postaux ou départements et choisissez-les dans la liste&nbsp;;</li>
+          <li>ajoutez vos critères&nbsp;: surface minimum, surface du terrain, ancien, budget…</li>
+        </ul>
+        <figure>
+          <img src="tuto-recherche.webp" width="1200" height="624" loading="lazy" alt="Écran de recherche MoteurImmo : vente, maison, localisation Rhône (69), critères 150 m² minimum, vendeur particulier et pro, ancien.">
+          <figcaption>Exemple réel&nbsp;: maisons anciennes à vendre dans le Rhône, 150&nbsp;m² minimum.</figcaption>
+        </figure>
+        <p>Plus vos critères sont précis, moins vous recevez d'annonces hors sujet. Radar trie ensuite ce qui arrive avec sa note sur 10.</p>
+      </div>
+
+      <div class="etape">
+        <h2>3. Transformer la recherche en alerte</h2>
+        <p>En haut à droite, cliquez sur <strong>«&nbsp;Créer une alerte&nbsp;»</strong>. Donnez-lui un nom, par exemple votre secteur, puis cliquez sur <strong>«&nbsp;Créer&nbsp;»</strong>. L'alerte est activée tout de suite.</p>
+        <figure>
+          <img src="tuto-alerte.webp" width="811" height="725" loading="lazy" alt="Fenêtre MoteurImmo Créer une nouvelle alerte, avec le champ Nom de l'alerte rempli et le bouton Créer.">
+          <figcaption>Seul le nom est utile. Les autres champs sont facultatifs.</figcaption>
+        </figure>
+        <p>Toutes vos alertes MoteurImmo seront envoyées à Radar. Si une recherche ne doit pas passer par Radar, désactivez son alerte depuis votre espace MoteurImmo.</p>
+      </div>
+
+      <div class="etape">
+        <h2>4. Ajouter le webhook Radar</h2>
+        <p>Un webhook, c'est l'adresse à laquelle MoteurImmo envoie chaque nouvelle annonce. C'est ce qui relie votre compte à Radar.</p>
+        <ul>
+          <li>Ouvrez <strong>Mon compte</strong>, puis l'onglet <strong>Webhooks</strong>.</li>
+          <li>Cliquez sur <strong>«&nbsp;Ajouter un nouveau webhook&nbsp;»</strong>.</li>
+          <li>Dans le champ de l'adresse, collez votre <strong>adresse Radar personnelle</strong>.</li>
+          <li>Dans <strong>Évènements</strong>, gardez uniquement <strong>«&nbsp;Alertes (publication de nouvelles annonces)&nbsp;»</strong>. Les autres évènements ne servent pas à Radar.</li>
+          <li>Cliquez sur <strong>«&nbsp;Ajouter&nbsp;»</strong>. MoteurImmo affiche&nbsp;: «&nbsp;Le webhook a bien été créé.&nbsp;»</li>
+        </ul>
+        <figure>
+          <img src="tuto-webhook.webp" width="1254" height="627" loading="lazy" alt="Onglet Webhooks de MoteurImmo : adresse Radar renseignée, évènement Alertes (publication de nouvelles annonces) sélectionné.">
+          <figcaption>Le webhook une fois créé. Sur cette capture, la clé personnelle est masquée.</figcaption>
+        </figure>
+      </div>
+
+      <div class="etape">
+        <h2>5. Prévenez-nous</h2>
+        <p>Écrivez <strong>«&nbsp;C'est fait&nbsp;»</strong> sur WhatsApp. Nous vérifions que la première annonce arrive bien et nous vous le confirmons. Ensuite, les alertes arrivent sur votre WhatsApp, notées, dès que MoteurImmo repère une annonce qui correspond à votre recherche.</p>
+        <p>Pour changer vos critères plus tard, modifiez votre recherche dans MoteurImmo, ou écrivez-nous.</p>
+      </div>
+
+      <h2>Une question&nbsp;?</h2>
+      <p>Écrivez-nous sur <a href="https://wa.me/33699080539">WhatsApp</a> ou à <a href="mailto:ops@gild-tech.com">ops@gild-tech.com</a>.</p>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">GILD <span>TECH</span></div>
+      <ul class="footer-links">
+        <li><a href="/marchand-de-biens/">L'offre</a></li>
+        <li><a href="/marchand-de-biens/conditions.html">Conditions de l'offre</a></li>
+        <li><a href="/mentions-legales.html">Mentions légales</a></li>
+        <li><a href="/confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">GILD-TECH, Girlden LTD, CRN 14837617</p>
+  </footer>
+
+</body>
+</html>
