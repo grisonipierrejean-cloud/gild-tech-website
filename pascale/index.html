@@ -353,6 +353,28 @@ main>section:first-child{overflow-x:clip}
 .pg-tem p{margin:0;font-family:'Cormorant Garamond',Georgia,serif !important;font-weight:500;font-size:clamp(22px,5.6vw,26px) !important;line-height:1.5 !important;color:#ECEAE2;text-wrap:pretty}
 .pg-tem-e{white-space:nowrap;font-size:.85em}
 .pg-tem-a{margin-top:22px;font-family:'Albert Sans',Arial,sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#E6D3A3}
+
+/* Typographie uniforme bien-être : Poiret One pour tous les textes ; Parisienne seulement pour « énergétiques » et les signatures ; Albert Sans pour boutons et menu */
+.pg main p,.pg main p span:not([style*="Parisienne"]),.pg main h2,.pg main h3,.pg main h4,.pg main li,.pg main li span,.pg main figcaption,.pg main blockquote p,.pg .pg-sub,.pg .pg-ac-in span,.pg footer p,.pg-hd [style*="Marcellus"],.pg .pg-h1{font-family:'Poiret One','Marcellus',Georgia,serif !important;font-weight:400 !important;font-style:normal !important}
+.pg main p span[style*="Parisienne"]{font-family:'Poiret One','Marcellus',Georgia,serif !important;font-size:1em !important;line-height:inherit !important;padding:0 !important;color:#E6D3A3 !important}
+/* épaisseur légère pour la lisibilité sur fond nuit */
+.pg main p,.pg main h2,.pg main h3,.pg main li,.pg main blockquote p,.pg .pg-sub,.pg .pg-ac-in span,.pg footer p{-webkit-text-stroke:.3px currentColor !important}
+/* phrases d'accroche */
+.pg main p[style*="Marcellus"],.pg-row span[style*="Marcellus"],.pg .pg-pres h2{font-size:clamp(24px,6.2vw,32px) !important;line-height:1.35 !important;letter-spacing:.02em !important;color:#F2EEE4 !important}
+.pg main section:first-child>div>p[style*="Marcellus"]{font-size:clamp(25px,3vw,40px) !important}
+/* texte courant : une seule taille */
+.pg-row>p.pg-tx-r,.pg-tri p,.pg .pg-soins p,.pg .pg-tem p,.pg main p.pg-enum,.pg .pg-sub,.pg-pl{font-size:clamp(20px,5.3vw,22px) !important;line-height:1.65 !important;letter-spacing:.02em !important;color:#EDE6D8 !important}
+.pg main p.pg-enum{color:#F2EEE4 !important}
+.pg .pg-sub{text-wrap:balance}
+/* titres de section */
+.pg-prix h3,.pg .pg-soins h3,.pg #contact h2{font-size:clamp(32px,3.6vw,46px) !important;letter-spacing:.03em !important}
+.pg .pg-soins h4{font-size:clamp(23px,6vw,28px) !important;letter-spacing:.03em !important;color:#E6D3A3 !important;-webkit-text-stroke:.75px currentColor !important}
+.pg-quad{font-size:clamp(20px,1.8vw,23px) !important;letter-spacing:.02em}
+.pg .pg-ac-t{font-size:clamp(24px,2.4vw,30px) !important}
+.pg .pg-ac-in>span:not(.pg-ac-t){font-size:19px !important;line-height:1.5 !important;letter-spacing:.02em}
+.pg .pg-tem-a{font-family:'Poiret One','Marcellus',Georgia,serif;font-size:15px;letter-spacing:.2em;-webkit-text-stroke:.3px currentColor}
+.pg footer p{font-size:16px !important;line-height:1.6 !important}
+.pg main p[style*="Parisienne"]{font-family:'Parisienne','Segoe Script',cursive !important;-webkit-text-stroke:0 !important;letter-spacing:0 !important}
 </style>
 </head>
 <body>
